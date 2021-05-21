@@ -2,45 +2,51 @@
 ## Docs: https://hexo.io/docs/configuration.html
 ## Source: https://github.com/hexojs/hexo/
 
-# Title (display)
-title: Japan CSS Support Example Blog
-# Sub Title (display)
-subtitle: Japan CSS Support Example Blog
-# Description
-description: Japan CSS Support Example Blog
+# ブログのタイトル
+title: Japan Azure Monitoring & Integration Support Blog 
 
-# Keywords
+# サブタイトル
+subtitle: 日本マイクロソフトの Azure Monitoring と Integration に関するサポート情報のブログです。
+description: 日本マイクロソフトの Azure Monitoring と Integration に関するサポート情報のブログです。
 keywords:
-  - Information
+  - Azure
+  - Azure Monitor
+  - Azure Log Analytics
+  - Azure Automation
+  - Application Insights
+  - Azure Logic Apps
 
-author: CSS Japan
+# ブログチーム名
+author: Japan Azure Monitoring & Integration Support Team
 
-# Tag (hexo helper)
+# サイドバーにリストアップするタグ名
 root_tag_generator:
   root_tag_names:
-    - Information
+    - Azure Monitor
+    - Azure Log Analytics
+    - Azure Automation
+    - Application Insights
+    - Azure Logic Apps
   sub_tag_limit: 20
-
+  sub_tag_sort: 'name' # 未実装
+  
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://cssjpn.github.io/example-blog/
+url: https://jpazmon-integ.github.io/blog/
 github:
-  url: https://github.com/cssjpn/blog-example/
+  url: https://github.com/jpazmon-integ/blog/
   posts_dir: articles
-  default_branch: main
 
 skip_render:
   - '_data/*.png'
-  # Bing Webmaster
   - 'BingSiteAuth.xml'
-  # Search Console
-  # - 'googlec4da4c631e14b86c.html'
+  - 'googlea3d8bdaccb8b9c00.html'
 
 # Deployment
 ## Docs: https://hexo.io/doc  s/deployment.html
 deploy:
   type: git
-  repo: git@github.com:cssjpn/blog-example.git
+  repo: git@github.com:jpazmon-integ/blog.git
   branch: gh-pages
   message: "Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }} [skip ci]"
 
@@ -113,7 +119,7 @@ feed:
   path: atom.xml
   limit: 20
 
-  # show disclaimer in all article by default. disableDisclaimer of article's option set true hide.
+# show disclaimer in all article by default. disableDisclaimer of article's option set true hide.
 # ex) 
 # ---
 # title: Article Title
