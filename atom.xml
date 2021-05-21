@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Japan CSS Support Example Blog</title>
+  
+  <subtitle>Japan CSS Support Example Blog</subtitle>
+  <link href="https://cssjpn.github.io/example-blog/atom.xml" rel="self"/>
+  
+  <link href="https://cssjpn.github.io/example-blog/"/>
+  <updated>2021-05-21T12:30:25.499Z</updated>
+  <id>https://cssjpn.github.io/example-blog/</id>
+  
+  <author>
+    <name>CSS Japan</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Example article</title>
+    <link href="https://cssjpn.github.io/example-blog/information/test/"/>
+    <id>https://cssjpn.github.io/example-blog/information/test/</id>
+    <published>2020-12-21T06:00:00.000Z</published>
+    <updated>2021-05-21T12:30:25.499Z</updated>
+    
+    <content type="html"><![CDATA[<p>hello, world!</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;hello, world!&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+    <category term="Information" scheme="https://cssjpn.github.io/example-blog/tags/Information/"/>
+    
+  </entry>
+  
+</feed>
