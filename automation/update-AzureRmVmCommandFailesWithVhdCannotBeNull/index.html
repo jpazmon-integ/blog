@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Runbook の Update-AzureRmVM コマンドが &#39;Vhd&#39; cannot be null. で失敗する | Japan Azure Monitoring &amp; Integration Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは、Windows プラットフォーム サポートの世古です。今回は Azure  Automation の Runbook 実行でよくお問い合わせいただく内容についてご紹介させていただきます。 Runbook の実行で Update-AzureRmVM が ‘Vhd’ cannot be null. で失敗する事象がございます。この問題は以下の条件で発生します。  対象の VM が管理ディス">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Runbook の Update-AzureRmVM コマンドが &#39;Vhd&#39; cannot be null. で失敗する">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/automation/update-AzureRmVmCommandFailesWithVhdCannotBeNull/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring &amp; Integration Support Blog">
+<meta property="og:description" content="こんにちは、Windows プラットフォーム サポートの世古です。今回は Azure  Automation の Runbook 実行でよくお問い合わせいただく内容についてご紹介させていただきます。 Runbook の実行で Update-AzureRmVM が ‘Vhd’ cannot be null. で失敗する事象がございます。この問題は以下の条件で発生します。  対象の VM が管理ディス">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2019-04-02T17:26:00.000Z">
+<meta property="article:modified_time" content="2021-05-26T13:58:54.353Z">
+<meta property="article:author" content="Japan Azure Monitoring &amp; Integration Support Team">
+<meta property="article:tag" content="Automation">
+<meta property="article:tag" content="Troubleshooting">
+<meta property="article:tag" content="Runbook">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring &amp; Integration Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring &amp; Integration Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring と Integration に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-automation/update-AzureRmVmCommandFailesWithVhdCannotBeNull" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Runbook の Update-AzureRmVM コマンドが &#39;Vhd&#39; cannot be null. で失敗する
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2019-04-02T17:26:00.000Z" itemprop="datePublished">2019-04-03</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+af2089b8-0405-54e0-aeac-1096f1b5c198%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BRunbook+%E3%81%AE+Update-AzureRmVM+%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%8C+%27Vhd%27+cannot+be+null.+%E3%81%A7%E5%A4%B1%E6%95%97%E3%81%99%E3%82%8B%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2Fautomation%2Fupdate-AzureRmVmCommandFailesWithVhdCannotBeNull%2F%29%0A*+Content+Source%3A+%5Barticles%2Fautomation%2Fupdate-AzureRmVmCommandFailesWithVhdCannotBeNull.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2Fautomation%2Fupdate-AzureRmVmCommandFailesWithVhdCannotBeNull.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/automation/update-AzureRmVmCommandFailesWithVhdCannotBeNull/" data-id="ckp5j9rw700030mpqcnee4vot" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは、Windows プラットフォーム サポートの世古です。<br>今回は Azure  Automation の Runbook 実行でよくお問い合わせいただく内容についてご紹介させていただきます。</p>
+<p>Runbook の実行で Update-AzureRmVM が ‘Vhd’ cannot be null. で失敗する事象がございます。<br>この問題は以下の条件で発生します。</p>
+<ul>
+<li>対象の VM が管理ディスクを持つ</li>
+<li>モジュールのバージョンが最新でない</li>
+</ul>
+<p>この問題はモジュールのバージョンを最新に更新いただく事で回避されますので、以下の公開情報の手順を実施下さい。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/automation/automation-update-azure-modules">Azure Automation の Azure PowerShell モジュールを更新する方法</a></li>
+</ul>
+<p>以前の Powershell モジュールにおいては、管理ディスクを操作可能な実装が含まれていなかった為、VM の情報を正常に取得出来なかった為、本問題が発生いたします。その為、モジュールのアップデートをご検討ください。</p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/automation/update-AzureRmVmCommandFailesWithVhdCannotBeNull.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../404ErrorOccurrWhenRunningWebhook/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          Webhook の実行が ”(404) 見つかりません” で失敗する
+        
+      </div>
+    </a>
+  
+  
+    <a href="../gettingExeTimeOfJobForSpecificPeriodAutomation/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Azure Automation にて特定期間のジョブの実行時間を取得する</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../404ErrorOccurrWhenRunningWebhook/">Webhook の実行が ”(404) 見つかりません” で失敗する</a>
+          </li>
+        
+          <li>
+            <a href="">Runbook の Update-AzureRmVM コマンドが &#39;Vhd&#39; cannot be null. で失敗する</a>
+          </li>
+        
+          <li>
+            <a href="../gettingExeTimeOfJobForSpecificPeriodAutomation/">Azure Automation にて特定期間のジョブの実行時間を取得する</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li></ul>  -->
+      <ul class="tag-list"></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/Automation/" style="font-size: 20px;">Automation</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 10px;">Job</a> <a href="../../tags/Runbook/" style="font-size: 15px;">Runbook</a> <a href="../../tags/Troubleshooting/" style="font-size: 15px;">Troubleshooting</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 Japan Azure Monitoring &amp; Integration Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
