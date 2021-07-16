@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Azure Automation の実行アカウントの管理方法の tips と FAQ | Japan Azure Monitoring &amp; Integration Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは、Azure Monitoring &amp; Integration サポート チームの伊東です。本日は、Azure Automation の実行アカウントについて、サポート チームによくお問い合わせいただく質問を例に挙げ、実行アカウントをどのように管理していくのか tips をご紹介していきます。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Azure Automation の実行アカウントの管理方法の tips と FAQ">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring &amp; Integration Support Blog">
+<meta property="og:description" content="こんにちは、Azure Monitoring &amp; Integration サポート チームの伊東です。本日は、Azure Automation の実行アカウントについて、サポート チームによくお問い合わせいただく質問を例に挙げ、実行アカウントをどのように管理していくのか tips をご紹介していきます。">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/A2Step3.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/A2Step4.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/A3Step4.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/A3Step7.png">
+<meta property="article:published_time" content="2021-06-25T03:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-16T05:30:55.823Z">
+<meta property="article:author" content="Japan Azure Monitoring &amp; Integration Support Team">
+<meta property="article:tag" content="Automation">
+<meta property="article:tag" content="RunAs Account">
+<meta property="article:tag" content="Tips">
+<meta property="article:tag" content="FAQ">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/A2Step3.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring &amp; Integration Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring &amp; Integration Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring と Integration に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-automation/HowToManageRunAsAccount" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Azure Automation の実行アカウントの管理方法の tips と FAQ
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2021-06-25T03:00:00.000Z" itemprop="datePublished">2021-06-25</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+d826785d-7006-55ee-b8cd-1919b5d253c7%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Automation+%E3%81%AE%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AE%E7%AE%A1%E7%90%86%E6%96%B9%E6%B3%95%E3%81%AE+tips+%E3%81%A8+FAQ%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2Fautomation%2FHowToManageRunAsAccount%2F%29%0A*+Content+Source%3A+%5Barticles%2Fautomation%2FHowToManageRunAsAccount.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2Fautomation%2FHowToManageRunAsAccount.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/" data-id="ckr5wkxpv00010nqm0hzg571u" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは、Azure Monitoring &amp; Integration サポート チームの伊東です。<br>本日は、Azure Automation の実行アカウントについて、サポート チームによくお問い合わせいただく質問を例に挙げ、実行アカウントをどのように管理していくのか tips をご紹介していきます。</p>
+<span id="more"></span>
+
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li>Azure Automation の実行アカウントとは</li>
+<li>FAQ<ul>
+<li>Q1: 実行アカウントを作成するためにどのような権限が必要ですか？</li>
+<li>Q2: 実行アカウントの有効期限が切れました。どのような影響がありますか？どう対処すれば良いですか？</li>
+<li>Q3: 実行アカウントの更新に失敗します。実行アカウントの有効期限の更新に必要な権限が知りたいです。</li>
+<li>Q4: 実行アカウントの有効期限が 1 年なのですが、より長い期間に設定したいです。</li>
+<li>Q5: 実行アカウントの有効期限が切れる前に通知を行いたいです。</li>
+</ul>
+</li>
+<li>References</li>
+</ul>
+<h2 id="Azure-Automation-の実行アカウントとは"><a href="#Azure-Automation-の実行アカウントとは" class="headerlink" title="Azure Automation の実行アカウントとは"></a>Azure Automation の実行アカウントとは</h2><p>Azure Automation を利用する多くのユーザー様は、Azure への認証に実行アカウントを利用しています。<br>以下のスクリプトでは、実行アカウントを呼び出してAzure にログインし、Get-AzVM で Azure VM の情報を取得しています。<br>既定では、Azure サブスクリプションの共同作成者ロールが実行アカウントに割り当てられているため、VM の起動停止など、Azure リソースの操作を行うことが可能です。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$connectionName = &quot;AzureRunAsConnection&quot;</span><br><span class="line">$Conn = Get-AutomationConnection -Name $connectionName         </span><br><span class="line"></span><br><span class="line"># Logging in to Azure...</span><br><span class="line">Connect-AzAccount -ServicePrincipal -Tenant $Conn.TenantID -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint</span><br><span class="line"></span><br><span class="line"># Get the info of Azure VMs</span><br><span class="line">Get-AzVM</span><br></pre></td></tr></table></figure>
+
+<p>本スクリプト内 “Connect-AzAccount” コマンドで -ServicePrincipal オプションを指定していますね。<br>これは、実行アカウントの実態が Azure Active Directory のサービス プリンシパルであるためです。<br>ユーザー アカウントと同様に、サービス プリンシパルに Azure リソースへの権限を割り当てて、リソースへアクセスすることが可能になります。<br>自動化のシナリオなどで、ユーザー アカウントの資格情報を利用する際に不都合などが発生する場合にサービス プリンシパルを使います。</p>
+<p>本題から少し逸れてしまいますので、ここではサービス プリンシパルの詳しい説明を省きます。<br>もっと詳しい情報を知りたい方は以下の公開情報を参考にしてみてください。</p>
+<ul>
+<li>参考<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/active-directory/develop/app-objects-and-service-principals">Azure Active Directory のアプリケーション オブジェクトとサービス プリンシパル オブジェクト</a></li>
+</ul>
+<hr>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><h3 id="Q1-実行アカウントを作成するためにどのような権限が必要ですか？"><a href="#Q1-実行アカウントを作成するためにどのような権限が必要ですか？" class="headerlink" title="Q1: 実行アカウントを作成するためにどのような権限が必要ですか？"></a>Q1: 実行アカウントを作成するためにどのような権限が必要ですか？</h3><p>実行アカウントを作成するために必要な権限は、ユーザー アカウントの種類および Azure AD の設定により異なります。<br>設定のパターンごとに必要な権限を記載しますので、まずは自分がどのパターンに当てはまるか確認していただき、必要な権限をご確認ください。</p>
+<p> <strong>パターン 1</strong><br>&lt;条件&gt;<br>・ユーザー アカウントの種類: Azure AD の “Member”<br>・[Azure ポータル] - [Azure Active Directory] - [ユーザー設定] - [アプリの登録] が “はい” に設定されている。<br>&lt;必要な権限&gt;<br>・サブスクリプションの “所有者” ロール  </p>
+<p><strong>パターン 2</strong><br>&lt;条件&gt;<br>・ユーザー アカウントの種類: Azure AD の “Member”<br>・[Azure ポータル] - [Azure Active Directory] - [ユーザー設定] - [アプリの登録] が “いいえ” に設定されている。<br>&lt;必要な権限&gt;<br>・サブスクリプションの “所有者” ロール<br>・Azure AD の “アプリケーション管理者” ロール  </p>
+<p><strong>パターン 3</strong><br>&lt;条件&gt;<br>・ユーザー アカウントの種類: Azure AD の “Guest”<br>&lt;必要な権限&gt;<br>・サブスクリプションの “所有者” ロール<br>・Azure AD の “アプリケーション管理者” ロール  </p>
+<h3 id="Q2-実行アカウントの有効期限が切れました。どのような影響がありますか？どう対処すれば良いですか？"><a href="#Q2-実行アカウントの有効期限が切れました。どのような影響がありますか？どう対処すれば良いですか？" class="headerlink" title="Q2: 実行アカウントの有効期限が切れました。どのような影響がありますか？どう対処すれば良いですか？"></a>Q2: 実行アカウントの有効期限が切れました。どのような影響がありますか？どう対処すれば良いですか？</h3><p>実行アカウントの有効期限が切れると、以下のようなエラーでAzure へのログインが失敗します。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The Run-as certificate might have expired or invalid. Please check &amp; renew the certificate as mentioned here : https://docs.microsoft.com/en-us/azure/automation/manage-runas-account#cert-renewal</span><br><span class="line">Method &#x27;get_SerializationSettings&#x27; in type &#x27;Microsoft.Azure.Management.Internal.Resources.ResourceManagementClient&#x27; from assembly &#x27;Microsoft.Azure.Commands.ResourceManager.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35&#x27; does not have an implementation.</span><br></pre></td></tr></table></figure>
+<p>スクリプトで Azure リソースへの処理を実装していた場合、その処理が失敗することなどが考えられます。<br>そのため、有効期限が切れる前に、以下の手順で実行アカウントの証明書の有効期限を更新する必要があります。<br>実行アカウントの証明書の有効期限は既定では 1 年ですので、更新を忘れないよう注意してください。</p>
+<p><strong>証明書の更新手順</strong></p>
+<ol>
+<li>Azure ポータルにログインします。</li>
+<li>すべてのサービスから [Automation アカウント] を選択し、対象の Automation アカウント名をクリックします。</li>
+<li>[実行アカウント] のブレードを表示し、右側に表示される画面から “Azure 実行アカウント” をクリックします。<br><img src="/blog/automation/HowToManageRunAsAccount/A2Step3.png" alt="A2Step3"></li>
+<li>画面上部から [証明書の更新] - [はい] の順にクリックし、証明書の更新を実行します。<br><img src="/blog/automation/HowToManageRunAsAccount/A2Step4.png" alt="A2Step4"></li>
+</ol>
+<h3 id="Q3-実行アカウントの更新に失敗します。実行アカウントの有効期限の更新に必要な権限が知りたいです。"><a href="#Q3-実行アカウントの更新に失敗します。実行アカウントの有効期限の更新に必要な権限が知りたいです。" class="headerlink" title="Q3: 実行アカウントの更新に失敗します。実行アカウントの有効期限の更新に必要な権限が知りたいです。"></a>Q3: 実行アカウントの更新に失敗します。実行アカウントの有効期限の更新に必要な権限が知りたいです。</h3><p>実行アカウントの更新を行うためには、そのユーザーが十分な権限を有している必要があります。<br>証明書の更新を行うには、以下のどちらからの条件を満たすように権限を割り当ててください。</p>
+<p><strong>条件 1</strong><br>・Azure AD の “アプリケーション管理者” ロール<br>・サブスクリプションの “所有者” ロール  </p>
+<p><strong>条件 2</strong><br>・実行アカウント作成時に作成されるサービス プリンシパルの “所有者”<br>・サブスクリプションの “所有者” ロール  </p>
+<p>※ サービス プリンシパルの所有者の一覧は以下の手順で確認することができます。</p>
+<p><strong>サービス プリンシパルの所有者 確認手順</strong></p>
+<ol>
+<li>Azure ポータルにログインします。</li>
+<li>すべてのサービスから [Automation アカウント] を選択し、対象のアカウント名をクリックします。</li>
+<li>[実行アカウント] のブレードを表示し、右側に表示される画面から “Azure 実行アカウント” をクリックします。</li>
+<li>実行アカウントの詳細な情報が記載された画面が表示されますので、Azure AD アプリケーションの [表示名] をコピーします。<br><img src="/blog/automation/HowToManageRunAsAccount/A3Step4.png" alt="A3Step4"></li>
+<li>次に、すべてのサービスから [Azure AD] を選択します。</li>
+<li>画面左端から [アプリの登録] のブレードを表示します。</li>
+<li>手順 4 にてコピーした “表示名” を検索ボックスに入力します。<br><img src="/blog/automation/HowToManageRunAsAccount/A3Step7.png" alt="A3Step7"></li>
+<li>表示されたアプリケーションをクリックし、[所有者] のブレードを表示します。</li>
+</ol>
+<h3 id="Q4-実行アカウントの有効期限が-1-年なのですが、より長い期間に設定したいです。"><a href="#Q4-実行アカウントの有効期限が-1-年なのですが、より長い期間に設定したいです。" class="headerlink" title="Q4: 実行アカウントの有効期限が 1 年なのですが、より長い期間に設定したいです。"></a>Q4: 実行アカウントの有効期限が 1 年なのですが、より長い期間に設定したいです。</h3><p>Azure ポータルから実行アカウントを作成すると有効期限は既定では 1 年ですが、Azure PowerShell を利用することで任意の有効期限を設定できます。<br>以下の公開情報にて、PowerShell にて実行アカウントを作成する手順をご案内していますので、こちらの手順を実施してください。</p>
+<ul>
+<li>公開情報<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/automation/create-run-as-account#powershell-script-to-create-a-run-as-account">実行アカウントを作成する PowerShell スクリプト</a></li>
+</ul>
+<p>※ 補足<br>以下サンプル コマンドのように SelfSignedCertNoOfMonthsUntilExpired を引数に指定することで有効期限を月単位で指定できます。<br>下記の例の場合には、100 年 (1200 ヶ月) の有効期限をもつ証明書を作成します。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\Create-RunAsAccount.ps1 -ResourceGroup &lt;Automation アカウントのリソース グループ名&gt; -AutomationAccountName &lt;Automation アカウント名&gt; -SubscriptionId &lt;サブスクリプション ID&gt; -ApplicationDisplayName &lt;実行アカウントの表示名&gt; -SelfSignedCertPlainPassword &lt;任意のパスワード&gt; -CreateClassicRunAsAccount $false -SelfSignedCertNoOfMonthsUntilExpired 1200</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="Q5-実行アカウントの有効期限が切れる前に通知を行いたいです。"><a href="#Q5-実行アカウントの有効期限が切れる前に通知を行いたいです。" class="headerlink" title="Q5: 実行アカウントの有効期限が切れる前に通知を行いたいです。"></a>Q5: 実行アカウントの有効期限が切れる前に通知を行いたいです。</h3><p>既定では、証明書の有効期限を検知して通知を行う機能はありません。<br>なお、Get-AzAutomationCertificate コマンドで実行アカウントの証明書の有効期限を取得できます。<br>こちらのコマンドレットを利用して有効期限を取得し、メール通知を行うサンプル スクリプトをご案内します。<br>タスクスケジューラや Azure Automation などの自動化ツールでスクリプトをスケジュール実行するよう設定ください。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"># パラメータ (適宜ご変更ください。)</span><br><span class="line">$RGname=&quot;リソース グループ名&quot;</span><br><span class="line">$AAname=&quot;Automation アカウント名&quot;</span><br><span class="line">$SubscriptionId=&quot;サブスクリプション ID&quot;</span><br><span class="line">$notificationtime=30 #この値より有効期限の残り日数が小さい場合に通知を行う </span><br><span class="line">$automationCertificateName=&quot;証明書の名前&quot; # [Azure ポータル - Autoamtion アカウント - 証明書 - 名前] からご確認ください。 </span><br><span class="line">$mail = @&#123;</span><br><span class="line">    from = &quot;*********@ex***le.com&quot;;</span><br><span class="line">    to = &quot;***@ex***le.com&quot;;</span><br><span class="line">    smtp_server = &quot;smtp.*****.com&quot;;</span><br><span class="line">    smtp_port = ***;</span><br><span class="line">    user = &quot;**************@*****.com&quot;;</span><br><span class="line">    password = &quot;********&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 認証情報生成</span><br><span class="line">$password = ConvertTo-SecureString $mail[&quot;password&quot;] -AsPlainText -Force</span><br><span class="line">$credential = New-Object System.Management.Automation.PSCredential $mail[&quot;user&quot;], $password</span><br><span class="line"></span><br><span class="line"># ログイン</span><br><span class="line">Connect-AzAccount</span><br><span class="line">Select-AzSubscription -SubscriptionId $SubscriptionId</span><br><span class="line"></span><br><span class="line"># 有効期限の取得</span><br><span class="line">$result=Get-AzAutomationCertificate -ResourceGroupName $RGname -AutomationAccountName $AAname | Where-Object&#123;$_.Name -match $automationCertificateName&#125;</span><br><span class="line">$result</span><br><span class="line">if (!$result) &#123;</span><br><span class="line">    # 実行アカウントが見つからなかった場合</span><br><span class="line">    throw &quot;Automation Account に実行アカウントが存在しません。&quot;    </span><br><span class="line">&#125;</span><br><span class="line">$ExpireDate=$result.ExpiryTime.Date</span><br><span class="line"></span><br><span class="line"># 本日の日付を取得</span><br><span class="line">$today=Get-Date</span><br><span class="line"></span><br><span class="line"># 残り日数を計算</span><br><span class="line">$diff=$ExpireDate - $today</span><br><span class="line"></span><br><span class="line">if ($diff.Days -lt 0)&#123;</span><br><span class="line">    # 既に有効期限切れをしていればメールを送信</span><br><span class="line">    Send-MailMessage -To $mail[&quot;to&quot;] `</span><br><span class="line">                 -From $mail[&quot;from&quot;] `</span><br><span class="line">                 -SmtpServer $mail[&quot;smtp_server&quot;] `</span><br><span class="line">                 -Credential $credential `</span><br><span class="line">                 -Port $mail[&quot;smtp_port&quot;] `</span><br><span class="line">                 -Subject &quot;[Urgent] The certificate has already been expired.&quot; `</span><br><span class="line">                 -Body &quot;証明書は既に有効期限が切れています。更新を行ってください。&quot; `</span><br><span class="line">                 -Encoding UTF8 `</span><br><span class="line">                 -UseSsl</span><br><span class="line">&#125; elseif ($notificationtime -gt $diff.Days)&#123;</span><br><span class="line">    # 指定した期間より有効期限が短ければメールを送信</span><br><span class="line">    Send-MailMessage -To $mail[&quot;to&quot;] `</span><br><span class="line">                 -From $mail[&quot;from&quot;] `</span><br><span class="line">                 -SmtpServer $mail[&quot;smtp_server&quot;] `</span><br><span class="line">                 -Credential $credential `</span><br><span class="line">                 -Port $mail[&quot;smtp_port&quot;] `</span><br><span class="line">                 -Subject &quot;[Urgent] The certificate will be expired.&quot; `</span><br><span class="line">                 -Body &quot;証明書の有効期限は残り $($diff.Days) 日です。&quot; `</span><br><span class="line">                 -Encoding UTF8 `</span><br><span class="line">                 -UseSsl</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="alert is-warning"><p class="alert-title">警告</p><p>本サンプル スクリプトは、サンプルとして提供されるものであり、製品の実運用環境で使用されることを前提に提供されるものではありません。</p><p>本サンプルコードおよびそれに関連するあらゆる情報は、「現状のまま」で提供されるものであり、明示・黙示を問わずいかなる保証も付されるものではありません。</p><p>こちらのサンプルを利用される際には、検証環境などで動作を十分にご確認の上、ご利用ください。</p></div>
+<hr>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/automation/create-run-as-account">Azure Automation の実行アカウントを作成する方法</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/automation/manage-runas-account">Azure Automation の実行アカウントを管理する</a></p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/automation/HowToManageRunAsAccount.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../general/IntroduceOurBlog/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Azure Monitoring &amp; Integration チームの Blog リニューアルのお知らせ</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">Azure Automation の実行アカウントの管理方法の tips と FAQ</a>
+          </li>
+        
+          <li>
+            <a href="../../general/IntroduceOurBlog/">Azure Monitoring &amp; Integration チームの Blog リニューアルのお知らせ</a>
+          </li>
+        
+          <li>
+            <a href="../404ErrorOccurrWhenRunningWebhook/">Webhook の実行が ”(404) 見つかりません” で失敗する</a>
+          </li>
+        
+          <li>
+            <a href="../update-AzureRmVmCommandFailesWithVhdCannotBeNull/">Runbook の Update-AzureRmVM コマンドが &#39;Vhd&#39; cannot be null. で失敗する</a>
+          </li>
+        
+          <li>
+            <a href="../gettingExeTimeOfJobForSpecificPeriodAutomation/">Azure Automation にて特定期間のジョブの実行時間を取得する</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li></ul>  -->
+      <ul class="tag-list"></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/Automation/" style="font-size: 20px;">Automation</a> <a href="../../tags/FAQ/" style="font-size: 10px;">FAQ</a> <a href="../../tags/General/" style="font-size: 10px;">General</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 10px;">Job</a> <a href="../../tags/RunAs-Account/" style="font-size: 10px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 15px;">Runbook</a> <a href="../../tags/Tips/" style="font-size: 10px;">Tips</a> <a href="../../tags/Troubleshooting/" style="font-size: 15px;">Troubleshooting</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 Japan Azure Monitoring &amp; Integration Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
