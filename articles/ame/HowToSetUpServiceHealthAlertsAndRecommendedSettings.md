@@ -21,9 +21,9 @@ tags:
 ## サービスの正常性アラートの概要
 サービス正常性アラートでは、お客様環境にてご利用いただいている Azure サービスおよびリージョンを監視対象とし、Azure サービス自体の正常性を監視することが可能です。Azure サービスの障害や、計画メンテナンスの情報を監視でき、イベントが発生した際に、メールや SMS 等の方法で管理者にアラート通知できます。
 
-サービス正常性アラートにて検知できるイベントの詳細は、下記弊社公開情報をご覧ください。
--- Service Health の概要
-https://docs.microsoft.com/ja-jp/azure/service-health/service-health-overview#service-health-events 
+サービス正常性アラートにて検知できるイベントの詳細は、下記弊社公開情報をご覧ください。  
+-- Service Health の概要  
+https://docs.microsoft.com/ja-jp/azure/service-health/service-health-overview#service-health-events  
 ※ [Service Health のイベント] をご覧ください。
 
 ## サービス正常性アラートの設定手順
