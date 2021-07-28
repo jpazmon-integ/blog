@@ -44,8 +44,8 @@ https://docs.microsoft.com/ja-jp/azure/service-health/service-health-overview#se
 	
 手順は以上です。
 
-手順の詳細は、下記弊社公開情報をご覧ください。
--- Azure portal を使用してサービスの通知でアクティビティ ログ アラートを作成する
+手順の詳細は、下記弊社公開情報をご覧ください。  
+-- Azure portal を使用してサービスの通知でアクティビティ ログ アラートを作成する  
 https://docs.microsoft.com/ja-jp/azure/service-health/alerts-activity-log-service-notifications#alert-and-new-action-group-using-azure-portal
 
 ## サービス正常性アラートの推奨設定
