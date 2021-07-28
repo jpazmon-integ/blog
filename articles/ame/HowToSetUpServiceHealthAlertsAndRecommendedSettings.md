@@ -7,7 +7,7 @@ tags:
   - Azure Monitor Essentials
 ---
 
-こんにちは、Azure Monitoring & Integration サポート チームの堀です。
+こんにちは、Azure Monitoring & Integration サポート チームの堀です。  
 今回はサービス正常性アラートの設定手順と推奨設定についてご案内いたします。
 
 <!-- more -->
