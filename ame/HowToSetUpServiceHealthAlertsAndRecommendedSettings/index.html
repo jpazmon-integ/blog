@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>サービス正常性アラートの設定手順と推奨設定について | Japan Azure Monitoring &amp; Integration Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは、Azure Monitoring &amp; Integration サポート チームの堀です。今回はサービス正常性アラートの設定手順と推奨設定についてご案内いたします。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="サービス正常性アラートの設定手順と推奨設定について">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring &amp; Integration Support Blog">
+<meta property="og:description" content="こんにちは、Azure Monitoring &amp; Integration サポート チームの堀です。今回はサービス正常性アラートの設定手順と推奨設定についてご案内いたします。">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/Step3.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/Step4.png">
+<meta property="article:published_time" content="2021-07-30T15:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-29T01:07:07.999Z">
+<meta property="article:author" content="Japan Azure Monitoring &amp; Integration Support Team">
+<meta property="article:tag" content="How-To">
+<meta property="article:tag" content="Tips">
+<meta property="article:tag" content="Azure Monitor Essentials">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/Step3.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring &amp; Integration Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring &amp; Integration Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring と Integration に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      サービス正常性アラートの設定手順と推奨設定について
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2021-07-30T15:00:00.000Z" itemprop="datePublished">2021-07-31</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+721627ee-cd97-5677-ab23-56b28bc53f6d%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%AE%E8%A8%AD%E5%AE%9A%E6%89%8B%E9%A0%86%E3%81%A8%E6%8E%A8%E5%A5%A8%E8%A8%AD%E5%AE%9A%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2Fame%2FHowToSetUpServiceHealthAlertsAndRecommendedSettings%2F%29%0A*+Content+Source%3A+%5Barticles%2Fame%2FHowToSetUpServiceHealthAlertsAndRecommendedSettings.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2Fame%2FHowToSetUpServiceHealthAlertsAndRecommendedSettings.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/" data-id="ckro7vr2f00000nt05e63hhar" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは、Azure Monitoring &amp; Integration サポート チームの堀です。<br>今回はサービス正常性アラートの設定手順と推奨設定についてご案内いたします。</p>
+<span id="more"></span>
+
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li>サービスの正常性アラートの概要</li>
+<li>サービス正常性アラートの設定手順</li>
+<li>サービス正常性アラートの推奨設定</li>
+</ul>
+<h2 id="サービスの正常性アラートの概要"><a href="#サービスの正常性アラートの概要" class="headerlink" title="サービスの正常性アラートの概要"></a>サービスの正常性アラートの概要</h2><p>サービス正常性アラートでは、お客様環境にてご利用いただいている Azure サービスおよびリージョンを監視対象とし、Azure サービス自体の正常性を監視することが可能です。Azure サービスの障害や、計画メンテナンスの情報を監視でき、イベントが発生した際に、メールや SMS 等の方法で管理者にアラート通知できます。</p>
+<p>サービス正常性アラートにて検知できるイベントの詳細は、下記弊社公開情報をご覧ください。<br>– Service Health の概要<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/service-health/service-health-overview#service-health-events">https://docs.microsoft.com/ja-jp/azure/service-health/service-health-overview#service-health-events</a><br>※ [Service Health のイベント] をご覧ください。</p>
+<h2 id="サービス正常性アラートの設定手順"><a href="#サービス正常性アラートの設定手順" class="headerlink" title="サービス正常性アラートの設定手順"></a>サービス正常性アラートの設定手順</h2><p>以下に、Azure ポータルよりサービス正常性アラートを設定する方法をご案内いたします。</p>
+<ol>
+<li>Azureポータルにログインします。 </li>
+<li>すべてのサービスから [サービス正常性] を開きます。</li>
+<li>左ウィンドウの [アラート] - [正常性アラート] のブレードを開きます。<br><img src="/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/Step3.png" alt="Step3"></li>
+<li>画面上部の [サービス正常性アラートの追加] をクリックします。<br><img src="/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/Step4.png" alt="Step4"></li>
+<li>[アラート ルールの作成] より、アラートの対象となる [サブスクリプション] 、 [サービス] 、 [リージョン] を選択します。</li>
+<li>監視対象の [イベントの種類] を選択します。</li>
+<li>[アクション グループ] の [アクション グループの選択] をクリックします。任意のアクション グループを指定します。</li>
+<li>[アラートの詳細] より [アラート ルール名] と [説明] を入力します。</li>
+<li>[リソース グループにアラートを保存します] よりアラート ルールを作成する [リソース グループ] を選択します。</li>
+<li>[アラート ルールの作成] をクリックします。 </li>
+</ol>
+<p>手順は以上です。  </p>
+<p>手順の詳細は、下記弊社公開情報をご覧ください。<br>– Azure portal を使用してサービスの通知でアクティビティ ログ アラートを作成する<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/service-health/alerts-activity-log-service-notifications#alert-and-new-action-group-using-azure-portal">https://docs.microsoft.com/ja-jp/azure/service-health/alerts-activity-log-service-notifications#alert-and-new-action-group-using-azure-portal</a></p>
+<h2 id="サービス正常性アラートの推奨設定"><a href="#サービス正常性アラートの推奨設定" class="headerlink" title="サービス正常性アラートの推奨設定"></a>サービス正常性アラートの推奨設定</h2><p>サービス正常性アラート設定時の “サービス” や “リージョン” はすべて選択いただくことを推奨しております。<br>サービス正常性アラートは、ご利用いただいているサービスのご利用いただいているリージョンを対象としたイベントが発生した場合にのみ通知が行われる仕組みです。<br>このため、サブスクリプション上のすべてのサービス、リージョンおよびイベントの種類を選択した場合にも、利用していないリソースに対してアラートは発生いたしません。  </p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../automation/HowToManageRunAsAccount/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Azure Automation の実行アカウントの管理方法の tips と FAQ</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">サービス正常性アラートの設定手順と推奨設定について</a>
+          </li>
+        
+          <li>
+            <a href="../../automation/HowToManageRunAsAccount/">Azure Automation の実行アカウントの管理方法の tips と FAQ</a>
+          </li>
+        
+          <li>
+            <a href="../../general/IntroduceOurBlog/">Azure Monitoring &amp; Integration チームの Blog リニューアルのお知らせ</a>
+          </li>
+        
+          <li>
+            <a href="../../automation/404ErrorOccurrWhenRunningWebhook/">Webhook の実行が ”(404) 見つかりません” で失敗する</a>
+          </li>
+        
+          <li>
+            <a href="../../automation/update-AzureRmVmCommandFailesWithVhdCannotBeNull/">Runbook の Update-AzureRmVM コマンドが &#39;Vhd&#39; cannot be null. で失敗する</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li></ul>  -->
+      <ul class="tag-list"></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/Automation/" style="font-size: 20px;">Automation</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 10px;">Azure Monitor Essentials</a> <a href="../../tags/FAQ/" style="font-size: 10px;">FAQ</a> <a href="../../tags/General/" style="font-size: 10px;">General</a> <a href="../../tags/How-To/" style="font-size: 10px;">How-To</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 10px;">Job</a> <a href="../../tags/RunAs-Account/" style="font-size: 10px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 15px;">Runbook</a> <a href="../../tags/Tips/" style="font-size: 15px;">Tips</a> <a href="../../tags/Troubleshooting/" style="font-size: 15px;">Troubleshooting</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 Japan Azure Monitoring &amp; Integration Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
