@@ -40,7 +40,7 @@ tags:
 
 Log Analytics ワークスペースを利用する事で Log Analytics の機能が使えるようになる点が、ワークスペース版のメリットとなります。
 
-- Log Analytics ワークスペースの容量予約レベルが使えるようになり、従量課金制と比べて 25 % のコストを抑えることが可能になります。
+- Log Analytics ワークスペースの容量予約レベルが使えるようになり、従量課金制と比べて最大 30 % のコストを抑えることが可能になります。
 - カスタマー マネージド キー (CMK) を使って、ユーザー独自の暗号化キーでデータを暗号化が行えます。
 - 診断設定を用いて、ストレージ アカウントやイベント ハブへの転送可能となります。
 
@@ -76,6 +76,12 @@ Log Analytics ワークスペースは、他 Azure サービスのリソース �
 
 - [Application Insights からのテレメトリのエクスポート](https://docs.microsoft.com/ja-jp/azure/azure-monitor/app/export-telemetry)
 
+### 診断設定に関する注意点
+ワークスペース版 Application Insights リソースにて、診断設定を利用して他の Log Analytics ワークスペースへエクスポートした場合、当該 Application Insights リソースからログ検索すると**二重でログが取得される**現象が発生します。  
+(Application Insights リソースに紐付いている Log Analytics ワークスペースに格納されたログと、診断設定で指定した他の Log Analytics ワークスペースに格納されたログが取得される)  
+
+現時点では仕様となっております。  
+そのため、予め注意していただけますと幸いです。
 
 #### 参考資料
 - [Application Insights からのテレメトリのエクスポート (連続エクスポート)](https://docs.microsoft.com/ja-jp/azure/azure-monitor/app/export-telemetry)
@@ -198,7 +204,7 @@ Workspace Id:
 ...
 ```
 
-### Q 4 ワークスペース版へ移行すると、今まで使えなくなる機能はありますか
+### Q 4 ワークスペース版へ移行すると、使えなくなる機能はありますか
 連続エクスポートがご利用いただけなくなります。  
 連続エクスポートの代わりに、診断設定を用いてストレージ アカウントへテレメトリ データを転送する事になる点、ご留意願います。
 
