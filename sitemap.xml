@@ -4,56 +4,63 @@
   <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/gettingExeTimeOfJobForSpecificPeriodAutomation/</loc>
     
-    <lastmod>2021-08-03</lastmod>
+    <lastmod>2021-08-18</lastmod>
     
   </url>
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/update-AzureRmVmCommandFailesWithVhdCannotBeNull/</loc>
     
-    <lastmod>2021-08-03</lastmod>
+    <lastmod>2021-08-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/general/AboutMonandIntg/</loc>
+    
+    <lastmod>2021-08-18</lastmod>
     
   </url>
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/general/IntroduceOurBlog/</loc>
     
-    <lastmod>2021-08-03</lastmod>
+    <lastmod>2021-08-18</lastmod>
     
   </url>
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutDifferentTypesOfAi/</loc>
     
-    <lastmod>2021-08-03</lastmod>
+    <lastmod>2021-08-18</lastmod>
     
   </url>
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/</loc>
     
-    <lastmod>2021-08-03</lastmod>
+    <lastmod>2021-08-18</lastmod>
     
   </url>
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/</loc>
     
-    <lastmod>2021-08-03</lastmod>
+    <lastmod>2021-08-18</lastmod>
     
   </url>
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/</loc>
     
-    <lastmod>2021-08-03</lastmod>
+    <lastmod>2021-08-18</lastmod>
     
   </url>
   
 
   <url>
     <loc>https://jpazmon-integ.github.io/blog</loc>
-    <lastmod>2021-08-03</lastmod>
+    <lastmod>2021-08-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -61,91 +68,91 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/tags/How-To/</loc>
-    <lastmod>2021-08-03</lastmod>
+    <lastmod>2021-08-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/tags/Tips/</loc>
-    <lastmod>2021-08-03</lastmod>
+    <lastmod>2021-08-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/tags/Azure-Monitor-Essentials/</loc>
-    <lastmod>2021-08-03</lastmod>
+    <lastmod>2021-08-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/tags/Application-Insights/</loc>
-    <lastmod>2021-08-03</lastmod>
+    <lastmod>2021-08-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/tags/FAQ/</loc>
-    <lastmod>2021-08-03</lastmod>
+    <lastmod>2021-08-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/tags/Automation/</loc>
-    <lastmod>2021-08-03</lastmod>
+    <lastmod>2021-08-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/tags/Troubleshooting/</loc>
-    <lastmod>2021-08-03</lastmod>
+    <lastmod>2021-08-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/tags/Webhook/</loc>
-    <lastmod>2021-08-03</lastmod>
+    <lastmod>2021-08-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/tags/RunAs-Account/</loc>
-    <lastmod>2021-08-03</lastmod>
+    <lastmod>2021-08-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/tags/Howto/</loc>
-    <lastmod>2021-08-03</lastmod>
+    <lastmod>2021-08-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/tags/Runbook/</loc>
-    <lastmod>2021-08-03</lastmod>
+    <lastmod>2021-08-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/tags/Job/</loc>
-    <lastmod>2021-08-03</lastmod>
+    <lastmod>2021-08-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/tags/General/</loc>
-    <lastmod>2021-08-03</lastmod>
+    <lastmod>2021-08-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
