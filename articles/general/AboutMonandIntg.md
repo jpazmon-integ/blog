@@ -34,7 +34,7 @@ PowerShell や Python スクリプトで定義された処理を自動実行さ�
 Logic Apps とは、ビジネス プロセスの実行を自動化するクラウド サービスです。
 Microsoft が管理するあらかじめ構築された 400 を超える API コネクタと組み込み操作が提供されており、クラウド、オンプレミス、ハイブリッド環境で、レガシ、最新、および最先端システムをより簡単に接続できます。
 
-![Azure Logic Apps Overview](https://user-images.githubusercontent.com/76590599/129905624-ca545c60-569b-4e8b-8d0b-58f0d9902c7f.png)
+![Azure Logic Apps overview](https://user-images.githubusercontent.com/76590599/129905624-ca545c60-569b-4e8b-8d0b-58f0d9902c7f.png)
 
 グラフィカル デザイン ツールを使って、ノンコーディングに必要なものを自由に組み合わせることができるため、さまざまなサービスを簡単に結合してワークフローを実装できる強みがあります。  
 ![Azure Logic Apps イメージ図](https://user-images.githubusercontent.com/76590599/129907012-eb7c9e68-7f15-4448-936c-a3253a459a7e.png)
