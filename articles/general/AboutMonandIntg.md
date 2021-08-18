@@ -5,9 +5,9 @@ tags:
   - General
 ---
 
-こんにちは！Azure Monitoring & Integration チームの猪股です。
-現在わたしたちのチームでは、一緒に Azure サポートを盛り上げていってくださるメンバーを絶賛大募集中です!!
-今日は、私たちのチームが普段 Azure のどのような製品を担当しているのかについて、簡単にご案内いたします:smile:
+こんにちは！Azure Monitoring & Integration チームの猪股です。  
+現在わたしたちのチームでは、一緒に Azure サポートを盛り上げていってくださるメンバーを絶賛大募集中です!!  
+今日は、私たちのチームが普段 Azure のどのような製品を担当しているのかについて、簡単にご案内いたします。
 
 # Azure Monitoring & Integration チームについて
 Azure Automation, Azure Monitor (Application Insights, Log Analytics), Azure Logic Apps の各製品の技術サポートをしているチームです。
@@ -27,14 +27,17 @@ PowerShell や Python スクリプトで定義された処理を自動実行さ�
 <IMG  src="https://docs.microsoft.com/ja-jp/azure/automation/media/automation-runbook-execution/job-statuses.png"  alt="ジョブの状態 - PowerShell Workflow"/>
 
 ### Azure Monitor ってどんな製品？
-収集された各種ログ データを Kusto と呼ばれるクエリ言語を使って解析したり、そのクエリを利用してアラートを発報させたりする Log Analytics や、実行中のアプリケーションのパフォーマンスや使用状況を把握したり、監視する Application Insights、VM や AKS 等コンテナー関連の監視機能を提供する VM insights 及び Container insights、Azure Monitor メトリックを使ったデータ収集やアラート作成などなど、非常にバリエーションに富んだ、Azure の監視に必要な機能を提供しています。
+収集された各種ログ データを Kusto と呼ばれるクエリ言語を使って解析したり、そのクエリを利用してアラートを発報させたりする Log Analytics や、実行中のアプリケーションのパフォーマンスや使用状況を把握したり、監視する Application Insights、VM や AKS 等コンテナー関連の監視機能を提供する VM insights 及び Container insights、Azure Monitor メトリックを使ったデータ収集やアラート作成などなど、非常にバリエーションに富んだ、Azure の監視に必要な機能を提供しています。  
 <IMG  src="https://docs.microsoft.com/en-us/azure/azure-monitor/media/overview/overview.png"  alt="Azure Monitor overview"/>
 
 ### Azure Logic Apps ってどんな製品？
 Logic Apps とは、ビジネス プロセスの実行を自動化するクラウド サービスです。
 Microsoft が管理するあらかじめ構築された 400 を超える API コネクタと組み込み操作が提供されており、クラウド、オンプレミス、ハイブリッド環境で、レガシ、最新、および最先端システムをより簡単に接続できます。
-![image.png](/.attachments/image-b618461b-03ee-46f9-98b3-0cc95c146d78.png)
-グラフィカル デザイン ツールを使って、ノンコーディングに必要なものを自由に組み合わせることができるため、さまざまなサービスを簡単に結合してワークフローを実装できる強みがあります。
-<IMG  src="https://docs.microsoft.com/ja-jp/azure/logic-apps/media/logic-apps-overview/azure-logic-apps-designer.png"  alt="Logic Apps デザイナー - ワークフローの例"/>
+
+![image](https://user-images.githubusercontent.com/76590599/129905624-ca545c60-569b-4e8b-8d0b-58f0d9902c7f.png)
+
+グラフィカル デザイン ツールを使って、ノンコーディングに必要なものを自由に組み合わせることができるため、さまざまなサービスを簡単に結合してワークフローを実装できる強みがあります。  
+![image](https://user-images.githubusercontent.com/76590599/129907012-eb7c9e68-7f15-4448-936c-a3253a459a7e.png)
+
 
  
