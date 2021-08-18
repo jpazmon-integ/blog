@@ -9,7 +9,7 @@ tags:
 現在わたしたちのチームでは、一緒に Azure サポートを盛り上げていってくださるメンバーを絶賛大募集中です!!  
 今日は、私たちのチームが普段 Azure のどのような製品を担当しているのかについて、簡単にご案内いたします。
 
-# Azure Monitoring & Integration チームについて
+### Azure Monitoring & Integration チームについて
 Azure Automation, Azure Monitor (Application Insights, Log Analytics), Azure Logic Apps の各製品の技術サポートをしているチームです。
 現在は完全にフルリモートで各自家から仕事 (WfH, work from home と呼んでいます) しています。
 
