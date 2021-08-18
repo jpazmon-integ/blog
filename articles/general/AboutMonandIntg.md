@@ -1,4 +1,9 @@
-[[_TOC_]]
+---
+title: Azure Monitoring & Integration チームについて
+date: 2021-08-18 00:00:00
+tags:
+  - General
+---
 
 こんにちは！Azure Monitoring & Integration チームの猪股です。
 現在わたしたちのチームでは、一緒に Azure サポートを盛り上げていってくださるメンバーを絶賛大募集中です!!
