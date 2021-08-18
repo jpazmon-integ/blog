@@ -28,16 +28,16 @@ PowerShell や Python スクリプトで定義された処理を自動実行さ�
 
 ### Azure Monitor ってどんな製品？
 収集された各種ログ データを Kusto と呼ばれるクエリ言語を使って解析したり、そのクエリを利用してアラートを発報させたりする Log Analytics や、実行中のアプリケーションのパフォーマンスや使用状況を把握したり、監視する Application Insights、VM や AKS 等コンテナー関連の監視機能を提供する VM insights 及び Container insights、Azure Monitor メトリックを使ったデータ収集やアラート作成などなど、非常にバリエーションに富んだ、Azure の監視に必要な機能を提供しています。  
-<IMG  src="https://docs.microsoft.com/en-us/azure/azure-monitor/media/overview/overview.png"  alt="Azure Monitor overview"/>
+<IMG  src="https://docs.microsoft.com/en-us/azure/azure-monitor/media/overview/overview.png"  alt=""/>
 
 ### Azure Logic Apps ってどんな製品？
 Logic Apps とは、ビジネス プロセスの実行を自動化するクラウド サービスです。
 Microsoft が管理するあらかじめ構築された 400 を超える API コネクタと組み込み操作が提供されており、クラウド、オンプレミス、ハイブリッド環境で、レガシ、最新、および最先端システムをより簡単に接続できます。
 
-![image](https://user-images.githubusercontent.com/76590599/129905624-ca545c60-569b-4e8b-8d0b-58f0d9902c7f.png)
+![](https://user-images.githubusercontent.com/76590599/129905624-ca545c60-569b-4e8b-8d0b-58f0d9902c7f.png)
 
 グラフィカル デザイン ツールを使って、ノンコーディングに必要なものを自由に組み合わせることができるため、さまざまなサービスを簡単に結合してワークフローを実装できる強みがあります。  
-![image](https://user-images.githubusercontent.com/76590599/129907012-eb7c9e68-7f15-4448-936c-a3253a459a7e.png)
+![](https://user-images.githubusercontent.com/76590599/129907012-eb7c9e68-7f15-4448-936c-a3253a459a7e.png)
 
 
  
