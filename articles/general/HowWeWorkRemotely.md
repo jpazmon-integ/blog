@@ -1,5 +1,5 @@
 ---
-title: Azure Monitoring & Integration チームについて ~リモート ワークでの働き方~
+title: [第 2 弾] Azure Monitoring & Integration チームについて ~リモート ワークでの働き方~
 date: 2021-08-24 19:30:00
 tags:
   - General
