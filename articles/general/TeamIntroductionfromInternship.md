@@ -3,6 +3,7 @@ title: <第 4 弾> インターン生から見た Azure Monitoring & Integration
 date: 2021-09-21 17:00:00
 tags:
   - General
+  - チーム紹介
 ---
 
 こんにちは！Azure Monitoring & Integration チームでサマー インターンシップをさせていただいております、中条 夢佳 (チュウジョウ ユメカ) です。
