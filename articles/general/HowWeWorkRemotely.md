@@ -3,6 +3,7 @@ title: <第 2 弾> Azure Monitoring & Integration チームについて ~リモ�
 date: 2021-08-24 19:30:00
 tags:
   - General
+  - チーム紹介
 ---
 
 こんにちは！Azure Monitoring & Integration チームの伊東です。
