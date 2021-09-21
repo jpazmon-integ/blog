@@ -3,6 +3,7 @@ title: <第 3 弾> Azure Monitoring & Integration チームのようす、雰囲
 date: 2021-09-04 20:00:00
 tags:
   - General
+  - チーム紹介
 ---
 
 こんにちは！Azure Monitoring & Integration チームの猪股です。
