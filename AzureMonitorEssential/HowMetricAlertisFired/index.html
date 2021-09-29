@@ -4,25 +4,25 @@
   <meta charset="utf-8">
   
   
-  <title>Webhook の実行が ”(404) 見つかりません” で失敗する | Japan Azure Monitoring &amp; Integration Support Blog</title>
+  <title>メトリック アラートの発報タイミングについて | Japan Azure Monitoring &amp; Integration Support Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="こんにちは、Azure サポート チームの世古です。今回は Azure Automation で Webhook を実行する際に記録されるエラー ”(404) 見つかりません” の原因および対処方法についてご案内させていただきます。 記録されるエラーについては以下の通りです。 1ERROR [TID:*] [] System.Net.WebException: リモート サーバーがエラーを返しまし">
+  <meta name="description" content="こんにちは！ Azure Monitoring &amp; Integration チームでサマー インターンシップをしている、中条 夢佳 (チュウジョウ ユメカ) です。「Azure Monitor で VM の監視ができるのか、よし、じゃあ実際にメトリック アラートを設定してみよう！ ・・・あれ? なんか思っていた動作と違うような?」こんな方に読んでいただきたい記事です！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Webhook の実行が ”(404) 見つかりません” で失敗する">
-<meta property="og:url" content="https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/index.html">
+<meta property="og:title" content="メトリック アラートの発報タイミングについて">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowMetricAlertisFired/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring &amp; Integration Support Blog">
-<meta property="og:description" content="こんにちは、Azure サポート チームの世古です。今回は Azure Automation で Webhook を実行する際に記録されるエラー ”(404) 見つかりません” の原因および対処方法についてご案内させていただきます。 記録されるエラーについては以下の通りです。 1ERROR [TID:*] [] System.Net.WebException: リモート サーバーがエラーを返しまし">
+<meta property="og:description" content="こんにちは！ Azure Monitoring &amp; Integration チームでサマー インターンシップをしている、中条 夢佳 (チュウジョウ ユメカ) です。「Azure Monitor で VM の監視ができるのか、よし、じゃあ実際にメトリック アラートを設定してみよう！ ・・・あれ? なんか思っていた動作と違うような?」こんな方に読んでいただきたい記事です！">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/SpecifyExpireOfWebhook.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/CheckExpirationDateWebhook.png">
-<meta property="article:published_time" content="2019-04-02T17:27:00.000Z">
-<meta property="article:modified_time" content="2021-09-29T17:03:12.823Z">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowMetricAlertisFired/image01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowMetricAlertisFired/image02.png">
+<meta property="article:published_time" content="2021-09-29T16:30:00.000Z">
+<meta property="article:modified_time" content="2021-09-29T17:03:12.815Z">
 <meta property="article:author" content="Japan Azure Monitoring &amp; Integration Support Team">
-<meta property="article:tag" content="Automation">
-<meta property="article:tag" content="Troubleshooting">
-<meta property="article:tag" content="Webhook">
+<meta property="article:tag" content="Azure Monitor">
+<meta property="article:tag" content="FAQ">
+<meta property="article:tag" content="MetricAlert">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/SpecifyExpireOfWebhook.png">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowMetricAlertisFired/image01.png">
   
     <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring &amp; Integration Support Blog" type="application/atom+xml">
   
@@ -84,7 +84,7 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-automation/404ErrorOccurrWhenRunningWebhook" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-AzureMonitorEssential/HowMetricAlertisFired" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -93,7 +93,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Webhook の実行が ”(404) 見つかりません” で失敗する
+      メトリック アラートの発報タイミングについて
     </h1>
   
 
@@ -101,25 +101,49 @@
       <div class="article-share">
         Last Update: 
         <a href="" class="article-date-single">
-  <time datetime="2019-04-02T17:27:00.000Z" itemprop="datePublished">2019-04-03</time>
+  <time datetime="2021-09-29T16:30:00.000Z" itemprop="datePublished">2021-09-30</time>
 </a>
         
         
-        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+49ea3c98-b20a-5d45-89f4-7660076ebf00%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BWebhook+%E3%81%AE%E5%AE%9F%E8%A1%8C%E3%81%8C+%E2%80%9D%28404%29+%E8%A6%8B%E3%81%A4%E3%81%8B%E3%82%8A%E3%81%BE%E3%81%9B%E3%82%93%E2%80%9D+%E3%81%A7%E5%A4%B1%E6%95%97%E3%81%99%E3%82%8B%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2Fautomation%2F404ErrorOccurrWhenRunningWebhook%2F%29%0A*+Content+Source%3A+%5Barticles%2Fautomation%2F404ErrorOccurrWhenRunningWebhook.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2Fautomation%2F404ErrorOccurrWhenRunningWebhook.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+873befa0-8a1a-522d-81dc-f08abcadf88c%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF+%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%AE%E7%99%BA%E5%A0%B1%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FHowMetricAlertisFired%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FHowMetricAlertisFired.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FHowMetricAlertisFired.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/" data-id="cku5rc4qj00040no5h9agdzis" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowMetricAlertisFired/" data-id="cku5rc4qa00000no5g71sdnbg" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは、Azure サポート チームの世古です。<br>今回は Azure Automation で Webhook を実行する際に記録されるエラー ”(404) 見つかりません” の原因および対処方法についてご案内させていただきます。</p>
-<p>記録されるエラーについては以下の通りです。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ERROR [TID:*] [] System.Net.WebException: リモート サーバーがエラーを返しました: (404) 見つかりません</span><br></pre></td></tr></table></figure>
-<p>上記内容にあります通り、Runbook を実行しようとしたが実行する URL が見つからない為、404 のエラーを記録して、Runbook の実行に失敗します。</p>
-<h1 id="対処方法について"><a href="#対処方法について" class="headerlink" title="対処方法について"></a>対処方法について</h1><p>URL が見つからない要因としては、一般的に Webhook 作成時に指定した URL の有効期限が影響している可能性がございます。<br>その為、まずは同様のエラーで失敗する場合には Webhook の有効期限をご確認ください。<br>有効期限が既に切れている場合には、Runbook で実行する事は出来ませんので、再度 Webhook を再作成くださいますようお願いします。<br>以下確認方法についてご紹介します。</p>
-<p><img src="/blog/automation/404ErrorOccurrWhenRunningWebhook/SpecifyExpireOfWebhook.png" alt="Webhook での有効期限の指定" title="Webhook での有効期限の指定"></p>
-<p><img src="/blog/automation/404ErrorOccurrWhenRunningWebhook/CheckExpirationDateWebhook.png" alt="Webhook の有効期限確認方法" title="Webhook の有効期限確認方法"></p>
-<h1 id="参考-有効期限の指定について"><a href="#参考-有効期限の指定について" class="headerlink" title="参考 有効期限の指定について"></a>参考 有効期限の指定について</h1><p>Webhook で URL を指定して実行するのは簡単で便利ですが、URL の有効期限についてはセキュリティ面の観点でも非常に大事な項目となります。<br>例えば、外部トークンの URL が外部に漏れた場合には、誰でも Runbook が実行出来るようになるためです。<br>詳細は<a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/automation/automation-webhooks">公開情報</a>を確認いただければと存じますが、ただ長期の期間を指定するのではなく、適切な有効期限を指定する事を推奨しております。</p>
+        <p>こんにちは！ Azure Monitoring &amp; Integration チームでサマー インターンシップをしている、中条 夢佳 (チュウジョウ ユメカ) です。<br>「Azure Monitor で VM の監視ができるのか、よし、じゃあ実際にメトリック アラートを設定してみよう！ ・・・あれ? なんか思っていた動作と違うような?」<br>こんな方に読んでいただきたい記事です！</p>
+<span id="more"></span>
+
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li><a href="#%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%8C%E7%99%BA%E5%A0%B1%E3%81%95%E3%82%8C%E3%82%8B%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0">メトリック アラートが発報されるタイミング</a></li>
+<li><a href="#%E9%9B%86%E7%B4%84%E7%B2%92%E5%BA%A6%E3%81%A8%E8%A9%95%E4%BE%A1%E3%81%AE%E9%A0%BB%E5%BA%A6%E3%81%A3%E3%81%A6%E4%BD%95">集約粒度と評価の頻度って何?</a></li>
+<li><a href="#%E3%81%BE%E3%81%A8%E3%82%81">まとめ</a></li>
+</ul>
+<h2 id="メトリック-アラートが発報されるタイミング"><a href="#メトリック-アラートが発報されるタイミング" class="headerlink" title="メトリック アラートが発報されるタイミング"></a>メトリック アラートが発報されるタイミング</h2><p>メトリック アラートは既定でステートフルとなっています。ステートフルとは状態が変化した場合のみ通知するということです。  </p>
+<p>まず、条件を満たした場合にはアラート (Fired / Triggered 等) を発報します。その後の評価で、同様に条件を満たしていても、アラートは発報しません。次に、条件を満たさなくなった場合には再びアラート (Resolved) が発報しますが、これは 1 回条件を満たさなくなった場合ではなく、3 回連続で条件を満たさなくなった場合に発報します。  </p>
+<p>なお、 既定ではステートフルと設定されていますが、これをステートレスに変更することも可能です。こちらの設定方法については、下記の弊社公開情報をご覧ください。</p>
+<blockquote>
+<p>Azure Monitor のメトリック警告に関する問題のトラブルシューティング - 条件が満たされるたびにメトリック警告が発生するようにする<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-troubleshoot-metric#make-metric-alerts-occur-every-time-my-condition-is-met">https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-troubleshoot-metric#make-metric-alerts-occur-every-time-my-condition-is-met</a></p>
+</blockquote>
+<h2 id="集約粒度と評価の頻度って何"><a href="#集約粒度と評価の頻度って何" class="headerlink" title="集約粒度と評価の頻度って何?"></a>集約粒度と評価の頻度って何?</h2><p>メトリック アラートのアラート ルールを設定する際に、集約粒度 (期間) と評価の頻度という評価基準の値を設定しますが、これって何が違うの? 何で 2 つも時間を設定しなきゃいけないの? と感じた方もいらっしゃるかと思います。<br>言葉の定義としては “集約粒度” は「1 回の評価を行う際に評価の対象となる期間」を表し、”評価の頻度” は「何分おきに評価を行うか」を表します。  </p>
+<p>ここで、メトリック アラートを使用した場合の動作の例を示します。<br>「集約粒度を 5 分、評価の頻度を 1 分、 CPU の使用率の最大値が閾値 70% 以上」 というアラート ルールを設定した場合、直近 5 分間における CPU の使用率のデータを、1 分おきに評価します。Azure Portal でアラート ルールの条件を設定する場合は以下のような画面になります。    </p>
+<p><img src="/blog/AzureMonitorEssential/HowMetricAlertisFired/image01.png" alt="image.png"></p>
+<p>アラートの動作としては、1 度でも直近 5 分間における CPU 使用率の最大値が 70% 以上になった場合に、アラート (Fired / Triggered 等) を発報します。引き続き、1 分おきに評価を続け、3 回連続で直近 5 分間における CPU 使用率の最大値が 70% を下回った場合に、アラート (Resolved) を発報します。  </p>
+<p>下記に示すのがアラートの動作の例です。<br><img src="/blog/AzureMonitorEssential/HowMetricAlertisFired/image02.png" alt="image.png"></p>
+<p>0:06 時点で CPU 使用率の最大値が 70% を超えたため、0:06 にアラート (Fired) が発報されます。次に 0:10 時点で CPU 使用率の最大値は 70% を下回りましたが、この時点ではアラートは発報しません。その後も評価を続け、3 回連続で直近 5 分間の CPU 使用率の最大値が 70% を下回った 0:16 時点で、アラート (Resolved) を発報します。</p>
+<p>メトリック アラートの詳細につきましては、下記の弊社公開情報をご覧ください。  </p>
+<blockquote>
+<p>Azure Monitor でのメトリック アラートの機能<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-metric-overview">https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-metric-overview</a></p>
+</blockquote>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>以下の 3 点についてご理解いただけたでしょうか。</p>
+<ul>
+<li>メトリック アラートは状態が変化した場合のみに発報すること</li>
+<li>条件を満たすとアラート (Fired / Triggered等) を発報し、3 回連続で条件を満たさなくなった場合に、アラート (Resolved) を発報すること</li>
+<li>“集約粒度” と “評価の頻度” が表す意味</li>
+</ul>
+<p>本記事がご理解の助けとして、お役立ていただければ幸いです。</p>
+<p>以上、メトリック アラートの発報タイミングに関する詳細についてお伝えしました。<br>最後までお読みいただきありがとうございました！</p>
 
       
       
@@ -133,10 +157,10 @@
     <footer class="article-footer">
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li></ul>
 
         
-        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/automation/404ErrorOccurrWhenRunningWebhook.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/AzureMonitorEssential/HowMetricAlertisFired.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
         
     </footer>
   </div>
@@ -144,19 +168,10 @@
     
 <nav id="article-nav">
   
-    <a href="../../general/IntroduceOurBlog/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">次の記事</strong>
-      <div class="article-nav-title">
-        
-          Azure Monitoring &amp; Integration チームの Blog リニューアルのお知らせ
-        
-      </div>
-    </a>
   
-  
-    <a href="../update-AzureRmVmCommandFailesWithVhdCannotBeNull/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../../general/JoinUs/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前の記事</strong>
-      <div class="article-nav-title">Runbook の Update-AzureRmVM コマンドが &#39;Vhd&#39; cannot be null. で失敗する</div>
+      <div class="article-nav-title">&lt;第 5 弾&gt; Azure Monitoring &amp; Integration チームについて～一緒に働く仲間を募集しています～</div>
     </a>
   
 </nav>
@@ -175,7 +190,7 @@
       <ul>
         
           <li>
-            <a href="../../AzureMonitorEssential/HowMetricAlertisFired/">メトリック アラートの発報タイミングについて</a>
+            <a href="">メトリック アラートの発報タイミングについて</a>
           </li>
         
           <li>
