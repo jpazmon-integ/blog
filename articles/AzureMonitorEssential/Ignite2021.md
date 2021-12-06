@@ -1,12 +1,12 @@
 ---
-title: Azure モニター新着情報 @ Ignite 2021
+title: Azure Monitor 新着情報 @ Ignite 2021
 date: 2021-11-30 00:00:00
 tags:
   - [Azure Monitor]
 ---
 こんにちは、Azure Monitoring & Integration チームの 鄭 です。
 
-本記事は、2021 年 11 月 2 日に米国の Azure Monitor Blog で公開された [What’s new in Azure Monitor @ Ignite 2021](https://techcommunity.microsoft.com/t5/azure-monitor-blog/what-s-new-in-azure-monitor-ignite-2021/ba-p/2912049) を翻訳したものになります。 
+本記事は、2021 年 11 月 2 日に米国の Azure Monitor Blog で公開された [What’s new in Azure Monitor @ Ignite 2021](https://techcommunity.microsoft.com/t5/azure-monitor-blog/what-s-new-in-azure-monitor-ignite-2021/ba-p/2912049) を翻訳したものになります。Azure Monitor に関する最新情報をお届けいたします。
 
 ============================================================================================
 
