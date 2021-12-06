@@ -6,7 +6,7 @@ tags:
 ---
 こんにちは、Azure Monitoring & Integration チームの 鄭 です。
 
-本記事は、2021 年 11 月 2 日に米国の Azure Monitor Blog で公開された [What’s new in Azure Monitor @ Ignite 2021](https://techcommunity.microsoft.com/t5/azure-monitor-blog/what-s-new-in-azure-monitor-ignite-2021/ba-p/2912049) を翻訳したものになります。ご不明点等ございましたらサポート チームまでお問い合わせください。
+本記事は、2021 年 11 月 2 日に米国の Azure Monitor Blog で公開された [What’s new in Azure Monitor @ Ignite 2021](https://techcommunity.microsoft.com/t5/azure-monitor-blog/what-s-new-in-azure-monitor-ignite-2021/ba-p/2912049) を翻訳したものになります。 
 
 ============================================================================================
 
@@ -33,5 +33,3 @@ Azure Monitor は、ハイブリッド環境を完全に監視できるように
 1. Azure Monitor Alerts の新しい [EventHub アクション](https://docs.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups)を使用すると、信頼性が高くスケーラブルなキューイングテクノロジを利用してアラートを取り込むことができます。 プライベートリンクを使用して EventHub にサブスクライブすることで、ネットワークの分離を実現することもできます。
 
 Azure Monitor とモニタリングのベストプラクティスの詳細については、[ドキュメント](https://docs.microsoft.com/ja-jp/azure/azure-monitor/)と [how-to videos](https://www.youtube.com/playlist?list=PLLasX02E8BPCCsHzNLJjcElCwF52rnh6t) をご覧ください。
-
-※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。
