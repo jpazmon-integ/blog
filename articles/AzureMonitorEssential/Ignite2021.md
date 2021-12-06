@@ -20,7 +20,7 @@ Azure Monitor は、ハイブリッド環境を完全に監視できるように
 ![](./Ignite2021/image01.png)
 
 **Network Insights を使用して VPN ゲートウェイと Azure ファイアウォールのトラブルシューティングを行う**
-1. VPN ゲートウェイおよび Azure ファイアウォールリソースの [Network Insights ](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/network-insights-overview) で、Rich insights と新しいトラブルシューティング機能を利用できるようになりました。 リソースの状態と接続されたリソースを示すリソース トポロジを視覚化し、厳選された監視ワークブックを開始できます。
+1. VPN ゲートウェイおよび Azure ファイアウォールリソースの [Network Insights ](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/network-insights-overview) で、豊富な insights と新しいトラブルシューティング機能を利用できるようになりました。 リソースの状態と接続されたリソースを示すリソース トポロジを視覚化し、厳選された監視ワークブックを開始できます。
 ![](./Ignite2021/image02.png)
 
 **新しい機能を使用し、Log Analytics workspace の管理および監視を行います。**
