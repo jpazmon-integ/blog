@@ -13,15 +13,15 @@
 <meta property="og:site_name" content="Japan Azure Monitoring &amp; Integration Support Blog">
 <meta property="og:description" content="こんにちは、Azure Monitoring &amp; Integration チームの 鄭 です。 本記事は、2021 年 11 月 2 日に米国の Azure Monitor Blog で公開された What’s new in Azure Monitor @ Ignite 2021 を翻訳したものになります。ご不明点等ございましたらサポート チームまでお問い合わせください。 &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://jpazmon-integ.github.io/.attachments/image-406c924c-b67d-47cb-b667-c7eb12d1bd2d.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/.attachments/image-f33eb22e-80db-4bc2-a134-62496a23dce2.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/.attachments/image-f7b7ec26-a274-49a9-9e23-c5d28d65f7d3.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/Ignite2021/image01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/Ignite2021/image02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/Ignite2021/image03.png">
 <meta property="article:published_time" content="2021-11-29T15:00:00.000Z">
-<meta property="article:modified_time" content="2021-12-06T20:12:25.371Z">
+<meta property="article:modified_time" content="2021-12-06T20:24:22.112Z">
 <meta property="article:author" content="Japan Azure Monitoring &amp; Integration Support Team">
 <meta property="article:tag" content="Azure Monitor">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jpazmon-integ.github.io/.attachments/image-406c924c-b67d-47cb-b667-c7eb12d1bd2d.png">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/Ignite2021/image01.png">
   
     <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring &amp; Integration Support Blog" type="application/atom+xml">
   
@@ -106,7 +106,7 @@
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+8cfc2196-45fc-568e-ad3a-84d8965c883a%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+%E3%83%A2%E3%83%8B%E3%82%BF%E3%83%BC%E6%96%B0%E7%9D%80%E6%83%85%E5%A0%B1+%40+Ignite+2021%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FIgnite2021%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FIgnite2021.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FIgnite2021.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/Ignite2021/" data-id="ckwv41d0400010njvfzm4coh2" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/Ignite2021/" data-id="ckwv4gq7v00010nqofx76gsm0" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -118,9 +118,9 @@
 <ol>
 <li>OpenTelemetry のベンダーに依存しない一貫性のある API / SDK を使用して、 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-enable?tabs=net">.NET、 Node.JS、 Python</a>アプリをインストルメント化し、 Application Insights にデータを送信できるようになりました。 これらの AzureMonitor OpenTelemetry エクスポーターはプレビュー機能で、昨年リリースされた <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/azure-monitor/app/java-in-process-agent">Java auto-instrumentation</a>に追加されています。</li>
 </ol>
-<p><strong>Container Insights を使用して Azure Arc 対応 Kubernetes クラスターを監視します。</strong><br>2. <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-enable-arc-enabled-clusters">Azure Arc 対応 Kubernetes クラスターのサポート</a>が一般提供され、Container Insights を通じて、すべての Kubernetes、 AKS、 または非 AKS クラスターを監視できるようになりました。 Azure ポータルからの1-click onboarding を利用して、包括的な視覚化と推奨アラートを使用してクラスターのパフォーマンスを可視化できます。<br><img src="/.attachments/image-406c924c-b67d-47cb-b667-c7eb12d1bd2d.png" alt="image.png"></p>
-<p><strong>Network Insights を使用して VPN ゲートウェイと Azure ファイアウォールのトラブルシューティングを行う</strong><br>3. VPN ゲートウェイおよび Azure ファイアウォールリソースの <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/azure-monitor/insights/network-insights-overview">Network Insights </a> で、Rich insights と新しいトラブルシューティング機能を利用できるようになりました。 リソースの状態と接続されたリソースを示すリソース トポロジを視覚化し、厳選された監視ワークブックを開始できます。<br><img src="/.attachments/image-f33eb22e-80db-4bc2-a134-62496a23dce2.png" alt="image.png"></p>
-<p><strong>新しい機能を使用し、Log Analytics workspace の管理および監視を行います。</strong><br>4. <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-insights-overview">Log Analytics Workspace Insights</a>が一般提供になりました。これを使用すると、ワークスペースの使用状況、パフォーマンス、ヘルス、エージェント、クエリ、および変更ログの統合ビューを通じて、ワークスペースの包括的なビューを取得できます。<br><img src="/.attachments/image-f7b7ec26-a274-49a9-9e23-c5d28d65f7d3.png" alt="image.png"></p>
+<p><strong>Container Insights を使用して Azure Arc 対応 Kubernetes クラスターを監視します。</strong><br>2. <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-enable-arc-enabled-clusters">Azure Arc 対応 Kubernetes クラスターのサポート</a>が一般提供され、Container Insights を通じて、すべての Kubernetes、 AKS、 または非 AKS クラスターを監視できるようになりました。 Azure ポータルからの1-click onboarding を利用して、包括的な視覚化と推奨アラートを使用してクラスターのパフォーマンスを可視化できます。<br><img src="/blog/AzureMonitorEssential/Ignite2021/image01.png"></p>
+<p><strong>Network Insights を使用して VPN ゲートウェイと Azure ファイアウォールのトラブルシューティングを行う</strong><br>3. VPN ゲートウェイおよび Azure ファイアウォールリソースの <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/azure-monitor/insights/network-insights-overview">Network Insights </a> で、Rich insights と新しいトラブルシューティング機能を利用できるようになりました。 リソースの状態と接続されたリソースを示すリソース トポロジを視覚化し、厳選された監視ワークブックを開始できます。<br><img src="/blog/AzureMonitorEssential/Ignite2021/image02.png"></p>
+<p><strong>新しい機能を使用し、Log Analytics workspace の管理および監視を行います。</strong><br>4. <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-insights-overview">Log Analytics Workspace Insights</a>が一般提供になりました。これを使用すると、ワークスペースの使用状況、パフォーマンス、ヘルス、エージェント、クエリ、および変更ログの統合ビューを通じて、ワークスペースの包括的なビューを取得できます。<br><img src="/blog/AzureMonitorEssential/Ignite2021/image03.png"></p>
 <ol start="5">
 <li>Azureポータル内で直接 Log Analytics <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/azure-monitor/logs/logs-data-export?tabs=portal">workspace からデータエクスポート ルールを簡単に管理できるようになりました</a>（プレビュー中）。 新しい機能は、ワークスペース内の既存のルールが有効な状態か無効な状態かに関係なく、明確に表示されます。 いくつかの簡単な手順で、既存のルールを編集して新しいルールを作成することもできます。</li>
 </ol>
