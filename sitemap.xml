@@ -9,13 +9,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/</loc>
-    
-    <lastmod>2021-12-06</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/general/IntroduceOurBlog/</loc>
     
     <lastmod>2021-12-06</lastmod>
@@ -24,6 +17,20 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/general/JoinUs/</loc>
+    
+    <lastmod>2021-12-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/</loc>
+    
+    <lastmod>2021-12-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/gettingExeTimeOfJobForSpecificPeriodAutomation/</loc>
     
     <lastmod>2021-12-06</lastmod>
     
@@ -51,27 +58,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/ThePipelineWasNotRunBecauseAPipelineIsAlreadyRunningError/</loc>
-    
-    <lastmod>2021-12-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/gettingExeTimeOfJobForSpecificPeriodAutomation/</loc>
-    
-    <lastmod>2021-12-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/</loc>
-    
-    <lastmod>2021-12-06</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutDifferentTypesOfAi/</loc>
     
     <lastmod>2021-12-06</lastmod>
@@ -87,6 +73,20 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/</loc>
+    
+    <lastmod>2021-12-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/ThePipelineWasNotRunBecauseAPipelineIsAlreadyRunningError/</loc>
+    
+    <lastmod>2021-12-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/</loc>
     
     <lastmod>2021-12-06</lastmod>
     
