@@ -19,7 +19,7 @@ Azure Monitor は、ハイブリッド環境を完全に監視できるように
 1. [Azure Arc 対応 Kubernetes クラスターのサポート](https://docs.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-enable-arc-enabled-clusters)が一般提供され、Container Insights を通じて、すべての Kubernetes、 AKS、 または非 AKS クラスターを監視できるようになりました。 Azure ポータルからの1-click onboarding を利用して、包括的な視覚化と推奨アラートを使用してクラスターのパフォーマンスを可視化できます。
 ![](./Ignite2021/image01.png)
 
-**Network Insights を使用して VPN ゲートウェイと Azure ファイアウォールのトラブルシューティングを行う**
+**Network Insights を使用して VPN ゲートウェイと Azure ファイアウォールのトラブルシューティングを行います。**
 1. VPN ゲートウェイおよび Azure ファイアウォールリソースの [Network Insights ](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/network-insights-overview) で、豊富な insights と新しいトラブルシューティング機能を利用できるようになりました。 リソースの状態と接続されたリソースを示すリソース トポロジを視覚化し、厳選された監視ワークブックを開始できます。
 ![](./Ignite2021/image02.png)
 
