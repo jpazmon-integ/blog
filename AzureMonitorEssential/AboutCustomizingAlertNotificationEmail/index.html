@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>アラート通知メールのカスタマイズについて | Japan Azure Monitoring &amp; Integration Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは！Azure Monitoring &amp; Integration サポート チームの花房です。「アラート通知メールを日本語にしたい」、「最近ログ アラート ルール作成画面が変わった？」 というお問い合わせを最近よくいただきます。今回はアラート通知メールのカスタマイズに関連した以下の点についてご案内いたします。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="アラート通知メールのカスタマイズについて">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring &amp; Integration Support Blog">
+<meta property="og:description" content="こんにちは！Azure Monitoring &amp; Integration サポート チームの花房です。「アラート通知メールを日本語にしたい」、「最近ログ アラート ルール作成画面が変わった？」 というお問い合わせを最近よくいただきます。今回はアラート通知メールのカスタマイズに関連した以下の点についてご案内いたします。">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image03.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image04.png">
+<meta property="article:published_time" content="2022-01-26T15:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-27T00:52:23.969Z">
+<meta property="article:author" content="Japan Azure Monitoring &amp; Integration Support Team">
+<meta property="article:tag" content="How-To">
+<meta property="article:tag" content="Tips">
+<meta property="article:tag" content="Azure Monitor Essentials">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image01.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring &amp; Integration Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring &amp; Integration Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring と Integration に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-AzureMonitorEssential/AboutCustomizingAlertNotificationEmail" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      アラート通知メールのカスタマイズについて
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2022-01-26T15:00:00.000Z" itemprop="datePublished">2022-01-27</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+72cbd4e0-1427-5d45-b463-a1301bd1a260%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E9%80%9A%E7%9F%A5%E3%83%A1%E3%83%BC%E3%83%AB%E3%81%AE%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%9E%E3%82%A4%E3%82%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FAboutCustomizingAlertNotificationEmail%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FAboutCustomizingAlertNotificationEmail.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FAboutCustomizingAlertNotificationEmail.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/" data-id="ckyw9hvtp00000np4bypq5ea3" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは！Azure Monitoring &amp; Integration サポート チームの花房です。<br>「アラート通知メールを日本語にしたい」、「最近ログ アラート ルール作成画面が変わった？」 というお問い合わせを最近よくいただきます。<br>今回はアラート通知メールのカスタマイズに関連した以下の点についてご案内いたします。</p>
+<span id="more"></span>
+
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li>アラート通知メールはカスタマイズできない</li>
+<li>新しい API バージョン (API バージョン 2021-08-01) のログ アラート ルール作成画面</li>
+<li>まとめ</li>
+</ul>
+<h2 id="アラート通知メールはカスタマイズできない"><a href="#アラート通知メールはカスタマイズできない" class="headerlink" title="アラート通知メールはカスタマイズできない"></a>アラート通知メールはカスタマイズできない</h2><p>Azure Monitor のアラート機能では、メトリックやログをトリガーにアラート通知メールを発報することができます。</p>
+<p>このアラート通知メールは基本的にカスタマイズすることはできません。<br>このため、「日本語の通知メールにする」 や 「メールのフォーマットをカスタマイズする」、「メールのタイトルを任意の値にする」 ということはできません。</p>
+<p>ただ、どうしてもカスタマイズしたメールを送る必要がある場合には、Logic Apps や Azure Function 等を用いてお客様側でアラート通知を実装するという代替案もございます。<br>お客様のご利用目的に合わせて実装することで、適切な通知方法や通知内容を構成することが可能です。<br>一方で、お客様にてスクリプトなどの作り込みが必要となるため、既定で用意されているメール通知と比較して実装に要する工数が増大する点はご留意ください。<br>今回はこの代替案の詳細は割愛いたしますが、一例として以下の &lt;Logic Apps の参考サイト&gt; をご参照いただき、詳しくお知りになりたい点はお気軽に私たちサポートにお問い合わせください！</p>
+<p>&lt;Logic Apps の参考サイト&gt;<br>– 概要 - Azure Logic Apps とは<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/logic-apps/logic-apps-overview">https://docs.microsoft.com/ja-jp/azure/logic-apps/logic-apps-overview</a><br>Logic App とは、ロジック アプリ デザイナーでフロー チャートを用いて作成したワークフローを自動実行するソリューションです。<br>Logic App では、条件分岐などを実装することができ、ワークフローの実行状況に応じて実行する処理を分岐することが可能です。</p>
+<p>メールの通知内容をカスタマイズする際の詳細な手順につきましては、下記弊社公開情報をご覧ください。<br>– Azure Monitor アラートによって複雑なアクションをトリガーする方法<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/platform/action-groups-logic-app">https://docs.microsoft.com/ja-jp/azure/azure-monitor/platform/action-groups-logic-app</a><br>※ アラート ルールの種類により設定手順は異なります。<br>&nbsp;&nbsp;&nbsp;アクティビティ ログ アラートの手順を進めていただき、手順 4 のペイロードは以下公開情報に記載のあるサンプル ペイロードをご使用ください。<br>&nbsp;&nbsp;&nbsp;– ログ アラート ルールの webhook アクション<br>&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-log-webhook#sample-payloads">https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-log-webhook#sample-payloads</a></p>
+<p>※ 上記ドキュメント内の、<br>&nbsp;&nbsp;&nbsp;Teams へのメッセージ送信である箇所 「7. Microsoft Teams コネクタを検索して選択します。 [Microsoft Teams – メッセージの投稿] アクションを選択します。」 を、以下のアクションに置き換えていただくことで、お客様にて件名等のメールの内容をカスタマイズ可能です。<br>&nbsp;&nbsp;&nbsp;– Microsoft 365 Outlook<br>&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/connectors/office365/#send-an-email-[deprecated]">https://docs.microsoft.com/en-us/connectors/office365/#send-an-email-[deprecated]</a><br>&nbsp;&nbsp;&nbsp;※ 「Send an email [DEPRECATED]」 をご参照ください。</p>
+<h2 id="新しい-API-バージョン-API-バージョン-2021-08-01-のログ-アラート-ルール作成画面"><a href="#新しい-API-バージョン-API-バージョン-2021-08-01-のログ-アラート-ルール作成画面" class="headerlink" title="新しい API バージョン (API バージョン 2021-08-01) のログ アラート ルール作成画面"></a>新しい API バージョン (API バージョン 2021-08-01) のログ アラート ルール作成画面</h2><p>ここまでお読みいただいて 「ログ アラート ルールであれば、メールのタイトルは任意の値にできるのでは？」 と思われた方もいるかもしれません。<br>はい、以前の API (バージョン 2018-04-16 以前) であれば、ログ アラート ルールのタイトルのカスタマイズが可能でした。<br>ただ、2021 年 12 月下旬より新しい API (バージョン 2021-08-01) の UI のリリースが開始され、現在の Azure ポータルはアラート ルール作成における動作の一部に変更がなされています。<br>このリリースにより、現在はタイトルを含めアラート通知メールのカスタマイズはできなくなりました。<br>※ 詳細は、後述の &lt;参考サイト&gt; もご参照ください。<br>なお、以前の UI で作成されたアラート ルールは、今後も以前の UI で表示されます。</p>
+<h4 id="■-相違点-■"><a href="#■-相違点-■" class="headerlink" title="■ 相違点 ■"></a>■ 相違点 ■</h4><p>このリリースによる変更でお問い合わせいただくことが多い相違点 2 点について、以下にご案内します。</p>
+<p><strong>相違点 1. [アクションのカスタマイズ] は使用できない</strong><br>以前は可能だった [メールの件名] 、および [Webhook 用のカスタム Json ペイロード] の項目は使用できなくなりました。<br>具体的には以下の項目となります。<br><img src="/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image01.png"></p>
+<p><strong>相違点 2. [シグナル ロジックの構成] の項目が変更された</strong><br>アラート ルールの条件で指定する、[シグナル ロジックの構成] の項目が変更されました。<br>ただ、項目は変更されましたが、以前と同じ条件の設定をすることは可能です。<br>新旧で対応している項目については、以下となります。</p>
+<p>&lt;対応表 / 図&gt;<br><img src="/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image02.png"><br><img src="/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image03.png"><br>例えば、旧 UI で [基準 : 結果の数] と選択していたら、新 UI では [メジャー : テーブルの行] / [集計の種類 : カウント] と設定すると同じ意味の構成になります。</p>
+<h4 id="■-代替案-■"><a href="#■-代替案-■" class="headerlink" title="■ 代替案 ■"></a>■ 代替案 ■</h4><p>前述の通り、新しいアラート ルール作成画面から以前と同様のアラート メールを設定することはできません。<br>ただ、旧 API バージョンの ARM テンプレートや REST APIを使用してアラートをデプロイすることで、以前と同様のカスタマイズをすることが可能です。</p>
+<p>以下の弊社サイトの 「(バージョン 2018-04-16 以前) 」 と記載されたテンプレートは旧 API バージョンの ARM テンプレートになります。<br>– Azure Monitor のログ アラート ルール用の Resource Manager テンプレートのサンプル<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/resource-manager-alerts-log">https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/resource-manager-alerts-log</a></p>
+<p>こちらの ARM テンプレートにて以前の API を指定することで通知されるメール タイトルをカスタマイズしてアラート ルールを作成することが可能です。</p>
+<p>&lt;参考サイト&gt;<br>このリリースによる仕様変更は、以下の弊社サイトもご参照ください。<br>– Create, view, and manage log alerts using Azure Monitor<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-log#create-a-log-alert-rule-in-the-azure-portal">https://docs.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-log#create-a-log-alert-rule-in-the-azure-portal</a><br><img src="/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image04.png"><br>抄訳 ここから *********<br>この記事では、新しいアラート ルール ウィザードを使用したアラート ルールの作成について説明します。新しいアラート ルール エクスペリエンスの次の変更に注意してください。</p>
+<p>・ 検索結果は、トリガーされたアラートとそれに関連する通知には含まれません。アラートには、ログの検索結果へのリンクが含まれています。<br>・ 新しいアラート ルール ウィザードには、トリガーされたアラートの電子メールをカスタマイズしたり、カスタム JSON ペイロードを含めたりするオプションは含まれていません。<br>・ 新しいアラート ルール ウィザードは現在 1 分の頻度をサポートしていません。1 分間のアラート頻度はまもなくサポートされます。<br>抄訳 ここまで *********</p>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>本記事では、以下についてご案内いたしましたが、ご理解いただけましたでしょうか。</p>
+<ul>
+<li>アラート通知メールをカスタマイズすることはできない<br>  – 代替案は、Logic Apps や Azure Functions 等を用いてアラート通知を実装する</li>
+<li>2021 年 12 月から新しい API  (バージョン 2021-08-01)  のアラート ルール作成画面のリリースが開始された<br>  – 代替案は、旧 API バージョンの ARM テンプレートや REST APIを使用してアラートをデプロイ</li>
+</ul>
+<p>以上、アラート通知メールのカスタマイズについてご案内いたしました。</p>
+<p>本記事が少しでもお役に立ちましたら幸いです。<br>最後までお読みいただき、ありがとうございました！</p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../Ignite2021/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Azure Monitor 新着情報 @ Ignite 2021</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">アラート通知メールのカスタマイズについて</a>
+          </li>
+        
+          <li>
+            <a href="../Ignite2021/">Azure Monitor 新着情報 @ Ignite 2021</a>
+          </li>
+        
+          <li>
+            <a href="../HowMetricAlertisFired/">メトリック アラートの発報タイミングについて</a>
+          </li>
+        
+          <li>
+            <a href="../../general/JoinUs/">&lt;第 5 弾&gt; Azure Monitoring &amp; Integration チームについて～一緒に働く仲間を募集しています～</a>
+          </li>
+        
+          <li>
+            <a href="../../general/TeamIntroductionfromInternship/">&lt;第 4 弾&gt; インターン生から見た Azure Monitoring &amp; Integration チーム</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sandbox/" rel="tag">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StartAzureV2VMs/" rel="tag">StartAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StopAzureV2VMs/" rel="tag">StopAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Worker/" rel="tag">Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/">Azure Monitor</a><span class="tag-list-count">2</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/FAQ">FAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/MetricAlert">MetricAlert</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">1</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/FAQ">FAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/Tips">Tips</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/01/">2022 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/Application-Insights/" style="font-size: 10px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 18px;">Automation</a> <a href="../../tags/Azure-Monitor/" style="font-size: 12px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 12px;">Azure Monitor Essentials</a> <a href="../../tags/FAQ/" style="font-size: 16px;">FAQ</a> <a href="../../tags/General/" style="font-size: 20px;">General</a> <a href="../../tags/How-To/" style="font-size: 12px;">How-To</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 12px;">Job</a> <a href="../../tags/MetricAlert/" style="font-size: 10px;">MetricAlert</a> <a href="../../tags/RunAs-Account/" style="font-size: 10px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 12px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 16px;">Tips</a> <a href="../../tags/Troubleshooting/" style="font-size: 14px;">Troubleshooting</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 18px;">チーム紹介</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Japan Azure Monitoring &amp; Integration Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
