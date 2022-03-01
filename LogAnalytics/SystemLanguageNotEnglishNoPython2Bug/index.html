@@ -4,25 +4,22 @@
   <meta charset="utf-8">
   
   
-  <title>メトリック アラートの発報タイミングについて | Japan Azure Monitoring &amp; Integration Support Blog</title>
+  <title>システム言語が日本語の Linux マシンにて発生する Log Analytics エージェントの不具合について | Japan Azure Monitoring &amp; Integration Support Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="こんにちは！ Azure Monitoring &amp; Integration チームでサマー インターンシップをしている、中条 夢佳 (チュウジョウ ユメカ) です。「Azure Monitor で VM の監視ができるのか、よし、じゃあ実際にメトリック アラートを設定してみよう！ ・・・あれ? なんか思っていた動作と違うような?」こんな方に読んでいただきたい記事です！">
+  <meta name="description" content="こんにちは。Azure Monitoring &amp; Integration チームの Austin です。 最近よくお問い合わせをいただいております、Log Analytics エージェントの既知の不具合の影響・原因・回避策についてご紹介いたします。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="メトリック アラートの発報タイミングについて">
-<meta property="og:url" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowMetricAlertisFired/index.html">
+<meta property="og:title" content="システム言語が日本語の Linux マシンにて発生する Log Analytics エージェントの不具合について">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/SystemLanguageNotEnglishNoPython2Bug/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring &amp; Integration Support Blog">
-<meta property="og:description" content="こんにちは！ Azure Monitoring &amp; Integration チームでサマー インターンシップをしている、中条 夢佳 (チュウジョウ ユメカ) です。「Azure Monitor で VM の監視ができるのか、よし、じゃあ実際にメトリック アラートを設定してみよう！ ・・・あれ? なんか思っていた動作と違うような?」こんな方に読んでいただきたい記事です！">
+<meta property="og:description" content="こんにちは。Azure Monitoring &amp; Integration チームの Austin です。 最近よくお問い合わせをいただいております、Log Analytics エージェントの既知の不具合の影響・原因・回避策についてご紹介いたします。">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowMetricAlertisFired/image01.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowMetricAlertisFired/image02.png">
-<meta property="article:published_time" content="2021-09-29T16:30:00.000Z">
-<meta property="article:modified_time" content="2022-03-01T10:18:04.758Z">
+<meta property="article:published_time" content="2022-02-27T15:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-01T10:18:04.762Z">
 <meta property="article:author" content="Japan Azure Monitoring &amp; Integration Support Team">
-<meta property="article:tag" content="Azure Monitor">
 <meta property="article:tag" content="FAQ">
-<meta property="article:tag" content="MetricAlert">
+<meta property="article:tag" content="Log Analytics">
+<meta property="article:tag" content="Troubleshooting">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowMetricAlertisFired/image01.png">
   
     <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring &amp; Integration Support Blog" type="application/atom+xml">
   
@@ -84,7 +81,7 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-AzureMonitorEssential/HowMetricAlertisFired" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-LogAnalytics/SystemLanguageNotEnglishNoPython2Bug" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -93,7 +90,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      メトリック アラートの発報タイミングについて
+      システム言語が日本語の Linux マシンにて発生する Log Analytics エージェントの不具合について
     </h1>
   
 
@@ -101,49 +98,41 @@
       <div class="article-share">
         Last Update: 
         <a href="" class="article-date-single">
-  <time datetime="2021-09-29T16:30:00.000Z" itemprop="datePublished">2021-09-30</time>
+  <time datetime="2022-02-27T15:00:00.000Z" itemprop="datePublished">2022-02-28</time>
 </a>
         
         
-        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+873befa0-8a1a-522d-81dc-f08abcadf88c%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF+%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%AE%E7%99%BA%E5%A0%B1%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FHowMetricAlertisFired%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FHowMetricAlertisFired.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FHowMetricAlertisFired.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+f8b39753-5538-5f8d-b57a-ed385fdcc1cb%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E8%A8%80%E8%AA%9E%E3%81%8C%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE+Linux+%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%AB%E3%81%A6%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B+Log+Analytics+%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%AE%E4%B8%8D%E5%85%B7%E5%90%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FSystemLanguageNotEnglishNoPython2Bug%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FSystemLanguageNotEnglishNoPython2Bug.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FSystemLanguageNotEnglishNoPython2Bug.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowMetricAlertisFired/" data-id="cl07z8fx800010oo11ubwg1rm" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/SystemLanguageNotEnglishNoPython2Bug/" data-id="cl07z8fxd00040oo13s0b7y2h" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは！ Azure Monitoring &amp; Integration チームでサマー インターンシップをしている、中条 夢佳 (チュウジョウ ユメカ) です。<br>「Azure Monitor で VM の監視ができるのか、よし、じゃあ実際にメトリック アラートを設定してみよう！ ・・・あれ? なんか思っていた動作と違うような?」<br>こんな方に読んでいただきたい記事です！</p>
+        <p>こんにちは。Azure Monitoring &amp; Integration チームの Austin です。</p>
+<p>最近よくお問い合わせをいただいております、Log Analytics エージェントの既知の不具合の影響・原因・回避策についてご紹介いたします。</p>
 <span id="more"></span>
 
-<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
-<li><a href="#%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%8C%E7%99%BA%E5%A0%B1%E3%81%95%E3%82%8C%E3%82%8B%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0">メトリック アラートが発報されるタイミング</a></li>
-<li><a href="#%E9%9B%86%E7%B4%84%E7%B2%92%E5%BA%A6%E3%81%A8%E8%A9%95%E4%BE%A1%E3%81%AE%E9%A0%BB%E5%BA%A6%E3%81%A3%E3%81%A6%E4%BD%95">集約粒度と評価の頻度って何?</a></li>
-<li><a href="#%E3%81%BE%E3%81%A8%E3%82%81">まとめ</a></li>
+<h2 id="本不具合の内容およびその影響"><a href="#本不具合の内容およびその影響" class="headerlink" title="本不具合の内容およびその影響"></a>本不具合の内容およびその影響</h2><ul>
+<li>Log Analytics エージェントのインストールに失敗する</li>
+<li>Log Analytics エージェントからデータが正常に収集されない</li>
+<li>Log Analytics ワークスペースの「エージェント構成」画面より収集設定を変更したが、変更が適用されない<br>＊ 例えば収集する Syslog のファシリティを追加して、OS 上にログが出力されていることを確認したのに、Log Analytics ワークスペースへ収集されない</li>
 </ul>
-<h2 id="メトリック-アラートが発報されるタイミング"><a href="#メトリック-アラートが発報されるタイミング" class="headerlink" title="メトリック アラートが発報されるタイミング"></a>メトリック アラートが発報されるタイミング</h2><p>メトリック アラートは既定でステートフルとなっています。ステートフルとは状態が変化した場合のみ通知するということです。  </p>
-<p>まず、条件を満たした場合にはアラート (Fired / Triggered 等) を発報します。その後の評価で、同様に条件を満たしていても、アラートは発報しません。次に、条件を満たさなくなった場合には再びアラート (Resolved) が発報しますが、これは 1 回条件を満たさなくなった場合ではなく、3 回連続で条件を満たさなくなった場合に発報します。  </p>
-<p>なお、 既定ではステートフルと設定されていますが、これをステートレスに変更することも可能です。こちらの設定方法については、下記の弊社公開情報をご覧ください。</p>
-<blockquote>
-<p>Azure Monitor のメトリック警告に関する問題のトラブルシューティング - 条件が満たされるたびにメトリック警告が発生するようにする<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-troubleshoot-metric#make-metric-alerts-occur-every-time-my-condition-is-met">https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-troubleshoot-metric#make-metric-alerts-occur-every-time-my-condition-is-met</a></p>
-</blockquote>
-<h2 id="集約粒度と評価の頻度って何"><a href="#集約粒度と評価の頻度って何" class="headerlink" title="集約粒度と評価の頻度って何?"></a>集約粒度と評価の頻度って何?</h2><p>メトリック アラートのアラート ルールを設定する際に、集約粒度 (期間) と評価の頻度という評価基準の値を設定しますが、これって何が違うの? 何で 2 つも時間を設定しなきゃいけないの? と感じた方もいらっしゃるかと思います。<br>言葉の定義としては “集約粒度” は「1 回の評価を行う際に評価の対象となる期間」を表し、”評価の頻度” は「何分おきに評価を行うか」を表します。  </p>
-<p>ここで、メトリック アラートを使用した場合の動作の例を示します。<br>「集約粒度を 5 分、評価の頻度を 1 分、 CPU の使用率の最大値が閾値 70% 以上」 というアラート ルールを設定した場合、直近 5 分間における CPU の使用率のデータを、1 分おきに評価します。Azure Portal でアラート ルールの条件を設定する場合は以下のような画面になります。    </p>
-<p><img src="/blog/AzureMonitorEssential/HowMetricAlertisFired/image01.png"></p>
-<p>アラートの動作としては、1 度でも直近 5 分間における CPU 使用率の最大値が 70% 以上になった場合に、アラート (Fired / Triggered 等) を発報します。引き続き、1 分おきに評価を続け、3 回連続で直近 5 分間における CPU 使用率の最大値が 70% を下回った場合に、アラート (Resolved) を発報します。  </p>
-<p>下記に示すのがアラートの動作の例です。<br><img src="/blog/AzureMonitorEssential/HowMetricAlertisFired/image02.png"></p>
-<p>0:06 時点で CPU 使用率の最大値が 70% を超えたため、0:06 にアラート (Fired) が発報されます。次に 0:10 時点で CPU 使用率の最大値は 70% を下回りましたが、この時点ではアラートは発報しません。その後も評価を続け、3 回連続で直近 5 分間の CPU 使用率の最大値が 70% を下回った 0:16 時点で、アラート (Resolved) を発報します。</p>
-<p>メトリック アラートの詳細につきましては、下記の弊社公開情報をご覧ください。  </p>
-<blockquote>
-<p>Azure Monitor でのメトリック アラートの機能<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-metric-overview">https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-metric-overview</a></p>
-</blockquote>
-<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>以下の 3 点についてご理解いただけたでしょうか。</p>
-<ul>
-<li>メトリック アラートは状態が変化した場合のみに発報すること</li>
-<li>条件を満たすとアラート (Fired / Triggered等) を発報し、3 回連続で条件を満たさなくなった場合に、アラート (Resolved) を発報すること</li>
-<li>“集約粒度” と “評価の頻度” が表す意味</li>
-</ul>
-<p>本記事がご理解の助けとして、お役立ていただければ幸いです。</p>
-<p>以上、メトリック アラートの発報タイミングに関する詳細についてお伝えしました。<br>最後までお読みいただきありがとうございました！</p>
+<h2 id="不具合が発生する原因"><a href="#不具合が発生する原因" class="headerlink" title="不具合が発生する原因"></a>不具合が発生する原因</h2><p>以下 2 つの条件で不具合が発生します。</p>
+<ol>
+<li>システム言語 (ロケール) が英語以外に設定されている<br>＊ 「localectl」または「echo $LANG」で現在のロケールを確認できます。</li>
+<li>python2 がインストールされていない<br>＊ RHEL 8 や CentOS 8、Ubuntu 20.04 等のマシンには python2 が規定では入っていないため、本不具合の影響を受けることが多い</li>
+</ol>
+<p>以下の Log Analytics の公開情報にインストール時にシステム言語が英語でないとインストールが失敗する問題について記載しておりますが、<strong>一度システム言語が英語の状態でインストールをして、その後システム言語を日本語等に変更した場合にも不具合が発生する事例を確認しております。そのため、新規 VM に Log Analytics エージェントを正常にインストールできた場合にも、その後システム言語を変更すると不具合が発生します。</strong></p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/agent-linux-troubleshoot#issue-installation-is-failing-saying-python2-cannot-support-ctypes-even-though-python3-is-being-used">問題: Python 3 を使用しているのに、Python 2 では Ctype をサポートしていない、というエラーが出てインストールに失敗する</a></p>
+<h2 id="回避策について"><a href="#回避策について" class="headerlink" title="回避策について"></a>回避策について</h2><p>本不具合が発生する条件をいずれか修正することで不具合を回避いただけます。</p>
+<ol>
+<li><p> システム言語を英語に戻す<br>＊ RHEL 8 の場合は以下のコマンドで設定できます。<br><code>$ sudo localectl set-locale en_US.UTF-8</code></p>
+</li>
+<li><p>python2 をインストールする<br>＊ RHEL 8 の場合は以下のコマンドで設定できます。<br><code>$ sudo dnf install python2 -y</code><br><code>$ sudo alternatives --set python /usr/bin/python2</code></p>
+</li>
+</ol>
+<p>以上、Log Analytics エージェントで発生している既知の問題と回避策をご案内いたしました。<br>弊社製品の不具合によりご不便ご迷惑おかけし申し訳ございません。<br>本不具合については、弊社開発部門にて修正作業を進めております。<br>本不具合の修正がリリースされた際には本記事を更新いたします。<br>2022 年 2 月 28 日の最新の情報です。</p>
 
       
       
@@ -157,10 +146,10 @@
     <footer class="article-footer">
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li></ul>
 
         
-        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/AzureMonitorEssential/HowMetricAlertisFired.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/SystemLanguageNotEnglishNoPython2Bug.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
         
     </footer>
   </div>
@@ -168,19 +157,10 @@
     
 <nav id="article-nav">
   
-    <a href="../Ignite2021/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">次の記事</strong>
-      <div class="article-nav-title">
-        
-          Azure Monitor 新着情報 @ Ignite 2021
-        
-      </div>
-    </a>
   
-  
-    <a href="../../general/JoinUs/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../../AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前の記事</strong>
-      <div class="article-nav-title">&lt;第 5 弾&gt; Azure Monitoring &amp; Integration チームについて～一緒に働く仲間を募集しています～</div>
+      <div class="article-nav-title">アラート通知メールのカスタマイズについて</div>
     </a>
   
 </nav>
@@ -199,19 +179,19 @@
       <ul>
         
           <li>
-            <a href="../../LogAnalytics/SystemLanguageNotEnglishNoPython2Bug/">システム言語が日本語の Linux マシンにて発生する Log Analytics エージェントの不具合について</a>
+            <a href="">システム言語が日本語の Linux マシンにて発生する Log Analytics エージェントの不具合について</a>
           </li>
         
           <li>
-            <a href="../AboutCustomizingAlertNotificationEmail/">アラート通知メールのカスタマイズについて</a>
+            <a href="../../AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/">アラート通知メールのカスタマイズについて</a>
           </li>
         
           <li>
-            <a href="../Ignite2021/">Azure Monitor 新着情報 @ Ignite 2021</a>
+            <a href="../../AzureMonitorEssential/Ignite2021/">Azure Monitor 新着情報 @ Ignite 2021</a>
           </li>
         
           <li>
-            <a href="">メトリック アラートの発報タイミングについて</a>
+            <a href="../../AzureMonitorEssential/HowMetricAlertisFired/">メトリック アラートの発報タイミングについて</a>
           </li>
         
           <li>
