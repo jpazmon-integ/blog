@@ -40,5 +40,14 @@ Microsoft が管理するあらかじめ構築された 400 を超える API コ
 グラフィカル デザイン ツールを使って、ノンコーディングに必要なものを自由に組み合わせることができるため、さまざまなサービスを簡単に結合してワークフローを実装できる強みがあります。  
 ![Azure Logic Apps イメージ図](https://user-images.githubusercontent.com/76590599/129907012-eb7c9e68-7f15-4448-936c-a3253a459a7e.png)
 
+### 関連記事
+Azure Monitoring & Integration チームの紹介記事は第 1 弾から第 5 弾まで公開しています。
+以下のリンクから、その他の記事も是非一緒にご覧ください！
+
+- [<第 1 弾> Azure Monitoring & Integration チームについて](https://jpazmon-integ.github.io/blog/general/AboutMonandIntg/)
+- [<第 2 弾> Azure Monitoring & Integration チームについて ~リモート ワークでの働き方~](https://jpazmon-integ.github.io/blog/general/HowWeWorkRemotely/)
+- [<第 3 弾> Azure Monitoring & Integration チームのようす、雰囲気について](https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/)
+- [<第 4 弾> インターン生から見た Azure Monitoring & Integration チーム](https://jpazmon-integ.github.io/blog/general/TeamIntroductionfromInternship/)
+- [<第 5 弾> Azure Monitoring & Integration チームについて～一緒に働く仲間を募集しています～](https://jpazmon-integ.github.io/blog/general/JoinUs/)
 
  
