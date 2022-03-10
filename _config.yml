@@ -3,21 +3,20 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # ブログのタイトル
-title: Japan Azure Monitoring & Integration Support Blog 
+title: Japan Azure Monitoring Support Blog 
 
 # サブタイトル
-subtitle: 日本マイクロソフトの Azure Monitoring と Integration に関するサポート情報のブログです。
-description: 日本マイクロソフトの Azure Monitoring と Integration に関するサポート情報のブログです。
+subtitle: 日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。
+description: 日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。
 keywords:
   - Azure
   - Azure Monitor
   - Azure Log Analytics
   - Azure Automation
   - Application Insights
-  - Azure Logic Apps
 
 # ブログチーム名
-author: Japan Azure Monitoring & Integration Support Team
+author: Japan Azure Monitoring Support Team
 
 # サイドバーにリストアップするタグ名
 root_tag_generator:
@@ -26,7 +25,6 @@ root_tag_generator:
     - Azure Log Analytics
     - Azure Automation
     - Application Insights
-    - Azure Logic Apps
   sub_tag_limit: 20
   sub_tag_sort: 'name' # 未実装
   
