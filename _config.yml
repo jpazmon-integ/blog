@@ -38,7 +38,7 @@ github:
 skip_render:
   - '_data/*.png'
   - 'BingSiteAuth.xml'
-  - 'googlea3d8bdaccb8b9c00.html'
+  - 'google978cf733f5a65189.html'
 
 # Deployment
 ## Docs: https://hexo.io/doc  s/deployment.html
