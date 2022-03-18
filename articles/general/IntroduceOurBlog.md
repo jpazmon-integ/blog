@@ -1,6 +1,6 @@
 ---
 title: Azure Monitoring & Integration チームの Blog リニューアルのお知らせ
-date: 2022/03/18 12:00:00
+date: 2021-6-16 12:00:00
 tags:
   - General
 ---
