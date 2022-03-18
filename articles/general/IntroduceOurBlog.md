@@ -1,16 +1,23 @@
 ---
 title: Azure Monitoring & Integration チームの Blog リニューアルのお知らせ
-date: 2021-6-16 12:00:00
+date: 2022/03/18 12:00:00
 tags:
   - General
 ---
+
+## 更新情報
+- 2022/3/18 更新
+  - 本ブログで扱うテクノロジーに変更がありましたので更新いたしました。
+  - 具体的には Integration 製品の取り扱いを廃止いたしました。
+  - Integration 製品に関するブログは下記の URL よりご確認ください。
+    - [Japan Azure Integration Support Blog](https://jpazinteg.github.io/blog/)
 
 ## Blog リニューアルのお知らせ
 こんにちは、Azure Monitoring & Integration サポート チームです。
 この度、Monitoring & Integration サポート チームのブログをリニューアルいたしましたのでお知らせします！
 <!-- more -->
 
-こちらのブログでは、Monitoring や Integration 製品のテクノロジーに関する話題を中心に情報を発信していきます。
+こちらのブログでは、Monitoring 製品のテクノロジーに関する話題を中心に情報を発信していきます。
 開発部門などからも多くの公式な公開情報を提供しておりますが、私たちのブログでは、新機能に関してのご紹介だけでなく、日本の多くの Azure ご利用者からサポートの依頼を直接受けているサポート エンジニアという立場から、時には私どもの視点を交えて、皆様のお役に立つ情報をご案内したいと思います。
 これから本ブログで公開していく情報の一例を以下に記載しました。
 
@@ -25,10 +32,7 @@ tags:
 - Azure Log Analytics
 - Azure Automation
 - Azure Application Insights
-- Azure Logic Apps
-- BizTalk Server
-- Host Integration Server
-- Microsoft Message Queue (MSMQ) Serve
+
 
 
 これから様々な情報を発信しますので、こちらのブログが皆さまのお役に立てれば幸いです。
