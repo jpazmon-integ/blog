@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Windows セキュリティ イベントログの収集 | Japan Azure Monitoring Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは！ Azure Monitoring &amp; Integration サポート チームの北村です。 今回は Log Analytics ワークスペースにセキュリティ イベント ログを収集する方法をご案内いたします。ご利用されているエージェントによってログ収集方法が異なりますので、エージェントごとに設定方法をご紹介いたします。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows セキュリティ イベントログの収集">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="こんにちは！ Azure Monitoring &amp; Integration サポート チームの北村です。 今回は Log Analytics ワークスペースにセキュリティ イベント ログを収集する方法をご案内いたします。ご利用されているエージェントによってログ収集方法が異なりますので、エージェントごとに設定方法をご紹介いたします。">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/image01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/image02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/image03.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step03.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step04.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step05.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step06.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step07.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step08.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step03.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step04_01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step04_02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step05.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step06.png">
+<meta property="article:published_time" content="2022-04-03T15:00:00.000Z">
+<meta property="article:modified_time" content="2022-04-04T03:42:40.374Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="How-To">
+<meta property="article:tag" content="Tips">
+<meta property="article:tag" content="Log Analytics">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/image01.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-LogAnalytics/HowToCollectWindowsSecurityEvents" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Windows セキュリティ イベントログの収集
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2022-04-03T15:00:00.000Z" itemprop="datePublished">2022-04-04</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+a2e0241b-5f16-5704-9976-bd34dfc1d5be%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BWindows+%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3+%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%83%AD%E3%82%B0%E3%81%AE%E5%8F%8E%E9%9B%86%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FHowToCollectWindowsSecurityEvents%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FHowToCollectWindowsSecurityEvents.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FHowToCollectWindowsSecurityEvents.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/" data-id="cl1k62wl100050os1gx7t5f1u" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは！ Azure Monitoring &amp; Integration サポート チームの北村です。</p>
+<p>今回は Log Analytics ワークスペースにセキュリティ イベント ログを収集する方法をご案内いたします。<br>ご利用されているエージェントによってログ収集方法が異なりますので、エージェントごとに設定方法をご紹介いたします。</p>
+<span id="more"></span>
+
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li>Log Analytics エージェントと Azure Monitor エージェントにおける収集方法の違い</li>
+<li>Log Analytics エージェントによるセキュリティ イベント ログ収集の設定</li>
+<li>Azure Monitor エージェントによるセキュリティ イベント ログ収集の設定</li>
+<li>まとめ</li>
+</ul>
+<h2 id="Log-Analytics-エージェントと-Azure-Monitor-エージェントにおける収集方法の違い"><a href="#Log-Analytics-エージェントと-Azure-Monitor-エージェントにおける収集方法の違い" class="headerlink" title="Log Analytics エージェントと Azure Monitor エージェントにおける収集方法の違い"></a>Log Analytics エージェントと Azure Monitor エージェントにおける収集方法の違い</h2><p>Azure Monitor でセキュリティ イベント ログを収集する場合、<br>Azure Monitor エージェント または Log Analytics エージェントを使用します。<br>冒頭でも申し上げたとおり、エージェントによって収集方法が異なります (下表参照)。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/image01.png"></p>
+<h3 id="Log-Analytics-エージェントによるログ収集"><a href="#Log-Analytics-エージェントによるログ収集" class="headerlink" title="Log Analytics エージェントによるログ収集"></a>Log Analytics エージェントによるログ収集</h3><p>Log Analytics エージェントは、他の Windows イベント ログとは異なり、<br>Log Analytics ワークスペースの [エージェント構成] からセキュリティ イベント ログの収集を設定することができません。<br>Microsoft Defender for Cloud または Microsoft Sentinel を使用する必要があり、ログは SecurityEvent テーブルに送信されます。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/image02.png"></p>
+<p>&lt;参考&gt;<br>– Log Analytics エージェントを使用して Windows イベント ログのデータ ソースを収集する - [Windows イベント ログの構成] を<br>ご参照ください。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/data-sources-windows-events#configuring-windows-event-logs">https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/data-sources-windows-events#configuring-windows-event-logs</a><br>– Microsoft Sentinel に送信できるセキュリティ イベント ログは下記弊社公開情報をご覧ください。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/sentinel/windows-security-event-id-reference">https://docs.microsoft.com/ja-jp/azure/sentinel/windows-security-event-id-reference</a></p>
+<h3 id="Azure-Monitor-エージェントによるログ収集"><a href="#Azure-Monitor-エージェントによるログ収集" class="headerlink" title="Azure Monitor エージェントによるログ収集"></a>Azure Monitor エージェントによるログ収集</h3><p>Azure Monitor エージェントでは、他の Windows イベント ログと同様に、<br>データ収集ルール (DCR) でセキュリティ イベント ログを収集することができます。ログは、Event テーブルに送信されます。<br>また、Microsoft Sentinel を使用して Azure Monitor エージェント経由でログを収集することもできますが、<br>その場合は SecurityEvent テーブルに送信されます (Log Analytics エージェントを使用する場合と同様です)。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/image03.png"></p>
+<p>&lt;参考&gt;<br>– 新しい Azure Monitor エージェントを使用して Windows セキュリティ イベントを収集する方法はありますか?<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/faq#----azure-monitor-------------windows--------------------------">https://docs.microsoft.com/ja-jp/azure/azure-monitor/faq#----azure-monitor-------------windows--------------------------</a></p>
+<h2 id="Log-Analytics-エージェントによるセキュリティ-イベント-ログ収集の設定"><a href="#Log-Analytics-エージェントによるセキュリティ-イベント-ログ収集の設定" class="headerlink" title="Log Analytics エージェントによるセキュリティ イベント ログ収集の設定"></a>Log Analytics エージェントによるセキュリティ イベント ログ収集の設定</h2><p>ここでは、Microsoft Sentinel を使用した Log Analytics エージェントによる セキュリティ イベント ログの収集手順をご紹介します。<br>下記手順は Azure VM を使用することを前提としております。</p>
+<ol>
+<li><p>Azure portal から Microsoft Sentinel を選択します。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step01.png"></p>
+</li>
+<li><p>Microsoft Sentinel の画面上部の [+ 作成] をクリックします。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step02.png"></p>
+</li>
+<li><p>新しい Log Analytics ワークスペースを作成する場合は、<br>画面上部の [+ 新しいワークスペースの作成] をクリックしてください。本手順では既に作成済みのワークスペースを選択します。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step03.png"></p>
+</li>
+<li><p>リソース メニュー の [データ コネクタ] から [レガシ エージェントを使用したセキュリティ イベント] のコネクタを選択し、<br>画面左下部の [コネクタ ページを開く] をクリックします。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step04.png"></p>
+</li>
+<li><p>Log Analytics エージェントをダウンロードします。<br>[Azure Windows 仮想マシンのエージェントをダウンロードしてインストールする] をクリックします。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step05.png"></p>
+</li>
+<li><p>セキュリティ イベント ログを収集する仮想マシンを選択し、Log Analytics ワークスペースに接続します。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step06.png"></p>
+</li>
+<li><p>収集するイベントを選択し、[変更の適用] を選択します。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step07.png"></p>
+</li>
+<li><p>Microsoft Sentinel のリソース メニューの [ログ] から SecurityEvent テーブルにログが収集されていることが分かります。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step08.png"></p>
+</li>
+</ol>
+<p>&lt;参考&gt;<br>– 使用した Microsoft Sentinel のコネクタは [レガシ エージェントを使用したセキュリティ イベント (Windows)] です。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/sentinel/data-connectors-reference#security-events-via-legacy-agent-windows">https://docs.microsoft.com/ja-jp/azure/sentinel/data-connectors-reference#security-events-via-legacy-agent-windows</a><br>– 上記手順は、下記弊社公開情報にも掲載しております。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/sentinel/connect-azure-windows-microsoft-services?tabs=SA,LAA#windows-agent-based-connections">https://docs.microsoft.com/ja-jp/azure/sentinel/connect-azure-windows-microsoft-services?tabs=SA%2CLAA#windows-agent-based-connections</a></p>
+<h3 id="Azure-Monitor-エージェントによるセキュリティ-イベント-ログ収集の設定"><a href="#Azure-Monitor-エージェントによるセキュリティ-イベント-ログ収集の設定" class="headerlink" title="Azure Monitor エージェントによるセキュリティ イベント ログ収集の設定"></a>Azure Monitor エージェントによるセキュリティ イベント ログ収集の設定</h3><p>次に、Azure VM で データ収集ルール (DCR) を使用したセキュリティ イベント ログの収集設定手順をご紹介します。</p>
+<ol>
+<li><p>Azure portal から [モニター] を開きます。左リソース メニューから [設定] - [データ収集ルール] を選択し、<br>画面左上部の [+ 作成] をクリックします。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step01.png"></p>
+</li>
+<li><p>データ収集ルールを作成します。以下のとおり必要項目を入力します。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step02.png"></p>
+</li>
+<li><p>[+ リソースの追加] をクリックし、セキュリティ イベント ログを収集する仮想マシンを選択します。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step03.png"></p>
+</li>
+<li><p>[+ データ ソースの追加] を選択します。データ ソースの種類に [Windows event logs] の [セキュリティ] を選択します。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step04_01.png"><br>次にログを収集する Log Analytics ワークスペースを選択します。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step04_02.png"></p>
+</li>
+<li><p>最後に設定内容を確認し、[作成] をクリックします。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step05.png"></p>
+</li>
+<li><p>前述 4. で指定した Log Analytics ワークスペースの [ログ] から Event テーブルにセキュリティ イベント ログが収集されていることが分かります。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step06.png"></p>
+</li>
+</ol>
+<p>&lt;参考&gt;<br>– データ収集ルール (DCR) につきましては、下記公開情報をご覧ください。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-rule-azure-monitor-agent">https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-rule-azure-monitor-agent</a><br>– Azure Monitor エージェントでも、Microsoft Sentinel にセキュリティ イベント ログを収集することは可能です。<br>使用するコネクタは下記弊社公開情報をご覧ください。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/sentinel/data-connectors-reference#windows-security-events-via-ama">https://docs.microsoft.com/ja-jp/azure/sentinel/data-connectors-reference#windows-security-events-via-ama</a></p>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>本記事では、以下についてご案内いたしましたが、ご理解いただけましたでしょうか。</p>
+<ul>
+<li>Log Analytics エージェントと Azure Monitor エージェントにおける収集方法の違い</li>
+<li>Log Analytics エージェントによるセキュリティ イベント ログ収集の設定</li>
+<li>Azure Monitor エージェントによるセキュリティ イベント ログ収集の設定</li>
+</ul>
+<p>本記事がご理解の助けとして、お役立ていただければ幸いです。<br>以上、Windows セキュリティ イベント ログの収集設定についてお伝えしました。</p>
+<p>最後までお読みいただきありがとうございました！</p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/HowToCollectWindowsSecurityEvents.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../HowToChangeLAWSDataRetentionPeriod/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          Log Analytics ワークスペースの保有期間の変更
+        
+      </div>
+    </a>
+  
+  
+    <a href="../../AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">アラート通知メールのカスタマイズについて</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../HowToChangeLAWSDataRetentionPeriod/">Log Analytics ワークスペースの保有期間の変更</a>
+          </li>
+        
+          <li>
+            <a href="">Windows セキュリティ イベントログの収集</a>
+          </li>
+        
+          <li>
+            <a href="../../AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/">アラート通知メールのカスタマイズについて</a>
+          </li>
+        
+          <li>
+            <a href="../SystemLanguageNotEnglishNoPython2Bug/">システム言語が日本語の Linux マシンにて発生する Log Analytics エージェントの不具合について</a>
+          </li>
+        
+          <li>
+            <a href="../../AzureMonitorEssential/Ignite2021/">Azure Monitor 新着情報 @ Ignite 2021</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sandbox/" rel="tag">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StartAzureV2VMs/" rel="tag">StartAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StopAzureV2VMs/" rel="tag">StopAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Worker/" rel="tag">Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/">Azure Monitor</a><span class="tag-list-count">2</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/FAQ">FAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/MetricAlert">MetricAlert</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">1</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/FAQ">FAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/Tips">Tips</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/Application-Insights/" style="font-size: 10px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 18px;">Automation</a> <a href="../../tags/Azure-Monitor/" style="font-size: 12px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 12px;">Azure Monitor Essentials</a> <a href="../../tags/FAQ/" style="font-size: 18px;">FAQ</a> <a href="../../tags/General/" style="font-size: 20px;">General</a> <a href="../../tags/How-To/" style="font-size: 16px;">How-To</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 12px;">Job</a> <a href="../../tags/Log-Analytics/" style="font-size: 14px;">Log Analytics</a> <a href="../../tags/MetricAlert/" style="font-size: 10px;">MetricAlert</a> <a href="../../tags/RunAs-Account/" style="font-size: 10px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 12px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 20px;">Tips</a> <a href="../../tags/Troubleshooting/" style="font-size: 16px;">Troubleshooting</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 18px;">チーム紹介</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
