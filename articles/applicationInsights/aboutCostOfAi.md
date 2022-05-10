@@ -98,7 +98,16 @@ union AppAvailabilityResults, AppBrowserTimings, AppDependencies, AppExceptions,
 ```
 
 #### ログ データの保持に対するコスト
-データの保持期間は REST API を使用して確認する必要がございます。
+Log Analytics ワークスペースのデータの保持期間は[全般] > [使用量と推定コスト] の [データ保持期間] から確認いただけます。
+![](./aboutCostOfAi/7.png)
+ただし、ここで表示されるデータの保持期間は、以下のデータ以外の保持期間を示します。
+※ これらのデータの保持期間は既定では 90 日間に設定されております。
+- Usage
+- AzureActivity
+- Application Insights のデータ
+
+
+そのため、Application Insightsのデータの保持期間は REST API を使用して確認する必要がございます。
 以下の PowerShell スクリプトを実行すると、Log Analytics ワークスペースの Application Insights で使用されるテーブルのデータの保持期間を確認できます。
 ```
 $azContext = Get-AzContext
