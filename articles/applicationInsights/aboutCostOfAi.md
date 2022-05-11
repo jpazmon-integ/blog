@@ -1,6 +1,6 @@
 ---
 title: Application Insights のログの料金について
-date: 2022-05-06 00:00:00
+date: 2022-05-11 00:00:00
 tags:
   - Application Insights
   - コスト
