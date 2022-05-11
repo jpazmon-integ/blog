@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Application Insights のログの料金について | Japan Azure Monitoring Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは、Azure Monitoring サポート チームの六浦です。 今回は Application Insights のログに関する料金についてご案内いたします。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Application Insights のログの料金について">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの六浦です。 今回は Application Insights のログに関する料金についてご案内いたします。">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/1.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/2.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/3.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/4.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/5.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/6.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/7.png">
+<meta property="article:published_time" content="2022-05-10T15:00:00.000Z">
+<meta property="article:modified_time" content="2022-05-11T04:56:54.970Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="Application Insights">
+<meta property="article:tag" content="コスト">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/1.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-applicationInsights/aboutCostOfAi" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Application Insights のログの料金について
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2022-05-10T15:00:00.000Z" itemprop="datePublished">2022-05-11</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+8ff94fc7-9ab1-537b-abde-9513b26f1fdc%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BApplication+Insights+%E3%81%AE%E3%83%AD%E3%82%B0%E3%81%AE%E6%96%99%E9%87%91%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FapplicationInsights%2FaboutCostOfAi%2F%29%0A*+Content+Source%3A+%5Barticles%2FapplicationInsights%2FaboutCostOfAi.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FapplicationInsights%2FaboutCostOfAi.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/" data-id="cl3140xyh000a0opjdw5dgmq1" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは、Azure Monitoring サポート チームの六浦です。</p>
+<p>今回は Application Insights のログに関する料金についてご案内いたします。</p>
+<span id="more"></span>
+
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
+<li><a href="#application-insights-%E3%81%AE%E3%83%AD%E3%82%B0%E3%81%AE%E6%96%99%E9%87%91">Application Insights のログの料金</a><ul>
+<li><a href="#%E3%83%AD%E3%82%B0-%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E4%BF%9D%E6%8C%81%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E3%82%B3%E3%82%B9%E3%83%88">ログ データの保持に対するコスト</a></li>
+<li><a href="#%E3%83%AD%E3%82%B0-%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E3%82%B3%E3%82%B9%E3%83%88">ログ データのインジェストに対するコスト</a></li>
+</ul>
+</li>
+<li><a href="#%E7%8F%BE%E5%9C%A8%E3%81%AE%E6%96%99%E9%87%91%E3%82%92%E8%A6%8B%E7%A9%8D%E3%82%82%E3%82%8B%E6%96%B9%E6%B3%95">現在の料金を見積もる方法</a><ul>
+<li><a href="#%E3%82%AF%E3%83%A9%E3%82%B7%E3%83%83%E3%82%AF%E7%89%88">クラシック版</a><ul>
+<li><a href="#%E3%83%AD%E3%82%B0-%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E3%82%B3%E3%82%B9%E3%83%88-1">ログ データのインジェストに対するコスト</a></li>
+<li><a href="#%E3%83%AD%E3%82%B0-%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E4%BF%9D%E6%8C%81%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E3%82%B3%E3%82%B9%E3%83%88-1">ログ データの保持に対するコスト</a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E7%89%88">ワークスペース版</a><ul>
+<li><a href="#%E3%83%AD%E3%82%B0-%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E3%82%B3%E3%82%B9%E3%83%88-2">ログ データのインジェストに対するコスト</a></li>
+<li><a href="#%E3%83%AD%E3%82%B0-%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E4%BF%9D%E6%8C%81%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E3%82%B3%E3%82%B9%E3%83%88-2">ログ データの保持に対するコスト</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E3%82%AF%E3%82%A8%E3%83%AA%E3%82%92%E7%94%A8%E3%81%84%E3%81%A6%E3%82%B3%E3%82%B9%E3%83%88%E3%82%92%E7%A2%BA%E8%AA%8D">クエリを用いてコストを確認</a></li>
+<li><a href="#%E3%81%BE%E3%81%A8%E3%82%81">まとめ</a></li>
+</ul>
+<h2 id="Application-Insights-のログの料金"><a href="#Application-Insights-のログの料金" class="headerlink" title="Application Insights のログの料金"></a>Application Insights のログの料金</h2><p>Application Insights のログに対して発生する料金は下記の 2 つがございます。</p>
+<ol>
+<li>ログ データの保持に対するコスト</li>
+<li>ログ データのインジェストに対するコスト</li>
+</ol>
+<p>2 つの料金の課金方法の仕組みついてご案内いたします。</p>
+<h3 id="ログ-データの保持に対するコスト"><a href="#ログ-データの保持に対するコスト" class="headerlink" title="ログ データの保持に対するコスト"></a>ログ データの保持に対するコスト</h3><p>Application Insights に取り込まれたデータは 90 日間無料で保持されます。<br>Application Insights のデータ保持期間を 90 日にご設定いただければ費用は発生いたしません。<br>つまり、保持期間が 90 日を超えなければ、ログ データの保持に対するコストは 0 円です。<br>※ Application Insights のデフォルト保持期間は 90 日間でございます。</p>
+<p>たとえば、データを 365 日間保持する設定で、毎月 11 GB ずつデータを取り込んだ場合、<br>1 年分のデータがたまった状態になると、以下の図のようにおよそ 9 ヶ月分のデータに対して課金が発生いたします。<br><img src="/blog/applicationInsights/aboutCostOfAi/1.png"></p>
+<h3 id="ログ-データのインジェストに対するコスト"><a href="#ログ-データのインジェストに対するコスト" class="headerlink" title="ログ データのインジェストに対するコスト"></a>ログ データのインジェストに対するコスト</h3><p>従量課金制の価格レベルをご使用の場合は、1 か月あたり課金アカウントごとに 5 GB まで無料でございます。<br>以下のように毎月 5 GB を超えたデータに、料金が発生いたします。<br><img src="/blog/applicationInsights/aboutCostOfAi/2.png"></p>
+<p>Application Insights の課金について詳しくは、以下の弊社公開情報からご確認いただけます。<br><a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">価格 - Azure Monitor | Microsoft Azure</a></p>
+<h2 id="現在の料金を見積もる方法"><a href="#現在の料金を見積もる方法" class="headerlink" title="現在の料金を見積もる方法"></a>現在の料金を見積もる方法</h2><h3 id="クラシック版"><a href="#クラシック版" class="headerlink" title="クラシック版"></a>クラシック版</h3><p>Application Insights の [構成] &gt; [使用とコストの見積もり] から現在の料金の見積もりをご確認いただけます。</p>
+<h4 id="ログ-データのインジェストに対するコスト-1"><a href="#ログ-データのインジェストに対するコスト-1" class="headerlink" title="ログ データのインジェストに対するコスト"></a>ログ データのインジェストに対するコスト</h4><p>データのインジェストは以下の表から確認できます。<br>ここで表示されるデータ インジェスト量は 5 GB の無料枠は考慮されておりませんので、ご注意くださいませ。<br><img src="/blog/applicationInsights/aboutCostOfAi/3.png"></p>
+<h4 id="ログ-データの保持に対するコスト-1"><a href="#ログ-データの保持に対するコスト-1" class="headerlink" title="ログ データの保持に対するコスト"></a>ログ データの保持に対するコスト</h4><p>保有期間を確認して、Application Insights のログ データにコストが発生しているか確認できます。<br>データ保有期間は、[データ保有期間] を選択して、画面右側に表示されるメニューから確認いただけます。<br>保有期間が 90 日以内に設定されていれば、データの保持の料金は発生しません。<br><img src="/blog/applicationInsights/aboutCostOfAi/4.png"></p>
+<h3 id="ワークスペース版"><a href="#ワークスペース版" class="headerlink" title="ワークスペース版"></a>ワークスペース版</h3><p>ワークスペース版の Application Insights は Log Analytics ワークスペースにログ データを保持しているため、Log Analytics ワークスペースにてデータ保有期間とデータのインジェストの料金を確認します。</p>
+<h4 id="ログ-データのインジェストに対するコスト-2"><a href="#ログ-データのインジェストに対するコスト-2" class="headerlink" title="ログ データのインジェストに対するコスト"></a>ログ データのインジェストに対するコスト</h4><p>Application Insights が接続している Log Analytics ワークスペースから確認する必要がございます。<br>Application Insights が接続している Log Analytics ワークスペースは [概要] のワークスペースからご確認いただけます。<br><img src="/blog/applicationInsights/aboutCostOfAi/5.png"></p>
+<p>Application Insights が接続している Log Analytics ワークスペースの [全般] &gt; [使用量と推定コスト] からログ データ インジェスト量を確認いただけます。<br>ここで表示されるデータ インジェスト量も 5 GB の無料枠は考慮されておりませんので、ご注意くださいませ。<br><img src="/blog/applicationInsights/aboutCostOfAi/6.png"></p>
+<p>上記の画面で表示されているログ データ インジェスト量は、Log Analytics ワークスペース全体のインジェスト量でございます。<br>複数の Application Insights が 1 つの Log Analytics ワークスペースに接続している場合や、他のリソースのログを Log Analytics ワークスペースに収集している場合は、それらのログの合計のインジェスト量が表示されます。<br>リソースごとのインジェスト量を調べるには、Log Analytics ワークスペースで以下のクエリを実行してご確認いただけます。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">union AppAvailabilityResults, AppBrowserTimings, AppDependencies, AppExceptions, AppEvents, AppMetrics, AppPageViews, AppPerformanceCounters, AppRequests, AppSystemEvents, AppTraces</span><br><span class="line">| where TimeGenerated &gt;= startofday(ago(30d)) and TimeGenerated &lt; startofday(now())</span><br><span class="line">| summarize sum(_BilledSize) by _ResourceId</span><br></pre></td></tr></table></figure>
+
+<h4 id="ログ-データの保持に対するコスト-2"><a href="#ログ-データの保持に対するコスト-2" class="headerlink" title="ログ データの保持に対するコスト"></a>ログ データの保持に対するコスト</h4><p>Log Analytics ワークスペースのデータの保持期間は[全般] &gt; [使用量と推定コスト] の [データ保持期間] から確認いただけます。<br><img src="/blog/applicationInsights/aboutCostOfAi/7.png"><br>ただし、ここで表示されるデータの保持期間は、以下のデータ以外の保持期間を示します。<br>※ これらのデータの保持期間は既定では 90 日間に設定されております。</p>
+<ul>
+<li>Usage</li>
+<li>AzureActivity</li>
+<li>Application Insights のデータ</li>
+</ul>
+<p>そのため、Application Insightsのデータの保持期間は REST API を使用して確認する必要がございます。<br>以下の PowerShell スクリプトを実行すると、Log Analytics ワークスペースの Application Insights で使用されるテーブルのデータの保持期間を確認できます。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$azContext = Get-AzContext</span><br><span class="line">$azProfile = [Microsoft.Azure.Commands.Common.Authentication.Abstractions.AzureRmProfileProvider]::Instance.Profile</span><br><span class="line">$profileClient = New-Object -TypeName Microsoft.Azure.Commands.ResourceManager.Common.RMProfileClient -ArgumentList ($azProfile)</span><br><span class="line">$token = $profileClient.AcquireAccessToken($azContext.Subscription.TenantId)</span><br><span class="line">$authHeader = @&#123;</span><br><span class="line">    &#x27;Content-Type&#x27;=&#x27;application/json&#x27;</span><br><span class="line">    &#x27;Authorization&#x27;=&#x27;Bearer &#x27; + $token.AccessToken</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">$subscriptionId = &quot;&lt;サブスクリプション ID&gt;&quot;</span><br><span class="line">$workspaceRgName = &quot;&lt;リソース グループ名&gt;&quot;</span><br><span class="line">$workspaceName = &quot;&lt;Log Analytics ワークスペース名&gt;&quot;</span><br><span class="line"> </span><br><span class="line">$url = &quot;https://management.azure.com/subscriptions/$subscriptionId/resourceGroups/$workspaceRgName/providers/Microsoft.OperationalInsights/workspaces/$workspaceName/Tables?api-version=2021-12-01-preview&quot;</span><br><span class="line"></span><br><span class="line">$response = Invoke-RestMethod $url -Method GET -Headers $authHeader</span><br><span class="line">$response.value `</span><br><span class="line">| Where-Object &#123;$_.name -match &quot;AppAvailabilityResults|AppBrowserTimings|AppDependencies|AppExceptions|AppEvents|AppMetrics|AppPageViews|AppPerformanceCounters|AppRequests|AppSystemEvents|AppTraces&quot;&#125; `</span><br><span class="line">| Select-Object -Property name -ExpandProperty properties `</span><br><span class="line">| Select-Object -Property name, retentionInDays</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="クエリを用いてコストを確認"><a href="#クエリを用いてコストを確認" class="headerlink" title="クエリを用いてコストを確認"></a>クエリを用いてコストを確認</h2><p>課金の対象となるログ データのサイズは _BilledSize 列で定義されます。<br>そのため、_BilledSize 列を使用することで、現在取り込まれている課金の対象のログのサイズを確認することができます。</p>
+<p>弊社公開情報にて、コストの確認に使用するクエリの例を紹介しております。<br>クラシック版の Application Insights の場合は、こちらの弊社公開情報をご参照ください。<br>クエリは Application Insights で実行します。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/analyze-usage#application-insights-data">Applicationインサイトデータ</a></p>
+<p>ワークスペース版の Application Insights の場合は、こちらの弊社公開情報をご参照ください。<br>以下の弊社公開情報のクエリは Application Insights が接続している Log Analytics ワークスペースで実行します。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/analyze-usage#data-volume-trends-for-workspace-based-resources">ワークスペースベースのリソースのデータボリュームの傾向</a></p>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>本記事では、以下についてご案内いたしましたが、ご理解いただけましたでしょうか。</p>
+<ul>
+<li>Application Insights のログの料金</li>
+<li>現在の料金を見積もる方法</li>
+<li>クエリを用いてコストを確認</li>
+</ul>
+<p>本記事が少しでもお役に立ちましたら幸いです。<br>最後までお読みいただきありがとうございました！</p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" rel="tag">コスト</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/applicationInsights/aboutCostOfAi.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../LogAnalytics/HowToChangeLAWSDataRetentionPeriod/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Log Analytics ワークスペースの保有期間の変更</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">Application Insights のログの料金について</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/HowToChangeLAWSDataRetentionPeriod/">Log Analytics ワークスペースの保有期間の変更</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/HowToCollectWindowsSecurityEvents/">Windows セキュリティ イベントログの収集</a>
+          </li>
+        
+          <li>
+            <a href="../../AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/">アラート通知メールのカスタマイズについて</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/SystemLanguageNotEnglishNoPython2Bug/">システム言語が日本語の Linux マシンにて発生する Log Analytics エージェントの不具合について</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sandbox/" rel="tag">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StartAzureV2VMs/" rel="tag">StartAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StopAzureV2VMs/" rel="tag">StopAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Worker/" rel="tag">Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" rel="tag">コスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/">Azure Monitor</a><span class="tag-list-count">2</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/FAQ">FAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/MetricAlert">MetricAlert</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">2</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/FAQ">FAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/Tips">Tips</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/%E3%82%B3%E3%82%B9%E3%83%88">コスト</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/Application-Insights/" style="font-size: 12px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 18px;">Automation</a> <a href="../../tags/Azure-Monitor/" style="font-size: 12px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 12px;">Azure Monitor Essentials</a> <a href="../../tags/FAQ/" style="font-size: 18px;">FAQ</a> <a href="../../tags/General/" style="font-size: 20px;">General</a> <a href="../../tags/How-To/" style="font-size: 16px;">How-To</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 12px;">Job</a> <a href="../../tags/Log-Analytics/" style="font-size: 14px;">Log Analytics</a> <a href="../../tags/MetricAlert/" style="font-size: 10px;">MetricAlert</a> <a href="../../tags/RunAs-Account/" style="font-size: 10px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 12px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 20px;">Tips</a> <a href="../../tags/Troubleshooting/" style="font-size: 16px;">Troubleshooting</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" style="font-size: 10px;">コスト</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 18px;">チーム紹介</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
