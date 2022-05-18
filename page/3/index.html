@@ -4,21 +4,21 @@
   <meta charset="utf-8">
   
   
-  <title>システム言語が日本語の Linux マシンにて発生する Log Analytics エージェントの不具合について | Japan Azure Monitoring Support Blog</title>
+  <title>Japan Azure Monitoring Support Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="こんにちは。Azure Monitoring &amp; Integration チームの Austin です。 最近よくお問い合わせをいただいております、Log Analytics エージェントの既知の不具合の影響・原因・回避策についてご紹介いたします。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="システム言語が日本語の Linux マシンにて発生する Log Analytics エージェントの不具合について">
-<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/SystemLanguageNotEnglishNoPython2Bug/index.html">
+  <meta name="description" content="日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Japan Azure Monitoring Support Blog">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/page/3/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは。Azure Monitoring &amp; Integration チームの Austin です。 最近よくお問い合わせをいただいております、Log Analytics エージェントの既知の不具合の影響・原因・回避策についてご紹介いたします。">
+<meta property="og:description" content="日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。">
 <meta property="og:locale" content="ja_JP">
-<meta property="article:published_time" content="2022-02-27T15:00:00.000Z">
-<meta property="article:modified_time" content="2022-05-18T05:22:44.144Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="FAQ">
-<meta property="article:tag" content="Log Analytics">
-<meta property="article:tag" content="Troubleshooting">
+<meta property="article:tag" content="Azure">
+<meta property="article:tag" content="Azure Monitor">
+<meta property="article:tag" content="Azure Log Analytics">
+<meta property="article:tag" content="Azure Automation">
+<meta property="article:tag" content="Application Insights">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
@@ -81,102 +81,81 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-LogAnalytics/SystemLanguageNotEnglishNoPython2Bug" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main">
+  
+    <article id="post-automation/gettingExeTimeOfJobForSpecificPeriodAutomation" class="article article-type-post" itemscope itemprop="blogPost">
+
   <div class="article-inner">
+    <!-- post date -->
+    <div class="article-meta">
+      <a href="../../automation/gettingExeTimeOfJobForSpecificPeriodAutomation/" class="article-date">
+  <time datetime="2019-04-02T17:15:00.000Z" itemprop="datePublished">2019-04-03</time>
+</a>
+      
+    </div>
+
     
+    <!-- post title -->
     
-    
-      <header class="article-header-single">
+      <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      システム言語が日本語の Linux マシンにて発生する Log Analytics エージェントの不具合について
+    <h1 itemprop="name">
+      <a class="article-title" href="../../automation/gettingExeTimeOfJobForSpecificPeriodAutomation/">Azure Automation にて特定期間のジョブの実行時間を取得する</a>
     </h1>
   
 
       </header>
-      <div class="article-share">
-        Last Update: 
-        <a href="" class="article-date-single">
-  <time datetime="2022-02-27T15:00:00.000Z" itemprop="datePublished">2022-02-28</time>
-</a>
-        
-        
-        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+f8b39753-5538-5f8d-b57a-ed385fdcc1cb%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E8%A8%80%E8%AA%9E%E3%81%8C%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE+Linux+%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%AB%E3%81%A6%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B+Log+Analytics+%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%AE%E4%B8%8D%E5%85%B7%E5%90%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FSystemLanguageNotEnglishNoPython2Bug%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FSystemLanguageNotEnglishNoPython2Bug.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FSystemLanguageNotEnglishNoPython2Bug.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
-        
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/SystemLanguageNotEnglishNoPython2Bug/" data-id="cl3b513kz00070moeagznflvk" class="article-share-link">共有</a>
-      </div>
     
+
+    <!-- post caption -->
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは。Azure Monitoring &amp; Integration チームの Austin です。</p>
-<p>最近よくお問い合わせをいただいております、Log Analytics エージェントの既知の不具合の影響・原因・回避策についてご紹介いたします。</p>
-<span id="more"></span>
+        こんにちは Azure サポート チームの村田です。Azure Automation においては昨年価格体系が変更されました
+具体的には以下のように以前の Free、Basic という概念がなくなり、以下のように統合された価格体系となっております。
 
-<h2 id="本不具合の内容およびその影響"><a href="#本不具合の内容およびその影響" class="headerlink" title="本不具合の内容およびその影響"></a>本不具合の内容およびその影響</h2><ul>
-<li>Log Analytics エージェントのインストールに失敗する</li>
-<li>Log Analytics エージェントからデータが正常に収集されない</li>
-<li>Log Analytics ワークスペースの「エージェント構成」画面より収集設定を変更したが、変更が適用されない<br>＊ 例えば収集する Syslog のファシリティを追加して、OS 上にログが出力されていることを確認したのに、Log Analytics ワークスペースへ収集されない</li>
-</ul>
-<h2 id="不具合が発生する原因"><a href="#不具合が発生する原因" class="headerlink" title="不具合が発生する原因"></a>不具合が発生する原因</h2><p>以下 2 つの条件で不具合が発生します。</p>
-<ol>
-<li>システム言語 (ロケール) が英語以外に設定されている<br>＊ 「localectl」または「echo $LANG」で現在のロケールを確認できます。</li>
-<li>python2 がインストールされていない<br>＊ RHEL 8 や CentOS 8、Ubuntu 20.04 等のマシンには python2 が規定では入っていないため、本不具合の影響を受けることが多い</li>
-</ol>
-<p>以下の Log Analytics の公開情報にインストール時にシステム言語が英語でないとインストールが失敗する問題について記載しておりますが、<strong>一度システム言語が英語の状態でインストールをして、その後システム言語を日本語等に変更した場合にも不具合が発生する事例を確認しております。そのため、新規 VM に Log Analytics エージェントを正常にインストールできた場合にも、その後システム言語を変更すると不具合が発生します。</strong></p>
-<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/agent-linux-troubleshoot#issue-installation-is-failing-saying-python2-cannot-support-ctypes-even-though-python3-is-being-used">問題: Python 3 を使用しているのに、Python 2 では Ctype をサポートしていない、というエラーが出てインストールに失敗する</a></p>
-<h2 id="回避策について"><a href="#回避策について" class="headerlink" title="回避策について"></a>回避策について</h2><p>本不具合が発生する条件をいずれか修正することで不具合を回避いただけます。</p>
-<ol>
-<li><p> システム言語を英語に戻す<br>＊ RHEL 8 の場合は以下のコマンドで設定できます。<br><code>$ sudo localectl set-locale en_US.UTF-8</code></p>
-</li>
-<li><p>python2 をインストールする<br>＊ RHEL 8 の場合は以下のコマンドで設定できます。<br><code>$ sudo dnf install python2 -y</code><br><code>$ sudo alternatives --set python /usr/bin/python2</code></p>
-</li>
-</ol>
-<p>以上、Log Analytics エージェントで発生している既知の問題と回避策をご案内いたしました。<br>弊社製品の不具合によりご不便ご迷惑おかけし申し訳ございません。<br>本不具合については、弊社開発部門にて修正作業を進めております。<br>本不具合の修正がリリースされた際には本記事を更新いたします。<br>2022 年 2 月 28 日の最新の情報です。</p>
+以前の価格料金
+Free - 月あたり 500 分の無料時間が付与され、超過した場合はジョブが実行されなくなります。
+Basic - 従量課金として、0.23円 / 分 で課金が発生します。
 
-      
-      
-        <div class="article-disclaimer">
-        
-          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
-        
-        </div>
+
+変更後の価格体系
+無償の500分のジョブ実行時間が付与され、超過した分に関しましては、0.23円 / 分 で課金が発生します。
+
+
+
+参照情報
+Automation の価格
+https://azure.microsoft.com/ja-jp/pricing/details/automation/
+
+
+
+以前は Basic プランの場合、最初の1分から...
+        <p class="article-readmore">
+          <a href="../../automation/gettingExeTimeOfJobForSpecificPeriodAutomation/">Read more</a>
+        </p>
       
     </div>
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li></ul>
 
-        
-        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/SystemLanguageNotEnglishNoPython2Bug.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
-        
+    <footer class="article-footer">
+      <!--a data-url="https://jpazmon-integ.github.io/blog/automation/gettingExeTimeOfJobForSpecificPeriodAutomation/" data-id="cl3b513lc000l0moeeuvldbh1" class="article-share-link">共有</a-->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li></ul>
+
     </footer>
   </div>
   
-    
-<nav id="article-nav">
-  
-    <a href="../../AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">次の記事</strong>
-      <div class="article-nav-title">
-        
-          アラート通知メールのカスタマイズについて
-        
-      </div>
-    </a>
-  
-  
-    <a href="../../AzureMonitorEssential/Ignite2021/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前の記事</strong>
-      <div class="article-nav-title">Azure Monitor 新着情報 @ Ignite 2021</div>
-    </a>
-  
-</nav>
-
-  
 </article>
 
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="../2/">&laquo; 戻る</a><a class="page-number" href="../../">1</a><a class="page-number" href="../2/">2</a><span class="page-number current">3</span>
+  </nav>
 </section>
         
           <aside id="sidebar">
@@ -196,11 +175,11 @@
           </li>
         
           <li>
-            <a href="../HowToChangeLAWSDataRetentionPeriod/">Log Analytics ワークスペースの保有期間の変更</a>
+            <a href="../../LogAnalytics/HowToChangeLAWSDataRetentionPeriod/">Log Analytics ワークスペースの保有期間の変更</a>
           </li>
         
           <li>
-            <a href="../HowToCollectWindowsSecurityEvents/">Windows セキュリティ イベントログの収集</a>
+            <a href="../../LogAnalytics/HowToCollectWindowsSecurityEvents/">Windows セキュリティ イベントログの収集</a>
           </li>
         
           <li>
