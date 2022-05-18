@@ -1,6 +1,6 @@
 ---
 title: プライベート環境への可用性テスト
-date: 2022-05-20 00:00:00
+date: 2022-05-19 00:00:00
 tags:
   - Application Insights
   - 可用性テスト
@@ -54,7 +54,7 @@ tags:
     > [仮想ネットワークで Azure Functions を構成する方法](https://docs.microsoft.com/ja-jp/azure/azure-functions/configure-networking-how-to#restrict-your-storage-account-to-a-virtual-network)
 
 2. タイマー トリガー関数を作成します。
-   以下の弊社公開情報にて、可用性テストを行うためのソースコードの実装例を提供しております。
+   以下の弊社公開情報にて、可用性テストを行うためのソース コードの実装例を提供しております。
     [App Service Editor でコードを追加して編集する](https://docs.microsoft.com/ja-jp/azure/azure-monitor/app/availability-azure-functions#add-and-edit-code-in-the-app-service-editor)
 
     runAvailabilityTest.csx で、テスト先の URL を指定します。
