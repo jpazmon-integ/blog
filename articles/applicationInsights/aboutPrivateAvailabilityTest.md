@@ -1,6 +1,6 @@
 ---
 title: プライベート環境への可用性テスト
-date: 2022-05-19 00:00:00
+date: 2022-05-18 00:00:00
 tags:
   - Application Insights
   - 可用性テスト
