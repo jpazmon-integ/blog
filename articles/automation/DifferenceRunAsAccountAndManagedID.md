@@ -1,6 +1,6 @@
 ---
 title: 実行アカウントとマネージド ID の違いについて
-date: 2022-06-03 00:00:00
+date: 2022-06-10 00:00:00
 tags:
   - Automation
   - RunAs Account
@@ -45,6 +45,7 @@ Connect-AzAccount -ServicePrincipal -Tenant $Conn.TenantID -ApplicationId $Conn.
 マネージド ID にはシステム割り当てマネージド ID とユーザー割り当てマネージド ID があります。
 
 以下のコマンドでシステム割り当てマネージド ID を使って Azure へ認証するように Runbook を構成します。
+
 ```
 # Ensures you do not inherit an AzContext in your runbook
 Disable-AzContextAutosave -Scope Process
@@ -85,7 +86,7 @@ $AzureContext = Set-AzContext -SubscriptionName $AzureContext.Subscription -Defa
 
 ## 実行アカウントとマネージド ID の相違点
 実行アカウントの実体はサービス プリンシパルでございます。
-そのため、サービス プリンシパルとマネージド ID の違いから、実行アカウントとマネージド ID の相違点をより深く理解いただければと存じます。
+そのため、サービス プリンシパルとマネージド ID の違いから、実行アカウントとマネージド ID の相違点をより深く理解できます。
 
 サービス プリンシパルとマネージド ID の大きな違いは、マネージド ID は「割り当てられたリソースからしか使用できない」という点でございます。
 サービス プリンシパルは、クライアント シークレットや証明書などを任意のクライアントに格納して使用できますが、マネージド ID は割り当てられたリソースからしか使用できません。つまり、マネージド ID はクライアント シークレットや証明書の流出による不正アクセスのリスクがございません。
@@ -97,11 +98,10 @@ $AzureContext = Set-AzContext -SubscriptionName $AzureContext.Subscription -Defa
 Azure 上に存在する Automation アカウントでは、マネージド ID のご使用を推奨しております。
 
 
-最後に、実行アカウントとマネージド ID の相違点をまとめると以下になります。
+最後に、実行アカウントとマネージド ID の相違点をまとめると以下になります。これらの相違点より、マネージド ID が推奨される認証方法です。
 - 実行アカウントは、証明書を更新する必要があります。
 - マネージド ID は、証明書を更新する必要がないです。
-- 実行アカウントより、マネージド ID がセキュアです。
-- マネージド ID が推奨される認証方法です。
+- 特定のリソース (Autoamtion アカウント) からアクセスできるという観点から、実行アカウントより、マネージド ID がセキュアです。
 
 
 ## まとめ
