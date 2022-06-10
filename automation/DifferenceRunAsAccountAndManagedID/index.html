@@ -4,25 +4,22 @@
   <meta charset="utf-8">
   
   
-  <title>サービス正常性アラートの設定手順と推奨設定について | Japan Azure Monitoring Support Blog</title>
+  <title>実行アカウントとマネージド ID の違いについて | Japan Azure Monitoring Support Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="こんにちは、Azure Monitoring &amp; Integration サポート チームの堀です。今回はサービス正常性アラートの設定手順と推奨設定についてご案内いたします。">
+  <meta name="description" content="こんにちは、Azure Monitoring サポート チームの六浦です。今回は Automation アカウントの実行アカウントとマネージド ID の違いについてご紹介いたします。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="サービス正常性アラートの設定手順と推奨設定について">
-<meta property="og:url" content="https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/index.html">
+<meta property="og:title" content="実行アカウントとマネージド ID の違いについて">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/automation/DifferenceRunAsAccountAndManagedID/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは、Azure Monitoring &amp; Integration サポート チームの堀です。今回はサービス正常性アラートの設定手順と推奨設定についてご案内いたします。">
+<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの六浦です。今回は Automation アカウントの実行アカウントとマネージド ID の違いについてご紹介いたします。">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/Step3.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/Step4.png">
-<meta property="article:published_time" content="2021-07-30T15:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-10T05:12:46.611Z">
+<meta property="article:published_time" content="2022-06-09T15:00:00.000Z">
+<meta property="article:modified_time" content="2022-06-10T05:12:46.623Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="How-To">
-<meta property="article:tag" content="Tips">
-<meta property="article:tag" content="Azure Monitor Essentials">
+<meta property="article:tag" content="Automation">
+<meta property="article:tag" content="RunAs Account">
+<meta property="article:tag" content="マネージド ID">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/Step3.png">
   
     <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
   
@@ -84,7 +81,7 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-automation/DifferenceRunAsAccountAndManagedID" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -93,7 +90,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      サービス正常性アラートの設定手順と推奨設定について
+      実行アカウントとマネージド ID の違いについて
     </h1>
   
 
@@ -101,43 +98,69 @@
       <div class="article-share">
         Last Update: 
         <a href="" class="article-date-single">
-  <time datetime="2021-07-30T15:00:00.000Z" itemprop="datePublished">2021-07-31</time>
+  <time datetime="2022-06-09T15:00:00.000Z" itemprop="datePublished">2022-06-10</time>
 </a>
         
         
-        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+721627ee-cd97-5677-ab23-56b28bc53f6d%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%AE%E8%A8%AD%E5%AE%9A%E6%89%8B%E9%A0%86%E3%81%A8%E6%8E%A8%E5%A5%A8%E8%A8%AD%E5%AE%9A%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2Fame%2FHowToSetUpServiceHealthAlertsAndRecommendedSettings%2F%29%0A*+Content+Source%3A+%5Barticles%2Fame%2FHowToSetUpServiceHealthAlertsAndRecommendedSettings.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2Fame%2FHowToSetUpServiceHealthAlertsAndRecommendedSettings.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+34b46db0-07fd-5d85-a93e-6007a866a3dd%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%A8%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89+ID+%E3%81%AE%E9%81%95%E3%81%84%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2Fautomation%2FDifferenceRunAsAccountAndManagedID%2F%29%0A*+Content+Source%3A+%5Barticles%2Fautomation%2FDifferenceRunAsAccountAndManagedID.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2Fautomation%2FDifferenceRunAsAccountAndManagedID.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/" data-id="cl47zsx2e000b0nmqaqsp4k05" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/automation/DifferenceRunAsAccountAndManagedID/" data-id="cl47zsx2o000m0nmqckna93wa" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは、Azure Monitoring &amp; Integration サポート チームの堀です。<br>今回はサービス正常性アラートの設定手順と推奨設定についてご案内いたします。</p>
+        <p>こんにちは、Azure Monitoring サポート チームの六浦です。<br>今回は Automation アカウントの実行アカウントとマネージド ID の違いについてご紹介いたします。</p>
 <span id="more"></span>
 
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
-<li>サービスの正常性アラートの概要</li>
-<li>サービス正常性アラートの設定手順</li>
-<li>サービス正常性アラートの推奨設定</li>
+<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
+<li><a href="#%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">実行アカウントについて</a><ul>
+<li><a href="#%E5%8F%82%E8%80%83%E6%83%85%E5%A0%B1">参考情報</a></li>
 </ul>
-<h2 id="サービスの正常性アラートの概要"><a href="#サービスの正常性アラートの概要" class="headerlink" title="サービスの正常性アラートの概要"></a>サービスの正常性アラートの概要</h2><p>サービス正常性アラートでは、お客様環境にてご利用いただいている Azure サービスおよびリージョンを監視対象とし、Azure サービス自体の正常性を監視することが可能です。Azure サービスの障害や、計画メンテナンスの情報を監視でき、イベントが発生した際に、メールや SMS 等の方法で管理者にアラート通知できます。</p>
-<p>サービス正常性アラートにて検知できるイベントの詳細は、下記弊社公開情報をご覧ください。<br>– Service Health の概要<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/service-health/service-health-overview#service-health-events">https://docs.microsoft.com/ja-jp/azure/service-health/service-health-overview#service-health-events</a><br>※ [Service Health のイベント] をご覧ください。</p>
-<h2 id="サービス正常性アラートの設定手順"><a href="#サービス正常性アラートの設定手順" class="headerlink" title="サービス正常性アラートの設定手順"></a>サービス正常性アラートの設定手順</h2><p>以下に、Azure ポータルよりサービス正常性アラートを設定する方法をご案内いたします。</p>
-<ol>
-<li>Azureポータルにログインします。 </li>
-<li>すべてのサービスから [サービス正常性] を開きます。</li>
-<li>左ウィンドウの [アラート] - [正常性アラート] のブレードを開きます。<br><img src="/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/Step3.png" alt="Step3"></li>
-<li>画面上部の [サービス正常性アラートの追加] をクリックします。<br><img src="/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/Step4.png" alt="Step4"></li>
-<li>[アラート ルールの作成] より、アラートの対象となる [サブスクリプション] 、 [サービス] 、 [リージョン] を選択します。</li>
-<li>監視対象の [イベントの種類] を選択します。</li>
-<li>[アクション グループ] の [アクション グループの選択] をクリックします。任意のアクション グループを指定します。</li>
-<li>[アラートの詳細] より [アラート ルール名] と [説明] を入力します。</li>
-<li>[リソース グループにアラートを保存します] よりアラート ルールを作成する [リソース グループ] を選択します。</li>
-<li>[アラート ルールの作成] をクリックします。 </li>
-</ol>
-<p>手順は以上です。  </p>
-<p>手順の詳細は、下記弊社公開情報をご覧ください。<br>– Azure portal を使用してサービスの通知でアクティビティ ログ アラートを作成する<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/service-health/alerts-activity-log-service-notifications#alert-and-new-action-group-using-azure-portal">https://docs.microsoft.com/ja-jp/azure/service-health/alerts-activity-log-service-notifications#alert-and-new-action-group-using-azure-portal</a></p>
-<h2 id="サービス正常性アラートの推奨設定"><a href="#サービス正常性アラートの推奨設定" class="headerlink" title="サービス正常性アラートの推奨設定"></a>サービス正常性アラートの推奨設定</h2><p>サービス正常性アラート設定時の “サービス” や “リージョン” はすべて選択いただくことを推奨しております。<br>サービス正常性アラートは、ご利用いただいているサービスのご利用いただいているリージョンを対象としたイベントが発生した場合にのみ通知が行われる仕組みです。<br>このため、サブスクリプション上のすべてのサービス、リージョンおよびイベントの種類を選択した場合にも、利用していないリソースに対してアラートは発生いたしません。  </p>
+</li>
+<li><a href="#%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">マネージド ID について</a><ul>
+<li><a href="#%E5%8F%82%E8%80%83%E6%83%85%E5%A0%B1-1">参考情報</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%A8%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E3%81%AE%E5%85%B1%E9%80%9A%E7%82%B9">実行アカウントとマネージド ID の共通点</a></li>
+<li><a href="#%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%A8%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E3%81%AE%E7%9B%B8%E9%81%95%E7%82%B9">実行アカウントとマネージド ID の相違点</a></li>
+<li><a href="#%E3%81%BE%E3%81%A8%E3%82%81">まとめ</a></li>
+</ul>
+<h2 id="実行アカウントについて"><a href="#実行アカウントについて" class="headerlink" title="実行アカウントについて"></a>実行アカウントについて</h2><p>実行アカウントは、Automation アカウントに利用される Azure AD のサービス プリンシパルです。<br>通常、以下のコマンドで実行アカウントを使って Azure へ認証するように Runbook を構成できます。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#Get the connection &quot;AzureRunAsConnection&quot;</span><br><span class="line">$Conn=Get-AutomationConnection -Name $connectionName         </span><br><span class="line"></span><br><span class="line">&quot;Logging in to Azure...&quot;</span><br><span class="line">Connect-AzAccount -ServicePrincipal -Tenant $Conn.TenantID -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint</span><br></pre></td></tr></table></figure>
+
+<h3 id="参考情報"><a href="#参考情報" class="headerlink" title="参考情報"></a>参考情報</h3><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/automation/automation-security-overview#run-as-account">Azure Automation アカウントの認証の概要 - 実行アカウント| Microsoft Docs</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/automation/manage-runas-account">Azure Automation の実行アカウントを管理する | Microsoft Docs</a></p>
+<h2 id="マネージド-ID-について"><a href="#マネージド-ID-について" class="headerlink" title="マネージド ID について"></a>マネージド ID について</h2><p>マネージド ID は、Azure Active Directory (Azure AD) 認証をサポートするリソースに接続するときに使用する ID をアプリケーションに提供します。<br>アプリケーションは、マネージド ID を使用して Azure AD トークンを取得できます。<br>マネージド ID にはシステム割り当てマネージド ID とユーザー割り当てマネージド ID があります。</p>
+<p>以下のコマンドでシステム割り当てマネージド ID を使って Azure へ認証するように Runbook を構成します。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Disable-AzContextAutosave -Scope Process</span><br><span class="line"></span><br><span class="line"># Connect to Azure with system-assigned managed identity</span><br><span class="line">$AzureContext = (Connect-AzAccount -Identity).context</span><br><span class="line"></span><br><span class="line"># set and store context</span><br><span class="line">$AzureContext = Set-AzContext -SubscriptionName $AzureContext.Subscription -DefaultProfile $AzureContext</span><br></pre></td></tr></table></figure>
+
+
+<p>また、ユーザー割り当てマネージド ID では、以下のコマンドとなります。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># Ensures you do not inherit an AzContext in your runbook</span><br><span class="line">Disable-AzContextAutosave -Scope Process</span><br><span class="line"></span><br><span class="line"># Connect to Azure with user-assigned managed identity</span><br><span class="line">$AzureContext = (Connect-AzAccount -Identity -AccountId &lt;user-assigned-identity-ClientId&gt;).context</span><br><span class="line"></span><br><span class="line"># set and store context</span><br><span class="line">$AzureContext = Set-AzContext -SubscriptionName $AzureContext.Subscription -DefaultProfile $AzureContext</span><br></pre></td></tr></table></figure>
+
+<p>マネージド ID は、Runbook で認証を行うための推奨される方法であり、現時点で Automation アカウントの既定の認証方法です。</p>
+<h3 id="参考情報-1"><a href="#参考情報-1" class="headerlink" title="参考情報"></a>参考情報</h3><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/automation/automation-security-overview#managed-identities">Azure Automation アカウントの認証の概要 -マネージド ID | Microsoft Docs</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/automation/enable-managed-identity-for-automation">Azure Automation アカウントのシステム割り当てマネージド ID を使用する</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/automation/add-user-assigned-identity">Azure Automation アカウントのユーザー割り当てマネージド ID を使用する</a></p>
+<h2 id="実行アカウントとマネージド-ID-の共通点"><a href="#実行アカウントとマネージド-ID-の共通点" class="headerlink" title="実行アカウントとマネージド ID の共通点"></a>実行アカウントとマネージド ID の共通点</h2><ul>
+<li>Azure へ認証する役割を果たします。</li>
+<li>Runbook に上述の認証用コマンドを記載する必要があります。</li>
+<li>Azure Active Directory にアプリケーションとして登録されています。</li>
+</ul>
+<h2 id="実行アカウントとマネージド-ID-の相違点"><a href="#実行アカウントとマネージド-ID-の相違点" class="headerlink" title="実行アカウントとマネージド ID の相違点"></a>実行アカウントとマネージド ID の相違点</h2><p>実行アカウントの実体はサービス プリンシパルでございます。<br>そのため、サービス プリンシパルとマネージド ID の違いから、実行アカウントとマネージド ID の相違点をより深く理解できます。</p>
+<p>サービス プリンシパルとマネージド ID の大きな違いは、マネージド ID は「割り当てられたリソースからしか使用できない」という点でございます。<br>サービス プリンシパルは、クライアント シークレットや証明書などを任意のクライアントに格納して使用できますが、マネージド ID は割り当てられたリソースからしか使用できません。つまり、マネージド ID はクライアント シークレットや証明書の流出による不正アクセスのリスクがございません。</p>
+<p>この 2 つは以下のように使い分けいただけます。</p>
+<ul>
+<li>任意のクライアント (Azure 上に存在しないものを含む) で使用したい場合はサービス プリンシパルを使用</li>
+<li>Azure 上に存在する特定のリソースでのみ使用したい場合はマネージド IDを使用</li>
+</ul>
+<p>Azure 上に存在する Automation アカウントでは、マネージド ID のご使用を推奨しております。</p>
+<p>最後に、実行アカウントとマネージド ID の相違点をまとめると以下になります。これらの相違点より、マネージド ID が推奨される認証方法です。</p>
+<ul>
+<li>実行アカウントは、証明書を更新する必要があります。</li>
+<li>マネージド ID は、証明書を更新する必要がないです。</li>
+<li>特定のリソース (Autoamtion アカウント) からアクセスできるという観点から、実行アカウントより、マネージド ID がセキュアです。</li>
+</ul>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>本記事では、実行アカウントとマネージド ID の共通点と相違点ついてご案内いたしましたが、ご理解いただけましたでしょうか。</p>
+<p>本記事が少しでもお役に立ちましたら幸いです。<br>最後までお読みいただきありがとうございました！</p>
 
       
       
@@ -151,10 +174,10 @@
     <footer class="article-footer">
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" rel="tag">マネージド ID</a></li></ul>
 
         
-        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/automation/DifferenceRunAsAccountAndManagedID.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
         
     </footer>
   </div>
@@ -162,19 +185,10 @@
     
 <nav id="article-nav">
   
-    <a href="../../general/AboutMonandIntg/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">次の記事</strong>
-      <div class="article-nav-title">
-        
-          &lt;第 1 弾&gt; Azure Monitoring &amp; Integration チームについて
-        
-      </div>
-    </a>
   
-  
-    <a href="../../applicationInsights/aboutDifferentTypesOfAi/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../../LogAnalytics/ActivityLogsInsights/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前の記事</strong>
-      <div class="article-nav-title">Application Insights クラシック版とワークスペース版との違いについて</div>
+      <div class="article-nav-title">アクティビティ ログの分析情報（プレビュー）</div>
     </a>
   
 </nav>
@@ -193,7 +207,7 @@
       <ul>
         
           <li>
-            <a href="../../automation/DifferenceRunAsAccountAndManagedID/">実行アカウントとマネージド ID の違いについて</a>
+            <a href="">実行アカウントとマネージド ID の違いについて</a>
           </li>
         
           <li>
