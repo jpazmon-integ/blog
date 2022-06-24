@@ -59,7 +59,7 @@ Line |
 
 
 上記エラーの原因は、Create-RunAsAccount.ps1 にて利用している New-AzADApplication コマンドが 古い identifierUris 形式になっているためです。
-2021 年 10 月 15 日より、Azure AD に登録されるシングルテナントアプリケーションの AppId URI (identifierUris) には、
+2021 年 10 月 15 日より、Azure AD に登録されるシングルテナント アプリケーションの AppId URI (identifierUris) には、
 デフォルトのスキーム (api://{appId}) または検証済みドメインのいずれかが要求されるようになりましたが、現在公開されている Create-RunAsAccount.ps1 にはまだその内容が反映されておりません。
 
 ※ Azure AD 側の変更につきまして、以下の公開情報をご参照ください。
@@ -75,3 +75,12 @@ https://jpazureid.github.io/blog/azure-active-directory/aad-changes-impacting-az
 お手数をおかけしますが、上記エラーが発生する場合は、以下のスクリプトに置き換えて実行いただければと存じます。
 
 [Create-RunAsAccount_new.zip](./Create-RunAsAccount_new.zip)
+
+なお、現時点では Automation アカウントの認証では実行アカウントではなく、マネージド ID を推奨しております。
+マネージド ID の利点としては、実行アカウントの様に証明書を更新する必要がないこと、実行アカウントよりセキュアな認証であることがあげられます。
+
+マネージド ID については、以下の Blog にてご案内しております。こちらも是非ご覧下さい。
+
+- 実行アカウントとマネージド ID の違いについて
+https://jpazmon-integ.github.io/blog/automation/DifferenceRunAsAccountAndManagedID/
+
