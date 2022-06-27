@@ -4,19 +4,20 @@
   <meta charset="utf-8">
   
   
-  <title>Azure Monitoring &amp; Integration チームの Blog リニューアルのお知らせ | Japan Azure Monitoring Support Blog</title>
+  <title>Automation アカウントの実行アカウントを作成するスクリプトにてエラーが発生して失敗する | Japan Azure Monitoring Support Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="更新情報 2022&#x2F;3&#x2F;18 更新 本ブログで扱うテクノロジーに変更がありましたので更新いたしました。 具体的には Integration 製品の取り扱いを廃止いたしました。 Integration 製品に関するブログは下記の URL よりご確認ください。 Japan Azure Integration Support Blog      Blog リニューアルのお知らせこんにちは、Azure M">
+  <meta name="description" content="こんにちは、Azure Monitor サポートの三輪です。今回は Automation アカウントに対して実行アカウントを作成するスクリプト “Create-RunAsAccount.ps1” にて、エラーが発生する問題についてご案内させていただきます。  実行アカウントを作成する PowerShell スクリプトhttps:&#x2F;&#x2F;docs.microsoft.com&#x2F;ja-JP&#x2F;azure&#x2F;au">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Azure Monitoring &amp; Integration チームの Blog リニューアルのお知らせ">
-<meta property="og:url" content="https://jpazmon-integ.github.io/blog/general/IntroduceOurBlog/index.html">
+<meta property="og:title" content="Automation アカウントの実行アカウントを作成するスクリプトにてエラーが発生して失敗する">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/automation/Automation-Update-AutomationRunAsCredential/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="更新情報 2022&#x2F;3&#x2F;18 更新 本ブログで扱うテクノロジーに変更がありましたので更新いたしました。 具体的には Integration 製品の取り扱いを廃止いたしました。 Integration 製品に関するブログは下記の URL よりご確認ください。 Japan Azure Integration Support Blog      Blog リニューアルのお知らせこんにちは、Azure M">
+<meta property="og:description" content="こんにちは、Azure Monitor サポートの三輪です。今回は Automation アカウントに対して実行アカウントを作成するスクリプト “Create-RunAsAccount.ps1” にて、エラーが発生する問題についてご案内させていただきます。  実行アカウントを作成する PowerShell スクリプトhttps:&#x2F;&#x2F;docs.microsoft.com&#x2F;ja-JP&#x2F;azure&#x2F;au">
 <meta property="og:locale" content="ja_JP">
-<meta property="article:published_time" content="2021-06-16T03:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-27T00:34:40.306Z">
+<meta property="article:published_time" content="2022-06-27T00:34:43.390Z">
+<meta property="article:modified_time" content="2022-06-27T00:34:40.278Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="General">
+<meta property="article:tag" content="Automation">
+<meta property="article:tag" content="RunAs Account">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
@@ -79,7 +80,7 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-general/IntroduceOurBlog" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-automation/Automation-Update-AutomationRunAsCredential" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -88,7 +89,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Azure Monitoring &amp; Integration チームの Blog リニューアルのお知らせ
+      Automation アカウントの実行アカウントを作成するスクリプトにてエラーが発生して失敗する
     </h1>
   
 
@@ -96,46 +97,38 @@
       <div class="article-share">
         Last Update: 
         <a href="" class="article-date-single">
-  <time datetime="2021-06-16T03:00:00.000Z" itemprop="datePublished">2021-06-16</time>
+  <time datetime="2022-06-27T00:34:43.390Z" itemprop="datePublished">2022-06-27</time>
 </a>
         
         
-        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+d196800b-b7ed-5fe6-8f79-013aa3e3249d%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Monitoring+%26+Integration+%E3%83%81%E3%83%BC%E3%83%A0%E3%81%AE+Blog+%E3%83%AA%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%A2%E3%83%AB%E3%81%AE%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2Fgeneral%2FIntroduceOurBlog%2F%29%0A*+Content+Source%3A+%5Barticles%2Fgeneral%2FIntroduceOurBlog.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2Fgeneral%2FIntroduceOurBlog.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+40a1ccb5-479e-5ee7-8eef-5fb83cd58e8a%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAutomation+%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AE%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%81%AB%E3%81%A6%E3%82%A8%E3%83%A9%E3%83%BC%E3%81%8C%E7%99%BA%E7%94%9F%E3%81%97%E3%81%A6%E5%A4%B1%E6%95%97%E3%81%99%E3%82%8B%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2Fautomation%2FAutomation-Update-AutomationRunAsCredential%2F%29%0A*+Content+Source%3A+%5Barticles%2Fautomation%2FAutomation-Update-AutomationRunAsCredential.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2Fautomation%2FAutomation-Update-AutomationRunAsCredential.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/general/IntroduceOurBlog/" data-id="cl4w0co9t00150onu7f41dkav" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/automation/Automation-Update-AutomationRunAsCredential/" data-id="cl4w0co9g000m0onu1kwa6bjp" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="更新情報"><a href="#更新情報" class="headerlink" title="更新情報"></a>更新情報</h2><ul>
-<li>2022/3/18 更新<ul>
-<li>本ブログで扱うテクノロジーに変更がありましたので更新いたしました。</li>
-<li>具体的には Integration 製品の取り扱いを廃止いたしました。</li>
-<li>Integration 製品に関するブログは下記の URL よりご確認ください。<ul>
-<li><a target="_blank" rel="noopener" href="https://jpazinteg.github.io/blog/">Japan Azure Integration Support Blog</a></li>
+        <p>こんにちは、Azure Monitor サポートの三輪です。<br>今回は Automation アカウントに対して実行アカウントを作成するスクリプト “Create-RunAsAccount.ps1” にて、エラーが発生する問題についてご案内させていただきます。</p>
+<ul>
+<li>実行アカウントを作成する PowerShell スクリプト<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/automation/create-run-as-account#powershell-script-to-create-a-run-as-account">https://docs.microsoft.com/ja-JP/azure/automation/create-run-as-account#powershell-script-to-create-a-run-as-account</a></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="Blog-リニューアルのお知らせ"><a href="#Blog-リニューアルのお知らせ" class="headerlink" title="Blog リニューアルのお知らせ"></a>Blog リニューアルのお知らせ</h2><p>こんにちは、Azure Monitoring &amp; Integration サポート チームです。<br>この度、Monitoring &amp; Integration サポート チームのブログをリニューアルいたしましたのでお知らせします！</p>
-<span id="more"></span>
+<p>実行アカウントを作成するためにスクリプト “Create-RunAsAccount.ps1” を実行すると、以下の様なエラーが発生して失敗する場合があります。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">PS C:\temp&gt; .\Create-RunAsAccount.ps1 -ResourceGroup #### `</span><br><span class="line">&gt;&gt; -AutomationAccountName #### `</span><br><span class="line">&gt;&gt; -SubscriptionId #### `</span><br><span class="line">&gt;&gt; -ApplicationDisplayName #### `</span><br><span class="line">&gt;&gt; -SelfSignedCertPlainPassword #### `</span><br><span class="line">&gt;&gt; -CreateClassicRunAsAccount $false</span><br><span class="line"></span><br><span class="line">Account              SubscriptionName            TenantId                        Environment</span><br><span class="line">-------              ----------------            --------                        -----------</span><br><span class="line">####@contoso.com     #######                     XXXX-XXXX-XXXX-XXXX-XXXX        AzureCloud</span><br><span class="line"></span><br><span class="line">New-AzADApplication_CreateExpanded: C:\Program Files\WindowsPowerShell\Modules\Az.Resources\5.4.0\MSGraph.Autorest\custom\New-AzADApplication.ps1:702</span><br><span class="line">Line |</span><br><span class="line"> 702 |      $app = Az.MSGraph.internal\New-AzADApplication @PSBoundParameters</span><br><span class="line">     |      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span><br><span class="line">     | Values of identifierUris property must use a verified domain of the organization or its subdomain:</span><br><span class="line">     | &#x27;http://XXXX-XXXX-XXXX-XXXX-XXXX&#x27;</span><br><span class="line"></span><br><span class="line">New-AzADAppCredential: C:\temp\Create-RunAsAccount.ps1:42</span><br><span class="line">Line |</span><br><span class="line">  42 |  … w-AzADAppCredential -ApplicationId $Application.ApplicationId -CertVa …</span><br><span class="line">     |                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~</span><br><span class="line">     | Cannot process argument transformation on parameter &#x27;ApplicationId&#x27;. Cannot convert null to type</span><br><span class="line">     | &quot;System.Guid&quot;.</span><br><span class="line"></span><br><span class="line">New-AzADServicePrincipal: C:\temp\Create-RunAsAccount.ps1:44</span><br><span class="line">Line |</span><br><span class="line">  44 |  …  = New-AzADServicePrincipal -ApplicationId $Application.ApplicationId</span><br><span class="line">     |                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~</span><br><span class="line">     | Cannot process argument transformation on parameter &#x27;ApplicationId&#x27;. Cannot convert null to type</span><br><span class="line">     | &quot;System.Guid&quot;.</span><br><span class="line"></span><br><span class="line">Get-AzADServicePrincipal: C:\temp\Create-RunAsAccount.ps1:45</span><br><span class="line">Line |</span><br><span class="line">  45 |  … cePrincipal = Get-AzADServicePrincipal -ObjectId $ServicePrincipal.Id</span><br><span class="line">     |                                                     ~~~~~~~~~~~~~~~~~~~~</span><br><span class="line">     | Cannot bind argument to parameter &#x27;ObjectId&#x27; because it is an empty string.</span><br><span class="line">:</span><br><span class="line">:</span><br></pre></td></tr></table></figure>
 
-<p>こちらのブログでは、Monitoring 製品のテクノロジーに関する話題を中心に情報を発信していきます。<br>開発部門などからも多くの公式な公開情報を提供しておりますが、私たちのブログでは、新機能に関してのご紹介だけでなく、日本の多くの Azure ご利用者からサポートの依頼を直接受けているサポート エンジニアという立場から、時には私どもの視点を交えて、皆様のお役に立つ情報をご案内したいと思います。<br>これから本ブログで公開していく情報の一例を以下に記載しました。</p>
-<h3 id="公開する情報の例"><a href="#公開する情報の例" class="headerlink" title="公開する情報の例"></a>公開する情報の例</h3><ul>
-<li>リリースされたばかりの新機能に関する情報</li>
-<li>よくサポート チームにお問い合わせいただく “あるある” な問題への対処方法</li>
-<li>Azure を利用するユーザーの方に是非お伝えしたい情報 </li>
-<li>ある問題についてサポートにお問い合わせいただく際、スムーズに調査を進めるために事前に採取いただきたい情報</li>
+
+<p>上記エラーの原因は、Create-RunAsAccount.ps1 にて利用している New-AzADApplication コマンドが 古い identifierUris 形式になっているためです。<br>2021 年 10 月 15 日より、Azure AD に登録されるシングルテナント アプリケーションの AppId URI (identifierUris) には、<br>デフォルトのスキーム (api://{appId}) または検証済みドメインのいずれかが要求されるようになりましたが、現在公開されている Create-RunAsAccount.ps1 にはまだその内容が反映されておりません。</p>
+<p>※ Azure AD 側の変更につきまして、以下の公開情報をご参照ください。</p>
+<ul>
+<li>Values of identifierUris property must use a verified domain of the organization or its subdomain エラーの対処法<br><a target="_blank" rel="noopener" href="https://jpazureid.github.io/blog/azure-active-directory/aad-changes-impacting-azurecli-azureps/">https://jpazureid.github.io/blog/azure-active-directory/aad-changes-impacting-azurecli-azureps/</a></li>
 </ul>
-<h3 id="本ブログで扱うテクノロジーの例"><a href="#本ブログで扱うテクノロジーの例" class="headerlink" title="本ブログで扱うテクノロジーの例"></a>本ブログで扱うテクノロジーの例</h3><ul>
-<li>Azure Monitor</li>
-<li>Azure Log Analytics</li>
-<li>Azure Automation</li>
-<li>Azure Application Insights</li>
+<p>また、スクリプトでは New-AzADApplication にて AAD アプリを作成し、そのアプリのアプリケーション ID を $Application.ApplicationId にて取得しております。<br>これも誤った記述となっており、アプリケーション ID を取得するためには、$Application.AppId と記述する必要があります。<br>この記述の間違いにより、New-AzADAppCredential 等のコマンドにおいてエラーが発生している状況です。</p>
+<p>これらの問題に対応するため、変更を行ったスクリプトを以下にご案内いたします。<br>お手数をおかけしますが、上記エラーが発生する場合は、以下のスクリプトに置き換えて実行いただければと存じます。</p>
+<p><a href="./Create-RunAsAccount_new.zip">Create-RunAsAccount_new.zip</a></p>
+<p>なお、現時点では Automation アカウントの認証では実行アカウントではなく、マネージド ID を推奨しております。<br>マネージド ID の利点としては、実行アカウントの様に証明書を更新する必要がないこと、実行アカウントよりセキュアな認証であることがあげられます。</p>
+<p>マネージド ID については、以下の Blog にてご案内しております。こちらも是非ご覧下さい。</p>
+<ul>
+<li>実行アカウントとマネージド ID の違いについて<br><a href="https://jpazmon-integ.github.io/blog/automation/DifferenceRunAsAccountAndManagedID/">https://jpazmon-integ.github.io/blog/automation/DifferenceRunAsAccountAndManagedID/</a></li>
 </ul>
-<p>これから様々な情報を発信しますので、こちらのブログが皆さまのお役に立てれば幸いです。<br>また、実際のサポート サービスでは、製品動作に関する正式な見解のご提供、そして問題解決のサポートを行っていますので、こちらも併せてよろしくお願いいたします！</p>
-<p>※ これまで公開していたフォーラムは以下のリンクからアクセスできますので、過去の情報はこちらからご確認ください。<br><a target="_blank" rel="noopener" href="https://social.technet.microsoft.com/Forums/ja-JP/home?forum=jpama">以前のフォーラム (アーカイブ) はこちら</a></p>
 
       
       
@@ -149,10 +142,10 @@
     <footer class="article-footer">
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/General/" rel="tag">General</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li></ul>
 
         
-        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/general/IntroduceOurBlog.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/automation/Automation-Update-AutomationRunAsCredential.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
         
     </footer>
   </div>
@@ -160,19 +153,10 @@
     
 <nav id="article-nav">
   
-    <a href="../../automation/HowToManageRunAsAccount/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">次の記事</strong>
-      <div class="article-nav-title">
-        
-          Azure Automation の実行アカウントの管理方法の tips と FAQ
-        
-      </div>
-    </a>
   
-  
-    <a href="../../automation/404ErrorOccurrWhenRunningWebhook/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../DifferenceRunAsAccountAndManagedID/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前の記事</strong>
-      <div class="article-nav-title">Webhook の実行が ”(404) 見つかりません” で失敗する</div>
+      <div class="article-nav-title">実行アカウントとマネージド ID の違いについて</div>
     </a>
   
 </nav>
@@ -191,11 +175,11 @@
       <ul>
         
           <li>
-            <a href="../../automation/Automation-Update-AutomationRunAsCredential/">Automation アカウントの実行アカウントを作成するスクリプトにてエラーが発生して失敗する</a>
+            <a href="">Automation アカウントの実行アカウントを作成するスクリプトにてエラーが発生して失敗する</a>
           </li>
         
           <li>
-            <a href="../../automation/DifferenceRunAsAccountAndManagedID/">実行アカウントとマネージド ID の違いについて</a>
+            <a href="../DifferenceRunAsAccountAndManagedID/">実行アカウントとマネージド ID の違いについて</a>
           </li>
         
           <li>
