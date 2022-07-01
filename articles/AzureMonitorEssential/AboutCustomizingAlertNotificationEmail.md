@@ -1,13 +1,14 @@
 ---
 title: アラート通知メールのカスタマイズについて
-date: 2022-03-25 00:00:00
+date: 2022-07-01 00:00:00
 tags:
   - How-To
   - Tips
   - Azure Monitor Essentials
 ---
 
-2022/03/25 : 旧 UI と現 UI での対応表/図について、詳細設定オプションを考慮する内容に更新いたしました。
+2022/03/25 : 旧 UI と現 UI での対応表/図について、詳細設定オプションを考慮する内容に更新いたしました。  
+2022/07/01 : ロジック アプリから Log Analytics API を実行する記事について追記しました。
 - - - -
 こんにちは！Azure Monitoring & Integration サポート チームの花房です。  
 「アラート通知メールを日本語にしたい」、「最近ログ アラート ルール作成画面が変わった？」 というお問い合わせを最近よくいただきます。
@@ -51,7 +52,10 @@ https://docs.microsoft.com/ja-jp/azure/azure-monitor/platform/action-groups-logi
 &nbsp;&nbsp;&nbsp;https://docs.microsoft.com/en-us/connectors/office365/#send-an-email-[deprecated]
 &nbsp;&nbsp;&nbsp;※ 「Send an email [DEPRECATED]」 をご参照ください。
 
-
+また、弊社 Integration Support Blog にロジック アプリからログ アラート発報時に出力されたデータに含まれている Log Analytics API を実行する方法に関する記事が投稿されております。  
+カスタマイズされたメールをロジック アプリから通知する方法をご検討の場合、下記の記事をご参考いただけますと幸いです。  
+&nbsp;&nbsp;&nbsp;-- ログ アラート ルールの発報時に出力されたデータからクエリの検索結果を取得する
+&nbsp;&nbsp;&nbsp;https://jpazinteg.github.io/blog/LogicApps/Integration-logAlertRule/
 
 ## 新しい API バージョン (API バージョン 2021-08-01) のログ アラート ルール作成画面
 ここまでお読みいただいて 「ログ アラート ルールであれば、メールのタイトルは任意の値にできるのでは？」 と思われた方もいるかもしれません。
