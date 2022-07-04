@@ -82,7 +82,18 @@ Log Analytics 仮想マシン拡張機能は EnableAutomaticUpgrade を対応し
  
 
 ## Log Analytics 仮想マシン拡張機能のバージョン アップ手順
-仮想マシン及び仮想マシン スケール セットについて、それぞれ手順をまとめました。
+Log Analytics 仮想マシン拡張機能の最新バージョンは、 Windows と Linux でそれぞれ以下のページからご確認いただけます。
+
+**Windows 用の Log Analytics 仮想マシン拡張機能**
+
+https://docs.microsoft.com/en-US/azure/virtual-machines/extensions/oms-windows?toc=%2Fazure%2Fazure-monitor%2Ftoc.json#agent-and-vm-extension-version
+
+**Linux 用の Log Analytics 仮想マシン拡張機能**
+
+https://github.com/microsoft/OMS-Agent-for-Linux/releases
+
+
+次に、手動バージョン アップの方法について、仮想マシン及び仮想マシン スケール セットの観点で、それぞれ手順をまとめました。
 
 **仮想マシン**
 
