@@ -33,7 +33,7 @@ https://docs.microsoft.com/ja-jp/azure/virtual-machines/extensions/oms-linux?toc
 
 
 ## 2021 年まで Log Analytics 仮想マシン拡張機能のバージョン アップについて
-2021 年まで新しいマイナー バージョンの Log Analytics 仮想マシン拡張機能がリリースされますと、自動的にインストールされておりました。
+2021 年までは、新しいマイナー バージョンの Log Analytics 仮想マシン拡張機能がリリースされますと、自動的にアップデートされておりました。
 それは、 Log Analytics エージェントを含めて、仮想マシンで対応している拡張機能に存在する AutoUpgradeMinorVersion というプロパティで実現しております。
 
 Get-AzVMExtension コマンドを利用して、各プロパティの値をご確認いただけます。
