@@ -149,6 +149,7 @@ Log Analytics 仮想マシン拡張機能で自動アップグレードに対応
 また、 Log Analytics 仮想マシン拡張機能の後継となる Azure Monitor エージェント拡張機能は、新しい自動アップグレードの仕組みに対応しておりますので、こちらの利用をご検討いただけますと幸いです。
 
 <参考情報>
+
 Azure Monitor Agent 拡張機能
 
 https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-overview?tabs=PowerShellWindows
