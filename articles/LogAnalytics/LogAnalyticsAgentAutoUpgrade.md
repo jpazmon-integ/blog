@@ -144,7 +144,14 @@ https://github.com/microsoft/OMS-Agent-for-Linux/releases
 
 ## 今後 Log Analytics 仮想マシン拡張機能の自動アップグレード対応について
 自動アップグレードに対応してほしいとのご要望をいただき、開発側にフィードバックさせていただきました。
-現時点で今後の開発予定がまだ決まっておりませんので、決まり次第改めて本ブログにでお知らせいたします。
+現時点で今後の開発予定がまだ決まっておりませんので、決まり次第改めて本ブログにてお知らせいたします。
+
+また、 Log Analytics 仮想マシン拡張機能の後継となる Azure Monitor エージェント拡張機能は、新しい自動アップグレードの仕組みに対応しておりますので、こちらの利用をご検討いただけますと幸いです。
+
+<参考情報>
+Azure Monitor Agent 拡張機能
+
+https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-overview?tabs=PowerShellWindows
 
 
 以上、Log Analytics 仮想マシン拡張機能のバージョン アップの仕様についてご案内いたしました。
