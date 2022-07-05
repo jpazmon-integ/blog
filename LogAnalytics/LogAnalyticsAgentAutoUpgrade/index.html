@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Log Analytics 仮想マシン拡張機能のバージョン アップ方法について | Japan Azure Monitoring Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは、Azure Monitoring チームの 胡 です。 Log Analytics 仮想マシン拡張機能を利用してログの収集を行っている方がたくさんいらっしゃると思います。より良いログ収集の体験ができるよう、弊社としましては常に最新バージョンの拡張機能を利用するよう、お客様にお願いしております。この度、 Azure 仮想マシンで対応している拡張機能について、自動アップグレードの仕組みに大">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Log Analytics 仮想マシン拡張機能のバージョン アップ方法について">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="こんにちは、Azure Monitoring チームの 胡 です。 Log Analytics 仮想マシン拡張機能を利用してログの収集を行っている方がたくさんいらっしゃると思います。より良いログ収集の体験ができるよう、弊社としましては常に最新バージョンの拡張機能を利用するよう、お客様にお願いしております。この度、 Azure 仮想マシンで対応している拡張機能について、自動アップグレードの仕組みに大">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/image01.png">
+<meta property="article:published_time" content="2022-06-30T15:00:00.000Z">
+<meta property="article:modified_time" content="2022-07-05T10:03:09.142Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="Log Analytics">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/image01.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-LogAnalytics/LogAnalyticsAgentAutoUpgrade" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Log Analytics 仮想マシン拡張機能のバージョン アップ方法について
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2022-06-30T15:00:00.000Z" itemprop="datePublished">2022-07-01</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+f4aab0d7-0a48-5bc3-81cd-4abacb1145e7%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BLog+Analytics+%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD%E3%81%AE%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3+%E3%82%A2%E3%83%83%E3%83%97%E6%96%B9%E6%B3%95%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FLogAnalyticsAgentAutoUpgrade%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FLogAnalyticsAgentAutoUpgrade.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FLogAnalyticsAgentAutoUpgrade.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/" data-id="cl5806kv700080npdcm0uhpos" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは、Azure Monitoring チームの 胡 です。</p>
+<p>Log Analytics 仮想マシン拡張機能を利用してログの収集を行っている方がたくさんいらっしゃると思います。<br>より良いログ収集の体験ができるよう、弊社としましては常に最新バージョンの拡張機能を利用するよう、お客様にお願いしております。<br>この度、 Azure 仮想マシンで対応している拡張機能について、自動アップグレードの仕組みに大きな変更がございましたため、<br>Log Analytics 仮想マシン拡張機能のバージョン アップ方法について、ご案内させていただきます。</p>
+<span id="more"></span>
+
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li>対象製品</li>
+<li>2021 年まで Log Analytics 仮想マシン拡張機能のバージョン アップについて</li>
+<li>現在 Log Analytics 仮想マシン拡張機能のバージョン アップについて</li>
+<li>Log Analytics 仮想マシン拡張機能のバージョン アップ手順</li>
+<li>今後 Log Analytics 仮想マシン拡張機能の自動アップグレード対応について</li>
+</ul>
+<h2 id="対象製品"><a href="#対象製品" class="headerlink" title="対象製品"></a>対象製品</h2><p>Windows 用の Log Analytics 仮想マシン拡張機能</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/extensions/oms-windows?toc=/azure/azure-monitor/toc.json">https://docs.microsoft.com/ja-jp/azure/virtual-machines/extensions/oms-windows?toc=%2Fazure%2Fazure-monitor%2Ftoc.json</a></p>
+<p>Linux 用の Log Analytics 仮想マシン拡張機能</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/extensions/oms-linux?toc=/azure/azure-monitor/toc.json">https://docs.microsoft.com/ja-jp/azure/virtual-machines/extensions/oms-linux?toc=%2Fazure%2Fazure-monitor%2Ftoc.json</a></p>
+<h2 id="2021-年まで-Log-Analytics-仮想マシン拡張機能のバージョン-アップについて"><a href="#2021-年まで-Log-Analytics-仮想マシン拡張機能のバージョン-アップについて" class="headerlink" title="2021 年まで Log Analytics 仮想マシン拡張機能のバージョン アップについて"></a>2021 年まで Log Analytics 仮想マシン拡張機能のバージョン アップについて</h2><p>2021 年までは、新しいマイナー バージョンの Log Analytics 仮想マシン拡張機能がリリースされますと、自動的にアップデートされておりました。<br>それは、 Log Analytics エージェントを含めて、仮想マシンで対応している拡張機能に存在する AutoUpgradeMinorVersion というプロパティで実現しております。</p>
+<p>Get-AzVMExtension コマンドを利用して、各プロパティの値をご確認いただけます。<br>以下のとおり、 Log Analytics 拡張機能の AutoUpgradeMinorVersion のプロパティは true となっております。</p>
+<p><code>Get-AzVMExtension -ResourceGroupName &lt;リソースグループ名&gt; -VMName &lt;仮想マシン名&gt; -Name &lt;拡張機能名&gt;</code><br><img src="/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/image01.png"></p>
+<p>2021 年まで、 AutoUpgradeMinorVersion が true と設定されている拡張機能について、新しいマイナー バージョンがリリースされると、その情報は仮想マシンまで連携されます。<br>仮想マシンが主体的に最新バージョンのものを取得して、バージョン アップを行っておりました。<br>ですが、このバージョン アップのタイミングはきちんとコントロールされておらず、任意のタイミングで発生する可能性がございます。<br>一部のお客様から拡張機能の自動バージョン アップで自分のアプリケーションが影響されましたとの報告を受けました。<br>また、仮想マシン スケール セットの場合、すべてのインスタンスにおいて同時にバージョン アップが発生することがあるため、その影響範囲がさらに大きくなる可能性がございます。<br>以上のように、従来より安全な拡張機能のバージョン アップ方式を実現するために、今回自動アップグレードの内部処理で実装を変更いたしました。<br>Log Analytics 仮想マシン拡張機能はその実装変更の影響で、バージョン アップの方式に変更がございました。</p>
+<h2 id="現在-Log-Analytics-仮想マシン拡張機能のバージョン-アップについて"><a href="#現在-Log-Analytics-仮想マシン拡張機能のバージョン-アップについて" class="headerlink" title="現在 Log Analytics 仮想マシン拡張機能のバージョン アップについて"></a>現在 Log Analytics 仮想マシン拡張機能のバージョン アップについて</h2><p>現在の拡張機能の仕様では、enableAutomaticUpgrade プロパティに対応していない Log Analytics 仮想マシン拡張機能は自動的にアップデートが出来ません。<br>また、先程説明させていただいたとおり、AutoUpgradeMinorVersion プロパティを用いた自動的なアップデートも実施されなくなりました。<br>そのため、Log Analytics 仮想マシン拡張機能をアップデートするためには、手動でのアップデートが必須となります。</p>
+<p>一方で、enableAutomaticUpgrade プロパティに対応している拡張機能は、下記の公開情報に記載がございます。こちらご参考いただけますと幸いです。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/automatic-extension-upgrade#supported-extensions">Azure での VM とスケール セットの拡張機能の自動アップグレード</a></li>
+</ul>
+<p>下記に、Log Analytics 仮想マシン拡張機能のアップデート方法について記載いたします。</p>
+<h2 id="Log-Analytics-仮想マシン拡張機能のバージョン-アップ手順"><a href="#Log-Analytics-仮想マシン拡張機能のバージョン-アップ手順" class="headerlink" title="Log Analytics 仮想マシン拡張機能のバージョン アップ手順"></a>Log Analytics 仮想マシン拡張機能のバージョン アップ手順</h2><p>Log Analytics 仮想マシン拡張機能の最新バージョンは、 Windows と Linux でそれぞれ以下のページからご確認いただけます。</p>
+<p><strong>Windows 用の Log Analytics 仮想マシン拡張機能</strong></p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-US/azure/virtual-machines/extensions/oms-windows?toc=/azure/azure-monitor/toc.json#agent-and-vm-extension-version">https://docs.microsoft.com/en-US/azure/virtual-machines/extensions/oms-windows?toc=%2Fazure%2Fazure-monitor%2Ftoc.json#agent-and-vm-extension-version</a></p>
+<p><strong>Linux 用の Log Analytics 仮想マシン拡張機能</strong></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/microsoft/OMS-Agent-for-Linux/releases">https://github.com/microsoft/OMS-Agent-for-Linux/releases</a></p>
+<p>次に、手動バージョン アップの方法について、仮想マシン及び仮想マシン スケール セットの観点で、それぞれ手順をまとめました。</p>
+<p><strong>仮想マシン</strong></p>
+<ul>
+<li>Azure ポータルを使ったバージョン アップ</li>
+</ul>
+<ol>
+<li><p>拡張機能を削除する</p>
+<ol>
+<li>Azure ポータルにログインし、対象の VM の画面に遷移します。</li>
+<li>中央に表示されているブレードから [拡張機能とアプリケーション] を選択し、Windows の場合は、”MicrosoftMonitoringAgent” をクリックします。</li>
+<li>Linux の場合は、 “OmsAgentForLinux” をクリックします。</li>
+<li>画面上部の [アンインストール] をクリックします。</li>
+</ol>
+</li>
+<li><p>Log Analytics エージェントを拡張機能としてインストールする</p>
+<ol>
+<li>Azure ポータルにログインします。</li>
+<li>VM が接続中のワークスペースを選択します。</li>
+<li>[ワークスペースのデータ ソース] – [仮想マシン] をクリックします。</li>
+<li>当該の VM を選択します。</li>
+<li>[接続] をクリックします。</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>PowerShell/Azure CLI を使ったバージョン アップ</li>
+</ul>
+<p>以下のコマンドを実行することで最新バージョンにアップデートすることが可能です (バージョンの指定は必要ございません)。</p>
+<ol>
+<li>PowerShell</li>
+</ol>
+<p><code>Set-AzVMExtension -location $Location -ResourceGroupName $ResourceGroupName -VMName $MyVm -Name $Extname -Publisher $Extpublisher -ExtensionType $ExtType</code></p>
+<ol start="2">
+<li>Azure CLI</li>
+</ol>
+<p><code>az vm extension set -n $Extname --publisher $Publisher --vm-name $MyVm --resource-group $ResourceGroupName</code></p>
+<p><strong>仮想マシン スケール セット</strong></p>
+<ol>
+<li>Log Analytics エージェントの拡張機能をアンインストールする<ol>
+<li>Azure ポータルにログインし、当該の VMSS を選択します。</li>
+<li>[設定] – [拡張機能] を選択します。</li>
+<li>OmsAgentForLinux を選択し、アンインストールします。</li>
+</ol>
+</li>
+<li>VMSS インスタンスのアップグレードを実施する ※ VMSS のアップグレード ポリシーが手動と設定されている場合のみに実施します。<ol>
+<li>Azure ポータルにアクセスし、対象の VMSS リソースを表示します。</li>
+<li>[設定] – [インスタンス] をクリックし、各インスタンスにチェックし、[アップグレード] をクリックします。[はい] をクリックします。完了するまで待機します。</li>
+</ol>
+</li>
+<li>VMSS の拡張機能をインストールする (Log Analytics エージェント)<ol>
+<li>以下の Azure CLI コマンドを実行してインストールします。<br><code>az vmss extension set --name OmsAgentForLinux --publisher Microsoft.EnterpriseCloud.Monitoring --resource-group &lt;VMSS のリソース グループ名&gt; --vmss-name &lt;VMSS 名&gt; --settings &quot;&#123;&#39;workspaceId&#39;:&#39;&lt;Log AnalyticsworkspaceId&gt;&#39;&#125;&quot; --protected-settings &quot;&#123;&#39;workspaceKey&#39;:&#39;&lt;Log AnalyticsworkspaceKey&gt;&#39;&#125;&quot;</code></li>
+</ol>
+</li>
+<li>VMSS インスタンスのアップグレードを実施する ※ VMSS のアップグレード ポリシーが手動と設定されている場合のみに実施します。<ol>
+<li>Azure ポータルにアクセスし、対象の VMSS リソースを表示します。</li>
+<li>[設定] – [インスタンス] をクリックし、各インスタンスにチェックし、[アップグレード] をクリックします。[はい] をクリックします。完了するまで待機します。</li>
+</ol>
+</li>
+</ol>
+<h2 id="今後-Log-Analytics-仮想マシン拡張機能の自動アップグレード対応について"><a href="#今後-Log-Analytics-仮想マシン拡張機能の自動アップグレード対応について" class="headerlink" title="今後 Log Analytics 仮想マシン拡張機能の自動アップグレード対応について"></a>今後 Log Analytics 仮想マシン拡張機能の自動アップグレード対応について</h2><p>Log Analytics 仮想マシン拡張機能で自動アップグレードに対応してほしいとのご要望が多数お客様から上がっており、開発側にもフィードバックさせていただきました。<br>現時点で今後の開発予定がまだ決まっておりませんので、決まり次第改めて本ブログにてお知らせいたします。</p>
+<p>また、 Log Analytics 仮想マシン拡張機能の後継となる Azure Monitor エージェント拡張機能は、新しい自動アップグレードの仕組みに対応しておりますので、こちらの利用をご検討いただけますと幸いです。</p>
+<p>&lt;参考情報&gt;</p>
+<p>Azure Monitor Agent 拡張機能</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-overview?tabs=PowerShellWindows">https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-overview?tabs=PowerShellWindows</a></p>
+<p>以上、Log Analytics 仮想マシン拡張機能のバージョン アップの仕様についてご案内いたしました。<br>この度の仕様変更でお客様にご不便とご迷惑おかけしまして、申し訳ございません。<br>お客様によりよい製品、サービスの提供にこれまで以上に努めて参ります。</p>
+<p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。 </p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/LogAnalyticsAgentAutoUpgrade.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../../automation/Automation-Update-AutomationRunAsCredential/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          Automation アカウントの実行アカウントを作成するスクリプトにてエラーが発生して失敗する
+        
+      </div>
+    </a>
+  
+  
+    <a href="../../automation/DifferenceRunAsAccountAndManagedID/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">実行アカウントとマネージド ID の違いについて</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../../automation/Automation-Update-AutomationRunAsCredential/">Automation アカウントの実行アカウントを作成するスクリプトにてエラーが発生して失敗する</a>
+          </li>
+        
+          <li>
+            <a href="">Log Analytics 仮想マシン拡張機能のバージョン アップ方法について</a>
+          </li>
+        
+          <li>
+            <a href="../../automation/DifferenceRunAsAccountAndManagedID/">実行アカウントとマネージド ID の違いについて</a>
+          </li>
+        
+          <li>
+            <a href="../ActivityLogsInsights/">アクティビティ ログの分析情報（プレビュー）</a>
+          </li>
+        
+          <li>
+            <a href="../MonitorVM/">死活監視のクエリについて</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sandbox/" rel="tag">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StartAzureV2VMs/" rel="tag">StartAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StopAzureV2VMs/" rel="tag">StopAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Worker/" rel="tag">Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" rel="tag">コスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" rel="tag">マネージド ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/">Azure Monitor</a><span class="tag-list-count">2</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/FAQ">FAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/MetricAlert">MetricAlert</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">3</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/FAQ">FAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/Tips">Tips</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/%E3%82%B3%E3%82%B9%E3%83%88">コスト</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88">可用性テスト</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/Application-Insights/" style="font-size: 12.86px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 18.57px;">Automation</a> <a href="../../tags/Azure-Monitor/" style="font-size: 11.43px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 11.43px;">Azure Monitor Essentials</a> <a href="../../tags/FAQ/" style="font-size: 15.71px;">FAQ</a> <a href="../../tags/General/" style="font-size: 17.14px;">General</a> <a href="../../tags/How-To/" style="font-size: 15.71px;">How-To</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 11.43px;">Job</a> <a href="../../tags/Log-Analytics/" style="font-size: 17.14px;">Log Analytics</a> <a href="../../tags/MetricAlert/" style="font-size: 10px;">MetricAlert</a> <a href="../../tags/RunAs-Account/" style="font-size: 12.86px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 11.43px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 20px;">Tips</a> <a href="../../tags/Troubleshooting/" style="font-size: 14.29px;">Troubleshooting</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" style="font-size: 10px;">コスト</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 15.71px;">チーム紹介</a> <a href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" style="font-size: 10px;">マネージド ID</a> <a href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" style="font-size: 10px;">可用性テスト</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
