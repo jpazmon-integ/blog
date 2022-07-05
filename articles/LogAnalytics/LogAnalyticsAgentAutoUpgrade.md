@@ -52,28 +52,13 @@ Log Analytics 仮想マシン拡張機能はその実装変更の影響で、バ
 
 
 ## 現在 Log Analytics 仮想マシン拡張機能のバージョン アップについて
-実装変更後に自動アップグレードを利用するには、 EnableAutomaticUpgrade のプロパティを true に設定する必要がございます。
-残念ながら、以下のとおり、現時点で Log Analytics 仮想マシン拡張機能は該当プロパティに対応しておらず、値が以下のように null となっております。
-![](./LogAnalyticsAgentAutoUpgrade/image02.png)
+現在の拡張機能の仕様では、enableAutomaticUpgrade プロパティに対応していない Log Analytics 仮想マシン拡張機能は自動的にアップデートが出来ません。  
+また、先程説明させていただいたとおり、AutoUpgradeMinorVersion プロパティを用いた自動的なアップデートも実施されなくなりました。  
+そのため、Log Analytics 仮想マシン拡張機能をアップデートするためには、手動でのアップデートが必須となります。
 
-Log Analytics 仮想マシン拡張機能のバージョン アップについて、現在の実装をまとめました。
+一方で、enableAutomaticUpgrade プロパティに対応している拡張機能は、下記の公開情報に記載がございます。こちらご参考いただけますと幸いです。
+- [Azure での VM とスケール セットの拡張機能の自動アップグレード](https://docs.microsoft.com/ja-jp/azure/virtual-machines/automatic-extension-upgrade#supported-extensions)
 
-**・Azure ポータルからのデプロイ**
-
-自動的に最新バージョンをインストールするようになっております。
-
-**・PowerShell や Azure CLI でのデプロイ**
-
-明示的に EnableAutomaticUpgrade を無効にしなければ、自動的に最新バージョンをインストールするようになっております。
-例えば、以下のコマンドで TypeHandlerVersion を古い 1.13 に指定しておりますが、 EnableAutomaticUpgrade を明示的に無効にしていないため、自動的に最新 1.14.16 がインストールされます。
-
-`Set-AzVMExtension -ExtensionName "OmsAgentForLinux" -ResourceGroupName "huxi2022" -VMName "VM20-huxi2022" -Publisher "Microsoft.EnterpriseCloud.Monitoring" -ExtensionType "OmsAgentForLinux" -TypeHandlerVersion 1.13 -Settings $PublicSettings -ProtectedSettings $ProtectedSettings -Location "japaneast"` 
-![](./LogAnalyticsAgentAutoUpgrade/image03.png)
-
-DisableAutoUpgradeMinorVersion を追加して、明示的に EnableAutomaticUpgrade を無効にすることで、古いバージョンをインストールすることが可能でございます。
-
-`Set-AzVMExtension -ExtensionName "OmsAgentForLinux" -ResourceGroupName "huxi2022" -VMName "VM20-huxi2022" -Publisher "Microsoft.EnterpriseCloud.Monitoring" -ExtensionType "OmsAgentForLinux" -TypeHandlerVersion 1.13 -Settings $PublicSettings -ProtectedSettings $ProtectedSettings -Location "japaneast" -DisableAutoUpgradeMinorVersion`
-![](./LogAnalyticsAgentAutoUpgrade/image04.png)
 
 
 **デプロイ後**
