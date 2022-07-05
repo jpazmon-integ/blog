@@ -61,9 +61,7 @@ Log Analytics 仮想マシン拡張機能はその実装変更の影響で、バ
 
 
 
-**デプロイ後**
-
-Log Analytics 仮想マシン拡張機能は EnableAutomaticUpgrade を対応していないため、現在デプロイ後のバージョン アップは、手動で実施する必要がございます。
+下記に、Log Analytics 仮想マシン拡張機能のアップデート方法について記載いたします。
  
 
 ## Log Analytics 仮想マシン拡張機能のバージョン アップ手順
