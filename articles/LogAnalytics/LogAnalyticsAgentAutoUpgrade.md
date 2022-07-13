@@ -113,7 +113,7 @@ https://github.com/microsoft/OMS-Agent-for-Linux/releases
 
 `az vm extension set -n <拡張機能名> --publisher "Microsoft.EnterpriseCloud.Monitoring" --vm-name <仮想マシン名> --resource-group <リソースグループ名>`
 
-※ Azure CLI で設定する拡張機能名は指定したものに設定する必要がございます。
+※ Azure CLI で設定する拡張機能名は指定したものにする必要がございます。
 
 ※ Windows の場合、拡張機能名は "MicrosoftMonitoringAgent" となります。
 
@@ -131,6 +131,11 @@ https://github.com/microsoft/OMS-Agent-for-Linux/releases
 3. VMSS の拡張機能をインストールする (Log Analytics エージェント)
     1. 以下の Azure CLI コマンドを実行してインストールします。
 `az vmss extension set --name <拡張機能名> --publisher Microsoft.EnterpriseCloud.Monitoring --resource-group <VMSS のリソース グループ名> --vmss-name <VMSS 名> --settings "{'workspaceId':'<Log AnalyticsworkspaceId>'}" --protected-settings "{'workspaceKey':'<Log AnalyticsworkspaceKey>'}"`
+
+※ Windows の場合、拡張機能名は "MicrosoftMonitoringAgent" となります。
+
+※ Linux の場合、拡張機能名は "OmsAgentForLinux" となります。
+
 4. VMSS インスタンスのアップグレードを実施する ※ VMSS のアップグレード ポリシーが手動と設定されている場合のみに実施します。
     1. Azure ポータルにアクセスし、対象の VMSS リソースを表示します。
     2. [設定] – [インスタンス] をクリックし、各インスタンスにチェックし、[アップグレード] をクリックします。[はい] をクリックします。完了するまで待機します。
