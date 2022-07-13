@@ -103,14 +103,21 @@ https://github.com/microsoft/OMS-Agent-for-Linux/releases
 
 `Set-AzVMExtension -location <リージョン名> -ResourceGroupName <リソースグループ名> -VMName <仮想マシン名> -Name <拡張機能名> -Publisher "Microsoft.EnterpriseCloud.Monitoring" -ExtensionType <拡張機能タイプ>`
 
-※ Windows の場合、拡張機能タイプは "MicrosoftMonitoringAgent" となります。
+※ 拡張機能名は仮想マシンの [拡張機能とアプリケーション] 画面からご確認ください (デプロイ方法によってお客様が指定した名前になっている可能性がございます)。
 
-※ Linux の場合、拡張機能タイプは "OmsAgentForLinux" となります。
+※ 拡張機能タイプについて、Windows の場合は "MicrosoftMonitoringAgent" となります。
+
+※ 拡張機能タイプについて、Linux の場合は "OmsAgentForLinux" となります。
 
 2. Azure CLI
 
 `az vm extension set -n <拡張機能名> --publisher "Microsoft.EnterpriseCloud.Monitoring" --vm-name <仮想マシン名> --resource-group <リソースグループ名>`
 
+※ Azure CLI で設定する拡張機能名は指定したものに設定する必要がございます。
+
+※ Windows の場合、拡張機能名は "MicrosoftMonitoringAgent" となります。
+
+※ Linux の場合、拡張機能名は "OmsAgentForLinux" となります。
 
 **仮想マシン スケール セット**
 
