@@ -113,7 +113,7 @@ https://github.com/microsoft/OMS-Agent-for-Linux/releases
 
 `az vm extension set -n <拡張機能名> --publisher "Microsoft.EnterpriseCloud.Monitoring" --vm-name <仮想マシン名> --resource-group <リソースグループ名>`
 
-※ Azure CLI で設定する拡張機能名は指定したものにする必要がございます。
+※ Azure CLI で設定する拡張機能名は以下指定のものにする必要がございます。
 
 ※ Windows の場合、拡張機能名は "MicrosoftMonitoringAgent" となります。
 
