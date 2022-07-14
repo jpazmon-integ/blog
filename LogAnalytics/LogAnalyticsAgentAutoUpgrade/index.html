@@ -15,7 +15,7 @@
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/image01.png">
 <meta property="article:published_time" content="2022-06-30T15:00:00.000Z">
-<meta property="article:modified_time" content="2022-07-08T07:00:08.169Z">
+<meta property="article:modified_time" content="2022-07-14T00:52:05.430Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Log Analytics">
 <meta name="twitter:card" content="summary">
@@ -104,7 +104,7 @@
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+f4aab0d7-0a48-5bc3-81cd-4abacb1145e7%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BLog+Analytics+%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD%E3%81%AE%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3+%E3%82%A2%E3%83%83%E3%83%97%E6%96%B9%E6%B3%95%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FLogAnalyticsAgentAutoUpgrade%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FLogAnalyticsAgentAutoUpgrade.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FLogAnalyticsAgentAutoUpgrade.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/" data-id="cl5c3ys0900080mn4c8e184eb" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/" data-id="cl5kbgkk200080psb8el07diy" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -170,11 +170,17 @@
 <ol>
 <li>PowerShell</li>
 </ol>
-<p><code>Set-AzVMExtension -location $Location -ResourceGroupName $ResourceGroupName -VMName $MyVm -Name $Extname -Publisher $Extpublisher -ExtensionType $ExtType</code></p>
+<p><code>Set-AzVMExtension -location &lt;リージョン名&gt; -ResourceGroupName &lt;リソースグループ名&gt; -VMName &lt;仮想マシン名&gt; -Name &lt;拡張機能名&gt; -Publisher &quot;Microsoft.EnterpriseCloud.Monitoring&quot; -ExtensionType &lt;拡張機能タイプ&gt;</code></p>
+<p>※ 拡張機能名は仮想マシンの [拡張機能とアプリケーション] 画面からご確認ください (デプロイ方法によってお客様が指定した名前になっている可能性がございます)。</p>
+<p>※ 拡張機能タイプについて、Windows の場合は “MicrosoftMonitoringAgent” となります。</p>
+<p>※ 拡張機能タイプについて、Linux の場合は “OmsAgentForLinux” となります。</p>
 <ol start="2">
 <li>Azure CLI</li>
 </ol>
-<p><code>az vm extension set -n $Extname --publisher $Publisher --vm-name $MyVm --resource-group $ResourceGroupName</code></p>
+<p><code>az vm extension set -n &lt;拡張機能名&gt; --publisher &quot;Microsoft.EnterpriseCloud.Monitoring&quot; --vm-name &lt;仮想マシン名&gt; --resource-group &lt;リソースグループ名&gt;</code></p>
+<p>※ Azure CLI で設定する拡張機能名は以下指定のものにする必要がございます。</p>
+<p>※ Windows の場合、拡張機能名は “MicrosoftMonitoringAgent” となります。</p>
+<p>※ Linux の場合、拡張機能名は “OmsAgentForLinux” となります。</p>
 <p><strong>仮想マシン スケール セット</strong></p>
 <ol>
 <li>Log Analytics エージェントの拡張機能をアンインストールする<ol>
@@ -189,9 +195,13 @@
 </ol>
 </li>
 <li>VMSS の拡張機能をインストールする (Log Analytics エージェント)<ol>
-<li>以下の Azure CLI コマンドを実行してインストールします。<br><code>az vmss extension set --name OmsAgentForLinux --publisher Microsoft.EnterpriseCloud.Monitoring --resource-group &lt;VMSS のリソース グループ名&gt; --vmss-name &lt;VMSS 名&gt; --settings &quot;&#123;&#39;workspaceId&#39;:&#39;&lt;Log AnalyticsworkspaceId&gt;&#39;&#125;&quot; --protected-settings &quot;&#123;&#39;workspaceKey&#39;:&#39;&lt;Log AnalyticsworkspaceKey&gt;&#39;&#125;&quot;</code></li>
+<li>以下の Azure CLI コマンドを実行してインストールします。<br><code>az vmss extension set --name &lt;拡張機能名&gt; --publisher Microsoft.EnterpriseCloud.Monitoring --resource-group &lt;VMSS のリソース グループ名&gt; --vmss-name &lt;VMSS 名&gt; --settings &quot;&#123;&#39;workspaceId&#39;:&#39;&lt;Log AnalyticsworkspaceId&gt;&#39;&#125;&quot; --protected-settings &quot;&#123;&#39;workspaceKey&#39;:&#39;&lt;Log AnalyticsworkspaceKey&gt;&#39;&#125;&quot;</code></li>
 </ol>
 </li>
+</ol>
+<p>※ Windows の場合、拡張機能名は “MicrosoftMonitoringAgent” となります。</p>
+<p>※ Linux の場合、拡張機能名は “OmsAgentForLinux” となります。</p>
+<ol start="4">
 <li>VMSS インスタンスのアップグレードを実施する ※ VMSS のアップグレード ポリシーが手動と設定されている場合のみに実施します。<ol>
 <li>Azure ポータルにアクセスし、対象の VMSS リソースを表示します。</li>
 <li>[設定] – [インスタンス] をクリックし、各インスタンスにチェックし、[アップグレード] をクリックします。[はい] をクリックします。完了するまで待機します。</li>
