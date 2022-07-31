@@ -1,6 +1,6 @@
 ---
 title: Log Analytics の新機能 Basic Logs と Archived Logs について
-date: 2022-07-15 00:00:00
+date: 2022-08-05 00:00:00
 tags:
   - How-To
   - Tips
@@ -48,13 +48,13 @@ Basic Logs のデフォルトのデータ保有期間は 8 日間であり、ク
 
 
 ## Archived Logs とは
-Archived Logs は、名前のとおり ログをアーカイブ領域に移動させ、長期保管するための機能です。
+Archived Logs は、名前のとおりログをアーカイブ領域に移動させ、長期保管するための機能です。
 Analytics Logs は 最大 730 日、Basic Logs は 8 日間しかログを保持できませんが、
 Archived Logs では 最大 7 年間データを保持することができます。
 ![](./BasicLogsAndArchivedLogs/image02.png)
 
 <参考>
-- アーカイブしたデータにアクセスする場合は データを復元するかジョブで検索する必要があります。詳細は [データ保持とアーカイブ](https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/log-analytics-workspace-overview#data-retention-and-archive) をご確認ください。
+- アーカイブしたデータにアクセスする場合はデータを復元するかジョブで検索する必要があります。詳細は [データ保持とアーカイブ](https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/log-analytics-workspace-overview#data-retention-and-archive) をご確認ください。
 - Archived Logs のご利用料金は [Azure Monitor の価格](https://azure.microsoft.com/ja-jp/pricing/details/monitor/) をご参照ください。
 <br><br>
 
@@ -96,7 +96,7 @@ Basic Logs と同様に、Azure CLI コマンドで設定する方法をご紹�
 
 `az monitor log-analytics workspace table update` コマンドには、保有期間を設定するパラメータが 2 つあります。
 `retention-time` は Basic Logs もしくは Analytics Logs として保有する期間、
-`total-retention-time` は Archived Logs としての保有期間を含めた、データの総保有期間を意味します。 
+`total-retention-time` は Archived Logs としての保有期間を含めた、データの総保有期間を意味します。
 ![](./BasicLogsAndArchivedLogs/image07.png)
 
 以下の例では、Basic Logs を設定したテーブルに対し、 `total-retention-time` を `11` 日間に指定しています。
