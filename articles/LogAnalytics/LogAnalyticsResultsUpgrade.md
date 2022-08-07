@@ -1,6 +1,6 @@
 ---
 title: Log Analytics のアップグレード
-date: 2022-08-05 00:00:00
+date: 2022-08-10 00:00:00
 tags:
   - Log Analytics
   - How-To
@@ -44,7 +44,7 @@ Log Analytics ワークスペースに収集された機能をより有効にご
 ![](./LogAnalyticsResultsUpgrade/01.gif)
 <br>
 
-カラム コントロール (後述 2.7 参照) はサイドバーとして再設計され、クエリの実行結果によりフォーカスできるようになりました。
+カラム コントロール (後述 7. 参照) はサイドバーとして再設計され、クエリの実行結果によりフォーカスできるようになりました。
 ![](./LogAnalyticsResultsUpgrade/02.png)
 <br>
 
@@ -114,5 +114,5 @@ Kusto クエリの知識がなくとも、お客様のニーズに合ったロ�
 ## おわりに
 アップデートされた機能の概要をご紹介しましたが、いかがでしたでしょうか。
 もし、Log Analytics やクエリ検索の機能についてご意見やご要望などありましたら、以下ブログへのコメント、
-または Log Analyticsのフィードバック機能より頂戴いただけますと幸いです。
+または Log Analytics のフィードバック機能より頂戴いただけますと幸いです。
  [Log Analytics results upgrade](https://techcommunity.microsoft.com/t5/azure-observability-blog/log-analytics-results-upgrade/ba-p/3257229) 
