@@ -107,20 +107,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/SystemLanguageNotEnglishNoPython2Bug/</loc>
-    
-    <lastmod>2022-08-09</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/automatically_install_ama/</loc>
-    
-    <lastmod>2022-08-09</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/</loc>
     
     <lastmod>2022-08-09</lastmod>
@@ -135,7 +121,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/SystemLanguageNotEnglishNoPython2Bug/</loc>
+    
+    <lastmod>2022-08-09</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/automatically_install_ama/</loc>
     
     <lastmod>2022-08-09</lastmod>
     
@@ -143,6 +136,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM/</loc>
+    
+    <lastmod>2022-08-09</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/</loc>
     
     <lastmod>2022-08-09</lastmod>
     
@@ -170,6 +170,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowMetricAlertisFired/</loc>
+    
+    <lastmod>2022-08-09</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/Ignite2021/</loc>
     
     <lastmod>2022-08-09</lastmod>
@@ -178,13 +185,6 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/</loc>
-    
-    <lastmod>2022-08-09</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowMetricAlertisFired/</loc>
     
     <lastmod>2022-08-09</lastmod>
     
