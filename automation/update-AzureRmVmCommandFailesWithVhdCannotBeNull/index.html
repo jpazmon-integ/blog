@@ -14,7 +14,7 @@
 <meta property="og:description" content="こんにちは、Windows プラットフォーム サポートの世古です。今回は Azure  Automation の Runbook 実行でよくお問い合わせいただく内容についてご紹介させていただきます。 Runbook の実行で Update-AzureRmVM が ‘Vhd’ cannot be null. で失敗する事象がございます。この問題は以下の条件で発生します。  対象の VM が管理ディス">
 <meta property="og:locale" content="ja_JP">
 <meta property="article:published_time" content="2019-04-02T17:26:00.000Z">
-<meta property="article:modified_time" content="2022-08-09T08:31:10.467Z">
+<meta property="article:modified_time" content="2022-08-16T08:45:24.623Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Troubleshooting">
 <meta property="article:tag" content="Automation">
@@ -104,7 +104,7 @@
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+af2089b8-0405-54e0-aeac-1096f1b5c198%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BRunbook+%E3%81%AE+Update-AzureRmVM+%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%8C+%27Vhd%27+cannot+be+null.+%E3%81%A7%E5%A4%B1%E6%95%97%E3%81%99%E3%82%8B%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2Fautomation%2Fupdate-AzureRmVmCommandFailesWithVhdCannotBeNull%2F%29%0A*+Content+Source%3A+%5Barticles%2Fautomation%2Fupdate-AzureRmVmCommandFailesWithVhdCannotBeNull.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2Fautomation%2Fupdate-AzureRmVmCommandFailesWithVhdCannotBeNull.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/automation/update-AzureRmVmCommandFailesWithVhdCannotBeNull/" data-id="cl6lxb4su00130onv41gg1ow1" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/automation/update-AzureRmVmCommandFailesWithVhdCannotBeNull/" data-id="cl6vxwdk500170nmu1ylb97f3" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -175,6 +175,14 @@
       <ul>
         
           <li>
+            <a href="../../LogAnalytics/BasicLogsAndArchivedLogs/">Log Analytics の新機能 Basic Logs と Archived Logs について</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/LogAnalyticsResultsUpgrade/">Log Analytics のアップグレード</a>
+          </li>
+        
+          <li>
             <a href="../Automation-Update-AutomationRunAsCredential/">Automation アカウントの実行アカウントを作成するスクリプトにてエラーが発生して失敗する</a>
           </li>
         
@@ -184,14 +192,6 @@
         
           <li>
             <a href="../../LogAnalytics/LogAnalyticsAgentAutoUpgrade/">Log Analytics 仮想マシン拡張機能のバージョン アップ方法について</a>
-          </li>
-        
-          <li>
-            <a href="../DifferenceRunAsAccountAndManagedID/">実行アカウントとマネージド ID の違いについて</a>
-          </li>
-        
-          <li>
-            <a href="../../LogAnalytics/ActivityLogsInsights/">アクティビティ ログの分析情報（プレビュー）</a>
           </li>
         
       </ul>
@@ -224,7 +224,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">タグクラウド</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/Application-Insights/" style="font-size: 12.86px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 18.57px;">Automation</a> <a href="../../tags/Azure-Monitor/" style="font-size: 11.43px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 11.43px;">Azure Monitor Essentials</a> <a href="../../tags/FAQ/" style="font-size: 15.71px;">FAQ</a> <a href="../../tags/General/" style="font-size: 17.14px;">General</a> <a href="../../tags/How-To/" style="font-size: 17.14px;">How-To</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 11.43px;">Job</a> <a href="../../tags/Log-Analytics/" style="font-size: 18.57px;">Log Analytics</a> <a href="../../tags/MetricAlert/" style="font-size: 10px;">MetricAlert</a> <a href="../../tags/RunAs-Account/" style="font-size: 12.86px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 11.43px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 20px;">Tips</a> <a href="../../tags/Troubleshooting/" style="font-size: 14.29px;">Troubleshooting</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" style="font-size: 10px;">コスト</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 15.71px;">チーム紹介</a> <a href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" style="font-size: 10px;">マネージド ID</a> <a href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" style="font-size: 10px;">可用性テスト</a>
+      <a href="../../tags/Application-Insights/" style="font-size: 12.5px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 17.5px;">Automation</a> <a href="../../tags/Azure-Monitor/" style="font-size: 11.25px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 11.25px;">Azure Monitor Essentials</a> <a href="../../tags/FAQ/" style="font-size: 15px;">FAQ</a> <a href="../../tags/General/" style="font-size: 16.25px;">General</a> <a href="../../tags/How-To/" style="font-size: 18.75px;">How-To</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 11.25px;">Job</a> <a href="../../tags/Log-Analytics/" style="font-size: 20px;">Log Analytics</a> <a href="../../tags/MetricAlert/" style="font-size: 10px;">MetricAlert</a> <a href="../../tags/RunAs-Account/" style="font-size: 12.5px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 11.25px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 20px;">Tips</a> <a href="../../tags/Troubleshooting/" style="font-size: 13.75px;">Troubleshooting</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" style="font-size: 10px;">コスト</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 15px;">チーム紹介</a> <a href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" style="font-size: 10px;">マネージド ID</a> <a href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" style="font-size: 10px;">可用性テスト</a>
     </div>
   </div>
 

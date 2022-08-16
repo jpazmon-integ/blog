@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Log Analytics の新機能 Basic Logs と Archived Logs について | Japan Azure Monitoring Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは！ Azure Monitoring サポート チームの北村です。 今回は Log Analytics の新機能としてプレビューで提供されている Basic Logs と Archived Logs をご紹介いたします。Log Analytics ワークスペースにログを収集しているが、コストを削減したい…という方にはお勧めしたい機能です。本記事では Basic Logs と Archiv">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Log Analytics の新機能 Basic Logs と Archived Logs について">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="こんにちは！ Azure Monitoring サポート チームの北村です。 今回は Log Analytics の新機能としてプレビューで提供されている Basic Logs と Archived Logs をご紹介いたします。Log Analytics ワークスペースにログを収集しているが、コストを削減したい…という方にはお勧めしたい機能です。本記事では Basic Logs と Archiv">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image03.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image04.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image05.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image06.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image07.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image08.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image09.png">
+<meta property="article:published_time" content="2022-08-16T15:00:00.000Z">
+<meta property="article:modified_time" content="2022-08-16T08:45:24.507Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="How-To">
+<meta property="article:tag" content="Tips">
+<meta property="article:tag" content="Log Analytics">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image01.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-LogAnalytics/BasicLogsAndArchivedLogs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Log Analytics の新機能 Basic Logs と Archived Logs について
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2022-08-16T15:00:00.000Z" itemprop="datePublished">2022-08-17</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+bf943bbb-e1c1-5e72-9bba-63d4fe46ce65%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BLog+Analytics+%E3%81%AE%E6%96%B0%E6%A9%9F%E8%83%BD+Basic+Logs+%E3%81%A8+Archived+Logs+%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FBasicLogsAndArchivedLogs%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FBasicLogsAndArchivedLogs.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FBasicLogsAndArchivedLogs.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/" data-id="cl6vxwdj900050nmuc5ja91lx" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは！ Azure Monitoring サポート チームの北村です。</p>
+<p>今回は Log Analytics の新機能としてプレビューで提供されている Basic Logs と Archived Logs をご紹介いたします。<br>Log Analytics ワークスペースにログを収集しているが、コストを削減したい…という方にはお勧めしたい機能です。<br>本記事では Basic Logs と Archived Logs の概要とその設定方法をご案内します。</p>
+<span id="more"></span>
+
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li>Basic Logs とは</li>
+<li>Archived Logs とは </li>
+<li>Azure CLI コマンドを利用した Basic Logs の設定方法</li>
+<li>Azure CLI コマンドを利用した Archived Logs の設定方法</li>
+<li>まとめ</li>
+</ul>
+<h2 id="Basic-Logs-とは"><a href="#Basic-Logs-とは" class="headerlink" title="Basic Logs とは"></a>Basic Logs とは</h2><p>まず、Basic Logs のプレビュー リリースに伴い、Azure Monitor のすべての機能を使用できる Log Analytics ワークスペース内の<br>テーブルは Analytics Logs と呼ばれるようになりました。今まで Log Analytics ワークスペースに収集されていたログは<br>すべて Analytics Logs であり、デフォルトでは Analytics Logs となっています。</p>
+<p>そして、今回の大幅なアップデートに伴い、Analytics Logs とは別に Basic Logs というプランが追加されました。<br>Basic Logs のデフォルトのデータ保有期間は 8 日間であり、クエリで使用できる演算子が限定的であったり、<br>アラートには使用できない等の制限事項がございます。<br>しかし、Azure Monitor のすべての機能を使用できないという制約がある分、Analytics Logs より安くご利用いただけます。</p>
+<p><strong>Analytics Logs と Basic Logs の違い</strong><br>※ <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/log-analytics-workspace-overview#log-data-plans-preview">Log Analytics ワークスペースの概要 - ログ データ プラン（プレビュー）</a> より抜粋<br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image01.png"></p>
+<p>&lt;参考&gt;</p>
+<ul>
+<li>Basic Logs で使用できる演算子は <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/basic-logs-query?tabs=portal-1#kql-language-limits">KQL 言語の制限</a> をご覧ください。</li>
+<li>現在はすべてのテーブルで Basic Logs のプランを選択することはできません。サポート テーブルは <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/basic-logs-configure?tabs=cli-1,cli-2#which-tables-support-basic-logs">Basic Logs をサポートするテーブル</a> でご確認ください。</li>
+<li>Basic Logs のご利用料金は <a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">Azure Monitor の価格</a> の [Basic ログ] をご確認ください。<br><br><br></li>
+</ul>
+<h2 id="Archived-Logs-とは"><a href="#Archived-Logs-とは" class="headerlink" title="Archived Logs とは"></a>Archived Logs とは</h2><p>Archived Logs は、名前のとおりログをアーカイブ領域に移動させ、長期保管するための機能です。<br>Analytics Logs は 最大 730 日、Basic Logs は 8 日間しかログを保持できませんが、<br>Archived Logs では 最大 7 年間データを保持することができます。<br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image02.png"></p>
+<p>&lt;参考&gt;</p>
+<ul>
+<li>アーカイブしたデータにアクセスする場合はデータを復元するかジョブで検索する必要があります。詳細は <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/log-analytics-workspace-overview#data-retention-and-archive">データ保持とアーカイブ</a> をご確認ください。</li>
+<li>Archived Logs のご利用料金は <a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">Azure Monitor の価格</a> をご参照ください。<br><br><br></li>
+</ul>
+<h2 id="Azure-CLI-コマンドを利用した-Basic-Logs-の設定方法"><a href="#Azure-CLI-コマンドを利用した-Basic-Logs-の設定方法" class="headerlink" title="Azure CLI コマンドを利用した Basic Logs の設定方法"></a>Azure CLI コマンドを利用した Basic Logs の設定方法</h2><p>それでは Basic Logs の設定をしてみましょう！<br>本記事では <code>az monitor log-analytics workspace table update</code> コマンドを使用し、テーブル単位で設定する方法をご案内します。<br>Log Analytics ワークスペース名、ワークスペースが属するリソース グループ名、テーブル名等を指定し、以下のとおり実行します。</p>
+<p><code>az monitor log-analytics workspace table update --subscription &lt;サブスクリプション名&gt; --resource-group &lt;リソース グループ名&gt; --workspace-name &lt;ワークスペース名&gt; --name &lt;テーブル名&gt; --plan Basic</code><br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image03.png"></p>
+<p>Azure portal から変更内容を確認することができます。Log Analytics ワークスペース から [全般] - [ログ] を選択し、<br>Basic Logs プランに変更したテーブル名をクリックすると、テーブル名の右横に <strong>基本ログ</strong> と表示されていることがわかります。<br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image04.png"></p>
+<p>なお、Basic Logs に変更する前は、以下のとおり表示されます（Analytics Logs とは表示されません）。<br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image05.png"></p>
+<p>また、<code>az monitor log-analytics workspace table show</code> コマンドで設定内容を確認することもできます。<br>下図の実行例では <code>plan</code> が <strong>Basic</strong> 、<code>retentionInDays</code> が <strong>8</strong> となっていることがわかります。</p>
+<p><code>az monitor log-analytics workspace table show --subscription &lt;サブスクリプション名&gt; --resource-group &lt;リソース グループ名&gt; --workspace-name &lt;ワークスペース名&gt; --name &lt;テーブル名&gt; --output table</code><br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image06.png"></p>
+<p>&lt;ご参考&gt;<br>Basic Logs に関する設定方法等につきましては、下記弊社公開情報にも掲載しております。<br>Azure portal から設定する手順等につきましても以下をご覧ください。</p>
+<ul>
+<li>Basic Logs の設定方法 : <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/basic-logs-configure?tabs=cli-1,cli-2#set-table-configuration">テーブル構成の設定</a> もご覧ください。</li>
+<li>Basic Logs の確認方法 : <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/basic-logs-configure?tabs=cli-1,cli-2#check-table-configuration">テーブル構成の確認</a> にも掲載しております。<br><br><br></li>
+</ul>
+<h2 id="Azure-CLI-コマンドを利用した-Archived-Logs-の設定方法"><a href="#Azure-CLI-コマンドを利用した-Archived-Logs-の設定方法" class="headerlink" title="Azure CLI コマンドを利用した Archived Logs の設定方法"></a>Azure CLI コマンドを利用した Archived Logs の設定方法</h2><p>Basic Logs と同様に、Azure CLI コマンドで設定する方法をご紹介します。こちらもテーブル単位で指定します。</p>
+<p><code>az monitor log-analytics workspace table update</code> コマンドには、保有期間を設定するパラメータが 2 つあります。<br><code>retention-time</code> は Basic Logs もしくは Analytics Logs として保有する期間、<br><code>total-retention-time</code> は Archived Logs としての保有期間を含めた、データの総保有期間を意味します。<br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image07.png"></p>
+<p>以下の例では、Basic Logs を設定したテーブルに対し、 <code>total-retention-time</code> を <code>11</code> 日間に指定しています。<br>つまり、Basic Logs として 8 日間、Archived Logs として 3 日間の合計 11 日間、データが保持されることになります。</p>
+<p><code>az monitor log-analytics workspace table update --subscription &lt;サブスクリプション名&gt; --resource-group &lt;リソース グループ名&gt; --workspace-name &lt;ワークスペース名&gt; --name &lt;テーブル名&gt; ----retention-time &lt;アーカイブされる前のデータ保有期間&gt; --total-retention-time &lt;総保有期間&gt;</code><br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image08.png"></p>
+<p>なお、Basic Logs と同様に下記コマンドで設定内容を確認することができます。<br><code>az monitor log-analytics workspace table show --subscription &lt;サブスクリプション名&gt; --resource-group &lt;リソース グループ名&gt; --workspace-name &lt;ワークスペース名&gt; --name &lt;テーブル名&gt;</code><br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image09.png"></p>
+<p>&lt;ご参考&gt;<br>Archived Logs に関する設定方法につきましては、下記弊社公開情報にも掲載しております。<br>Azure portal から設定する手順等につきましても以下をご覧ください。</p>
+<ul>
+<li>Archived Logs の設定方法 : <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/data-retention-archive?tabs=cli-1,api-2#set-retention-and-archive-policy-by-table">テーブル別に保持ポリシーとアーカイブ ポリシーを設定する</a> </li>
+<li>Archived Logs の確認方法 : <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/data-retention-archive?tabs=cli-1,cli-2#get-retention-and-archive-policy-by-table">テーブル別の保持ポリシーとアーカイブ ポリシーを取得する</a><br><br><br></li>
+</ul>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>本記事では、以下についてご案内いたしましたが、いかがでしたでしょうか。</p>
+<ul>
+<li>Basic Logs とは</li>
+<li>Archived Logs とは </li>
+<li>Azure CLI コマンドを利用した Basic Logs の設定方法</li>
+<li>Azure CLI コマンドを利用した Archived Logs の設定方法</li>
+</ul>
+<p>本記事が少しでもお役に立ちましたら幸いです。<br>以上、Log Analytics の新しい機能 Basic Logs と Archived Logs の概要と設定方法についてお伝えしました。<br>最後までお読みいただきありがとうございました！</p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/BasicLogsAndArchivedLogs.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../LogAnalyticsResultsUpgrade/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Log Analytics のアップグレード</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">Log Analytics の新機能 Basic Logs と Archived Logs について</a>
+          </li>
+        
+          <li>
+            <a href="../LogAnalyticsResultsUpgrade/">Log Analytics のアップグレード</a>
+          </li>
+        
+          <li>
+            <a href="../../automation/Automation-Update-AutomationRunAsCredential/">Automation アカウントの実行アカウントを作成するスクリプトにてエラーが発生して失敗する</a>
+          </li>
+        
+          <li>
+            <a href="../automatically_install_ama/">仮想マシン作成時に Azure Monitor エージェントのインストールとデータ収集ルールへの関連付けを自動で行う方法</a>
+          </li>
+        
+          <li>
+            <a href="../LogAnalyticsAgentAutoUpgrade/">Log Analytics 仮想マシン拡張機能のバージョン アップ方法について</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sandbox/" rel="tag">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StartAzureV2VMs/" rel="tag">StartAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StopAzureV2VMs/" rel="tag">StopAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Worker/" rel="tag">Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" rel="tag">コスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" rel="tag">マネージド ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/">Azure Monitor</a><span class="tag-list-count">2</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/FAQ">FAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/MetricAlert">MetricAlert</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">3</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/FAQ">FAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/Tips">Tips</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/%E3%82%B3%E3%82%B9%E3%83%88">コスト</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88">可用性テスト</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/08/">2022 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/Application-Insights/" style="font-size: 12.5px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 17.5px;">Automation</a> <a href="../../tags/Azure-Monitor/" style="font-size: 11.25px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 11.25px;">Azure Monitor Essentials</a> <a href="../../tags/FAQ/" style="font-size: 15px;">FAQ</a> <a href="../../tags/General/" style="font-size: 16.25px;">General</a> <a href="../../tags/How-To/" style="font-size: 18.75px;">How-To</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 11.25px;">Job</a> <a href="../../tags/Log-Analytics/" style="font-size: 20px;">Log Analytics</a> <a href="../../tags/MetricAlert/" style="font-size: 10px;">MetricAlert</a> <a href="../../tags/RunAs-Account/" style="font-size: 12.5px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 11.25px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 20px;">Tips</a> <a href="../../tags/Troubleshooting/" style="font-size: 13.75px;">Troubleshooting</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" style="font-size: 10px;">コスト</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 15px;">チーム紹介</a> <a href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" style="font-size: 10px;">マネージド ID</a> <a href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" style="font-size: 10px;">可用性テスト</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
