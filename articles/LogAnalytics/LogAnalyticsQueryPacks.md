@@ -1,6 +1,6 @@
 ---
 title: Log Analytics の新機能 クエリ パック について
-date: 2022-09-23 00:00:00
+date: 2022-09-26 00:00:00
 tags:
   - How-To
   - Tips
@@ -9,7 +9,7 @@ tags:
 
 こんにちは、Azure Monitoring サポート チームの北村です。
 
-今回は Log Analytics の新機能としてプレビューで提供されている Log Analytics クエリ パック をご紹介いたします。
+今回は Log Analytics の新機能 "Log Analytics クエリ パック" をご紹介いたします。
 この機能は、クエリを効果的に保存、共有、管理するために設計されました。
 よく使用するクエリを保存したい！チーム内で便利なクエリを共有したい！という方には、必見の機能です。
 本記事では Log Analytics クエリ パックの概要とその設定方法をご案内します。
@@ -27,13 +27,20 @@ tags:
 ## 1. Log Analytics クエリ パックとは
 クエリ パックは、いわば クエリの "コンテナ" です。
 Log Analytics のクエリをより簡単かつ効率的に作成、保存、管理することを目的に開発されました。
-サブスクリプション レベルで存在するリソースのため、保存したクエリは Log Analytics リソースとワークスペース全体で利用することができます。
+クエリ パックは、サブスクリプション レベルで存在するリソースです。
+そのため、保存したクエリはサブスクリプション配下に存在する "すべての" ワークスペースから利用することができます。
 
 <参考>
 クエリ パックの概要は、下記弊社公開情報や英語版ブログ [Log Analytics Query packs](https://techcommunity.microsoft.com/t5/azure-observability-blog/log-analytics-query-packs/ba-p/2314721) でもご確認いただけます。
-[Azure Monitor ログでのクエリ パック (プレビュー)](https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/query-packs)
+[Azure Monitor ログでのクエリ パック](https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/query-packs)
 
-また、クエリ パックを利用するには、[共同作成者](https://docs.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles#contributor) または [閲覧者](https://docs.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles#reader) の権限が必要です。
+また、クエリ パックを利用するには、サブスクリプションをスコープとした以下の権限が必要です。
+クエリを保存したり、既存のクエリを編集する場合は、共同作成者権限、
+クエリを閲覧したり、クエリを実行する場合は、閲覧者権限が必要です。
+
+- [共同作成者](https://docs.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles#contributor) - クエリの保存、クエリの編集、クエリの閲覧、クエリの実行
+- [閲覧者](https://docs.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles#reader) - クエリの閲覧、クエリの実行
+
 作業を開始する前に、適切な権限が付与されていることをご確認ください。
 [Azure portal を使用して Azure ロールを割り当てる](https://docs.microsoft.com/ja-jp/azure/role-based-access-control/role-assignments-portal?tabs=current)
 
@@ -84,7 +91,7 @@ Log Analytics のクエリをより簡単かつ効率的に作成、保存、管
 2. クエリのサイドバーで [クエリ] を選択し、[クエリ パックの選択] をクリックします。
 ![](./LogAnalyticsQueryPacks/image06.png)
 
-3. クエリパックを選択します。
+3. クエリ パックを選択します。
 ![](./LogAnalyticsQueryPacks/image07.png)
 
 4. クエリのサイドバーにクエリ パックに保存されたクエリが表示されますので、クリックします。
@@ -102,9 +109,13 @@ Log Analytics のクエリをより簡単かつ効率的に作成、保存、管
 
 ## 4. クエリを管理する
 Azure portal から作成したクエリ パックを確認することができます。
-既定では LogAnalyticsDefaultResources リソースグループに DefaultQueryPack という名前でクエリ パックが作成されますが、
-クエリ パック名を指定したい、複数のクエリ パックに分けて保存したい、という場合は、以下の [作成] よりクエリ パックを作成してください。
 ![](./LogAnalyticsQueryPacks/image10.png)
+
+既定では LogAnalyticsDefaultResources リソースグループに DefaultQueryPack という名前でクエリ パックが作成されますが、
+クエリ パック名を指定したい、複数のクエリ パックに分けて保存したい、という場合は、
+以下の [作成] よりクエリ パックを作成してください。
+![](./LogAnalyticsQueryPacks/image11.png)
+
 
 <参考>
 クエリ パックの表示方法は、弊社公開情報 [クエリ パックの表示](https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/query-packs#view-query-packs) でもご確認いただけます。
