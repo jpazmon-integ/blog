@@ -4,24 +4,23 @@
   <meta charset="utf-8">
   
   
-  <title>Azure Monitor 新着情報 @ Ignite 2021 | Japan Azure Monitoring Support Blog</title>
+  <title>Log Analytics ワークスペースの正常性を示す指標の更新について | Japan Azure Monitoring Support Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="こんにちは、Azure Monitoring &amp; Integration チームの 鄭 です。 本記事は、2021 年 11 月 2 日に米国の Azure Monitor Blog で公開された What’s new in Azure Monitor @ Ignite 2021 を翻訳したものになります。Azure Monitor に関する最新情報をお届けいたします。 &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
+  <meta name="description" content="こんにちは。Azure Monitoring チームでサマー インターンをしております、徳田です !  本記事は Improbing the tools for monitoring Log Analytics workspace health を元にしております。今回は Log Analytics ワークスペースのリソース正常性を示す指標に関する更新についてご紹介します。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Azure Monitor 新着情報 @ Ignite 2021">
-<meta property="og:url" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/Ignite2021/index.html">
+<meta property="og:title" content="Log Analytics ワークスペースの正常性を示す指標の更新について">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/UpdateLAHealth/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは、Azure Monitoring &amp; Integration チームの 鄭 です。 本記事は、2021 年 11 月 2 日に米国の Azure Monitor Blog で公開された What’s new in Azure Monitor @ Ignite 2021 を翻訳したものになります。Azure Monitor に関する最新情報をお届けいたします。 &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta property="og:description" content="こんにちは。Azure Monitoring チームでサマー インターンをしております、徳田です !  本記事は Improbing the tools for monitoring Log Analytics workspace health を元にしております。今回は Log Analytics ワークスペースのリソース正常性を示す指標に関する更新についてご紹介します。">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/Ignite2021/image01.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/Ignite2021/image02.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/Ignite2021/image03.png">
-<meta property="article:published_time" content="2021-11-29T15:00:00.000Z">
-<meta property="article:modified_time" content="2022-09-20T03:53:32.487Z">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/UpdateLAHealth/warning_status.png">
+<meta property="article:published_time" content="2022-09-19T15:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-20T03:53:32.623Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Azure Monitor">
+<meta property="article:tag" content="Log Analytics">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/Ignite2021/image01.png">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/UpdateLAHealth/warning_status.png">
   
     <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
   
@@ -83,7 +82,7 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-AzureMonitorEssential/Ignite2021" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-LogAnalytics/UpdateLAHealth" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -92,7 +91,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Azure Monitor 新着情報 @ Ignite 2021
+      Log Analytics ワークスペースの正常性を示す指標の更新について
     </h1>
   
 
@@ -100,45 +99,56 @@
       <div class="article-share">
         Last Update: 
         <a href="" class="article-date-single">
-  <time datetime="2021-11-29T15:00:00.000Z" itemprop="datePublished">2021-11-30</time>
+  <time datetime="2022-09-19T15:00:00.000Z" itemprop="datePublished">2022-09-20</time>
 </a>
         
         
-        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+8cfc2196-45fc-568e-ad3a-84d8965c883a%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Monitor+%E6%96%B0%E7%9D%80%E6%83%85%E5%A0%B1+%40+Ignite+2021%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FIgnite2021%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FIgnite2021.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FIgnite2021.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+e0cd22fc-0e9c-5e4c-a054-9ddf109d15d5%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BLog+Analytics+%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AE%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%92%E7%A4%BA%E3%81%99%E6%8C%87%E6%A8%99%E3%81%AE%E6%9B%B4%E6%96%B0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FUpdateLAHealth%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FUpdateLAHealth.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FUpdateLAHealth.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/Ignite2021/" data-id="cl89nvwxf00030ood5nz4e58r" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/UpdateLAHealth/" data-id="cl89nvwxt000i0oodaqym4xvr" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは、Azure Monitoring &amp; Integration チームの 鄭 です。</p>
-<p>本記事は、2021 年 11 月 2 日に米国の Azure Monitor Blog で公開された <a target="_blank" rel="noopener" href="https://techcommunity.microsoft.com/t5/azure-monitor-blog/what-s-new-in-azure-monitor-ignite-2021/ba-p/2912049">What’s new in Azure Monitor @ Ignite 2021</a> を翻訳したものになります。Azure Monitor に関する最新情報をお届けいたします。</p>
-<p>==========================================================================================</p>
-<p>Azure Monitor は、ハイブリッド環境を完全に監視できるようにするエンタープライズ対応の豊富な機能を提供し、常に利用可能で、信頼性が高く、パフォーマンスを維持できるようにしています。 そして、Microsoft Ignite 2021で多数の新機能を発表しました。これにより、アプリとインフラストラクチャからより多くの洞察を得ることができ、Log Analytics workspace とアラートを簡単に管理できます。</p>
-<p><strong>OpenTelemetry エクスポーターを使用して Application Insights にテレメトリを送信します。</strong></p>
-<ol>
-<li>OpenTelemetry のベンダーに依存しない一貫性のある API / SDK を使用して、 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-enable?tabs=net">.NET、 Node.JS、 Python</a>アプリをインストルメント化し、 Application Insights にデータを送信できるようになりました。 これらの AzureMonitor OpenTelemetry エクスポーターはプレビュー機能で、昨年リリースされた <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/azure-monitor/app/java-in-process-agent">Java auto-instrumentation</a>に追加されています。</li>
+        <p>こんにちは。Azure Monitoring チームでサマー インターンをしております、徳田です ! </p>
+<p>本記事は <a target="_blank" rel="noopener" href="https://techcommunity.microsoft.com/t5/azure-observability-blog/improving-the-tools-for-monitoring-log-analytics-workspace/ba-p/3566634">Improbing the tools for monitoring Log Analytics workspace health</a> を元にしております。<br>今回は Log Analytics ワークスペースのリソース正常性を示す指標に関する更新についてご紹介します。</p>
+<span id="more"></span>
+
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li>インジェスト時間とは</li>
+<li><em>Query succession percentage</em> (クエリ成功率) とは</li>
+<li>今回の Log Analytics ワークスペースのリソース正常性に関する更新の概要</li>
+<li>Log Analytics ワークスペースのリソース正常性の確認方法</li>
+<li>Log Analytics ワークスペースのリソース正常性の状態定義</li>
+<li>まとめ</li>
+</ul>
+<p>今回の更新の背景として、Log Analytics ワークスペースの正常性の重要な ２ つの指標として、<strong>インジェスト時間</strong>と <em><strong>Query succession percentage</strong></em> (クエリ成功率) を定義しました。</p>
+<h2 id="インジェスト時間とは"><a href="#インジェスト時間とは" class="headerlink" title="インジェスト時間とは"></a>インジェスト時間とは</h2><p>インジェスト時間は、ログ データが生成されてからクエリ検索が可能になるまでにかかる時間を示しています。<a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/data-ingestion-time">こちらの記事</a>にて、インジェスト時間に影響する様々な要因をご確認いただけます。</p>
+<h2 id="Query-succession-percentage-とは"><a href="#Query-succession-percentage-とは" class="headerlink" title="Query succession percentage とは"></a><em>Query succession percentage</em> とは</h2><p><em>Query succession percentage</em> (以降、クエリ成功率) は、HTTP ステータス コードが 500 番台 “以外” のエラーが返却されるクエリの数を反映しています。この数値には Azure ログ アラートや Sentinel によって実行されるクエリは含まれません。この指標は近くリソース正常性にて確認できるようになる予定です。</p>
+<h2 id="今回の-Log-Analytics-ワークスペースの正常性に関する更新の概要"><a href="#今回の-Log-Analytics-ワークスペースの正常性に関する更新の概要" class="headerlink" title="今回の Log Analytics ワークスペースの正常性に関する更新の概要"></a>今回の Log Analytics ワークスペースの正常性に関する更新の概要</h2><p>現在この 1 年でリリースされた機能と併せた、上記 2 つの指標の強化が進められています。<br>具体的には、<a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/reference/tables/operation">Operation</a> テーブルが改善されました。このテーブルではユーザーがログ解析に関する問題や Log Analytics の制限に関する情報、そのたデータに関する一般的な問題を確認することができます。さらに、これらのログに基づいて<a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/daily-cap#alert-when-daily-cap-is-reached">アラートを作成</a>し、データ損失の可能性を知ることができます。</p>
+<p>この <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/reference/tables/operation">Operation</a> テーブル内のデータに基づいて、ワークスペースの正常性の指標が作成されています。Log Analytics ワークスペースの [概要] 内 [操作上の問題] 項目から、そのワークスペースの状態の概要を確認することができます。<br><img src="/blog/LogAnalytics/UpdateLAHealth/warning_status.png" alt="Azure ポータルで確認できるリソース正常性の例"></p>
+<p>Log Analytics ワークスペースの [監視] 項目の 1 つ、<a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/log-analytics-workspace-insights-overview">分析情報</a>からワークスペースの使用量、パフォーマンス、エージェント、クエリ、変更ログなどを確認することができます。これによりワークスペースの正常性を、パフォーマンスやインジェスト量の急増 / 急減、インジェストの待機時間、クエリ パフォーマンスの観点などから、包括的に監視することができます。</p>
+<h2 id="Log-Analytics-ワークスペースの正常性の確認方法"><a href="#Log-Analytics-ワークスペースの正常性の確認方法" class="headerlink" title="Log Analytics ワークスペースの正常性の確認方法"></a>Log Analytics ワークスペースの正常性の確認方法</h2><p>Log Analytics ワークスペースのリソース正常性は Azure ポータル上の複数の場所で確認することができます。</p>
+<h3 id="確認方法-1"><a href="#確認方法-1" class="headerlink" title="確認方法 1"></a>確認方法 1</h3><ol>
+<li>Azure ポータルで “モニター” と検索し、サービス一覧の中から [モニター] を開いてください。</li>
+<li>[サービス正常性] &gt; [Resource Health] 項目の [リソース正常性] を選択してください。</li>
+<li>[リソースの種類] ドロップダウンから “Log Analytics” を選択・設定してください。左のカラムに各ワークスペースの状態を示すアイコンが表示されます。</li>
+<li>より詳細な情報を確認するには、任意のワークスペースをクリックしてください。正常性の履歴が確認できます。</li>
 </ol>
-<p><strong>Container Insights を使用して Azure Arc 対応 Kubernetes クラスターを監視します。</strong></p>
-<ol>
-<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-enable-arc-enabled-clusters">Azure Arc 対応 Kubernetes クラスターのサポート</a>が一般提供され、Container Insights を通じて、すべての Kubernetes、 AKS、 または非 AKS クラスターを監視できるようになりました。 Azure ポータルからの1-click onboarding を利用して、包括的な視覚化と推奨アラートを使用してクラスターのパフォーマンスを可視化できます。<br><img src="/blog/AzureMonitorEssential/Ignite2021/image01.png"></li>
+<h3 id="確認方法-2"><a href="#確認方法-2" class="headerlink" title="確認方法 2"></a>確認方法 2</h3><ol>
+<li>Azure ポータルで任意の Log Analytics ワークスペースを選択してください。</li>
+<li>[サポート + トラブルシューティング] 項目の [リソース正常性] を選択すると状態が確認できます。確認方法 1 の詳細情報と同様の内容が確認できます。</li>
 </ol>
-<p><strong>Network Insights を使用して VPN ゲートウェイと Azure ファイアウォールのトラブルシューティングを行います。</strong></p>
-<ol>
-<li>VPN ゲートウェイおよび Azure ファイアウォールリソースの <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/azure-monitor/insights/network-insights-overview">Network Insights </a> で、豊富な insights と新しいトラブルシューティング機能を利用できるようになりました。 リソースの状態と接続されたリソースを示すリソース トポロジを視覚化し、厳選された監視ワークブックを開始できます。<br><img src="/blog/AzureMonitorEssential/Ignite2021/image02.png"></li>
+<h3 id="確認方法-3"><a href="#確認方法-3" class="headerlink" title="確認方法 3"></a>確認方法 3</h3><ol>
+<li>Azure ポータルで任意の Log Analytics ワークスペースを選択してください。</li>
+<li>[監視] 項目の [分析情報] をクリックし、 [正常性] タブを選択してください。可用性の状態や概要が時系列で確認できます。</li>
 </ol>
-<p><strong>新しい機能を使用し、Log Analytics workspace の管理および監視を行います。</strong></p>
-<ol>
-<li><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-insights-overview">Log Analytics Workspace Insights</a>が一般提供になりました。これを使用すると、ワークスペースの使用状況、パフォーマンス、ヘルス、エージェント、クエリ、および変更ログの統合ビューを通じて、ワークスペースの包括的なビューを取得できます。<br><img src="/blog/AzureMonitorEssential/Ignite2021/image03.png"></p>
-</li>
-<li><p>Azureポータル内で直接 Log Analytics <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/azure-monitor/logs/logs-data-export?tabs=portal">workspace からデータエクスポート ルールを簡単に管理できるようになりました</a>（プレビュー中）。 新しい機能は、ワークスペース内の既存のルールが有効な状態か無効な状態かに関係なく、明確に表示されます。 いくつかの簡単な手順で、既存のルールを編集して新しいルールを作成することもできます。</p>
-</li>
-</ol>
-<p><strong>Azure Monitor Alerts から EventHub アクションをトリガーします。</strong></p>
-<ol>
-<li>Azure Monitor Alerts の新しい <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups">EventHub アクション</a>を使用すると、信頼性が高くスケーラブルなキューイングテクノロジを利用してアラートを取り込むことができます。 プライベートリンクを使用して EventHub にサブスクライブすることで、ネットワークの分離を実現することもできます。</li>
-</ol>
-<p>Azure Monitor とモニタリングのベストプラクティスの詳細については、<a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/">ドキュメント</a>と <a target="_blank" rel="noopener" href="https://www.youtube.com/playlist?list=PLLasX02E8BPCCsHzNLJjcElCwF52rnh6t">how-to videos</a> をご覧ください。</p>
+<h2 id="Log-Analytics-ワークスペースの正常性の状態定義"><a href="#Log-Analytics-ワークスペースの正常性の状態定義" class="headerlink" title="Log Analytics ワークスペースの正常性の状態定義"></a>Log Analytics ワークスペースの正常性の状態定義</h2><p>今回リリースされた<a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/service-health/resource-health-overview">リソースの正常性</a>の状態はインジェストの待ち時間を反映しており、以下の 3 つの状態で定義されます。</p>
+<p><strong>Available</strong> - 特定の時間範囲においてインジェストの待ち時間の問題が検知されなかった状態。</p>
+<p><strong>Degraded</strong> - 推定 1 時間以上のインジェストの待ち時間が 15 分以上続いた状態。この問題は現在緩和に向けた修正が進められています。</p>
+<p><strong>Unknown</strong> - そのワークスペースの正常性の状態を特定することができない状態。もしくは過去 24 時間以上そのワークペースからデータがインジェストされていない状態。</p>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>今回の更新により、インジェスト時間が反映された Log Analytics ワークスペースのリソース正常性が確認できるようになりました。<br>今後、リソースの正常性にはクエリ成功率の急減が反映される予定です。</p>
+<p>また、<a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-new-alert-rule?tabs=metric">こちらの記事</a>で紹介されている手順にしたがって、ワークスペースのリソース正常性の情報に基づいたアラートを作成することが推奨されています。</p>
 
       
       
@@ -152,10 +162,10 @@
     <footer class="article-footer">
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li></ul>
 
         
-        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/AzureMonitorEssential/Ignite2021.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/UpdateLAHealth.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
         
     </footer>
   </div>
@@ -163,19 +173,19 @@
     
 <nav id="article-nav">
   
-    <a href="../../LogAnalytics/SystemLanguageNotEnglishNoPython2Bug/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="../automatically_install_ama/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">次の記事</strong>
       <div class="article-nav-title">
         
-          システム言語が日本語の Linux マシンにて発生する Log Analytics エージェントの不具合について
+          仮想マシン作成時に Azure Monitor エージェントのインストールとデータ収集ルールへの関連付けを自動で行う方法
         
       </div>
     </a>
   
   
-    <a href="../HowMetricAlertisFired/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../BasicLogsAndArchivedLogs/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前の記事</strong>
-      <div class="article-nav-title">メトリック アラートの発報タイミングについて</div>
+      <div class="article-nav-title">Log Analytics の新機能 Basic Logs と Archived Logs について</div>
     </a>
   
 </nav>
@@ -198,19 +208,19 @@
           </li>
         
           <li>
-            <a href="../../LogAnalytics/automatically_install_ama/">仮想マシン作成時に Azure Monitor エージェントのインストールとデータ収集ルールへの関連付けを自動で行う方法</a>
+            <a href="../automatically_install_ama/">仮想マシン作成時に Azure Monitor エージェントのインストールとデータ収集ルールへの関連付けを自動で行う方法</a>
           </li>
         
           <li>
-            <a href="../../LogAnalytics/UpdateLAHealth/">Log Analytics ワークスペースの正常性を示す指標の更新について</a>
+            <a href="">Log Analytics ワークスペースの正常性を示す指標の更新について</a>
           </li>
         
           <li>
-            <a href="../../LogAnalytics/BasicLogsAndArchivedLogs/">Log Analytics の新機能 Basic Logs と Archived Logs について</a>
+            <a href="../BasicLogsAndArchivedLogs/">Log Analytics の新機能 Basic Logs と Archived Logs について</a>
           </li>
         
           <li>
-            <a href="../../LogAnalytics/LogAnalyticsResultsUpgrade/">Log Analytics のアップグレード</a>
+            <a href="../LogAnalyticsResultsUpgrade/">Log Analytics のアップグレード</a>
           </li>
         
       </ul>
