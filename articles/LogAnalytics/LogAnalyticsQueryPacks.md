@@ -111,7 +111,7 @@ Log Analytics のクエリをより簡単かつ効率的に作成、保存、管
 Azure portal から作成したクエリ パックを確認することができます。
 ![](./LogAnalyticsQueryPacks/image10.png)
 
-既定では LogAnalyticsDefaultResources リソースグループに DefaultQueryPack という名前でクエリ パックが作成されますが、
+既定では LogAnalyticsDefaultResources リソース グループに DefaultQueryPack という名前でクエリ パックが作成されますが、
 クエリ パック名を指定したい、複数のクエリ パックに分けて保存したい、という場合は、
 以下の [作成] よりクエリ パックを作成してください。
 ![](./LogAnalyticsQueryPacks/image11.png)
@@ -130,7 +130,7 @@ Azure portal から作成したクエリ パックを確認することができ
 - [3. クエリを呼び出す](#3-クエリを呼び出す)
 - [4. クエリを管理する](#4-クエリを管理する)
 
-クエリ パックについてご意見やご要望などありましたら、以下ブログへのコメント、 または Log Analytics のフィードバック機能より頂戴いただけますと幸いです。
+クエリ パックについてご意見やご要望などありましたら、以下ブログへのコメント、または Log Analytics のフィードバック機能より頂戴いただけますと幸いです。
 [Log Analytics Query packs](https://techcommunity.microsoft.com/t5/azure-observability-blog/log-analytics-query-packs/ba-p/2314721)
 
 最後までお読みいただきありがとうございました！
