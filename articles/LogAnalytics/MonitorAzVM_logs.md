@@ -30,7 +30,7 @@ VM を作成しただけではゲスト OS 上のログやメトリックなど�
 
 ## 1. ホスト メトリックについて
 ホスト メトリックは仮想マシンを作成すると自動的に収集されます。
-仮想マシンから取得されるメトリックは ["Azure Monitor のサポートされるメトリック" の [Microsoft.Compute/virtualMachines] チャプター](https://docs.microsoft.com/ja-jp/azure/azure-monitor/essentials/metrics-supported#microsoftcomputevirtualmachines) に記載されています。
+仮想マシンから取得されるメトリックは ["Azure Monitor のサポートされるメトリック" の [Microsoft.Compute/virtualMachines] チャプター](https://docs.microsoft.com/ja-jp/azure/azure-monitor/essentials/metrics-supported#microsoftcomputevirtualmachines)に記載されています。
 
 Azure ポータルでは VM の **[メトリック]** 画面で、 **[メトリック名前空間]** を **"仮想マシンホスト"** にすると確認できます。
 
