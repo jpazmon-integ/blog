@@ -9,7 +9,7 @@ tags:
 こんにちは、Azure Monitoring チームの増塩、徳田です。
 
 今回は、Log Analytics を使って Azure VM の監視をする方法を紹介します。
-VM を作成しただけではゲスト OS 上のログやメトリックなどは収集されませんが、Log Analytics の機能と組み合わせることで ゲスト OS の情報が収集できるようになります。
+VM を作成しただけではゲスト OS 上のログやメトリックなどは収集されませんが、Log Analytics の機能と組み合わせることでゲスト OS の情報が収集できるようになります。
 本記事では、Log Analytics を使って情報を収集する方法と、利用例についてご紹介します。
 
 <!-- more -->
@@ -47,7 +47,7 @@ Azure ポータルでは VM の **[メトリック]** 画面で、 **[メトリ�
 
 ### 監視方法
 ゲスト メトリックを収集するには、まず初めにデータ収集ルールを作成します。
-データ収集ルールの作成方法は [こちらのページの **[データ収集ルールと関連付けを作成する]** チャプター](https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-rule-azure-monitor-agent?tabs=portal)  に記載されていますので、ここでは設定のポイントを説明します。
+データ収集ルールの作成方法は[こちらのページの **[データ収集ルールと関連付けを作成する]** チャプター](https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-rule-azure-monitor-agent?tabs=portal)に記載されていますので、ここでは設定のポイントを説明します。
 
 **[収集と配信]** タブの、 **[データ ソースの追加]** 画面では、以下のように **"パフォーマンス カウンター"** を選択します。
 収集するメトリックをカスタマイズしない場合は、 **[パフォーマンス カウンターを構成する]** で **"基本"** を選択します。
@@ -92,7 +92,7 @@ Azure Monitor エージェントとの主な違いとして、 Azure Monitor メ
 
 #### Azure Diagnostics 拡張機能 (WAD/LAD)
 Azure Diagnostics 拡張機能も前述の Log Analytics エージェントと同様、レガシ エージェントの 1 種です。
-Windows 用の Windows Azure diagnostics extension (WAD)と、Linux 用の Linux Azure diagnostics extension (LAD) があります。
+Windows 用の Windows Azure diagnostics extension (WAD) と、Linux 用の Linux Azure diagnostics extension (LAD) があります。
 Azure Diagnostics 拡張機能は Azure の仮想マシンに対してのみ適用でき、Azure Storage (Windows、Linux) や Azure Monitor メトリック (Windows のみ) にデータを送信します。 
 
 
