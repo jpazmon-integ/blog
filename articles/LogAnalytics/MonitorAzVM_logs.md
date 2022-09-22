@@ -32,16 +32,16 @@ VM を作成しただけではゲスト OS 上のログやメトリックなど�
 ホスト メトリックは仮想マシンを作成すると自動的に収集されます。
 仮想マシンから取得されるメトリックは ["Azure Monitor のサポートされるメトリック" の [Microsoft.Compute/virtualMachines] チャプター](https://docs.microsoft.com/ja-jp/azure/azure-monitor/essentials/metrics-supported#microsoftcomputevirtualmachines) に記載されています。
 
-Azure ポータルでは VM の **[メトリック]** 画面で、**[メトリック名前空間]** を **"仮想マシンホスト"** にすると確認できます。
+Azure ポータルでは VM の **[メトリック]** 画面で、 **[メトリック名前空間]** を **"仮想マシンホスト"** にすると確認できます。
 
-![image.png](MonitorAzVM_logs\vmMetricScreen.png)
+![image.png](./MonitorAzVM_logs/vmMetricScreen.png)
 
 
 ## 2. ゲスト メトリックについて
 ### 概要、ホスト メトリックとの違い
 ゲスト OS からメトリックを取得するので "System Up Time" といったゲスト OS で管理しているメトリックも取得できます。
 
-![image.png](MonitorAzVM_logs\getGuestMetric.png)
+![image.png](./MonitorAzVM_logs/getGuestMetric.png)
 
 これらのメトリックは、ゲスト OS にインストールした Azure Monitor エージェントにより収集され、Azure Monitor に送信されます。
 
@@ -49,22 +49,22 @@ Azure ポータルでは VM の **[メトリック]** 画面で、**[メトリ�
 ゲスト メトリックを収集するには、まず初めにデータ収集ルールを作成します。
 データ収集ルールの作成方法は [こちらのページの **[データ収集ルールと関連付けを作成する]** チャプター](https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-rule-azure-monitor-agent?tabs=portal)  に記載されていますので、ここでは設定のポイントを説明します。
 
-**[収集と配信]** タブの、**[データ ソースの追加]** 画面では、以下のように **"パフォーマンス カウンター"** を選択します。
-収集するメトリックをカスタマイズしない場合は、**[パフォーマンス カウンターを構成する]** で **"基本"** を選択します。
+**[収集と配信]** タブの、 **[データ ソースの追加]** 画面では、以下のように **"パフォーマンス カウンター"** を選択します。
+収集するメトリックをカスタマイズしない場合は、 **[パフォーマンス カウンターを構成する]** で **"基本"** を選択します。
 
-![image.png](MonitorAzVM_logs\addDataSource.png)
+![image.png](./MonitorAzVM_logs/addDataSource.png)
 
-収集するカウンターの設定が終了したら、**[次へ: ターゲット >]** をクリックすると、**[ターゲット]** が表示されます。
+収集するカウンターの設定が終了したら、 **[次へ: ターゲット >]** をクリックすると、 **[ターゲット]** が表示されます。
 このタブで、以下のように **"Azure Monitor Metrics (preview)"** が **[ターゲットの種類]** に設定されていることを確認してください。
 
-![image.png](MonitorAzVM_logs\addDataSouce_target.png)
+![image.png](./MonitorAzVM_logs/addDataSouce_target.png)
 
 このように設定してデータ収集ルールを作成すると、監視対象の仮想マシンに Azure Monitor エージェントが自動的にインストールされ、ゲスト メトリックの収集が開始されます。
 
 データ収集ルールを設定してから 10 分ほど待つと、仮想マシンの **[メトリック]** 画面でゲスト メトリックを確認できるようになります。
 以下のように **[メトリック名前空間]** を **"仮想マシンのゲスト"** に設定すると、ゲスト OS から収集したメトリックの一覧が表示されます。
 
-![image.png](MonitorAzVM_logs\setMeritcNameSpace.png)
+![image.png](./MonitorAzVM_logs/setMeritcNameSpace.png)
 
 
 ## 3. OS 上のログ監視について
@@ -109,14 +109,14 @@ Azure Monitor メトリックでは特定の数値データのみを格納でき
 Azure Monitor ログでは、収集データが [Log Analytics ワークスペース](https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/log-analytics-workspace-overview)に格納されます。そのため Azure Monitor ログを使用するためには 1 つ以上の [Log Analytics ワークスペースを作成](https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal)する必要があります。
 
 Log Analytics は Azure Monitor 内のツールの 1 つであり、Azure Monitor ログに対して対話形式でのログ クエリの編集・実行が可能です。さらに、クエリ実行結果を視覚化することができます。この機能は、ログ クエリの結果を利用する Azure Monitor のその他のツール (アラート、ブックなど) 内でも利用されます。
-![Log Analytics ワークスペースからアクセスした Log Analytics の画面](MonitorAzVM_logs\LAScreen.png)
+![Log Analytics ワークスペースからアクセスした Log Analytics の画面](./MonitorAzVM_logs/LAScreen.png)
 
 Log Analytics は Azure Monitor メニューの [ログ] 、Log Analytics ワークスペース メニューの [ログ] から起動することができ、この場合はすべてのレコードにアクセス可能です。
 特定の仮想マシンのログ データに絞り込んでクエリを実行したい場合、ログ クエリ内で [where 演算子](https://learn.microsoft.com/ja-jp/azure/data-explorer/kusto/query/whereoperator)を利用することで実現できます。以下のいずれかを記述した後に実行したいクエリを続けてください。
 - ``` where Computer == "コンピュータ名" ```
 - ``` where SubscriptionId == "仮想マシンのサブスクリプション ID" ```
 
-![クエリ内で特定の仮想マシンのデータに絞り込むための記述](MonitorAzVM_logs\vmFilteringQuery.png)
+![クエリ内で特定の仮想マシンのデータに絞り込むための記述](./MonitorAzVM_logs/vmFilteringQuery.png)
 
 #### ログ アラートを用いた監視
 
@@ -128,17 +128,19 @@ Azure Monitor ログ データに基づいてアラート ルールを作成し�
 
 メトリック アラート ルールでは、収集されたメトリック データ (数値データ) に基づき条件を設定します。一方ログ アラート ルールでは、任意のログ クエリ実行によって返された結果に基づいた条件を設定することが可能です。
 ログ アラートでは数値以外の情報も含めた条件設定ができるため、メトリック アラートに比べてよりそれぞれのシナリオに沿ったアラート ルールを設定することができます。
-![アラート作成画面における Log Analytics 機能の様子](MonitorAzVM_logs\createAlertScreen.png)
+![アラート作成画面における Log Analytics 機能の様子](./MonitorAzVM_logs/createAlertScreen.png)
 
 一方ログ アラートとメトリック アラートでは、ステートフルかステートレスかという違いがあります。これらの主な違いはアラートが発報されるタイミングです。
 - ステートフル -- アラートの条件を満たしたときに発報されますが、そのアラートが解決されるまでは再度条件を満たしてもアラートは発報されません。
 - ステートレス -- アラートの条件を満たす度に発報されます。またそのアラートの解決の有無に関わらず次のアラートが発報されます。
 
 以下にそれぞれのアラートのステートフル / ステートレスのサポート状況をまとめました。デフォルトの設定がログ アラートとメトリックアラートで異なることにご注意ください。
+
 ||ステートフルのサポート|デフォルトの設定|
-|---|----|---|
-メトリック アラート|正式にサポート|**ステートフル**動作|
-ログ アラート|プレビューでサポート|**ステートレス**動作|
+|----|----|----|
+|メトリック アラート|正式にサポート|**ステートフル**動作|
+|ログ アラート|プレビューでサポート|**ステートレス**動作|
+
 (詳細は[こちら](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#alerts-and-state)の [アラートと状態] をご参照ください。)
 
 ## まとめ
