@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Azure VM の監視について | Japan Azure Monitoring Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは、Azure Monitoring チームの増塩、徳田です。 今回は、Log Analytics を使って Azure VM の監視をする方法を紹介します。VM を作成しただけではゲスト OS 上のログやメトリックなどは収集されませんが、Log Analytics の機能と組み合わせることでゲスト OS の情報が収集できるようになります。本記事では、Log Analytics を使って情">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Azure VM の監視について">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="こんにちは、Azure Monitoring チームの増塩、徳田です。 今回は、Log Analytics を使って Azure VM の監視をする方法を紹介します。VM を作成しただけではゲスト OS 上のログやメトリックなどは収集されませんが、Log Analytics の機能と組み合わせることでゲスト OS の情報が収集できるようになります。本記事では、Log Analytics を使って情">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/vmMetricScreen.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/getGuestMetric.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/addDataSource.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/addDataSouce_target.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/setMeritcNameSpace.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/LAScreen.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/vmFilteringQuery.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/createAlertScreen.png">
+<meta property="article:published_time" content="2022-09-21T15:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-22T08:52:15.910Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="How-To">
+<meta property="article:tag" content="Log Analytics">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/vmMetricScreen.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-LogAnalytics/MonitorAzVM_logs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Azure VM の監視について
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2022-09-21T15:00:00.000Z" itemprop="datePublished">2022-09-22</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+483ff69d-7f89-5fa3-86e6-790b939a27d6%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+VM+%E3%81%AE%E7%9B%A3%E8%A6%96%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FMonitorAzVM_logs%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FMonitorAzVM_logs.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FMonitorAzVM_logs.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/" data-id="cl8ctfq34000d0orzfxrpggcu" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは、Azure Monitoring チームの増塩、徳田です。</p>
+<p>今回は、Log Analytics を使って Azure VM の監視をする方法を紹介します。<br>VM を作成しただけではゲスト OS 上のログやメトリックなどは収集されませんが、Log Analytics の機能と組み合わせることでゲスト OS の情報が収集できるようになります。<br>本記事では、Log Analytics を使って情報を収集する方法と、利用例についてご紹介します。</p>
+<span id="more"></span>
+
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li>ホスト メトリックについて</li>
+<li>ゲスト メトリックについて</li>
+<li>OS 上のログ監視について</li>
+</ul>
+<h2 id="はじめに"><a href="#はじめに" class="headerlink" title="はじめに"></a>はじめに</h2><p>ユーザーが VM を作成すると、仮想マシンのホストで管理しているメトリック データが自動的に収集されます。例えばディスクに関するメトリックとして “OS ディスク読み取りバイト数/秒” (OS Disk Read Bytes/Sec) が自動的に収集されます。</p>
+<p>しかし、”ディスクの空き容量” のような VM 上で稼働している OS で管理しているメトリックは自動的には収集されません。</p>
+<p>ここで、Log Analytics のエージェントが登場します。<br>エージェントをゲスト OS にインストールして、ログやメトリックを Azure Monitor に送信することで、ゲスト OS が管理している情報も監視することができるようになります。</p>
+<h2 id="1-ホスト-メトリックについて"><a href="#1-ホスト-メトリックについて" class="headerlink" title="1. ホスト メトリックについて"></a>1. ホスト メトリックについて</h2><p>ホスト メトリックは仮想マシンを作成すると自動的に収集されます。<br>仮想マシンから取得されるメトリックは <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/essentials/metrics-supported#microsoftcomputevirtualmachines">“Azure Monitor のサポートされるメトリック” の [Microsoft.Compute/virtualMachines] チャプター</a>に記載されています。</p>
+<p>Azure ポータルでは VM の <strong>[メトリック]</strong> 画面で、 <strong>[メトリック名前空間]</strong> を <strong>“仮想マシンホスト”</strong> にすると確認できます。</p>
+<p><img src="/blog/LogAnalytics/MonitorAzVM_logs/vmMetricScreen.png" alt="メトリックの名前空間"></p>
+<h2 id="2-ゲスト-メトリックについて"><a href="#2-ゲスト-メトリックについて" class="headerlink" title="2. ゲスト メトリックについて"></a>2. ゲスト メトリックについて</h2><h3 id="概要、ホスト-メトリックとの違い"><a href="#概要、ホスト-メトリックとの違い" class="headerlink" title="概要、ホスト メトリックとの違い"></a>概要、ホスト メトリックとの違い</h3><p>ゲスト OS からメトリックを取得するので “System Up Time” といったゲスト OS で管理しているメトリックも取得できます。</p>
+<p><img src="/blog/LogAnalytics/MonitorAzVM_logs/getGuestMetric.png" alt="ゲスト メトリックの選択"></p>
+<p>これらのメトリックは、ゲスト OS にインストールした Azure Monitor エージェントにより収集され、Azure Monitor に送信されます。</p>
+<h3 id="監視方法"><a href="#監視方法" class="headerlink" title="監視方法"></a>監視方法</h3><p>ゲスト メトリックを収集するには、まず初めにデータ収集ルールを作成します。<br>データ収集ルールの作成方法は<a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-rule-azure-monitor-agent?tabs=portal">こちらのページの <strong>[データ収集ルールと関連付けを作成する]</strong> チャプター</a>に記載されていますので、ここでは設定のポイントを説明します。</p>
+<p><strong>[収集と配信]</strong> タブの、 <strong>[データ ソースの追加]</strong> 画面では、以下のように <strong>“パフォーマンス カウンター”</strong> を選択します。<br>収集するメトリックをカスタマイズしない場合は、 <strong>[パフォーマンス カウンターを構成する]</strong> で <strong>“基本”</strong> を選択します。</p>
+<p><img src="/blog/LogAnalytics/MonitorAzVM_logs/addDataSource.png" alt="データ ソースの設定方法"></p>
+<p>収集するカウンターの設定が終了したら、 <strong>[次へ: ターゲット &gt;]</strong> をクリックすると、 <strong>[ターゲット]</strong> が表示されます。<br>このタブで、以下のように <strong>“Azure Monitor Metrics (preview)”</strong> が <strong>[ターゲットの種類]</strong> に設定されていることを確認してください。</p>
+<p><img src="/blog/LogAnalytics/MonitorAzVM_logs/addDataSouce_target.png" alt="ターゲットの設定方法"></p>
+<p>このように設定してデータ収集ルールを作成すると、監視対象の仮想マシンに Azure Monitor エージェントが自動的にインストールされ、ゲスト メトリックの収集が開始されます。</p>
+<p>データ収集ルールを設定してから 10 分ほど待つと、仮想マシンの <strong>[メトリック]</strong> 画面でゲスト メトリックを確認できるようになります。<br>以下のように <strong>[メトリック名前空間]</strong> を <strong>“仮想マシンのゲスト”</strong> に設定すると、ゲスト OS から収集したメトリックの一覧が表示されます。</p>
+<p><img src="/blog/LogAnalytics/MonitorAzVM_logs/setMeritcNameSpace.png" alt="ゲスト メトリックの表示例"></p>
+<h2 id="3-OS-上のログ監視について"><a href="#3-OS-上のログ監視について" class="headerlink" title="3. OS 上のログ監視について"></a>3. OS 上のログ監視について</h2><h3 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h3><p>仮想マシンにインストールされたエージェントは Azure Monitor へ、そのマシンのメトリックとログを送信します。それぞれのデータは、Azure Monitor メトリック データおよび Azure Monitor ログ データとして別の場所に格納されます。このため、それぞれのデータに対して利用できる Azure Monitor の機能には違いがあります。ここでは Azure 仮想マシン のログ データを利用した監視について紹介します。</p>
+<h3 id="エージェントの種類紹介"><a href="#エージェントの種類紹介" class="headerlink" title="エージェントの種類紹介"></a>エージェントの種類紹介</h3><p>現在 Azure 仮想マシンの監視のために提供されているエージェントとして <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/agents-overview">Azure Monitor エージェント</a>、 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/log-analytics-agent">Log Analytics エージェント</a>、 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview">Azure Diagnostics 拡張機能</a>の 3 種類が存在します。今回は仮想マシンの監視の観点から、それぞれのエージェントの概要を説明します。<br>なお、それぞれのエージェント間にはサポートされる OS や環境、収集できるデータの種類の観点で差異があります。これに関しての詳細は<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/metrics-supported#microsoftcomputevirtualmachines">こちら</a>からご確認ください。</p>
+<h4 id="Azure-Monitor-エージェント-AMA"><a href="#Azure-Monitor-エージェント-AMA" class="headerlink" title="Azure Monitor エージェント (AMA)"></a>Azure Monitor エージェント (AMA)</h4><p>Azure Monitor エージェントは、現在提供されているエージェントのうち最も新しく、他 2 種のレガシ監視エージェントを置き換えることができます。 Azure Monitor エージェントによって Azure とハイブリッド仮想マシンのゲスト OS の監視データが Azure Monitor へと配信されます。<br>Azure Monitor エージェントは <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/extensions/overview">Azure VM 拡張機能</a>として実装されます。</p>
+<h4 id="Log-Analytics-エージェント-MMA"><a href="#Log-Analytics-エージェント-MMA" class="headerlink" title="Log Analytics エージェント (MMA)"></a>Log Analytics エージェント (MMA)</h4><p>Log Analytics エージェントは Microsoft Monitoring Agent(MMA) とも呼ばれるレガシ エージェントの 1 種です。<br>主に Azure 仮想マシンまたはハイブリッド マシンからログとパフォーマンス データを収集します。<br>Azure Monitor エージェントとの主な違いとして、 Azure Monitor メトリックへのデータが送信できないこと、エージェントごとに監視方法を設定することが困難であること、が挙げられます。</p>
+<p>(注意) 従来の Log Analytics エージェントは<strong>廃止予定</strong>で、 <strong>2024 年 8 月 31 日</strong>を過ぎるとサポート対象外になります。</p>
+<h4 id="Azure-Diagnostics-拡張機能-WAD-LAD"><a href="#Azure-Diagnostics-拡張機能-WAD-LAD" class="headerlink" title="Azure Diagnostics 拡張機能 (WAD/LAD)"></a>Azure Diagnostics 拡張機能 (WAD/LAD)</h4><p>Azure Diagnostics 拡張機能も前述の Log Analytics エージェントと同様、レガシ エージェントの 1 種です。<br>Windows 用の Windows Azure diagnostics extension (WAD) と、Linux 用の Linux Azure diagnostics extension (LAD) があります。<br>Azure Diagnostics 拡張機能は Azure の仮想マシンに対してのみ適用でき、Azure Storage (Windows、Linux) や Azure Monitor メトリック (Windows のみ) にデータを送信します。 </p>
+<h3 id="死活監視"><a href="#死活監視" class="headerlink" title="死活監視"></a>死活監視</h3><p>先に紹介したエージェントによって収集された仮想マシンのデータを利用することで、仮想マシンの死活監視を行うことができます。<br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM/">こちらの記事</a>では Azure Monitor エージェントや Log Analytics エージェントによって Log Analytics ワークスペースに収集される Hearbeat を使用した主要な死活監視方法が紹介されています。</p>
+<h3 id="ログ監視"><a href="#ログ監視" class="headerlink" title="ログ監視"></a>ログ監視</h3><p>Azure Monitor メトリックでは特定の数値データのみを格納できる一方で、Azure Monitor ログにはテキスト ログを含む様々なデータ型を格納することができます。このような Azure Monitor ログ データに対してログ クエリを使用することで、より複雑な分析を行うことができます。</p>
+<p>以下でログ監視のための Azure Monitor の主要機能について紹介します。</p>
+<h4 id="Log-Analytics-ワークスペースでのログ確認"><a href="#Log-Analytics-ワークスペースでのログ確認" class="headerlink" title="Log Analytics ワークスペースでのログ確認"></a>Log Analytics ワークスペースでのログ確認</h4><p>Azure Monitor ログでは、収集データが <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/log-analytics-workspace-overview">Log Analytics ワークスペース</a>に格納されます。そのため Azure Monitor ログを使用するためには 1 つ以上の <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal">Log Analytics ワークスペースを作成</a>する必要があります。</p>
+<p>Log Analytics は Azure Monitor 内のツールの 1 つであり、Azure Monitor ログに対して対話形式でのログ クエリの編集・実行が可能です。さらに、クエリ実行結果を視覚化することができます。この機能は、ログ クエリの結果を利用する Azure Monitor のその他のツール (アラート、ブックなど) 内でも利用されます。<br><img src="/blog/LogAnalytics/MonitorAzVM_logs/LAScreen.png" alt="Log Analytics ワークスペースからアクセスした Log Analytics の画面"></p>
+<p>Log Analytics は Azure Monitor メニューの [ログ] 、Log Analytics ワークスペース メニューの [ログ] から起動することができ、この場合はすべてのレコードにアクセス可能です。<br>特定の仮想マシンのログ データに絞り込んでクエリを実行したい場合、ログ クエリ内で <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/data-explorer/kusto/query/whereoperator">where 演算子</a>を利用することで実現できます。以下のいずれかを記述した後に実行したいクエリを続けてください。</p>
+<ul>
+<li><code>where Computer == &quot;コンピュータ名&quot;</code></li>
+<li><code>where SubscriptionId == &quot;仮想マシンのサブスクリプション ID&quot;</code></li>
+</ul>
+<p><img src="/blog/LogAnalytics/MonitorAzVM_logs/vmFilteringQuery.png" alt="クエリ内で特定の仮想マシンのデータに絞り込むための記述"></p>
+<h4 id="ログ-アラートを用いた監視"><a href="#ログ-アラートを用いた監視" class="headerlink" title="ログ アラートを用いた監視"></a>ログ アラートを用いた監視</h4><p>Azure Monitor ログ データに基づいてアラート ルールを作成し、仮想マシンを監視することができます。具体的には、各アラート ルールにおいてログ クエリの実行結果に対して条件を指定し、その条件を満たすときに通知やその他の自動化されたアクションを紐づけることができます。</p>
+<p>ログ アラートは、仮想マシンの [警告] から作成を行うことができます。アラート ルール作成方法は<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-new-alert-rule?tabs=metric">こちら</a>に詳細が記載されています。</p>
+<h4 id="ログ-アラートとメトリック-アラートの違い"><a href="#ログ-アラートとメトリック-アラートの違い" class="headerlink" title="ログ アラートとメトリック アラートの違い"></a>ログ アラートとメトリック アラートの違い</h4><p>メトリック アラート ルールでは、収集されたメトリック データ (数値データ) に基づき条件を設定します。一方ログ アラート ルールでは、任意のログ クエリ実行によって返された結果に基づいた条件を設定することが可能です。<br>ログ アラートでは数値以外の情報も含めた条件設定ができるため、メトリック アラートに比べてよりそれぞれのシナリオに沿ったアラート ルールを設定することができます。<br><img src="/blog/LogAnalytics/MonitorAzVM_logs/createAlertScreen.png" alt="アラート作成画面における Log Analytics 機能の様子"></p>
+<p>一方ログ アラートとメトリック アラートでは、ステートフルかステートレスかという違いがあります。これらの主な違いはアラートが発報されるタイミングです。</p>
+<ul>
+<li>ステートフル – アラートの条件を満たしたときに発報されますが、そのアラートが解決されるまでは再度条件を満たしてもアラートは発報されません。</li>
+<li>ステートレス – アラートの条件を満たす度に発報されます。またそのアラートの解決の有無に関わらず次のアラートが発報されます。</li>
+</ul>
+<p>以下にそれぞれのアラートのステートフル / ステートレスのサポート状況をまとめました。デフォルトの設定がログ アラートとメトリックアラートで異なることにご注意ください。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>ステートフルのサポート</th>
+<th>デフォルトの設定</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>メトリック アラート</td>
+<td>正式にサポート</td>
+<td><strong>ステートフル</strong>動作</td>
+</tr>
+<tr>
+<td>ログ アラート</td>
+<td>プレビューでサポート</td>
+<td><strong>ステートレス</strong>動作</td>
+</tr>
+</tbody></table>
+<p>(詳細は<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#alerts-and-state">こちら</a>の [アラートと状態] をご参照ください。)</p>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>今回は Azure Monitor の機能の 1 つである Log Analytics を利用した VM 監視について紹介しました。<br>監視の主要な流れは、データの収集、データの分析、アラートの作成です。<br>仮想マシンにエージェントをインストールすることで、ゲスト OS のログやメトリックを収集します。そのうち、ログ データに対しては Log Analytics でログ クエリを実行し高度な分析を行うことができます。また、ログ アラートでは Log Analytics の機能を利用することができ、ログ クエリ実行結果に基づいたルールを作成とVM 監視が可能です。</p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/MonitorAzVM_logs.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../automatically_install_ama/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          仮想マシン作成時に Azure Monitor エージェントのインストールとデータ収集ルールへの関連付けを自動で行う方法
+        
+      </div>
+    </a>
+  
+  
+    <a href="../UpdateLAHealth/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Log Analytics ワークスペースの正常性を示す指標の更新について</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../../automation/Automation-Update-AutomationRunAsCredential/">Automation アカウントの実行アカウントを作成するスクリプトにてエラーが発生して失敗する</a>
+          </li>
+        
+          <li>
+            <a href="../automatically_install_ama/">仮想マシン作成時に Azure Monitor エージェントのインストールとデータ収集ルールへの関連付けを自動で行う方法</a>
+          </li>
+        
+          <li>
+            <a href="">Azure VM の監視について</a>
+          </li>
+        
+          <li>
+            <a href="../UpdateLAHealth/">Log Analytics ワークスペースの正常性を示す指標の更新について</a>
+          </li>
+        
+          <li>
+            <a href="../BasicLogsAndArchivedLogs/">Log Analytics の新機能 Basic Logs と Archived Logs について</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sandbox/" rel="tag">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StartAzureV2VMs/" rel="tag">StartAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StopAzureV2VMs/" rel="tag">StopAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Worker/" rel="tag">Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" rel="tag">コスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" rel="tag">マネージド ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/">Azure Monitor</a><span class="tag-list-count">3</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/FAQ">FAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/Log-Analytics">Log Analytics</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/MetricAlert">MetricAlert</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">3</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/FAQ">FAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/Tips">Tips</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/%E3%82%B3%E3%82%B9%E3%83%88">コスト</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88">可用性テスト</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/09/">2022 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/08/">2022 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/Application-Insights/" style="font-size: 12.5px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 17.5px;">Automation</a> <a href="../../tags/Azure-Monitor/" style="font-size: 12.5px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 11.25px;">Azure Monitor Essentials</a> <a href="../../tags/FAQ/" style="font-size: 15px;">FAQ</a> <a href="../../tags/General/" style="font-size: 16.25px;">General</a> <a href="../../tags/How-To/" style="font-size: 18.75px;">How-To</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 11.25px;">Job</a> <a href="../../tags/Log-Analytics/" style="font-size: 20px;">Log Analytics</a> <a href="../../tags/MetricAlert/" style="font-size: 10px;">MetricAlert</a> <a href="../../tags/RunAs-Account/" style="font-size: 12.5px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 11.25px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 18.75px;">Tips</a> <a href="../../tags/Troubleshooting/" style="font-size: 13.75px;">Troubleshooting</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" style="font-size: 10px;">コスト</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 15px;">チーム紹介</a> <a href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" style="font-size: 10px;">マネージド ID</a> <a href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" style="font-size: 10px;">可用性テスト</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
