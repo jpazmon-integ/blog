@@ -34,14 +34,14 @@ VM を作成しただけではゲスト OS 上のログやメトリックなど�
 
 Azure ポータルでは VM の **[メトリック]** 画面で、 **[メトリック名前空間]** を **"仮想マシンホスト"** にすると確認できます。
 
-![image.png](./MonitorAzVM_logs/vmMetricScreen.png)
+![メトリックの名前空間](./MonitorAzVM_logs/vmMetricScreen.png)
 
 
 ## 2. ゲスト メトリックについて
 ### 概要、ホスト メトリックとの違い
 ゲスト OS からメトリックを取得するので "System Up Time" といったゲスト OS で管理しているメトリックも取得できます。
 
-![image.png](./MonitorAzVM_logs/getGuestMetric.png)
+![ゲスト メトリックの選択](./MonitorAzVM_logs/getGuestMetric.png)
 
 これらのメトリックは、ゲスト OS にインストールした Azure Monitor エージェントにより収集され、Azure Monitor に送信されます。
 
@@ -52,19 +52,19 @@ Azure ポータルでは VM の **[メトリック]** 画面で、 **[メトリ�
 **[収集と配信]** タブの、 **[データ ソースの追加]** 画面では、以下のように **"パフォーマンス カウンター"** を選択します。
 収集するメトリックをカスタマイズしない場合は、 **[パフォーマンス カウンターを構成する]** で **"基本"** を選択します。
 
-![image.png](./MonitorAzVM_logs/addDataSource.png)
+![データ ソースの設定方法](./MonitorAzVM_logs/addDataSource.png)
 
 収集するカウンターの設定が終了したら、 **[次へ: ターゲット >]** をクリックすると、 **[ターゲット]** が表示されます。
 このタブで、以下のように **"Azure Monitor Metrics (preview)"** が **[ターゲットの種類]** に設定されていることを確認してください。
 
-![image.png](./MonitorAzVM_logs/addDataSouce_target.png)
+![ターゲットの設定方法](./MonitorAzVM_logs/addDataSouce_target.png)
 
 このように設定してデータ収集ルールを作成すると、監視対象の仮想マシンに Azure Monitor エージェントが自動的にインストールされ、ゲスト メトリックの収集が開始されます。
 
 データ収集ルールを設定してから 10 分ほど待つと、仮想マシンの **[メトリック]** 画面でゲスト メトリックを確認できるようになります。
 以下のように **[メトリック名前空間]** を **"仮想マシンのゲスト"** に設定すると、ゲスト OS から収集したメトリックの一覧が表示されます。
 
-![image.png](./MonitorAzVM_logs/setMeritcNameSpace.png)
+![ゲスト メトリックの表示例](./MonitorAzVM_logs/setMeritcNameSpace.png)
 
 
 ## 3. OS 上のログ監視について
