@@ -32,7 +32,7 @@ tags:
 既定では、Azure 基盤側のメトリック データベースに保存され、メトリックス エクスプローラから確認することができます。
 
 **リソース ログ**
-診断設定で出力されるリソース内部に関するログ (例 . 仮想マシンの CPU 使用率) です。
+診断設定で出力されるリソース内部に関するログです。
 既定では収集されません。
 
 <参考>
@@ -42,8 +42,8 @@ https://learn.microsoft.com/ja-JP/azure/azure-monitor/essentials/diagnostic-sett
 Azure Monitor のサポートされるメトリック
 https://learn.microsoft.com/ja-JP/azure/azure-monitor/essentials/metrics-supported
 
-Azure プラットフォーム ログの概要
-https://learn.microsoft.com/ja-JP/azure/azure-monitor/essentials/platform-logs-overview
+Azure リソース ログ
+https://learn.microsoft.com/ja-JP/azure/azure-monitor/essentials/resource-logs
 
 <br>
 
