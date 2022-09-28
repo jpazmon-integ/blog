@@ -1,6 +1,6 @@
 ---
 title: 仮想マシン作成時に Azure Monitor エージェントのインストールとデータ収集ルールへの関連付けを自動で行う方法
-date:
+date: 2022-09-22 00:00:00
 tags:
  - How-To
  - Log Analytics
