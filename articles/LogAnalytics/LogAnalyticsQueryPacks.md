@@ -1,6 +1,6 @@
 ---
 title: Log Analytics の新機能 クエリ パック について
-date: 2022-09-26 00:00:00
+date: 2022-09-28 00:00:00
 tags:
   - How-To
   - Tips
