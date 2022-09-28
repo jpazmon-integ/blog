@@ -1,6 +1,6 @@
 ---
 title: Automation アカウントの実行アカウントを作成するスクリプトにてエラーが発生して失敗する
-date: 2022-6-xx xx:xx:xx
+date: 2022-6-30 17:10:00
 tags:
   - Automation
   - RunAs Account
