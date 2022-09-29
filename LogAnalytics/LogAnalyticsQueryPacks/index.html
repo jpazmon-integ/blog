@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Log Analytics の新機能 クエリ パック について | Japan Azure Monitoring Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは、Azure Monitoring サポート チームの北村です。 今回は Log Analytics の新機能 “Log Analytics クエリ パック” をご紹介いたします。この機能は、クエリを効果的に保存、共有、管理するために設計されました。よく使用するクエリを保存したい！チーム内で便利なクエリを共有したい！という方には、必見の機能です。本記事では Log Analytics ク">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Log Analytics の新機能 クエリ パック について">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPacks/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの北村です。 今回は Log Analytics の新機能 “Log Analytics クエリ パック” をご紹介いたします。この機能は、クエリを効果的に保存、共有、管理するために設計されました。よく使用するクエリを保存したい！チーム内で便利なクエリを共有したい！という方には、必見の機能です。本記事では Log Analytics ク">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPacks/image01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPacks/image02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPacks/image03.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPacks/image04.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPacks/image05.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPacks/image06.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPacks/image07.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPacks/image08.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPacks/image09.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPacks/image10.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPacks/image11.png">
+<meta property="article:published_time" content="2022-09-27T15:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-29T01:24:27.368Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="How-To">
+<meta property="article:tag" content="Tips">
+<meta property="article:tag" content="Log Analytics">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPacks/image01.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-LogAnalytics/LogAnalyticsQueryPacks" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Log Analytics の新機能 クエリ パック について
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2022-09-27T15:00:00.000Z" itemprop="datePublished">2022-09-28</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+cca661f0-3f4c-5ec5-af52-1ccc696d0c39%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BLog+Analytics+%E3%81%AE%E6%96%B0%E6%A9%9F%E8%83%BD+%E3%82%AF%E3%82%A8%E3%83%AA+%E3%83%91%E3%83%83%E3%82%AF+%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FLogAnalyticsQueryPacks%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FLogAnalyticsQueryPacks.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FLogAnalyticsQueryPacks.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPacks/" data-id="cl8mdiuyy000d0nqpfn9m9fdw" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは、Azure Monitoring サポート チームの北村です。</p>
+<p>今回は Log Analytics の新機能 “Log Analytics クエリ パック” をご紹介いたします。<br>この機能は、クエリを効果的に保存、共有、管理するために設計されました。<br>よく使用するクエリを保存したい！チーム内で便利なクエリを共有したい！という方には、必見の機能です。<br>本記事では Log Analytics クエリ パックの概要とその設定方法をご案内します。</p>
+<span id="more"></span>
+
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li><a href="#1-log-analytics-%E3%82%AF%E3%82%A8%E3%83%AA-%E3%83%91%E3%83%83%E3%82%AF%E3%81%A8%E3%81%AF">1. Log Analytics クエリ パック とは</a></li>
+<li><a href="#2-%E3%82%AF%E3%82%A8%E3%83%AA%E3%82%92%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B">2. クエリを保存する</a></li>
+<li><a href="#3-%E3%82%AF%E3%82%A8%E3%83%AA%E3%82%92%E5%91%BC%E3%81%B3%E5%87%BA%E3%81%99">3. クエリを呼び出す</a></li>
+<li><a href="#4-%E3%82%AF%E3%82%A8%E3%83%AA%E3%82%92%E7%AE%A1%E7%90%86%E3%81%99%E3%82%8B">4. クエリを管理する</a></li>
+<li><a href="#5-%E3%81%BE%E3%81%A8%E3%82%81">5. まとめ</a></li>
+</ul>
+<h2 id="1-Log-Analytics-クエリ-パックとは"><a href="#1-Log-Analytics-クエリ-パックとは" class="headerlink" title="1. Log Analytics クエリ パックとは"></a>1. Log Analytics クエリ パックとは</h2><p>クエリ パックは、いわば クエリの “コンテナ” です。<br>Log Analytics のクエリをより簡単かつ効率的に作成、保存、管理することを目的に開発されました。<br>クエリ パックは、サブスクリプション レベルで存在するリソースです。<br>そのため、保存したクエリはサブスクリプション配下に存在する “すべての” ワークスペースから利用することができます。</p>
+<p>&lt;参考&gt;<br>クエリ パックの概要は、下記弊社公開情報や英語版ブログ <a target="_blank" rel="noopener" href="https://techcommunity.microsoft.com/t5/azure-observability-blog/log-analytics-query-packs/ba-p/2314721">Log Analytics Query packs</a> でもご確認いただけます。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/query-packs">Azure Monitor ログでのクエリ パック</a></p>
+<p>また、クエリ パックを利用するには、サブスクリプションをスコープとした以下の権限が必要です。<br>クエリを保存したり、既存のクエリを編集する場合は、共同作成者権限、<br>クエリを閲覧したり、クエリを実行する場合は、閲覧者権限が必要です。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles#contributor">共同作成者</a> - クエリの保存、クエリの編集、クエリの閲覧、クエリの実行</li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles#reader">閲覧者</a> - クエリの閲覧、クエリの実行</li>
+</ul>
+<p>作業を開始する前に、適切な権限が付与されていることをご確認ください。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/role-based-access-control/role-assignments-portal?tabs=current">Azure portal を使用して Azure ロールを割り当てる</a></p>
+<br>
+
+<h2 id="2-クエリを保存する"><a href="#2-クエリを保存する" class="headerlink" title="2. クエリを保存する"></a>2. クエリを保存する</h2><p>それでは、実際にクエリを保存してみましょう。<br>本記事では Azure portal からクエリを保存する手順をご紹介します。<br>クエリ パックは Azure リソースであり、保存上限数はございません。<br>また、1 つのクエリ パックにつき、100 個までクエリを保存することが可能です。</p>
+<ol>
+<li><p>任意の Log Analytics ワークスペースで、クエリを実行します。画面上部の [保存] - [クエリとして保存] をクリックします。<br><img src="/blog/LogAnalytics/LogAnalyticsQueryPacks/image01.png"></p>
+</li>
+<li><p>クエリの名前を入力します。必要に応じてクエリの説明やリソース タイプを指定し、[保存] をクリックします。<br><img src="/blog/LogAnalytics/LogAnalyticsQueryPacks/image02.png"></p>
+</li>
+</ol>
+<p>※ [既定のクエリ パックに保存する] を選択すると、”LogAnalyticsDefaultResources” リソース グループの<br>   “DefaultQueryPack” というクエリ パックにクエリが保存されます。<br>   デフォルトで作成されるクエリ パックに保存しない場合は [既定のクエリ パックに保存する] のチェックを外してください。</p>
+<p>&lt;参考&gt;<br>クエリの保存手順は、弊社公開情報 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/save-query">Azure Monitor Log Analytics にクエリを保存する (プレビュー)</a> にも掲載しております。<br>クエリを保存する際に設定するプロパティの詳細は、弊社公開情報 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/queries#query-properties">クエリのプロパティ</a> をご覧ください。</p>
+<br>
+
+<h2 id="3-クエリを呼び出す"><a href="#3-クエリを呼び出す" class="headerlink" title="3. クエリを呼び出す"></a>3. クエリを呼び出す</h2><p>次に、保存したクエリを呼び出し、実行してみましょう。<br>クエリ ダイアログから実行する方法とクエリのサイドバーから実行する方法をご紹介します。</p>
+<h3 id="クエリ-ダイアログから実行する"><a href="#クエリ-ダイアログから実行する" class="headerlink" title="クエリ ダイアログから実行する"></a>クエリ ダイアログから実行する</h3><ol>
+<li><p>Azure portal より [Log Analytics ワークスペース] – [ログ] を選択すると、以下のダイアログが表示されます。<br>画面左上に表示される [クエリ パック: 0 個が選択済み] を選択します。<br><img src="/blog/LogAnalytics/LogAnalyticsQueryPacks/image03.png"></p>
+</li>
+<li><p>クエリを保存したクエリ パックを選択します。<br><img src="/blog/LogAnalytics/LogAnalyticsQueryPacks/image04.png"></p>
+</li>
+<li><p>左ペインのカテゴリを選択、もしくは、保存したクエリ名やリソース タイプ等を指定してクエリを検索します。<br>下図はクエリ名で検索した例です。クエリを選択したら、[実行] もしくは [エディターに読み込む] をクリックします。<br><img src="/blog/LogAnalytics/LogAnalyticsQueryPacks/image05.png"></p>
+</li>
+</ol>
+<h3 id="クエリのサイドバーから実行する"><a href="#クエリのサイドバーから実行する" class="headerlink" title="クエリのサイドバーから実行する"></a>クエリのサイドバーから実行する</h3><ol>
+<li><p>Azure portal より [Log Analytics ワークスペース] – [ログ] を選択します。</p>
+</li>
+<li><p>クエリのサイドバーで [クエリ] を選択し、[クエリ パックの選択] をクリックします。<br><img src="/blog/LogAnalytics/LogAnalyticsQueryPacks/image06.png"></p>
+</li>
+<li><p>クエリ パックを選択します。<br><img src="/blog/LogAnalytics/LogAnalyticsQueryPacks/image07.png"></p>
+</li>
+<li><p>クエリのサイドバーにクエリ パックに保存されたクエリが表示されますので、クリックします。<br><img src="/blog/LogAnalytics/LogAnalyticsQueryPacks/image08.png"></p>
+</li>
+</ol>
+<p>&lt;参考&gt;<br>クエリ ダイアログは、クエリ実行画面の右上にある [クエリ] をクリックしてアクセスすることもできます。<br>弊社公開情報 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/queries#queries-dialog">クエリ ダイアログへのアクセス手順</a> にも手順を掲載しておりますので、ご覧ください。<br><img src="/blog/LogAnalytics/LogAnalyticsQueryPacks/image09.png"></p>
+<p>クエリのサイドバーの詳細は、弊社公開情報 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/queries#query-sidebar">クエリのサイドバー</a> をご覧ください。</p>
+<br>
+
+<h2 id="4-クエリを管理する"><a href="#4-クエリを管理する" class="headerlink" title="4. クエリを管理する"></a>4. クエリを管理する</h2><p>Azure portal から作成したクエリ パックを確認することができます。<br><img src="/blog/LogAnalytics/LogAnalyticsQueryPacks/image10.png"></p>
+<p>既定では LogAnalyticsDefaultResources リソース グループに DefaultQueryPack という名前でクエリ パックが作成されますが、<br>クエリ パック名を指定したい、複数のクエリ パックに分けて保存したい、という場合は、<br>以下の [作成] よりクエリ パックを作成してください。<br><img src="/blog/LogAnalytics/LogAnalyticsQueryPacks/image11.png"></p>
+<p>&lt;参考&gt;<br>クエリ パックの表示方法は、弊社公開情報 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/query-packs#view-query-packs">クエリ パックの表示</a> でもご確認いただけます。</p>
+<br>
+
+<h2 id="5-まとめ"><a href="#5-まとめ" class="headerlink" title="5. まとめ"></a>5. まとめ</h2><p>本記事では、以下についてご案内いたしましたが、いかがでしたでしょうか。</p>
+<ul>
+<li><a href="#1-log-analytics-%E3%82%AF%E3%82%A8%E3%83%AA-%E3%83%91%E3%83%83%E3%82%AF%E3%81%A8%E3%81%AF">1. Log Analytics クエリ パック とは</a></li>
+<li><a href="#2-%E3%82%AF%E3%82%A8%E3%83%AA%E3%82%92%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B">2. クエリを保存する</a></li>
+<li><a href="#3-%E3%82%AF%E3%82%A8%E3%83%AA%E3%82%92%E5%91%BC%E3%81%B3%E5%87%BA%E3%81%99">3. クエリを呼び出す</a></li>
+<li><a href="#4-%E3%82%AF%E3%82%A8%E3%83%AA%E3%82%92%E7%AE%A1%E7%90%86%E3%81%99%E3%82%8B">4. クエリを管理する</a></li>
+</ul>
+<p>クエリ パックについてご意見やご要望などありましたら、以下ブログへのコメント、または Log Analytics のフィードバック機能より頂戴いただけますと幸いです。<br><a target="_blank" rel="noopener" href="https://techcommunity.microsoft.com/t5/azure-observability-blog/log-analytics-query-packs/ba-p/2314721">Log Analytics Query packs</a></p>
+<p>最後までお読みいただきありがとうございました！</p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/LogAnalyticsQueryPacks.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../../AzureMonitorEssential/DiagnosticSettings/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          診断設定によるプラットフォーム メトリックやリソース ログの一部欠損について
+        
+      </div>
+    </a>
+  
+  
+    <a href="../MonitorAzVM_logs/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Azure VM の監視について</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../../AzureMonitorEssential/DiagnosticSettings/">診断設定によるプラットフォーム メトリックやリソース ログの一部欠損について</a>
+          </li>
+        
+          <li>
+            <a href="">Log Analytics の新機能 クエリ パック について</a>
+          </li>
+        
+          <li>
+            <a href="../MonitorAzVM_logs/">Azure VM の監視について</a>
+          </li>
+        
+          <li>
+            <a href="../automatically_install_ama/">仮想マシン作成時に Azure Monitor エージェントのインストールとデータ収集ルールへの関連付けを自動で行う方法</a>
+          </li>
+        
+          <li>
+            <a href="../UpdateLAHealth/">Log Analytics ワークスペースの正常性を示す指標の更新について</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostic-settings/" rel="tag">Diagnostic settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sandbox/" rel="tag">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StartAzureV2VMs/" rel="tag">StartAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StopAzureV2VMs/" rel="tag">StopAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Worker/" rel="tag">Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" rel="tag">コスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" rel="tag">マネージド ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/">Azure Monitor</a><span class="tag-list-count">4</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/Diagnostic-settings">Diagnostic settings</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/FAQ">FAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/Log-Analytics">Log Analytics</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/MetricAlert">MetricAlert</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">3</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/FAQ">FAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/Tips">Tips</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/%E3%82%B3%E3%82%B9%E3%83%88">コスト</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88">可用性テスト</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/09/">2022 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/08/">2022 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/Application-Insights/" style="font-size: 12.5px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 17.5px;">Automation</a> <a href="../../tags/Azure-Monitor/" style="font-size: 13.75px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 11.25px;">Azure Monitor Essentials</a> <a href="../../tags/Diagnostic-settings/" style="font-size: 10px;">Diagnostic settings</a> <a href="../../tags/FAQ/" style="font-size: 15px;">FAQ</a> <a href="../../tags/General/" style="font-size: 16.25px;">General</a> <a href="../../tags/How-To/" style="font-size: 18.75px;">How-To</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 11.25px;">Job</a> <a href="../../tags/Log-Analytics/" style="font-size: 20px;">Log Analytics</a> <a href="../../tags/MetricAlert/" style="font-size: 10px;">MetricAlert</a> <a href="../../tags/RunAs-Account/" style="font-size: 12.5px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 11.25px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 18.75px;">Tips</a> <a href="../../tags/Troubleshooting/" style="font-size: 13.75px;">Troubleshooting</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" style="font-size: 10px;">コスト</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 15px;">チーム紹介</a> <a href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" style="font-size: 10px;">マネージド ID</a> <a href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" style="font-size: 10px;">可用性テスト</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
