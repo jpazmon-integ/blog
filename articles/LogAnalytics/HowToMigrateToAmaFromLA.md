@@ -24,7 +24,7 @@ Log Analytics エージェントが 2024 年 8 月に廃止することに伴い
 - [Q2. Azure Monitor エージェントへ移行した後も、既存のアラート ルールを利用することはできますか。](#Q2-Azure-Monitor-エージェントへ移行した後も、既存のアラート-ルールを利用することはできますか。)
 - [Q3. 同一のマシン上で Log Analytics エージェントと Azure Monitor エージェントを稼働させることは可能ですか。](#Q3-同一のマシン上で-Log-Analytics-エージェントと-Azure-Monitor-エージェントを稼働させることは可能ですか。)
 - [Q4. Azure Monitor エージェントでは、Log Analytics エージェントと同等の機能が提供されていますか。](#Q4-Azure-Monitor-エージェントでは、Log-Analytics-エージェントと同等の機能が提供されていますか。)
-- [Q5. Azure Montior エージェントを利用する上での前提条件を教えてください。](#Q5-Azure-Montior-エージェントを利用する上での前提条件を教えてください。)
+- [Q5. Azure Montior エージェントを利用する上での前提条件とサポートしている OS を教えてください。](#Q5-Azure-Montior-エージェントを利用する上での前提条件とサポートしている-OS-を教えてください。)
 - [Q6. Azure Monitor エージェントと Log Analytics エージェントの通信要件は同じですか。](#Q6-Azure-Monitor-エージェントと-Log-Analytics-エージェントの通信要件は同じですか。)
 - [Q7. Log Analytics エージェントと Azure Monitor エージェントを同時に稼働しています。Azure Monitor エージェントでログが収集されていることを確認する方法を教えてください。](#Q7-Log-Analytics-エージェントと-Azure-Monitor-エージェントを同時に稼働しています。Azure-Monitor-エージェントでログが収集されていることを確認する方法を教えてください。)
 - [Q8. 仮想マシンに Log Analytics エージェントがインストールされています。Azure Monitor エージェントへの移行手順を教えてください。](#Q8-仮想マシンに-Log-Analytics-エージェントがインストールされています。Azure-Monitor-エージェントへの移行手順を教えてください。)
@@ -59,9 +59,9 @@ Azure Monitor エージェントと Log Analytics エージェントにおける
 
 <br>
 
-### Q5. Azure Montior エージェントを利用する上での前提条件を教えてください。
-[Azure Monitor エージェントを管理する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-manage?tabs=ARMAgentPowerShell%2CPowerShellWindows%2CPowerShellWindowsArc%2CCLIWindows%2CCLIWindowsArc#prerequisites) の [前提条件] をご覧ください。
-
+### Q5. Azure Montior エージェントを利用する上での前提条件とサポートしている OS を教えてください。
+Azure Montior エージェントをご利用する上での前提条件は [Azure Monitor エージェントを管理する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-manage?tabs=ARMAgentPowerShell%2CPowerShellWindows%2CPowerShellWindowsArc%2CCLIWindows%2CCLIWindowsArc#prerequisites) の [前提条件] をご覧ください。
+また、当該エージェントがサポートしている OS は [Azure Monitor エージェントの概要](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/agents-overview#supported-operating-systems) の [サポートされるオペレーティング システム] の表に記載されている OS かつ、対象列に "X" と記載されているものでございます。
 <br>
 
 ### Q6. Azure Monitor エージェントと Log Analytics エージェントの通信要件は同じですか。
