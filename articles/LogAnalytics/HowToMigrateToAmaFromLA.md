@@ -62,6 +62,7 @@ Azure Monitor エージェントと Log Analytics エージェントにおける
 ### Q5. Azure Montior エージェントを利用する上での前提条件とサポートしている OS を教えてください。
 Azure Montior エージェントをご利用する上での前提条件は [Azure Monitor エージェントを管理する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-manage?tabs=ARMAgentPowerShell%2CPowerShellWindows%2CPowerShellWindowsArc%2CCLIWindows%2CCLIWindowsArc#prerequisites) の [前提条件] をご覧ください。
 また、当該エージェントがサポートしている OS は [Azure Monitor エージェントの概要](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/agents-overview#supported-operating-systems) の [サポートされるオペレーティング システム] の表に記載されている OS かつ、対象列に "X" と記載されているものでございます。
+
 <br>
 
 ### Q6. Azure Monitor エージェントと Log Analytics エージェントの通信要件は同じですか。
