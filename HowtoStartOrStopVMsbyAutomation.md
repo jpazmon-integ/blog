@@ -1,14 +1,14 @@
 ---
 title: Automation で VM を起動・停止する方法
-date: 2022-10-13 00:00:00
+date: 2022-10-14 00:00:00
 tags:
   - Automation
-  - RunAs Account
   - VM
   - 起動
   - 停止
   - Runbook
   - 自動化
+  - ソリューション
 ---
 
 こんにちは！Azure Monitoring サポート チームの趙です。 
