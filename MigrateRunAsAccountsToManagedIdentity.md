@@ -67,9 +67,9 @@ tags:
 
 実行アカウントとマネージド ID そのものの概念及び詳細は、以下公開情報及びブログもご参考いただければ幸いです。
 
-[Azure Automation アカウントの認証の概要](https://learn.microsoft.com/ja-JP/azure/automation/automation-security-overview) (公開情報)
-[実行アカウントとマネージド ID の違いについて](https://jpazmon-integ.github.io/blog/automation/DifferenceRunAsAccountAndManagedID/) (ブログ)
-[Azure Automation の実行アカウントの管理方法の tips と FAQ](https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/) (ブログ)
+- [Azure Automation アカウントの認証の概要](https://learn.microsoft.com/ja-JP/azure/automation/automation-security-overview) (公開情報)
+- [実行アカウントとマネージド ID の違いについて](https://jpazmon-integ.github.io/blog/automation/DifferenceRunAsAccountAndManagedID/) (ブログ)
+- [Azure Automation の実行アカウントの管理方法の tips と FAQ](https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/) (ブログ)
 
 ## FAQ
 
@@ -201,15 +201,15 @@ catch {
 
 以下公開情報をご参考いただき、システム割り当てマネージド ID 、あるいは、ユーザー割り当てマネージド ID、どちらかを作成いただければ幸いです。
 
-[Azure Automation アカウントのシステム割り当てマネージド ID を使用する](https://learn.microsoft.com/ja-jp/azure/automation/enable-managed-identity-for-automation)
-[Azure Automation アカウントのユーザー割り当てマネージド ID を使用する](https://learn.microsoft.com/ja-jp/azure/automation/add-user-assigned-identity)
+- [Azure Automation アカウントのシステム割り当てマネージド ID を使用する](https://learn.microsoft.com/ja-jp/azure/automation/enable-managed-identity-for-automation)
+- [Azure Automation アカウントのユーザー割り当てマネージド ID を使用する](https://learn.microsoft.com/ja-jp/azure/automation/add-user-assigned-identity)
 
 ### 3.マネージド ID へのロールの割り当て
 
 以下公開情報をご参考いただき、マネージド ID に必要なロールを割り当てていただければ幸いです。
 
-[システム マネージド IDへのロールの割り当てを確認する](https://learn.microsoft.com/ja-jp/azure/automation/enable-managed-identity-for-automation#verify-role-assignment-to-a-system-managed-identity)
-[ユーザー マネージド ID へのロールの割り当てを確認する](https://learn.microsoft.com/ja-jp/azure/automation/add-user-assigned-identity#verify-role-assignment-to-a-user-managed-identity)
+- [システム マネージド IDへのロールの割り当てを確認する](https://learn.microsoft.com/ja-jp/azure/automation/enable-managed-identity-for-automation#verify-role-assignment-to-a-system-managed-identity)
+- [ユーザー マネージド ID へのロールの割り当てを確認する](https://learn.microsoft.com/ja-jp/azure/automation/add-user-assigned-identity#verify-role-assignment-to-a-user-managed-identity)
 
 既存の実行アカウントと同じロールをマネージド ID に割り当てたい場合は、以下をご参考いただければ幸いです。
 
@@ -243,9 +243,9 @@ Runbook にて、認証コマンドで実行アカウントを利用されてい
 
 以下公開情報をご参考いただき、システム割り当てマネージド ID 用の認証コマンド、あるいは、ユーザー割り当てマネージド ID 用の認証コマンドを Runbook に記載します。
 
-[サンプルのスクリプト](https://learn.microsoft.com/ja-JP/azure/automation/migrate-run-as-accounts-managed-identity?tabs=sa-managed-identity#sample-scripts)
-[システム割り当てマネージド ID を使用してアクセスを認証する](https://learn.microsoft.com/ja-JP/azure/automation/enable-managed-identity-for-automation#authenticate-access-with-system-assigned-managed-identity)
-[ユーザー割り当てマネージド ID を使用してアクセスを認証する](https://learn.microsoft.com/ja-jp/azure/automation/add-user-assigned-identity#authenticate-access-with-user-assigned-managed-identity)
+- [サンプルのスクリプト](https://learn.microsoft.com/ja-JP/azure/automation/migrate-run-as-accounts-managed-identity?tabs=sa-managed-identity#sample-scripts)
+- [システム割り当てマネージド ID を使用してアクセスを認証する](https://learn.microsoft.com/ja-JP/azure/automation/enable-managed-identity-for-automation#authenticate-access-with-system-assigned-managed-identity)
+- [ユーザー割り当てマネージド ID を使用してアクセスを認証する](https://learn.microsoft.com/ja-jp/azure/automation/add-user-assigned-identity#authenticate-access-with-user-assigned-managed-identity)
 
 Runbook スクリプトの最初の処理として、マネージド ID 用の認証コマンドを記載します。
 以下のサンプル コマンドのように記載することが可能です。
@@ -294,9 +294,9 @@ catch {
 
 以下公開情報もご参考いただき、システム割り当てマネージド ID 用の認証コマンド、あるいは、ユーザー割り当てマネージド ID 用の認証コマンドを Runbook に記載します。
 
-[サンプルのスクリプト](https://learn.microsoft.com/ja-JP/azure/automation/migrate-run-as-accounts-managed-identity?tabs=sa-managed-identity#sample-scripts)
-[システム割り当てマネージド ID を使用してアクセスを認証する](https://learn.microsoft.com/ja-JP/azure/automation/enable-managed-identity-for-automation#authenticate-access-with-system-assigned-managed-identity)
-[ユーザー割り当てマネージド ID を使用してアクセスを認証する](https://learn.microsoft.com/ja-jp/azure/automation/add-user-assigned-identity#authenticate-access-with-user-assigned-managed-identity)
+- [サンプルのスクリプト](https://learn.microsoft.com/ja-JP/azure/automation/migrate-run-as-accounts-managed-identity?tabs=sa-managed-identity#sample-scripts)
+- [システム割り当てマネージド ID を使用してアクセスを認証する](https://learn.microsoft.com/ja-JP/azure/automation/enable-managed-identity-for-automation#authenticate-access-with-system-assigned-managed-identity)
+- [ユーザー割り当てマネージド ID を使用してアクセスを認証する](https://learn.microsoft.com/ja-jp/azure/automation/add-user-assigned-identity#authenticate-access-with-user-assigned-managed-identity)
 
 既存の Runbook に記載されている実行アカウント用の Azure への認証コマンド以外の処理 (例えば、VM を起動・停止するメインの処理等) は、そのまま残していただければ幸いです。
 
@@ -371,6 +371,6 @@ foreach ($ResourceGroup in $ResourceGroups)
 今削除したくない場合は、お客様のご要件に応じて、お客様のタイミングにて削除いただければ幸いです。
 実行アカウントの削除方法は、以下公開情報をご参考いただければ幸いです。
 
-[Azure Automation の実行アカウントを削除する](https://learn.microsoft.com/ja-jp/azure/automation/delete-run-as-account)
+- [Azure Automation の実行アカウントを削除する](https://learn.microsoft.com/ja-jp/azure/automation/delete-run-as-account)
 
 以上です。
