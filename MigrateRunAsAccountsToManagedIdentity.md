@@ -204,7 +204,7 @@ catch {
 [Azure Automation アカウントのシステム割り当てマネージド ID を使用する](https://learn.microsoft.com/ja-jp/azure/automation/enable-managed-identity-for-automation)
 [Azure Automation アカウントのユーザー割り当てマネージド ID を使用する](https://learn.microsoft.com/ja-jp/azure/automation/add-user-assigned-identity)
 
-### 4.マネージド ID へのロールの割り当て
+### 3.マネージド ID へのロールの割り当て
 
 以下公開情報をご参考いただき、マネージド ID に必要なロールを割り当てていただければ幸いです。
 
@@ -222,7 +222,7 @@ catch {
 [Azure ポータル] > [Automation アカウント] > [実行アカウント] > [Azure 実行アカウント] > ロールの配下に記載されている "役割" (ロール) と "割り当て対象" (スコープ) を確認
 ```
 
-### 3.マネージド ID 用の新規 Runbook を作成、あるいは、既存の Runbook を修正
+### 4.マネージド ID 用の新規 Runbook を作成、あるいは、既存の Runbook を修正
 
 Runbook にて、認証コマンドで実行アカウントを利用されている場合は、
 以下**いずれか** (AND 条件ではなく、OR 条件です) をご対応いただければ幸いです。
