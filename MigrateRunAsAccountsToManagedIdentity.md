@@ -300,7 +300,7 @@ catch {
 
 既存の Runbook に記載されている実行アカウント用の Azure への認証コマンド以外の処理 (例えば、VM を起動・停止するメインの処理等) は、そのまま残していただければ幸いです。
 
-### 4.マネージド ID の動作テスト
+### 5.マネージド ID の動作テスト
 
 お客様の Automation アカウントに、チュートリアル用 Runbook "AzureAutomationTutorialWithIdentity" が存在する場合は、以下のように操作することで、マネージド ID が動作するかどうかを確認できます。
 
@@ -350,7 +350,7 @@ foreach ($ResourceGroup in $ResourceGroups)
 そのため、上記サンプル Runbook を実行しても、お客様のリソースへの影響等はございません。
 >
 
-### 5.マネージド ID 用 Runbook の動作テスト
+### 6.マネージド ID 用 Runbook の動作テスト
 
 
 #### 正常動作する場合
