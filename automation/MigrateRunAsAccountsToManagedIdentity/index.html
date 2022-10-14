@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>実行アカウントからマネージド ID へ移行する方法及び FAQ | Japan Azure Monitoring Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは！Azure Monitoring サポート チームの趙です。今回は、実行アカウントからマネージド ID へ移行する方法及び FAQ をご案内させていただきます。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="実行アカウントからマネージド ID へ移行する方法及び FAQ">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/automation/MigrateRunAsAccountsToManagedIdentity/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="こんにちは！Azure Monitoring サポート チームの趙です。今回は、実行アカウントからマネージド ID へ移行する方法及び FAQ をご案内させていただきます。">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2022-10-13T15:00:00.000Z">
+<meta property="article:modified_time" content="2022-10-14T06:02:56.143Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="Automation">
+<meta property="article:tag" content="マネージド ID">
+<meta property="article:tag" content="Runbook">
+<meta property="article:tag" content="Run As Account">
+<meta property="article:tag" content="Managed Identity">
+<meta property="article:tag" content="Managed ID">
+<meta property="article:tag" content="Migration">
+<meta property="article:tag" content="移行">
+<meta property="article:tag" content="実行アカウント">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-automation/MigrateRunAsAccountsToManagedIdentity" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      実行アカウントからマネージド ID へ移行する方法及び FAQ
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2022-10-13T15:00:00.000Z" itemprop="datePublished">2022-10-14</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+a25e389c-1a84-5f0d-92f5-62f758762556%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8B%E3%82%89%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89+ID+%E3%81%B8%E7%A7%BB%E8%A1%8C%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%E5%8F%8A%E3%81%B3+FAQ%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2Fautomation%2FMigrateRunAsAccountsToManagedIdentity%2F%29%0A*+Content+Source%3A+%5Barticles%2Fautomation%2FMigrateRunAsAccountsToManagedIdentity.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2Fautomation%2FMigrateRunAsAccountsToManagedIdentity.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/automation/MigrateRunAsAccountsToManagedIdentity/" data-id="cl9832res00520mmm89uj5r4e" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは！Azure Monitoring サポート チームの趙です。<br>今回は、実行アカウントからマネージド ID へ移行する方法及び FAQ をご案内させていただきます。</p>
+<span id="more"></span>
+
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
+<li><a href="#%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8B%E3%82%89%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C">実行アカウントからマネージド ID への移行</a></li>
+<li><a href="#%E5%85%AC%E9%96%8B%E6%83%85%E5%A0%B1">公開情報</a></li>
+<li><a href="#faq">FAQ</a><ul>
+<li><a href="#q1automation-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%A8%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AF%E5%90%8C%E3%81%98%E3%82%82%E3%81%AE%E3%81%A7%E3%81%99%E3%81%8B">Q1.Automation アカウントと実行アカウントは同じものですか？</a></li>
+<li><a href="#q2%E7%A7%BB%E8%A1%8C%E4%BD%9C%E6%A5%AD%E3%82%92%E5%AE%9F%E6%96%BD%E3%81%99%E3%81%93%E3%81%A8%E3%81%AB%E3%82%88%E3%82%8B%E5%BD%B1%E9%9F%BF%E3%81%AF%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99%E3%81%8B">Q2.移行作業を実施すことによる影響はありますか？</a></li>
+<li><a href="#q3%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8B%E3%82%89%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E3%81%A8%E3%81%AF%E5%85%B7%E4%BD%93%E7%9A%84%E3%81%AB%E4%BD%95%E3%82%92%E6%84%8F%E5%91%B3%E3%81%97%E3%81%BE%E3%81%99%E3%81%8B">Q3.実行アカウントからマネージド ID への移行とは具体的に何を意味しますか？</a></li>
+<li><a href="#q4%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8C%E5%AD%98%E5%9C%A8%E3%81%99%E3%82%8B%E3%81%8B%E3%81%A9%E3%81%86%E3%81%8B%E3%81%AF%E3%81%A9%E3%81%93%E3%81%8B%E3%82%89%E7%A2%BA%E8%AA%8D%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B">Q4.実行アカウントが存在するかどうかはどこから確認できますか？</a></li>
+<li><a href="#q5%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AE%E5%8F%82%E7%85%A7%E5%89%8A%E9%99%A4%E3%81%8C%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%9B%E3%82%93%E3%81%A9%E3%81%86%E3%81%99%E3%82%8C%E3%81%B0%E3%81%84%E3%81%84%E3%81%A7%E3%81%99%E3%81%8B">Q5.実行アカウントの参照、削除ができません。どうすればいいですか？</a></li>
+<li><a href="#q6%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E5%89%B2%E3%82%8A%E5%BD%93%E3%81%A6%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E3%81%A8%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E5%89%B2%E3%82%8A%E5%BD%93%E3%81%A6%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id%E3%81%A9%E3%81%A1%E3%82%89%E3%82%92%E4%BD%BF%E3%81%88%E3%81%B0%E3%81%84%E3%81%84%E3%81%A7%E3%81%99%E3%81%8B">Q6.システム割り当てマネージド ID とユーザー割り当てマネージド ID、どちらを使えばいいですか？</a></li>
+</ul>
+</li>
+<li><a href="#%E7%A7%BB%E8%A1%8C%E4%BD%9C%E6%A5%AD%E3%81%AE%E9%A0%86%E7%95%AA%E5%8F%8A%E3%81%B3%E5%AF%BE%E5%BF%9C%E4%BE%8B">移行作業の順番及び対応例</a><ul>
+<li><a href="#%E5%85%8D%E8%B2%AC%E4%BA%8B%E9%A0%85">免責事項</a></li>
+<li><a href="#1runbook-%E3%81%AB%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%8C%E5%AD%98%E5%9C%A8%E3%81%99%E3%82%8B%E3%81%8B%E3%82%92%E7%A2%BA%E8%AA%8D">1.Runbook に実行アカウントを利用しているコマンドが存在するかを確認</a><ul>
+<li><a href="#azurerm-%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%AE%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E5%A0%B4%E5%90%88%E3%81%AE%E4%BE%8B">AzureRM モジュールのコマンドを利用している場合の例</a></li>
+<li><a href="#az-%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%AE%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E5%A0%B4%E5%90%88%E3%81%AE%E4%BE%8B">Az モジュールのコマンドを利用している場合の例</a></li>
+</ul>
+</li>
+<li><a href="#2%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E3%81%AE%E4%BD%9C%E6%88%90">2.マネージド ID の作成</a></li>
+<li><a href="#3%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E3%81%B8%E3%81%AE%E3%83%AD%E3%83%BC%E3%83%AB%E3%81%AE%E5%89%B2%E3%82%8A%E5%BD%93%E3%81%A6">3.マネージド ID へのロールの割り当て</a></li>
+<li><a href="#4%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E7%94%A8%E3%81%AE%E6%96%B0%E8%A6%8F-runbook-%E3%82%92%E4%BD%9C%E6%88%90%E3%81%82%E3%82%8B%E3%81%84%E3%81%AF%E6%97%A2%E5%AD%98%E3%81%AE-runbook-%E3%82%92%E4%BF%AE%E6%AD%A3">4.マネージド ID 用の新規 Runbook を作成、あるいは、既存の Runbook を修正</a><ul>
+<li><a href="#%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E7%94%A8%E3%81%AE%E6%96%B0%E8%A6%8F-runbook-%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88">マネージド ID 用の新規 Runbook を作成する場合</a></li>
+<li><a href="#%E6%97%A2%E5%AD%98%E3%81%AE-runbook-%E3%82%92%E4%BF%AE%E6%AD%A3-%E6%97%A2%E5%AD%98%E3%81%AE-runbook-%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%81%AE%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E7%94%A8%E3%81%AE%E8%AA%8D%E8%A8%BC%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%82%92%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E7%94%A8%E3%81%AE%E8%AA%8D%E8%A8%BC%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AB%E4%BF%AE%E6%AD%A3-%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88">既存の Runbook を修正 (既存の Runbook スクリプトの実行アカウント用の認証コマンドを、マネージド ID 用の認証コマンドに修正) する場合</a></li>
+</ul>
+</li>
+<li><a href="#5%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E3%81%AE%E5%8B%95%E4%BD%9C%E3%83%86%E3%82%B9%E3%83%88">5.マネージド ID の動作テスト</a><ul>
+<li><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</a></li>
+</ul>
+</li>
+<li><a href="#6%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E7%94%A8-runbook-%E3%81%AE%E5%8B%95%E4%BD%9C%E3%83%86%E3%82%B9%E3%83%88">6.マネージド ID 用 Runbook の動作テスト</a><ul>
+<li><a href="#%E6%AD%A3%E5%B8%B8%E5%8B%95%E4%BD%9C%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88">正常動作する場合</a></li>
+<li><a href="#%E6%96%B0%E8%A6%8F%E4%BD%9C%E6%88%90%E3%81%82%E3%82%8B%E3%81%84%E3%81%AF%E4%BF%AE%E6%AD%A3%E3%81%97%E3%81%9F%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E7%94%A8-runbook-%E3%81%8C%E6%AD%A3%E5%B8%B8%E5%8B%95%E4%BD%9C%E3%81%97%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88">新規作成あるいは修正したマネージド ID 用 Runbook が正常動作しない場合</a></li>
+<li><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB-runbook-%E3%81%8C%E5%8B%95%E4%BD%9C%E3%81%97%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88">サンプル Runbook が動作しない場合</a></li>
+</ul>
+</li>
+<li><a href="#7%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AE%E5%89%8A%E9%99%A4">7.実行アカウントの削除</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="実行アカウントからマネージド-ID-への移行"><a href="#実行アカウントからマネージド-ID-への移行" class="headerlink" title="実行アカウントからマネージド ID への移行"></a>実行アカウントからマネージド ID への移行</h2><ul>
+<li>現在、Runbook の認証手段として実行アカウントをご利用されているお客様は、実行アカウントからマネージド ID への移行をご検討いただければ幸いです。</li>
+<li>既に Runbook の認証手段としてマネージド ID をご利用されているお客様は、対応不要です。</li>
+<li>2023 年 9 月 30 日に実行アカウントは、サポート終了 (retire) となります。</li>
+<li>そのため、2023 年 9 月 30 日までには、マネージド ID へ移行する必要があります。</li>
+<li>マネージド ID は、実行アカウントと同じ機能を提供しており、弊社が推奨する認証手段です。</li>
+</ul>
+<div class="alert is-warning"><p class="alert-title">警告</p><p>公開情報には、”Azure Automation実行アカウントは 2023 年 9 月 30 日に廃止され、マネージド ID に置き換えられます。” と記載されておりますが、補足させていただきます。</p><p>弊社側から 2023 年 9 月 30 日までにご利用されている実行アカウントをマネージド ID へ移行する作業・デプロイを行うわけではございません。</p><p>2023 年 9 月 30 日に実行アカウントは、サポート終了 (retire) する意味とご理解いただければ幸いです。</p><p>お客様にて、直接、実行アカウントをマネージド ID へ移行するようにご対応いただく必要がございます。</p></div>
+<h2 id="公開情報"><a href="#公開情報" class="headerlink" title="公開情報"></a>公開情報</h2><p>弊社にて推奨する移行ガイドラインは、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/automation/migrate-run-as-accounts-managed-identity?tabs=run-as-account">既存の実行アカウントからマネージド ID に移行する</a> に詳細が記載されております。必要なアクション、移行時参考となるサンプル コマンド等は、基本的には、上記公開情報をご参考いただき、ご対応いただければ幸いです。</p>
+<p>実行アカウントとマネージド ID そのものの概念及び詳細は、以下公開情報及びブログもご参考いただければ幸いです。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-JP/azure/automation/automation-security-overview">Azure Automation アカウントの認証の概要</a> (公開情報)</li>
+<li><a href="https://jpazmon-integ.github.io/blog/automation/DifferenceRunAsAccountAndManagedID/">実行アカウントとマネージド ID の違いについて</a> (ブログ)</li>
+<li><a href="https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/">Azure Automation の実行アカウントの管理方法の tips と FAQ</a> (ブログ)</li>
+</ul>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><h3 id="Q1-Automation-アカウントと実行アカウントは同じものですか？"><a href="#Q1-Automation-アカウントと実行アカウントは同じものですか？" class="headerlink" title="Q1.Automation アカウントと実行アカウントは同じものですか？"></a>Q1.Automation アカウントと実行アカウントは同じものですか？</h3><p>Automation アカウントと実行アカウントは別のものです。</p>
+<p>Automation アカウントは、Azure Automation サービスを利用するために必要なリソースを保持するものとご理解いただければ幸いです。Azure Automation サービスを利用するために必要なリソースには、Runbook、スケジュール、モジュール、変数、資格情報、証明書等があります。</p>
+<p>実行アカウントは、Azure への認証に利用されるサービス プリンシパルです。<br>Automation アカウントにある Runbook スクリプトに実行アカウントを利用する認証コマンドを実装いただくことで、Runbook 実行時、Azure への認証が可能です。<br>実行アカウントの詳細は、<a href="https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/">Azure Automation の実行アカウントの管理方法の tips と FAQ</a> をご参考いただければ幸いです。</p>
+<h3 id="Q2-移行作業を実施すことによる影響はありますか？"><a href="#Q2-移行作業を実施すことによる影響はありますか？" class="headerlink" title="Q2.移行作業を実施すことによる影響はありますか？"></a>Q2.移行作業を実施すことによる影響はありますか？</h3><p>移行作業時、実行アカウントを先に削除しない限り、<br>実行アカウントからマネージド ID への移行作業による影響は特にございません。</p>
+<p>実行アカウントとマネージド ID は、お互い影響しない別のものであるため、共存 (Automation アカウントに実行アカウントとマネージド IDをどちらも保持すること) ができます。<br>移行作業時に、既存 Runbook にてご利用されている実行アカウントを削除せず、マネージド ID を新規作成し、<br>移行作業後、マネージド ID のみ残し、実行アカウントを削除いただければ、<br>実行アカウントからマネージド ID への移行作業による影響は特にございません。</p>
+<p>一方で、現在、Runbook に実行アカウントによる認証コマンドを記載し、その Runbook を実行されており、<br>マネージド ID を用意せず、実行アカウントを削除してしまった場合は、<br>対象 Runbook にて、Azure への認証が行われず、対象 Runbook 内後続の処理が失敗する可能性がございます。</p>
+<p>移行作業時の順番及び対応例は、後述させていただきます。</p>
+<h3 id="Q3-実行アカウントからマネージド-ID-への移行とは具体的に何を意味しますか？"><a href="#Q3-実行アカウントからマネージド-ID-への移行とは具体的に何を意味しますか？" class="headerlink" title="Q3.実行アカウントからマネージド ID への移行とは具体的に何を意味しますか？"></a>Q3.実行アカウントからマネージド ID への移行とは具体的に何を意味しますか？</h3><p>以下を意味します。</p>
+<ul>
+<li>Automation アカウントにマネージド ID を作成する</li>
+<li>Runbook スクリプトに記載されている実行アカウントによる認証コマンドをマネージド ID による認証コマンドに書き換える</li>
+<li>Automation アカウントから実行アカウントを削除する</li>
+</ul>
+<h3 id="Q4-実行アカウントが存在するかどうかはどこから確認できますか？"><a href="#Q4-実行アカウントが存在するかどうかはどこから確認できますか？" class="headerlink" title="Q4.実行アカウントが存在するかどうかはどこから確認できますか？"></a>Q4.実行アカウントが存在するかどうかはどこから確認できますか？</h3><p>以下操作で確認できます。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Azure ポータル] &gt; [Automation アカウント] &gt; [実行アカウント] &gt; Azure 実行アカウントが存在していれば、実行アカウントが存在</span><br></pre></td></tr></table></figure>
+
+<h3 id="Q5-実行アカウントの参照、削除ができません。どうすればいいですか？"><a href="#Q5-実行アカウントの参照、削除ができません。どうすればいいですか？" class="headerlink" title="Q5.実行アカウントの参照、削除ができません。どうすればいいですか？"></a>Q5.実行アカウントの参照、削除ができません。どうすればいいですか？</h3><p><a href="https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/">Azure Automation の実行アカウントの管理方法の tips と FAQ</a> をご参考いただき、操作を行っているユーザー アカウントに必要な権限を付与いただくか、権限があるユーザー アカウントにて操作いただければ幸いです。</p>
+<h3 id="Q6-システム割り当てマネージド-ID-とユーザー割り当てマネージド-ID、どちらを使えばいいですか？"><a href="#Q6-システム割り当てマネージド-ID-とユーザー割り当てマネージド-ID、どちらを使えばいいですか？" class="headerlink" title="Q6.システム割り当てマネージド ID とユーザー割り当てマネージド ID、どちらを使えばいいですか？"></a>Q6.システム割り当てマネージド ID とユーザー割り当てマネージド ID、どちらを使えばいいですか？</h3><p>弊社過去事例として、システム割り当てマネージド ID や、ユーザー割り当てマネージド ID の中で、<br>どちらを利用すればいいかとのご質問をよくいただいておりますが、<br>弊社から推奨する認証手段は特になく、お客様がご判断いただければ幸いです。</p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/active-directory/managed-identities-azure-resources/managed-identity-best-practice-recommendations">マネージド ID のベスト プラクティスに関する推奨事項</a> をご参考いただき、お客様のご要件に応じて、システム割り当てマネージド ID、あるいは、ユーザー割り当てマネージド ID どちらかをご利用いただければ幸いです。</p>
+<p>Automation 観点では、システム割り当てマネージド ID が、ユーザー割り当てマネージド ID より、マネージド ID を構成する手間 (操作回数) が少なく、認証に利用するコマンドが短いです。<br>上記以外の相違点 (メリット、デメリット等)は特にございません。</p>
+<h2 id="移行作業の順番及び対応例"><a href="#移行作業の順番及び対応例" class="headerlink" title="移行作業の順番及び対応例"></a>移行作業の順番及び対応例</h2><p>以下免責事項をご確認いただいたうえで、以下対応例をご参考いただければ幸いです。</p>
+<h3 id="免責事項"><a href="#免責事項" class="headerlink" title="免責事項"></a>免責事項</h3><ul>
+<li>以下にご案内する内容は、あくまでも対応例 (ガイドライン) です。お客様の Runbook とスクリプトの記載内容が異なる場合もある点、予めご理解いただければ幸いです。</li>
+<li>弊社サポートにて、お客様のご要件の Runbook を作成・編集・提供することは、サポートしておりません。</li>
+<li>スクリプトの修正、スクリプトの追記等が必要な際には、お客様のご要件に応じて、お客様にて直接修正・動作確認いただく必要がございます。そのため、大変恐れ入りますが、スクリプトの修正、スクリプトの追記等をお問い合わせいただいても、ご要望を承ることができない点、予めご理解いただければ幸いです。</li>
+<li>例えば、現在お客様がご利用されている Runbook をご提示いただきながら、サポートにて修正・アップデート・カスタマイズしてくださいとのご要望は、弊社サポートにて承ることができない点、予めご理解いただければ幸いです。</li>
+</ul>
+<h3 id="1-Runbook-に実行アカウントを利用しているコマンドが存在するかを確認"><a href="#1-Runbook-に実行アカウントを利用しているコマンドが存在するかを確認" class="headerlink" title="1.Runbook に実行アカウントを利用しているコマンドが存在するかを確認"></a>1.Runbook に実行アカウントを利用しているコマンドが存在するかを確認</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Azure ポータル] &gt; [Automation アカウント] &gt; [Runbook] &gt; 対象 Runbook クリック &gt; [表示] &gt; Runbook スクリプト確認</span><br></pre></td></tr></table></figure>
+
+<p>Runbook に実行アカウントを利用しているコマンドがあるかどうかは、<br>以下のようなサンプルコマンドが Runbook に記載されているかどうかをご確認いただけますと幸いです。<br>以下例の場合、Azure への認証に実行アカウントを利用しています。</p>
+<h4 id="AzureRM-モジュールのコマンドを利用している場合の例"><a href="#AzureRM-モジュールのコマンドを利用している場合の例" class="headerlink" title="AzureRM モジュールのコマンドを利用している場合の例"></a>AzureRM モジュールのコマンドを利用している場合の例</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$connectionName</span> = <span class="string">&quot;AzureRunAsConnection&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable">$servicePrincipalConnection</span>=<span class="built_in">Get-AutomationConnection</span> <span class="literal">-Name</span> <span class="variable">$connectionName</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;Logging in to Azure...&quot;</span></span><br><span class="line"><span class="built_in">Add-AzureRmAccount</span> `</span><br><span class="line">    <span class="literal">-ServicePrincipal</span> `</span><br><span class="line">    <span class="literal">-TenantId</span> <span class="variable">$servicePrincipalConnection</span>.TenantId `</span><br><span class="line">    <span class="literal">-ApplicationId</span> <span class="variable">$servicePrincipalConnection</span>.ApplicationId `</span><br><span class="line">    <span class="literal">-CertificateThumbprint</span> <span class="variable">$servicePrincipalConnection</span>.CertificateThumbprint</span><br></pre></td></tr></table></figure>
+
+<h4 id="Az-モジュールのコマンドを利用している場合の例"><a href="#Az-モジュールのコマンドを利用している場合の例" class="headerlink" title="Az モジュールのコマンドを利用している場合の例"></a>Az モジュールのコマンドを利用している場合の例</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Connect Automation</span></span><br><span class="line"><span class="variable">$connectionName</span> = <span class="string">&quot;AzureRunAsConnection&quot;</span></span><br><span class="line"><span class="keyword">try</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"># Get the connection &quot;AzureRunAsConnection &quot;</span></span><br><span class="line">    <span class="variable">$Conn</span>=<span class="built_in">Get-AutomationConnection</span> <span class="literal">-Name</span> <span class="variable">$connectionName</span>         </span><br><span class="line">    <span class="built_in">Connect-AzAccount</span> <span class="literal">-ServicePrincipal</span> <span class="literal">-Tenant</span> <span class="variable">$Conn</span>.TenantID <span class="literal">-ApplicationId</span> <span class="variable">$Conn</span>.ApplicationID <span class="literal">-CertificateThumbprint</span>　<span class="variable">$Conn</span>.CertificateThumbprint</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable">$Conn</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="variable">$ErrorMessage</span> = <span class="string">&quot;Connection <span class="variable">$connectionName</span> not found.&quot;</span></span><br><span class="line">        <span class="keyword">throw</span> <span class="variable">$ErrorMessage</span></span><br><span class="line">    &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">Write-Error</span> <span class="literal">-Message</span> <span class="variable">$_</span>.Exception</span><br><span class="line">        <span class="keyword">throw</span> <span class="variable">$_</span>.Exception</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上記以外の例は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/automation/migrate-run-as-accounts-managed-identity?tabs=run-as-account">既存の実行アカウントからマネージド ID に移行する</a> の例もご参考いただければ幸いです。</p>
+<p>お客様の Runbook の実行アカウントによる認証コマンドが、上記例とは完全一致しない場合もあると思います。<br>その際には、スクリプトの Get-AutomationConnection で指定している接続が、”AzureRunAsConnection” と記載されていれば、実行アカウントを認証手段として利用しているとご判断いただければ幸いです。</p>
+<h3 id="2-マネージド-ID-の作成"><a href="#2-マネージド-ID-の作成" class="headerlink" title="2.マネージド ID の作成"></a>2.マネージド ID の作成</h3><p>以下公開情報をご参考いただき、システム割り当てマネージド ID 、あるいは、ユーザー割り当てマネージド ID、どちらかを作成いただければ幸いです。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/automation/enable-managed-identity-for-automation">Azure Automation アカウントのシステム割り当てマネージド ID を使用する</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/automation/add-user-assigned-identity">Azure Automation アカウントのユーザー割り当てマネージド ID を使用する</a></li>
+</ul>
+<h3 id="3-マネージド-ID-へのロールの割り当て"><a href="#3-マネージド-ID-へのロールの割り当て" class="headerlink" title="3.マネージド ID へのロールの割り当て"></a>3.マネージド ID へのロールの割り当て</h3><p>以下公開情報をご参考いただき、マネージド ID に必要なロールを割り当てていただければ幸いです。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/automation/enable-managed-identity-for-automation#verify-role-assignment-to-a-system-managed-identity">システム マネージド IDへのロールの割り当てを確認する</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/automation/add-user-assigned-identity#verify-role-assignment-to-a-user-managed-identity">ユーザー マネージド ID へのロールの割り当てを確認する</a></li>
+</ul>
+<p>既存の実行アカウントと同じロールをマネージド ID に割り当てたい場合は、以下をご参考いただければ幸いです。</p>
+<p>お客様にて、ポータルで実行アカウントを作成していた場合は、既定では、Azure サブスクリプションの共同作成者ロールが実行アカウントに割り当てられています。この場合は、マネージド ID へサブスクリプションの共同作成者ロールを割り当てていただければ幸いです。</p>
+<p>お客様にて、ポータルで実行アカウントを作成していなかた場合、あるいは、ポータルで作成したかどうか忘れた場合は、実行アカウントに割り当てていたロールを確認し、割り当てます。<br>以下操作で実行アカウントに割り当てられていたロールが確認できます。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Azure ポータル] &gt; [Automation アカウント] &gt; [実行アカウント] &gt; [Azure 実行アカウント] &gt; ロールの配下に記載されている &quot;役割&quot; (ロール) と &quot;割り当て対象&quot; (スコープ) を確認</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-マネージド-ID-用の新規-Runbook-を作成、あるいは、既存の-Runbook-を修正"><a href="#4-マネージド-ID-用の新規-Runbook-を作成、あるいは、既存の-Runbook-を修正" class="headerlink" title="4.マネージド ID 用の新規 Runbook を作成、あるいは、既存の Runbook を修正"></a>4.マネージド ID 用の新規 Runbook を作成、あるいは、既存の Runbook を修正</h3><p>Runbook にて、認証コマンドで実行アカウントを利用されている場合は、<br>以下<strong>いずれか</strong> (AND 条件ではなく、OR 条件です) をご対応いただければ幸いです。</p>
+<ul>
+<li>マネージド ID 用の新規 Runbook を作成する</li>
+<li>既存の Runbook スクリプトの実行アカウント用の認証コマンドを、マネージド ID 用の認証コマンドに修正</li>
+</ul>
+<p>お客様のご要件に応じて、Runbook を新規作成するか、既存の Runbook を修正するかをお客様にてご判断いただけますと幸いです。<br>既存の Runbook をしばらくの間、そのまま使いたいとのご要望の場合は、マネージド ID 用の新規 Runbook を作成する案をご検討いただけますと幸いです。</p>
+<h4 id="マネージド-ID-用の新規-Runbook-を作成する場合"><a href="#マネージド-ID-用の新規-Runbook-を作成する場合" class="headerlink" title="マネージド ID 用の新規 Runbook を作成する場合"></a>マネージド ID 用の新規 Runbook を作成する場合</h4><p>以下操作で、Runbook を新規作成できます。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Azure ポータル] &gt; [Automation アカウント] &gt; [Runbook] &gt; [Runbook の作成]</span><br></pre></td></tr></table></figure>
+
+<p>以下公開情報をご参考いただき、システム割り当てマネージド ID 用の認証コマンド、あるいは、ユーザー割り当てマネージド ID 用の認証コマンドを Runbook に記載します。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-JP/azure/automation/migrate-run-as-accounts-managed-identity?tabs=sa-managed-identity#sample-scripts">サンプルのスクリプト</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-JP/azure/automation/enable-managed-identity-for-automation#authenticate-access-with-system-assigned-managed-identity">システム割り当てマネージド ID を使用してアクセスを認証する</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/automation/add-user-assigned-identity#authenticate-access-with-user-assigned-managed-identity">ユーザー割り当てマネージド ID を使用してアクセスを認証する</a></li>
+</ul>
+<p>Runbook スクリプトの最初の処理として、マネージド ID 用の認証コマンドを記載します。<br>以下のサンプル コマンドのように記載することが可能です。</p>
+<p>以下例の場合、Azure への認証にシステム割り当てマネージド ID を利用しています。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;Logging in to Azure...&quot;</span></span><br><span class="line">    <span class="built_in">Connect-AzAccount</span> <span class="literal">-Identity</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span> &#123;</span><br><span class="line">    <span class="built_in">Write-Error</span> <span class="literal">-Message</span> <span class="variable">$_</span>.Exception</span><br><span class="line">    <span class="keyword">throw</span> <span class="variable">$_</span>.Exception</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上記のようにマネージド ID の認証コマンドを Runbook の最初に記載した後は、<br>お客様にて実行したい処理を Runbook に記載いただけますと幸いです。<br>既存の Runbook に記載されている実行アカウント用の Azure への認証コマンド以外の処理 (例えば、VM を起動・停止するメインの処理等) を<br>そのまま新規 Runbook に記載いただけますと幸いです。</p>
+<h4 id="既存の-Runbook-を修正-既存の-Runbook-スクリプトの実行アカウント用の認証コマンドを、マネージド-ID-用の認証コマンドに修正-する場合"><a href="#既存の-Runbook-を修正-既存の-Runbook-スクリプトの実行アカウント用の認証コマンドを、マネージド-ID-用の認証コマンドに修正-する場合" class="headerlink" title="既存の Runbook を修正 (既存の Runbook スクリプトの実行アカウント用の認証コマンドを、マネージド ID 用の認証コマンドに修正) する場合"></a>既存の Runbook を修正 (既存の Runbook スクリプトの実行アカウント用の認証コマンドを、マネージド ID 用の認証コマンドに修正) する場合</h4><p>以下操作で、Runbook を編集できます。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Azure ポータル] &gt; [Automation アカウント] &gt; [Runbook] &gt; 対象 Runbook クリック &gt; 編集</span><br></pre></td></tr></table></figure>
+
+<p>上記 <a href="#1runbook-%E3%81%AB%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%8C%E5%AD%98%E5%9C%A8%E3%81%99%E3%82%8B%E3%81%8B%E3%82%92%E7%A2%BA%E8%AA%8D">1.Runbook に実行アカウントを利用しているコマンドが存在するかを確認</a> にて、確認した実行アカウント用の Azure への認証コマンドをマネージド ID 用の認証コマンドに置き換えます。</p>
+<p>最終的に、Runbook スクリプト内認証コマンドの箇所には、マネージド ID 用の認証コマンドだけ残すようにご対応いただければ幸いです。<br>以下例の場合、Azure への認証にシステム割り当てマネージド ID を利用しています。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;Logging in to Azure...&quot;</span></span><br><span class="line">    <span class="built_in">Connect-AzAccount</span> <span class="literal">-Identity</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span> &#123;</span><br><span class="line">    <span class="built_in">Write-Error</span> <span class="literal">-Message</span> <span class="variable">$_</span>.Exception</span><br><span class="line">    <span class="keyword">throw</span> <span class="variable">$_</span>.Exception</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以下公開情報もご参考いただき、システム割り当てマネージド ID 用の認証コマンド、あるいは、ユーザー割り当てマネージド ID 用の認証コマンドを Runbook に記載します。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-JP/azure/automation/migrate-run-as-accounts-managed-identity?tabs=sa-managed-identity#sample-scripts">サンプルのスクリプト</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-JP/azure/automation/enable-managed-identity-for-automation#authenticate-access-with-system-assigned-managed-identity">システム割り当てマネージド ID を使用してアクセスを認証する</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/automation/add-user-assigned-identity#authenticate-access-with-user-assigned-managed-identity">ユーザー割り当てマネージド ID を使用してアクセスを認証する</a></li>
+</ul>
+<p>既存の Runbook に記載されている実行アカウント用の Azure への認証コマンド以外の処理 (例えば、VM を起動・停止するメインの処理等) は、そのまま残していただければ幸いです。</p>
+<h3 id="5-マネージド-ID-の動作テスト"><a href="#5-マネージド-ID-の動作テスト" class="headerlink" title="5.マネージド ID の動作テスト"></a>5.マネージド ID の動作テスト</h3><p>お客様の Automation アカウントに、チュートリアル用 Runbook “AzureAutomationTutorialWithIdentity” が存在する場合は、以下のように操作することで、マネージド ID が動作するかどうかを確認できます。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Azure ポータル] &gt; [Automation アカウント] &gt; [Runbook] &gt; [AzureAutomationTutorialWithIdentity] クリック &gt; [開始] &gt; ジョブが完了し、エラーが特になければマネージド ID は正常動作</span><br></pre></td></tr></table></figure>
+
+<p>お客様の Automation アカウントに、チュートリアル用 Runbook “AzureAutomationTutorialWithIdentity” が存在しない場合は、以下サンプル Runbook を実行することで、マネージド ID が動作するかどうかを確認できます。<br>以下サンプルが、チュートリアル用 Runbook “AzureAutomationTutorialWithIdentity” のスクリプトです。</p>
+<h4 id="サンプル"><a href="#サンプル" class="headerlink" title="サンプル"></a>サンプル</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;#</span></span><br><span class="line"><span class="comment">    <span class="doctag">.DESCRIPTION</span></span></span><br><span class="line"><span class="comment">        An example runbook which gets all the ARM resources using the Managed Identity</span></span><br><span class="line"><span class="comment">    <span class="doctag">.NOTES</span></span></span><br><span class="line"><span class="comment">        AUTHOR: Azure Automation Team</span></span><br><span class="line"><span class="comment">        LASTEDIT: Oct 26, 2021</span></span><br><span class="line"><span class="comment">#&gt;</span></span><br><span class="line"><span class="string">&quot;Please enable appropriate RBAC permissions to the system identity of this automation account. Otherwise, the runbook may fail...&quot;</span></span><br><span class="line"><span class="keyword">try</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;Logging in to Azure...&quot;</span></span><br><span class="line">    <span class="built_in">Connect-AzAccount</span> <span class="literal">-Identity</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span> &#123;</span><br><span class="line">    <span class="built_in">Write-Error</span> <span class="literal">-Message</span> <span class="variable">$_</span>.Exception</span><br><span class="line">    <span class="keyword">throw</span> <span class="variable">$_</span>.Exception</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#Get all ARM resources from all resource groups</span></span><br><span class="line"><span class="variable">$ResourceGroups</span> = <span class="built_in">Get-AzResourceGroup</span></span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$ResourceGroup</span> <span class="keyword">in</span> <span class="variable">$ResourceGroups</span>)</span><br><span class="line">&#123;    </span><br><span class="line">    <span class="built_in">Write-Output</span> (<span class="string">&quot;Showing resources in resource group &quot;</span> + <span class="variable">$ResourceGroup</span>.ResourceGroupName)</span><br><span class="line">    <span class="variable">$Resources</span> = <span class="built_in">Get-AzResource</span> <span class="literal">-ResourceGroupName</span> <span class="variable">$ResourceGroup</span>.ResourceGroupName</span><br><span class="line">    <span class="keyword">foreach</span> (<span class="variable">$Resource</span> <span class="keyword">in</span> <span class="variable">$Resources</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">Write-Output</span> (<span class="variable">$Resource</span>.Name + <span class="string">&quot; of type &quot;</span> +  <span class="variable">$Resource</span>.ResourceType)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">Write-Output</span> (<span class="string">&quot;&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="alert is-info"><p class="alert-title">Note</p><p>上記サンプル Runbook は、マネージド ID で Azure へ認証し、接続したサブスクリプションに存在する Azure リソースの一覧を取得 (Get-AzResourceGroup) する処理を実行するだけの Runbook です。</p><p>そのため、上記サンプル Runbook を実行しても、お客様のリソースへの影響等はございません。</p></div>
+<h3 id="6-マネージド-ID-用-Runbook-の動作テスト"><a href="#6-マネージド-ID-用-Runbook-の動作テスト" class="headerlink" title="6.マネージド ID 用 Runbook の動作テスト"></a>6.マネージド ID 用 Runbook の動作テスト</h3><h4 id="正常動作する場合"><a href="#正常動作する場合" class="headerlink" title="正常動作する場合"></a>正常動作する場合</h4><p>上記 <a href="#4%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E7%94%A8%E3%81%AE%E6%96%B0%E8%A6%8F-runbook-%E3%82%92%E4%BD%9C%E6%88%90%E3%81%82%E3%82%8B%E3%81%84%E3%81%AF%E6%97%A2%E5%AD%98%E3%81%AE-runbook-%E3%82%92%E4%BF%AE%E6%AD%A3">4.マネージド ID 用の新規 Runbook を作成、あるいは、既存の Runbook を修正</a> にて作成、あるいは、修正したマネージド ID 用 Runbook を開始し、ジョブが完了し、エラーがなければ正常動作とご理解いただければ幸いです。</p>
+<h4 id="新規作成あるいは修正したマネージド-ID-用-Runbook-が正常動作しない場合"><a href="#新規作成あるいは修正したマネージド-ID-用-Runbook-が正常動作しない場合" class="headerlink" title="新規作成あるいは修正したマネージド ID 用 Runbook が正常動作しない場合"></a>新規作成あるいは修正したマネージド ID 用 Runbook が正常動作しない場合</h4><p>上記 <a href="#5%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E3%81%AE%E5%8B%95%E4%BD%9C%E3%83%86%E3%82%B9%E3%83%88">5.マネージド ID の動作テスト</a> のサンプル Runbook は動作するが、<a href="#4%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E7%94%A8%E3%81%AE%E6%96%B0%E8%A6%8F-runbook-%E3%82%92%E4%BD%9C%E6%88%90%E3%81%82%E3%82%8B%E3%81%84%E3%81%AF%E6%97%A2%E5%AD%98%E3%81%AE-runbook-%E3%82%92%E4%BF%AE%E6%AD%A3">4.マネージド ID 用の新規 Runbook を作成、あるいは、既存の Runbook を修正</a> にて作成、あるいは、修正したお客様のマネージド ID 用 Runbook は動作しない場合は、マネージド ID の認証は問題ないが、お客様にて作成あるいは修正した Runbook スクリプト自体に問題があるとご理解いただければ幸いです。<br>この場合は、お客様のスクリプトを見直していただければ幸いです。</p>
+<h4 id="サンプル-Runbook-が動作しない場合"><a href="#サンプル-Runbook-が動作しない場合" class="headerlink" title="サンプル Runbook が動作しない場合"></a>サンプル Runbook が動作しない場合</h4><p>上記 <a href="#5%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E3%81%AE%E5%8B%95%E4%BD%9C%E3%83%86%E3%82%B9%E3%83%88">5.マネージド ID の動作テスト</a> のサンプル Runbook が動作しない場合は、マネージド ID が正常に構成されていないとご理解いただければ幸いです。<br>この場合は、マネージド ID が作成できているか、ロールが割り当てられているかを再度ご確認いただければ幸いです。</p>
+<h3 id="7-実行アカウントの削除"><a href="#7-実行アカウントの削除" class="headerlink" title="7.実行アカウントの削除"></a>7.実行アカウントの削除</h3><p>上記にてマネージド ID 用 Runbook が正常動作することが確認できた場合は、<br>実行アカウントを削除いただければ幸いです。<br>今削除したくない場合は、お客様のご要件に応じて、お客様のタイミングにて削除いただければ幸いです。<br>実行アカウントの削除方法は、以下公開情報をご参考いただければ幸いです。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/automation/delete-run-as-account">Azure Automation の実行アカウントを削除する</a></li>
+</ul>
+<p>以上です。</p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Managed-ID/" rel="tag">Managed ID</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Managed-Identity/" rel="tag">Managed Identity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Migration/" rel="tag">Migration</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Run-As-Account/" rel="tag">Run As Account</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" rel="tag">マネージド ID</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" rel="tag">実行アカウント</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/" rel="tag">移行</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/automation/MigrateRunAsAccountsToManagedIdentity.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../AzureMonitorEssential/DiagnosticSettings/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">診断設定によるプラットフォーム メトリックやリソース ログの一部欠損について</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">実行アカウントからマネージド ID へ移行する方法及び FAQ</a>
+          </li>
+        
+          <li>
+            <a href="../../AzureMonitorEssential/DiagnosticSettings/">診断設定によるプラットフォーム メトリックやリソース ログの一部欠損について</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/LogAnalyticsQueryPacks/">Log Analytics の新機能 クエリ パック について</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/MonitorAzVM_logs/">Azure VM の監視について</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/automatically_install_ama/">仮想マシン作成時に Azure Monitor エージェントのインストールとデータ収集ルールへの関連付けを自動で行う方法</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostic-settings/" rel="tag">Diagnostic settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-ID/" rel="tag">Managed ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-Identity/" rel="tag">Managed Identity</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Migration/" rel="tag">Migration</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Run-As-Account/" rel="tag">Run As Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sandbox/" rel="tag">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StartAzureV2VMs/" rel="tag">StartAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StopAzureV2VMs/" rel="tag">StopAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Worker/" rel="tag">Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" rel="tag">コスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" rel="tag">マネージド ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" rel="tag">実行アカウント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/" rel="tag">移行</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/">Azure Monitor</a><span class="tag-list-count">4</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/Diagnostic-settings">Diagnostic settings</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/FAQ">FAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/Log-Analytics">Log Analytics</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/MetricAlert">MetricAlert</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">3</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/FAQ">FAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/Tips">Tips</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/%E3%82%B3%E3%82%B9%E3%83%88">コスト</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88">可用性テスト</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/10/">2022 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/09/">2022 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/08/">2022 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/Application-Insights/" style="font-size: 12.5px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 17.5px;">Automation</a> <a href="../../tags/Azure-Monitor/" style="font-size: 13.75px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 11.25px;">Azure Monitor Essentials</a> <a href="../../tags/Diagnostic-settings/" style="font-size: 10px;">Diagnostic settings</a> <a href="../../tags/FAQ/" style="font-size: 15px;">FAQ</a> <a href="../../tags/General/" style="font-size: 16.25px;">General</a> <a href="../../tags/How-To/" style="font-size: 18.75px;">How-To</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 11.25px;">Job</a> <a href="../../tags/Log-Analytics/" style="font-size: 20px;">Log Analytics</a> <a href="../../tags/Managed-ID/" style="font-size: 10px;">Managed ID</a> <a href="../../tags/Managed-Identity/" style="font-size: 10px;">Managed Identity</a> <a href="../../tags/MetricAlert/" style="font-size: 10px;">MetricAlert</a> <a href="../../tags/Migration/" style="font-size: 10px;">Migration</a> <a href="../../tags/Run-As-Account/" style="font-size: 10px;">Run As Account</a> <a href="../../tags/RunAs-Account/" style="font-size: 12.5px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 12.5px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 18.75px;">Tips</a> <a href="../../tags/Troubleshooting/" style="font-size: 13.75px;">Troubleshooting</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" style="font-size: 10px;">コスト</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 15px;">チーム紹介</a> <a href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" style="font-size: 11.25px;">マネージド ID</a> <a href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" style="font-size: 10px;">可用性テスト</a> <a href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" style="font-size: 10px;">実行アカウント</a> <a href="../../tags/%E7%A7%BB%E8%A1%8C/" style="font-size: 10px;">移行</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
