@@ -1,5 +1,5 @@
 ---
-title: Automation で VM を起動・停止する方法
+title: Azure Automation で VM を起動・停止する方法
 date: 2022-10-14 00:00:00
 tags:
   - Automation
@@ -19,7 +19,7 @@ tags:
 ## 目次
 - [目次](#目次)
 - [VM 起動・停止処理を理解しましょう](#vm-起動停止処理を理解しましょう)
-- [なぜ Automation を使うか](#なぜ-automation-を使うか)
+- [なぜ Azure Automation を使うか](#なぜ-azure-automation-を使うか)
 - [VM を起動・停止するソリューション](#vm-を起動停止するソリューション)
   - [1.Start/Stop VMs during off-hours ソリューション (v1) (非推奨)](#1startstop-vms-during-off-hours-ソリューション-v1-非推奨)
   - [2.Start/Stop VMs v2 (推奨)](#2startstop-vms-v2-推奨)
@@ -58,7 +58,7 @@ Azure Automation では、Runbook というものを使って、VM を起動・�
 Runbook は、簡単に申しますと、Azure 上で実行できるスクリプトです。 
 Runbook の詳細は、[Azure Automation での Runbook の実行](https://learn.microsoft.com/ja-jp/azure/automation/automation-runbook-execution) と[Azure Automation の Runbook の種類](https://learn.microsoft.com/ja-JP/azure/automation/automation-runbook-types)をご参考いただければ幸いです。
 
-## なぜ Automation を使うか
+## なぜ Azure Automation を使うか
 
 Automation は、スクリプトを定期的に実行できるサービスです。
 
@@ -100,7 +100,7 @@ Runbook ギャラリーから入手できる "Start Azure V2 VMs" Runbook 、あ
 >各 Runbook は、マイクロソフトではなく各所有者によるライセンス契約に従ってライセンスが付与されます。コミュニティ メンバーが提供し、ライセンスを付与した Runbook について、マイクロソフトはいかなる責任も負いません。また、マイクロソフトは、そのような Runbook のセキュリティ、互換性、パフォーマンスについて、いかなる審査も実施していません。ここで言及した類の Runbook は、マイクロソフトのサポート プログラムまたはサポート サービスの対象外です。そのような Runbook は現状有姿のまま提供され、いかなる種類の保証も適用されません。
 
 この Runbook は、あくまでもチュートリアル用の Runbook であり、非推奨の Runbook です。
-以下は推奨しない理由です。
+以下は推奨しない理由です。  
 非推奨の AzureRM モジュールのコマンドを利用している Runbook であるためです。
 
 > [!NOTE]
@@ -404,6 +404,6 @@ param(
 The term '<コマンド名>" is not recognized as a name of cmdlet...
 ```
 Automation アカウントにモジュールがインポートされているかご確認いただき、
-ない場合は、モジュールをインポートいただければ幸いです。
+ない場合は、必要な PowerShell モジュールを適宜インポートしていただけますと幸いです。
 
 以上です。
