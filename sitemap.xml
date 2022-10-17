@@ -9,13 +9,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/</loc>
-    
-    <lastmod>2022-10-17</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/general/IntroduceOurBlog/</loc>
     
     <lastmod>2022-10-17</lastmod>
@@ -30,7 +23,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/ThePipelineWasNotRunBecauseAPipelineIsAlreadyRunningError/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/</loc>
     
     <lastmod>2022-10-17</lastmod>
     
@@ -65,14 +58,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/MigrateRunAsAccountsToManagedIdentity/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/automation/ThePipelineWasNotRunBecauseAPipelineIsAlreadyRunningError/</loc>
     
     <lastmod>2022-10-17</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/HowtoStartOrStopVMsbyAutomation/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/automation/MigrateRunAsAccountsToManagedIdentity/</loc>
     
     <lastmod>2022-10-17</lastmod>
     
@@ -107,6 +100,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/HowtoStartOrStopVMsbyAutomation/</loc>
+    
+    <lastmod>2022-10-17</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutDifferentTypesOfAi/</loc>
     
     <lastmod>2022-10-17</lastmod>
@@ -128,20 +128,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/SystemLanguageNotEnglishNoPython2Bug/</loc>
-    
-    <lastmod>2022-10-17</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/UpdateLAHealth/</loc>
-    
-    <lastmod>2022-10-17</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/automatically_install_ama/</loc>
     
     <lastmod>2022-10-17</lastmod>
@@ -150,6 +136,20 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/</loc>
+    
+    <lastmod>2022-10-17</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/SystemLanguageNotEnglishNoPython2Bug/</loc>
+    
+    <lastmod>2022-10-17</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/UpdateLAHealth/</loc>
     
     <lastmod>2022-10-17</lastmod>
     
@@ -177,6 +177,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/</loc>
+    
+    <lastmod>2022-10-17</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPacks/</loc>
     
     <lastmod>2022-10-17</lastmod>
@@ -185,13 +192,6 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromLA/</loc>
-    
-    <lastmod>2022-10-17</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/</loc>
     
     <lastmod>2022-10-17</lastmod>
     
@@ -226,20 +226,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/DiagnosticSettings/</loc>
-    
-    <lastmod>2022-10-17</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowMetricAlertisFired/</loc>
-    
-    <lastmod>2022-10-17</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/Ignite2021/</loc>
     
     <lastmod>2022-10-17</lastmod>
@@ -248,6 +234,20 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/</loc>
+    
+    <lastmod>2022-10-17</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/DiagnosticSettings/</loc>
+    
+    <lastmod>2022-10-17</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowMetricAlertisFired/</loc>
     
     <lastmod>2022-10-17</lastmod>
     
