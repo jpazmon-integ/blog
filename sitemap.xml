@@ -30,6 +30,20 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/gettingExeTimeOfJobForSpecificPeriodAutomation/</loc>
+    
+    <lastmod>2022-10-20</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/update-AzureRmVmCommandFailesWithVhdCannotBeNull/</loc>
+    
+    <lastmod>2022-10-20</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/general/AboutMonandIntg/</loc>
     
     <lastmod>2022-10-20</lastmod>
@@ -51,28 +65,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/gettingExeTimeOfJobForSpecificPeriodAutomation/</loc>
-    
-    <lastmod>2022-10-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/update-AzureRmVmCommandFailesWithVhdCannotBeNull/</loc>
-    
-    <lastmod>2022-10-20</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/MigrateRunAsAccountsToManagedIdentity/</loc>
-    
-    <lastmod>2022-10-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/</loc>
     
     <lastmod>2022-10-20</lastmod>
     
@@ -121,6 +114,20 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/</loc>
+    
+    <lastmod>2022-10-20</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/</loc>
+    
+    <lastmod>2022-10-20</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/</loc>
     
     <lastmod>2022-10-20</lastmod>
@@ -143,13 +150,6 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/automatically_install_ama/</loc>
-    
-    <lastmod>2022-10-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/</loc>
     
     <lastmod>2022-10-20</lastmod>
     
