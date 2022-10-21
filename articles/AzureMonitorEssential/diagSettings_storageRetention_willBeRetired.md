@@ -1,6 +1,6 @@
 ---
 title: Migrate to Azure Storage lifecycle management from diagnostic settings storage retention について
-date: 2021-10-20 00:00:00
+date: 2022-10-21 00:00:00
 tags:
   - Azure Monitor
   - Diagnostic settings
@@ -11,6 +11,18 @@ tags:
 今回の記事では、サービス正常性にて通知された「Action required: Migrate to Azure Storage lifecycle management from diagnostic settings storage retention」について説明します。
 
 ## 目次
+- [目次](#目次)
+- [報告された正常性の勧告について](#報告された正常性の勧告について)
+  - [概要](#概要)
+  - [内容](#内容)
+  - [実施いただきたいアクション](#実施いただきたいアクション)
+- [抄訳](#抄訳)
+  - [2V_C-980 の概要](#2v_c-980-の概要)
+  - [廃止されるとどうなるか](#廃止されるとどうなるか)
+  - [影響を受けるお客様](#影響を受けるお客様)
+  - [お客様に必要なアクションについて](#お客様に必要なアクションについて)
+- [診断設定側のデータ保持機能を利用している診断設定を特定する方法について](#診断設定側のデータ保持機能を利用している診断設定を特定する方法について)
+  - [サンプル スクリプト](#サンプル-スクリプト)
 
 ## 報告された正常性の勧告について
 ### 概要
@@ -44,6 +56,8 @@ To continue applying retention to logs sent to storage accounts via diagnostic s
 ## 抄訳
 ### 2V_C-980 の概要
 Azure リソースのリソース ログやメトリックを Log Analytics ワークスペースやストレージ アカウント、Event Hubs に出力する場合に診断設定をご構築いただく必要があります。  
+
+> [!NOTE]
 > 診断設定については[こちら](https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal)の公開情報をご確認ください。
 
 リソース ログやメトリックをストレージ アカウントへ出力する場合、下図のように診断設定側にデータの保持期間を指定することが可能です。  
@@ -74,7 +88,7 @@ Azure リソースのリソース ログやメトリックを Log Analytics ワ�
 ## 診断設定側のデータ保持機能を利用している診断設定を特定する方法について
 [ストレージ アカウントのライフサイクル管理に移行する公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/migrate-to-azure-storage-lifecycle-policy)には、どの診断設定が診断設定側のデータ保持機能を利用しているかを特定する方法の記載がありません。  
 そのため、複数ある診断設定に対して一つ一つ Azure portal から確認する必要があります。  
-この方法はかなり大変な作業だと思うので、診断設定側のデータ保持機能を利用している診断設定一覧を、CSV として出力するサンプル PowerShell スクリプトを用意いたしました。
+この方法はかなり大変な作業だと思うので、診断設定側のデータ保持機能を利用している診断設定一覧を CSV として出力するサンプル PowerShell スクリプトを用意いたしました。
 
 
 ### サンプル スクリプト
