@@ -19,7 +19,9 @@ Log Analytics 仮想マシン拡張機能のバージョン アップ方法に�
 - 2021 年まで Log Analytics 仮想マシン拡張機能のバージョン アップについて
 - 現在 Log Analytics 仮想マシン拡張機能のバージョン アップについて
 - Log Analytics 仮想マシン拡張機能のバージョン アップ手順
+- Windows 用の Log Analytics 仮想マシン拡張機能について
 - 今後 Log Analytics 仮想マシン拡張機能の自動アップグレード対応について
+- 2022 年 10 月 Linux 版 Log Analytics 仮想マシン拡張機能の変更について
 
 
 ## 対象製品
@@ -52,7 +54,7 @@ Log Analytics 仮想マシン拡張機能はその実装変更の影響で、バ
 
 
 ## 現在 Log Analytics 仮想マシン拡張機能のバージョン アップについて
-現在の拡張機能の仕様では、enableAutomaticUpgrade プロパティに対応していない Log Analytics 仮想マシン拡張機能は自動的にアップデートが出来ません。  
+現在の拡張機能の仕様では、enableAutomaticUpgrade プロパティに対応していない Log Analytics 仮想マシン拡張機能はマイナー バージョンの自動アップデートが出来ません。  
 また、先程説明させていただいたとおり、AutoUpgradeMinorVersion プロパティを用いた自動的なアップデートも実施されなくなりました。  
 そのため、Log Analytics 仮想マシン拡張機能をアップデートするためには、手動でのアップデートが必須となります。
 
@@ -60,8 +62,7 @@ Log Analytics 仮想マシン拡張機能はその実装変更の影響で、バ
 - [Azure での VM とスケール セットの拡張機能の自動アップグレード](https://docs.microsoft.com/ja-jp/azure/virtual-machines/automatic-extension-upgrade#supported-extensions)
 
 
-
-下記に、Log Analytics 仮想マシン拡張機能のアップデート方法について記載いたします。
+下記に、Log Analytics 仮想マシン拡張機能のメジャー、またはマイナー バージョンのアップデート方法について記載いたします。
  
 
 ## Log Analytics 仮想マシン拡張機能のバージョン アップ手順
@@ -140,6 +141,15 @@ https://github.com/microsoft/OMS-Agent-for-Linux/releases
     1. Azure ポータルにアクセスし、対象の VMSS リソースを表示します。
     2. [設定] – [インスタンス] をクリックし、各インスタンスにチェックし、[アップグレード] をクリックします。[はい] をクリックします。完了するまで待機します。
 
+## Windows 用の Log Analytics 仮想マシン拡張機能について
+Log Analytics エージェントの廃止を考慮して、現在 Windows 用の Log Analytics 仮想マシン拡張機能は、基本的にビルド番号を上げて新しバージョンをリリースしております。
+ビルド番号のアップグレードは、 enableAutomaticUpgrade または AutoUpgradeMinorVersion プロパティの値と関係なく、自動的に実施されます。
+そのため、上記手順で手動でアップグレードする必要はないと考えられます。
+例 : 1.0.18062 から 1.0.18064 のアップグレード
+https://learn.microsoft.com/en-us/azure/virtual-machines/extensions/oms-windows?toc=%2Fazure%2Fazure-monitor%2Ftoc.json#agent-and-vm-extension-version
+
+今後もし自動アップグレードが行われない、またはマイナー バージョンのアップグレードが発生した際に、上記手順に従ってアップグレードを実施していただけますと幸いです。
+
 
 ## 今後 Log Analytics 仮想マシン拡張機能の自動アップグレード対応について
 Log Analytics 仮想マシン拡張機能で自動アップグレードに対応してほしいとのご要望が多数お客様から上がっており、開発側にもフィードバックさせていただきました。
@@ -152,6 +162,34 @@ Log Analytics 仮想マシン拡張機能で自動アップグレードに対応
 Azure Monitor Agent 拡張機能
 
 https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-overview?tabs=PowerShellWindows
+
+
+## 2022 年 10 月 Linux 版 Log Analytics 仮想マシン拡張機能の変更について
+2022 年 10 月より、 Linux 版 Log Analytics 仮想マシン拡張機能は enableAutomaticUpgrade プロパティによる自動アップグレードに対応するようになりました。
+現在 Azure ポータルより自動アップグレードの有効化は未対応ですが、 PowerShell または Azure CLI を用いて有効化することが可能となっております。
+
+1. PowerShell
+
+`Set-AzVMExtension -location <リージョン名> -ResourceGroupName <リソースグループ名> -VMName <仮想マシン名> -Name <拡張機能名> -Publisher "Microsoft.EnterpriseCloud.Monitoring" -ExtensionType OmsAgentForLinux -EnableAutomaticUpgrade $true`
+
+※ 拡張機能名は仮想マシンの [拡張機能とアプリケーション] 画面からご確認ください (デプロイ方法によってお客様が指定した名前になっている可能性がございます)。
+
+※ 自動アップブレードを無効化したい場合は、 -EnableAutomaticUpgrade の値を $false に設定します。
+
+2. Azure CLI
+
+`az vm extension set -n OmsAgentForLinux --publisher "Microsoft.EnterpriseCloud.Monitoring" --vm-name <仮想マシン名> --resource-group <リソースグループ名 --enable-auto-upgrade true`
+
+※ 自動アップブレードを無効化したい場合は、 --enable-auto-upgrade の値を false に設定します。
+
+<参考情報>
+エージェントをアップグレードする
+
+https://learn.microsoft.com/ja-JP/azure/azure-monitor/agents/agent-manage?tabs=PowerShellLinux#upgrade-the-agent
+
+Linux エージェントの自動更新を有効にする
+
+https://learn.microsoft.com/ja-JP/azure/azure-monitor/agents/agent-manage?tabs=CLILinux#enable-auto-update-for-the-linux-agent
 
 
 以上、Log Analytics 仮想マシン拡張機能のバージョン アップの仕様についてご案内いたしました。
