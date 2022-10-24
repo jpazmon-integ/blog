@@ -183,6 +183,7 @@ https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-
 ※ 自動アップブレードを無効化したい場合は、 --enable-auto-upgrade の値を false に設定します。
 
 <参考情報>
+
 エージェントをアップグレードする
 
 https://learn.microsoft.com/ja-JP/azure/azure-monitor/agents/agent-manage?tabs=PowerShellLinux#upgrade-the-agent
