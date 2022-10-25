@@ -31,9 +31,7 @@ tags:
 | 項目名         | 項目値                                                                                                       |
 |-------------|-----------------------------------------------------------------------------------------------------------|
 | 題名          | Action required: Migrate to Azure Storage lifecycle management from diagnostic settings storage retention |
-| 追跡 ID       | 2V_C-980                                                                                                  |
-| 共有可能なリンク    | https://app.azure.com/h/2V_C-980/5a3063                                                                   |
-| 影響を受けるサービス  | Azure Monitor                                                                                             |
+| 追跡 ID       | 2V_C-980                                                                                                  || 影響を受けるサービス  | Azure Monitor                                                                                             |
 | 影響を受けるリージョン | Global                                                                                                    |
 | 正常性イベントの種類  | 正常性の勧告                                                                                                    |
 
@@ -101,6 +99,8 @@ Update-Module -Name Az -AllowPrerelease -Force -Confirm
 ```
 - サンプル スクリプト実行前に、必ず Connect-AzAccount を実行して Azure へログインいただき、Set-AzContext を実行して対象のサブスクリプションをご指定ください。
   - なお、Cloud Shell から実行される場合は、Connect-AzAccount の実行は不要です。
+- もし、どれか一つの診断設定に対して保持期間が指定されていた場合は、サンプル スクリプト実行後に CSV ファイルが出力されます。
+- 一方で、どの診断設定にも保持期間が指定されていない場合は、CSV ファイルは出力されません。そのため、ファイルが出力されなかった場合は 2V_C-980 に対する対処は不要です。
 
 
 #### サンプル
