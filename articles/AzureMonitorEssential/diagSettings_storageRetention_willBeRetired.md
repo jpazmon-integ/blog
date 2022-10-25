@@ -1,6 +1,6 @@
 ---
 title: Migrate to Azure Storage lifecycle management from diagnostic settings storage retention について
-date: 2022-10-25 00:00:00
+date: 2022-10-25 14:00:00
 tags:
   - Azure Monitor
   - Diagnostic settings
