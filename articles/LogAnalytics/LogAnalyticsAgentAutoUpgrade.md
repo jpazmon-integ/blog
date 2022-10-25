@@ -145,7 +145,9 @@ https://github.com/microsoft/OMS-Agent-for-Linux/releases
 Log Analytics エージェントの廃止を考慮して、現在 Windows 用の Log Analytics 仮想マシン拡張機能は、基本的にビルド番号を上げて新しいバージョンをリリースしております。
 ビルド番号のアップグレードは、 enableAutomaticUpgrade または AutoUpgradeMinorVersion プロパティの値と関係なく、自動的に実施されます。
 そのため、上記手順で手動でアップグレードする必要はございません。
+
 例 : 1.0.18062 から 1.0.18064 のアップグレード
+
 https://learn.microsoft.com/en-us/azure/virtual-machines/extensions/oms-windows?toc=%2Fazure%2Fazure-monitor%2Ftoc.json#agent-and-vm-extension-version
 
 今後もし自動アップグレードが行われない、またはマイナー バージョンのアップグレードが発生した際に、上記手順に従ってアップグレードを実施していただけますと幸いです。
