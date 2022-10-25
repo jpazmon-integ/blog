@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Migrate to Azure Storage lifecycle management from diagnostic settings storage retention について | Japan Azure Monitoring Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは、Azure Monitoring &amp; Integration サポート チームの北山です。今回の記事では、サービス正常性にて通知された「Action required: Migrate to Azure Storage lifecycle management from diagnostic settings storage retention」について説明します。 目次 目次">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Migrate to Azure Storage lifecycle management from diagnostic settings storage retention について">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="こんにちは、Azure Monitoring &amp; Integration サポート チームの北山です。今回の記事では、サービス正常性にて通知された「Action required: Migrate to Azure Storage lifecycle management from diagnostic settings storage retention」について説明します。 目次 目次">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/capt1.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/capt2.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/capt3.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/capt4.png">
+<meta property="article:published_time" content="2022-10-25T05:00:00.000Z">
+<meta property="article:modified_time" content="2022-10-25T05:51:20.937Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="Tips">
+<meta property="article:tag" content="Azure Monitor">
+<meta property="article:tag" content="Diagnostic settings">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/capt1.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-AzureMonitorEssential/diagSettings_storageRetention_willBeRetired" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Migrate to Azure Storage lifecycle management from diagnostic settings storage retention について
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2022-10-25T05:00:00.000Z" itemprop="datePublished">2022-10-25</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+32dc8064-ee3e-5e50-ba12-57acd65a4083%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BMigrate+to+Azure+Storage+lifecycle+management+from+diagnostic+settings+storage+retention+%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FdiagSettings_storageRetention_willBeRetired%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FdiagSettings_storageRetention_willBeRetired.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FdiagSettings_storageRetention_willBeRetired.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/" data-id="cl9nsi63k00050mtgc083aaew" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは、Azure Monitoring &amp; Integration サポート チームの北山です。<br>今回の記事では、サービス正常性にて通知された「Action required: Migrate to Azure Storage lifecycle management from diagnostic settings storage retention」について説明します。</p>
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
+<li><a href="#%E5%A0%B1%E5%91%8A%E3%81%95%E3%82%8C%E3%81%9F%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%81%AE%E5%8B%A7%E5%91%8A%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">報告された正常性の勧告について</a><ul>
+<li><a href="#%E6%A6%82%E8%A6%81">概要</a></li>
+<li><a href="#%E5%86%85%E5%AE%B9">内容</a></li>
+<li><a href="#%E5%AE%9F%E6%96%BD%E3%81%84%E3%81%9F%E3%81%A0%E3%81%8D%E3%81%9F%E3%81%84%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3">実施いただきたいアクション</a></li>
+</ul>
+</li>
+<li><a href="#%E6%8A%84%E8%A8%B3">抄訳</a><ul>
+<li><a href="#2v_c-980-%E3%81%AE%E6%A6%82%E8%A6%81">2V_C-980 の概要</a></li>
+<li><a href="#%E5%BB%83%E6%AD%A2%E3%81%95%E3%82%8C%E3%82%8B%E3%81%A8%E3%81%A9%E3%81%86%E3%81%AA%E3%82%8B%E3%81%8B">廃止されるとどうなるか</a></li>
+<li><a href="#%E5%BD%B1%E9%9F%BF%E3%82%92%E5%8F%97%E3%81%91%E3%82%8B%E3%81%8A%E5%AE%A2%E6%A7%98">影響を受けるお客様</a></li>
+<li><a href="#%E3%81%8A%E5%AE%A2%E6%A7%98%E3%81%AB%E5%BF%85%E8%A6%81%E3%81%AA%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">お客様に必要なアクションについて</a></li>
+</ul>
+</li>
+<li><a href="#%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E5%81%B4%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E4%BF%9D%E6%8C%81%E6%A9%9F%E8%83%BD%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%82%92%E7%89%B9%E5%AE%9A%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">診断設定側のデータ保持機能を利用している診断設定を特定する方法について</a><ul>
+<li><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB-%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88">サンプル スクリプト</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="報告された正常性の勧告について"><a href="#報告された正常性の勧告について" class="headerlink" title="報告された正常性の勧告について"></a>報告された正常性の勧告について</h2><h3 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h3><table>
+<thead>
+<tr>
+<th>項目名</th>
+<th>項目値</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>題名</td>
+<td>Action required: Migrate to Azure Storage lifecycle management from diagnostic settings storage retention</td>
+</tr>
+<tr>
+<td>追跡 ID</td>
+<td>2V_C-980</td>
+</tr>
+<tr>
+<td>影響を受けるリージョン</td>
+<td>Global</td>
+</tr>
+<tr>
+<td>正常性イベントの種類</td>
+<td>正常性の勧告</td>
+</tr>
+</tbody></table>
+<h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h3><p>You’re receiving this notice because you use the Azure Monitor diagnostic settings storage retention feature.<br>On 30 September 2025, the diagnostic settings storage retention feature of Azure Monitor will be retired and retention will no longer be applied to logs sent to storage account destinations via diagnostic settings.<br>You’ll need to migrate to the Azure Storage lifecycle management feature by that date.  </p>
+<p>Azure Storage lifecycle management provides all the same functionality, plus it enables you to:</p>
+<ul>
+<li>Transition blobs to a cooler storage tier to optimize for performance and cost.</li>
+<li>Define up to 100 separate rules.</li>
+<li>Apply rules to containers or specific subsets of blobs.</li>
+</ul>
+<h3 id="実施いただきたいアクション"><a href="#実施いただきたいアクション" class="headerlink" title="実施いただきたいアクション"></a>実施いただきたいアクション</h3><p>To continue applying retention to logs sent to storage accounts via diagnostic settings, <a target="_blank" rel="noopener" href="https://docs.microsoft.com/azure/azure-monitor/essentials/migrate-to-azure-storage-lifecycle-policy">migrate</a> to Azure Storage lifecycle management by 30 September 2025.</p>
+<h2 id="抄訳"><a href="#抄訳" class="headerlink" title="抄訳"></a>抄訳</h2><h3 id="2V-C-980-の概要"><a href="#2V-C-980-の概要" class="headerlink" title="2V_C-980 の概要"></a>2V_C-980 の概要</h3><p>Azure リソースのリソース ログやメトリックを Log Analytics ワークスペースやストレージ アカウント、Event Hubs に出力する場合に診断設定をご構築いただく必要があります。  </p>
+<div class="alert is-info"><p class="alert-title">Note</p><p>診断設定については<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal">こちら</a>の公開情報をご確認ください。</p></div>
+<p>リソース ログやメトリックをストレージ アカウントへ出力する場合、下図のように診断設定側にデータの保持期間を指定することが可能です。  </p>
+<p><img src="/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/capt1.png"></p>
+<p>もし保持期間を設定いただいた場合、ストレージ アカウントに出力されたデータは設定した保持期間に従って自動的に削除されます。<br>今回の正常性の勧告は、診断設定に実装されたデータの保持期間機能が 2025 年 9 月 30 日に廃止となる案内です。</p>
+<h3 id="廃止されるとどうなるか"><a href="#廃止されるとどうなるか" class="headerlink" title="廃止されるとどうなるか"></a>廃止されるとどうなるか</h3><p>診断設定側のデータ保持機能が廃止となるため、ストレージ アカウントに保存されたデータが自動的に削除されなくなります。<br>結果的に、診断設定により出力されたデータストレージ アカウントに永久的に残るため、期待しないコストが発生する可能性があります。<br>診断設定側のデータ保持機能が廃止された後は、ストレージ アカウント側のライフサイクル管理ポリシーを用いてデータの保持期間を管理していただく必要があります。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/storage/blobs/lifecycle-management-policy-configure?tabs=azure-portal">ライフサイクル管理ポリシーを構成する</a></li>
+</ul>
+<h3 id="影響を受けるお客様"><a href="#影響を受けるお客様" class="headerlink" title="影響を受けるお客様"></a>影響を受けるお客様</h3><p>診断設定側のデータ保持機能をご利用いただいているお客様が影響を受けます。</p>
+<h3 id="お客様に必要なアクションについて"><a href="#お客様に必要なアクションについて" class="headerlink" title="お客様に必要なアクションについて"></a>お客様に必要なアクションについて</h3><p>診断設定によってストレージ アカウントへ出力されたデータの保持期間を引き続きご指定いただきたい場合は、2025 年 9 月末までにストレージ アカウント側のライフサイクル管理ポリシーへ移行していただく必要がございます。<br>移行に関する手順の詳細につきましては、下記の公開情報をご参考いただけますと幸いです。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/migrate-to-azure-storage-lifecycle-policy">診断設定ストレージ保持から Azure Storage ライフサイクル管理に移行する</a></li>
+</ul>
+<h2 id="診断設定側のデータ保持機能を利用している診断設定を特定する方法について"><a href="#診断設定側のデータ保持機能を利用している診断設定を特定する方法について" class="headerlink" title="診断設定側のデータ保持機能を利用している診断設定を特定する方法について"></a>診断設定側のデータ保持機能を利用している診断設定を特定する方法について</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/migrate-to-azure-storage-lifecycle-policy">ストレージ アカウントのライフサイクル管理に移行する公開情報</a>には、どの診断設定が診断設定側のデータ保持機能を利用しているかを特定する方法の記載がありません。<br>そのため、複数ある診断設定に対して一つ一つ Azure portal から確認する必要があります。<br>この方法はかなり大変な作業だと思うので、診断設定側のデータ保持機能を利用している診断設定一覧を CSV として出力するサンプル PowerShell スクリプトを用意いたしました。</p>
+<h3 id="サンプル-スクリプト"><a href="#サンプル-スクリプト" class="headerlink" title="サンプル スクリプト"></a>サンプル スクリプト</h3><h4 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h4><ul>
+<li>PowerShell 7 を用いて動作確認を実施しております。</li>
+<li>以下のコマンドでインストールした Az モジュールを用いて動作確認を実施しております。<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Install-Module</span> Az <span class="literal">-force</span> <span class="literal">-AllowPrerelease</span> <span class="literal">-AllowClobber</span> <span class="literal">-SkipPublisherCheck</span> <span class="literal">-Repository</span> PSGallery</span><br><span class="line"><span class="built_in">Update-Module</span> <span class="literal">-Name</span> Az <span class="literal">-AllowPrerelease</span> <span class="literal">-Force</span> <span class="literal">-Confirm</span></span><br></pre></td></tr></table></figure></li>
+<li>サンプル スクリプト実行前に、必ず Connect-AzAccount を実行して Azure へログインいただき、Set-AzContext を実行して対象のサブスクリプションをご指定ください。<ul>
+<li>なお、Cloud Shell から実行される場合は、Connect-AzAccount の実行は不要です。</li>
+</ul>
+</li>
+<li>もし、どれか一つの診断設定に対して保持期間が指定されていた場合は、サンプル スクリプト実行後に CSV ファイルが出力されます。</li>
+<li>一方で、どの診断設定にも保持期間が指定されていない場合は、CSV ファイルは出力されません。そのため、ファイルが出力されなかった場合は 2V_C-980 に対する対処は不要です。</li>
+</ul>
+<h4 id="サンプル"><a href="#サンプル" class="headerlink" title="サンプル"></a>サンプル</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Need to use Az module(version 9.0.0) and PowerShell version 7 ##</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable">$Resrouces</span> = <span class="built_in">Get-AzResource</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 診断設定の取得</span></span><br><span class="line"><span class="variable">$Resrouces</span>.Id | <span class="built_in">ForEach-Object</span> <span class="literal">-Parallel</span>&#123;</span><br><span class="line">    <span class="variable">$ResroucesId</span> = <span class="variable">$_</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 出力する csv ファイルパス、ファイル名を定義する</span></span><br><span class="line">    <span class="variable">$FilePath</span> = <span class="string">&quot;DiagnosticSettingInfo.csv&quot;</span> </span><br><span class="line"></span><br><span class="line">    <span class="comment"># 書き込みのリトライ待機時間</span></span><br><span class="line">    <span class="variable">$RetryWaitMilliseconds</span> = <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 診断設定を取得する。なければ $DiagnosticSettings は Null となる</span></span><br><span class="line">    <span class="variable">$DiagnosticSettings</span> = <span class="built_in">Get-AzDiagnosticSetting</span> <span class="literal">-ResourceId</span> <span class="variable">$ResroucesId</span> <span class="literal">-WarningAction</span> SilentlyContinue <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 診断設定があるかどうか</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$DiagnosticSettings</span> <span class="operator">-ne</span> <span class="variable">$null</span>)&#123;</span><br><span class="line">        <span class="comment"># 診断設定ある場合、各設定についてみていく</span></span><br><span class="line">        <span class="keyword">ForEach</span> (<span class="variable">$DiagnosticSetting</span> <span class="keyword">in</span> <span class="variable">$DiagnosticSettings</span>)&#123;</span><br><span class="line">            <span class="comment"># LOG 系の診断設定があるかどうか</span></span><br><span class="line">            <span class="variable">$LogSettings</span> = <span class="variable">$DiagnosticSetting</span>.Log</span><br><span class="line">            <span class="keyword">if</span> (<span class="variable">$LogSettings</span> <span class="operator">-ne</span> <span class="variable">$null</span>)&#123;</span><br><span class="line">                <span class="comment"># 各カテゴリについて、保持期間があるかどうか確認していく</span></span><br><span class="line">                <span class="keyword">foreach</span> (<span class="variable">$LogSetting</span> <span class="keyword">in</span> <span class="variable">$LogSettings</span>)&#123;</span><br><span class="line">                    <span class="variable">$DiagnosticSettingInfo</span> = <span class="built_in">New-Object</span> System.Collections.Generic.List<span class="function">[<span class="built_in">string</span>]</span></span><br><span class="line">                    <span class="keyword">if</span> ( <span class="variable">$LogSetting</span>.RetentionPolicyDay <span class="operator">-ne</span> <span class="number">0</span> )</span><br><span class="line">                    &#123;   </span><br><span class="line">                        <span class="comment"># 保持期間が設定された診断設定がある場合、情報を追記する</span></span><br><span class="line">                        <span class="variable">$DiagnosticSettingInfo</span>.add(<span class="variable">$ResroucesId</span>)</span><br><span class="line">                        <span class="variable">$DiagnosticSettingInfo</span>.add(<span class="variable">$DiagnosticSetting</span>.Name)</span><br><span class="line">                        <span class="variable">$DiagnosticSettingInfo</span>.add(<span class="variable">$LogSetting</span>.Category)</span><br><span class="line">                        <span class="variable">$DiagnosticSettingInfo</span>.add(<span class="variable">$LogSetting</span>.RetentionPolicyDay)</span><br><span class="line">                        </span><br><span class="line">                        <span class="comment"># 書き込みが完了するまでリトライする</span></span><br><span class="line">                        <span class="keyword">while</span> (<span class="variable">$true</span>)&#123;</span><br><span class="line">                            <span class="keyword">try</span>&#123;</span><br><span class="line">                                <span class="variable">$DiagnosticSettingInfo</span> <span class="operator">-join</span> <span class="string">&quot;,&quot;</span> | <span class="built_in">Out-File</span> <span class="literal">-FilePath</span> <span class="variable">$FilePath</span> <span class="literal">-Append</span> <span class="literal">-ErrorAction</span> Stop</span><br><span class="line">                                <span class="keyword">break</span></span><br><span class="line">                            &#125;<span class="keyword">catch</span> [<span class="type">System.IO.IOException</span>]&#123;</span><br><span class="line">                                <span class="built_in">Start-Sleep</span> <span class="literal">-Milliseconds</span> <span class="variable">$RetryWaitMilliseconds</span></span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; </span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment"># METRIC 系の診断設定がある場合</span></span><br><span class="line">            <span class="variable">$MetricSettings</span> = <span class="variable">$DiagnosticSetting</span>.Metric</span><br><span class="line">            <span class="keyword">if</span> (<span class="variable">$MetricSettings</span> <span class="operator">-ne</span> <span class="variable">$null</span>)&#123;</span><br><span class="line">                <span class="comment"># 各カテゴリについて、保持期間があるかどうか確認していく</span></span><br><span class="line">                <span class="keyword">foreach</span> (<span class="variable">$MetricSetting</span> <span class="keyword">in</span> <span class="variable">$MetricSettings</span>)&#123;</span><br><span class="line">                    <span class="variable">$DiagnosticSettingInfo</span> = <span class="built_in">New-Object</span> System.Collections.Generic.List<span class="function">[<span class="built_in">string</span>]</span></span><br><span class="line">                    <span class="keyword">if</span> ( <span class="variable">$MetricSetting</span>.RetentionPolicyDay <span class="operator">-ne</span> <span class="number">0</span> )</span><br><span class="line">                    &#123;   </span><br><span class="line">                        <span class="comment"># 保持期間が設定された診断設定がある場合、情報を追記する</span></span><br><span class="line">                        <span class="variable">$DiagnosticSettingInfo</span>.add(<span class="variable">$ResroucesId</span>)</span><br><span class="line">                        <span class="variable">$DiagnosticSettingInfo</span>.add(<span class="variable">$DiagnosticSetting</span>.Name)</span><br><span class="line">                        <span class="variable">$DiagnosticSettingInfo</span>.add(<span class="variable">$MetricSetting</span>.Category)</span><br><span class="line">                        <span class="variable">$DiagnosticSettingInfo</span>.add(<span class="variable">$MetricSetting</span>.RetentionPolicyDay)</span><br><span class="line">                        </span><br><span class="line">                        <span class="comment"># 書き込みが完了するまでリトライする</span></span><br><span class="line">                        <span class="keyword">while</span> (<span class="variable">$true</span>)&#123;</span><br><span class="line">                            <span class="keyword">try</span>&#123;</span><br><span class="line">                                <span class="variable">$DiagnosticSettingInfo</span> <span class="operator">-join</span> <span class="string">&quot;,&quot;</span> | <span class="built_in">Out-File</span> <span class="literal">-FilePath</span> <span class="variable">$FilePath</span> <span class="literal">-Append</span> <span class="literal">-ErrorAction</span> Stop</span><br><span class="line">                                <span class="keyword">break</span></span><br><span class="line">                            &#125;<span class="keyword">catch</span> [<span class="type">System.IO.IOException</span>]&#123;</span><br><span class="line">                                <span class="built_in">Start-Sleep</span> <span class="literal">-Milliseconds</span> <span class="variable">$RetryWaitMilliseconds</span></span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; </span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="literal">-ThrottleLimit</span> <span class="number">100</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="その他"><a href="#その他" class="headerlink" title="その他"></a>その他</h4><p>上記 PowerShell スクリプトは Azure portal の Cloud Shell からも実行可能です。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/cloud-shell/overview">Azure Cloud Shell の概要</a></li>
+</ul>
+<p>上記スクリプトの処理時間は、当該サブスクリプションに存在するリソース数に影響いたします。<br>弊社検証環境には 2000 個の Azure リソースがございますが、およそ 5 分から 10 分ほど時間を要しました。<br>Cloud Shell にてスクリプトを実行後、下記の手順にて CSV ファイルのダウンロードが可能です。</p>
+<ol>
+<li><p>Dir コマンドで対象の CSV ファイルが存在する事を確認します。<br><img src="/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/capt2.png"></p>
+</li>
+<li><p>ダウンロードをクリックします。<br><img src="/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/capt3.png"></p>
+</li>
+<li><p>ファイル名を入力して [ダウンロード] をクリックします。<br><img src="/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/capt4.png"></p>
+</li>
+</ol>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Diagnostic-settings/" rel="tag">Diagnostic settings</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../LogAnalytics/Azure_Monitor_VM_insights_using_AMA/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Azure Monitor エージェントを使用した Azure Monitor VM insights の有効化 (プレビュー)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">Migrate to Azure Storage lifecycle management from diagnostic settings storage retention について</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/Azure_Monitor_VM_insights_using_AMA/">Azure Monitor エージェントを使用した Azure Monitor VM insights の有効化 (プレビュー)</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/HowToMigrateToAmaFromLA/">Log Analytics エージェントから Azure Monitor エージェントへの移行に関するよくあるご質問集</a>
+          </li>
+        
+          <li>
+            <a href="../../automation/HowtoStartOrStopVMsbyAutomation/">Azure Automation で VM を起動・停止する方法</a>
+          </li>
+        
+          <li>
+            <a href="../../automation/MigrateRunAsAccountsToManagedIdentity/">実行アカウントからマネージド ID へ移行する方法及び FAQ</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostic-settings/" rel="tag">Diagnostic settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-ID/" rel="tag">Managed ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-Identity/" rel="tag">Managed Identity</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Migration/" rel="tag">Migration</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Run-As-Account/" rel="tag">Run As Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sandbox/" rel="tag">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StartAzureV2VMs/" rel="tag">StartAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StopAzureV2VMs/" rel="tag">StopAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM/" rel="tag">VM</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Worker/" rel="tag">Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" rel="tag">コスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" rel="tag">マネージド ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%81%9C%E6%AD%A2/" rel="tag">停止</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" rel="tag">実行アカウント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/" rel="tag">移行</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" rel="tag">自動化</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%B5%B7%E5%8B%95/" rel="tag">起動</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/">Azure Monitor</a><span class="tag-list-count">6</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/Diagnostic-settings">Diagnostic settings</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/FAQ">FAQ</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/How-To">How-To</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/Log-Analytics">Log Analytics</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/MetricAlert">MetricAlert</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/Tips">Tips</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Monitor/%E7%A7%BB%E8%A1%8C">移行</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">3</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/FAQ">FAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/Tips">Tips</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/%E3%82%B3%E3%82%B9%E3%83%88">コスト</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Application-Insights/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88">可用性テスト</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/10/">2022 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/09/">2022 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/08/">2022 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/Application-Insights/" style="font-size: 12.22px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 16.67px;">Automation</a> <a href="../../tags/Azure-Monitor/" style="font-size: 15.56px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 11.11px;">Azure Monitor Essentials</a> <a href="../../tags/Diagnostic-settings/" style="font-size: 11.11px;">Diagnostic settings</a> <a href="../../tags/FAQ/" style="font-size: 15.56px;">FAQ</a> <a href="../../tags/General/" style="font-size: 15.56px;">General</a> <a href="../../tags/How-To/" style="font-size: 18.89px;">How-To</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 11.11px;">Job</a> <a href="../../tags/Log-Analytics/" style="font-size: 20px;">Log Analytics</a> <a href="../../tags/Managed-ID/" style="font-size: 10px;">Managed ID</a> <a href="../../tags/Managed-Identity/" style="font-size: 10px;">Managed Identity</a> <a href="../../tags/MetricAlert/" style="font-size: 10px;">MetricAlert</a> <a href="../../tags/Migration/" style="font-size: 10px;">Migration</a> <a href="../../tags/Run-As-Account/" style="font-size: 10px;">Run As Account</a> <a href="../../tags/RunAs-Account/" style="font-size: 13.33px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 13.33px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 17.78px;">Tips</a> <a href="../../tags/Troubleshooting/" style="font-size: 13.33px;">Troubleshooting</a> <a href="../../tags/VM/" style="font-size: 10px;">VM</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" style="font-size: 10px;">コスト</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 14.44px;">チーム紹介</a> <a href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" style="font-size: 11.11px;">マネージド ID</a> <a href="../../tags/%E5%81%9C%E6%AD%A2/" style="font-size: 10px;">停止</a> <a href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" style="font-size: 10px;">可用性テスト</a> <a href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" style="font-size: 10px;">実行アカウント</a> <a href="../../tags/%E7%A7%BB%E8%A1%8C/" style="font-size: 11.11px;">移行</a> <a href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" style="font-size: 10px;">自動化</a> <a href="../../tags/%E8%B5%B7%E5%8B%95/" style="font-size: 10px;">起動</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
