@@ -10,6 +10,7 @@ tags:
 こんにちは、Azure Monitoring & Integration サポート チームの北山です。  
 今回の記事では、サービス正常性にて通知された「Action required: Migrate to Azure Storage lifecycle management from diagnostic settings storage retention」について説明します。
 
+<!-- more -->
 ## 目次
 - [目次](#目次)
 - [報告された正常性の勧告について](#報告された正常性の勧告について)
