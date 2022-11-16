@@ -4,24 +4,28 @@
   <meta charset="utf-8">
   
   
-  <title>&lt;第 3 弾&gt; Azure Monitoring &amp; Integration チームのようす、雰囲気について | Japan Azure Monitoring Support Blog</title>
+  <title>Application Insights 可用性テスト の クラシック と 標準 の違いについて | Japan Azure Monitoring Support Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="こんにちは！Azure Monitoring &amp; Integration チームの猪股です。現在わたしたちのチームでは、一緒に Azure サポートを盛り上げていってくださるメンバーを絶賛大募集中です！！今日は、私たちのチームの普段のようすや雰囲気について紹介いたします。">
+  <meta name="description" content="こんにちは、Azure Monitoring サポート チームの佐々木です。 今回は、Application Insights に用意されている以下の可用性テスト２種類について特徴と使い分けをご案内させていただきます。    クラシック テスト    標準テスト">
 <meta property="og:type" content="article">
-<meta property="og:title" content="&lt;第 3 弾&gt; Azure Monitoring &amp; Integration チームのようす、雰囲気について">
-<meta property="og:url" content="https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/index.html">
+<meta property="og:title" content="Application Insights 可用性テスト の クラシック と 標準 の違いについて">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutAvailabilityTest/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは！Azure Monitoring &amp; Integration チームの猪股です。現在わたしたちのチームでは、一緒に Azure サポートを盛り上げていってくださるメンバーを絶賛大募集中です！！今日は、私たちのチームの普段のようすや雰囲気について紹介いたします。">
+<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの佐々木です。 今回は、Application Insights に用意されている以下の可用性テスト２種類について特徴と使い分けをご案内させていただきます。    クラシック テスト    標準テスト">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/chat.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/techarea.png">
-<meta property="article:published_time" content="2021-09-04T11:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-16T00:00:07.308Z">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutAvailabilityTest/1.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutPrivateAvailabilityTest/1.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutAvailabilityTest/2.png">
+<meta property="og:image" content="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability-standard-tests">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutAvailabilityTest/3.png">
+<meta property="article:published_time" content="2022-11-05T15:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-16T00:00:07.268Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="General">
-<meta property="article:tag" content="チーム紹介">
+<meta property="article:tag" content="Tips">
+<meta property="article:tag" content="Application Insights">
+<meta property="article:tag" content="可用性テスト">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/chat.png">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutAvailabilityTest/1.png">
   
     <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
   
@@ -83,7 +87,7 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-general/OurTeamAtmosphere" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-applicationInsights/aboutAvailabilityTest" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -92,7 +96,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      &lt;第 3 弾&gt; Azure Monitoring &amp; Integration チームのようす、雰囲気について
+      Application Insights 可用性テスト の クラシック と 標準 の違いについて
     </h1>
   
 
@@ -100,94 +104,101 @@
       <div class="article-share">
         Last Update: 
         <a href="" class="article-date-single">
-  <time datetime="2021-09-04T11:00:00.000Z" itemprop="datePublished">2021-09-04</time>
+  <time datetime="2022-11-05T15:00:00.000Z" itemprop="datePublished">2022-11-06</time>
 </a>
         
         
-        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+f24b4ecc-f5b3-545f-95b5-9dffec48c0fe%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%3C%E7%AC%AC+3+%E5%BC%BE%3E+Azure+Monitoring+%26+Integration+%E3%83%81%E3%83%BC%E3%83%A0%E3%81%AE%E3%82%88%E3%81%86%E3%81%99%E3%80%81%E9%9B%B0%E5%9B%B2%E6%B0%97%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2Fgeneral%2FOurTeamAtmosphere%2F%29%0A*+Content+Source%3A+%5Barticles%2Fgeneral%2FOurTeamAtmosphere.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2Fgeneral%2FOurTeamAtmosphere.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+b0740ce7-7c39-599c-ae2a-f4f173e7f445%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BApplication+Insights+%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88+%E3%81%AE+%E3%82%AF%E3%83%A9%E3%82%B7%E3%83%83%E3%82%AF+%E3%81%A8+%E6%A8%99%E6%BA%96+%E3%81%AE%E9%81%95%E3%81%84%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FapplicationInsights%2FaboutAvailabilityTest%2F%29%0A*+Content+Source%3A+%5Barticles%2FapplicationInsights%2FaboutAvailabilityTest.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FapplicationInsights%2FaboutAvailabilityTest.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/" data-id="claivn8if001z0mo41l5p0j03" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/aboutAvailabilityTest/" data-id="claivn8hy00100mo459o44r9h" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは！Azure Monitoring &amp; Integration チームの猪股です。<br>現在わたしたちのチームでは、一緒に Azure サポートを盛り上げていってくださるメンバーを絶賛大募集中です！！<br>今日は、私たちのチームの普段のようすや雰囲気について紹介いたします。</p>
+        <p>こんにちは、Azure Monitoring サポート チームの佐々木です。</p>
+<p>今回は、Application Insights に用意されている以下の可用性テスト２種類について特徴と使い分けをご案内させていただきます。</p>
+<p><img src="/blog/applicationInsights/aboutAvailabilityTest/1.png"></p>
+<ul>
+<li><ol>
+<li>クラシック テスト</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>標準テスト</li>
+</ol>
+</li>
+</ul>
 <span id="more"></span>
 
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
-<li><a href="#%E3%83%81%E3%83%BC%E3%83%A0%E3%81%AE%E3%82%88%E3%81%86%E3%81%99%E3%80%81%E9%9B%B0%E5%9B%B2%E6%B0%97">チームのようす、雰囲気</a></li>
-<li><a href="#Voices-from-our-team">Voices from our team</a></li>
-<li><a href="#%E3%81%93%E3%81%AE%E3%83%81%E3%83%BC%E3%83%A0%E3%82%92%E9%81%B8%E3%82%93%E3%81%A0%E7%90%86%E7%94%B1%E3%81%AF%EF%BC%9F%EF%BC%9F">このチームを選んだ理由は？？</a></li>
-<li><a href="#%EF%BD%9E-%E3%81%82%E3%82%8B%E6%97%A5%E3%81%AE%E3%83%81%E3%83%A3%E3%83%83%E3%83%88%E3%82%88%E3%82%8A-%EF%BD%9E">～ ある日のチャットより ～</a></li>
-<li><a href="#%E3%83%81%E3%83%BC%E3%83%A0-%E3%83%A1%E3%83%B3%E3%83%90%E3%83%BC%E3%81%AE%E6%8A%80%E8%A1%93%E5%BF%97%E5%90%91%E3%82%A8%E3%83%AA%E3%82%A2">チーム メンバーの技術志向エリア</a></li>
+<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
+<li><a href="#%E3%82%AF%E3%83%A9%E3%82%B7%E3%83%83%E3%82%AF%E3%83%86%E3%82%B9%E3%83%88">クラシック テスト</a></li>
+<li><a href="#%E6%A8%99%E6%BA%96%E3%83%86%E3%82%B9%E3%83%88">標準テスト</a></li>
+<li><a href="#%E3%82%AF%E3%83%A9%E3%82%B7%E3%83%83%E3%82%AF%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E4%BB%8A%E5%BE%8C%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">クラシック テストの今後について</a></li>
+<li><a href="#%E9%96%89%E3%81%98%E3%82%89%E3%82%8C%E3%81%9F%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%81%B8%E3%81%AE%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">閉じられたネットワークへの可用性テストについて</a></li>
+<li><a href="#%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E3%83%86%E3%82%B9%E3%83%88%E6%96%B9%E6%B3%95%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">可用性テストのテスト方法について</a></li>
+<li><a href="#%E3%81%BE%E3%81%A8%E3%82%81">まとめ</a></li>
 </ul>
-<h2 id="チームのようす、雰囲気"><a href="#チームのようす、雰囲気" class="headerlink" title="チームのようす、雰囲気"></a>チームのようす、雰囲気</h2><p>現在はそれぞれ自宅からフル リモートで仕事しています。わたしも入社して 1 年 4 ヶ月経ちますが、入社してから 2 回 (入社日含む。面接ですら全部オンラインでした) しかオフィスに行ったことないです。ほとんど Teams のチャットや電話で対応できますし、そのような環境が整っており、またチームみんなからのサポートで仕事を進めることができます。</p>
-<p><strong>お陰様で Azure 事業は好調であり、チームも今伸び盛りの状況で更に一緒に Azure Monitoring &amp; Integration サポートを盛り上げていける仲間を募集しています !!!</strong></p>
-<h2 id="Voices-from-our-team"><a href="#Voices-from-our-team" class="headerlink" title="Voices from our team"></a><em><strong>Voices from our team</strong></em></h2><blockquote>
-<p>和気藹々とした雰囲気。 困ったこと、相談事があれば、みんなが積極的に助けてくれる。</p>
-</blockquote>
-<blockquote>
-<p>仲良く、冗談を言い合いながらチームみんなで課題に向かっていくよい雰囲気</p>
-</blockquote>
-<blockquote>
-<p>入社歴が短い人が半数以上で、和気あいあいとやっている雰囲気 。冷たい感じは全くしない 。アットホームな職場です＾＾</p>
-</blockquote>
-<blockquote>
-<p>みんな協力的で、困ったことがあったらすぐにアドバイスをもらえる。</p>
-</blockquote>
-<blockquote>
-<p>あだ名で呼び合っていたり、業務外でのチャットなどでの交流が多かったりと、とても仲の良い雰囲気</p>
-</blockquote>
-<blockquote>
-<p>お問い合わせ対応について私から相談すること、相談をチーム宛にいただく事が多いのですが、 普段から業務内外問わず会話が多く皆さん優しいのでお話しやすいです。 ワーク フロム ホームが一般的な時代になっていますが、仲がいいので疎外感等感じる事はないです。</p>
-</blockquote>
-<blockquote>
-<p>オープン わきあいあい！</p>
-</blockquote>
-<blockquote>
-<p>意見交換しやすい雰囲気です。さりげなく質問することができて、お互いに助け合う雰囲気です。</p>
-</blockquote>
-<blockquote>
-<p>オープン、フレンドリーでカジュアル。みんなでワイワイざっくばらんに盛り上がる感じ</p>
-</blockquote>
-<h2 id="このチームを選んだ理由は？？"><a href="#このチームを選んだ理由は？？" class="headerlink" title="このチームを選んだ理由は？？"></a><em><strong>このチームを選んだ理由は？？</strong></em></h2><blockquote>
-<p>Azure Autmation に興味を持ったため。</p>
-</blockquote>
-<blockquote>
-<p>Monitoring では Azure の様々なサービスの監視を機能なので、Azure を総合的に学ぶのにはとてもいいポジションだと思いました。</p>
-</blockquote>
-<blockquote>
-<p>ログを扱うという事でジャンル問わず様々な製品に関連した業務ができると思ったので。</p>
-</blockquote>
-<blockquote>
-<p>Azure を Deep に身に着けるためです。</p>
-</blockquote>
-<blockquote>
-<p>zabbix とか触っていてサーバー運用していたので、技術エリア的に近いと思ったので</p>
-</blockquote>
-<h2 id="～-ある日のチャットより-～"><a href="#～-ある日のチャットより-～" class="headerlink" title="～ ある日のチャットより ～"></a><em><strong>～ ある日のチャットより ～</strong></em></h2><p>Teams のチャットで困りごとや相談事項、雑談などみなそれぞれのペースで気楽にコミュニケーションとっています :-)<br><img src="/blog/general/OurTeamAtmosphere/chat.png"></p>
-<h2 id="チーム-メンバーの技術志向エリア"><a href="#チーム-メンバーの技術志向エリア" class="headerlink" title="チーム メンバーの技術志向エリア"></a><em><strong>チーム メンバーの技術志向エリア</strong></em></h2><p>どんな Tech が好きか、チーム メンバーに聞いてみました！みんないろんな方向性に興味のベクトルがある感じです☆<br><img src="/blog/general/OurTeamAtmosphere/techarea.png"></p>
-<!--
-> プログラミング。サービス、技術の動作原理を調べること。
-> マイコン大好き
-> 基本的にコンピューターを使うような技術は好き。 Azure のアーキテクチャーを紐解いていくことも好き。
-> 前職では Kotlin にハマってました。
-> 歯車が動くような、メカニックなゴツゴツした機械が動くようなハードよりの技術が好きです。 動画認識の技術に注目しています。（手話解析につながりそう）
-> 仮想化
-> Azure のサービスではアプリケーションの実装により近い Application Insights や App Service 他は PowerShell や shell などのコマンドライン操作をより快適にする記述方法やツールの使用方法
-> 自動化できる技術なら何でも好きです。
-> スクリプトのコーディング　ネットワーク関連のトラシュー
--->
-
-<h2 id="関連記事"><a href="#関連記事" class="headerlink" title="関連記事"></a>関連記事</h2><p>Azure Monitoring &amp; Integration チームの紹介記事は第 1 弾から第 5 弾まで公開しています。<br>以下のリンクから、その他の記事も是非一緒にご覧ください！</p>
+<h2 id="はじめに"><a href="#はじめに" class="headerlink" title="はじめに"></a>はじめに</h2><h2 id="クラシックテスト"><a href="#クラシックテスト" class="headerlink" title="クラシックテスト"></a>クラシックテスト</h2><p>クラシック テストとは、以下ドキュメントにて案内されている機能を示します。</p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/monitor-web-app-availability">URL ping テストを使用して可用性を監視する - Azure Monitor | Microsoft Learn</a></p>
+<p>パブリック DNS レコードが存在し、ファイアウォールなどを使用してパブリックからのアクセスを制限した環境に対しては、サービス タグまたはテストの送信元のサーバーの IP アドレスを許可してテストを行うことができます。</p>
+<p>可用性テストの送信元のサーバーの IP アドレスはサービス タグ “ApplicationInsightsAvailability” にて定義しております。このサービス タグをネットワーク セキュリティ グループなどで受信の許可を設定して、可用性テストを実施できます。<br><img src="../aboutPrivateAvailabilityTest/1.png"></p>
+<p>または、リクエストを送信するテストの場所ごとの IP アドレスに対して受信の許可を設定し、テストを行うことも可能でございます。<br>テストの場所ごとの IP アドレスは以下の弊社公開情報にて提供しております。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/app/ip-addresses#addresses-grouped-by-location-azure-public-cloud">場所ごとにグループ化されたアドレス (Azure パブリック クラウド)</a></p>
+<h3 id="クラシック-テスト-の機能"><a href="#クラシック-テスト-の機能" class="headerlink" title="クラシック テスト の機能"></a>クラシック テスト の機能</h3><p><img src="/blog/applicationInsights/aboutAvailabilityTest/2.png"></p>
 <ul>
-<li><a href="https://jpazmon-integ.github.io/blog/general/AboutMonandIntg/">&lt;第 1 弾&gt; Azure Monitoring &amp; Integration チームについて</a></li>
-<li><a href="https://jpazmon-integ.github.io/blog/general/HowWeWorkRemotely/">&lt;第 2 弾&gt; Azure Monitoring &amp; Integration チームについて リモート ワークでの働き方</a></li>
-<li><a href="https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/">&lt;第 3 弾&gt; Azure Monitoring &amp; Integration チームのようす、雰囲気について</a></li>
-<li><a href="https://jpazmon-integ.github.io/blog/general/TeamIntroductionfromInternship/">&lt;第 4 弾&gt; インターン生から見た Azure Monitoring &amp; Integration チーム</a></li>
-<li><a href="https://jpazmon-integ.github.io/blog/general/JoinUs/">&lt;第 5 弾&gt; Azure Monitoring &amp; Integration チームについて～一緒に働く仲間を募集しています～</a></li>
+<li>ICMP ではなく、HTTP リクエストを利用し、エンドポイントが応答するかどうかを検証します。</li>
+<li>CSSの取得先など、Web ページが依存する Web ページの可用性解析(従属要求の解析)</li>
+<li>最大3回までのリクエストが失敗した際の再試行</li>
+<li>リクエスト元ロケーションの指定</li>
+<li>成功時の条件指定<ul>
+<li>応答ステータス</li>
+<li>タイムアウト秒数</li>
+<li>レスポンスボディの一致(コンテンツの一致) ※日本語非対応</li>
 </ul>
-<p>以上、Monitoring &amp; Integration チーム紹介 Blog の第 3 弾でした！</p>
+</li>
+</ul>
+<p>[参考情報]<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/monitor-web-app-availability">URL ping テストを使用して可用性を監視する - Azure Monitor | Microsoft Learn</a></p>
+<h2 id="標準テスト"><a href="#標準テスト" class="headerlink" title="標準テスト"></a>標準テスト</h2><p>標準テスト とは、以下ドキュメントにて案内されている機能を示します。</p>
+<p><img src="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability-standard-tests" alt="可用性の標準テスト - Azure Monitor Application Insights - Azure Monitor | Microsoft Learn"></p>
+<p>これは 2021年7月頃に追加された機能であり、同時に以前から存在していた可用性テストは、クラシック テスト と呼ばれる様になりました。</p>
+<h3 id="標準テスト-の機能"><a href="#標準テスト-の機能" class="headerlink" title="標準テスト の機能"></a>標準テスト の機能</h3><p><img src="/blog/applicationInsights/aboutAvailabilityTest/3.png"><br>クラシック テストの機能と比較し、<em><strong>追加されている機能</strong></em>がございます。<br>そのため、クラシック テストよりも多くのシチュエーションに対応する事が可能です。</p>
+<ul>
+<li>ICMP ではなく、HTTP リクエストを利用し、エンドポイントが応答するかどうかを検証します。</li>
+<li>CSSの取得先など、Web ページが依存する Web ページの可用性解析(従属要求の解析)</li>
+<li>最大3回までのリクエストが失敗した際の再試行</li>
+<li><em><strong>SSL 証明書の有効性解析</strong></em><ul>
+<li><em><strong>発行者が異なる証明書ではないか等</strong></em></li>
+<li><em><strong>証明書の有効期間が切れていないか、残り日数〇日未満ではないか</strong></em></li>
+</ul>
+</li>
+<li><em><strong>HTTP リクエストのメソッド指定</strong></em></li>
+<li><em><strong>HTTP リクエストのヘッダー指定</strong></em></li>
+<li>リクエスト元ロケーションの指定</li>
+<li>成功時の条件指定<ul>
+<li>応答ステータス<ul>
+<li>400未満を全て成功にするオプション</li>
+</ul>
+</li>
+<li>タイムアウト秒数</li>
+<li>レスポンスボディの一致(コンテンツの一致) <ul>
+<li><em><strong>日本語対応</strong></em></li>
+<li><em><strong>大文字、小文字の区別オプション</strong></em></li>
+<li><em><strong>部分一致オプション</strong></em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="クラシックテストの今後について"><a href="#クラシックテストの今後について" class="headerlink" title="クラシックテストの今後について"></a>クラシックテストの今後について</h2><p>現時点(2022/11/6)では、クラシック テストの廃止予定はなく、引き続きご利用いただく事が可能ですが、<br>追加された機能と、それにより対応可能なシチュエーションが多数増えておりますため、新しく作成いただく場合には標準テストをご利用いただく事を推奨します。</p>
+<h2 id="閉じられたネットワークへの可用性テストについて"><a href="#閉じられたネットワークへの可用性テストについて" class="headerlink" title="閉じられたネットワークへの可用性テストについて"></a>閉じられたネットワークへの可用性テストについて</h2><p>インターネットに公開されている必要のある、クラシック テスト や 標準テストでは対応する事ができません。<br>Azure Function を用いたカスタム可用性テストを利用した方法が公開ドキュメント、サポートブログにて案内されておりますため、こちらをご確認いただけますと幸いです。</p>
+<p>[参考]<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability-azure-functions">Azure Functions を使用してカスタム可用性テストを作成して実行する - Azure Monitor | Microsoft Learn</a><br><a href="https://jpazmon-integ.github.io/blog/applicationInsights/aboutPrivateAvailabilityTest/">プライベート環境への可用性テスト | Japan Azure Monitoring Support Blog (jpazmon-integ.github.io)</a></p>
+<h2 id="可用性テストのテスト方法について"><a href="#可用性テストのテスト方法について" class="headerlink" title="可用性テストのテスト方法について"></a>可用性テストのテスト方法について</h2><p>可用性テストで網羅可能なシチュエーションが多数あるものの、お客様がご希望される監視要件時の動作を検証される場合、<br>弊社外にて用意されているサンプル ページを利用する事で検証可能と思われます。<br>例えば、SSL 有効性のテスト環境や、ステータスコードご構築が難しい場合は、下記のようなサイトをご利用いただく事が可能かと存じます。</p>
+<ul>
+<li>ステータス コード別<br><a target="_blank" rel="noopener" href="https://ozuma.sakura.ne.jp/httpstatus/">Test pages of HTTP Status code (sakura.ne.jp)</a></li>
+<li>SSL ステータス別<br><a target="_blank" rel="noopener" href="https://badssl.com/">badssl.com</a></li>
+</ul>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>本記事では、クラシックと標準の可用性テストついてご案内いたしましたが、ご理解いただけましたでしょうか。</p>
+<p>本記事が少しでもお役に立ちましたら幸いです。<br>最後までお読みいただきありがとうございました！</p>
 
       
       
@@ -201,10 +212,10 @@
     <footer class="article-footer">
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li></ul>
 
         
-        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/general/OurTeamAtmosphere.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/applicationInsights/aboutAvailabilityTest.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
         
     </footer>
   </div>
@@ -212,19 +223,19 @@
     
 <nav id="article-nav">
   
-    <a href="../TeamIntroductionfromInternship/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="../../AzureMonitorEssential/HowLogAlertZeroRecordFired/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">次の記事</strong>
       <div class="article-nav-title">
         
-          &lt;第 4 弾&gt; インターン生から見た Azure Monitoring &amp; Integration チーム
+          ログ アラート ルールの 0 件検知とクエリの時間の範囲のオーバーライドについて
         
       </div>
     </a>
   
   
-    <a href="../HowWeWorkRemotely/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../../AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前の記事</strong>
-      <div class="article-nav-title">&lt;第 2 弾&gt; Azure Monitoring &amp; Integration チームについて ~リモート ワークでの働き方~</div>
+      <div class="article-nav-title">Migrate to Azure Storage lifecycle management from diagnostic settings storage retention について</div>
     </a>
   
 </nav>
@@ -247,7 +258,7 @@
           </li>
         
           <li>
-            <a href="../../applicationInsights/aboutAvailabilityTest/">Application Insights 可用性テスト の クラシック と 標準 の違いについて</a>
+            <a href="">Application Insights 可用性テスト の クラシック と 標準 の違いについて</a>
           </li>
         
           <li>
