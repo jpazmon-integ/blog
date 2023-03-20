@@ -1,5 +1,5 @@
 ---
-title: Azure Monitor Agent for Linux で取得可能なパフォーマンスカウンターの一覧
+title: Azure Monitor Agent for Linux で取得可能なパフォーマンス カウンターの一覧
 date: 2023-03-22 09:00:00
 tags:
   - Azure Monitor Agent
@@ -7,23 +7,23 @@ tags:
 ---
 
 こんにちは、Azure Monitor サポートの三輪です。
-今回は Azure Monitor エージェント for Linux にて取得可能なパフォーマンスカウンターの一覧をご案内します。
+今回は Azure Monitor エージェント for Linux にて取得可能なパフォーマンス カウンターの一覧をご案内します。
 
 
-Azure Monitor エージェントでは、Windows/Linux 各 OS のパフォーマンスデータを取得することが可能です。
+Azure Monitor エージェントでは、Windows/Linux 各 OS のパフォーマンス データを取得することが可能です。
 
 - Azure Monitor エージェントを使用して仮想マシンからイベントとパフォーマンス カウンターを収集する
 https://learn.microsoft.com/ja-JP/azure/azure-monitor/agents/data-collection-rule-azure-monitor-agent?tabs=portal
 
-Azure Monitor エージェント for Windows では、Windows OS 上に存在するパフォーマンスカウンターであれば取得が可能です。
-一方で、Azure Monitor エージェント for Linux では、特定のパフォーマンスカウンターのみが取得可能となっています。
-また、Azure Monitor エージェント for Linux にて取得可能なパフォーマンスカウンターは、以下の Log Analytics エージェントで取得可能であったパフォーマンスカウンターと一部異なる部分がありますため、本記事にてご案内を致します。
+Azure Monitor エージェント for Windows では、Windows OS 上に存在するパフォーマンス カウンターであれば取得が可能です。
+一方で、Azure Monitor エージェント for Linux では、特定のパフォーマンス カウンターのみが取得可能となっています。
+また、Azure Monitor エージェント for Linux にて取得可能なパフォーマンス カウンターは、以下の Log Analytics エージェントで取得可能であったパフォーマンス カウンターと一部異なる部分がありますため、本記事にてご案内を致します。
 
 - Log Analytics エージェントを使用して Windows と Linux のパフォーマンス データ ソースを収集する
 https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-sources-performance-counters
 
 
-Azure Monitor エージェント for Linux にて取得可能なパフォーマンスカウンター：
+Azure Monitor エージェント for Linux にて取得可能なパフォーマンス カウンター：
 --
 
 | ObjectName | CounterName | 
