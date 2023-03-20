@@ -9,6 +9,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/</loc>
+    
+    <lastmod>2023-03-20</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/general/IntroduceOurBlog/</loc>
     
     <lastmod>2023-03-20</lastmod>
@@ -17,20 +24,6 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/general/JoinUs/</loc>
-    
-    <lastmod>2023-03-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/</loc>
-    
-    <lastmod>2023-03-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/gettingExeTimeOfJobForSpecificPeriodAutomation/</loc>
     
     <lastmod>2023-03-20</lastmod>
     
@@ -65,21 +58,14 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/gettingExeTimeOfJobForSpecificPeriodAutomation/</loc>
+    
+    <lastmod>2023-03-20</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/MigrateRunAsAccountsToManagedIdentity/</loc>
-    
-    <lastmod>2023-03-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/Automation-Update-AutomationRunAsCredential/</loc>
-    
-    <lastmod>2023-03-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/DifferenceRunAsAccountAndManagedID/</loc>
     
     <lastmod>2023-03-20</lastmod>
     
@@ -115,6 +101,20 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/</loc>
+    
+    <lastmod>2023-03-20</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/Automation-Update-AutomationRunAsCredential/</loc>
+    
+    <lastmod>2023-03-20</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/DifferenceRunAsAccountAndManagedID/</loc>
     
     <lastmod>2023-03-20</lastmod>
     
@@ -219,14 +219,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/Azure_Monitor_VM_insights_using_AMA/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/</loc>
     
     <lastmod>2023-03-20</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/Azure_Monitor_VM_insights_using_AMA/</loc>
     
     <lastmod>2023-03-20</lastmod>
     
@@ -255,13 +255,6 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AMALinux_Perf/</loc>
-    
-    <lastmod>2023-03-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CustomLog/</loc>
     
     <lastmod>2023-03-20</lastmod>
     
