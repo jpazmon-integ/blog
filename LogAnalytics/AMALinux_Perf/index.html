@@ -4,26 +4,21 @@
   <meta charset="utf-8">
   
   
-  <title>Log Analytics ワークスペースの保有期間の変更 | Japan Azure Monitoring Support Blog</title>
+  <title>Azure Monitor Agent for Linux で取得可能なパフォーマンス カウンターの一覧 | Japan Azure Monitoring Support Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="こんにちは！ Azure Monitoring &amp; Integration サポート チームの北村です。 今回は Log Analytics ワークスペースのデータ保有期間の変更方法をご案内いたします。Azure portal では ワークスペースの保有期間は、30、31、60、90、120、180、270、365、550、および 730 日 しか設定できません。そのため、前述した日数以外">
+  <meta name="description" content="こんにちは、Azure Monitor サポートの三輪です。今回は Azure Monitor エージェント for Linux にて取得可能なパフォーマンス カウンターの一覧をご案内します。 Azure Monitor エージェントでは、Windows&#x2F;Linux 各 OS のパフォーマンス データを取得することが可能です。  Azure Monitor エージェントを使用して仮想マシンからイベ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Log Analytics ワークスペースの保有期間の変更">
-<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToChangeLAWSDataRetentionPeriod/index.html">
+<meta property="og:title" content="Azure Monitor Agent for Linux で取得可能なパフォーマンス カウンターの一覧">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMALinux_Perf/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは！ Azure Monitoring &amp; Integration サポート チームの北村です。 今回は Log Analytics ワークスペースのデータ保有期間の変更方法をご案内いたします。Azure portal では ワークスペースの保有期間は、30、31、60、90、120、180、270、365、550、および 730 日 しか設定できません。そのため、前述した日数以外">
+<meta property="og:description" content="こんにちは、Azure Monitor サポートの三輪です。今回は Azure Monitor エージェント for Linux にて取得可能なパフォーマンス カウンターの一覧をご案内します。 Azure Monitor エージェントでは、Windows&#x2F;Linux 各 OS のパフォーマンス データを取得することが可能です。  Azure Monitor エージェントを使用して仮想マシンからイベ">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToChangeLAWSDataRetentionPeriod/image01.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToChangeLAWSDataRetentionPeriod/image02.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToChangeLAWSDataRetentionPeriod/image03.png">
-<meta property="article:published_time" content="2022-04-03T15:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-20T13:38:28.292Z">
+<meta property="article:published_time" content="2023-03-20T15:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-20T13:38:28.268Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="How-To">
-<meta property="article:tag" content="Tips">
+<meta property="article:tag" content="Azure Monitor Agent">
 <meta property="article:tag" content="Log Analytics">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToChangeLAWSDataRetentionPeriod/image01.png">
   
     <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
   
@@ -85,7 +80,7 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-LogAnalytics/HowToChangeLAWSDataRetentionPeriod" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-LogAnalytics/AMALinux_Perf" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -94,7 +89,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Log Analytics ワークスペースの保有期間の変更
+      Azure Monitor Agent for Linux で取得可能なパフォーマンス カウンターの一覧
     </h1>
   
 
@@ -102,42 +97,182 @@
       <div class="article-share">
         Last Update: 
         <a href="" class="article-date-single">
-  <time datetime="2022-04-03T15:00:00.000Z" itemprop="datePublished">2022-04-04</time>
+  <time datetime="2023-03-20T15:00:00.000Z" itemprop="datePublished">2023-03-21</time>
 </a>
         
         
-        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+cf5c43ad-b2eb-50a9-8e98-d1b594c6494c%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BLog+Analytics+%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AE%E4%BF%9D%E6%9C%89%E6%9C%9F%E9%96%93%E3%81%AE%E5%A4%89%E6%9B%B4%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FHowToChangeLAWSDataRetentionPeriod%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FHowToChangeLAWSDataRetentionPeriod.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FHowToChangeLAWSDataRetentionPeriod.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+c323279f-f738-5bd8-bfcb-fd5fde979e30%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Monitor+Agent+for+Linux+%E3%81%A7%E5%8F%96%E5%BE%97%E5%8F%AF%E8%83%BD%E3%81%AA%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9+%E3%82%AB%E3%82%A6%E3%83%B3%E3%82%BF%E3%83%BC%E3%81%AE%E4%B8%80%E8%A6%A7%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FAMALinux_Perf%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FAMALinux_Perf.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FAMALinux_Perf.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToChangeLAWSDataRetentionPeriod/" data-id="clfgvh9si000k0nuna6o1avnf" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/AMALinux_Perf/" data-id="clfgvh9sc000a0nun6k044hzr" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは！ Azure Monitoring &amp; Integration サポート チームの北村です。</p>
-<p>今回は Log Analytics ワークスペースのデータ保有期間の変更方法をご案内いたします。<br>Azure portal では ワークスペースの保有期間は、30、31、60、90、120、180、270、365、550、および 730 日 しか設定できません。そのため、前述した日数以外の値を設定する場合は、Azure PowerShell や Azure CLI で設定する必要があります。<br>今回は、Azure portal 以外での設定変更方法として、Azure PowerShell と Azure CLI コマンドの例をご紹介します。</p>
-<span id="more"></span>
-
-<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
-<li>Log Analytics ワークスペースの保有期間</li>
-<li>Azure CLI コマンドを利用した設定</li>
-<li>Azure PowerShell を利用した設定</li>
-<li>まとめ</li>
-</ul>
-<h2 id="Log-Analytics-ワークスペースの保有期間"><a href="#Log-Analytics-ワークスペースの保有期間" class="headerlink" title="Log Analytics ワークスペースの保有期間"></a>Log Analytics ワークスペースの保有期間</h2><p>まず、Log Analytics ワークスペースの保有期間は、30 日から 730 日まで設定できます。<br>730 日間を超えてログ データを保持する場合は、Azure ストーレジ アカウントや Azure イベント ハブにエクスポートすることを<br>ご検討ください。</p>
-<p>– Azure Monitor ログで使用量とコストを管理する - [データ保持期間の変更]<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/manage-cost-storage#change-the-data-retention-period">https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/manage-cost-storage#change-the-data-retention-period</a></p>
-<h2 id="Azure-CLI-コマンドを利用した設定"><a href="#Azure-CLI-コマンドを利用した設定" class="headerlink" title="Azure CLI コマンドを利用した設定"></a>Azure CLI コマンドを利用した設定</h2><p><code>az monitor log-analytics workspace update</code> コマンドは、Log Analytics ワークスペースの設定を更新するコマンドです。<br>Log Analytics ワークスペース名、ワークスペースが属するリソース グループ名、retention-time に 30 ～ 730 の範囲で<br>任意の保持期間日数を指定します。</p>
-<p><code>az monitor log-analytics workspace update --resource-group &lt;リソースグループ名&gt; --workspace-name &lt;ワークスペース名&gt; --retention-time &lt;保有期間&gt;</code><br><img src="/blog/LogAnalytics/HowToChangeLAWSDataRetentionPeriod/image01.png"></p>
-<p>上記コマンドで変更した内容は、Azure portal から確認することもできます。<br>Log Analytics ワークスペース - [使用量と推定コスト] - [データ保有期間] をご覧ください。<br><img src="/blog/LogAnalytics/HowToChangeLAWSDataRetentionPeriod/image02.png"></p>
-<p>&lt;ご参考&gt;<br>– az monitor log-analytics workspace update<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/cli/azure/monitor/log-analytics/workspace?view=azure-cli-latest#az-monitor-log-analytics-workspace-update">https://docs.microsoft.com/ja-jp/cli/azure/monitor/log-analytics/workspace?view=azure-cli-latest#az-monitor-log-analytics-workspace-update</a><br>– az monitor log-analytics workspace show<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/cli/azure/monitor/log-analytics/workspace?view=azure-cli-latest#az-monitor-log-analytics-workspace-show">https://docs.microsoft.com/ja-jp/cli/azure/monitor/log-analytics/workspace?view=azure-cli-latest#az-monitor-log-analytics-workspace-show</a><br>※ 上記コマンドでは、Log Analytics ワークスペースの設定値を確認することができます。</p>
-<h2 id="Azure-PowerShell-を使用した設定"><a href="#Azure-PowerShell-を使用した設定" class="headerlink" title="Azure PowerShell を使用した設定"></a>Azure PowerShell を使用した設定</h2><p>前述の Azure CLI コマンドと同様、Log Analytics ワークスペースの設定を更新するコマンドを使用します。<br>Log Analytics ワークスペース名、ワークスペースが属するリソース グループ名、RetentionInDays に 30 ～ 730 の範囲で<br>任意の保持期間日数を指定します。<br><code>Set-AzOperationalInsightsWorkspace -ResourceGroupName &quot;&lt;リソースグループ名&gt;&quot; -Name &quot;&lt;ワークスペース名&gt;&quot; -RetentionInDays &lt;保有期間&gt;</code><br><img src="/blog/LogAnalytics/HowToChangeLAWSDataRetentionPeriod/image03.png"></p>
-<p>&lt;ご参考&gt;<br>下記弊社公開情報は、Az PowerShell 7.2.0 の情報でございます。お客様がご利用されているバージョンに沿った公開情報を<br>ご覧ください。<br>– Set-AzOperationalInsightsWorkspace<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/powershell/module/az.operationalinsights/set-azoperationalinsightsworkspace?view=azps-7.2.0">https://docs.microsoft.com/en-us/powershell/module/az.operationalinsights/set-azoperationalinsightsworkspace?view=azps-7.2.0</a><br>– Get-AzOperationalInsightsWorkspace<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/powershell/module/az.operationalinsights/get-azoperationalinsightsworkspace?view=azps-7.2.0">https://docs.microsoft.com/en-us/powershell/module/az.operationalinsights/get-azoperationalinsightsworkspace?view=azps-7.2.0</a><br>※ 上記コマンドでは、Log Analytics  ワークスペースの設定値を確認することができます。</p>
-<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>本記事では、以下についてご案内いたしましたが、ご理解いただけましたでしょうか。</p>
+        <p>こんにちは、Azure Monitor サポートの三輪です。<br>今回は Azure Monitor エージェント for Linux にて取得可能なパフォーマンス カウンターの一覧をご案内します。</p>
+<p>Azure Monitor エージェントでは、Windows/Linux 各 OS のパフォーマンス データを取得することが可能です。</p>
 <ul>
-<li>Log Analytics ワークスペースの保有期間</li>
-<li>Azure CLI コマンドを利用した設定</li>
-<li>Azure PowerShellを利用した設定</li>
+<li>Azure Monitor エージェントを使用して仮想マシンからイベントとパフォーマンス カウンターを収集する<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-JP/azure/azure-monitor/agents/data-collection-rule-azure-monitor-agent?tabs=portal">https://learn.microsoft.com/ja-JP/azure/azure-monitor/agents/data-collection-rule-azure-monitor-agent?tabs=portal</a></li>
 </ul>
-<p>本記事が少しでもお役に立ちましたら幸いです。<br>以上、Log Analytics  ワークスペース の保有期間の変更方法についてお伝えしました。<br>最後までお読みいただきありがとうございました！</p>
+<p>Azure Monitor エージェント for Windows では、Windows OS 上に存在するパフォーマンス カウンターであれば取得が可能です。<br>一方で、Azure Monitor エージェント for Linux では、特定のパフォーマンス カウンターのみが取得可能となっています。<br>また、Azure Monitor エージェント for Linux にて取得可能なパフォーマンス カウンターは、以下の Log Analytics エージェントで取得可能であったパフォーマンス カウンターと一部異なる部分がありますため、本記事にてご案内を致します。</p>
+<ul>
+<li>Log Analytics エージェントを使用して Windows と Linux のパフォーマンス データ ソースを収集する<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-sources-performance-counters">https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-sources-performance-counters</a></li>
+</ul>
+<h2 id="Azure-Monitor-エージェント-for-Linux-にて取得可能なパフォーマンス-カウンター："><a href="#Azure-Monitor-エージェント-for-Linux-にて取得可能なパフォーマンス-カウンター：" class="headerlink" title="Azure Monitor エージェント for Linux にて取得可能なパフォーマンス カウンター："></a>Azure Monitor エージェント for Linux にて取得可能なパフォーマンス カウンター：</h2><table>
+<thead>
+<tr>
+<th align="left">ObjectName</th>
+<th align="center">CounterName</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Logical Disk</td>
+<td align="center">Logical Disk Bytes/sec</td>
+</tr>
+<tr>
+<td align="left">Logical Disk</td>
+<td align="center">Free Megabytes</td>
+</tr>
+<tr>
+<td align="left">Logical Disk</td>
+<td align="center">Disk Writes/sec</td>
+</tr>
+<tr>
+<td align="left">Logical Disk</td>
+<td align="center">Disk Write Bytes/sec</td>
+</tr>
+<tr>
+<td align="left">Logical Disk</td>
+<td align="center">Disk Transfers/sec</td>
+</tr>
+<tr>
+<td align="left">Logical Disk</td>
+<td align="center">Disk Reads/sec</td>
+</tr>
+<tr>
+<td align="left">Logical Disk</td>
+<td align="center">Disk Read Bytes/sec</td>
+</tr>
+<tr>
+<td align="left">Logical Disk</td>
+<td align="center">% Used Space</td>
+</tr>
+<tr>
+<td align="left">Logical Disk</td>
+<td align="center">% Used Inodes</td>
+</tr>
+<tr>
+<td align="left">Logical Disk</td>
+<td align="center">% Free Space</td>
+</tr>
+<tr>
+<td align="left">Logical Disk</td>
+<td align="center">% Free Inodes</td>
+</tr>
+<tr>
+<td align="left">Memory</td>
+<td align="center">Used Memory MBytes</td>
+</tr>
+<tr>
+<td align="left">Memory</td>
+<td align="center">Used MBytes Swap Space</td>
+</tr>
+<tr>
+<td align="left">Memory</td>
+<td align="center">Pages/sec</td>
+</tr>
+<tr>
+<td align="left">Memory</td>
+<td align="center">Page Writes/sec</td>
+</tr>
+<tr>
+<td align="left">Memory</td>
+<td align="center">Page Reads/sec</td>
+</tr>
+<tr>
+<td align="left">Memory</td>
+<td align="center">Available MBytes Swap</td>
+</tr>
+<tr>
+<td align="left">Memory</td>
+<td align="center">Available MBytes Memory</td>
+</tr>
+<tr>
+<td align="left">Memory</td>
+<td align="center">% Used Swap Space</td>
+</tr>
+<tr>
+<td align="left">Memory</td>
+<td align="center">% Used Memory</td>
+</tr>
+<tr>
+<td align="left">Memory</td>
+<td align="center">% Available Swap Space</td>
+</tr>
+<tr>
+<td align="left">Memory</td>
+<td align="center">% Available Memory</td>
+</tr>
+<tr>
+<td align="left">Network</td>
+<td align="center">Total Tx Errors</td>
+</tr>
+<tr>
+<td align="left">Network</td>
+<td align="center">Total Rx Errors</td>
+</tr>
+<tr>
+<td align="left">Network</td>
+<td align="center">Total Packets Transmitted</td>
+</tr>
+<tr>
+<td align="left">Network</td>
+<td align="center">Total Packets Received</td>
+</tr>
+<tr>
+<td align="left">Network</td>
+<td align="center">Total Collisions</td>
+</tr>
+<tr>
+<td align="left">Network</td>
+<td align="center">Total Bytes Transmitted</td>
+</tr>
+<tr>
+<td align="left">Network</td>
+<td align="center">Total Bytes Received</td>
+</tr>
+<tr>
+<td align="left">Network</td>
+<td align="center">Total Bytes</td>
+</tr>
+<tr>
+<td align="left">Processor</td>
+<td align="center">% User Time</td>
+</tr>
+<tr>
+<td align="left">Processor</td>
+<td align="center">% Processor Time</td>
+</tr>
+<tr>
+<td align="left">Processor</td>
+<td align="center">% Privileged Time</td>
+</tr>
+<tr>
+<td align="left">Processor</td>
+<td align="center">% Nice Time</td>
+</tr>
+<tr>
+<td align="left">Processor</td>
+<td align="center">% IO Wait Time</td>
+</tr>
+<tr>
+<td align="left">Processor</td>
+<td align="center">% Interrupt Time</td>
+</tr>
+<tr>
+<td align="left">Processor</td>
+<td align="center">% Idle Time</td>
+</tr>
+</tbody></table>
 
       
       
@@ -151,10 +286,10 @@
     <footer class="article-footer">
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Agent/" rel="tag">Azure Monitor Agent</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li></ul>
 
         
-        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/HowToChangeLAWSDataRetentionPeriod.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/AMALinux_Perf.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
         
     </footer>
   </div>
@@ -162,19 +297,19 @@
     
 <nav id="article-nav">
   
-    <a href="../../applicationInsights/aboutCostOfAi/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="../AMA_CustomLog/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">次の記事</strong>
       <div class="article-nav-title">
         
-          Application Insights のログの料金について
+          Azure Monitor エージェントでカスタムログを取得する方法
         
       </div>
     </a>
   
   
-    <a href="../HowToCollectWindowsSecurityEvents/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../AMA_CustomLog/sampleJson/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前の記事</strong>
-      <div class="article-nav-title">Windows セキュリティ イベントログの収集</div>
+      <div class="article-nav-title"></div>
     </a>
   
 </nav>
@@ -197,7 +332,7 @@
           </li>
         
           <li>
-            <a href="../AMALinux_Perf/">Azure Monitor Agent for Linux で取得可能なパフォーマンス カウンターの一覧</a>
+            <a href="">Azure Monitor Agent for Linux で取得可能なパフォーマンス カウンターの一覧</a>
           </li>
         
           <li>
