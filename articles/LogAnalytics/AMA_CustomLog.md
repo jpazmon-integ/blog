@@ -240,7 +240,7 @@ B. Azure Monitor エージェントを再インストールする
 補足
 --
 上記手順利用した JSON ファイルは以下より入手が可能です。貴社環境やログの形状に合わせて変更いただければと存じます。
-[sampleJson.json](./AMA_CustomLog/sampleJson.json)
+[sampleJson.json](./AMA_CustomLog/sampleJson.json.txt)
 
 また、Linux OS 上で今回収集するログを、テストとしてテキスト ログに出力するコマンドは以下です。
 本手順をテストされる場合、以下のコマンドにて簡単に検証が可能です。
