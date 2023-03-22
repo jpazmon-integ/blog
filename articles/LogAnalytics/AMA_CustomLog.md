@@ -1,5 +1,5 @@
 ---
-title: Azure Monitor エージェントでカスタムログを取得する方法
+title: Azure Monitor エージェントでカスタム ログを取得する方法
 date: 2023-03-22 10:00:00
 tags:
   - Azure Monitor Agent
@@ -7,22 +7,22 @@ tags:
 ---
 
 こんにちは、Azure Monitor サポートの三輪です。
-今回は Azure Monitor エージェントにて任意のテキストログ (カスタムログ) を取得する方法についてご案内します。
+今回は Azure Monitor エージェントにて任意のテキスト ログ (カスタム ログ) を取得する方法についてご案内します。
 
 
-Azure Monitor エージェントでは、Windows/Linux 各 OS 上にあるテキストログを Log Analytics ワークスペースへ収集することが可能です。
+Azure Monitor エージェントでは、Windows/Linux 各 OS 上にあるテキスト ログを Log Analytics ワークスペースへ収集することが可能です。
 一方で、以下公開情報の手順が煩雑でわかりにくい、また REST API を用いており Azure ポータル上で作業が完結しない等の問題があることから、本記事にて改めて手順をご案内致します。
 
 - Azure Monitor エージェントを使用してテキスト ログを収集する
 https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-text-log?tabs=portal
 
 
-Azure Monitor エージェントを用いたカスタムログ収集手順
+Azure Monitor エージェントを用いたカスタム ログ収集手順
 ==
 
 本手順は以下の順序で作業を進めます。
 - [モニター] にてデータ収集エンドポイント (DCE) を作成
-- Log Analytics ワークスペースにてカスタムログテーブルを作成
+- Log Analytics ワークスペースにてカスタム ログ テーブルを作成
   - その際、同時にデータ収集ルール (DCR) を作成を行う
 - 作成された DCR を開き、必要な編集および VM リソースとの紐づけを行う
 
@@ -37,13 +37,13 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-collection
 
 ![](./AMA_CustomLog/AMACustomlog_01.png)
 
-2. データ収集エンドポイント (DCE) を任意の名前、リソースグループを指定して作成します。
+2. データ収集エンドポイント (DCE) を任意の名前、リソース グループを指定して作成します。
 この時、DCE を作成する宛先のリージョンと、ログを収集する予定の VM が存在しているリージョンは一致している必要があります。
 
 ![](./AMA_CustomLog/AMACustomlog_02.png)
 
 
-カスタムログテーブルを作成する
+カスタム ログ テーブルを作成する
 --
 
 - カスタム テーブルを作成する
@@ -59,18 +59,18 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/quick-create-workspac
    
 ![](./AMA_CustomLog/AMACustomlog_03.png)
 
-3. 任意のカスタムログ名を設定し、先ほど作成した DCE を選択します。
+3. 任意のカスタム ログ名を設定し、先ほど作成した DCE を選択します。
 また、[新しいデータ収集ルールの作成] を選択します。
 
 ![](./AMA_CustomLog/AMACustomlog_04.png)
 
-4. 任意の名前、リソースグループを指定して完了をクリックし、データ収集ルール (DCR) を作成します。次へ進みます。
+4. 任意の名前、リソース グループを指定して完了をクリックし、データ収集ルール (DCR) を作成します。次へ進みます。
 
 ![](./AMA_CustomLog/AMACustomlog_05.png)
 
-5. [スキーマと変換] にて、取得したいテキストファイルを JSON スキーマで定義したものをアップロードします。
+5. [スキーマと変換] にて、取得したいテキスト ファイルを JSON スキーマで定義したものをアップロードします。
 
-まず、前提として今回は、以下の様なテキストファイルを取得することを想定します。
+まず、前提として今回は、以下の様なテキスト ファイルを取得することを想定します。
 
 
 ```
@@ -95,7 +95,7 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/quick-create-workspac
 ]    
 ```
 
-上記 JSON をテキストファイルとして保存し、アップロードします。
+上記 JSON をテキスト ファイルとして保存し、アップロードします。
 
 6. [変換エディター] を選択します。
    
@@ -125,11 +125,11 @@ DCR を設定する
 
 1. [モニター] を開き、[データ収集ルール] より先ほど作成したデータ収集ルール (DCR) を選択します。
 
-2. [データソース] を開き、[追加] を選択します。
+2. [データ ソース] を開き、[追加] を選択します。
 
-3. [データソースの種類] にて [カスタム テキスト ログ] を選択します。
-[ファイル パターン] にて収集先のログファイルパスを指定します。
-今回は Linux OS 上のテキストログを取得することを想定し、以下のパスを入力します
+3. [データ ソースの種類] にて [カスタム テキスト ログ] を選択します。
+[ファイル パターン] にて収集先のログファイル パスを指定します。
+今回は Linux OS 上のテキスト ログを取得することを想定し、以下のパスを入力します
 ```
 /var/log/test.log
 ```
@@ -142,28 +142,28 @@ source| extend TimeGenerated = now()| parse RawData with * "Computer="HostName "
 
 ![](./AMA_CustomLog/AMACustomlog_08.png)
 
-4. [ターゲット] にて、テーブルを作成済みの対象の Log Analytics ワークスペースを選択し、[データソースの追加] を選択します。
+4. [ターゲット] にて、テーブルを作成済みの対象の Log Analytics ワークスペースを選択し、[データ ソースの追加] を選択します。
 
 ![](./AMA_CustomLog/AMACustomlog_09.png)
 
-これによって、データソースが更新されます。
+これによって、データ ソースが更新されます。
 
 ![](./AMA_CustomLog/AMACustomlog_10.png)
 
 5. 続いて、[リソース] を選択します。
 
-6. [追加] より、カスタムログを収集したい VM を選び、[適用] を選択します。
+6. [追加] より、カスタム ログを収集したい VM を選び、[適用] を選択します。
 このとき、データ収集エンドポイントとして、作成済の DCE を設定しておきます。
 また、この操作により、VM 側へ Azure Monitor Agent がインストールされます。
 
 ![](./AMA_CustomLog/AMACustomlog_11.png)
 
-この後、指定したパスへテキストログを出力していくと、ログが取得されます。
+この後、指定したパスへテキスト ログを出力していくと、ログが取得されます。
 
 ![](./AMA_CustomLog/AMACustomlog_12.png)
 
 なお、今回のサンプルでは、TimeGenerated 列はログがエージェントによって収集されたタイミングとなります。
-テキストログないの RawData 内の日時を、Log Analytics ワークスペース上の TimeGenerated 列としたいたい場合は、Transform のクエリを以下の様に指定し、ログから時刻を取得し、日付形式に変換の上、TimeGenerated 列として定義します。
+テキスト ログ内の RawData 内の日時を、Log Analytics ワークスペース上の TimeGenerated 列としたいたい場合は、Transform のクエリを以下の様に指定し、ログから時刻を取得し、日付形式に変換の上、TimeGenerated 列として定義します。
 ```
 source
 | extend TimeGenerated = todatetime(substring(RawData,0,28))
@@ -184,7 +184,7 @@ https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/todatetimefunc
 
 正常に収集されない場合
 --
-カスタムログを設定し、OS 上にログが出力された後、2 時間程度経過しないと Log Analytics ワークスペース上でクエリが出来ない場合があります。
+カスタム ログを設定し、OS 上にログが出力された後、2 時間程度経過しないと Log Analytics ワークスペース上でクエリが出来ない場合があります。
 ログを出力したまま、数時間お待ちいただき、クエリをお試し下さい。
 
 また、時間経過してもログが収集されない場合、以下の点をご確認下さい。
@@ -218,12 +218,12 @@ https://learn.microsoft.com/ja-JP/azure/azure-monitor/agents/azure-monitor-agent
 A. DCR を再作成する
 1. [モニター] より作成した DCR を選択し、[削除] します。
 2. 再度、[モニター] - [データ収集ルール] - [+ 作成] より DCR を新規作成します。
-3. 任意のルール名、リソースグループを選択します。また、DCE を作成したリージョンと同じリージョンを選択し、ログを収集する VM の OS を選択します。(Windows または Linux)
+3. 任意のルール名、リソース グループを選択します。また、DCE を作成したリージョンと同じリージョンを選択し、ログを収集する VM の OS を選択します。(Windows または Linux)
    エンドポイント ID の箇所で、作成した DCE を選択し、次へ進みます。
 4. [+ リソースの追加] より収集対象の VM を選択します。[データ収集エンドポイントを有効にする] にチェックを入れ、作成した DCE を選択し、次へ進みます。
-5. [+ データソースの追加] より、[カスタム テキスト ログ] を選択します。
-6. [データソース] にて、[ファイル パターン]、[テーブル名]、[Transform] の各項目にて、【DCR を設定する】 にて対して設定した内容を行います。
-7. [ターゲット] にて、テーブルを作成済みの対象の Log Analytics ワークスペースを選択し、[データソースの追加] を選択します。
+5. [+ データ ソースの追加] より、[カスタム テキスト ログ] を選択します。
+6. [データ ソース] にて、[ファイル パターン]、[テーブル名]、[Transform] の各項目にて、【DCR を設定する】 にて対して設定した内容を行います。
+7. [ターゲット] にて、テーブルを作成済みの対象の Log Analytics ワークスペースを選択し、[データ ソースの追加] を選択します。
 8. 次へ進み、最後に [作成] を選択します。
 
 B. Azure Monitor エージェントを再インストールする
@@ -242,11 +242,10 @@ B. Azure Monitor エージェントを再インストールする
 上記手順利用した JSON ファイルは以下より入手が可能です。貴社環境やログの形状に合わせて変更いただければと存じます。
 [sampleJson.json](./AMA_CustomLog/sampleJson.json)
 
-また、Linux OS 上で今回収集するログを、テストとしてテキストログに出力するコマンドは以下です。
+また、Linux OS 上で今回収集するログを、テストとしてテキスト ログに出力するコマンドは以下です。
 本手順をテストされる場合、以下のコマンドにて簡単に検証が可能です。
 
 ```
 echo "`date '+%Y-%m-%dT%H:%M:%S.%7N'` | Computer=`hostname` | Log=Service stop" >> /var/log/test.log
 echo "`date '+%Y-%m-%dT%H:%M:%S.%7N'` | Computer=`hostname` | Log=Service start" >> /var/log/test.log
 ```
-
