@@ -1,0 +1,11 @@
+[
+  {
+    "RawData": "2022-12-31T01:00:00.1234567Z | Computer=TestVM01 | Log=Service stop"
+  },
+  {
+    "RawData": "2022-12-31T01:01:00.1234567Z | Computer=TestVM01 | Log=Service start"
+  },
+  {
+    "RawData": "2022-12-31T01:02:00.1234567Z | Computer=TestVM01 | Log=Service stop"
+  }
+]    
