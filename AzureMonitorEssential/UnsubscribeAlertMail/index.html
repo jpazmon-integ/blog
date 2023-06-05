@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>アラート メールの登録解除 | Japan Azure Monitoring Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは、Azure Monitoring サポート チームの北村です。今回は、Azure Monitor のアラート メールの登録解除と再登録の手順等をご紹介します。お客様からよくお問い合わせいただくご質問もご紹介しますので、ご参考になれば幸いです。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="アラート メールの登録解除">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの北村です。今回は、Azure Monitor のアラート メールの登録解除と再登録の手順等をご紹介します。お客様からよくお問い合わせいただくご質問もご紹介しますので、ご参考になれば幸いです。">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/image01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/image02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/image03.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/image04.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/image06.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/image09.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/image03.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/image05.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/image04.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/image08.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/image07.png">
+<meta property="article:published_time" content="2023-06-05T15:00:00.000Z">
+<meta property="article:modified_time" content="2023-06-05T08:30:55.547Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="How-To">
+<meta property="article:tag" content="Tips">
+<meta property="article:tag" content="Azure Monitor Essentials">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/image01.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-AzureMonitorEssential/UnsubscribeAlertMail" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      アラート メールの登録解除
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2023-06-05T15:00:00.000Z" itemprop="datePublished">2023-06-06</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+a9afb8c4-1a27-55dd-90d7-21c5e0194a84%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88+%E3%83%A1%E3%83%BC%E3%83%AB%E3%81%AE%E7%99%BB%E9%8C%B2%E8%A7%A3%E9%99%A4%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FUnsubscribeAlertMail%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FUnsubscribeAlertMail.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FUnsubscribeAlertMail.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/" data-id="cliiledzt00080nsx5y8u7rbk" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回は、Azure Monitor のアラート メールの登録解除と再登録の手順等をご紹介します。<br>お客様からよくお問い合わせいただくご質問もご紹介しますので、ご参考になれば幸いです。</p>
+<br>
+
+<span id="more"></span>
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li><a href="#1-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%A1%E3%83%BC%E3%83%AB%E3%81%AE%E7%99%BB%E9%8C%B2%E8%A7%A3%E9%99%A4%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">1. アラート メールの登録解除について</a></li>
+<li><a href="#2-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%A1%E3%83%BC%E3%83%AB%E3%81%AE%E7%99%BB%E9%8C%B2%E8%A7%A3%E9%99%A4%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E3%81%94%E8%B3%AA%E5%95%8F">2. アラート メールの登録解除に関するよくあるご質問</a><ul>
+<li><a href="#Q1-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%A1%E3%83%BC%E3%83%AB%E3%81%AE%E7%99%BB%E9%8C%B2%E3%81%8C%E8%A7%A3%E9%99%A4%E3%81%95%E3%82%8C%E3%82%8B%E3%81%A8%E3%80%81%E3%81%9D%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3-%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E3%81%AB%E3%82%88%E3%82%8B%E3%83%A1%E3%83%BC%E3%83%AB%E3%81%8C%E9%80%9A%E7%9F%A5%E3%81%95%E3%82%8C%E3%81%AA%E3%81%8F%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q1. アラート メールの登録が解除されると、そのアクション グループによるメールが通知されなくなりますか。</a></li>
+<li><a href="#Q2-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%A1%E3%83%BC%E3%83%AB%E3%81%AE%E7%99%BB%E9%8C%B2%E3%81%8C%E8%A7%A3%E9%99%A4%E3%81%95%E3%82%8C%E3%81%9F%E3%81%93%E3%81%A8%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q2. アラート メールの登録が解除されたことを確認する方法を教えてください。</a></li>
+<li><a href="#Q3-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%A1%E3%83%BC%E3%83%AB%E3%82%92%E5%86%8D%E7%99%BB%E9%8C%B2%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q3. アラート メールを再登録する方法を教えてください</a></li>
+<li><a href="#Q4-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%A1%E3%83%BC%E3%83%AB%E5%86%85%E3%81%AB%E3%81%82%E3%82%8B-Unsubscribe-%E3%81%AE%E3%83%AA%E3%83%B3%E3%82%AF%E3%82%92%E7%84%A1%E5%8A%B9%E5%8C%96%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%E3%81%AF%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q4. アラート メール内にある Unsubscribe のリンクを無効化する方法はありますか。</a></li>
+<li><a href="#Q5-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%A1%E3%83%BC%E3%83%AB%E3%81%AE%E7%99%BB%E9%8C%B2%E3%82%92%E8%A7%A3%E9%99%A4%E3%81%97%E3%81%9F%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%92%E7%89%B9%E5%AE%9A%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%E3%81%AF%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q5. アラート メールの登録を解除したユーザーを特定する方法はありますか。</a></li>
+</ul>
+</li>
+</ul>
+<br>
+
+
+<h2 id="1-アラート-メールの登録解除について"><a href="#1-アラート-メールの登録解除について" class="headerlink" title="1. アラート メールの登録解除について"></a>1. アラート メールの登録解除について</h2><p>Azure Monitor のアラート ルールでは、アラート ルールに <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">アクション グループ</a> を設定することで、アラートが発報したときに通知することができます。このアクション グループで、アラートが発報したときにメールを通知するようにご設定いただいている方が多いかと思います。</p>
+<p>アクション グループによって通知されたアラート メールには、当該アクション グループによるメール通知を解除するリンクが記載されています。赤線で囲んだ <em><strong>Unsubscribe</strong></em> というリンクから、アラート メールの登録を解除することができます。<br>アラート メールの登録を解除しますと、当該アクション グループによって通知されるアラート メールが配信されなくなります。</p>
+<p>(*) 以下は、Azure Monitor のアラート ルールによって通知されたアラート メールの例です。<br><img src="/blog/AzureMonitorEssential/UnsubscribeAlertMail/image01.png"></p>
+<br>
+
+<p>アラート メールの <em><strong>Unsubscribe from emails directed to this group.</strong></em> のリンクをクリックすると、以下のような画面に遷移します。アクション グループによるアラート メールの登録を解除するかどうかを聞かれます。<br><img src="/blog/AzureMonitorEssential/UnsubscribeAlertMail/image02.png"></p>
+<br>
+
+<p>上の画面で <em><strong>Confirm</strong></em> をクリックすると、以下の画面が表示され、アラート メールの登録が解除されます。<br>誤ってアラート メールの登録を解除してしまった場合は、<em><strong>Click here to continue receiving Microsoft Azure emails</strong></em> というリンクより、再登録することが可能です。<br><img src="/blog/AzureMonitorEssential/UnsubscribeAlertMail/image03.png"></p>
+<br>
+
+<p>アラート メールの登録を解除しますと、該当のアクション グループで設定されているメール アドレスに <em><strong>You’re no longer in the &lt;アクション グループの表示名&gt; action group</strong></em> というタイトルのメールが送信され、該当のアクション グループによるアラート メールの登録が解除されたことが通知されます。このメールにも、アラート メールの再登録のリンクが記載され、<em><strong>click here</strong></em> より、アラート メールを再登録することが可能です。</p>
+<p>(*) 以下は、アラート メールの登録を解除した後に通知されたメールの例です。<br><img src="/blog/AzureMonitorEssential/UnsubscribeAlertMail/image04.png"></p>
+<br>
+<br>
+
+
+<h2 id="2-アラート-メールの登録解除に関するよくあるご質問"><a href="#2-アラート-メールの登録解除に関するよくあるご質問" class="headerlink" title="2. アラート メールの登録解除に関するよくあるご質問"></a>2. アラート メールの登録解除に関するよくあるご質問</h2><p>アラート メールの登録解除に関するよくあるご質問をご紹介します。<br><br></p>
+<h3 id="Q1-アラート-メールの登録が解除されると、そのアクション-グループによるメールが通知されなくなりますか。"><a href="#Q1-アラート-メールの登録が解除されると、そのアクション-グループによるメールが通知されなくなりますか。" class="headerlink" title="Q1. アラート メールの登録が解除されると、そのアクション グループによるメールが通知されなくなりますか。"></a>Q1. アラート メールの登録が解除されると、そのアクション グループによるメールが通知されなくなりますか。</h3><p>はい、アラート メールの登録を解除すると、該当のアクション グループが紐づいているアラート ルールのメールは通知されません。</p>
+<br>
+<br>
+
+<h3 id="Q2-アラート-メールの登録が解除されたことを確認する方法を教えてください。"><a href="#Q2-アラート-メールの登録が解除されたことを確認する方法を教えてください。" class="headerlink" title="Q2. アラート メールの登録が解除されたことを確認する方法を教えてください。"></a>Q2. アラート メールの登録が解除されたことを確認する方法を教えてください。</h3><p>アクション グループで設定しているメール アドレスに <em><strong>You’re no longer in the &lt;アクション グループの表示名&gt; action group</strong></em> という件名のメールが届ているかどうかをご確認ください。<br>また、Azure ポータルからアクション グループの編集画面を開き、[通知] の [状態] で <em><strong>登録解除済み</strong></em> と表示されている場合は、アラート メールの登録が解除された状態を意味します。<br><img src="/blog/AzureMonitorEssential/UnsubscribeAlertMail/image06.png"></p>
+<br>
+<br>
+
+<h3 id="Q3-アラート-メールを再登録する方法を教えてください。"><a href="#Q3-アラート-メールを再登録する方法を教えてください。" class="headerlink" title="Q3. アラート メールを再登録する方法を教えてください。"></a>Q3. アラート メールを再登録する方法を教えてください。</h3><p>“1. アラート メールの登録解除リンクについて” でもご紹介した方法を含め、再登録する方法は 3 つございます。<br>なお、&lt;1&gt; および &lt;2&gt; の再登録のリンクをクリックしても、リンクの期限切れを表すページへ遷移する可能性がございます。<br>この場合は &lt;3&gt;のアクション グループの再設定をお試しいただけますと幸いです。<br><img src="/blog/AzureMonitorEssential/UnsubscribeAlertMail/image09.png"></p>
+<br>
+<br>
+
+
+<h5 id="lt-1-gt-アラート-メールの登録を解除したときに表示される画面で再登録する"><a href="#lt-1-gt-アラート-メールの登録を解除したときに表示される画面で再登録する" class="headerlink" title="&lt;1&gt; アラート メールの登録を解除したときに表示される画面で再登録する"></a>&lt;1&gt; アラート メールの登録を解除したときに表示される画面で再登録する</h5><p><em><strong>Click here to continue receiving Microsoft Azure emails</strong></em> というリンクをクリックしてください。<br><img src="/blog/AzureMonitorEssential/UnsubscribeAlertMail/image03.png"></p>
+<br>
+
+<p>このリンクをクリックすると、以下の画面が表示され、アラート メールが再登録されます。<br><img src="/blog/AzureMonitorEssential/UnsubscribeAlertMail/image05.png"></p>
+<br>
+
+<h5 id="lt-2-gt-アラート-メールの登録を解除した後に通知されるメールから再登録する"><a href="#lt-2-gt-アラート-メールの登録を解除した後に通知されるメールから再登録する" class="headerlink" title="&lt;2&gt; アラート メールの登録を解除した後に通知されるメールから再登録する"></a>&lt;2&gt; アラート メールの登録を解除した後に通知されるメールから再登録する</h5><p><em><strong>If this was a mistake, click here to subscribe.</strong></em> の <em><strong>click here</strong></em> をクリックしてください。<br>このリンクをクリックすると、&lt;1&gt; と同様、再登録された旨の画面が表示されます。<br><img src="/blog/AzureMonitorEssential/UnsubscribeAlertMail/image04.png"></p>
+<br>
+
+<h5 id="lt-3-gt-Azure-ポータルからアクション-グループを再設定する"><a href="#lt-3-gt-Azure-ポータルからアクション-グループを再設定する" class="headerlink" title="&lt;3&gt; Azure ポータルからアクション グループを再設定する"></a>&lt;3&gt; Azure ポータルからアクション グループを再設定する</h5><p>Azure ポータルから配信停止を解除する場合は、アクション グループの再設定をお願いいたします。</p>
+<ol>
+<li>アクション グループから該当のメール アドレスを削除し、当該アクション グループを保存します。</li>
+<li>アクション グループに該当のメール アドレスを追加し、当該アクション グループを保存します。</li>
+<li>通知の状態欄が “登録済み” と表示されることを確認します。<br><img src="/blog/AzureMonitorEssential/UnsubscribeAlertMail/image08.png"></li>
+</ol>
+<br>
+<br>
+
+<h3 id="Q4-アラート-メール内にある-Unsubscribe-のリンクを無効化する方法はありますか。"><a href="#Q4-アラート-メール内にある-Unsubscribe-のリンクを無効化する方法はありますか。" class="headerlink" title="Q4. アラート メール内にある Unsubscribe のリンクを無効化する方法はありますか。"></a>Q4. アラート メール内にある Unsubscribe のリンクを無効化する方法はありますか。</h3><p><a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/">アラートの通知メールはカスタマイズすることができない</a>ため、メール内の <em><strong>Unsubscribe</strong></em> のリンクを削除することはできません。また、このリンクをクリックした後の動作を制御する方法もございません。<br>そのため、誤ってアラート メールの登録を解除されてしまった場合は、前述の再登録手順を実施してください。</p>
+<br>
+<br>
+
+<h3 id="Q5-アラート-メールの登録を解除したユーザーを特定する方法はありますか。"><a href="#Q5-アラート-メールの登録を解除したユーザーを特定する方法はありますか。" class="headerlink" title="Q5. アラート メールの登録を解除したユーザーを特定する方法はありますか。"></a>Q5. アラート メールの登録を解除したユーザーを特定する方法はありますか。</h3><p>アラート メールの登録を解除したユーザーを特定することはできません。<br>アクティビティ ログには、イベント開始者に対象のメール アドレスが記録されますが、そのアドレスを具体的にどのユーザーが無効化したのかまでは確認する方法がございません。<br><img src="/blog/AzureMonitorEssential/UnsubscribeAlertMail/image07.png"></p>
+<br>
+
+<p>上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。<br>また、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-troubleshoot#did-not-receive-expected-email">弊社公開情報</a> もあわせてご確認いただけますと幸いです。<br>最後までお読みいただきありがとうございました！</p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/AzureMonitorEssential/UnsubscribeAlertMail.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../LogAnalytics/AMA_CustomLog/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Azure Monitor エージェントでカスタム ログを取得する方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">アラート メールの登録解除</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/AMA_CustomLog/">Azure Monitor エージェントでカスタム ログを取得する方法</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/AMALinux_Perf/">Azure Monitor Agent for Linux で取得可能なパフォーマンス カウンターの一覧</a>
+          </li>
+        
+          <li>
+            <a href="../ResourceHealthAlert/">リソース正常性アラートに関するよくあるご質問</a>
+          </li>
+        
+          <li>
+            <a href="../HowLogAlertZeroRecordFired/">ログ アラート ルールの 0 件検知とクエリの時間の範囲のオーバーライドについて</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent/" rel="tag">Azure Monitor Agent</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostic-settings/" rel="tag">Diagnostic settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Alert/" rel="tag">Log Alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-ID/" rel="tag">Managed ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-Identity/" rel="tag">Managed Identity</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Migration/" rel="tag">Migration</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Run-As-Account/" rel="tag">Run As Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sandbox/" rel="tag">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StartAzureV2VMs/" rel="tag">StartAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StopAzureV2VMs/" rel="tag">StopAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM/" rel="tag">VM</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Worker/" rel="tag">Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" rel="tag">コスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" rel="tag">マネージド ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%81%9C%E6%AD%A2/" rel="tag">停止</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" rel="tag">実行アカウント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/" rel="tag">移行</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" rel="tag">自動化</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%B5%B7%E5%8B%95/" rel="tag">起動</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/">How-To</a><span class="tag-list-count">14</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/">Tips</a><span class="tag-list-count">14</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/">Azure Monitor Essentials</a><span class="tag-list-count">4</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/">Azure Monitor</a><span class="tag-list-count">7</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/">FAQ</a><span class="tag-list-count">7</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/">Log Analytics</a><span class="tag-list-count">16</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/">移行</a><span class="tag-list-count">2</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/">Troubleshooting</a><span class="tag-list-count">4</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">4</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/">Automation</a><span class="tag-list-count">9</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/">チーム紹介</a><span class="tag-list-count">5</span><ul></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/06/">2023 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/03/">2023 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/01/">2023 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/11/">2022 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/10/">2022 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/09/">2022 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/08/">2022 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/Application-Insights/" style="font-size: 12.5px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 17.5px;">Automation</a> <a href="../../tags/Azure-Monitor/" style="font-size: 16.25px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Agent/" style="font-size: 11.25px;">Azure Monitor Agent</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 12.5px;">Azure Monitor Essentials</a> <a href="../../tags/Diagnostic-settings/" style="font-size: 11.25px;">Diagnostic settings</a> <a href="../../tags/FAQ/" style="font-size: 16.25px;">FAQ</a> <a href="../../tags/General/" style="font-size: 15px;">General</a> <a href="../../tags/How-To/" style="font-size: 18.75px;">How-To</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 11.25px;">Job</a> <a href="../../tags/Log-Alert/" style="font-size: 10px;">Log Alert</a> <a href="../../tags/Log-Analytics/" style="font-size: 20px;">Log Analytics</a> <a href="../../tags/Managed-ID/" style="font-size: 10px;">Managed ID</a> <a href="../../tags/Managed-Identity/" style="font-size: 10px;">Managed Identity</a> <a href="../../tags/MetricAlert/" style="font-size: 10px;">MetricAlert</a> <a href="../../tags/Migration/" style="font-size: 10px;">Migration</a> <a href="../../tags/Run-As-Account/" style="font-size: 10px;">Run As Account</a> <a href="../../tags/RunAs-Account/" style="font-size: 12.5px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 12.5px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 18.75px;">Tips</a> <a href="../../tags/Troubleshooting/" style="font-size: 12.5px;">Troubleshooting</a> <a href="../../tags/VM/" style="font-size: 10px;">VM</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" style="font-size: 10px;">コスト</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 13.75px;">チーム紹介</a> <a href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" style="font-size: 11.25px;">マネージド ID</a> <a href="../../tags/%E5%81%9C%E6%AD%A2/" style="font-size: 10px;">停止</a> <a href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" style="font-size: 11.25px;">可用性テスト</a> <a href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" style="font-size: 10px;">実行アカウント</a> <a href="../../tags/%E7%A7%BB%E8%A1%8C/" style="font-size: 11.25px;">移行</a> <a href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" style="font-size: 10px;">自動化</a> <a href="../../tags/%E8%B5%B7%E5%8B%95/" style="font-size: 10px;">起動</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
