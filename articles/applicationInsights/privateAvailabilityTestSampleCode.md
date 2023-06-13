@@ -174,10 +174,15 @@ public async static Task Run( TimerInfo myTimer, ILogger log, ExecutionContext e
 ![](./privateAvailabilityTestSampleCode/function6.png)
 
 
-
+## 注意事項
 上記サンプル コードは、あくまでサンプルです。  
 お客様の環境によっては GET リクエストではなく POST リクエストの実行結果を確認する事も想定されます。  
 そのため、お客様の監視要件に合わせてテスト コードを実装いただけますと幸いです。
+
+また、TrackAvailability() は .NET Framework / .NET Core (.NET 6.0 や .NET 7.0 などを含む) 用の Application Insights SDK にしか実装されておりません。  
+そのため、テスト用のコードを Java や Node.js、Python などで実現は出来かねます。  
+予めご留意くださいませ。
+
 
 
 ## まとめ
