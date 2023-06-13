@@ -44,6 +44,8 @@ Azure Functions の VNET 統合の方法につきましては、下記の公開�
 
 - [チュートリアル: プライベート エンドポイントを使用して Azure Functions を Azure 仮想ネットワークに統合する](https://learn.microsoft.com/ja-jp/azure/azure-functions/functions-create-vnet)
 
+上記公開情報をご参考に、ランタイムが .NET の Azure Functions リソースをご準備くださいませ。  
+> 弊社検証環境では、Windows OS の .NET 6.0 にて確認いたしました。
 
 ### 2. Azure Functions にテスト ロジックを実装します。
 その 1 でご準備いただいた Functions リソースに対して、タイマー トリガーの関数を作成します。
