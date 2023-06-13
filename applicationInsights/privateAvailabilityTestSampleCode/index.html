@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Azure Functions を利用したプライベート可用性テストについて | Japan Azure Monitoring Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは、Azure Monitoring サポート チームの北山です。 Application Insights には可用性テストの機能があります。可用性テストの機能をご利用いただく事で、監視対象の Web サイトに対して自動的にリクエストを送信することが可能です。監視対象の Web サイトからのレスポンスをチェックし、期待したレスポンスが返却されない場合にアラートを通知する事が可能です。 A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Azure Functions を利用したプライベート可用性テストについて">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの北山です。 Application Insights には可用性テストの機能があります。可用性テストの機能をご利用いただく事で、監視対象の Web サイトに対して自動的にリクエストを送信することが可能です。監視対象の Web サイトからのレスポンスをチェックし、期待したレスポンスが返却されない場合にアラートを通知する事が可能です。 A">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/function1.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/function2.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/function3.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/function4.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/function5.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/function6.png">
+<meta property="article:published_time" content="2023-06-07T15:00:00.000Z">
+<meta property="article:modified_time" content="2023-06-13T04:31:35.543Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="Tips">
+<meta property="article:tag" content="Application Insights">
+<meta property="article:tag" content="可用性テスト">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/function1.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-applicationInsights/privateAvailabilityTestSampleCode" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Azure Functions を利用したプライベート可用性テストについて
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2023-06-07T15:00:00.000Z" itemprop="datePublished">2023-06-08</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+b9a4398e-484c-5d11-b250-b9bcfe2cb60b%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Functions+%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%81%9F%E3%83%97%E3%83%A9%E3%82%A4%E3%83%99%E3%83%BC%E3%83%88%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FapplicationInsights%2FprivateAvailabilityTestSampleCode%2F%29%0A*+Content+Source%3A+%5Barticles%2FapplicationInsights%2FprivateAvailabilityTestSampleCode.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FapplicationInsights%2FprivateAvailabilityTestSampleCode.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/" data-id="clitsddk8001i0npdh75n27db" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは、Azure Monitoring サポート チームの北山です。</p>
+<p>Application Insights には可用性テストの機能があります。<br>可用性テストの機能をご利用いただく事で、監視対象の Web サイトに対して自動的にリクエストを送信することが可能です。<br>監視対象の Web サイトからのレスポンスをチェックし、期待したレスポンスが返却されない場合にアラートを通知する事が可能です。</p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability-overview">Application Insights 可用性テスト</a></p>
+<p>Application Insights のサービスから監視対象の Web サイトに対して定期的にリクエストを送信するため、監視対象の Web サイトはパブリックからの通信を許可いただく必要がございます。<br>しかし、お客様の環境によってはパブリックからの通信を許可していない可能性がございます。<br>この場合は、標準の可用性テストがご利用いただけません。</p>
+<p>この記事では、TimerTrigger 関数で指定された構成に従って定期的に実行される、独自のテスト ロジックが実装された Azure Functions から、Application Insights API の一つである TrackAvailability() を使って可用性テストの結果を送信する方法について説明します。</p>
+<span id="more"></span>
+
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
+<li><a href="#azure-functions-%E3%82%92%E7%94%A8%E3%81%84%E3%81%9F%E3%83%97%E3%83%A9%E3%82%A4%E3%83%99%E3%83%BC%E3%83%88%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88%E6%A7%8B%E7%AF%89%E3%81%AE%E6%89%8B%E9%A0%86">Azure Functions を用いたプライベート可用性テスト構築の手順</a><ul>
+<li><a href="#1-vnet-%E7%B5%B1%E5%90%88%E3%82%92%E5%AE%9F%E6%96%BD%E3%81%97%E3%81%9F-azure-functions-%E3%82%92%E7%94%A8%E6%84%8F%E3%81%97%E3%81%BE%E3%81%99">1. VNET 統合を実施した Azure Functions を用意します。</a></li>
+<li><a href="#2-azure-functions-%E3%81%AB%E3%83%86%E3%82%B9%E3%83%88-%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF%E3%82%92%E5%AE%9F%E8%A3%85%E3%81%97%E3%81%BE%E3%81%99">2. Azure Functions にテスト ロジックを実装します。</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85">注意事項</a></li>
+<li><a href="#%E3%81%BE%E3%81%A8%E3%82%81">まとめ</a></li>
+<li><a href="#%E9%96%A2%E9%80%A3%E3%81%99%E3%82%8B%E8%A8%98%E4%BA%8B">関連する記事</a></li>
+</ul>
+<h2 id="Azure-Functions-を用いたプライベート可用性テスト構築の手順"><a href="#Azure-Functions-を用いたプライベート可用性テスト構築の手順" class="headerlink" title="Azure Functions を用いたプライベート可用性テスト構築の手順"></a>Azure Functions を用いたプライベート可用性テスト構築の手順</h2><h3 id="1-VNET-統合を実施した-Azure-Functions-を用意します。"><a href="#1-VNET-統合を実施した-Azure-Functions-を用意します。" class="headerlink" title="1. VNET 統合を実施した Azure Functions を用意します。"></a>1. VNET 統合を実施した Azure Functions を用意します。</h3><p>パブリックからの通信を許可していない Web サイトにアクセスするために、VNET 統合した Azure Functions リソースを準備します。<br>VNET 統合を実施すると、Azure Functions からの通信が VNET を経由します。<br>監視対象の Web サイトにアクセス可能な VNET 上に Azure Functions リソースをデプロイすることで、定期的に監視対象の Web サイトへテストのためのリクエストが可能です。</p>
+<p>Azure Functions の VNET 統合の方法につきましては、下記の公開情報をご参考くださいませ。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-functions/functions-create-vnet">チュートリアル: プライベート エンドポイントを使用して Azure Functions を Azure 仮想ネットワークに統合する</a></li>
+</ul>
+<h3 id="2-Azure-Functions-にテスト-ロジックを実装します。"><a href="#2-Azure-Functions-にテスト-ロジックを実装します。" class="headerlink" title="2. Azure Functions にテスト ロジックを実装します。"></a>2. Azure Functions にテスト ロジックを実装します。</h3><p>その 1 でご準備いただいた Functions リソースに対して、タイマー トリガーの関数を作成します。<br>関数名やスケジュールは、貴社のご要件に合うよう適宜ご指定くださいませ。</p>
+<p><img src="/blog/applicationInsights/privateAvailabilityTestSampleCode/function1.png"></p>
+<p>その後、当該 Functions リソースの左側ペインより「App Service Editor (プレビュー)」を開きます。</p>
+<p><img src="/blog/applicationInsights/privateAvailabilityTestSampleCode/function2.png"></p>
+<p>下図のように、当該関数に対して右クリックし新しいファイルを作成します。<br>作成するファイル名は、「function.proj」です。</p>
+<p><img src="/blog/applicationInsights/privateAvailabilityTestSampleCode/function3.png"></p>
+<p>function.proj に対して、下記のコードを貼り付けます。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Project</span> <span class="attr">Sdk</span>=<span class="string">&quot;Microsoft.NET.Sdk&quot;</span>&gt;</span> </span><br><span class="line"> <span class="tag">&lt;<span class="name">PropertyGroup</span>&gt;</span> </span><br><span class="line"> <span class="tag">&lt;<span class="name">TargetFramework</span>&gt;</span>netstandard2.0<span class="tag">&lt;/<span class="name">TargetFramework</span>&gt;</span> </span><br><span class="line"> <span class="tag">&lt;/<span class="name">PropertyGroup</span>&gt;</span> </span><br><span class="line"> <span class="tag">&lt;<span class="name">ItemGroup</span>&gt;</span> </span><br><span class="line"> <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">&quot;Microsoft.ApplicationInsights&quot;</span> <span class="attr">Version</span>=<span class="string">&quot;2.15.0&quot;</span> /&gt;</span> <span class="comment">&lt;!-- Ensure you’re using the latest version --&gt;</span> </span><br><span class="line"> <span class="tag">&lt;/<span class="name">ItemGroup</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">Project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/blog/applicationInsights/privateAvailabilityTestSampleCode/function4.png"></p>
+<p>次に runAvailabilityTest.csx というファイルを作成し、下記のコードを貼り付けます。  </p>
+<blockquote>
+<p>下記のコードは、監視対象の Web サイトに対して GET リクエストを送信するコードです。<br>こちらはサンプル コードのため、Bing のサイトにアクセスするよう実装しております。  </p>
+</blockquote>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Net.Http;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">async</span> <span class="keyword">static</span> Task <span class="title">RunAvailabilityTestAsync</span>(<span class="params"> ILogger log </span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">using</span> (<span class="keyword">var</span> httpClient = <span class="keyword">new</span> HttpClient())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> Replace with your business logic </span></span><br><span class="line">        <span class="keyword">await</span> httpClient.GetStringAsync( <span class="string">&quot;https://www.bing.com/&quot;</span> );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/blog/applicationInsights/privateAvailabilityTestSampleCode/function5.png"></p>
+<p>次のコードを run.csx にコピーします。<br>これによって既存のコードが全て置き換えられます。</p>
+<blockquote>
+<p>下記のサンプル コードは、当該 Functions のアプリケーション設定に指定された接続文字列 (APPLICATIONINSIGHTS_CONNECTION_STRING) を使って、テスト結果の送信先である Application Insights を指定しています。</p>
+</blockquote>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#load &quot;runAvailabilityTest.csx&quot; </span></span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Diagnostics;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"><span class="keyword">using</span> System.Threading;</span><br><span class="line"><span class="keyword">using</span> Microsoft.ApplicationInsights;</span><br><span class="line"><span class="keyword">using</span> Microsoft.ApplicationInsights.Channel;</span><br><span class="line"><span class="keyword">using</span> Microsoft.ApplicationInsights.DataContracts;</span><br><span class="line"><span class="keyword">using</span> Microsoft.ApplicationInsights.Extensibility;</span><br><span class="line"><span class="keyword">using</span> Microsoft.Extensions.Logging;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> TelemetryClient telemetryClient;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ============================================================= </span></span><br><span class="line"><span class="comment">// ****************** DO NOT MODIFY THIS FILE ****************** </span></span><br><span class="line"><span class="comment">// Business logic must be implemented in RunAvailabilityTestAsync function in runAvailabilityTest.csx </span></span><br><span class="line"><span class="comment">// If this file does not exist, please add it first </span></span><br><span class="line"><span class="comment">// ============================================================= </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">async</span> <span class="keyword">static</span> Task <span class="title">Run</span>(<span class="params"> TimerInfo myTimer, ILogger log, ExecutionContext executionContext </span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (telemetryClient == <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// Initializing a telemetry configuration for Application Insights based on connection string </span></span><br><span class="line">        <span class="keyword">var</span> telemetryConfiguration = <span class="keyword">new</span> TelemetryConfiguration();</span><br><span class="line">        telemetryConfiguration.ConnectionString = Environment.GetEnvironmentVariable( <span class="string">&quot;APPLICATIONINSIGHTS_CONNECTION_STRING&quot;</span> );</span><br><span class="line">        telemetryConfiguration.TelemetryChannel = <span class="keyword">new</span> InMemoryChannel();</span><br><span class="line">        telemetryClient = <span class="keyword">new</span> TelemetryClient( telemetryConfiguration );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">string</span> testName = executionContext.FunctionName;</span><br><span class="line">    <span class="built_in">string</span> location = Environment.GetEnvironmentVariable( <span class="string">&quot;REGION_NAME&quot;</span> );</span><br><span class="line">    <span class="keyword">var</span> availability = <span class="keyword">new</span> AvailabilityTelemetry</span><br><span class="line">    &#123;</span><br><span class="line">        Name = testName,</span><br><span class="line">        RunLocation = location,</span><br><span class="line">        Success = <span class="literal">false</span>,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    availability.Context.Operation.ParentId = Activity.Current.SpanId.ToString();</span><br><span class="line">    availability.Context.Operation.Id = Activity.Current.RootId;</span><br><span class="line">    <span class="keyword">var</span> stopwatch = <span class="keyword">new</span> Stopwatch();</span><br><span class="line">    stopwatch.Start();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">using</span> (<span class="keyword">var</span> activity = <span class="keyword">new</span> Activity( <span class="string">&quot;AvailabilityContext&quot;</span> ))</span><br><span class="line">        &#123;</span><br><span class="line">            activity.Start();</span><br><span class="line">            availability.Id = Activity.Current.SpanId.ToString();</span><br><span class="line">            <span class="comment">// Run business logic </span></span><br><span class="line">            <span class="keyword">await</span> RunAvailabilityTestAsync( log );</span><br><span class="line">        &#125;</span><br><span class="line">        availability.Success = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    catch (Exception ex)</span><br><span class="line">    &#123;</span><br><span class="line">        availability.Message = ex.Message;</span><br><span class="line">        <span class="keyword">throw</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">finally</span></span><br><span class="line">    &#123;</span><br><span class="line">        stopwatch.Stop();</span><br><span class="line">        availability.Duration = stopwatch.Elapsed;</span><br><span class="line">        availability.Timestamp = DateTimeOffset.UtcNow;</span><br><span class="line">        telemetryClient.TrackAvailability( availability );</span><br><span class="line">        telemetryClient.Flush();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>その後、当該関数が実行されると、テスト コードの結果として Application Insights に可用性テストの結果が記録されます。</p>
+<p><img src="/blog/applicationInsights/privateAvailabilityTestSampleCode/function6.png"></p>
+<h2 id="注意事項"><a href="#注意事項" class="headerlink" title="注意事項"></a>注意事項</h2><p>上記サンプル コードは、あくまでサンプルです。<br>お客様の環境によっては GET リクエストではなく POST リクエストの実行結果を確認する事も想定されます。<br>そのため、お客様の監視要件に合わせてテスト コードを実装いただけますと幸いです。</p>
+<p>また、TrackAvailability() は .NET Framework / .NET Core (.NET 6.0 や .NET 7.0 などを含む) 用の Application Insights SDK にしか実装されておりません。<br>そのため、Java や Node.js、Python などでは上記の方法の実現は出来かねます。<br>予めご留意くださいませ。</p>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>本記事では、パブリックからのアクセスを許可していない環境への可用性テストの方法ついてご案内いたしましたが、ご理解いただけましたでしょうか。</p>
+<p>本記事が少しでもお役に立ちましたら幸いです。<br>最後までお読みいただきありがとうございました！</p>
+<h2 id="関連する記事"><a href="#関連する記事" class="headerlink" title="関連する記事"></a>関連する記事</h2><ul>
+<li><a href="https://jpazmon-integ.github.io/blog/applicationInsights/aboutPrivateAvailabilityTest/">プライベート環境への可用性テスト</a></li>
+</ul>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/applicationInsights/privateAvailabilityTestSampleCode.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../AzureMonitorEssential/UnsubscribeAlertMail/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">アラート メールの登録解除</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">Azure Functions を利用したプライベート可用性テストについて</a>
+          </li>
+        
+          <li>
+            <a href="../../AzureMonitorEssential/UnsubscribeAlertMail/">アラート メールの登録解除</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/AMA_CustomLog/">Azure Monitor エージェントでカスタム ログを取得する方法</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/AMALinux_Perf/">Azure Monitor Agent for Linux で取得可能なパフォーマンス カウンターの一覧</a>
+          </li>
+        
+          <li>
+            <a href="../../AzureMonitorEssential/ResourceHealthAlert/">リソース正常性アラートに関するよくあるご質問</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent/" rel="tag">Azure Monitor Agent</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostic-settings/" rel="tag">Diagnostic settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Alert/" rel="tag">Log Alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-ID/" rel="tag">Managed ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-Identity/" rel="tag">Managed Identity</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Migration/" rel="tag">Migration</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Run-As-Account/" rel="tag">Run As Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sandbox/" rel="tag">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StartAzureV2VMs/" rel="tag">StartAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StopAzureV2VMs/" rel="tag">StopAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM/" rel="tag">VM</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Worker/" rel="tag">Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" rel="tag">コスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" rel="tag">マネージド ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%81%9C%E6%AD%A2/" rel="tag">停止</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" rel="tag">実行アカウント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/" rel="tag">移行</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" rel="tag">自動化</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%B5%B7%E5%8B%95/" rel="tag">起動</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/">How-To</a><span class="tag-list-count">14</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/">Tips</a><span class="tag-list-count">15</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/">Azure Monitor Essentials</a><span class="tag-list-count">4</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/">Azure Monitor</a><span class="tag-list-count">7</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/">FAQ</a><span class="tag-list-count">7</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/">Log Analytics</a><span class="tag-list-count">16</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/">移行</a><span class="tag-list-count">2</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/">Troubleshooting</a><span class="tag-list-count">4</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">5</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/">Automation</a><span class="tag-list-count">9</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/">チーム紹介</a><span class="tag-list-count">5</span><ul></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/06/">2023 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/03/">2023 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/01/">2023 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/11/">2022 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/10/">2022 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/09/">2022 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/08/">2022 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/Application-Insights/" style="font-size: 14px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 17px;">Automation</a> <a href="../../tags/Azure-Monitor/" style="font-size: 16px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Agent/" style="font-size: 11px;">Azure Monitor Agent</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 13px;">Azure Monitor Essentials</a> <a href="../../tags/Diagnostic-settings/" style="font-size: 11px;">Diagnostic settings</a> <a href="../../tags/FAQ/" style="font-size: 16px;">FAQ</a> <a href="../../tags/General/" style="font-size: 15px;">General</a> <a href="../../tags/How-To/" style="font-size: 18px;">How-To</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 11px;">Job</a> <a href="../../tags/Log-Alert/" style="font-size: 10px;">Log Alert</a> <a href="../../tags/Log-Analytics/" style="font-size: 20px;">Log Analytics</a> <a href="../../tags/Managed-ID/" style="font-size: 10px;">Managed ID</a> <a href="../../tags/Managed-Identity/" style="font-size: 10px;">Managed Identity</a> <a href="../../tags/MetricAlert/" style="font-size: 10px;">MetricAlert</a> <a href="../../tags/Migration/" style="font-size: 10px;">Migration</a> <a href="../../tags/Run-As-Account/" style="font-size: 10px;">Run As Account</a> <a href="../../tags/RunAs-Account/" style="font-size: 13px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 13px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 19px;">Tips</a> <a href="../../tags/Troubleshooting/" style="font-size: 13px;">Troubleshooting</a> <a href="../../tags/VM/" style="font-size: 10px;">VM</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" style="font-size: 10px;">コスト</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 14px;">チーム紹介</a> <a href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" style="font-size: 11px;">マネージド ID</a> <a href="../../tags/%E5%81%9C%E6%AD%A2/" style="font-size: 10px;">停止</a> <a href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" style="font-size: 12px;">可用性テスト</a> <a href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" style="font-size: 10px;">実行アカウント</a> <a href="../../tags/%E7%A7%BB%E8%A1%8C/" style="font-size: 11px;">移行</a> <a href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" style="font-size: 10px;">自動化</a> <a href="../../tags/%E8%B5%B7%E5%8B%95/" style="font-size: 10px;">起動</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
