@@ -9,6 +9,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/</loc>
+    
+    <lastmod>2023-06-13</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/general/IntroduceOurBlog/</loc>
     
     <lastmod>2023-06-13</lastmod>
@@ -17,27 +24,6 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/general/JoinUs/</loc>
-    
-    <lastmod>2023-06-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/</loc>
-    
-    <lastmod>2023-06-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/ThePipelineWasNotRunBecauseAPipelineIsAlreadyRunningError/</loc>
-    
-    <lastmod>2023-06-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/gettingExeTimeOfJobForSpecificPeriodAutomation/</loc>
     
     <lastmod>2023-06-13</lastmod>
     
@@ -65,6 +51,20 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/ThePipelineWasNotRunBecauseAPipelineIsAlreadyRunningError/</loc>
+    
+    <lastmod>2023-06-13</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/gettingExeTimeOfJobForSpecificPeriodAutomation/</loc>
+    
+    <lastmod>2023-06-13</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/MigrateRunAsAccountsToManagedIdentity/</loc>
     
     <lastmod>2023-06-13</lastmod>
@@ -72,21 +72,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/</loc>
-    
-    <lastmod>2023-06-13</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/HowtoStartOrStopVMsbyAutomation/</loc>
-    
-    <lastmod>2023-06-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/</loc>
     
     <lastmod>2023-06-13</lastmod>
     
@@ -114,6 +100,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/</loc>
+    
+    <lastmod>2023-06-13</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutDifferentTypesOfAi/</loc>
     
     <lastmod>2023-06-13</lastmod>
@@ -122,6 +115,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutPrivateAvailabilityTest/</loc>
+    
+    <lastmod>2023-06-13</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/</loc>
     
     <lastmod>2023-06-13</lastmod>
     
@@ -240,13 +240,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CustomLog/</loc>
-    
-    <lastmod>2023-06-13</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/ActivityLogsInsights/</loc>
     
     <lastmod>2023-06-13</lastmod>
@@ -268,7 +261,28 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CustomLog/</loc>
+    
+    <lastmod>2023-06-13</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/</loc>
+    
+    <lastmod>2023-06-13</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ResourceHealthAlert/</loc>
+    
+    <lastmod>2023-06-13</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowMetricAlertisFired/</loc>
     
     <lastmod>2023-06-13</lastmod>
     
@@ -282,7 +296,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ResourceHealthAlert/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/</loc>
     
     <lastmod>2023-06-13</lastmod>
     
@@ -297,20 +311,6 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowLogAlertZeroRecordFired/</loc>
-    
-    <lastmod>2023-06-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowMetricAlertisFired/</loc>
-    
-    <lastmod>2023-06-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/</loc>
     
     <lastmod>2023-06-13</lastmod>
     
