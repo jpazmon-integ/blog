@@ -28,8 +28,10 @@ Application Insights のサービスから監視対象の Web サイトに対し
 - [Azure Functions を用いたプライベート可用性テスト構築の手順](#azure-functions-を用いたプライベート可用性テスト構築の手順)
   - [1. VNET 統合を実施した Azure Functions を用意します。](#1-vnet-統合を実施した-azure-functions-を用意します)
   - [2. Azure Functions にテスト ロジックを実装します。](#2-azure-functions-にテスト-ロジックを実装します)
+- [注意事項](#注意事項)
 - [まとめ](#まとめ)
 - [関連する記事](#関連する記事)
+
 
 
 ## Azure Functions を用いたプライベート可用性テスト構築の手順
@@ -180,7 +182,7 @@ public async static Task Run( TimerInfo myTimer, ILogger log, ExecutionContext e
 そのため、お客様の監視要件に合わせてテスト コードを実装いただけますと幸いです。
 
 また、TrackAvailability() は .NET Framework / .NET Core (.NET 6.0 や .NET 7.0 などを含む) 用の Application Insights SDK にしか実装されておりません。  
-そのため、テスト用のコードを Java や Node.js、Python などで実現は出来かねます。  
+そのため、Java や Node.js、Python などでは上記の方法の実現は出来かねます。  
 予めご留意くださいませ。
 
 
