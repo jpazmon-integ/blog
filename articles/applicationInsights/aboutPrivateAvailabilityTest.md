@@ -60,7 +60,7 @@ tags:
     runAvailabilityTest.csx で、テスト先の URL を指定します。
 ![](./aboutPrivateAvailabilityTest/3.png)
 
-1. Application Insights の [可用性] を開き、可用性テストが動いていることを確認します。
+3. Application Insights の [可用性] を開き、可用性テストが動いていることを確認します。
    Azure Functions で作成した可用性テストは、[CUSTOM] と表示されます。
 ![](./aboutPrivateAvailabilityTest/4.png)
 
