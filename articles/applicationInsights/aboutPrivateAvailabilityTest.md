@@ -54,18 +54,19 @@ tags:
     > [仮想ネットワークで Azure Functions を構成する方法](https://docs.microsoft.com/ja-jp/azure/azure-functions/configure-networking-how-to#restrict-your-storage-account-to-a-virtual-network)
 
 2. タイマー トリガー関数を作成します。
-   以下の弊社公開情報にて、可用性テストを行うためのソース コードの実装例を提供しております。
-    [App Service Editor でコードを追加して編集する](https://docs.microsoft.com/ja-jp/azure/azure-monitor/app/availability-azure-functions#add-and-edit-code-in-the-app-service-editor)
+   以下の弊サポート チーム ブログにて、可用性テストを行うためのソース コードの実装例を提供しております。  
+    [Azure Functions を利用したプライベート可用性テストについて](https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/)
 
     runAvailabilityTest.csx で、テスト先の URL を指定します。
 ![](./aboutPrivateAvailabilityTest/3.png)
 
-3. Application Insights の [可用性] を開き、可用性テストが動いていることを確認します。
+1. Application Insights の [可用性] を開き、可用性テストが動いていることを確認します。
    Azure Functions で作成した可用性テストは、[CUSTOM] と表示されます。
 ![](./aboutPrivateAvailabilityTest/4.png)
 
-[参考情報]
-[Azure Functions を使用してカスタム可用性テストを作成して実行する - Azure Monitor | Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/azure-monitor/app/availability-azure-functions)
+[参考情報]  
+[Azure Functions を使用してカスタム可用性テストを作成して実行する - Azure Monitor | Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/azure-monitor/app/availability-azure-functions)  
+[Azure Functions を利用したプライベート可用性テストについて](https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/)
 
 ## まとめ
 本記事では、パブリックからのアクセスを許可していない環境への可用性テストの方法ついてご案内いたしましたが、ご理解いただけましたでしょうか。
