@@ -1,6 +1,6 @@
 ---
 title: Azure Monitor 製品に関するお問い合わせを発行いただく際のポイント
-date: 2023-06-09 00:00:00
+date: 2023-06-15 00:00:00
 tags:
   - How-To
   - Tips
