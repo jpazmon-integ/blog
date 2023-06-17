@@ -41,7 +41,7 @@ Validity
 
 
 # 対処方法
-Log Analytics エージェントの再接続を実施いただくことでログが再び送信されるようになります。
+OMS エージェントの再接続を実施いただくことでログが再び送信されるようになります。
 エージェントの再起動については、以下のコマンドにより実施いただけます。
 ~~~~~
 sudo /opt/microsoft/omsagent/bin/service_control restart
