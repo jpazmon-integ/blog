@@ -4,27 +4,24 @@
   <meta charset="utf-8">
   
   
-  <title>プライベート環境への可用性テスト | Japan Azure Monitoring Support Blog</title>
+  <title>Japan Azure Monitoring Support Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="こんにちは、Azure Monitoring サポート チームの六浦です。 今回は、以下のようなパブリックからのアクセスを許可していない環境に対して Application Insights の可用性テストを行う方法をご案内いたします。  ファイアウォールを設定している パブリック IP アドレスが設定されていない etc.">
+  <meta name="description" content="[更新履歴]7&#x2F;10 10:00 (日本時間) ブログ公開 こんにちは、Azure Monitoring サポート チームの横山です。7&#x2F;7 に発生した障害 XMGF-5Z0 について記載いたします。この度は弊社 Azure の障害によりご不便ご迷惑をおかけし、大変申し訳ございませんでした。 発生した事象と時間帯事象の発生したリージョン直接影響を受けたサービス副次的に影響を受けたサービス影響を受け">
 <meta property="og:type" content="article">
-<meta property="og:title" content="プライベート環境への可用性テスト">
-<meta property="og:url" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutPrivateAvailabilityTest/index.html">
+<meta property="og:title" content="Japan Azure Monitoring Support Blog">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/general/mdsFalseAlerts/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの六浦です。 今回は、以下のようなパブリックからのアクセスを許可していない環境に対して Application Insights の可用性テストを行う方法をご案内いたします。  ファイアウォールを設定している パブリック IP アドレスが設定されていない etc.">
+<meta property="og:description" content="[更新履歴]7&#x2F;10 10:00 (日本時間) ブログ公開 こんにちは、Azure Monitoring サポート チームの横山です。7&#x2F;7 に発生した障害 XMGF-5Z0 について記載いたします。この度は弊社 Azure の障害によりご不便ご迷惑をおかけし、大変申し訳ございませんでした。 発生した事象と時間帯事象の発生したリージョン直接影響を受けたサービス副次的に影響を受けたサービス影響を受け">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutPrivateAvailabilityTest/1.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutPrivateAvailabilityTest/2.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutPrivateAvailabilityTest/3.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutPrivateAvailabilityTest/4.png">
-<meta property="article:published_time" content="2022-05-17T15:00:00.000Z">
-<meta property="article:modified_time" content="2023-07-10T01:21:20.754Z">
+<meta property="article:published_time" content="2023-07-10T01:21:24.674Z">
+<meta property="article:modified_time" content="2023-07-10T01:21:20.802Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="Tips">
+<meta property="article:tag" content="Azure">
+<meta property="article:tag" content="Azure Monitor">
+<meta property="article:tag" content="Azure Log Analytics">
+<meta property="article:tag" content="Azure Automation">
 <meta property="article:tag" content="Application Insights">
-<meta property="article:tag" content="可用性テスト">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutPrivateAvailabilityTest/1.png">
   
     <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
   
@@ -86,66 +83,56 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-applicationInsights/aboutPrivateAvailabilityTest" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-general/mdsFalseAlerts" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
     
-      <header class="article-header-single">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      プライベート環境への可用性テスト
-    </h1>
-  
-
-      </header>
-      <div class="article-share">
-        Last Update: 
-        <a href="" class="article-date-single">
-  <time datetime="2022-05-17T15:00:00.000Z" itemprop="datePublished">2022-05-18</time>
-</a>
-        
-        
-        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+7f353714-39a3-5b55-b2c5-2df772df7464%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%83%97%E3%83%A9%E3%82%A4%E3%83%99%E3%83%BC%E3%83%88%E7%92%B0%E5%A2%83%E3%81%B8%E3%81%AE%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FapplicationInsights%2FaboutPrivateAvailabilityTest%2F%29%0A*+Content+Source%3A+%5Barticles%2FapplicationInsights%2FaboutPrivateAvailabilityTest.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FapplicationInsights%2FaboutPrivateAvailabilityTest.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
-        
-        <a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/aboutPrivateAvailabilityTest/" data-id="cljw6gpxr001l0np1cm3o5xsj" class="article-share-link">共有</a>
-      </div>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは、Azure Monitoring サポート チームの六浦です。</p>
-<p>今回は、以下のようなパブリックからのアクセスを許可していない環境に対して Application Insights の可用性テストを行う方法をご案内いたします。</p>
+        <p>[更新履歴]<br>7/10 10:00 (日本時間) ブログ公開</p>
+<p>こんにちは、Azure Monitoring サポート チームの横山です。<br>7/7 に発生した障害 XMGF-5Z0 について記載いたします。<br>この度は弊社 Azure の障害によりご不便ご迷惑をおかけし、大変申し訳ございませんでした。</p>
+<p><a href="#summary">発生した事象と時間帯</a><br><a href="#region">事象の発生したリージョン</a><br><a href="#impact1">直接影響を受けたサービス</a><br><a href="#impact2">副次的に影響を受けたサービス</a><br><a href="#impact3">影響を受けなかったサービス</a><br><a href="#FAQ">よくあるご質問</a><br><a href="#atLast">最後に</a></p>
+<p><a id="summary"></a></p>
+<h1 id="発生した事象と時間帯"><a href="#発生した事象と時間帯" class="headerlink" title="発生した事象と時間帯"></a>発生した事象と時間帯</h1><p>日本時間 7/7 8:15 - 18:00 の間、Azure Monitor 関連サービスにおけるデータの取り込みに欠損ならびに遅延が発生いたしました。<br>具体的には、問題のある構成により過剰な数の処理が発生しいたしました。これにより、ログの取り込みを行う Azure 基盤側のサービスが高負荷状態に陥り、内部で利用する認証情報の取得に失敗する事象が発生いたしました。  </p>
+<p>Azure 基盤側のサーバー増強を行い、滞留していた処理と新規の処理を適切に処理できるよう対処いたしました。  </p>
+<p>根本原因ならびに今後の恒久対策については現在も弊社開発にて調査、検討中です。(7/10 10:00 (日本時間) 現在)<br>なお、最新の状況は以下よりご確認いただけます。<br><a target="_blank" rel="noopener" href="https://app.azure.com/h/XMGF-5Z0/">https://app.azure.com/h/XMGF-5Z0/</a> (Azure ポータル)<br><a target="_blank" rel="noopener" href="https://azure.status.microsoft/ja-jp/status/history/">https://azure.status.microsoft/ja-jp/status/history/</a> (Azure の状態ページ)</p>
+<p><a id="region"></a></p>
+<h1 id="発生したリージョン"><a href="#発生したリージョン" class="headerlink" title="発生したリージョン"></a>発生したリージョン</h1><p>東日本、西日本を含む以下のリージョンで事象が発生いたしました。<br>Global; Australia Central; Australia Central 2; Australia East; Australia Southeast; Brazil South; Brazil Southeast; Canada Central; Canada East; Central India; Central US; Central US EUAP; East Asia; East US; East US 2; East US 2 EUAP; France Central; France South; Germany North; Germany West Central; Japan East; Japan West; Jio India Central; Jio India West; Korea Central; Korea South; North Central US; North Europe; Norway East; Norway West; Qatar Central; South Africa North; South Africa West; South Central US; South India; Southeast Asia; Sweden Central; Sweden South; Switzerland North; Switzerland West; UK South; UK West; West Central US; West Europe; West India; West US; West US 2; West US 3</p>
+<p><a id="impact1"></a></p>
+<h1 id="直接影響を受けたサービス"><a href="#直接影響を受けたサービス" class="headerlink" title="直接影響を受けたサービス"></a>直接影響を受けたサービス</h1><ul>
+<li>Log Analytics エージェント、Azure Monitor エージェント、Container Insights、データ コレクタ API、ログ インジェスト API を利用した Log Analytics ワークスペースへのデータ取り込み</li>
+<li>Microsoft Sentinel コネクタを利用した Log Log Analytics ワークスペースへのデータ取り込み</li>
+<li>Application Insights (ワークスペース ベース) へのデータ取り込み</li>
+<li>リソースの診断設定を利用した Log Analytics ワークスペース、ストレージ アカウント、イベント ハブへのデータ取り込み</li>
+</ul>
+<p><a id="impact2"></a></p>
+<h1 id="副次的に影響を受けたサービス"><a href="#副次的に影響を受けたサービス" class="headerlink" title="副次的に影響を受けたサービス"></a>副次的に影響を受けたサービス</h1><ul>
+<li>Log Analytics ワークスペースへのクエリを利用したログ アラート ルール</li>
+<li>Log Analytics ワークスペースをスコープとしたメトリック アラート ルール</li>
+<li>Log Analytics ワークスペースからストレージ アカウント、イベント ハブへのデータ エクスポート</li>
+</ul>
+<p><a id="impact3"></a></p>
+<h1 id="影響を受けなかったサービス"><a href="#影響を受けなかったサービス" class="headerlink" title="影響を受けなかったサービス"></a>影響を受けなかったサービス</h1><ul>
+<li>Log Analytics ワークスペース、Sentinel、Application Insights (ワークスペース ベース) に取り込まれたデータの参照</li>
+<li>Application Insights (クラシック) へのデータ取り込み</li>
+<li>Windows Azure Diagnostics (WAD)、Linux Azure Diagnostics (LAD) を利用したストレージ アカウントへのデータ取り込み</li>
+<li>各種リソースのプラットフォーム メトリック</li>
+<li>プラットフォーム メトリックを利用したメトリック アラート ルール</li>
+</ul>
+<p><a id="FAQ"></a></p>
+<h1 id="よくあるご質問"><a href="#よくあるご質問" class="headerlink" title="よくあるご質問"></a>よくあるご質問</h1><p>Q. 影響を受けたサブスクリプションの確認方法はあるか？<br>A. 以下に追跡 ID: XMGF-5Z0 が表示される場合、影響を受けております。<br>[Azure ポータル] - [サービス正常性] - [サービス正常性の履歴]</p>
+<p>Q. データの欠損はあるか？<br>A. はい、今回の障害によりデータの欠損は発生していた可能性がございます。  </p>
+<p>Q. データの欠損を確認する方法はあるか？<br>A. もし、取り込み元のログ (イベント ログや Syslog) をお客様にて確認できる場合は、対象の取り込み先のデータと比較することで可能です。残念ながら、マイクロソフトから欠損したデータを確認することはできません。</p>
+<p>Q. 欠損したデータの復旧は可能か？<br>A. いいえ、欠損したデータの復旧を行うことはできません。</p>
+<p>Q. 今回の障害による返金はあるか？<br>A. いいえ、Azure Monitor 各種サービスへのデータ取り込みに関しては SLA (Service Level Agreements) が定められていないため、今回の障害による返金はございません。</p>
+<p><a id="atlast"></a></p>
+<h1 id="最後に"><a href="#最後に" class="headerlink" title="最後に"></a>最後に</h1><p>もし、本ブログに記載の内容以外について追加のご質問やご不明点がございましたら、大変お手数ではございますが、事象を受けたサブスクリプションからお問い合わせをご発行ください。<br>なお、以下についてはお問い合わせを新規ご発行いただいても回答いたしかねますので、予めご了承ください。  </p>
 <ul>
-<li>ファイアウォールを設定している</li>
-<li>パブリック IP アドレスが設定されていない etc.</li>
+<li>XMGF-5Z0 に記載されている障害の詳細、ならびに、Azure Monitor に関する内部実装  </li>
+<li>根本原因や恒久対策について (XMGF-5Z0 を介して開発からアップデートがございますので、そちらをお待ち下さい。弊ブログも開発からの情報公開後、アップデートいたします。)</li>
 </ul>
-<span id="more"></span>
-
-<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
-<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
-<li><a href="#%E3%83%91%E3%83%96%E3%83%AA%E3%83%83%E3%82%AF%E3%81%8B%E3%82%89%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%82%92%E8%A8%B1%E5%8F%AF%E3%81%97%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E7%92%B0%E5%A2%83%E3%81%B8%E3%81%AE%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88">パブリックからのアクセスを許可していない環境への可用性テスト①</a></li>
-<li><a href="#%E3%83%91%E3%83%96%E3%83%AA%E3%83%83%E3%82%AF%E3%81%8B%E3%82%89%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%82%92%E8%A8%B1%E5%8F%AF%E3%81%97%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E7%92%B0%E5%A2%83%E3%81%B8%E3%81%AE%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88-1">パブリックからのアクセスを許可していない環境への可用性テスト②</a></li>
-<li><a href="#%E3%81%BE%E3%81%A8%E3%82%81">まとめ</a></li>
-</ul>
-<h2 id="パブリックからのアクセスを許可していない環境への可用性テスト①"><a href="#パブリックからのアクセスを許可していない環境への可用性テスト①" class="headerlink" title="パブリックからのアクセスを許可していない環境への可用性テスト①"></a>パブリックからのアクセスを許可していない環境への可用性テスト①</h2><p>パブリック DNS レコードが存在し、ファイアウォールなどを使用してパブリックからのアクセスを制限した環境に対しては、サービス タグまたはテストの送信元のサーバーの IP アドレスを許可してテストを行うことができます。</p>
-<p>可用性テストの送信元のサーバーの IP アドレスはサービス タグ “ApplicationInsightsAvailability” にて定義しております。このサービス タグをネットワーク セキュリティ グループなどで受信の許可を設定して、可用性テストを実施できます。<br><img src="/blog/applicationInsights/aboutPrivateAvailabilityTest/1.png"></p>
-<p>または、リクエストを送信するテストの場所ごとの IP アドレスに対して受信の許可を設定し、テストを行うことも可能でございます。<br>テストの場所ごとの IP アドレスは以下の弊社公開情報にて提供しております。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/app/ip-addresses#addresses-grouped-by-location-azure-public-cloud">場所ごとにグループ化されたアドレス (Azure パブリック クラウド)</a></p>
-<p>[参考情報]<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/app/availability-private-test">プライベート可用性テスト - Azure Monitor Application Insights - Azure Monitor | Microsoft Docs</a></p>
-<h2 id="パブリックからのアクセスを許可していない環境への可用性テスト②"><a href="#パブリックからのアクセスを許可していない環境への可用性テスト②" class="headerlink" title="パブリックからのアクセスを許可していない環境への可用性テスト②"></a>パブリックからのアクセスを許可していない環境への可用性テスト②</h2><p>パブリック DNS レコードが存在せず仮想ネットワーク内からのみアクセスできる環境やサービス タグを許可できない環境に対しては、Azure Functions を使用して可用性テストを行います。</p>
-<ol>
-<li><p>Application Insights を有効化した Azure Functions を用意します。<br>Application Insights が有効になっているかは、Azure Functions の以下の画面からご確認いただけます。<br><img src="/blog/applicationInsights/aboutPrivateAvailabilityTest/2.png"></p>
-<div class="alert is-info"><p class="alert-title">Note</p><p>仮想ネットワーク内で可用性テストを行う場合は、Azure Functions をテスト対象のサーバーと同じ仮想ネットワークに対して VNET 統合を設定する必要がございます。</p><p>Azure Functions で VNET 統合を利用するには、従量課金の代わりに Premium プランを使用します。</p><p>また、仮想ネットワークを使用して Azure Functions からストレージ アカウントへアクセスする場合は、以下の弊社公開情報を参考に、Azure Functions とストレージ アカウントを構成ください。</p><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-functions/configure-networking-how-to#restrict-your-storage-account-to-a-virtual-network">仮想ネットワークで Azure Functions を構成する方法</a></p></div>
-</li>
-<li><p>タイマー トリガー関数を作成します。<br>以下の弊サポート チーム ブログにて、可用性テストを行うためのソース コードの実装例を提供しております。<br> <a href="https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/">Azure Functions を利用したプライベート可用性テストについて</a></p>
-<p> runAvailabilityTest.csx で、テスト先の URL を指定します。<br><img src="/blog/applicationInsights/aboutPrivateAvailabilityTest/3.png"></p>
-</li>
-<li><p>Application Insights の [可用性] を開き、可用性テストが動いていることを確認します。<br>Azure Functions で作成した可用性テストは、[CUSTOM] と表示されます。<br><img src="/blog/applicationInsights/aboutPrivateAvailabilityTest/4.png"></p>
-</li>
-</ol>
-<p>[参考情報]<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/app/availability-azure-functions">Azure Functions を使用してカスタム可用性テストを作成して実行する - Azure Monitor | Microsoft Docs</a><br><a href="https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/">Azure Functions を利用したプライベート可用性テストについて</a></p>
-<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>本記事では、パブリックからのアクセスを許可していない環境への可用性テストの方法ついてご案内いたしましたが、ご理解いただけましたでしょうか。</p>
-<p>本記事が少しでもお役に立ちましたら幸いです。<br>最後までお読みいただきありがとうございました！</p>
+<p>改めまして、この度は弊社 Azure 障害によりご不便ご迷惑をおかけし、大変申し訳ございませんでした。</p>
 
       
       
@@ -159,10 +146,8 @@
     <footer class="article-footer">
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li></ul>
-
         
-        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/applicationInsights/aboutPrivateAvailabilityTest.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/general/mdsFalseAlerts.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
         
     </footer>
   </div>
@@ -170,19 +155,10 @@
     
 <nav id="article-nav">
   
-    <a href="../../LogAnalytics/MonitorVM/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">次の記事</strong>
-      <div class="article-nav-title">
-        
-          死活監視のクエリについて
-        
-      </div>
-    </a>
   
-  
-    <a href="../aboutCostOfAi/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../../AzureMonitorEssential/AlertProcessingRule/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前の記事</strong>
-      <div class="article-nav-title">Application Insights のログの料金について</div>
+      <div class="article-nav-title">アラート処理ルールについて</div>
     </a>
   
 </nav>
@@ -201,7 +177,7 @@
       <ul>
         
           <li>
-            <a href="../../general/mdsFalseAlerts/">(no title)</a>
+            <a href="">(no title)</a>
           </li>
         
           <li>
@@ -209,11 +185,11 @@
           </li>
         
           <li>
-            <a href="../../general/HowToCreateSR/">Azure Monitor 製品に関するお問い合わせを発行いただく際のポイント</a>
+            <a href="../HowToCreateSR/">Azure Monitor 製品に関するお問い合わせを発行いただく際のポイント</a>
           </li>
         
           <li>
-            <a href="../privateAvailabilityTestSampleCode/">Azure Functions を利用したプライベート可用性テストについて</a>
+            <a href="../../applicationInsights/privateAvailabilityTestSampleCode/">Azure Functions を利用したプライベート可用性テストについて</a>
           </li>
         
           <li>
