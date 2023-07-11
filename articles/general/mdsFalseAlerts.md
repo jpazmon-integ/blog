@@ -4,7 +4,8 @@ date: 2023-07-10 00:00:00
 tags:
 ---
 
-[更新履歴]
+[更新履歴]  
+7/11 15:45 (日本時間) Post Incident Review (PIR) の抄訳を追記いたしました。  
 7/10 10:00 (日本時間) ブログ公開
 
 こんにちは、Azure Monitoring サポート チームの横山です。  
@@ -81,7 +82,8 @@ A. いいえ、Azure Monitor 各種サービスへのデータ取り込みに関
 
 <a id="pir"></a>
 # Post Incident Review (PIR) の抄訳
-https://azure.status.microsoft/ja-jp/status/history/
+下記に公開されている PIR の抄訳を記載いたしました。  
+https://azure.status.microsoft/ja-jp/status/history/ (Azure の状態の履歴)
 ## 何が起こったのか
 2023 年 7 月 6 日の UTC 23:15 から 7 月 7 日の UTC 9:00 (日本時間 2023 年 7 月 7 日 08:15 から 7 月 7 日 18:00) まで、Azure Monitor Log Analytics と Microsoft Sentinel の一部のデータの取り込みが失敗しました。  
 さらに、診断設定を介して収集したプラットフォーム ログは、Log Analytics、ストレージ、Event Hub、マーケットプレイスなどの顧客向けの宛先に一部のデータをルーティング (データを送信) することに失敗しました。  
