@@ -6,15 +6,15 @@
   
   <title>7/7 に発生した障害 XMGF-5Z0 について | Japan Azure Monitoring Support Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="[更新履歴]7&#x2F;11 15:45 (日本時間) Post Incident Review (PIR) の抄訳を追記いたしました。7&#x2F;10 10:00 (日本時間) ブログ公開 こんにちは、Azure Monitoring サポート チームの横山です。7&#x2F;7 に発生した障害 XMGF-5Z0 について記載いたします。この度は弊社 Azure の障害によりご不便ご迷惑をおかけし、大変申し訳ございません">
+  <meta name="description" content="[更新履歴]    7&#x2F;12 10:45 (日本時間) Post Incident Review (PIR) の「どのように対応したのか」を一部修正しました。   Azure Service Health を通じた最初の通知の時間に誤りがあり、2023 年 7 月 6 日 23:19 UTC (2023 年 7 月 7 日 08:19 JST) に変更しました。   7&#x2F;11 15:45 (日本時">
 <meta property="og:type" content="article">
 <meta property="og:title" content="7&#x2F;7 に発生した障害 XMGF-5Z0 について">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/general/mdsFalseAlerts/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="[更新履歴]7&#x2F;11 15:45 (日本時間) Post Incident Review (PIR) の抄訳を追記いたしました。7&#x2F;10 10:00 (日本時間) ブログ公開 こんにちは、Azure Monitoring サポート チームの横山です。7&#x2F;7 に発生した障害 XMGF-5Z0 について記載いたします。この度は弊社 Azure の障害によりご不便ご迷惑をおかけし、大変申し訳ございません">
+<meta property="og:description" content="[更新履歴]    7&#x2F;12 10:45 (日本時間) Post Incident Review (PIR) の「どのように対応したのか」を一部修正しました。   Azure Service Health を通じた最初の通知の時間に誤りがあり、2023 年 7 月 6 日 23:19 UTC (2023 年 7 月 7 日 08:19 JST) に変更しました。   7&#x2F;11 15:45 (日本時">
 <meta property="og:locale" content="ja_JP">
 <meta property="article:published_time" content="2023-07-09T15:00:00.000Z">
-<meta property="article:modified_time" content="2023-07-11T06:51:31.278Z">
+<meta property="article:modified_time" content="2023-07-12T01:48:03.846Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Azure">
 <meta property="article:tag" content="Azure Monitor">
@@ -106,12 +106,20 @@
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+9841001a-ff92-5aba-b378-cca940315f39%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B7%2F7+%E3%81%AB%E7%99%BA%E7%94%9F%E3%81%97%E3%81%9F%E9%9A%9C%E5%AE%B3+XMGF-5Z0+%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2Fgeneral%2FmdsFalseAlerts%2F%29%0A*+Content+Source%3A+%5Barticles%2Fgeneral%2FmdsFalseAlerts.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2Fgeneral%2FmdsFalseAlerts.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/general/mdsFalseAlerts/" data-id="cljxxp72q00710npgc36ob8zm" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/general/mdsFalseAlerts/" data-id="cljz2asae00710nl98a8p8cy5" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>[更新履歴]<br>7/11 15:45 (日本時間) Post Incident Review (PIR) の抄訳を追記いたしました。<br>7/10 10:00 (日本時間) ブログ公開</p>
+        <p>[更新履歴]  </p>
+<ul>
+<li>7/12 10:45 (日本時間) Post Incident Review (PIR) の「どのように対応したのか」を一部修正しました。  <ul>
+<li>Azure Service Health を通じた最初の通知の時間に誤りがあり、2023 年 7 月 6 日 23:19 UTC (2023 年 7 月 7 日 08:19 JST) に変更しました。</li>
+</ul>
+</li>
+<li>7/11 15:45 (日本時間) Post Incident Review (PIR) の抄訳を追記いたしました。  </li>
+<li>7/10 10:00 (日本時間) ブログ公開</li>
+</ul>
 <p>こんにちは、Azure Monitoring サポート チームの横山です。<br>7/7 に発生した障害 XMGF-5Z0 について記載いたします。<br>この度は弊社 Azure の障害によりご不便ご迷惑をおかけし、大変申し訳ございませんでした。</p>
 <p><a href="#summary">発生した事象と時間帯</a><br><a href="#region">事象の発生したリージョン</a><br><a href="#impact1">直接影響を受けたサービス</a><br><a href="#impact2">副次的に影響を受けたサービス</a><br><a href="#impact3">影響を受けなかったサービス</a><br><a href="#FAQ">よくあるご質問</a><br><a href="#pir">Post Incident Review (PIR) の抄訳</a><br><a href="#atLast">最後に</a></p>
 <p><a id="summary"></a></p>
@@ -155,7 +163,7 @@
 <p>テレメトリ エージェントの起動ごとに、エージェントはすぐにテレメトリ コントロール プレーンに接続し、テレメトリ構成の最新バージョンをダウンロードしました。<br>通常、このアクションはエージェント上でキャッシュされる設定であるため、数日に一度行うものです。<br>しかし、Container Apps サービスのデプロイメントが進行するにつれて、数百のホストがテレメトリ コントロール プレーンから 5 秒から 10 秒ごとにスタートアップ構成情報を要求するテレメトリ エージェントを持つようになりました。<br>Container Apps チームは、2023 年 7 月 6 日 UTC にデプロイメントの欠陥を検知し、本番環境にリリースされる前に当初予定していたデプロイメントを停止しました。<br>そして誤った構成を修正するために canary とステージング リージョンでサービスの新しいデプロイメントを開始しました。</p>
 <p>しかし、誤った構成情報のビルドを受け取ったサービスからの各リクエストが集約された結果、テレメトリ コントロール プレーンのリソースを使い果たしました。<br>テレメトリ コントロール プレーンはグローバル サービスであり、Azure の全パブリック リージョンで稼働しているサービスに使用されています。<br>テレメトリ コントロール プレーンのリソースが枯渇すると、テレメトリの取り込みに関与する他のサービス、たとえば ingestion front door や内部でサービス間のデータをルーティングするパイプライン サービスなどが、テレメトリ コントロール プレーンに対する操作が拒否されたりタイムアウトしたりするようになり、失敗を始めました。<br>テレメトリ コントロール プレーンを単一の障害点とする設計は既知のリスクであり、その設計を見直すための改善プロジェクトが Azure Monitor において既に計画されていました。<br>しかしながら、その変更が行われる前にこの問題が発生しました。</p>
 <h2 id="どのように対応したのか"><a href="#どのように対応したのか" class="headerlink" title="どのように対応したのか"></a>どのように対応したのか</h2><p>2023 年 7 月 6 日 12:30 UTC (2023 年 7 月 6 日 21:30 JST) までにゆっくりとテレメトリ コントロール プレーンへの影響が増大し、それが問題を引き起こすまで検出されませんでした。<br>問題が検出されたとき、テレメトリ コントロール プレーンへの負荷を発生させている原因は不明でしたが、私たちはテレメトリ コントロール プレーンに対する追加の負荷が発生していると疑い、以下のアクションを実行しました。</p>
-<p>2023 年 7 月 6 日 14:53 UTC (2023 年 7 月 6 日 23:53 JST) - 内部でインシデント ブリッジ (インシデント対応チーム) が作成されました<br>2023 年 7 月 6 日 15:56 UTC (2023 年 7 月 7 日 00:56 JST) - ガベージ コレクター サービスの約 500 インスタンスを削除し、テレメトリ コントロール プレーンへの負荷を軽減しました<br>2023 年 7 月 6 日 16:09 UTC (2023 年 7 月 7 日 01:09 JST) - Node Diagnostics サーバーの削除を開始し、テレメトリ コントロール プレーンへの負荷を軽減しました。サーバーを削除するこの処置はその後 10 時間にわたって続けられました。<br>2023 年 7 月 6 日 19:19 UTC (2023 年 7 月 7 日 04:19 JST) - 影響を受けたサブスクリプションを持つお客様に対して、最初の通知を Azure Service Health を通じて送信しました (追跡 ID XMGF-5Z0 で送信)。<br>2023 年 7 月 6 日 20:20 UTC (2023 年 7 月 7 日 05:20 JST) - 異常に高いトラフィックの原因が特定され、関連するチームが支援に呼び出されました。<br>2023 年 7 月 6 日 23:00 UTC (2023 年 7 月 7 日 08:00 JST) - 異常なトラフィックがテレメトリ コントロール プレーンにヒットするのを防ぐために、IP アドレス ブロックが展開されました。<br>2023 年 7 月 6 日 23:15 UTC (2023 年 7 月 7 日 08:15 JST) - キャッシュ データが失効したため、お客様への影響が始まりました。<br>2023 年 7 月 7 日 01:30 UTC (2023 年 7 月 7 日 10:30 JST) - 追加の負荷を処理するためにテレメトリ コントロール プレーンに 3 つの追加クラスターが追加され、既存のクラスターの再起動を開始し、バックログの接続をクリアしました。<br>2023 年 7 月 7 日 02:45 UTC (2023 年 7 月 7 日 11:45 JST) - テレメトリ コントロール プレーンにさらに 3 つのクラスターが追加されました。<br>2023 年 7 月 7 日 05:21 UTC (2023 年 7 月 7 日 14:21 JST) - より詳細なお客様へのアップデート通知が送信されました。<br>2023 年 7 月 7 日 09:00 UTC (2023 年 7 月 7 日 18:00 JST) - コントロール プレーン API に対するコール エラー レートとコール レイテンシが通常のレベルで安定したため、インシデントの解消が宣言されました。</p>
+<p>2023 年 7 月 6 日 14:53 UTC (2023 年 7 月 6 日 23:53 JST) - 内部でインシデント ブリッジ (インシデント対応チーム) が作成されました<br>2023 年 7 月 6 日 15:56 UTC (2023 年 7 月 7 日 00:56 JST) - ガベージ コレクター サービスの約 500 インスタンスを削除し、テレメトリ コントロール プレーンへの負荷を軽減しました<br>2023 年 7 月 6 日 16:09 UTC (2023 年 7 月 7 日 01:09 JST) - Node Diagnostics サーバーの削除を開始し、テレメトリ コントロール プレーンへの負荷を軽減しました。サーバーを削除するこの処置はその後 10 時間にわたって続けられました。<br>2023 年 7 月 6 日 20:20 UTC (2023 年 7 月 7 日 05:20 JST) - 異常に高いトラフィックの原因が特定され、関連するチームが支援に呼び出されました。<br>2023 年 7 月 6 日 23:00 UTC (2023 年 7 月 7 日 08:00 JST) - 異常なトラフィックがテレメトリ コントロール プレーンにヒットするのを防ぐために、IP アドレス ブロックが展開されました。<br>2023 年 7 月 6 日 23:15 UTC (2023 年 7 月 7 日 08:15 JST) - キャッシュ データが失効したため、お客様への影響が始まりました。<br>2023 年 7 月 6 日 23:19 UTC (2023 年 7 月 7 日 08:19 JST) - 影響を受けたサブスクリプションを持つお客様に対して、最初の通知を Azure Service Health を通じて送信しました (追跡 ID XMGF-5Z0 で送信)。<br>2023 年 7 月 7 日 01:30 UTC (2023 年 7 月 7 日 10:30 JST) - 追加の負荷を処理するためにテレメトリ コントロール プレーンに 3 つの追加クラスターが追加され、既存のクラスターの再起動を開始し、バックログの接続をクリアしました。<br>2023 年 7 月 7 日 02:45 UTC (2023 年 7 月 7 日 11:45 JST) - テレメトリ コントロール プレーンにさらに 3 つのクラスターが追加されました。<br>2023 年 7 月 7 日 05:21 UTC (2023 年 7 月 7 日 14:21 JST) - より詳細なお客様へのアップデート通知が送信されました。<br>2023 年 7 月 7 日 09:00 UTC (2023 年 7 月 7 日 18:00 JST) - コントロール プレーン API に対するコール エラー レートとコール レイテンシが通常のレベルで安定したため、インシデントの解消が宣言されました。</p>
 <h2 id="このようなインシデントをどのようにして減らすか、または影響を軽減するか"><a href="#このようなインシデントをどのようにして減らすか、または影響を軽減するか" class="headerlink" title="このようなインシデントをどのようにして減らすか、または影響を軽減するか"></a>このようなインシデントをどのようにして減らすか、または影響を軽減するか</h2><p>私たちはお客様の信頼を獲得し、またただ正しいことを言うだけでなく、正しいことを実践することで維持されるべきだと理解しています。<br>データ保持は、すべてのクラウド サービスを担当する各エンジニアを含む、Microsoft クラウドの基本的な責任です。私たちはこのインシデントから学び、以下の改善に取り組んでいます。</p>
 <ul>
 <li>私たちは、テレメトリ コントロール プレーンのサービスが追加の容量で稼働していることを確認しました。 (完了)</li>
