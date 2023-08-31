@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Azure PowerShell で 3 万件以上のログを取得する方法 | Japan Azure Monitoring Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは、Azure Monitoring サポート チームの北村です。今回は、Azure PowerShell で Log Analytics ワークスペースのログを取得する方法をご紹介します。 Azure ポータルで表示されるログ クエリの検索結果の上限は 30,000 件です。この上限値の引き上げをご要望いただくお問い合わせをいただくことがありますが、残念ながら引き上げることはできません。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Azure PowerShell で 3 万件以上のログを取得する方法">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの北村です。今回は、Azure PowerShell で Log Analytics ワークスペースのログを取得する方法をご紹介します。 Azure ポータルで表示されるログ クエリの検索結果の上限は 30,000 件です。この上限値の引き上げをご要望いただくお問い合わせをいただくことがありますが、残念ながら引き上げることはできません。">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/image02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/image01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/image03.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/image04.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/image05.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/image06.png">
+<meta property="article:published_time" content="2023-08-31T15:00:00.000Z">
+<meta property="article:modified_time" content="2023-08-31T12:49:37.618Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="How-To">
+<meta property="article:tag" content="Tips">
+<meta property="article:tag" content="Log Analytics">
+<meta property="article:tag" content="クエリ">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/image02.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-LogAnalytics/QueryByPowerShell" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Azure PowerShell で 3 万件以上のログを取得する方法
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2023-08-31T15:00:00.000Z" itemprop="datePublished">2023-09-01</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+c08a4943-3ee0-5177-91cd-905158cb65cb%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+PowerShell+%E3%81%A7+3+%E4%B8%87%E4%BB%B6%E4%BB%A5%E4%B8%8A%E3%81%AE%E3%83%AD%E3%82%B0%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FQueryByPowerShell%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FQueryByPowerShell.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FQueryByPowerShell.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/" data-id="cllz5y5i300180nofc2rlfyno" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回は、Azure PowerShell で Log Analytics ワークスペースのログを取得する方法をご紹介します。</p>
+<p>Azure ポータルで表示されるログ クエリの検索結果の上限は 30,000 件です。<br>この上限値の引き上げをご要望いただくお問い合わせをいただくことがありますが、残念ながら引き上げることはできません。<br>そのため、Azure ポータル からクエリを実行する必要がある場合は、時間範囲等で条件を指定いただき、検索結果を絞っていただくようご案内しております。</p>
+<p>一方で Azure PowerShell からクエリを実行する場合、最大 500,000 行まで取得することが可能です。<br>そのため、今回は Azure PowerShell からクエリを実行する方法等をご紹介します！</p>
+<br>
+
+<span id="more"></span>
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li><a href="#1-Azure-%E3%83%9D%E3%83%BC%E3%82%BF%E3%83%AB%E3%81%8B%E3%82%89%E3%82%AF%E3%82%A8%E3%83%AA%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%9F%E3%81%A8%E3%81%8D%E3%81%AE%E4%B8%8A%E9%99%90">1. Azure ポータルからクエリを実行したときの上限</a></li>
+<li><a href="#2-Azure-PowerShell-%E3%81%8B%E3%82%89%E3%82%AF%E3%82%A8%E3%83%AA%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95">2. Azure PowerShell からクエリを実行する方法</a></li>
+<li><a href="#3-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E6%89%8B%E9%A0%86">3. Azure PowerShell によるクエリ実行の制限に触れないように工夫して実行する方法</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E6%83%85%E5%A0%B1">参考情報</a></li>
+</ul>
+<br>
+
+<h2 id="1-Azure-ポータルからクエリを実行したときの上限"><a href="#1-Azure-ポータルからクエリを実行したときの上限" class="headerlink" title="1. Azure ポータルからクエリを実行したときの上限"></a>1. Azure ポータルからクエリを実行したときの上限</h2><p>本ブログの冒頭でもご説明したとおり、Azure ポータルで表示されるログ クエリの検索結果の上限は 30,000 件です (*1)。<br>この上限値を引き上げることはできません。一方で、Azure ポータル ではなく Azure PowerShell からクエリを実行の場合、500,000 行までの上限に変わります。</p>
+<p>(*1) Azure ポータルでクエリを実行し、ログ クエリの検索結果の上限に達すると、上限に達した旨のメッセージが表示されます。<br><img src="/blog/LogAnalytics/QueryByPowerShell/image02.png"></p>
+<p>(*2) <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/service-limits#log-analytics-workspaces">Azure ポータルで実行したときの上限</a> です。<br><img src="/blog/LogAnalytics/QueryByPowerShell/image01.png"></p>
+<p>(*3) <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/service-limits#log-analytics-workspaces">Azure PowerShell からクエリを実行したときの上限</a> です。<br><img src="/blog/LogAnalytics/QueryByPowerShell/image03.png"></p>
+<br>
+<br>
+
+<h2 id="2-Azure-PowerShell-からクエリを実行する方法"><a href="#2-Azure-PowerShell-からクエリを実行する方法" class="headerlink" title="2. Azure PowerShell からクエリを実行する方法"></a>2. Azure PowerShell からクエリを実行する方法</h2><p>Azure PowerShell にて用意されている <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/powershell/module/az.operationalinsights/invoke-azoperationalinsightsquery?view=azps-10.2.0">Invoke-AzOperationalInsightsQuery</a> のコマンドレットを利用する方法がございます。<br>以下のサンプル スクリプトでは、Azure PowerShell よりクエリを実行し CSV ファイルに出力しています。<br>ワークスペース ID は Azure Portal で該当のワークスペースを開き、[概要] のページからご確認ください。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$query = &quot;Heartbeat | where TimeGenerated &gt; ago(<span class="number">3</span>d)&quot;</span><br><span class="line">$result = Invoke-AzOperationalInsightsQuery -WorkspaceId &quot;&lt;ワークスペース ID&gt;&quot; -Query $query</span><br><span class="line">$result.Results | ConvertTo-Csv &gt; &lt;出力ファイル パス&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>ただし、Azure PowerShell でクエリを実行する場合も、取得するデータのサイズやクエリの実行時間等の制限がございます (*4)。<br>そのため、必ず 500,000 件のレコードが取得可能であるということではない点、ご留意ください。<br>以下の上限にも抵触し、全量のログを取得できなかった場合には、時間範囲や条件を細かく指定していただき、クエリを実行いただく必要がございます。</p>
+<p>(*4) <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/service-limits#log-analytics-workspaces">Azure PowerShell からクエリを実行したときの上限</a> です。<br><img src="/blog/LogAnalytics/QueryByPowerShell/image04.png"></p>
+<p>取得しようとしたデータのサイズが上限に達している場合、以下のとおりエラーが出力されます。<br>例えば、Invoke-AzOperationalInsightsQuery の結果を $result 変数に保存した場合、$result.Error に PartialError が記録されます。全量のログを取得できているかどうかを確認されたい場合は、以下のメッセージをご確認ください。<br><img src="/blog/LogAnalytics/QueryByPowerShell/image05.png"></p>
+<p>なお、レコード数の条件に達している場合は、エラーが出力されません。<br>そのため、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/data-explorer/kusto/query/countoperator">count</a> 演算子で取得するログのレコード数を出力させ、全量のログを取得できているかどうかをご確認ください。<br><img src="/blog/LogAnalytics/QueryByPowerShell/image06.png"></p>
+<br>
+
+<div class="alert is-info"><p class="alert-title">Note</p><p>サンプル スクリプトを実行するには、Azure PowerShell をインストールしていただく必要がございます。</p><p>Azure PowerShell をインストール方法は <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/powershell/azure/install-azure-powershell?view=azps-10.2.0&viewFallbackFrom=azps-8.1.0">弊社公開情報</a> をご欄ください。</p><p>なお、Azure PowerShell や Azure CLI を使用する際には Azure Cloud Shell が便利です。</p><p>ポータルでログインしているユーザーの認証情報が引き継がれるため、Connect-AzAccount コマンド等の実行は不要です。</p><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-JP/azure/cloud-shell/overview">弊社公開情報</a> にも利用方法を掲載しておりますので、ご覧いただけますと幸いです。</p></div>
+<br>
+
+
+<h2 id="3-Azure-PowerShell-で上限に触れないように工夫して実行する方法"><a href="#3-Azure-PowerShell-で上限に触れないように工夫して実行する方法" class="headerlink" title="3. Azure PowerShell で上限に触れないように工夫して実行する方法"></a>3. Azure PowerShell で上限に触れないように工夫して実行する方法</h2><p>クエリ実行の上限に抵触せずに、繰り返しデータを取得する方法の一例をご紹介します。<br>この方法は、レコード数で分割してログを取得します。<br>クエリで取得したデータの推定データ サイズは <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-JP/azure/data-explorer/kusto/query/estimate-data-sizefunction">estimate_data_size</a> で確認することが可能です。<br>例えば、以下のクエリでは、過去 31 日間の Syslog レコードの最大、最小、平均データ サイズを確認できます。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Syslog</span><br><span class="line">| where Facility == &#x27;cron&#x27;</span><br><span class="line">| where TimeGenerated between (datetime(<span class="number">2023</span>-<span class="number">08</span>-<span class="number">01</span> <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>) .. <span class="number">31</span>d)</span><br><span class="line">| summarize max(estimate_data_size(*)), min(estimate_data_size(*)), avg(estimate_data_size(*))</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>弊社検証環境では、上記に該当するレコードの最小サイズが 328 バイト、最大サイズが 431 バイト、平均が 395 バイトでした。<br>つまり、全てのレコードが 431 バイトであったとしても、100,000 行で 43 MB ですので、データの最大サイズの上限 (64MB) には達しません。そのため、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/data-explorer/kusto/query/topoperator">top 演算子</a> を利用して 100,000 行ずつデータを取得します。top 演算子では、指定した列で並べ替えられた、先頭の N 個のレコードを返します。</p>
+<br>
+
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> 回目のクエリ (最初の <span class="number">100</span>,<span class="number">000</span> 行を出力) :</span><br><span class="line">$query = &quot;Syslog | where TimeGenerated between(datetime(<span class="number">2023</span>-<span class="number">08</span>-<span class="number">01</span>) .. <span class="number">1</span>d) | where Facility == &#x27;cron&#x27; | top <span class="number">100000</span> by TimeGenerated asc | top <span class="number">100000</span> by TimeGenerated desc&quot;</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> 回目のクエリ (<span class="number">100</span>,<span class="number">001</span> 行目から <span class="number">200</span>,<span class="number">000</span> 行目を出力) :</span><br><span class="line">$query = &quot;Syslog | where TimeGenerated between(datetime(<span class="number">2023</span>-<span class="number">08</span>-<span class="number">01</span>) .. <span class="number">1</span>d) | where Facility == &#x27;cron&#x27; | top <span class="number">200000</span> by TimeGenerated asc | top <span class="number">100000</span> by TimeGenerated desc&quot;</span><br><span class="line"></span><br><span class="line"><span class="number">3</span> 回目のクエリ (<span class="number">200</span>,<span class="number">001</span> 行目から <span class="number">300</span>,<span class="number">000</span> 行目を出力) :</span><br><span class="line">$query = &quot;Syslog | where TimeGenerated between(datetime(<span class="number">2023</span>-<span class="number">08</span>-<span class="number">01</span>) .. <span class="number">1</span>d) | where Facility == &#x27;cron&#x27; | top <span class="number">300000</span> by TimeGenerated asc | top <span class="number">100000</span> by TimeGenerated desc&quot;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>この方法は、データの推定データ サイズからクエリの制限に触れないようにレコード数で分割する方法です。<br>そのため、レコードのデータ サイズが大きく異なるテーブルの場合は、上記の方法が効率的でない場合がございます。予めご了承ください。</p>
+<br>
+
+<h2 id="参考情報"><a href="#参考情報" class="headerlink" title="参考情報"></a>参考情報</h2><ul>
+<li><p>Azure Monitor でログ クエリの使用を開始する<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/get-started-queries">https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/get-started-queries</a></p>
+</li>
+<li><p>チュートリアル: 一般的な演算子について学習する<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/data-explorer/kusto/query/tutorials/learn-common-operators#advanced-aggregations">https://learn.microsoft.com/ja-jp/azure/data-explorer/kusto/query/tutorials/learn-common-operators#advanced-aggregations</a></p>
+</li>
+</ul>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" rel="tag">クエリ</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/QueryByPowerShell.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../general/mdsFalseAlerts/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">7/7 に発生した障害 XMGF-5Z0 について</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">Azure PowerShell で 3 万件以上のログを取得する方法</a>
+          </li>
+        
+          <li>
+            <a href="../../general/mdsFalseAlerts/">7/7 に発生した障害 XMGF-5Z0 について</a>
+          </li>
+        
+          <li>
+            <a href="../../AzureMonitorEssential/AlertProcessingRule/">アラート処理ルールについて</a>
+          </li>
+        
+          <li>
+            <a href="../DCRConfigGenerator/">DCR Config Generator の使用方法</a>
+          </li>
+        
+          <li>
+            <a href="../../general/HowToCreateSR/">Azure Monitor 製品に関するお問い合わせを発行いただく際のポイント</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent/" rel="tag">Azure Monitor Agent</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostic-settings/" rel="tag">Diagnostic settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Alert/" rel="tag">Log Alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-ID/" rel="tag">Managed ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-Identity/" rel="tag">Managed Identity</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Migration/" rel="tag">Migration</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Run-As-Account/" rel="tag">Run As Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sandbox/" rel="tag">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StartAzureV2VMs/" rel="tag">StartAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StopAzureV2VMs/" rel="tag">StopAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM/" rel="tag">VM</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Worker/" rel="tag">Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" rel="tag">アラート処理ルール</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" rel="tag">クエリ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" rel="tag">コスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" rel="tag">マネージド ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%81%9C%E6%AD%A2/" rel="tag">停止</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" rel="tag">実行アカウント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/" rel="tag">移行</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" rel="tag">自動化</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%B5%B7%E5%8B%95/" rel="tag">起動</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/">How-To</a><span class="tag-list-count">18</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/">Tips</a><span class="tag-list-count">18</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/">Azure Monitor Essentials</a><span class="tag-list-count">5</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/">Azure Monitor</a><span class="tag-list-count">7</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/">FAQ</a><span class="tag-list-count">7</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/">Log Analytics</a><span class="tag-list-count">18</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/">移行</a><span class="tag-list-count">2</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/">Troubleshooting</a><span class="tag-list-count">4</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">5</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/">Automation</a><span class="tag-list-count">9</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/">チーム紹介</a><span class="tag-list-count">5</span><ul></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/09/">2023 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/07/">2023 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/06/">2023 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/03/">2023 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/01/">2023 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/11/">2022 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/10/">2022 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/09/">2022 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/08/">2022 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/Application-Insights/" style="font-size: 15px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 18.75px;">Automation</a> <a href="../../tags/Azure-Monitor/" style="font-size: 17.5px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Agent/" style="font-size: 12.5px;">Azure Monitor Agent</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 15px;">Azure Monitor Essentials</a> <a href="../../tags/Diagnostic-settings/" style="font-size: 11.25px;">Diagnostic settings</a> <a href="../../tags/FAQ/" style="font-size: 17.5px;">FAQ</a> <a href="../../tags/General/" style="font-size: 16.25px;">General</a> <a href="../../tags/How-To/" style="font-size: 20px;">How-To</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 11.25px;">Job</a> <a href="../../tags/Log-Alert/" style="font-size: 10px;">Log Alert</a> <a href="../../tags/Log-Analytics/" style="font-size: 20px;">Log Analytics</a> <a href="../../tags/Managed-ID/" style="font-size: 10px;">Managed ID</a> <a href="../../tags/Managed-Identity/" style="font-size: 10px;">Managed Identity</a> <a href="../../tags/MetricAlert/" style="font-size: 10px;">MetricAlert</a> <a href="../../tags/Migration/" style="font-size: 10px;">Migration</a> <a href="../../tags/Run-As-Account/" style="font-size: 10px;">Run As Account</a> <a href="../../tags/RunAs-Account/" style="font-size: 13.75px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 13.75px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 20px;">Tips</a> <a href="../../tags/Troubleshooting/" style="font-size: 13.75px;">Troubleshooting</a> <a href="../../tags/VM/" style="font-size: 10px;">VM</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" style="font-size: 10px;">アラート処理ルール</a> <a href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" style="font-size: 10px;">クエリ</a> <a href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" style="font-size: 10px;">コスト</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 15px;">チーム紹介</a> <a href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" style="font-size: 11.25px;">マネージド ID</a> <a href="../../tags/%E5%81%9C%E6%AD%A2/" style="font-size: 10px;">停止</a> <a href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" style="font-size: 12.5px;">可用性テスト</a> <a href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" style="font-size: 10px;">実行アカウント</a> <a href="../../tags/%E7%A7%BB%E8%A1%8C/" style="font-size: 11.25px;">移行</a> <a href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" style="font-size: 10px;">自動化</a> <a href="../../tags/%E8%B5%B7%E5%8B%95/" style="font-size: 10px;">起動</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
