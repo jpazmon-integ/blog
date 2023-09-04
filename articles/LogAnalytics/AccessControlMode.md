@@ -1,6 +1,6 @@
 ---
 title: Log Analytics ワークスペースのアクセス制御モードの違いについて
-date: 2023-mm-dd 00:00:00
+date: 2023-09-04 00:00:00
 tags:
   - How-To
   - Log Analytics
