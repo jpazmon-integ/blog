@@ -119,7 +119,7 @@ private static TelemetryClient telemetryClient;
 // Business logic must be implemented in RunAvailabilityTestAsync function in runAvailabilityTest.csx 
 // If this file does not exist, please add it first 
 // ============================================================= 
-public async static Task Run( TimerInfo myTimer, ILogger log, ExecutionContext executionContext )
+public async static Task Run( TimerInfo myTimer, ILogger log, Microsoft.Azure.WebJobs.ExecutionContext executionContext )
 {
     if (telemetryClient == null)
     {
