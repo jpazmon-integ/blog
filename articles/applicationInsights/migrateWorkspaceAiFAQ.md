@@ -1,6 +1,6 @@
 ---
 title: ワークスペースベースの Application Insights への移行についてのよくあるご質問
-date: 2023-10-26 00:00:00
+date: 2023-11-01 00:00:00
 tags:
   - Application Insights
   - FAQ
