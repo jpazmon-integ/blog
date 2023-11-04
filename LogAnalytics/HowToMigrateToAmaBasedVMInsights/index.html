@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Migrate to Azure Monitor agent–based VM insights by 31 August 2024 について | Japan Azure Monitoring Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは、Azure Monitoring サポート チームの北村です。今回の記事では、サービス正常性にて通知された「Migrate to Azure Monitor agent–based VM insights by 31 August 2024 」についてご説明します。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Migrate to Azure Monitor agent–based VM insights by 31 August 2024 について">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの北村です。今回の記事では、サービス正常性にて通知された「Migrate to Azure Monitor agent–based VM insights by 31 August 2024 」についてご説明します。">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image1.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image2.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image3.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image9.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image8.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image12.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image9.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image10.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image11.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image1.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image4.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image5.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image6.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image7.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image10.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image11.png">
+<meta property="article:published_time" content="2023-11-05T15:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-04T11:02:14.693Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="Tips">
+<meta property="article:tag" content="Log Analytics">
+<meta property="article:tag" content="Azure Monitor エージェント">
+<meta property="article:tag" content="Log Analytics エージェント">
+<meta property="article:tag" content="VM insights">
+<meta property="article:tag" content="分析情報">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image1.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-LogAnalytics/HowToMigrateToAmaBasedVMInsights" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Migrate to Azure Monitor agent–based VM insights by 31 August 2024 について
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2023-11-05T15:00:00.000Z" itemprop="datePublished">2023-11-06</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+279e70cc-d1c5-5c18-b660-a54ed95a3230%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BMigrate+to+Azure+Monitor+agent%E2%80%93based+VM+insights+by+31+August+2024+%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FHowToMigrateToAmaBasedVMInsights%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FHowToMigrateToAmaBasedVMInsights.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FHowToMigrateToAmaBasedVMInsights.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/" data-id="clojxqfq5007o0njw0izdfmrd" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回の記事では、サービス正常性にて通知された「Migrate to Azure Monitor agent–based VM insights by 31 August 2024 」についてご説明します。</p>
+<br>
+
+<span id="more"></span>
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li><a href="#1.-%E5%A0%B1%E5%91%8A%E3%81%95%E3%82%8C%E3%81%9F%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%81%AE%E5%8B%A7%E5%91%8A%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">1. 報告された正常性の勧告について</a><ul>
+<li><a href="#1-1-%E6%A6%82%E8%A6%81">1-1.概要</a></li>
+<li><a href="#1-2-%E5%86%85%E5%AE%B9">1-2.内容</a></li>
+<li><a href="#1-3-%E5%AE%9F%E6%96%BD%E3%81%84%E3%81%9F%E3%81%A0%E3%81%8D%E3%81%9F%E3%81%84%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3">1-3.実施いただきたいアクション</a></li>
+</ul>
+</li>
+<li><a href="#2-3%E7%A7%BB%E8%A1%8C%E5%AF%BE%E8%B1%A1%E3%81%AE%E3%83%9E%E3%82%B7%E3%83%B3%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%E3%81%A8%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86">2. 移行対象のマシンを確認する方法と移行手順</a><ul>
+<li><a href="#2-1-%E5%BD%B1%E9%9F%BF%E3%82%92%E5%8F%97%E3%81%91%E3%82%8B%E3%81%8A%E5%AE%A2%E6%A7%98">2-1. 影響を受けるお客様</a></li>
+<li><a href="#2-2-%E7%A7%BB%E8%A1%8C%E5%AF%BE%E8%B1%A1%E3%81%AE%E3%83%9E%E3%82%B7%E3%83%B3%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95">2-2. 移行対象のマシンを確認する方法</a></li>
+<li><a href="#2-3-%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86">2-3.移行手順</a></li>
+</ul>
+</li>
+<li><a href="#3-%E7%95%99%E6%84%8F%E4%BA%8B%E9%A0%85">3. 留意事項</a></li>
+</ul>
+<br>
+
+<h2 id="1-報告された正常性の勧告について"><a href="#1-報告された正常性の勧告について" class="headerlink" title="1. 報告された正常性の勧告について"></a>1. 報告された正常性の勧告について</h2><h3 id="1-1-概要"><a href="#1-1-概要" class="headerlink" title="1-1. 概要"></a>1-1. 概要</h3><table>
+<thead>
+<tr>
+<th>項目名</th>
+<th>項目値</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>題名</td>
+<td>Action required: Migrate to Azure Monitor agent–based VM insights by 31 August 2024</td>
+</tr>
+<tr>
+<td>追跡 ID</td>
+<td>3MK1-NDG</td>
+</tr>
+<tr>
+<td>影響を受けるサービス</td>
+<td>Azure Monitor</td>
+</tr>
+<tr>
+<td>影響を受けるリージョン</td>
+<td>Global</td>
+</tr>
+<tr>
+<td>正常性イベントの種類</td>
+<td>正常性の勧告</td>
+</tr>
+</tbody></table>
+<h3 id="1-2-内容"><a href="#1-2-内容" class="headerlink" title="1-2. 内容"></a>1-2. 内容</h3><p>You’re receiving this notice because you use Log Analytics agent–based VM insights.<br>On 31 August 2024, we’ll retire Log Analytics agent–based VM insights. Migrate to Azure Monitor agent–based VM insights, which offers improvements such as:</p>
+<ul>
+<li>Enhanced security and performance.</li>
+<li>Data collection rules to help cut costs.</li>
+<li>Simplified management experience, including efficient troubleshooting.</li>
+</ul>
+<h3 id="1-3-実施いただきたいアクション"><a href="#1-3-実施いただきたいアクション" class="headerlink" title="1-3. 実施いただきたいアクション"></a>1-3. 実施いただきたいアクション</h3><p>To ensure that you’re using a supported version of VM insights, <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/vminsights-enable-overview#migrate-from-log-analytics-agent-to-azure-monitor-agent">migrate</a> to Azure Monitor agent–based VM insights by 31 August 2024.</p>
+<br>
+
+<h2 id="2-移行対象のマシンを確認する方法と移行手順"><a href="#2-移行対象のマシンを確認する方法と移行手順" class="headerlink" title="2. 移行対象のマシンを確認する方法と移行手順"></a>2. 移行対象のマシンを確認する方法と移行手順</h2><p>Log Analytics エージェント ベースの VM insights は 2024 年 8 月末にてサポート終了を予定しております。そのため、Log Analytics エージェント ベースの VM insights をご利用されている場合は、Azure Monitor エージェント ベースの VM insights への移行をお願いしております。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/vminsights-overview">VM insights</a> は Azure VM や Azure Arc 対応サーバーなどの仮想マシンの監視を行う機能の一つです。仮想マシンのパフォーマンスや実行中のプロセス等のデータを収集します。VM insights では、Azure Monitor エージェントもしくは Log Analytics エージェントと、Dependency エージェントを仮想マシンにインストールし、ログを収集します。しかし、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/log-analytics-agent">2024 年 8 月末で Log Analytics エージェントが廃止される</a>ため、Azure Monitor エージェント ベースで VM insights をご利用いただく必要がございます。</p>
+<br>
+
+<h3 id="2-1-影響を受けるお客様"><a href="#2-1-影響を受けるお客様" class="headerlink" title="2-1. 影響を受けるお客様"></a>2-1. 影響を受けるお客様</h3><p>Log Analytics エージェント ベースの VM insights をご利用いただいているお客様に影響がございます。</p>
+<br>
+
+<h3 id="2-2-移行対象のマシンを確認する方法"><a href="#2-2-移行対象のマシンを確認する方法" class="headerlink" title="2-2. 移行対象のマシンを確認する方法"></a>2-2. 移行対象のマシンを確認する方法</h3><p>Azure ポータルで [モニター] &gt; [分析情報] &gt; [仮想マシン] &gt; [概要] タブ&gt; [監視対象] タブの画面を開きます。<br>移行対象のマシンは「データ収集ルール」欄にて「Azure Monitor エージェントを使用した構成」と表示されるマシンです。<br>Azure Monitor エージェント ベースの VM insights をご利用されている場合は、「データ収集ルール」欄に構成に使用しているデータ収集ルールの名前が表示されます。一方で、Log Analytics エージェント ベースの VM insights の場合は「データ収集ルール」欄にて、データ収集ルール名は表示されません。ただし、該当のマシンが稼働していなければ、下記画面の情報は正しい評価が表示されない可能性がありますのでご留意ください。<br><img src="/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image1.png"></p>
+<br>
+
+<p><em><strong>&lt;補足 1.&gt;</strong></em><br>2 つのエージェント (Azure Monitor エージェントおよび Log Analytics エージェント) によって VM insights が有効化されている場合は「データ収集ルール」欄にてデータ収集ルール名が表示されます。お客様の環境で 2 つのエージェントを併行稼働されている場合は、以下画面にて Log Analytics エージェントでも VM insights が有効化されていないかどうかをご確認ください。</p>
+<ol>
+<li><p>Azure ポータルで [モニター] &gt; [分析情報] &gt; [仮想マシン] &gt; [概要] タブ&gt; [監視対象] タブの画面を開き、該当のマシンを選択します。<br><img src="/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image2.png"></p>
+</li>
+<li><p>以下のように表示された場合は Log Analytics エージェントでも VM insights が有効化されているため、Log Analytics エージェントのアンインストールが必要です。<br><img src="/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image3.png"></p>
+</li>
+</ol>
+<br>
+
+
+<p><em><strong>補足 2.</strong></em><br>稼働していないマシンがある場合は、Azure ポータルの [仮想マシン] &gt; [拡張機能とアプリケーション] の画面より、インストールされているエージェントをご確認ください。Log Analytics エージェントと Dependency エージェントがインストールされている場合は、Log Analytics エージェント ベースの VM insights をご利用されている可能性がございます。</p>
+<p>&lt;Windows マシン&gt;<br>MicrosoftMonitoringAgent (Windows 用の Log Analytics エージェント) と DependencyAgentWindows がインストールされているかどうかをご確認ください。<br><img src="/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image9.png"></p>
+<p>&lt;Linux マシン&gt;<br>OmsAgentForLinux (Linux 用の Log Analytics エージェント) および DependencyAgentLinux がインストールされているかどうかをご確認ください。<br><img src="/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image8.png"></p>
+<p>該当のマシンに Azure Monnitor エージェントもインストールされており、どちらのエージェントで VM insights が有効化されているかどうかが分からない場合は、ログ収集先の Log Analytics ワークスペースで以下のようなクエリを実行してください。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// サンプル クエリ</span><br><span class="line">Heartbeat</span><br><span class="line">| where TimeGenerated &gt; ago(<span class="number">90</span>d)</span><br><span class="line">| join kind=inner (</span><br><span class="line">    InsightsMetrics</span><br><span class="line">    | where TimeGenerated &gt; ago(<span class="number">90</span>d)</span><br><span class="line">    | where Origin == &#x27;vm.azm.ms&#x27;</span><br><span class="line">) on $left.SourceComputerId == $right.AgentId</span><br><span class="line">| distinct Category, Computer, SourceComputerId</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/tables/insightsmetrics">InsightsMetrics</a> テーブルは、VM insights を有効化すると収集されるログです。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/tables/heartbeat">Heartbeat</a> は Log Analytics エージェントや Azure Monitor エージェントによって既定で収集されます。Log Analytics エージェントや Azure Monitor エージェントには、クライアントを一意に識別可能なエージェント ID という識別子があります。このエージェント ID は Heartbeat テーブルの SourceComputerId 列、InsightsMetrics テーブルの AgentId 列で確認することができます。</p>
+<p>Heartbeat の Category は、エージェントによって値が異なります。Log Analytics エージェントの場合は Category の値が Direct Agent、Azure Monitor エージェントでは Category の値が Azure Monitor Agent です。<br>そのため、両方のテーブルを SourceComputerId と AgentId で結合し、Heartbeat の Category の値を確認すれば、どちらのエージェントによって VM insights が有効化されているかどうかを確認できます。</p>
+<p>以下は上記クエリの実行結果の例です。この例では Cateogry の値が Direct Agent のマシンは VM-B と VM-C です。VM-B は Azure Monitor エージェントが既にインストールされており、両方のエージェントで VM insights が有効化されています。<br>※ ログの保持期間を超過し上記クエリを実行してもログが存在しない場合は、マシンを起動してご確認ください。<br><img src="/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image12.png"></p>
+<br>
+
+<h3 id="2-3-移行手順"><a href="#2-3-移行手順" class="headerlink" title="2-3.移行手順"></a>2-3.移行手順</h3><p>Log Analytics エージェントをアンインストールして、Azure Monitor エージェントでの VM insights の有効化が必要です。<br>Log Analytics エージェントと Azure Monitor エージェントは共存可能ですので、Azure Monitor エージェントによる VM insights を構成後に Log Analytics エージェントをアンインストールいただいても構いません。移行方法は 2 つございます。</p>
+<ul>
+<li>A. Log Analytics エージェントをアンインストールしてから Azure Monitor エージェントで VM insights を有効化する</li>
+<li>B. Azure Monitor エージェント で VM insights を有効化してから Log Analytics エージェントをアンインストールする</li>
+</ul>
+<br>
+
+<h4 id="A-Log-Analytics-エージェントをアンインストールしてから-Azure-Monitor-エージェントで-VM-insights-を有効化する"><a href="#A-Log-Analytics-エージェントをアンインストールしてから-Azure-Monitor-エージェントで-VM-insights-を有効化する" class="headerlink" title="A. Log Analytics エージェントをアンインストールしてから Azure Monitor エージェントで VM insights を有効化する"></a>A. Log Analytics エージェントをアンインストールしてから Azure Monitor エージェントで VM insights を有効化する</h4><ol>
+<li>Azure ポータルの [仮想マシン] &gt; [拡張機能とアプリケーション] の画面より Log Analytics エージェントと Dependency エージェントをアンインストールします。Windows の場合は MicrosoftMonitoringAgent と DependencyAgentWindows、Linux の場合は OmsAgentForLinux および DependencyAgentLinux です。<br><img src="/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image9.png"></li>
+</ol>
+<ol start="2">
+<li><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-JP/azure/azure-monitor/vm/vminsights-enable-portal#enable-vm-insights-for-azure-monitor-agent">こちら</a> の手順で Azure Monitor エージェント を使用して VM Insights を有効化します。</p>
+</li>
+<li><p>Log Analytics ワークスペースから VMInsights ソリューションを削除します。Azure ポータルの [Log Analytics ワークスペース] &gt; [レガシー ソリューション] の画面より VMInsights ソリューションを選択します。<br><img src="/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image10.png"></p>
+</li>
+<li><p>VMInsights ソリューションの [概要] を開き、[削除] を選択します。<br><img src="/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image11.png"></p>
+</li>
+</ol>
+<div class="alert is-warning"><p class="alert-title">警告</p><p>上記 A. の手順で移行した場合、作業中に Heartbeat や InsightsMetrics 等のデータが収集されません。</p><p>そのため、例えば Heartbeat に対するアラート ルールを設定している場合は発報する可能性があります。</p></div>
+<br>
+
+
+
+<h4 id="B-Azure-Monitor-エージェントで-VM-insights-を有効化してから-Log-Analytics-エージェントをアンインストールする"><a href="#B-Azure-Monitor-エージェントで-VM-insights-を有効化してから-Log-Analytics-エージェントをアンインストールする" class="headerlink" title="B. Azure Monitor エージェントで VM insights を有効化してから Log Analytics エージェントをアンインストールする"></a>B. Azure Monitor エージェントで VM insights を有効化してから Log Analytics エージェントをアンインストールする</h4><ol>
+<li><p>Log Analytics エージェントで VM insights を有効化している場合、[モニター] &gt; [分析情報] の [仮想マシン] &gt; [概要] タブ&gt; [監視対象] タブで「Azure Monitor エージェントを使用した構成」リンクが表示されます。こちらをクリックすることで、Azure Monitor エージェントを利用した VM insights を有効化できます。<br><img src="/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image1.png"></p>
+</li>
+<li><p>既存の VM insights 用のデータ収集ルールを選択するか、データ収集ルールを新規作成します。ログを収集する Log Analytics ワークスペースと VM insights で収集するログの種類を選択します。詳細は<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/vminsights-enable-portal#enable-vm-insights-for-azure-monitor-agent">こちら</a> の公開情報をご覧ください (以下はデータ収集ルールを新規作成する際に表示される画面です)。<br><img src="/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image4.png"></p>
+</li>
+<li><p>しばらく待機しますと、Azure Monitor エージェントのインストールが完了し、Heartbeat や InsightsMetrics 等のログが二重に収集されることを確認できます。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// サンプル クエリ</span><br><span class="line">InsightsMetrics</span><br><span class="line">| where TimeGenerated &gt; ago(<span class="number">30</span>m)</span><br><span class="line">| where Computer contains &quot;&lt;コンピュータ名&gt;&quot;</span><br><span class="line">| summarize count() by bin(TimeGenerated, <span class="number">1</span>m)</span><br><span class="line">| <span class="built_in">sort</span> by TimeGenerated asc</span><br></pre></td></tr></table></figure>
+<p><img src="/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image5.png"></p>
+</li>
+<li><p>また、Azure ポータルの [仮想マシン] &gt; [分析情報] 画面でもログが重複して収集されている旨のメッセージが表示されます。<br><img src="/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image6.png"></p>
+</li>
+<li><p>Azure Monitor エージェントによるログ収集 (ログが二重に収集されていること) を確認してから、Azure ポータルの [仮想マシン] &gt; [拡張機能とアプリケーション] の画面より Log Analytics エージェントをアンインストールします。Windows の場合は MicrosoftMonitoringAgent、Linux の場合は OmsAgentForLinux をアンインストールします。<br><img src="/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image7.png"></p>
+</li>
+<li><p>Log Analytics ワークスペースから VMInsights ソリューションを削除します。Azure ポータルの [Log Analytics ワークスペース] &gt; [レガシー ソリューション] の画面より VMInsights ソリューションを選択します。<br><img src="/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image10.png"></p>
+</li>
+<li><p>VMInsights ソリューションの [概要] を開き、[削除] を選択します。<br><img src="/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image11.png"></p>
+</li>
+</ol>
+<div class="alert is-warning"><p class="alert-title">警告</p><p>上記 B. の手順の場合は、作業中はログが二重に収集されることをご留意ください。</p><p>重複してログが収集されることにより、ログ アラート ルールが発報することがございます。</p></div>
+<br>
+
+<h3 id="3-留意事項"><a href="#3-留意事項" class="headerlink" title="3. 留意事項"></a>3. 留意事項</h3><p>今回ご紹介した移行手順は、あくまで VM insights のための移行手順です。<br>VM insights 以外の監視データを収集するように Log Analytics エージェントを構成されている場合、<br>Log Analytics エージェントをアンインストールすれば、今まで Log Analytics エージェントによってログは収集されなくなります。<br>Log Analytics エージェントで VM insights 以外の収集設定もされている場合は、下記弊社公開情報をご参照いただき Azure Monitor エージェントによる収集設定をご実施いただくようお願いいたします。</p>
+<p>また、Log Analytics エージェントと Azure Monitor エージェントの前提条件 (ネットワーク要件等) が異なります。<br>Azure Monitor エージェントの前提条件は下記弊社公開情報にまとめておりますので、移行手順を実施する前に必ずご確認いただきますようお願いいたします。</p>
+<p>Azure Monitor エージェントの概要<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/agents-overview">https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/agents-overview</a></p>
+<p>Azure Monitor エージェントを管理する<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-JP/azure/azure-monitor/agents/azure-monitor-agent-manage?tabs=azure-portal#prerequisites">https://learn.microsoft.com/ja-JP/azure/azure-monitor/agents/azure-monitor-agent-manage?tabs=azure-portal#prerequisites</a></p>
+<p>Azure Monitor エージェントのネットワーク設定を定義する<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-data-collection-endpoint?tabs=PowerShellWindows">https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-data-collection-endpoint?tabs=PowerShellWindows</a></p>
+<p>Azure Monitor エージェントを使用して仮想マシンからイベントとパフォーマンス カウンターを収集する<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-rule-azure-monitor-agent?tabs=portal">https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-rule-azure-monitor-agent?tabs=portal</a></p>
+<p>Azure Monitor エージェントを使用して Syslog イベントを収集する<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-syslog">https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-syslog</a></p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" rel="tag">Azure Monitor エージェント</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" rel="tag">Log Analytics エージェント</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/VM-insights/" rel="tag">VM insights</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E5%88%86%E6%9E%90%E6%83%85%E5%A0%B1/" rel="tag">分析情報</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/HowToMigrateToAmaBasedVMInsights.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../applicationInsights/migrateWorkspaceAiFAQ/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">ワークスペースベースの Application Insights への移行についてのよくあるご質問</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">Migrate to Azure Monitor agent–based VM insights by 31 August 2024 について</a>
+          </li>
+        
+          <li>
+            <a href="../../applicationInsights/migrateWorkspaceAiFAQ/">ワークスペースベースの Application Insights への移行についてのよくあるご質問</a>
+          </li>
+        
+          <li>
+            <a href="../../AzureMonitorEssential/HowToAlertMuteAction/">ログ アラート ルールにおけるアクションのミュート機能とは</a>
+          </li>
+        
+          <li>
+            <a href="../AccessControlMode/">Log Analytics ワークスペースのアクセス制御モードの違いについて</a>
+          </li>
+        
+          <li>
+            <a href="../QueryByPowerShell/">Azure PowerShell で 3 万件以上のログを取得する方法</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent/" rel="tag">Azure Monitor Agent</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" rel="tag">Azure Monitor エージェント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostic-settings/" rel="tag">Diagnostic settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Alert/" rel="tag">Log Alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" rel="tag">Log Analytics エージェント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-ID/" rel="tag">Managed ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-Identity/" rel="tag">Managed Identity</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Migration/" rel="tag">Migration</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Run-As-Account/" rel="tag">Run As Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sandbox/" rel="tag">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StartAzureV2VMs/" rel="tag">StartAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StopAzureV2VMs/" rel="tag">StopAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM/" rel="tag">VM</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM-insights/" rel="tag">VM insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Worker/" rel="tag">Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/" rel="tag">アクションのミュート</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" rel="tag">アラート処理ルール</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" rel="tag">クエリ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" rel="tag">コスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" rel="tag">マネージド ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB/" rel="tag">ログ アラート ルール</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%81%9C%E6%AD%A2/" rel="tag">停止</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%88%86%E6%9E%90%E6%83%85%E5%A0%B1/" rel="tag">分析情報</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" rel="tag">実行アカウント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/" rel="tag">移行</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" rel="tag">自動化</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%B5%B7%E5%8B%95/" rel="tag">起動</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/">How-To</a><span class="tag-list-count">20</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/">Tips</a><span class="tag-list-count">20</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/">Azure Monitor Essentials</a><span class="tag-list-count">6</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/">Azure Monitor</a><span class="tag-list-count">7</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/">FAQ</a><span class="tag-list-count">8</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/">Log Analytics</a><span class="tag-list-count">20</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/">移行</a><span class="tag-list-count">2</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/">Troubleshooting</a><span class="tag-list-count">4</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">6</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/">Automation</a><span class="tag-list-count">9</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/">チーム紹介</a><span class="tag-list-count">5</span><ul></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/11/">2023 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/10/">2023 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/09/">2023 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/07/">2023 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/06/">2023 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/03/">2023 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/01/">2023 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/11/">2022 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/10/">2022 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/09/">2022 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/08/">2022 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/Application-Insights/" style="font-size: 15.56px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 18.89px;">Automation</a> <a href="../../tags/Azure-Monitor/" style="font-size: 16.67px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Agent/" style="font-size: 12.22px;">Azure Monitor Agent</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 15.56px;">Azure Monitor Essentials</a> <a href="../../tags/Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" style="font-size: 10px;">Azure Monitor エージェント</a> <a href="../../tags/Diagnostic-settings/" style="font-size: 11.11px;">Diagnostic settings</a> <a href="../../tags/FAQ/" style="font-size: 17.78px;">FAQ</a> <a href="../../tags/General/" style="font-size: 15.56px;">General</a> <a href="../../tags/How-To/" style="font-size: 20px;">How-To</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 11.11px;">Job</a> <a href="../../tags/Log-Alert/" style="font-size: 10px;">Log Alert</a> <a href="../../tags/Log-Analytics/" style="font-size: 20px;">Log Analytics</a> <a href="../../tags/Log-Analytics-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" style="font-size: 10px;">Log Analytics エージェント</a> <a href="../../tags/Managed-ID/" style="font-size: 10px;">Managed ID</a> <a href="../../tags/Managed-Identity/" style="font-size: 10px;">Managed Identity</a> <a href="../../tags/MetricAlert/" style="font-size: 10px;">MetricAlert</a> <a href="../../tags/Migration/" style="font-size: 10px;">Migration</a> <a href="../../tags/Run-As-Account/" style="font-size: 10px;">Run As Account</a> <a href="../../tags/RunAs-Account/" style="font-size: 13.33px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 13.33px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 20px;">Tips</a> <a href="../../tags/Troubleshooting/" style="font-size: 13.33px;">Troubleshooting</a> <a href="../../tags/VM/" style="font-size: 10px;">VM</a> <a href="../../tags/VM-insights/" style="font-size: 10px;">VM insights</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/" style="font-size: 10px;">アクションのミュート</a> <a href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" style="font-size: 10px;">アラート処理ルール</a> <a href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" style="font-size: 10px;">クエリ</a> <a href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" style="font-size: 10px;">コスト</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 14.44px;">チーム紹介</a> <a href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" style="font-size: 11.11px;">マネージド ID</a> <a href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB/" style="font-size: 10px;">ログ アラート ルール</a> <a href="../../tags/%E5%81%9C%E6%AD%A2/" style="font-size: 10px;">停止</a> <a href="../../tags/%E5%88%86%E6%9E%90%E6%83%85%E5%A0%B1/" style="font-size: 10px;">分析情報</a> <a href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" style="font-size: 12.22px;">可用性テスト</a> <a href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" style="font-size: 10px;">実行アカウント</a> <a href="../../tags/%E7%A7%BB%E8%A1%8C/" style="font-size: 11.11px;">移行</a> <a href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" style="font-size: 10px;">自動化</a> <a href="../../tags/%E8%B5%B7%E5%8B%95/" style="font-size: 10px;">起動</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
