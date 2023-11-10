@@ -23,6 +23,7 @@ tags:
 ## Log Analytics から Azure Resource Graph へクエリ出来る様になりました
 
 Log Analytics より Azure Resource Graph (ARG) へクエリが出来る様になりました。
+
 このアップデートにより、Log Analytics 内に記録されたログだけでなく、ARG へのクエリ結果を アラート ルールにて監視できる様になりました。
 
 [Azure Resource Graph のデータに対してクエリを実行する (プレビュー)](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/azure-monitor-data-explorer-proxy#query-data-in-azure-resource-graph-preview)
@@ -34,8 +35,11 @@ Log Analytics より Azure Resource Graph (ARG) へクエリが出来る様に�
 resourcechanges というテーブルに ARM のリソース変更履歴が記録されています。
 
 例えば、properties 列を見る事で以下が確認可能です。
+
 changeTypeがUpdate  -> 更新されたという事になります。
+
 changes -> 変更があったプロパティと新しい値(newValue)、過去の値(previousValue)が入ります。
+
 また、このテーブルの保持期間は14日で変更できないため、長期的な保管は行われません。
 
 これを踏まえ、以下の properties 列のサンプルでは、microsoft.network/networkinterfaces リソースに MAC アドレスのプロパティが追加された事がわかります。
@@ -165,8 +169,11 @@ Azure ロールの割り当て へ進み、サブスクリプションスコー�
 #### 操作者を確認したい
 
 操作者はアクティビティログの Caller プロパティに記載されています。
+
 診断設定で アクティビティログ を Log Analytics に送ると、AzureActivity テーブル上にアクティビティログが記録されますが、
+
 AzureActivity テーブルは resourcechanges テーブルと CorrelationId が同じになるため、結合可能です。
+
 そのため、以下のクエリで結合し、検索する事ができます。このクエリをアラートルールで指定し、検知する事も可能です。
 
 ```Kusto
@@ -177,9 +184,9 @@ arg("").resourcechanges
 | extend CorrelationId = tostring(properties["changeAttributes"]["correlationId"]) // AzureActivity (アクティビティログ) と結合可能
 | where timestamp >= ago(14d) // arg("") で検索するテーブルにはアラートルールの粒度や期間指定が機能しないため、クエリで期間を指定します。
 | join kind=leftouter (
-AzureActivity // Administrative を送る診断設定が必要です。
-| where CategoryValue =~ "Administrative"
-| where ActivityStatusValue =~ "Start" // 一度の操作 でStart,Success 等複数のログが出るため、Start のログのみ対象とします。
+  AzureActivity // Administrative を送る診断設定が必要です。
+  | where CategoryValue =~ "Administrative"
+  | where ActivityStatusValue =~ "Start" // 一度の操作 でStart,Success 等複数のログが出るため、Start のログのみ対象とします。
 )
 on CorrelationId 
 | order by TimeGenerated
