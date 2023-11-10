@@ -34,13 +34,13 @@ Log Analytics より Azure Resource Graph (ARG) へクエリが出来る様に�
 
 resourcechanges というテーブルに ARM のリソース変更履歴が記録されています。
 
+
 例えば、properties 列を見る事で以下が確認可能です。
 
-changeTypeがUpdate  -> 更新されたという事になります。
+- changeTypeがUpdate  -> 更新されたという事になります。
+- changes -> 変更があったプロパティと新しい値(newValue)、過去の値(previousValue)が入ります。
 
-changes -> 変更があったプロパティと新しい値(newValue)、過去の値(previousValue)が入ります。
-
-また、このテーブルの保持期間は14日で変更できないため、長期的な保管は行われません。
+※このテーブルの保持期間は14日で変更できないため、長期的な保管は行われません。
 
 これを踏まえ、以下の properties 列のサンプルでは、microsoft.network/networkinterfaces リソースに MAC アドレスのプロパティが追加された事がわかります。
 
@@ -191,6 +191,3 @@ arg("").resourcechanges
 on CorrelationId 
 | order by TimeGenerated
 ```
-
-
-
