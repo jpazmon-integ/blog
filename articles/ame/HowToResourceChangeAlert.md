@@ -47,7 +47,7 @@ resourcechanges というテーブルに ARM のリソース変更履歴が記�
 ```json
 {
     "targetResourceType": "microsoft.network/networkinterfaces",
-    "targetResourceId": "/subscriptions/9835bbb5-ef97-4776-84b5-412b51f0ea8d/resourceGroups/1627/providers/Microsoft.Network/networkInterfaces/1627vm837",
+    "targetResourceId": "/subscriptions/***/resourceGroups/1627/providers/Microsoft.Network/networkInterfaces/1627vm837",
     "changeAttributes": {
         "previousResourceSnapshotId": "08585022745207585807_a9667ff8-fb74-82a5-ffd1-419287f1063f_3620098351_1699332364",
         "newResourceSnapshotId": "08585022744595915807_7aa3a796-054b-ebe0-df8e-673414ebfde7_82482185_1699332425",
@@ -57,7 +57,7 @@ resourcechanges というテーブルに ARM のリソース変更履歴が記�
         "changedByType": "User",
         "clientType": "Azure Portal",
         "operation": "Microsoft.Network/networkInterfaces/write",
-        "changedBy": "skoyama@microsoft.com"
+        "changedBy": "***@microsoft.com"
     },
     "changeType": "Update",
     "changes": {
@@ -65,7 +65,7 @@ resourcechanges というテーブルに ARM のリソース変更履歴が記�
             "propertyChangeType": "Insert",
             "changeCategory": "User",
             "previousValue": null,
-            "newValue": "/subscriptions/9835bbb5-ef97-4776-84b5-412b51f0ea8d/resourceGroups/1627/providers/Microsoft.Compute/virtualMachines/1627vm"
+            "newValue": "/subscriptions/***/resourceGroups/1627/providers/Microsoft.Compute/virtualMachines/1627vm"
         },
         "properties.primary": {
             "propertyChangeType": "Insert",
