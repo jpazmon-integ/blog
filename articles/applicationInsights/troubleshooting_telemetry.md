@@ -516,7 +516,7 @@ Application Insights に対してテレメトリが収集されなくなった�
 
 
 # 関連する記事
-Application Insights に関するトラブルシューティング系の公開情報は別で用意されています。
+Application Insights に関するトラブルシューティング系の公開情報は別で用意されています。  
 今回の記事で案内させて頂いた内容も多々含まれておりますので、問題が発生した際はぜひ下記の公開情報をご確認くださいませ。
 
 - [Azure Monitor Application Insights でアプリケーション テレメトリが見つからない場合のトラブルシューティング](https://learn.microsoft.com/ja-jp/troubleshoot/azure/azure-monitor/app-insights/investigate-missing-telemetry)
