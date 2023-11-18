@@ -28,7 +28,6 @@ App Service や Azure VM などにデプロイいただいている Web アプ�
 突然すべてのテレメトリが Application Insights に収集されなくなった場合、Application Insights のエンドポイントに対して通信が失敗している可能性がございます。  
 例えば下記のような契機によって、すべてのテレメトリが突然収集できなくなる可能性がございます。
 
-- Azure Monitor Private Link Scope (AMPLS) を使い始めた。
 - 監視対象の Web アプリケーションを App Service にデプロイしており、App Service リソースに対して VNET 統合を実施した。
 - 監視対象の Web アプリケーションを Azure VM にデプロイしており、関連する VNET に紐づいた NSG や Azure Firewall の設定を変更した。など
 
@@ -46,12 +45,111 @@ App Service や Azure VM などにデプロイいただいている Web アプ�
 そのため、例えば VNET 統合した App Service リソースから「dc.applicationinsights.azure.com」に対する名前解決が失敗する、通信でタイムアウトが発生している場合、突然すべての種類のテレメトリが宛先の Application Insights に対して送信できなくなる可能性がございます。
 
 ### Application Insights への通信を確認する方法
+#### App Service や Azure Functions に Web アプリケーションをデプロイしている場合
+下記の手順で当該コンピューターから Application Insights へ通信が可能であるかどうかをご確認ください。
+
+##### 手順
+1. 当該 Application Insights リソース ページへ移動します。
+2. 概要ページに記載がある接続文字列をコピーいただき、[IngestionEndpoint] に指定がある URL のホスト名をコピーします。  
+例 : 「IngestionEndpoint=https://japaneast-0.in.applicationinsights.azure.com/」の場合は、「japaneast-0.in.applicationinsights.azure.com」をコピーします。
+![](./troubleshooting_telemetry/pict2.png)
+
+3. 当該 App Service リソース ページへ移動します。
+4. 左側ペインの [高度なツール] をクリックし、[移動] をクリックします。
+5. 画面上部の [Debug console - PowerShell] をクリックします。  
+Linux の場合おは[SSH] をクリックします。
+6. 下記コマンドを実行し、名前解決が可能であるかどうかご確認ください。
+
+**Linux の場合**
+```
+nslookup <2 でコピーした値>
+```
+例 : 
+```
+nslookup japaneast-0.in.applicationinsights.azure.com
+```
+
+もし名前解決が出来ない場合、一例ではございますが下図のようにエラーが発生します。
+
+![Alt text](./troubleshooting_telemetry/image.png)
+
+正常に名前解決出来る場合は、下図のように IP アドレスが表示されます。  
+※ 下図の環境は AMPLS を構築しているため、プライベート エンドポイントの IP アドレスが表示されております。
+
+![Alt text](./troubleshooting_telemetry/image-1.png)
+
+**Windows の場合**
+```
+nameresolver <2 でコピーした値>
+```
+例 : 
+```
+nameresolver japaneast-1.in.applicationinsights.azure.com
+```
+
+もし名前解決が出来ない場合、一例ではございますが下図のようにエラーが発生します。
+
+![Alt text](./troubleshooting_telemetry/image-3.png)
+
+正常に名前解決出来る場合は、下図のように IP アドレスが表示されます。  
+※ 下図の環境は AMPLS を構築しているため、プライベート エンドポイントの IP アドレスが表示されております。
+
+![Alt text](./troubleshooting_telemetry/image-2.png)
+
+7. 下記コマンドを実行し、Application Insights のエンドポイントと通信が可能かご確認ください。  
+
+**Linux の場合**  
+```
+curl -v --tlsv1.1 --tls-max 1.2 https://<2 でコピーした値>:443
+```
+
+例 : 
+```
+curl -v --tlsv1.1 --tls-max 1.2 https://japaneast-0.in.applicationinsights.azure.com:443
+```
+
+もし宛先と通信が出来ない場合、一例ではございますが下図のようにエラーが発生します。
+
+![Alt text](./troubleshooting_telemetry/image-7.png)
+
+もし 404 が返ってきた場合は正常に通信が出来ております。
+
+![Alt text](./troubleshooting_telemetry/image-4.png)
+
+**Windows の場合**  
+```
+tcpping <2 でコピーした値>:443
+```
+
+例 : 
+```
+tcpping japaneast-1.in.applicationinsights.azure.com:443
+```
+
+もし宛先と通信が出来ない場合、一例ではございますが下図のようにエラーが発生します。
+
+![Alt text](./troubleshooting_telemetry/image-6.png)
+
+もし、「Complete: 4/4 successful attempts (100%)」が出力された場合は、正常に通信出来ております。
+
+![Alt text](./troubleshooting_telemetry/image-5.png)
+
+App Service や Azure Functions の場合、nslookup や ping は機能しません。  
+そのため、nameresolver や tcpping を利用しております。  
+詳細は下記の公開情報をご参考ください。
+
+- [仮想ネットワークとAzure App Serviceの統合のトラブルシューティング # Windows Apps での送信接続のトラブルシューティング](https://learn.microsoft.com/ja-jp/troubleshoot/azure/app-service/troubleshoot-vnet-integration-apps#troubleshoot-outbound-connectivity-on-windows-apps)  
+
+![](./troubleshooting_telemetry/pict3.png)
+
+
+
 #### Azure VM やオンプレミス環境のコンピューターに Web アプリケーションをデプロイしている場合
 下記の手順で当該コンピューターから Application Insights へ通信が可能であるかどうかをご確認ください。
 
 ##### 手順
 1. 当該 Application Insights リソース ページへ移動します。
-2. 概要ページに記載がある接続文字列をコピーいただき、[IngestionEndpoint] に指定がある URL のホスト名をコピーします。
+2. 概要ページに記載がある接続文字列をコピーいただき、[IngestionEndpoint] に指定がある URL のホスト名をコピーします。  
 例 : 「IngestionEndpoint=https://japaneast-0.in.applicationinsights.azure.com/」の場合は、「japaneast-0.in.applicationinsights.azure.com」をコピーします。
 ![](./troubleshooting_telemetry/pict2.png)
 
@@ -59,11 +157,11 @@ App Service や Azure VM などにデプロイいただいている Web アプ�
 
 **Linux の場合**  
 ```
-getent hosts <2 でコピーした値>
+nslookup <2 でコピーした値>
 ```
 例 : 
 ```
-getent hosts japaneast-0.in.applicationinsights.azure.com
+nslookup japaneast-0.in.applicationinsights.azure.com
 ```
 
 **Windows の場合 (PowerShell で実行)**  
@@ -97,70 +195,6 @@ Test-NetConnection -ComputerName <2 でコピーした値> -Port 443
 ```
 Test-NetConnection -ComputerName japaneast-0.in.applicationinsights.azure.com -Port 443
 ```
-
-
-#### App Service や Azure Functions に Web アプリケーションをデプロイしている場合
-下記の手順で当該コンピューターから Application Insights へ通信が可能であるかどうかをご確認ください。
-
-##### 手順
-1. 当該 Application Insights リソース ページへ移動します。
-2. 概要ページに記載がある接続文字列をコピーいただき、[IngestionEndpoint] に指定がある URL のホスト名をコピーします。
-例 : 「IngestionEndpoint=https://japaneast-0.in.applicationinsights.azure.com/」の場合は、「japaneast-0.in.applicationinsights.azure.com」をコピーします。
-![](./troubleshooting_telemetry/pict2.png)
-
-3. 当該 App Service リソース ページへ移動します。
-4. 左側ペインの [高度なツール] をクリックし、[移動] をクリックします。
-5. 画面上部の [Debug console - PowerShell] をクリックします。Linux の場合おは[SSH] をクリックします。
-6. 下記コマンドを実行し、名前解決が可能であるかどうかご確認ください。
-
-**Linux の場合**
-```
-getent hosts <2 でコピーした値>
-```
-例 : 
-```
-getent hosts japaneast-0.in.applicationinsights.azure.com
-```
-
-**Windows の場合**
-```
-nameresolver <2 でコピーした値>
-```
-例 : 
-```
-nameresolver japaneast-1.in.applicationinsights.azure.com
-```
-
-7. 下記コマンドを実行し、Application Insights のエンドポイントと通信が可能かご確認ください。  
-**Linux の場合**  
-もし 404 が返ってきた場合は正常に通信が出来ております。
-```
-curl -v --tlsv1.1 --tls-max 1.2 https://<2 でコピーした値>:443
-```
-
-例 : 
-```
-curl -v --tlsv1.1 --tls-max 1.2 https://japaneast-0.in.applicationinsights.azure.com:443
-```
-
-**Windows の場合**  
-もし、「Complete: 4/4 successful attempts (100%)」が出力された場合は、正常に通信出来ております。
-```
-tcpping <2 でコピーした値>:443
-```
-
-例 : 
-```
-tcpping japaneast-1.in.applicationinsights.azure.com:443
-```
-
-App Service や Azure Functions の場合、nslookup や ping は機能しません。  
-そのため、nameresolver や tcpping を利用しております。  
-詳細は下記の公開情報をご参考ください。
-
-- [仮想ネットワークとAzure App Serviceの統合のトラブルシューティング # Windows Apps での送信接続のトラブルシューティング](https://learn.microsoft.com/ja-jp/troubleshoot/azure/app-service/troubleshoot-vnet-integration-apps#troubleshoot-outbound-connectivity-on-windows-apps)  
-
-![](./troubleshooting_telemetry/pict3.png)
 
 
 もし監視対象のコンピューターや App Service から Application Insights への通信が失敗しているようなら、一度通信環境の見直しをお願いします。
@@ -233,6 +267,109 @@ App Service や Azure Functions の場合、nslookup や ping は機能しませ
 
 ![](./troubleshooting_telemetry/pict10.png)
 
+もしお客様の環境で Application Insights へのテレメトリ送信を試されたい場合は、下記の PowerShell コマンドを Kudu や Azure VM のゲスト OS などから実行ください。
+
+※ 下記 PowerShell スクリプトは、当該 Application Insights リソースに対して availabilityResults テーブルにテスト用のログを送信するためのスクリプトです。詳細は[可用性テスト結果を送信する PowerShell スクリプト
+](https://learn.microsoft.com/ja-jp/troubleshoot/azure/azure-monitor/app-insights/investigate-missing-telemetry#powershell-script-send-availability-test-result) の公開情報をご確認ください。  
+※ $ConnectionString の変数に対して、適宜当該 Application Insights リソースの接続文字列の値をご指定ください。
+```powershell
+# Info: Provide either the Connection String or Ikey for your Application Insights Resource
+
+$ConnectionString = "InstrumentationKey=XXXXXXXX;IngestionEndpoint=https://japaneast-1.in.applicationinsights.azure.com/;LiveEndpoint=https://japaneast.livediagnostics.monitor.azure.com/" 
+$InstrumentationKey = ""
+ 
+function ParseConnectionString {
+param ([string]$ConnectionString)
+  $Map = @{}
+ 
+  foreach ($Part in $ConnectionString.Split(";")) {
+     $KeyValue = $Part.Split("=")
+     $Map.Add($KeyValue[0], $KeyValue[1])
+  }
+  return $Map
+}
+ 
+# If Ikey is the only parameter supplied, we'll send telemetry to the 
+# global ingestion endpoint instead of regional endpoint found in connection strings
+If (($InstrumentationKey) -and ("" -eq $ConnectionString)) {
+$ConnectionString = "InstrumentationKey=$InstrumentationKey;IngestionEndpoint=https://dc.services.visualstudio.com/"
+}
+ 
+$map = ParseConnectionString($ConnectionString)
+$url = $map["IngestionEndpoint"] + "v2/track"
+$ikey = $map["InstrumentationKey"]
+$lmUrl = $map["LiveEndpoint"]
+ 
+$time = (Get-Date).ToUniversalTime().ToString("o")
+ 
+$availabilityData = @"
+{
+  "data": {
+        "baseData": {
+            "ver": 2,
+            "id": "SampleRunId",
+            "name": "Microsoft Support Sample Webtest Result",
+            "duration": "00.00:00:10",
+            "success": true,
+            "runLocation": "Region Name",
+            "message": "Sample Webtest Result",
+            "properties": {
+                "Sample Property": "Sample Value"
+                }
+        },
+        "baseType": "AvailabilityData"
+  },
+  "ver": 1,
+  "name": "Microsoft.ApplicationInsights.Metric",
+  "time": "$time",
+  "sampleRate": 100,
+  "iKey": "$iKey",
+  "flags": 0
+}
+"@ 
+ 
+# Uncomment one or more of the following lines to test client TLS/SSL protocols other than the machine default option
+# [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::SSL3
+# [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::TLS
+# [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::TLS11
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::TLS12
+# [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::TLS13
+ 
+$ProgressPreference = "SilentlyContinue"
+Invoke-WebRequest -Uri $url -Method POST -Body $availabilityData -UseBasicParsing
+```
+
+宛先から 403 が返って来た場合は、AMPLS によって拒否されている可能性が高いです。
+
+![Alt text](./troubleshooting_telemetry/image-8.png)
+
+正常時は、宛先から 200 番が返却されます。
+
+![Alt text](./troubleshooting_telemetry/image-9.png)
+
+そして宛先の Application Insights リソースの availabilityResults テーブルに、下記のようなログが記録されます。
+
+```
+availabilityResults
+| where message =~ 'Sample Webtest Result'
+```
+
+![Alt text](./troubleshooting_telemetry/image-10.png)
+
+上記は PowerShell スクリプトですが、Linux の場合は下記の CURL コマンドを実行することで確認可能です。
+
+※ 下記 CURL コマンドの詳細は[Curl コマンドを使用して可用性テスト結果を送信する
+](https://learn.microsoft.com/ja-jp/troubleshoot/azure/azure-monitor/app-insights/investigate-missing-telemetry#curl-command-send-availability-test-result) の公開情報をご確認ください。  
+※ iKey の XXX の箇所には、適宜当該 Application Insights リソースのインストルメンテーション キーの値をご指定ください。
+
+
+```
+curl -H "Content-Type: application/json" -X POST -d '{"data":{"baseData":{"ver":2,"id":"SampleRunId","name":"MicrosoftSupportSampleWebtestResultUsingCurl","duration":"00.00:00:10","success":true,"runLocation":"RegionName","message":"SampleWebtestResult","properties":{"SampleProperty":"SampleValue"}},"baseType":"AvailabilityData"},"ver":1,"name":"Microsoft.ApplicationInsights.Metric","time":"2022-09-01T12:00:00.0000000Z","sampleRate":100,"iKey":"XXXXXXXXXXXX","flags":0}' https://japaneast-1.in.applicationinsights.azure.com/v2.1/track
+```
+
+もし AMPLS によってテレメトリの取り込みが拒否された場合、同じように 403 エラーが宛先から返却されます。
+
+![Alt text](./troubleshooting_telemetry/image-11.png)
 
 このように AMPLS 側でインジェストが拒否される振る舞いは仕様どおりです。  
 下記の公開情報に記載がございますが、AMPLS のインジェスト アクセス モードが「プライベートのみ」の場合は、宛先となる Application Insights リソースを当該 AMPLS に追加する必要がございます。  
