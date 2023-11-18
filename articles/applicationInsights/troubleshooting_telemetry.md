@@ -482,3 +482,57 @@ Azure の基盤側ログに、ApplicationInsights.dll ファイルが wwwroot �
 
 ![](./troubleshooting_telemetry/pict20.png)
 
+
+# 色々調べたけど問題が解決しない場合……
+問題解消のために、ぜひ弊社サポートにお問い合わせください。  
+その際は、**必ず問題が発生したサブスクリプションからサポート リクエストをご起票ください**ませ。  
+セキュリティ上の理由から、権限の確認を厳密化させていただいているためです。  
+詳細は、[お問い合わせ発行時と「異なる」サブスクリプションならびに AAD テナントの調査依頼に対してのセキュリティ チェックが強化されます](https://jpaztech.github.io/blog/information/Different-subscriptions-research/) をご確認ください。
+
+なお、お問い合わせいただく際には下記の情報をご共有いただく事でスムーズに調査が可能となります。  
+Application Insights に対してテレメトリが収集されなくなった場合に、ご参考いただけますと幸いです。
+
+- 問題が発生した Application Insights リソース名
+- 監視対象の Web アプリケーションのデプロイ先の情報
+  - App Service にデプロイいただいている場合は、App Service のリソース名
+  - Azure VM にデプロイいただいている場合は、Azure VM のリソース名
+- 監視対象 Web アプリケーションのランタイム情報 (.NET 6, Java 17 など)
+- Application Insights をご利用いただくための方法
+  - 下記のどちらかの方法で Application Insights と統合が可能です。どちらをご選択いただいているかを共有ください。(不明な場合はその旨お伝えください)
+    - ソースコードの変更が不要な、App Service リソース ページから有効化が可能な自動インストルメンテーション機能を使って、Application Insights を利用している。
+    - ソースコードの必要な、Application Insights SDK を Web アプリケーションに組み込んで Application Insights を利用している。
+- 問題が発生し始めた時間帯
+  - 時間帯は、日本時間か UTC なのかを必ずご共有くださいませ。
+- テレメトリが欠落している事に気づいた際に、ログをご確認いただく際に実際に実行いただいた Kusto クエリ
+
+
+
+
+# まとめ
+本記事では、Application Insights へテレメトリが収集されなくなった場合の事象についてご案内いたしました。
+
+本記事が少しでもお役に立ちましたら幸いです。
+最後までお読みいただきありがとうございました！
+
+
+# 関連する記事
+Application Insights に関するトラブルシューティング系の公開情報は別で用意されています。
+今回の記事で案内させて頂いた内容も多々含まれておりますので、問題が発生した際はぜひ下記の公開情報をご確認くださいませ。
+
+- [Azure Monitor Application Insights でアプリケーション テレメトリが見つからない場合のトラブルシューティング](https://learn.microsoft.com/ja-jp/troubleshoot/azure/azure-monitor/app-insights/investigate-missing-telemetry)
+
+またあまり知られておりませんが、当該 Application Insights リソースのページからトラブルシューティングが可能です。  
+Azure portal より問題が発生した Application Insights のページへ移動し、「問題の診断と解決」からApplication Insights の有効かごのデータがない… という箇所をクリックしてみてください。
+
+![](./troubleshooting_telemetry/pict21.png)
+
+このページから、問題を解決するためのトラブルシューティングが可能です。  
+例えば、下図のように Problem subtype に対して「すべてのテレメトリがない」を選択します。
+
+![](./troubleshooting_telemetry/pict22.png)
+
+
+すると、様々な観点から問題解消のために役立つ情報がご確認いただけます。  
+こちらも一度参考いただけますと幸いです。
+
+![](./troubleshooting_telemetry/pict23.png)
