@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>リソース変更を検知するアラートを作成する | Japan Azure Monitoring Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは、Azure Monitoring チームの佐々木です。今回はリソース変更を検知するアラートが作成できる様になりましたので、その設定方法やサンプルクエリを紹介させていただきます。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="リソース変更を検知するアラートを作成する">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="こんにちは、Azure Monitoring チームの佐々木です。今回はリソース変更を検知するアラートが作成できる様になりましたので、その設定方法やサンプルクエリを紹介させていただきます。">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://github.com/sakkuntyo/cssblog/assets/20591351/01da721e-2011-4df9-ab3a-1feed3008c21">
+<meta property="og:image" content="https://github.com/sakkuntyo/cssblog/assets/20591351/01da721e-2011-4df9-ab3a-1feed3008c21">
+<meta property="og:image" content="https://github.com/sakkuntyo/cssblog/assets/20591351/58c560b1-c619-414d-9403-3185e507ae5f">
+<meta property="og:image" content="https://github.com/sakkuntyo/cssblog/assets/20591351/f90210e5-94b1-4ab2-931f-1671ca13b631">
+<meta property="og:image" content="https://github.com/sakkuntyo/cssblog/assets/20591351/086a3aca-12de-417b-8095-0f9910dd2cea">
+<meta property="og:image" content="https://github.com/sakkuntyo/cssblog/assets/20591351/5989c4b1-1194-461b-806a-d2d9ff0db5af">
+<meta property="article:published_time" content="2023-11-08T15:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-21T04:22:12.879Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="How-To">
+<meta property="article:tag" content="Tips">
+<meta property="article:tag" content="Azure Monitor Essentials">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/sakkuntyo/cssblog/assets/20591351/01da721e-2011-4df9-ab3a-1feed3008c21">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-ame/HowToResourceChangeAlert" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      リソース変更を検知するアラートを作成する
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2023-11-08T15:00:00.000Z" itemprop="datePublished">2023-11-09</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+588cc296-b782-58e1-80a9-782e57042df2%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E5%A4%89%E6%9B%B4%E3%82%92%E6%A4%9C%E7%9F%A5%E3%81%99%E3%82%8B%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2Fame%2FHowToResourceChangeAlert%2F%29%0A*+Content+Source%3A+%5Barticles%2Fame%2FHowToResourceChangeAlert.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2Fame%2FHowToResourceChangeAlert.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/" data-id="clp7txh15001m0npm8pp1hhdo" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは、Azure Monitoring チームの佐々木です。<br>今回はリソース変更を検知するアラートが作成できる様になりましたので、その設定方法やサンプルクエリを紹介させていただきます。</p>
+<span id="more"></span>
+
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li>Log Analytics から Azure Resource Graph へクエリ出来る様になりました</li>
+<li>Azure Resource Graph にはリソース変更を記録するテーブルがあります</li>
+<li>サンプルクエリ</li>
+<li>設定手順</li>
+<li>より複雑なサンプルクエリ<ul>
+<li>操作者を確認したい</li>
+</ul>
+</li>
+</ul>
+<h2 id="Log-Analytics-から-Azure-Resource-Graph-へクエリ出来る様になりました"><a href="#Log-Analytics-から-Azure-Resource-Graph-へクエリ出来る様になりました" class="headerlink" title="Log Analytics から Azure Resource Graph へクエリ出来る様になりました"></a>Log Analytics から Azure Resource Graph へクエリ出来る様になりました</h2><p>Log Analytics より Azure Resource Graph (ARG) へクエリが出来る様になりました。</p>
+<p>このアップデートにより、Log Analytics 内に記録されたログだけでなく、ARG へのクエリ結果を アラート ルールにて監視できる様になりました。</p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/azure-monitor-data-explorer-proxy#query-data-in-azure-resource-graph-preview">Azure Resource Graph のデータに対してクエリを実行する (プレビュー)</a></p>
+<p>※ 2023/11/9 時点でプレビューでの公開となります。</p>
+<h2 id="Azure-Resource-Graph-にはリソース変更を記録するテーブルがあります"><a href="#Azure-Resource-Graph-にはリソース変更を記録するテーブルがあります" class="headerlink" title="Azure Resource Graph にはリソース変更を記録するテーブルがあります"></a>Azure Resource Graph にはリソース変更を記録するテーブルがあります</h2><p>resourcechanges というテーブルに ARM のリソース変更履歴が記録されています。</p>
+<p>例えば、properties 列を見る事で以下が確認可能です。</p>
+<ul>
+<li>changeTypeがUpdate  -&gt; 更新されたという事になります。</li>
+<li>changes -&gt; 変更があったプロパティと新しい値(newValue)、過去の値(previousValue)が入ります。</li>
+</ul>
+<p>※このテーブルの保持期間は14日で変更できないため、長期的な保管は行われません。</p>
+<p>これを踏まえ、以下の properties 列のサンプルでは、microsoft.network/networkinterfaces リソースに MAC アドレスのプロパティが追加された事がわかります。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;targetResourceType&quot;</span>: <span class="string">&quot;microsoft.network/networkinterfaces&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;targetResourceId&quot;</span>: <span class="string">&quot;/subscriptions/***/resourceGroups/1627/providers/Microsoft.Network/networkInterfaces/1627vm837&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;changeAttributes&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;previousResourceSnapshotId&quot;</span>: <span class="string">&quot;08585022745207585807_a9667ff8-fb74-82a5-ffd1-419287f1063f_3620098351_1699332364&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;newResourceSnapshotId&quot;</span>: <span class="string">&quot;08585022744595915807_7aa3a796-054b-ebe0-df8e-673414ebfde7_82482185_1699332425&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;correlationId&quot;</span>: <span class="string">&quot;43c5d84a-c3bb-47c7-bdc5-7ecf69209fc2&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;changesCount&quot;</span>: <span class="number">3</span>,</span><br><span class="line">        <span class="attr">&quot;timestamp&quot;</span>: <span class="string">&quot;2023-11-07T04:47:05.8860000Z&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;changedByType&quot;</span>: <span class="string">&quot;User&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;clientType&quot;</span>: <span class="string">&quot;Azure Portal&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;operation&quot;</span>: <span class="string">&quot;Microsoft.Network/networkInterfaces/write&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;changedBy&quot;</span>: <span class="string">&quot;***@microsoft.com&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;changeType&quot;</span>: <span class="string">&quot;Update&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;changes&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;properties.virtualMachine.id&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;propertyChangeType&quot;</span>: <span class="string">&quot;Insert&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;changeCategory&quot;</span>: <span class="string">&quot;User&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;previousValue&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">&quot;newValue&quot;</span>: <span class="string">&quot;/subscriptions/***/resourceGroups/1627/providers/Microsoft.Compute/virtualMachines/1627vm&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;properties.primary&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;propertyChangeType&quot;</span>: <span class="string">&quot;Insert&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;changeCategory&quot;</span>: <span class="string">&quot;User&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;previousValue&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">&quot;newValue&quot;</span>: <span class="string">&quot;True&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;properties.macAddress&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;propertyChangeType&quot;</span>: <span class="string">&quot;Insert&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;changeCategory&quot;</span>: <span class="string">&quot;User&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;previousValue&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">&quot;newValue&quot;</span>: <span class="string">&quot;60-45-BD-66-0D-B8&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>この様に changeType が Update のログが新しく記録された場合、何か設定値が変更されたという事がわかります。</p>
+<p>詳しくは以下ドキュメントをご確認ください。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/governance/resource-graph/how-to/get-resource-changes?tabs=azure-cli">https://learn.microsoft.com/ja-jp/azure/governance/resource-graph/how-to/get-resource-changes?tabs=azure-cli</a></li>
+</ul>
+<h2 id="サンプルクエリ"><a href="#サンプルクエリ" class="headerlink" title="サンプルクエリ"></a>サンプルクエリ</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">arg(&quot;&quot;).resourcechanges</span><br><span class="line">| extend timestamp = todatetime(properties[&quot;changeAttributes&quot;][&quot;timestamp&quot;])</span><br><span class="line">| extend changes = properties[&quot;changes&quot;]</span><br><span class="line">| extend ResourceId = tostring(properties[&quot;targetResourceId&quot;])</span><br><span class="line">| extend CorrelationId = tostring(properties[&quot;changeAttributes&quot;][&quot;correlationId&quot;]) // AzureActivity (アクティビティログ) と結合可能</span><br><span class="line">| where timestamp &gt;= ago(5min) // arg(&quot;&quot;) で検索するテーブルにはアラートルールの粒度や期間指定が機能しないため、クエリで期間を指定します。</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://github.com/sakkuntyo/cssblog/assets/20591351/01da721e-2011-4df9-ab3a-1feed3008c21" alt="image"></p>
+<h2 id="設定手順"><a href="#設定手順" class="headerlink" title="設定手順"></a>設定手順</h2><p>以下に、変更履歴を検知するアラートルールの作成方法を記載させていただきます。</p>
+<p>この操作を行うアカウントでは、サブスクリプションスコープ の 閲覧者権限 と 閲覧者 ロールが必要になります。</p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles#reader">閲覧者</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles#role-based-access-control-administrator-preview">ロールベースのアクセス制御管理者</a></p>
+<ol>
+<li>Azureポータルにログインし、何れかの Log Analytics &gt; ログ ブレードを開きます。</li>
+<li>例えばサンプルのクエリを指定し、一度検索します。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">arg(&quot;&quot;).resourcechanges</span><br><span class="line">| extend timestamp = todatetime(properties[&quot;changeAttributes&quot;][&quot;timestamp&quot;])</span><br><span class="line">| extend changes = properties[&quot;changes&quot;]</span><br><span class="line">| extend ResourceId = tostring(properties[&quot;targetResourceId&quot;])</span><br><span class="line">| extend CorrelationId = tostring(properties[&quot;changeAttributes&quot;][&quot;correlationId&quot;]) // AzureActivity (アクティビティログ) と結合可能</span><br><span class="line">| where timestamp &gt;= ago(5min) // arg(&quot;&quot;) で検索するテーブルにはアラートルールの粒度や期間指定が機能しないため、クエリで期間を指定します。</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://github.com/sakkuntyo/cssblog/assets/20591351/01da721e-2011-4df9-ab3a-1feed3008c21" alt="image"></p>
+<ol start="3">
+<li>“新しいアラート ルール” より アラートルールの作成画面へ移動します。</li>
+</ol>
+<p><img src="https://github.com/sakkuntyo/cssblog/assets/20591351/58c560b1-c619-414d-9403-3185e507ae5f" alt="image"></p>
+<ol start="4">
+<li>条件 セクションでは例えば以下の設定値とします。</li>
+</ol>
+<p><img src="https://github.com/sakkuntyo/cssblog/assets/20591351/f90210e5-94b1-4ab2-931f-1671ca13b631" alt="image"></p>
+<ul>
+<li>測定<ul>
+<li>メジャー: テーブルの行</li>
+<li>集計の種類: カウント</li>
+<li>集計の粒度: 5分</li>
+</ul>
+</li>
+<li>ディメンションで分割する<ul>
+<li>リソースID 列: ResourceId (これによりリソース毎にアラートが発生する様になります。)</li>
+<li>ディメンション: 指定無し</li>
+</ul>
+</li>
+<li>アラート ロジック<ul>
+<li>演算子: 次の値より大きい</li>
+<li>しきい値: 0</li>
+<li>評価の頻度: 5分</li>
+</ul>
+</li>
+</ul>
+<ol start="5">
+<li><p>アクション セクションでは必要に応じてアクショングループを指定します。</p>
+</li>
+<li><p>詳細 セクションにて、 System assigned managed Identity を指定し、作成します。</p>
+</li>
+</ol>
+<p>ARG へのクエリにはサブスクリプションスコープの閲覧者ロールが必要ですが、Default を選択した場合、アラートルールは ARG を閲覧できず検知されません。</p>
+<p><img src="https://github.com/sakkuntyo/cssblog/assets/20591351/086a3aca-12de-417b-8095-0f9910dd2cea" alt="image"></p>
+<ol start="7">
+<li>アラートルールの マネージドID の権限設定</li>
+</ol>
+<p>モニター &gt; アラート &gt; アラート ルール &gt; ID (プレビュー) を確認します。<br>この時、もしもシステム割り当て済 が オフ となっている場合にはオンにします。</p>
+<p><img src="https://github.com/sakkuntyo/cssblog/assets/20591351/5989c4b1-1194-461b-806a-d2d9ff0db5af" alt="image"></p>
+<p>Azure ロールの割り当て へ進み、サブスクリプションスコープの閲覧者権限を付与します。</p>
+<p>以上で設定は完了です。</p>
+<h3 id="より複雑なサンプルクエリ"><a href="#より複雑なサンプルクエリ" class="headerlink" title="より複雑なサンプルクエリ"></a>より複雑なサンプルクエリ</h3><h4 id="操作者を確認したい"><a href="#操作者を確認したい" class="headerlink" title="操作者を確認したい"></a>操作者を確認したい</h4><p>操作者はアクティビティログの Caller プロパティに記載されています。</p>
+<p>診断設定で アクティビティログ を Log Analytics に送ると、AzureActivity テーブル上にアクティビティログが記録されますが、</p>
+<p>AzureActivity テーブルは resourcechanges テーブルと CorrelationId が同じになるため、結合可能です。</p>
+<p>そのため、以下のクエリで結合し、検索する事ができます。このクエリをアラートルールで指定し、検知する事も可能です。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">arg(&quot;&quot;).resourcechanges</span><br><span class="line">| extend timestamp = todatetime(properties[&quot;changeAttributes&quot;][&quot;timestamp&quot;])</span><br><span class="line">| extend changes = properties[&quot;changes&quot;]</span><br><span class="line">| extend ResourceId = tostring(properties[&quot;targetResourceId&quot;])</span><br><span class="line">| extend CorrelationId = tostring(properties[&quot;changeAttributes&quot;][&quot;correlationId&quot;]) // AzureActivity (アクティビティログ) と結合可能</span><br><span class="line">| where timestamp &gt;= ago(14d) // arg(&quot;&quot;) で検索するテーブルにはアラートルールの粒度や期間指定が機能しないため、クエリで期間を指定します。</span><br><span class="line">| join kind=leftouter (</span><br><span class="line">  AzureActivity // Administrative を送る診断設定が必要です。</span><br><span class="line">  | where CategoryValue =~ &quot;Administrative&quot;</span><br><span class="line">  | where ActivityStatusValue =~ &quot;Start&quot; // 一度の操作 でStart,Success 等複数のログが出るため、Start のログのみ対象とします。</span><br><span class="line">)</span><br><span class="line">on CorrelationId </span><br><span class="line">| order by TimeGenerated</span><br></pre></td></tr></table></figure>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/ame/HowToResourceChangeAlert.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../LogAnalytics/HowToMigrateToAmaBasedVMInsights/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Migrate to Azure Monitor agent–based VM insights by 31 August 2024 について</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">リソース変更を検知するアラートを作成する</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/HowToMigrateToAmaBasedVMInsights/">Migrate to Azure Monitor agent–based VM insights by 31 August 2024 について</a>
+          </li>
+        
+          <li>
+            <a href="../../applicationInsights/migrateWorkspaceAiFAQ/">ワークスペースベースの Application Insights への移行についてのよくあるご質問</a>
+          </li>
+        
+          <li>
+            <a href="../../AzureMonitorEssential/HowToAlertMuteAction/">ログ アラート ルールにおけるアクションのミュート機能とは</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/AccessControlMode/">Log Analytics ワークスペースのアクセス制御モードの違いについて</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent/" rel="tag">Azure Monitor Agent</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" rel="tag">Azure Monitor エージェント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostic-settings/" rel="tag">Diagnostic settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Alert/" rel="tag">Log Alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" rel="tag">Log Analytics エージェント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-ID/" rel="tag">Managed ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-Identity/" rel="tag">Managed Identity</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Migration/" rel="tag">Migration</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Run-As-Account/" rel="tag">Run As Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sandbox/" rel="tag">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StartAzureV2VMs/" rel="tag">StartAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StopAzureV2VMs/" rel="tag">StopAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM/" rel="tag">VM</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM-insights/" rel="tag">VM insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Worker/" rel="tag">Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/" rel="tag">アクションのミュート</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" rel="tag">アラート処理ルール</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" rel="tag">クエリ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" rel="tag">コスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" rel="tag">マネージド ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB/" rel="tag">ログ アラート ルール</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%81%9C%E6%AD%A2/" rel="tag">停止</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%88%86%E6%9E%90%E6%83%85%E5%A0%B1/" rel="tag">分析情報</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" rel="tag">実行アカウント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/" rel="tag">移行</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" rel="tag">自動化</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%B5%B7%E5%8B%95/" rel="tag">起動</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/">How-To</a><span class="tag-list-count">21</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/">Tips</a><span class="tag-list-count">21</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/">Azure Monitor Essentials</a><span class="tag-list-count">7</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/">Azure Monitor</a><span class="tag-list-count">7</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/">FAQ</a><span class="tag-list-count">8</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/">Log Analytics</a><span class="tag-list-count">20</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/">移行</a><span class="tag-list-count">2</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/">Troubleshooting</a><span class="tag-list-count">4</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">6</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/">Automation</a><span class="tag-list-count">9</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/">チーム紹介</a><span class="tag-list-count">5</span><ul></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/11/">2023 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/10/">2023 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/09/">2023 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/07/">2023 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/06/">2023 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/03/">2023 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/01/">2023 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/11/">2022 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/10/">2022 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/09/">2022 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/08/">2022 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/Application-Insights/" style="font-size: 15px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 18px;">Automation</a> <a href="../../tags/Azure-Monitor/" style="font-size: 16px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Agent/" style="font-size: 12px;">Azure Monitor Agent</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 16px;">Azure Monitor Essentials</a> <a href="../../tags/Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" style="font-size: 10px;">Azure Monitor エージェント</a> <a href="../../tags/Diagnostic-settings/" style="font-size: 11px;">Diagnostic settings</a> <a href="../../tags/FAQ/" style="font-size: 17px;">FAQ</a> <a href="../../tags/General/" style="font-size: 15px;">General</a> <a href="../../tags/How-To/" style="font-size: 20px;">How-To</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 11px;">Job</a> <a href="../../tags/Log-Alert/" style="font-size: 10px;">Log Alert</a> <a href="../../tags/Log-Analytics/" style="font-size: 19px;">Log Analytics</a> <a href="../../tags/Log-Analytics-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" style="font-size: 10px;">Log Analytics エージェント</a> <a href="../../tags/Managed-ID/" style="font-size: 10px;">Managed ID</a> <a href="../../tags/Managed-Identity/" style="font-size: 10px;">Managed Identity</a> <a href="../../tags/MetricAlert/" style="font-size: 10px;">MetricAlert</a> <a href="../../tags/Migration/" style="font-size: 10px;">Migration</a> <a href="../../tags/Run-As-Account/" style="font-size: 10px;">Run As Account</a> <a href="../../tags/RunAs-Account/" style="font-size: 13px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 13px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 20px;">Tips</a> <a href="../../tags/Troubleshooting/" style="font-size: 13px;">Troubleshooting</a> <a href="../../tags/VM/" style="font-size: 10px;">VM</a> <a href="../../tags/VM-insights/" style="font-size: 10px;">VM insights</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/" style="font-size: 10px;">アクションのミュート</a> <a href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" style="font-size: 10px;">アラート処理ルール</a> <a href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" style="font-size: 10px;">クエリ</a> <a href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" style="font-size: 10px;">コスト</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 14px;">チーム紹介</a> <a href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" style="font-size: 11px;">マネージド ID</a> <a href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB/" style="font-size: 10px;">ログ アラート ルール</a> <a href="../../tags/%E5%81%9C%E6%AD%A2/" style="font-size: 10px;">停止</a> <a href="../../tags/%E5%88%86%E6%9E%90%E6%83%85%E5%A0%B1/" style="font-size: 10px;">分析情報</a> <a href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" style="font-size: 12px;">可用性テスト</a> <a href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" style="font-size: 10px;">実行アカウント</a> <a href="../../tags/%E7%A7%BB%E8%A1%8C/" style="font-size: 11px;">移行</a> <a href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" style="font-size: 10px;">自動化</a> <a href="../../tags/%E8%B5%B7%E5%8B%95/" style="font-size: 10px;">起動</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
