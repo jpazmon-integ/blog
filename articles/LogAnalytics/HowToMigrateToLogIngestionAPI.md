@@ -4,7 +4,7 @@ date: 2023-12-15 00:00:00
 tags:
   - Log Analytics
   - ログ インジェスト API
-  - HTTP データ コレクター API
+  - データ コレクター API
   - Tips
 ---
 
