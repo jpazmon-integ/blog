@@ -1,6 +1,6 @@
 ---
 title: Azure VM の診断設定とそれ以外のリソースにおける診断設定について
-date: 2023-10-31 00:00:00
+date: 2023-12-22 00:00:00
 tags:
   - How-To
   - Azure Monitor Essentials
@@ -36,7 +36,7 @@ tags:
 | --------------- | ----------------- | ----------------- | 
 | 対象リソース | Azure VM  | [公開情報](https://learn.microsoft.com/ja-JP/azure/azure-monitor/reference/supported-logs/logs-index) に記載のリソース|
 | 送信するデータ | ゲスト OS のメトリックとログ | Azure プラットフォームのメトリックとログ |
-| データの宛先 | ストレージ アカウント | Log Analytics ワークスペース、ストレージ アカウント、 <br> イベント ハブ、サード パーティの製品 |
+| データの宛先 | ストレージ アカウント、Azure Monitor メトリック、Event Hubs | Log Analytics ワークスペース、ストレージ アカウント、 <br> イベント ハブ、サード パーティの製品 |
 | 拡張機能 | あり (Azure Diagnostics 拡張機能) | なし |
 
 <br>
