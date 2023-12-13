@@ -1,6 +1,6 @@
 ---
 title: Azure VM の診断設定とそれ以外のリソースにおける診断設定について
-date: 2023-12-22 00:00:00
+date: 2023-12-14 00:00:00
 tags:
   - How-To
   - Azure Monitor Essentials
