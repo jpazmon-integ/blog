@@ -8,8 +8,8 @@ tags:
 
 こんにちは、Azure Monitoring サポート チームの北山です。
 
-App Service や Azure VM などにデプロイいただいている Web アプリケーションのパフォーマンスを監視するために、Application Insights をご利用いただいているケースがございます。
-監視対象の Web アプリケーションから Application Insights リソースに対してテレメトリ (ログやメトリックなどの情報) を送信することで、Web アプリケーションのパフォーマンス監視が可能です。
+App Service や Azure VM などにデプロイいただいている Web アプリケーションのパフォーマンスを監視するために、Application Insights をご利用いただいているケースがございます。  
+監視対象の Web アプリケーションから Application Insights リソースに対してテレメトリ (ログやメトリックなどの情報) を送信することで、Web アプリケーションのパフォーマンス監視が可能です。  
 しかし、場合によっては監視対象の Web アプリケーションから Application Insights リソースに対してテレメトリが送信されないケースがございます。
 > 例 : Application Insights リソースの requests テーブルや traces テーブルに、突然ログが保存されなくなった。requests テーブルにはログが記録されているのに、突然 traces テーブルのログが記録されなくなったなど。
 
@@ -51,7 +51,7 @@ App Service や Azure VM などにデプロイいただいている Web アプ�
 ##### 手順
 1. 当該 Application Insights リソース ページへ移動します。
 2. 概要ページに記載がある接続文字列をコピーいただき、[IngestionEndpoint] に指定がある URL のホスト名をコピーします。  
-例 : 「IngestionEndpoint=https://japaneast-0.in.applicationinsights.azure.com/」の場合は、「japaneast-0.in.applicationinsights.azure.com」をコピーします。
+例 : 「```IngestionEndpoint=https://japaneast-0.in.applicationinsights.azure.com/```」の場合は、「japaneast-0.in.applicationinsights.azure.com」をコピーします。
 ![](./troubleshooting_telemetry/pict2.png)
 
 3. 当該 App Service リソース ページへ移動します。
@@ -150,7 +150,7 @@ App Service や Azure Functions の場合、nslookup や ping は機能しませ
 ##### 手順
 1. 当該 Application Insights リソース ページへ移動します。
 2. 概要ページに記載がある接続文字列をコピーいただき、[IngestionEndpoint] に指定がある URL のホスト名をコピーします。  
-例 : 「IngestionEndpoint=https://japaneast-0.in.applicationinsights.azure.com/」の場合は、「japaneast-0.in.applicationinsights.azure.com」をコピーします。
+例 : 「```IngestionEndpoint=https://japaneast-0.in.applicationinsights.azure.com/```」の場合は、「japaneast-0.in.applicationinsights.azure.com」をコピーします。
 ![](./troubleshooting_telemetry/pict2.png)
 
 3. 当該コンピューターにリモートで接続いただき、下記コマンドを実行し、名前解決が可能であるかどうかご確認ください。もし名前解決に失敗する場合は、DNS 周りに何か問題があるかもしれません。
@@ -483,6 +483,16 @@ Azure の基盤側ログに、ApplicationInsights.dll ファイルが wwwroot �
 ![](./troubleshooting_telemetry/pict20.png)
 
 
+# ケース 3. 問題なく Application Insights にテレメトリが収集出来ているが、時々期待したログが欠落する
+## 問題の概要
+- 基本的には requests ログや dependencies ログ、traces ログは収集されている。
+- しかし時々、一部のデータが欠落しているように見受けられる。
+
+## 疑われるポイント
+サンプリングが機能している可能性が非常に高いです。
+
+
+
 # 色々調べたけど問題が解決しない場合……
 問題解消のために、ぜひ弊社サポートにお問い合わせください。  
 その際は、**必ず問題が発生したサブスクリプションからサポート リクエストをご起票ください**ませ。  
@@ -490,7 +500,7 @@ Azure の基盤側ログに、ApplicationInsights.dll ファイルが wwwroot �
 詳細は、[お問い合わせ発行時と「異なる」サブスクリプションならびに AAD テナントの調査依頼に対してのセキュリティ チェックが強化されます](https://jpaztech.github.io/blog/information/Different-subscriptions-research/) をご確認ください。
 
 なお、お問い合わせいただく際には下記の情報をご共有いただく事でスムーズに調査が可能となります。  
-Application Insights に対してテレメトリが収集されなくなった場合に、ご参考いただけますと幸いです。
+Application Insights に対してテレメトリが収集されなくなり、弊社サポートにお問い合わせいただく場合にご参考いただけますと幸いです。
 
 - 問題が発生した Application Insights リソース名
 - 監視対象の Web アプリケーションのデプロイ先の情報
@@ -498,12 +508,12 @@ Application Insights に対してテレメトリが収集されなくなった�
   - Azure VM にデプロイいただいている場合は、Azure VM のリソース名
 - 監視対象 Web アプリケーションのランタイム情報 (.NET 6, Java 17 など)
 - Application Insights をご利用いただくための方法
-  - 下記のどちらかの方法で Application Insights と統合が可能です。どちらをご選択いただいているかを共有ください。(不明な場合はその旨お伝えください)
+  - 下記のどちらかの方法で Application Insights と統合が可能ですが、どちらをご選択いただいているかを共有ください。(不明な場合はその旨お伝えください)
     - ソースコードの変更が不要な、App Service リソース ページから有効化が可能な自動インストルメンテーション機能を使って、Application Insights を利用している。
     - ソースコードの必要な、Application Insights SDK を Web アプリケーションに組み込んで Application Insights を利用している。
 - 問題が発生し始めた時間帯
   - 時間帯は、日本時間か UTC なのかを必ずご共有くださいませ。
-- テレメトリが欠落している事に気づいた際に、ログをご確認いただく際に実際に実行いただいた Kusto クエリ
+- テレメトリが欠落している事に気づいた際に、ログをご確認いただく時に実際に実行いただいた Kusto クエリ
 
 
 
@@ -522,7 +532,7 @@ Application Insights に関するトラブルシューティング系の公開�
 - [Azure Monitor Application Insights でアプリケーション テレメトリが見つからない場合のトラブルシューティング](https://learn.microsoft.com/ja-jp/troubleshoot/azure/azure-monitor/app-insights/investigate-missing-telemetry)
 
 またあまり知られておりませんが、当該 Application Insights リソースのページからトラブルシューティングが可能です。  
-Azure portal より問題が発生した Application Insights のページへ移動し、「問題の診断と解決」からApplication Insights の有効かごのデータがない… という箇所をクリックしてみてください。
+Azure portal より問題が発生した Application Insights のページへ移動し、「問題の診断と解決」から「Application Insights の有効かごのデータがない…」という箇所をクリックしてみてください。
 
 ![](./troubleshooting_telemetry/pict21.png)
 
