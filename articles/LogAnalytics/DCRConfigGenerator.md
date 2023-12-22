@@ -1,7 +1,7 @@
 
 ---
 title: DCR Config Generator の使用方法
-date: 2023-06-24 00:00:00
+date: 2023-12-24 00:00:00
 tags:
  - How-To
  - Log Analytics
@@ -11,9 +11,9 @@ tags:
 こんにちは！Azure Monitoring チームの加治屋です。
 この記事では、Log Analytics エージェントから Azure Monitor エージェントへの移行のために使用できるツールについてご紹介いたします。
 
-2023/12/24 
+※
 DCR Config Generator の更新に伴い、ツールの利用方法が変更されております。
-この変更に合わせて、当記事の修正を行いました。
+当記事は、DCR Config Generator バージョン 1.0.0 を前提として記載しております。
 
 <!-- more -->
 
@@ -53,6 +53,9 @@ DCR Config Generator を使用するためには、以下のものが必要で�
 ・スクリプトを実行するためのコンテキストを設定する、Connect-AzAccount および Select-AzContext の実行用の Azure 資格情報。
 
 ### DCR Config Generator 使用前の確認事項
+現在、Log Analytics エージェントにて VM Insights をご利用されており、かつ Azure Monitor エージェント移行後も VM Insights のご利用を予定されている場合は、以下の点についてご確認をお願いいたします。
+
+＜確認事項＞
 移行対象とするマシンにて、Dependency Agent がインストールされているかをご確認ください。
 マシンの [拡張機能とアプリケーション] より、[DependencyAgentLinux] もしくは [DependencyAgentWindows] が表示されているかどうかで判断が可能です。
 Dependency Agent がインストールされているマシンについては、Log Analytics エージェントの削除後に VM Insights 用のデータ収集ルールへの紐づけが必要です。
