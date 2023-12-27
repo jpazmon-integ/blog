@@ -4,32 +4,24 @@
   <meta charset="utf-8">
   
   
-  <title>Log Analytics の新機能 Basic Logs と Archived Logs について | Japan Azure Monitoring Support Blog</title>
+  <title>App Service でスロットをスワップした後に、cloud_RoleName に別スロットのホスト名が記録される事象について | Japan Azure Monitoring Support Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="こんにちは！ Azure Monitoring サポート チームの北村です。 今回は Log Analytics の新機能としてプレビューで提供されている Basic Logs と Archived Logs をご紹介いたします。Log Analytics ワークスペースにログを収集しているが、コストを削減したい…という方にはお勧めしたい機能です。本記事では Basic Logs と Archiv">
+  <meta name="description" content="[更新履歴]    12&#x2F;27 13:00 (日本時間) ブログ公開  こんにちは、Azure Monitoring サポート チームの北山です。App Service に対してデプロイ スロットをスワップした後に、Application Insights の cloud_RoleName が期待しない値となる事象について案内いたします。  目次 事象について 問題の回避方法 最後に  事象につい">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Log Analytics の新機能 Basic Logs と Archived Logs について">
-<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/index.html">
+<meta property="og:title" content="App Service でスロットをスワップした後に、cloud_RoleName に別スロットのホスト名が記録される事象について">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/applicationInsights/wrongSlotNameAfterSwapping/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは！ Azure Monitoring サポート チームの北村です。 今回は Log Analytics の新機能としてプレビューで提供されている Basic Logs と Archived Logs をご紹介いたします。Log Analytics ワークスペースにログを収集しているが、コストを削減したい…という方にはお勧めしたい機能です。本記事では Basic Logs と Archiv">
+<meta property="og:description" content="[更新履歴]    12&#x2F;27 13:00 (日本時間) ブログ公開  こんにちは、Azure Monitoring サポート チームの北山です。App Service に対してデプロイ スロットをスワップした後に、Application Insights の cloud_RoleName が期待しない値となる事象について案内いたします。  目次 事象について 問題の回避方法 最後に  事象につい">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image01.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image02.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image03.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image04.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image05.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image06.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image07.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image08.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image09.png">
-<meta property="article:published_time" content="2022-08-16T15:00:00.000Z">
-<meta property="article:modified_time" content="2023-12-27T04:07:59.817Z">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/wrongSlotNameAfterSwapping/image.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/wrongSlotNameAfterSwapping/image-1.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/wrongSlotNameAfterSwapping/image-3.png">
+<meta property="article:published_time" content="2023-12-26T15:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-27T04:07:59.961Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="How-To">
-<meta property="article:tag" content="Tips">
-<meta property="article:tag" content="Log Analytics">
+<meta property="article:tag" content="Application Insights">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image01.png">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/wrongSlotNameAfterSwapping/image.png">
   
     <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
   
@@ -91,7 +83,7 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-LogAnalytics/BasicLogsAndArchivedLogs" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-applicationInsights/wrongSlotNameAfterSwapping" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -100,7 +92,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Log Analytics の新機能 Basic Logs と Archived Logs について
+      App Service でスロットをスワップした後に、cloud_RoleName に別スロットのホスト名が記録される事象について
     </h1>
   
 
@@ -108,72 +100,53 @@
       <div class="article-share">
         Last Update: 
         <a href="" class="article-date-single">
-  <time datetime="2022-08-16T15:00:00.000Z" itemprop="datePublished">2022-08-17</time>
+  <time datetime="2023-12-26T15:00:00.000Z" itemprop="datePublished">2023-12-27</time>
 </a>
         
         
-        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+bf943bbb-e1c1-5e72-9bba-63d4fe46ce65%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BLog+Analytics+%E3%81%AE%E6%96%B0%E6%A9%9F%E8%83%BD+Basic+Logs+%E3%81%A8+Archived+Logs+%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FBasicLogsAndArchivedLogs%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FBasicLogsAndArchivedLogs.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FBasicLogsAndArchivedLogs.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+239cd32b-18c1-53b2-9fa1-f19793138956%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BApp+Service+%E3%81%A7%E3%82%B9%E3%83%AD%E3%83%83%E3%83%88%E3%82%92%E3%82%B9%E3%83%AF%E3%83%83%E3%83%97%E3%81%97%E3%81%9F%E5%BE%8C%E3%81%AB%E3%80%81cloud_RoleName+%E3%81%AB%E5%88%A5%E3%82%B9%E3%83%AD%E3%83%83%E3%83%88%E3%81%AE%E3%83%9B%E3%82%B9%E3%83%88%E5%90%8D%E3%81%8C%E8%A8%98%E9%8C%B2%E3%81%95%E3%82%8C%E3%82%8B%E4%BA%8B%E8%B1%A1%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FapplicationInsights%2FwrongSlotNameAfterSwapping%2F%29%0A*+Content+Source%3A+%5Barticles%2FapplicationInsights%2FwrongSlotNameAfterSwapping.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FapplicationInsights%2FwrongSlotNameAfterSwapping.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/" data-id="clqn99uw8000u0no3den7gs8r" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/wrongSlotNameAfterSwapping/" data-id="clqn99uwv002a0no37stm6h76" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは！ Azure Monitoring サポート チームの北村です。</p>
-<p>今回は Log Analytics の新機能としてプレビューで提供されている Basic Logs と Archived Logs をご紹介いたします。<br>Log Analytics ワークスペースにログを収集しているが、コストを削減したい…という方にはお勧めしたい機能です。<br>本記事では Basic Logs と Archived Logs の概要とその設定方法をご案内します。</p>
-<span id="more"></span>
-
-<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
-<li>Basic Logs とは</li>
-<li>Archived Logs とは </li>
-<li>Azure CLI コマンドを利用した Basic Logs の設定方法</li>
-<li>Azure CLI コマンドを利用した Archived Logs の設定方法</li>
-<li>まとめ</li>
-</ul>
-<h2 id="Basic-Logs-とは"><a href="#Basic-Logs-とは" class="headerlink" title="Basic Logs とは"></a>Basic Logs とは</h2><p>まず、Basic Logs のプレビュー リリースに伴い、Azure Monitor のすべての機能を使用できる Log Analytics ワークスペース内の<br>テーブルは Analytics Logs と呼ばれるようになりました。今まで Log Analytics ワークスペースに収集されていたログは<br>すべて Analytics Logs であり、デフォルトでは Analytics Logs となっています。</p>
-<p>そして、今回の大幅なアップデートに伴い、Analytics Logs とは別に Basic Logs というプランが追加されました。<br>Basic Logs のデフォルトのデータ保有期間は 8 日間であり、クエリで使用できる演算子が限定的であったり、<br>アラートには使用できない等の制限事項がございます。<br>しかし、Azure Monitor のすべての機能を使用できないという制約がある分、Analytics Logs より安くご利用いただけます。</p>
-<p><strong>Analytics Logs と Basic Logs の違い</strong><br>※ <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/log-analytics-workspace-overview#log-data-plans-preview">Log Analytics ワークスペースの概要 - ログ データ プラン（プレビュー）</a> より抜粋<br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image01.png"></p>
-<p>&lt;参考&gt;</p>
+        <p>[更新履歴]  </p>
 <ul>
-<li>Basic Logs で使用できる演算子は <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/basic-logs-query?tabs=portal-1#kql-language-limits">KQL 言語の制限</a> をご覧ください。</li>
-<li>現在はすべてのテーブルで Basic Logs のプランを選択することはできません。サポート テーブルは <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/basic-logs-configure?tabs=cli-1,cli-2#which-tables-support-basic-logs">Basic Logs をサポートするテーブル</a> でご確認ください。</li>
-<li>Basic Logs のご利用料金は <a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">Azure Monitor の価格</a> の [Basic ログ] をご確認ください。<br><br><br></li>
+<li>12/27 13:00 (日本時間) ブログ公開</li>
 </ul>
-<h2 id="Archived-Logs-とは"><a href="#Archived-Logs-とは" class="headerlink" title="Archived Logs とは"></a>Archived Logs とは</h2><p>Archived Logs は、名前のとおりログをアーカイブ領域に移動させ、長期保管するための機能です。<br>Analytics Logs は 最大 730 日、Basic Logs は 8 日間しかログを保持できませんが、<br>Archived Logs では 最大 7 年間データを保持することができます。<br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image02.png"></p>
-<p>&lt;参考&gt;</p>
+<p>こんにちは、Azure Monitoring サポート チームの北山です。<br>App Service に対してデプロイ スロットをスワップした後に、Application Insights の cloud_RoleName が期待しない値となる事象について案内いたします。</p>
 <ul>
-<li>アーカイブしたデータにアクセスする場合はデータを復元するかジョブで検索する必要があります。詳細は <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/log-analytics-workspace-overview#data-retention-and-archive">データ保持とアーカイブ</a> をご確認ください。</li>
-<li>Archived Logs のご利用料金は <a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">Azure Monitor の価格</a> をご参照ください。<br><br><br></li>
+<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
+<li><a href="#%E4%BA%8B%E8%B1%A1%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">事象について</a></li>
+<li><a href="#%E5%95%8F%E9%A1%8C%E3%81%AE%E5%9B%9E%E9%81%BF%E6%96%B9%E6%B3%95">問題の回避方法</a></li>
+<li><a href="#%E6%9C%80%E5%BE%8C%E3%81%AB">最後に</a></li>
 </ul>
-<h2 id="Azure-CLI-コマンドを利用した-Basic-Logs-の設定方法"><a href="#Azure-CLI-コマンドを利用した-Basic-Logs-の設定方法" class="headerlink" title="Azure CLI コマンドを利用した Basic Logs の設定方法"></a>Azure CLI コマンドを利用した Basic Logs の設定方法</h2><p>それでは Basic Logs の設定をしてみましょう！<br>本記事では <code>az monitor log-analytics workspace table update</code> コマンドを使用し、テーブル単位で設定する方法をご案内します。<br>Log Analytics ワークスペース名、ワークスペースが属するリソース グループ名、テーブル名等を指定し、以下のとおり実行します。</p>
-<p><code>az monitor log-analytics workspace table update --subscription &lt;サブスクリプション名&gt; --resource-group &lt;リソース グループ名&gt; --workspace-name &lt;ワークスペース名&gt; --name &lt;テーブル名&gt; --plan Basic</code><br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image03.png"></p>
-<p>Azure portal から変更内容を確認することができます。Log Analytics ワークスペース から [全般] - [ログ] を選択し、<br>Basic Logs プランに変更したテーブル名をクリックすると、テーブル名の右横に <strong>基本ログ</strong> と表示されていることがわかります。<br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image04.png"></p>
-<p>なお、Basic Logs に変更する前は、以下のとおり表示されます（Analytics Logs とは表示されません）。<br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image05.png"></p>
-<p>また、<code>az monitor log-analytics workspace table show</code> コマンドで設定内容を確認することもできます。<br>下図の実行例では <code>plan</code> が <strong>Basic</strong> 、<code>retentionInDays</code> が <strong>8</strong> となっていることがわかります。</p>
-<p><code>az monitor log-analytics workspace table show --subscription &lt;サブスクリプション名&gt; --resource-group &lt;リソース グループ名&gt; --workspace-name &lt;ワークスペース名&gt; --name &lt;テーブル名&gt; --output table</code><br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image06.png"></p>
-<p>&lt;ご参考&gt;<br>Basic Logs に関する設定方法等につきましては、下記弊社公開情報にも掲載しております。<br>Azure portal から設定する手順等につきましても以下をご覧ください。</p>
+<h1 id="事象について"><a href="#事象について" class="headerlink" title="事象について"></a>事象について</h1><p>App Service の Web アプリケーションを Application Insights で監視している場合、Application Insights に関連するログ テーブルの cloud_RoleName には、当該 Web サイト URL のホスト名が記録されます。</p>
+<blockquote>
+<p>xxxx-appservice.azurewebsites.net の場合は、”xxxx-appservice” が既定で cloud_RoleName の値として記録されます。</p>
+</blockquote>
+<p>App Service に対してデプロイ スロットのスワップを実行すると、例えば本番環境とテスト環境の入れ替えが可能です。<br>デプロイ スロットのスワップ後に、本番環境にアクセスをしているのにも関わらず、テスト環境のホスト名が Application Insights の cloud_RoleName に記録される事象を確認しています。</p>
+<p>例えば下図のようにスワップした場合、本番環境にアクセスしているのにも関わらず cloud_RoleName に “junkitayama-appservice-dotnet02-develop” が記録されます。<br>※ 本番環境にアクセスしているので、本来は “junkitayama-appservice-dotnet02” が cloud_RoleName に記録される事を期待している。</p>
+<p><img src="/blog/applicationInsights/wrongSlotNameAfterSwapping/image.png" alt="Alt text"></p>
+<p>なお、こちらは弊社開発部門にて対処を検討しておりますが、発生条件が一律ではなくすぐに解消することが難しい状況です。<br>ご迷惑をおかけいたしますが、問題解消までもうしばらくお時間をいただけますと幸いです。</p>
+<h1 id="問題の回避方法"><a href="#問題の回避方法" class="headerlink" title="問題の回避方法"></a>問題の回避方法</h1><p>App Service の運用スロット側の [設定] &gt; [構成] の [アプリケーション設定] から、以下のアプリケーション設定を追加します。</p>
 <ul>
-<li>Basic Logs の設定方法 : <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/basic-logs-configure?tabs=cli-1,cli-2#set-table-configuration">テーブル構成の設定</a> もご覧ください。</li>
-<li>Basic Logs の確認方法 : <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/basic-logs-configure?tabs=cli-1,cli-2#check-table-configuration">テーブル構成の確認</a> にも掲載しております。<br><br><br></li>
+<li>設定名 : APPLICATIONINSIGHTS_ROLE_NAME</li>
+<li>設定値 : cloud_RoleName に指定したい文字列</li>
+<li>デプロイ スロットの設定 : チェックを入れます。</li>
 </ul>
-<h2 id="Azure-CLI-コマンドを利用した-Archived-Logs-の設定方法"><a href="#Azure-CLI-コマンドを利用した-Archived-Logs-の設定方法" class="headerlink" title="Azure CLI コマンドを利用した Archived Logs の設定方法"></a>Azure CLI コマンドを利用した Archived Logs の設定方法</h2><p>Basic Logs と同様に、Azure CLI コマンドで設定する方法をご紹介します。こちらもテーブル単位で指定します。</p>
-<p><code>az monitor log-analytics workspace table update</code> コマンドには、保有期間を設定するパラメータが 2 つあります。<br><code>retention-time</code> は Basic Logs もしくは Analytics Logs として保有する期間、<br><code>total-retention-time</code> は Archived Logs としての保有期間を含めた、データの総保有期間を意味します。<br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image07.png"></p>
-<p>以下の例では、Basic Logs を設定したテーブルに対し、 <code>total-retention-time</code> を <code>11</code> 日間に指定しています。<br>つまり、Basic Logs として 8 日間、Archived Logs として 3 日間の合計 11 日間、データが保持されることになります。</p>
-<p><code>az monitor log-analytics workspace table update --subscription &lt;サブスクリプション名&gt; --resource-group &lt;リソース グループ名&gt; --workspace-name &lt;ワークスペース名&gt; --name &lt;テーブル名&gt; ----retention-time &lt;アーカイブされる前のデータ保有期間&gt; --total-retention-time &lt;総保有期間&gt;</code><br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image08.png"></p>
-<p>なお、Basic Logs と同様に下記コマンドで設定内容を確認することができます。<br><code>az monitor log-analytics workspace table show --subscription &lt;サブスクリプション名&gt; --resource-group &lt;リソース グループ名&gt; --workspace-name &lt;ワークスペース名&gt; --name &lt;テーブル名&gt;</code><br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image09.png"></p>
-<p>&lt;ご参考&gt;<br>Archived Logs に関する設定方法につきましては、下記弊社公開情報にも掲載しております。<br>Azure portal から設定する手順等につきましても以下をご覧ください。</p>
+<p><img src="/blog/applicationInsights/wrongSlotNameAfterSwapping/image-1.png" alt="Alt text"></p>
+<p>環境変数 APPLICATIONINSIGHTS_ROLE_NAME を指定いただく事で、明示的に cloud_RoleName の値を指定することが可能です。<br>そのため、もしデプロイ スロットのスワップにより cloud_RoleName が変わってしまう可能性を懸念される場合は、APPLICATIONINSIGHTS_ROLE_NAME の指定をご検討くださいませ。</p>
+<blockquote>
+<p>App Service に対してアプリケーション設定を構築すると、App Service に対して再起動が実施されます。  </p>
+</blockquote>
 <ul>
-<li>Archived Logs の設定方法 : <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/data-retention-archive?tabs=cli-1,api-2#set-retention-and-archive-policy-by-table">テーブル別に保持ポリシーとアーカイブ ポリシーを設定する</a> </li>
-<li>Archived Logs の確認方法 : <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/data-retention-archive?tabs=cli-1,cli-2#get-retention-and-archive-policy-by-table">テーブル別の保持ポリシーとアーカイブ ポリシーを取得する</a><br><br><br></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/distributed-trace-data#role-names">分散トレースとテレメトリの相関関係</a>  </li>
 </ul>
-<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>本記事では、以下についてご案内いたしましたが、いかがでしたでしょうか。</p>
-<ul>
-<li>Basic Logs とは</li>
-<li>Archived Logs とは </li>
-<li>Azure CLI コマンドを利用した Basic Logs の設定方法</li>
-<li>Azure CLI コマンドを利用した Archived Logs の設定方法</li>
-</ul>
-<p>本記事が少しでもお役に立ちましたら幸いです。<br>以上、Log Analytics の新しい機能 Basic Logs と Archived Logs の概要と設定方法についてお伝えしました。<br>最後までお読みいただきありがとうございました！</p>
+<p><img src="/blog/applicationInsights/wrongSlotNameAfterSwapping/image-3.png" alt="Alt text"></p>
+<h1 id="最後に"><a href="#最後に" class="headerlink" title="最後に"></a>最後に</h1><p>もし、本ブログに記載の内容以外について追加のご質問やご不明点がございましたら、大変お手数ではございますが、事象を受けたサブスクリプションからお問い合わせをご発行ください。  </p>
+<p>改めまして、本事象でご迷惑をおかけし大変申し訳ございません。</p>
 
       
       
@@ -187,10 +160,10 @@
     <footer class="article-footer">
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li></ul>
 
         
-        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/BasicLogsAndArchivedLogs.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/applicationInsights/wrongSlotNameAfterSwapping.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
         
     </footer>
   </div>
@@ -198,19 +171,10 @@
     
 <nav id="article-nav">
   
-    <a href="../UpdateLAHealth/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">次の記事</strong>
-      <div class="article-nav-title">
-        
-          Log Analytics ワークスペースの正常性を示す指標の更新について
-        
-      </div>
-    </a>
   
-  
-    <a href="../LogAnalyticsResultsUpgrade/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../../LogAnalytics/DCRConfigGenerator/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前の記事</strong>
-      <div class="article-nav-title">Log Analytics のアップグレード</div>
+      <div class="article-nav-title">DCR Config Generator の使用方法</div>
     </a>
   
 </nav>
@@ -229,11 +193,11 @@
       <ul>
         
           <li>
-            <a href="../../applicationInsights/wrongSlotNameAfterSwapping/">App Service でスロットをスワップした後に、cloud_RoleName に別スロットのホスト名が記録される事象について</a>
+            <a href="">App Service でスロットをスワップした後に、cloud_RoleName に別スロットのホスト名が記録される事象について</a>
           </li>
         
           <li>
-            <a href="../DCRConfigGenerator/">DCR Config Generator の使用方法</a>
+            <a href="../../LogAnalytics/DCRConfigGenerator/">DCR Config Generator の使用方法</a>
           </li>
         
           <li>
@@ -241,7 +205,7 @@
           </li>
         
           <li>
-            <a href="../HowToMigrateToLogIngestionAPI/">Retirement notice ： Transition to DCR-based custom log ingestion by 14 September 2026 について</a>
+            <a href="../../LogAnalytics/HowToMigrateToLogIngestionAPI/">Retirement notice ： Transition to DCR-based custom log ingestion by 14 September 2026 について</a>
           </li>
         
           <li>
