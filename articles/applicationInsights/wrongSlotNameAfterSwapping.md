@@ -1,11 +1,11 @@
 ---
 title: App Service でスロットをスワップした後に、cloud_RoleName に別スロットのホスト名が記録される事象について
-date: 2023-12-22 00:00:00
+date: 2023-12-27 00:00:00
 tags: Application Insights
 ---
 
 [更新履歴]  
-- 12/22 22:00 (日本時間) ブログ公開
+- 12/27 13:00 (日本時間) ブログ公開
 
 こんにちは、Azure Monitoring サポート チームの北山です。 
 App Service に対してデプロイ スロットをスワップした後に、Application Insights の cloud_RoleName が期待しない値となる事象について案内いたします。
