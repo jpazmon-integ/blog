@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM/image08.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM/image09.png">
 <meta property="article:published_time" content="2022-05-22T15:00:00.000Z">
-<meta property="article:modified_time" content="2023-12-27T04:07:59.937Z">
+<meta property="article:modified_time" content="2023-12-28T07:51:47.404Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="How-To">
 <meta property="article:tag" content="Tips">
@@ -114,7 +114,7 @@
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+13847513-10df-5dcf-9622-4ef9c5a6c786%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E6%AD%BB%E6%B4%BB%E7%9B%A3%E8%A6%96%E3%81%AE%E3%82%AF%E3%82%A8%E3%83%AA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FMonitorVM%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FMonitorVM.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FMonitorVM.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM/" data-id="clqn99uwh001h0no3d4kqekv8" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM/" data-id="clqowpi31001h0ntg95a18b8q" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -158,9 +158,8 @@
 <p>&lt;ご参考&gt;<br>アラートの設定項目は下記弊社公開情報にも記載しております。<br>– Azure Monitor でのログ アラート<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-unified-log">https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-unified-log</a><br><br></p>
 <p><strong>例 2. 直近 15 分間に Heartbeat が途絶えた VM を確認する</strong><br>下記クエリでは、直近 15 分間、VM の Heartbeat が送信されなかった場合に検知します。<br>LastCall は 各コンピューターの Heartbeat が生成された最新の時刻です。<br>Heartbeat の最新時刻が 15 分より前の場合、実行結果が返されます。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Heartbeat</span><br><span class="line">| summarize LastCall = max(TimeGenerated) by Computer </span><br><span class="line">| where LastCall &lt; ago(15m)</span><br></pre></td></tr></table></figure>
-<br>
 
-
+<div class="alert is-info"><p class="alert-title">Note</p><p>アラートルールに設定する場合、アラートルール側では 15 分より長い粒度(期間) を指定する必要があります。</p><p>例えばこのクエリを利用する場合には、以下の様に設定する必要があります。</p><p>メジャー: テーブルの行</p><p>集計の種類: カウント</p><p>集計の粒度: 30 分 (クエリで指定した期間より長い期間)</p><p>演算子: 次の値より大きい</p><p>しきい値: 0</p><p>頻度: 15分</p><p></p><p></p></div>
 <p><strong>例 3. 過去 24 時間以内に Heartbeat が収集された VM における最新の Heartbeat を確認する</strong><br>過去 24 時間以内に Heartbeat が収集された VM における 最新の Heartbeat を返します。<br>クエリの 2 行目で、Log Analytics ワークスペース上の Heartbeat ログを過去 24 時間以内に収集されたレコードに絞り込み、<br>3 行目で送信元の Computer ごとに最新の Heartbeat の時刻を検索します。<br>つまり、下記クエリでは、”過去 24 時間以内における Computer ごとの 最新の Heartbeat の時刻” を検索することが可能です。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Heartbeat</span><br><span class="line">| where TimeGenerated &gt; ago(24h)</span><br><span class="line">| summarize LastCall = max(TimeGenerated) by Computer</span><br></pre></td></tr></table></figure>
 
