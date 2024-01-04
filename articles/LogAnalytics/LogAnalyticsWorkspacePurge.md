@@ -132,7 +132,7 @@ Purge の REST API によってデータが削除されたかどうかを確認�
 
 ### 4-1. Get Purge Status の REST API で確認する
 [Get Purge Status](https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/get-purge-status?view=rest-loganalytics-2020-08-01&tabs=HTTP) の REST API でパージ操作の状態を確認できます。この REST API を実行するためには、purgeId が必要です。
-この purgeId とは、Purge の REST API を実行した際に表示された "operatonId" として表示された値です。
+この purgeId とは、Purge の REST API を実行した際に表示された "operatonId" の値です。
 データの削除状態を確認されたい場合は、必ず "operatonId" をメモしていただきますようお願いいたします。
 
 Purge の REST API と同様、[弊社サイト](https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/get-purge-status?view=rest-loganalytics-2020-08-01&tabs=HTTP) の "Try It" から API を実行いただけます。
