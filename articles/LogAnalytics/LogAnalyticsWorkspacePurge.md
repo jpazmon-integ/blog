@@ -74,9 +74,9 @@ Purge の REST API によるログの削除は[基本的に数分 ～ 数時間�
 [弊社サイト](https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/purge?view=rest-loganalytics-2020-08-01&tabs=HTTP)の "Try It" より、Purge の REST API を実行した例を紹介します。
 今回は Test という名前の Log Analytics ワークスペースに収集された Heartbeat のログを削除します。
 このワークスペースには TimeGenerated が 2023/12/26 07:45 UTC ～ 2023/12/27 18:46 UTC の Heartbeat が存在します。
-このうち TimeGenerated が 2023/12/26 07:50:00 UTC 以降のログを削除します。
+このうち TimeGenerated が 2023/12/26 07:50:00 UTC より後のログを削除します。
 
-以下は Heartbeat テーブルを検索した実行結果の一部抜粋です。2023/12/26 07:50:00 UTC 以降のログを削除するため、赤線で囲んだ部分のログが削除され、黄色でマーカーした部分のログは削除されずに残ります。
+以下は Heartbeat テーブルを検索した実行結果の一部抜粋です。2023/12/26 07:50:00 UTC より後のログを削除するため、赤線で囲んだ部分のログが削除され、黄色でマーカーした部分のログは削除されずに残ります。
 ※ TimeGenerated の値は UTC 時刻であることに注意してください。
 ![](./LogAnalyticsWorkspacePurge/image04.png)
 
@@ -92,7 +92,7 @@ Purge の REST API によるログの削除は[基本的に数分 ～ 数時間�
 Parameters (赤線で囲った部分) では、対象のワークスペースが存在するサブスクリプション、リソース グループ、ワークスペースの名前を指定します。Body (黄色線で囲った部分) では、削除するログのテーブル名と、カラム名とその値を指定します。
 ![](./LogAnalyticsWorkspacePurge/image06.png)
 
-今回は TimeGenerated が 2023/12/26 7:50 UTC 以降のログを削除したいので、Body 部分の table で Heartbeat、column で TimeGenerated を指定します。[こちら](https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/purge?view=rest-loganalytics-2020-08-01&tabs=HTTP)のサイトにもサンプル リクエストが掲載されておりますので、併せてご確認ください。
+今回は TimeGenerated が 2023/12/26 07:50:00 UTC より後のログを削除したいので、Body 部分の table で Heartbeat、column で TimeGenerated を指定します。[こちら](https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/purge?view=rest-loganalytics-2020-08-01&tabs=HTTP)のサイトにもサンプル リクエストが掲載されておりますので、併せてご確認ください。
 
 ```CMD
 {
@@ -118,7 +118,7 @@ Parameters (赤線で囲った部分) では、対象のワークスペースが
 
 5. パージの操作が完了した後に、クエリを実行してログが削除されたことを確認します。
 以下は API を実行する前と同じクエリを実行した結果です。
-TimeGenerated が 2023/12/26 07:50:00 UTC より前のログは表示されますが、TimeGenerated が 2023/12/26 07:50:00 UTC 以降のログは表示されません。
+TimeGenerated が 2023/12/26 07:50:00 UTC より前のログは表示されますが、TimeGenerated が 2023/12/26 07:50:00 UTC より後のログは表示されません。
 ![](./LogAnalyticsWorkspacePurge/image15.png)
 
 
