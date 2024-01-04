@@ -92,7 +92,7 @@ Purge の REST API によるログの削除は[基本的に数分 ～ 数時間�
 Parameters (赤線で囲った部分) では、対象のワークスペースが存在するサブスクリプション、リソース グループ、ワークスペースの名前を指定します。Body (黄色線で囲った部分) では、削除するログのテーブル名と、カラム名とその値を指定します。
 ![](./LogAnalyticsWorkspacePurge/image06.png)
 
-今回は TimeGenerated が 2023/12/26 7:50 UTC より前のログを削除したいので、Body 部分の table で Heartbeat、column で TimeGenerated を指定します。[こちら](https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/purge?view=rest-loganalytics-2020-08-01&tabs=HTTP)のサイトにもサンプル リクエストが掲載されておりますので、併せてご確認ください。
+今回は TimeGenerated が 2023/12/26 7:50 UTC 以降のログを削除したいので、Body 部分の table で Heartbeat、column で TimeGenerated を指定します。[こちら](https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/purge?view=rest-loganalytics-2020-08-01&tabs=HTTP)のサイトにもサンプル リクエストが掲載されておりますので、併せてご確認ください。
 
 ```CMD
 {
