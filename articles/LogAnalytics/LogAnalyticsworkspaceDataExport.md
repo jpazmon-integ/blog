@@ -5,7 +5,6 @@ tags:
   - How-To
   - FAQ
   - Log Analytics
-  -
 ---
 
 こんにちは、Azure Monitoring サポート チームの北村です。
@@ -38,7 +37,7 @@ tags:
 
 
 ### Q2. ストレージ アカウントやイベント ハブにデータがエクスポートされる契機を教えてください。
-データ エクスポート機能は Log Analytics ワークスペースに "データが取り込まれた時" に指定した宛先 (ストレージ アカウントとイベント ハブ) へデータをエクスポートします。Log Analytics ワークスペースのログをストレージ アカウントにエクスポートした場合は 5 分単位でファイルが作成されます。ログの書き込みは 5 分ごとにまとめて行われるのではなく、対象のレコードが生成される度にストレージ アカウントのファイルに追記されます。詳細は[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#overview) もご覧いただけますと幸いです。
+データ エクスポート機能は Log Analytics ワークスペースに "データが取り込まれた時" に指定した宛先 (ストレージ アカウントとイベント ハブ) へデータをエクスポートします。Log Analytics ワークスペースのログをストレージ アカウントにエクスポートした場合は 5 分間のログが一つのファイルに記録されます。つまり 1 時間にファイルが 12 個作成され、レコードが生成される度にストレージ アカウントのファイルに追記されます。詳細は[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#overview) もご覧いただけますと幸いです。
 ![](./LogAnalyticsworkspaceDataExport/image01.png)
 
 <br>
@@ -52,9 +51,34 @@ tags:
 
 
 ### Q4. ログがストレージ アカウントに転送されていません。考えられる原因を教えてください。
-エクスポート ルールの作成後に Log Analytics ワークスペースにログが収集されていない可能性がございます。
-Log Analytics ワークスペース上でクエリを実行いただき、エクスポート ルールの作成後に対象のログが Log Analytics ワークスペースに収集されているかどうかをご確認ください。
-エクスポート ルールの作成後にログが収集されているにも関わらず、指定した宛先にログがエクスポートされていない場合は弊社サポート窓口までお問い合わせください。
+考えられる原因は以下のとおりです。弊社公開情報の [制限事項](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#limitations)と [ストレージ アカウント](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#storage-account) の項目も併せてご確認ください。
+以下に該当しない場合で指定した宛先にログがエクスポートされない場合は弊社サポート窓口までお問い合わせください。
+
+***1. エクスポート ルールで指定したテーブルがサポートされていない***
+対象のテーブルがデータ エクスポート機能でサポートされていない可能性がございます。
+まずは、指定したテーブルが[サポート対象のテーブル](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#supported-tables)かどうかをご確認ください。
+
+
+***2. ストレージ アカウントのネットワーク設定で "信頼された Microsoft サービス" が許可されていない***
+ストレージ アカウントのネットワーク設定により、ログがエクスポートされていない可能性がございます。
+宛先のストレージ アカウントが選択したネットワークからのアクセスを許可する構成である場合、
+[[信頼されたサービスの一覧にある Azure サービスがこのストレージ アカウントにアクセスすることを許可します。] が有効](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#allow-trusted-microsoft-services)になっているかどうかをご確認ください。完全に外部からのアクセスを無効にすると、Azure Monitor サービスからの通信が遮断され、ログをエクスポートすることができません。また、選択したネットワークからのアクセスを許可する構成の場合、Azure Monitor サービスからの通信を許可するために [信頼されたサービスの一覧にある Azure サービスがこのストレージ アカウントにアクセスすることを許可します。] を有効にしていただく必要がございます。
+![](./LogAnalyticsworkspaceDataExport/image05.png)
+
+
+
+***3. ストレージ アカウントのリージョンが Log Analytics ワークスペースと同じージョンでない***
+[宛先のストレージ アカウントのリージョンは、Log Analytics ワークスペースと同じリージョンである必要がございます](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#limitations)。対象のストレージ アカウントと Log Analytics ワークスペースのリージョンをご確認下さいますようお願いいたします。
+
+
+***4. ストレージ アカウントの種類が Standard ではない***
+[データ エクスポート機能では、Premium のストレージ アカウントはサポートされていません。](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#limitations)
+宛先のストレージ アカウントの種類が Standard であることをご確認ください。
+
+
+***5. エクスポート ルールの作成後に Log Analytics ワークスペースにログが収集されていない***
+データ エクスポート機能は Log Analytics ワークスペースに "データが取り込まれた時" に宛先へデータを転送する機能です。
+エクスポート ルールの作成後に Log Analytics ワークスペースにログが収集されていない場合は、宛先のストレージ アカウントにはログが取り込まれません。Log Analytics ワークスペース上でクエリを実行いただき、エクスポート ルールの作成後に対象のログが Log Analytics ワークスペースに収集されているかどうかをご確認ください。
 
 <br>
 
