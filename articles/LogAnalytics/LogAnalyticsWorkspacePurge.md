@@ -74,7 +74,9 @@ Purge の REST API によるログの削除は[基本的に数分 ～ 数時間�
 [弊社サイト](https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/purge?view=rest-loganalytics-2020-08-01&tabs=HTTP)の "Try It" より、Purge の REST API を実行した例を紹介します。
 今回は Test という名前の Log Analytics ワークスペースに収集された Heartbeat のログを削除します。
 このワークスペースには TimeGenerated が 2023/12/26 07:45 UTC ～ 2023/12/27 18:46 UTC の Heartbeat が存在します。
-このうち TimeGenerated が 2023/12/26 07:50:00 UTC より前のログを削除します。削除する対象のログは以下のとおりです。
+このうち TimeGenerated が 2023/12/26 07:50:00 UTC 以降のログを削除します。
+
+以下は Heartbeat テーブルを検索した実行結果の一部抜粋です。2023/12/26 07:50:00 UTC 以降のログを削除するため、赤線で囲んだ部分のログが削除され、黄色でマーカーした部分のログは削除されずに残ります。
 ※ TimeGenerated の値は UTC 時刻であることに注意してください。
 ![](./LogAnalyticsWorkspacePurge/image04.png)
 
@@ -112,6 +114,13 @@ Parameters (赤線で囲った部分) では、対象のワークスペースが
 4. 以下のように HTTP Response Code: 202 と表示されることを確認し、"operationId" をメモします。
 後述しますが、"operationId" はデータの削除状況を確認する際に必要です。
 ![](./LogAnalyticsWorkspacePurge/image08.png)
+
+
+5. パージの操作が完了した後に、クエリを実行してログが削除されたことを確認します。
+以下は API を実行する前と同じクエリを実行した結果です。
+TimeGenerated が 2023/12/26 07:50:00 UTC より前のログは表示されますが、TimeGenerated が 2023/12/26 07:50:00 UTC 以降のログは表示されません。
+![](./LogAnalyticsWorkspacePurge/image15.png)
+
 
 <br>
 <br>
