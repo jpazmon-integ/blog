@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Log Analytics ワークスペースのデータ エクスポートに関するよくあるご質問 | Japan Azure Monitoring Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは、Azure Monitoring サポート チームの北村です。皆さまは Log Analytics ワークスペースのデータ エクスポート という機能をご存知でしょうか。この機能では Log Analytics ワークスペースに収集されたログをストレージ アカウントやイベント ハブにエクスポートすることができます。今回はこのデータ エクスポート機能でよくお問い合わせをいただくご質問を紹介">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Log Analytics ワークスペースのデータ エクスポートに関するよくあるご質問">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの北村です。皆さまは Log Analytics ワークスペースのデータ エクスポート という機能をご存知でしょうか。この機能では Log Analytics ワークスペースに収集されたログをストレージ アカウントやイベント ハブにエクスポートすることができます。今回はこのデータ エクスポート機能でよくお問い合わせをいただくご質問を紹介">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/image01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/image05.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/image02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/image03.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/image04.png">
+<meta property="article:published_time" content="2024-01-05T15:00:00.000Z">
+<meta property="article:modified_time" content="2024-01-05T07:28:48.291Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="How-To">
+<meta property="article:tag" content="FAQ">
+<meta property="article:tag" content="Log Analytics">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/image01.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-LogAnalytics/LogAnalyticsworkspaceDataExport" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Log Analytics ワークスペースのデータ エクスポートに関するよくあるご質問
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2024-01-05T15:00:00.000Z" itemprop="datePublished">2024-01-06</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+9bed6a7b-d1db-57b0-af5a-802fd8852f99%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BLog+Analytics+%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF+%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E3%81%94%E8%B3%AA%E5%95%8F%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FLogAnalyticsworkspaceDataExport%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FLogAnalyticsworkspaceDataExport.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FLogAnalyticsworkspaceDataExport.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/" data-id="clr0bese0001f0nqd8jn24t5b" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>皆さまは <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal">Log Analytics ワークスペースのデータ エクスポート</a> という機能をご存知でしょうか。<br>この機能では Log Analytics ワークスペースに収集されたログをストレージ アカウントやイベント ハブにエクスポートすることができます。今回はこのデータ エクスポート機能でよくお問い合わせをいただくご質問を紹介いたします。</p>
+<br>
+
+<span id="more"></span>
+<h2 id="Q-amp-A-タイトル"><a href="#Q-amp-A-タイトル" class="headerlink" title="Q &amp; A タイトル"></a>Q &amp; A タイトル</h2><ul>
+<li><a href="#Q1-%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E6%A9%9F%E8%83%BD%E3%81%AF%E5%85%A8%E3%81%A6%E3%81%AE%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%A7%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q1. データ エクスポート機能は全てのテーブルでサポートされていますか。</a></li>
+<li><a href="#Q2-%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%82%84%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88-%E3%83%8F%E3%83%96%E3%81%AB%E3%83%87%E3%83%BC%E3%82%BF%E3%81%8C%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%82%8B%E5%A5%91%E6%A9%9F%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q2. ストレージ アカウントやイベント ハブにデータがエクスポートされる契機を教えてください。</a></li>
+<li><a href="#Q3-%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90%E5%89%8D%E3%81%AB-Log-Analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AB%E5%8F%8E%E9%9B%86%E3%81%95%E3%82%8C%E3%81%9F%E3%83%AD%E3%82%B0%E3%81%AF%E3%80%81%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%82%84%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88-%E3%83%8F%E3%83%96%E3%81%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q3. エクスポート ルールの作成前に Log Analytics ワークスペースに収集されたログは、ストレージ アカウントやイベント ハブにエクスポートされますか。</a></li>
+<li><a href="#Q4-%E3%83%AD%E3%82%B0%E3%81%8C%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E8%BB%A2%E9%80%81%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82%E8%80%83%E3%81%88%E3%82%89%E3%82%8C%E3%82%8B%E5%8E%9F%E5%9B%A0%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q4. ログがストレージ アカウントに転送されていません。考えられる原因を教えてください。</a></li>
+<li><a href="#Q5-%E3%81%82%E3%82%8B%E4%B8%80%E5%AE%9A%E6%9C%9F%E9%96%93%E7%B5%8C%E9%81%8E%E3%81%97%E3%81%9F%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E8%BB%A2%E9%80%81%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q5. ある一定期間経過したデータをストレージ アカウントに転送することはできますか。</a></li>
+<li><a href="#Q6-%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E6%A9%9F%E8%83%BD%E3%81%A7%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E3%83%AD%E3%82%B0%E3%82%92%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E8%BB%A2%E9%80%81%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%E3%81%AF%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q6. データ エクスポート機能でサポートしていないテーブルのログをストレージ アカウントに転送する方法はありますか。</a></li>
+<li><a href="#Q7-%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E6%A9%9F%E8%83%BD%E3%81%A7%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E3%83%AD%E3%82%B0%E3%82%92%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%99%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E8%A8%AD%E5%AE%9A%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%9F%E3%83%AD%E3%82%B0%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q7. データ エクスポート機能でストレージ アカウントにログをエクスポートするように設定しました。エクスポートしたログを確認する方法を教えてください。</a></li>
+<li><a href="#Q8-%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%82%82%E5%90%AB%E3%82%81%E3%81%A6%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%97%E3%81%A6%E3%81%97%E3%81%BE%E3%81%84%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%82%92%E5%86%8D%E4%BD%9C%E6%88%90%E3%81%97%E3%81%9F%E6%96%B9%E3%81%8C%E8%89%AF%E3%81%84%E3%81%A7%E3%81%99%E3%81%8B%E3%80%82">Q8. サポートされていないテーブルも含めてエクスポート ルールを設定してしまいました。エクスポート ルールを再作成した方が良いですか。</a></li>
+<li><a href="#Q9-%E6%97%A2%E5%AD%98%E3%81%AE%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E5%AE%9B%E5%85%88%E3%81%A8%E5%90%8C%E3%81%98%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%97%E3%80%81%E6%96%B0%E8%A6%8F%E3%81%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E6%88%90%E3%81%97%E3%82%88%E3%81%86%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%E3%81%8C%E3%80%81%E3%82%A8%E3%83%A9%E3%83%BC%E3%81%8C%E7%99%BA%E7%94%9F%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82">Q9. 既存のエクスポート ルールの宛先と同じストレージ アカウントを指定し、新規にエクスポート ルールを作成しようしましたが、エラーが発生しました。</a></li>
+<li><a href="#Q10-%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%99%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E8%A8%AD%E5%AE%9A%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E6%A9%9F%E8%83%BD%E3%81%AE%E5%88%A9%E7%94%A8%E6%96%99%E9%87%91%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q10. ストレージ アカウントにデータをエクスポートするように設定しています。データ エクスポート機能の利用料金を教えてください。</a></li>
+</ul>
+<br>
+
+
+<h3 id="Q1-データ-エクスポート機能は全てのテーブルでサポートされていますか。"><a href="#Q1-データ-エクスポート機能は全てのテーブルでサポートされていますか。" class="headerlink" title="Q1. データ エクスポート機能は全てのテーブルでサポートされていますか。"></a>Q1. データ エクスポート機能は全てのテーブルでサポートされていますか。</h3><p>いいえ、全てのテーブルでサポートしておりません。<br>サポート対象のテーブルは、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#supported-tables">こちら</a>の弊社公開情報でご確認ください。</p>
+<br>
+
+
+<h3 id="Q2-ストレージ-アカウントやイベント-ハブにデータがエクスポートされる契機を教えてください。"><a href="#Q2-ストレージ-アカウントやイベント-ハブにデータがエクスポートされる契機を教えてください。" class="headerlink" title="Q2. ストレージ アカウントやイベント ハブにデータがエクスポートされる契機を教えてください。"></a>Q2. ストレージ アカウントやイベント ハブにデータがエクスポートされる契機を教えてください。</h3><p>データ エクスポート機能は Log Analytics ワークスペースに “データが取り込まれた時” に指定した宛先 (ストレージ アカウントとイベント ハブ) へデータをエクスポートします。Log Analytics ワークスペースのログをストレージ アカウントにエクスポートした場合は 5 分間のログが一つのファイルに記録されます。つまり 1 時間にファイルが 12 個作成され、レコードが生成される度にストレージ アカウントのファイルに追記されます。詳細は<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#overview">弊社公開情報</a> もご覧いただけますと幸いです。<br><img src="/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/image01.png"></p>
+<br>
+
+
+<h3 id="Q3-エクスポート-ルールの作成前に-Log-Analytics-ワークスペースに収集されたログは、ストレージ-アカウントやイベント-ハブにエクスポートされますか。"><a href="#Q3-エクスポート-ルールの作成前に-Log-Analytics-ワークスペースに収集されたログは、ストレージ-アカウントやイベント-ハブにエクスポートされますか。" class="headerlink" title="Q3. エクスポート ルールの作成前に Log Analytics ワークスペースに収集されたログは、ストレージ アカウントやイベント ハブにエクスポートされますか。"></a>Q3. エクスポート ルールの作成前に Log Analytics ワークスペースに収集されたログは、ストレージ アカウントやイベント ハブにエクスポートされますか。</h3><p>いいえ、エクスポートされません。<br>データ エクスポート機能は Log Analytics ワークスペースに “データが取り込まれた時” に宛先 (ストレージ アカウントとイベント ハブ) へデータを転送する機能です。エクスポート ルールの設定前に既に取り込まれたログの転送は行われず、コンテナも作成されません。</p>
+<br>
+
+
+<h3 id="Q4-ログがストレージ-アカウントに転送されていません。考えられる原因を教えてください。"><a href="#Q4-ログがストレージ-アカウントに転送されていません。考えられる原因を教えてください。" class="headerlink" title="Q4. ログがストレージ アカウントに転送されていません。考えられる原因を教えてください。"></a>Q4. ログがストレージ アカウントに転送されていません。考えられる原因を教えてください。</h3><p>考えられる原因は以下のとおりです。弊社公開情報の <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#limitations">制限事項</a>と <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#storage-account">ストレージ アカウント</a> の項目も併せてご確認ください。<br>以下に該当しない場合で指定した宛先にログがエクスポートされない場合は弊社サポート窓口までお問い合わせください。</p>
+<p><em><strong>1. エクスポート ルールで指定したテーブルがサポートされていない</strong></em><br>対象のテーブルがデータ エクスポート機能でサポートされていない可能性がございます。<br>まずは、指定したテーブルが<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#supported-tables">サポート対象のテーブル</a>かどうかをご確認ください。</p>
+<p><em><strong>2. ストレージ アカウントのネットワーク設定で “信頼された Microsoft サービス” が許可されていない</strong></em><br>ストレージ アカウントのネットワーク設定により、ログがエクスポートされていない可能性がございます。<br>宛先のストレージ アカウントが選択したネットワークからのアクセスを許可する構成である場合、<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#allow-trusted-microsoft-services">[信頼されたサービスの一覧にある Azure サービスがこのストレージ アカウントにアクセスすることを許可します。] が有効</a>になっているかどうかをご確認ください。完全に外部からのアクセスを無効にすると、Azure Monitor サービスからの通信が遮断され、ログをエクスポートすることができません。また、選択したネットワークからのアクセスを許可する構成の場合、Azure Monitor サービスからの通信を許可するために [信頼されたサービスの一覧にある Azure サービスがこのストレージ アカウントにアクセスすることを許可します。] を有効にしていただく必要がございます。<br><img src="/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/image05.png"></p>
+<p><em><strong>3. ストレージ アカウントのリージョンが Log Analytics ワークスペースと同じージョンでない</strong></em><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#limitations">宛先のストレージ アカウントのリージョンは、Log Analytics ワークスペースと同じリージョンである必要がございます</a>。対象のストレージ アカウントと Log Analytics ワークスペースのリージョンをご確認下さいますようお願いいたします。</p>
+<p><em><strong>4. ストレージ アカウントの種類が Standard ではない</strong></em><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#limitations">データ エクスポート機能では、Premium のストレージ アカウントはサポートされていません。</a><br>宛先のストレージ アカウントの種類が Standard であることをご確認ください。</p>
+<p><em><strong>5. エクスポート ルールの作成後に Log Analytics ワークスペースにログが収集されていない</strong></em><br>データ エクスポート機能は Log Analytics ワークスペースに “データが取り込まれた時” に宛先へデータを転送する機能です。<br>エクスポート ルールの作成後に Log Analytics ワークスペースにログが収集されていない場合は、宛先のストレージ アカウントにはログが取り込まれません。Log Analytics ワークスペース上でクエリを実行いただき、エクスポート ルールの作成後に対象のログが Log Analytics ワークスペースに収集されているかどうかをご確認ください。</p>
+<br>
+
+
+<h3 id="Q5-ある一定期間経過したデータをストレージ-アカウントに転送することはできますか。"><a href="#Q5-ある一定期間経過したデータをストレージ-アカウントに転送することはできますか。" class="headerlink" title="Q5. ある一定期間経過したデータをストレージ アカウントに転送することはできますか。"></a>Q5. ある一定期間経過したデータをストレージ アカウントに転送することはできますか。</h3><p>大変恐縮ではございますが、データ エクスポート機能では、ある一定期間を経過したログを転送することはできません。<br>この機能では、過去に遡ってログをエクスポートすることや特定期間のログをエクスポートすることはできません。<br>過去のログや特定の期間におけるログをエクスポートされたい場合は、お客様にてストレージ アカウントにログをアップロードする仕組みのご構築をご検討ください。</p>
+<br>
+
+
+<h3 id="Q6-データ-エクスポート機能でサポートしていないテーブルのログをストレージ-アカウントに転送する方法はありますか。"><a href="#Q6-データ-エクスポート機能でサポートしていないテーブルのログをストレージ-アカウントに転送する方法はありますか。" class="headerlink" title="Q6. データ エクスポート機能でサポートしていないテーブルのログをストレージ アカウントに転送する方法はありますか。"></a>Q6. データ エクスポート機能でサポートしていないテーブルのログをストレージ アカウントに転送する方法はありますか。</h3><p>エクスポートしたいログ データの種類によります。<br>例えば <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings">Azure Monitor の診断設定</a>に関するデータは、診断設定側でストレージ アカウントに転送することが可能です。エクスポートしたいデータが診断設定によるログに該当しない場合は、Azure Functions や Azure Logic Apps 等を使用して、データをストレージ アカウントにエクスポートする方法や、お客様ご自身にて Log Analytics ワークスペースからログを取得し、ストレージ アカウントに送信する仕組みのご構築をご検討ください。詳細は以下の<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-JP/azure/azure-monitor/logs/logs-data-export?tabs=portal#other-export-options">弊社公開情報</a>をご参照ください。<br><img src="/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/image02.png"></p>
+<br>
+
+
+<h3 id="Q7-データ-エクスポート機能でストレージ-アカウントにログをエクスポートするように設定しました。エクスポートしたログを確認する方法を教えてください。"><a href="#Q7-データ-エクスポート機能でストレージ-アカウントにログをエクスポートするように設定しました。エクスポートしたログを確認する方法を教えてください。" class="headerlink" title="Q7. データ エクスポート機能でストレージ アカウントにログをエクスポートするように設定しました。エクスポートしたログを確認する方法を教えてください。"></a>Q7. データ エクスポート機能でストレージ アカウントにログをエクスポートするように設定しました。エクスポートしたログを確認する方法を教えてください。</h3><p>エクスポートされたデータは、Azure ポータルのストレージ アカウントの [ストレージ ブラウザー] の画面よりご確認いただけます。<br>ログがエクスポートされますと、am-&lt;テーブル名&gt; という名前でコンテナーが作成されます。<br>また、BLOB は WorkspaceResourceId=/subscriptions/&lt;サブスクリプション ID&gt;/resourcegroups/&lt;リソース グループ&gt;/providers/microsoft.operationalinsights/workspaces/&lt;ワークスペース名&gt;/y=&lt;4 桁の数値年&gt;/m=&lt;2 桁の数値月&gt;/d=&lt;2 桁の数値日&gt;/h=&lt;2 桁の 24 時制の時間&gt;/m=&lt;2 桁の 60 分制の分&gt;/PT05M.json というパス構造のフォルダーに格納されます。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#storage-account">弊社公開情報</a>も併せてご確認ください。</p>
+<p>※ Heartbeat テーブルをエクスポートした例です。am-Heartbeat という名前でコンテナーが作成されます。<br><img src="/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/image03.png"></p>
+<br>
+
+
+<h3 id="Q8-サポートされていないテーブルも含めてデータ-エクスポート-ルールを設定してしまいました。エクスポート-ルールを再作成した方が良いですか。"><a href="#Q8-サポートされていないテーブルも含めてデータ-エクスポート-ルールを設定してしまいました。エクスポート-ルールを再作成した方が良いですか。" class="headerlink" title="Q8. サポートされていないテーブルも含めてデータ エクスポート ルールを設定してしまいました。エクスポート ルールを再作成した方が良いですか。"></a>Q8. サポートされていないテーブルも含めてデータ エクスポート ルールを設定してしまいました。エクスポート ルールを再作成した方が良いですか。</h3><p>いいえ、現時点でサポートされていないテーブルをご指定いただいても構いません。<br>エクスポート ルール作成時に当該機能をサポートしていないテーブルについては、サポートされ次第、データのエクスポートが開始されます。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-JP/azure/azure-monitor/logs/logs-data-export?tabs=portal#create-or-update-a-data-export-rule">弊社公開情報</a>も併せてご確認ください。</p>
+<br>
+
+
+<h3 id="Q9-既存のエクスポート-ルールの宛先と同じストレージ-アカウントを指定し、新規にエクスポート-ルールを作成しようしましたが、エラーが発生しました。"><a href="#Q9-既存のエクスポート-ルールの宛先と同じストレージ-アカウントを指定し、新規にエクスポート-ルールを作成しようしましたが、エラーが発生しました。" class="headerlink" title="Q9. 既存のエクスポート ルールの宛先と同じストレージ アカウントを指定し、新規にエクスポート ルールを作成しようしましたが、エラーが発生しました。"></a>Q9. 既存のエクスポート ルールの宛先と同じストレージ アカウントを指定し、新規にエクスポート ルールを作成しようしましたが、エラーが発生しました。</h3><p>1 つの Log Analytics ワークスペースで既存のエクスポート ルールと同じ宛先のストレージ アカウントを指定したエクスポート ルールを作成することはできません。既存のエクスポート ルールと同じストレージ アカウントを宛先に設定すると以下のエラーが発生します。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#create-or-update-a-data-export-rule">弊社公開情報</a>も併せてご確認ください。<br>You are adding a destination that is already defined in rule: ym-export-test. Destination must be unique across export rules in your workspace.<br><img src="/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/image04.png"></p>
+<br>
+
+
+<h3 id="Q10-ストレージ-アカウントにデータをエクスポートするように設定しています。データ-エクスポート機能の利用料金を教えてください。"><a href="#Q10-ストレージ-アカウントにデータをエクスポートするように設定しています。データ-エクスポート機能の利用料金を教えてください。" class="headerlink" title="Q10. ストレージ アカウントにデータをエクスポートするように設定しています。データ エクスポート機能の利用料金を教えてください。"></a>Q10. ストレージ アカウントにデータをエクスポートするように設定しています。データ エクスポート機能の利用料金を教えてください。</h3><p>データ エクスポート機能ではエクスポートされたデータに対して GB 単位でご利用料金が発生します。<br>また、ストレージ アカウントのご利用料金も発生いたします。詳細は<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#pricing-model">弊社公開情報</a>や <a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">Azure Monitor の価格サイトの “エクスポート”</a> の項目をご覧ください。</p>
+<br>
+
+
+<p>上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。<br>最後までお読みいただきありがとうございました！</p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/LogAnalyticsworkspaceDataExport.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../applicationInsights/wrongSlotNameAfterSwapping/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">App Service でスロットをスワップした後に、cloud_RoleName に別スロットのホスト名が記録される事象について</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">Log Analytics ワークスペースのデータ エクスポートに関するよくあるご質問</a>
+          </li>
+        
+          <li>
+            <a href="../../applicationInsights/wrongSlotNameAfterSwapping/">App Service でスロットをスワップした後に、cloud_RoleName に別スロットのホスト名が記録される事象について</a>
+          </li>
+        
+          <li>
+            <a href="../DCRConfigGenerator/">DCR Config Generator の使用方法</a>
+          </li>
+        
+          <li>
+            <a href="../../AzureMonitorEssential/HowToDiagnosticsSettings/">Azure VM の診断設定とそれ以外のリソースにおける診断設定について</a>
+          </li>
+        
+          <li>
+            <a href="../HowToMigrateToLogIngestionAPI/">Retirement notice ： Transition to DCR-based custom log ingestion by 14 September 2026 について</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Diagnostics-extension/" rel="tag">Azure Diagnostics extension</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent/" rel="tag">Azure Monitor Agent</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" rel="tag">Azure Monitor エージェント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostic-settings/" rel="tag">Diagnostic settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostics-settings/" rel="tag">Diagnostics settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/LAD/" rel="tag">LAD</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Alert/" rel="tag">Log Alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" rel="tag">Log Analytics エージェント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-ID/" rel="tag">Managed ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-Identity/" rel="tag">Managed Identity</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Migration/" rel="tag">Migration</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Run-As-Account/" rel="tag">Run As Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sandbox/" rel="tag">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StartAzureV2VMs/" rel="tag">StartAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StopAzureV2VMs/" rel="tag">StopAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM/" rel="tag">VM</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM-insights/" rel="tag">VM insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WAD/" rel="tag">WAD</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Worker/" rel="tag">Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/" rel="tag">アクションのミュート</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" rel="tag">アラート処理ルール</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" rel="tag">クエリ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" rel="tag">コスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%BF%E3%83%BC-API/" rel="tag">データ コレクター API</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" rel="tag">マネージド ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB/" rel="tag">ログ アラート ルール</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88-API/" rel="tag">ログ インジェスト API</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%81%9C%E6%AD%A2/" rel="tag">停止</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%88%86%E6%9E%90%E6%83%85%E5%A0%B1/" rel="tag">分析情報</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" rel="tag">実行アカウント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/" rel="tag">移行</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" rel="tag">自動化</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%B5%B7%E5%8B%95/" rel="tag">起動</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/">How-To</a><span class="tag-list-count">23</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/">Tips</a><span class="tag-list-count">22</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/">Azure Monitor Essentials</a><span class="tag-list-count">8</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/">Azure Monitor</a><span class="tag-list-count">7</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/">FAQ</a><span class="tag-list-count">9</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/">Log Analytics</a><span class="tag-list-count">22</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/">移行</a><span class="tag-list-count">2</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/">Troubleshooting</a><span class="tag-list-count">4</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">7</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/">Automation</a><span class="tag-list-count">9</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/">チーム紹介</a><span class="tag-list-count">5</span><ul></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/01/">2024 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/12/">2023 / 12</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/11/">2023 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/10/">2023 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/09/">2023 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/07/">2023 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/06/">2023 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/03/">2023 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/01/">2023 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/11/">2022 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/10/">2022 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/09/">2022 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/08/">2022 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/Application-Insights/" style="font-size: 16px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 18px;">Automation</a> <a href="../../tags/Azure-Diagnostics-extension/" style="font-size: 10px;">Azure Diagnostics extension</a> <a href="../../tags/Azure-Monitor/" style="font-size: 16px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Agent/" style="font-size: 12px;">Azure Monitor Agent</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 17px;">Azure Monitor Essentials</a> <a href="../../tags/Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" style="font-size: 10px;">Azure Monitor エージェント</a> <a href="../../tags/Diagnostic-settings/" style="font-size: 11px;">Diagnostic settings</a> <a href="../../tags/Diagnostics-settings/" style="font-size: 10px;">Diagnostics settings</a> <a href="../../tags/FAQ/" style="font-size: 18px;">FAQ</a> <a href="../../tags/General/" style="font-size: 15px;">General</a> <a href="../../tags/How-To/" style="font-size: 20px;">How-To</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 11px;">Job</a> <a href="../../tags/LAD/" style="font-size: 10px;">LAD</a> <a href="../../tags/Log-Alert/" style="font-size: 10px;">Log Alert</a> <a href="../../tags/Log-Analytics/" style="font-size: 19px;">Log Analytics</a> <a href="../../tags/Log-Analytics-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" style="font-size: 10px;">Log Analytics エージェント</a> <a href="../../tags/Managed-ID/" style="font-size: 10px;">Managed ID</a> <a href="../../tags/Managed-Identity/" style="font-size: 10px;">Managed Identity</a> <a href="../../tags/MetricAlert/" style="font-size: 10px;">MetricAlert</a> <a href="../../tags/Migration/" style="font-size: 10px;">Migration</a> <a href="../../tags/Run-As-Account/" style="font-size: 10px;">Run As Account</a> <a href="../../tags/RunAs-Account/" style="font-size: 13px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 13px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 19px;">Tips</a> <a href="../../tags/Troubleshooting/" style="font-size: 13px;">Troubleshooting</a> <a href="../../tags/VM/" style="font-size: 10px;">VM</a> <a href="../../tags/VM-insights/" style="font-size: 10px;">VM insights</a> <a href="../../tags/WAD/" style="font-size: 10px;">WAD</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/" style="font-size: 10px;">アクションのミュート</a> <a href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" style="font-size: 10px;">アラート処理ルール</a> <a href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" style="font-size: 10px;">クエリ</a> <a href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" style="font-size: 10px;">コスト</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 14px;">チーム紹介</a> <a href="../../tags/%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%BF%E3%83%BC-API/" style="font-size: 10px;">データ コレクター API</a> <a href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" style="font-size: 11px;">マネージド ID</a> <a href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB/" style="font-size: 10px;">ログ アラート ルール</a> <a href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88-API/" style="font-size: 10px;">ログ インジェスト API</a> <a href="../../tags/%E5%81%9C%E6%AD%A2/" style="font-size: 10px;">停止</a> <a href="../../tags/%E5%88%86%E6%9E%90%E6%83%85%E5%A0%B1/" style="font-size: 10px;">分析情報</a> <a href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" style="font-size: 12px;">可用性テスト</a> <a href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" style="font-size: 10px;">実行アカウント</a> <a href="../../tags/%E7%A7%BB%E8%A1%8C/" style="font-size: 11px;">移行</a> <a href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" style="font-size: 10px;">自動化</a> <a href="../../tags/%E8%B5%B7%E5%8B%95/" style="font-size: 10px;">起動</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
