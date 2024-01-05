@@ -1,6 +1,6 @@
 ---
 title: Log Analytics ワークスペースのデータを削除する方法
-date: 2024-02-01 00:00:00
+date: 2024-01-06 00:00:00
 tags:
   - How-To
   - Tips
