@@ -1,10 +1,14 @@
 ---
 title: Azure Monitor Agent for Linux で取得可能なパフォーマンス カウンターの一覧
-date: 2023-03-21 00:00:00
+date: 2024-01-18 00:00:00
 tags:
   - Azure Monitor Agent
   - Log Analytics
 ---
+
+[更新履歴]  
+- 2024/1/18 データ収集ルールで指定できるパフォーマンス カウンターの追加に伴い、取得可能なパフォーマンス カウンターの一覧を更新いたしました。 
+- 2023/3/21 ブログ公開
 
 こんにちは、Azure Monitor サポートの三輪です。
 今回は Azure Monitor エージェント for Linux にて取得可能なパフォーマンス カウンターの一覧をご案内します。
@@ -65,4 +69,14 @@ Azure Monitor エージェント for Linux にて取得可能なパフォーマ�
 | Processor | % IO Wait Time | 
 | Processor | % Interrupt Time | 
 | Processor | % Idle Time | 
-
+| Process | Pct User Time |
+| Process | Pct Privileged Time |
+| Process | Used Memory |
+| Process | Virtual Shared Memory |
+| System | Uptime |
+| System | Load1 |
+| System | Load5 |
+| System | Load15 |
+| System | Users |
+| System | Unique Users |
+| System | CPUs |
