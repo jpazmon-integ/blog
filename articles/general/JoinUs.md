@@ -11,11 +11,17 @@ tags:
 *「もしあなた自身がかっこよくなりたいのであれば、マイクロソフトはあなたの働く場所ではない。もしあなたが誰かをかっこよくしたいのであればぜひマイクロソフトで一緒に働きましょう」 とのサティアからのメッセージです。他者や社会に貢献・奉仕することでやりがいを感じる方に是非ご応募いただけたらと思います。
 
 ## 目次
-- [こんな方大歓迎！](#こんな方大歓迎！)
-- [向上心があれば大丈夫です！](#向上心があれば大丈夫です！)
-- [面接に向けた準備や、面接を振り返った感想は？](#面接に向けた準備や、面接を振り返った感想は？)
+- [目次](#目次)
+- [こんな方大歓迎！](#こんな方大歓迎)
+  - [***Voices from our team***](#voices-from-our-team)
+- [向上心があれば大丈夫です！](#向上心があれば大丈夫です)
+  - [***Voices from our team***](#voices-from-our-team-1)
+- [面接に向けた準備や、面接を振り返った感想は？](#面接に向けた準備や面接を振り返った感想は)
+  - [***Voices from our team***](#voices-from-our-team-2)
 - [チームの魅力やアピールポイント](#チームの魅力やアピールポイント)
+  - [***Voices from our team***](#voices-from-our-team-3)
 - [リンク集](#リンク集)
+- [関連記事](#関連記事)
 
 
 ## こんな方大歓迎！
@@ -37,7 +43,6 @@ tags:
 
 ![](./JoinUs/junsan.png)> 自分で積極的に手を動かせる方。(あのリソース作ってみよう、このアーキテクチャを試してみよう、など) また、今まで色々な修羅場 ・ 炎上案件を乗り越えてきた方。
 
-![](./JoinUs/horisan.png)> フル リモートで働いているので、チーム メンバーに積極的にコミュニケーション取れる方。わからないことがあれば、質問できる方。
 
 
 ## 向上心があれば大丈夫です！
@@ -101,11 +106,9 @@ tags:
 
 
 ## リンク集
-- [Azure Monitoring Support Engineer](https://careers.microsoft.com/us/en/job/1066264/Azure-Monitoring-Support-Engineer)
+- [Azure Monitoring Support Engineer](https://jobs.careers.microsoft.com/global/en/job/1691338/Technical-Support-Engineer---Azure-Monitoring)
 ※ ご応募はこちらから。
 
-- [サポート エンジニア オンライン説明会](https://www.microsoft.com/ja-jp/mscorp/mid-career/event.aspx)
-※ 定期的に説明会を開催しています。
 
 - [なぜ今サポートエンジニアが熱いか](https://jpaztech.github.io/blog/other/technical_support_engineer_explained/)
 
