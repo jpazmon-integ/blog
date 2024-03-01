@@ -51,7 +51,10 @@ App Service や Azure VM などにデプロイいただいている Web アプ�
 ##### 手順
 1. 当該 Application Insights リソース ページへ移動します。
 2. 概要ページに記載がある接続文字列をコピーいただき、[IngestionEndpoint] に指定がある URL のホスト名をコピーします。  
-例 : 「```IngestionEndpoint=https://japaneast-0.in.applicationinsights.azure.com/```」の場合は、「japaneast-0.in.applicationinsights.azure.com」をコピーします。
+例 : 「```IngestionEndpoint=https://japaneast-0.in.applicationinsights.azure.com/```」の場合は、「japaneast-0.in.applicationinsights.azure.com」をコピーします。  
+もしくは、グローバル インジェスト エンドポイントのホストである「dc.applicationinsights.azure.com」を使います。  
+接続文字列を用いて Application Insights と統合する場合は、接続文字列に記載があるホストに対して通信します。  
+接続文字列ではなくインストルメンテーション キーを用いて Application Insights と統合する場合は、dc.applicationinsights.azure.com に対して通信します。
 ![](./troubleshooting_telemetry/pict2.png)
 
 3. 当該 App Service リソース ページへ移動します。
