@@ -51,7 +51,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/troubleshooting_telemetry/pict22.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/troubleshooting_telemetry/pict23.png">
 <meta property="article:published_time" content="2024-02-29T15:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-01T12:39:16.063Z">
+<meta property="article:modified_time" content="2024-03-01T12:46:55.717Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Tips">
 <meta property="article:tag" content="Application Insights">
@@ -141,7 +141,7 @@
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+32c8a915-d7f6-5188-8ce4-9c826663c1d9%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BApplication+Insights+%E3%81%AB%E3%83%86%E3%83%AC%E3%83%A1%E3%83%88%E3%83%AA%E3%81%8C%E4%BF%9D%E5%AD%98%E3%81%95%E3%82%8C%E3%81%AA%E3%81%8B%E3%81%A3%E3%81%9F%E5%A0%B4%E5%90%88%E3%81%AE%E3%83%88%E3%83%A9%E3%83%96%E3%83%AB%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FapplicationInsights%2Ftroubleshooting_telemetry%2F%29%0A*+Content+Source%3A+%5Barticles%2FapplicationInsights%2Ftroubleshooting_telemetry.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FapplicationInsights%2Ftroubleshooting_telemetry.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/troubleshooting_telemetry/" data-id="clt8n5qqp009x0nmqes823jjy" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/troubleshooting_telemetry/" data-id="clt8nflif009x0npi0q9qgz34" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -413,7 +413,13 @@
 <li>基本的には requests ログや dependencies ログ、traces ログは収集されている。</li>
 <li>しかし時々、一部のデータが欠落しているように見受けられる。</li>
 </ul>
-<h2 id="疑われるポイント-1"><a href="#疑われるポイント-1" class="headerlink" title="疑われるポイント"></a>疑われるポイント</h2><p>サンプリングが機能している可能性が非常に高いです。</p>
+<h2 id="疑われるポイント-1"><a href="#疑われるポイント-1" class="headerlink" title="疑われるポイント"></a>疑われるポイント</h2><p>サンプリングが機能している可能性が非常に高いです。<br>下記の公開情報をご参考に、サンプリングによってログが意図的に間引かれているかどうかをご確認ください。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/sampling-classic-api#knowing-whether-sampling-is-in-operation">サンプリングが動作しているかどうかを把握する</a></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">union requests,dependencies,pageViews,browserTimings,exceptions,traces</span><br><span class="line">| where timestamp &gt; ago(1d)</span><br><span class="line">| summarize RetainedPercentage = 100/avg(itemCount) by bin(timestamp, 1h), itemType</span><br></pre></td></tr></table></figure>
+
+
 <h1 id="色々調べたけど問題が解決しない場合……"><a href="#色々調べたけど問題が解決しない場合……" class="headerlink" title="色々調べたけど問題が解決しない場合……"></a>色々調べたけど問題が解決しない場合……</h1><p>問題解消のために、ぜひ弊社サポートにお問い合わせください。<br>その際は、<strong>必ず問題が発生したサブスクリプションからサポート リクエストをご起票ください</strong>ませ。<br>セキュリティ上の理由から、権限の確認を厳密化させていただいているためです。<br>詳細は、<a target="_blank" rel="noopener" href="https://jpaztech.github.io/blog/information/Different-subscriptions-research/">お問い合わせ発行時と「異なる」サブスクリプションならびに AAD テナントの調査依頼に対してのセキュリティ チェックが強化されます</a> をご確認ください。</p>
 <p>なお、お問い合わせいただく際には下記の情報をご共有いただく事でスムーズに調査が可能となります。<br>Application Insights に対してテレメトリが収集されなくなり、弊社サポートにお問い合わせいただく場合にご参考いただけますと幸いです。</p>
 <ul>
