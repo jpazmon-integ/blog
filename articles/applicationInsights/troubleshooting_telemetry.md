@@ -506,8 +506,16 @@ Azure の基盤側ログに、ApplicationInsights.dll ファイルが wwwroot �
 - しかし時々、一部のデータが欠落しているように見受けられる。
 
 ## 疑われるポイント
-サンプリングが機能している可能性が非常に高いです。
+サンプリングが機能している可能性が非常に高いです。  
+下記の公開情報をご参考に、サンプリングによってログが意図的に間引かれているかどうかをご確認ください。
 
+- [サンプリングが動作しているかどうかを把握する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/sampling-classic-api#knowing-whether-sampling-is-in-operation)
+
+```kql
+union requests,dependencies,pageViews,browserTimings,exceptions,traces
+| where timestamp > ago(1d)
+| summarize RetainedPercentage = 100/avg(itemCount) by bin(timestamp, 1h), itemType
+```
 
 
 # 色々調べたけど問題が解決しない場合……
