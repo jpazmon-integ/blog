@@ -26,8 +26,6 @@ Application Insights のサービスから監視対象の Web サイトに対し
 ## 目次
 - [目次](#目次)
 - [Azure Functions を用いたプライベート可用性テスト構築の手順](#azure-functions-を用いたプライベート可用性テスト構築の手順)
-  - [1. VNET 統合を実施した Azure Functions を用意します。](#1-vnet-統合を実施した-azure-functions-を用意します)
-  - [2. Azure Functions にテスト ロジックを実装します。](#2-azure-functions-にテスト-ロジックを実装します)
 - [注意事項](#注意事項)
 - [まとめ](#まとめ)
 - [関連する記事](#関連する記事)
@@ -42,7 +40,7 @@ VNET 統合を実施すると、Azure Functions からの通信が VNET を経�
 
 Azure Functions の VNET 統合の方法につきましては、下記の公開情報をご参考くださいませ。
 
-- [チュートリアル: プライベート エンドポイントを使用して Azure Functions を Azure 仮想ネットワークに統合する](https://learn.microsoft.com/ja-jp/azure/azure-functions/functions-create-vnet)
+- [Azure Functions のネットワーク オプション # 仮想ネットワークの統合](https://learn.microsoft.com/ja-jp/azure/azure-functions/functions-networking-options?tabs=azure-portal#virtual-network-integration)
 
 上記公開情報をご参考に、ランタイムが .NET の Azure Functions リソースをご準備くださいませ。  
 > 弊社検証環境では、Windows OS の .NET 6.0 にて確認いたしました。
