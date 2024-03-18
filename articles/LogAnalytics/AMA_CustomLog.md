@@ -47,116 +47,96 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-collection
 --
 
 - カスタム テーブルを作成する
-https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/create-custom-table?tabs=portal-1%2Cportal-2#create-a-custom-table
-
-1. Log Analytics ワークスペースを開きます。
-未作成の場合、以下の手順にてワークスペースを作成します。
-
-- Log Analytics ワークスペースを作成する
-https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal
-
-2. [テーブル] より、[作成] - [DCR ベース]を選択します。
-   
-![](./AMA_CustomLog/AMACustomlog_03.png)
-
-3. 任意のカスタム ログ名を設定し、先ほど作成した DCE を選択します。
-また、[新しいデータ収集ルールの作成] を選択します。
-
-![](./AMA_CustomLog/AMACustomlog_04.png)
-
-4. 任意の名前、リソース グループを指定して完了をクリックし、データ収集ルール (DCR) を作成します。次へ進みます。
-
-![](./AMA_CustomLog/AMACustomlog_05.png)
-
-5. [スキーマと変換] にて、取得したいテキスト ファイルを JSON スキーマで定義したものをアップロードします。
-
-まず、前提として今回は、以下の様なテキスト ファイルを取得することを想定します。
+https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-text-log?tabs=portal#create-a-custom-table
 
 
+### 前提
+今回は、以下の様なテキスト ファイルを取得することを想定します。
 ```
 2022-12-31T01:00:00.1234567Z | Computer=TestVM01 | Log=Service stop
 2022-12-31T01:01:00.1234567Z | Computer=TestVM01 | Log=Service start
 2022-12-31T01:02:00.1234567Z | Computer=TestVM01 | Log=Service stop
 ```
 
-上記を JSON で定義すると、以下の様になります。
+### 手順
+以下 PowerShell コマンドでテーブルを作成します。
+   ```PowerShell
+    $tableParams = @'
+{
+    "properties": {
+        "schema": {
+               "name": "{TableName}_CL",
+               "columns": [
+        {
+                                "name": "TimeGenerated",
+                                "type": "DateTime"
+                        }, 
+                       {
+                                "name": "RawData",
+                                "type": "String"
+                       },
+                       {
+                                "name": "HostName",
+                                "type": "String"
+                       },
+                      {
+                                "name": `"Log",
+                                "type": "String"
+                     }
+              ]
+        }
+    }
+}
+'@
 
+Invoke-AzRestMethod -Path "/subscriptions/{subscription}/resourcegroups/{resourcegroup}/providers/microsoft.operationalinsights/workspaces/{WorkspaceName}/tables/{TableName}_CL?api-version=2021-12-01-preview" -Method PUT -payload $tableParams
 ```
-[
-  {
-    "RawData": "2022-12-31T01:00:00.1234567Z | Computer=TestVM01 | Log=Service stop"
-  },
-  {
-    "RawData": "2022-12-31T01:01:00.1234567Z | Computer=TestVM01 | Log=Service start"
-  },
-  {
-    "RawData": "2022-12-31T01:02:00.1234567Z | Computer=TestVM01 | Log=Service stop"
-  }
-]    
-```
 
-上記 JSON をテキスト ファイルとして保存し、アップロードします。
+### 注意事項
 
-6. [変換エディター] を選択します。
-   
-![](./AMA_CustomLog/AMACustomlog_06.png)
+※1 TimeGenerated のカラムは必須です。
 
-7. 以下のクエリを記載し、実行します。
-```
-source
-| extend TimeGenerated = now()
-| parse RawData with * "Computer="HostName "| " *
-| parse RawData with * "Log="Log"
-```
+※2 AMA のカスタム ログは既定で RawData カラムに全てのデータが格納されますので、基本的 RawData のカラムも必要となります。
 
-- parse operator
-https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/parseoperator
+※3 後述する TransformKql のデータの変換機能を利用することで、カスタム ログを RawData 以外のカラムに格納することが可能です。
 
-
-実行すると、ログが分割され、HostName 列と Log 列に分かれます。
-また、TimeGenerated 列として、現在の時刻が入ります。
-
-![](./AMA_CustomLog/AMACustomlog_07.png)
-
-[適用] を選択し、次へ進み、[作成] を選択します。
+※4 データの変換機能を利用する場合は、必要に応じて他のカラムを作成してください。
 
 DCR を設定する
 --
 
-1. [モニター] を開き、[データ収集ルール] より先ほど作成したデータ収集ルール (DCR) を選択します。
+1. [モニター] を開き、[データ収集ルール] より新規にデータ収集ルール (DCR) を作成します。
 
-2. [データ ソース] を開き、[追加] を選択します。
+2. [基本] タブで、エンドポイント ID (DCE) を含めて、全ての項目を設定します。
+![](./AMA_CustomLog/AMACustomlog_16.png)
 
-3. [データ ソースの種類] にて [カスタム テキスト ログ] を選択します。
+3. [リソース] タブを開き、[+リソースの追加] より、カスタム ログを収集したい VM を選び、[適用] を選択します。
+![](./AMA_CustomLog/AMACustomlog_18.png)
+
+4. [収集と配信] タブを開き、[+データ ソースの追加]をクリックします。
+![](./AMA_CustomLog/AMACustomlog_17.png)
+
+5. [データ ソースの種類] にて [カスタム テキスト ログ] を選択します。
 [ファイル パターン] にて収集先のログファイル パスを指定します。
 今回は Linux OS 上のテキスト ログを取得することを想定し、以下のパスを入力します
 ```
 /var/log/test.log
 ```
 
-[テーブル名] にはさきほど作成したテーブル名 (_CL 含む) を指定します。
-[Transform] には、テーブル作成時に指定した以下のクエリを指定します。
+6. [テーブル名] にはさきほど作成したテーブル名 (_CL 含む) を指定します。
+[Transform] には、以下のクエリを設定してデータを整形します。
 ```
 source| extend TimeGenerated = now()| parse RawData with * "Computer="HostName "| " *| parse RawData with * "Log="Log"
 ```
-
 ![](./AMA_CustomLog/AMACustomlog_08.png)
+※ TransformKql の書き方については、以下公開情報をご参考ください。
+https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-collection-transformations-structure
 
-4. [ターゲット] にて、テーブルを作成済みの対象の Log Analytics ワークスペースを選択し、[データ ソースの追加] を選択します。
-
+7. [ターゲット] にて、テーブルを作成済みの対象の Log Analytics ワークスペースを選択し、[データ ソースの追加] を選択します。
 ![](./AMA_CustomLog/AMACustomlog_09.png)
 
-これによって、データ ソースが更新されます。
+8. [確認と作成] タブを開き、[作成] ボタンで DCR を作成します。
 
-![](./AMA_CustomLog/AMACustomlog_10.png)
-
-5. 続いて、[リソース] を選択します。
-
-6. [追加] より、カスタム ログを収集したい VM を選び、[適用] を選択します。
-このとき、データ収集エンドポイントとして、作成済の DCE を設定しておきます。
-また、この操作により、VM 側へ Azure Monitor Agent がインストールされます。
-
-![](./AMA_CustomLog/AMACustomlog_11.png)
 
 この後、指定したパスへテキスト ログを出力していくと、ログが取得されます。
 
