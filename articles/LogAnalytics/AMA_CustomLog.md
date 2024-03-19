@@ -79,7 +79,7 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-tex
                                 "type": "String"
                        },
                       {
-                                "name": `"Log",
+                                "name": "Log",
                                 "type": "String"
                      }
               ]
