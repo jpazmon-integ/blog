@@ -22,9 +22,8 @@ Azure Monitor エージェントを用いたカスタム ログ収集手順
 
 本手順は以下の順序で作業を進めます。
 - [モニター] にてデータ収集エンドポイント (DCE) を作成
-- Log Analytics ワークスペースにてカスタム ログ テーブルを作成
-  - その際、同時にデータ収集ルール (DCR) を作成を行う
-- 作成された DCR を開き、必要な編集および VM リソースとの紐づけを行う
+- PowerShell でカスタム ログ テーブルを作成
+- DCR を作成して、 VM リソースとの紐づけを行う
 
 データ収集エンドポイント (DCE) を作成する
 --
@@ -80,7 +79,7 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-tex
                                 "type": "String"
                        },
                       {
-                                "name": `"Log",
+                                "name": "Log",
                                 "type": "String"
                      }
               ]
