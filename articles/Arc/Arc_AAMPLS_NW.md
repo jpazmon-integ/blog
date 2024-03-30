@@ -22,7 +22,7 @@ Azure Arc にオンボードさせるにはオンプレミスマシン（もし�
 上記ページに記載しておりますが、Azure Private Link を使った Azure Arc への接続は以下が基本構成となります。
 一部情報補記しております
 ■図1 Azure Private Link を使った Azure Arc 構成イメージ
-![](SCVMM_reregisterVM/01.png)
+![](Arc_AAMPLS_NW/01.png)
 
 ※1 2023 年 7 月に [Microsoft Entra ID](https://news.microsoft.com/ja-jp/2023/07/12/230712-azure-ad-is-becoming-microsoft-entra-id/) と名前が変わっております。
 ※2 後述する説明のために ExpressRoute などの Azure 側の終端となる *仮想ネットワーク ゲートウェイ* の情報を記載しております。
@@ -41,7 +41,7 @@ A1.
 上記ネットワーク要件を記載している [ページ](https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/network-requirements?tabs=azure-cloud#urls) に記載しておりますとおり、下図の `プライベートリンクで使用されるエンドポイント` 列に ”パブリック” と表記されている列の宛先 （aks.ms や download.microsoft.com）はインターネット経由で接続する必要がございます。
 
 ■図2. NW 要件
-![](SCVMM_reregisterVM/02.png)
+![](Arc_AAMPLS_NW/02.png)
 
 上図 1 で言及しますと "On-premises network" から上に Firewall を超え、インターネット経由で AAD および ARM へ接続されるイメージがわかるかと存じます。
 
@@ -50,7 +50,7 @@ A1.
 ここで On-premises network から AAD と ARM への通信も Azure network 経由で接続できるかについて説明いたします。
 
 ■図3.  通信イメージ
-![](SCVMM_reregisterVM/03.png)
+![](Arc_AAMPLS_NW/03.png)
 
 Q2. 
 AAD (Azure Active Directory) および ARM (Azure Resource Manager) への通信を Azure network 経由で接続できますか？
@@ -69,7 +69,7 @@ A2.
 ```
 
 ■図4. オプション 1 の説明箇所
-![](SCVMM_reregisterVM/04.png)
+![](Arc_AAMPLS_NW/04.png)
 
 
 Q3. 
