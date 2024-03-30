@@ -13,18 +13,18 @@
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
 <meta property="og:description" content="こんにちは、Azure Monitoring チームの 佐藤 です。 今回は、Azure Private Link を使った Azure Arc への接続に関するよくあるお問い合わせ内容とその回答について紹介したいと思います。Azure Arc にオンボードさせるにはオンプレミスマシン（もしくは AWS のようなクラウド上の VM）には、Azure Connected Machine エージェン">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_NW/SCVMM_reregisterVM/01.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_NW/SCVMM_reregisterVM/02.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_NW/SCVMM_reregisterVM/03.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_NW/SCVMM_reregisterVM/04.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_NW/01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_NW/02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_NW/03.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_NW/04.png">
 <meta property="article:published_time" content="2024-03-30T08:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-30T05:47:58.060Z">
+<meta property="article:modified_time" content="2024-03-30T05:50:14.164Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Azure Arc">
 <meta property="article:tag" content="HowTo">
 <meta property="article:tag" content="Azure Private Link">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_NW/SCVMM_reregisterVM/01.png">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_NW/01.png">
   
     <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
   
@@ -109,7 +109,7 @@
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+21be5939-5f61-5856-b379-7355ed5c4d01%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Private+Link++%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F+Azure+Arc+%E3%81%B8%E3%81%AE%E6%8E%A5%E7%B6%9A+-+NW+%E6%A7%8B%E6%88%90%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FArc%2FArc_AAMPLS_NW%2F%29%0A*+Content+Source%3A+%5Barticles%2FArc%2FArc_AAMPLS_NW.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FArc%2FArc_AAMPLS_NW.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_NW/" data-id="cludo8hwe00000np6c32hgkpk" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_NW/" data-id="cludobezs00000npe8lko7gog" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -119,22 +119,22 @@
 <p>今回は、Azure Private Link を使った Azure Arc への接続に関するよくあるお問い合わせ内容とその回答について紹介したいと思います。<br>Azure Arc にオンボードさせるにはオンプレミスマシン（もしくは AWS のようなクラウド上の VM）には、Azure Connected Machine エージェント （以後、Arc エージェントと呼称します）をインストールする必要があります。</p>
 <p>その Arc エージェントを使用して Azure Arc にオンボード（管理状態）にするには以下ネットワーク要件を満たす必要がございます。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/network-requirements?tabs=azure-cloud">Connected Machine エージェントのネットワーク要件</a></p>
 <p>ここで Azure Private Link を使った Azure Arc への接続については以下ページに基本構成を記載しております。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/private-link-security">Azure Private Link を使用して、サーバーを Azure Arc に安全に接続する</a></p>
-<p>上記ページに記載しておりますが、Azure Private Link を使った Azure Arc への接続は以下が基本構成となります。<br>一部情報補記しております<br>■図1 Azure Private Link を使った Azure Arc 構成イメージ<br><img src="SCVMM_reregisterVM/01.png"></p>
+<p>上記ページに記載しておりますが、Azure Private Link を使った Azure Arc への接続は以下が基本構成となります。<br>一部情報補記しております<br>■図1 Azure Private Link を使った Azure Arc 構成イメージ<br><img src="/blog/Arc/Arc_AAMPLS_NW/01.png"></p>
 <p>※1 2023 年 7 月に <a target="_blank" rel="noopener" href="https://news.microsoft.com/ja-jp/2023/07/12/230712-azure-ad-is-becoming-microsoft-entra-id/">Microsoft Entra ID</a> と名前が変わっております。<br>※2 後述する説明のために ExpressRoute などの Azure 側の終端となる <em>仮想ネットワーク ゲートウェイ</em> の情報を記載しております。</p>
 <h2 id="Q1-AAD-と-ARM-には閉域で接続できるか"><a href="#Q1-AAD-と-ARM-には閉域で接続できるか" class="headerlink" title="Q1. AAD と ARM には閉域で接続できるか"></a>Q1. AAD と ARM には閉域で接続できるか</h2><p>まず上図 1 とネットワーク要件に記載されている内容で多くのお問い合わせいただく以下 QA から説明します。</p>
 <p>Q1.<br>AAD (Azure Active Directory) および ARM (Azure Resource Manager) に閉域で接続できますか？</p>
 <p>A1.<br>いいえ。接続できません。</p>
 <p><em>説明</em><br>上記ネットワーク要件を記載している <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/network-requirements?tabs=azure-cloud#urls">ページ</a> に記載しておりますとおり、下図の <code>プライベートリンクで使用されるエンドポイント</code> 列に ”パブリック” と表記されている列の宛先 （aks.ms や download.microsoft.com）はインターネット経由で接続する必要がございます。</p>
-<p>■図2. NW 要件<br><img src="SCVMM_reregisterVM/02.png"></p>
+<p>■図2. NW 要件<br><img src="/blog/Arc/Arc_AAMPLS_NW/02.png"></p>
 <p>上図 1 で言及しますと “On-premises network” から上に Firewall を超え、インターネット経由で AAD および ARM へ接続されるイメージがわかるかと存じます。</p>
 <h2 id="Q2-AAD-と-ARM-への通信を-Azure-network-経由で通信できるか"><a href="#Q2-AAD-と-ARM-への通信を-Azure-network-経由で通信できるか" class="headerlink" title="Q2. AAD と ARM への通信を Azure network 経由で通信できるか"></a>Q2. AAD と ARM への通信を Azure network 経由で通信できるか</h2><p>ここで On-premises network から AAD と ARM への通信も Azure network 経由で接続できるかについて説明いたします。</p>
-<p>■図3.  通信イメージ<br><img src="SCVMM_reregisterVM/03.png"></p>
+<p>■図3.  通信イメージ<br><img src="/blog/Arc/Arc_AAMPLS_NW/03.png"></p>
 <p>Q2.<br>AAD (Azure Active Directory) および ARM (Azure Resource Manager) への通信を Azure network 経由で接続できますか？</p>
 <p>A2.<br>仕組み上可能となりますが、推奨しておりません。<br>まず仮想ネットワーク ゲートウェイにはインターネットへ接続するための機能は持っておりません。そのため、インターネットへ接続するためのサービスなどをお客様の Azure network 環境に構築いただく必要がございますが、追加の機能のデプロイや設定が必要となり 2024 年 3 月時点で当社としては推奨しておりません。</p>
 <h2 id="Q3-公開情報の『ネットワーク構成』に記載されているオプション-1-はどのようなシナリオですか。"><a href="#Q3-公開情報の『ネットワーク構成』に記載されているオプション-1-はどのようなシナリオですか。" class="headerlink" title="Q3.  公開情報の『ネットワーク構成』に記載されているオプション 1 はどのようなシナリオですか。"></a>Q3.  公開情報の『ネットワーク構成』に記載されているオプション 1 はどのようなシナリオですか。</h2><p>上記に関連して公開情報 の <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/private-link-security#network-configuration">ネットワーク構成</a><br>に記載されている下図のオプション 1 の以下文言について質問を頂戴することがあります。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">インターネットに送信されるすべてのトラフィックを Azure VPN または ExpressRoute 回線経由でルーティングするようにネットワークが構成されている場合</span><br></pre></td></tr></table></figure>
 
-<p>■図4. オプション 1 の説明箇所<br><img src="SCVMM_reregisterVM/04.png"></p>
+<p>■図4. オプション 1 の説明箇所<br><img src="/blog/Arc/Arc_AAMPLS_NW/04.png"></p>
 <p>Q3.<br>公開情報の『ネットワーク構成』に記載されているオプション 1 はどのようなシナリオですか。</p>
 <p>A3.<br>Azure network からインターネット（パブリック エンドポイント）へ通信させる場合に、全てのトラフィックを On-premises network へルーティングする場合となります。<br>上図 1 ですと “Azure network” から左の  “On-premises network” へルーティングすることを意図しております。<br>具体的なルーティング設定の例としては “On-premises network” 側のお客様 NW 機器などから BGP にて デフォルトルート （0.0.0.0/0）の広告が仮想ネットワーク ゲートウェイ側に届いている場合のシナリオとなります。</p>
 <p>本日のご紹介は以上となります。上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。<br>最後までお読みいただきありがとうございました。</p>
