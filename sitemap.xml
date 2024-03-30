@@ -86,27 +86,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/HowtoStartOrStopVMsbyAutomation/</loc>
-    
-    <lastmod>2024-03-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/wrongSlotNameAfterSwapping/</loc>
-    
-    <lastmod>2024-03-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/</loc>
-    
-    <lastmod>2024-03-30</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/Automation-Update-AutomationRunAsCredential/</loc>
     
     <lastmod>2024-03-30</lastmod>
@@ -128,7 +107,21 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/automation/HowtoStartOrStopVMsbyAutomation/</loc>
+    
+    <lastmod>2024-03-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/wrongSlotNameAfterSwapping/</loc>
+    
+    <lastmod>2024-03-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/</loc>
     
     <lastmod>2024-03-30</lastmod>
     
@@ -136,6 +129,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/applicationInsights/troubleshooting_telemetry/</loc>
+    
+    <lastmod>2024-03-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/</loc>
     
     <lastmod>2024-03-30</lastmod>
     
@@ -422,6 +422,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_NW/</loc>
+    
+    <lastmod>2024-03-30</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/</loc>
     
     <lastmod>2024-03-30</lastmod>
@@ -436,6 +443,27 @@
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/tags/Azure-Arc/</loc>
+    <lastmod>2024-03-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/tags/HowTo/</loc>
+    <lastmod>2024-03-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/tags/Azure-Private-Link/</loc>
+    <lastmod>2024-03-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/tags/How-To/</loc>
