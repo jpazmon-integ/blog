@@ -1,5 +1,5 @@
 ---
-title: Azure Private Link  を使った Azure Arc への接続 - DNS構成
+title: Azure Private Link  を使った Azure Arc への接続 - DNS 構成
 date: 2024-03-30 22:00:00
 tags:
   - Azure Arc
@@ -11,10 +11,10 @@ tags:
 こんにちは、Azure Monitoring チームの 佐藤 です。
 
 今回は、Azure Private Link  を使った Azure Arc への接続時におけるDNS 構成例やオンボードする際の通信シーケンスを実際に検証環境を構成してご紹介いたします。
-当ページの内容は [Azure Private Link  を使った Azure Arc への接続 - NW 構成編] (https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_NW/) の内容を踏まえて記載しております。ご一読いただき当ページの内容を参照いただけますと幸いです。
+当ページの内容は [Azure Private Link  を使った Azure Arc への接続 - NW 構成編](https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_NW/) の内容を踏まえて記載しております。ご一読いただき当ページの内容を参照いただけますと幸いです。
 
 ご説明にあたって、当方の検証環境は以下の通りです。
-上部は [当ページ] (https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/private-link-security) から抜粋した図であり、下部が検証環境のサーバーやエンドポイントの情報を添えた内容となります。
+上部は [当ページ](https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/private-link-security) から抜粋した図であり、下部が検証環境のサーバーやエンドポイントの情報を添えた内容となります。
 
 ■図 1. 検証環境の構成イメージ
 ![](Arc_AAMPLS_DNS/01.png)
@@ -111,7 +111,7 @@ INFO    Machine overview page: https://portal.azure.com/#@yyyy/resource/subscrip
 ■図 10. オンボード処理
 ![](Arc_AAMPLS_DNS/10.png)
 
-上記処理の時の DNS 通信と `XXX`との通信時のキャプチャとなります。
+上記処理の時の DNS 通信と ‘je.his.arc.azure.com‘との通信時のキャプチャとなります。
 図11 に注目いただくと DNS サーバーに登録したプライベート エンドポイントの FQDN については名前解決した結果、プライベート IP アドレスになっていることがわかります。
 一方 `management.azure.com` の IP アドレスは `4.150.240.10` というグローバル IP アドレスとなっていることがわかります。
 このようにプライベート IP アドレスの応答を正しく受けれない構成の場合、プライベート エンドポイントと通信ができないこととなります。
