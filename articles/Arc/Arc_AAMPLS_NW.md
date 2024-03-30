@@ -61,8 +61,7 @@ A2.
 
 
 ## Q3.  公開情報の『ネットワーク構成』に記載されているオプション 1 はどのようなシナリオですか。
-上記に関連して公開情報 の [ネットワーク構成](https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/private-link-security#network-configuration)
-に記載されている下図のオプション 1 の以下文言について質問を頂戴することがあります。
+上記に関連して公開情報 の [ネットワーク構成](https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/private-link-security#network-configuration) に記載されている下図のオプション 1 の以下文言について質問を頂戴することがあります。
 
 ```
 インターネットに送信されるすべてのトラフィックを Azure VPN または ExpressRoute 回線経由でルーティングするようにネットワークが構成されている場合
