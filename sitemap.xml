@@ -9,13 +9,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/</loc>
-    
-    <lastmod>2024-04-07</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/general/TeamIntroductionfromInternship/</loc>
     
     <lastmod>2024-04-07</lastmod>
@@ -37,7 +30,21 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/general/HowWeWorkRemotely/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/ThePipelineWasNotRunBecauseAPipelineIsAlreadyRunningError/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -65,20 +72,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/general/HowToCreateSR/</loc>
-    
-    <lastmod>2024-04-07</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/ThePipelineWasNotRunBecauseAPipelineIsAlreadyRunningError/</loc>
-    
-    <lastmod>2024-04-07</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/MigrateRunAsAccountsToManagedIdentity/</loc>
     
     <lastmod>2024-04-07</lastmod>
@@ -86,14 +79,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/wrongSlotNameAfterSwapping/</loc>
-    
-    <lastmod>2024-04-07</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/general/HowToCreateSR/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -128,7 +114,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/wrongSlotNameAfterSwapping/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -136,6 +129,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/applicationInsights/troubleshooting_telemetry/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -163,35 +163,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/</loc>
-    
-    <lastmod>2024-04-07</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutAvailabilityTest/</loc>
-    
-    <lastmod>2024-04-07</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/</loc>
-    
-    <lastmod>2024-04-07</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/SystemLanguageNotEnglishNoPython2Bug/</loc>
-    
-    <lastmod>2024-04-07</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/UpdateLAHealth/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -212,7 +184,35 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutAvailabilityTest/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/SystemLanguageNotEnglishNoPython2Bug/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/UpdateLAHealth/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -226,14 +226,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -254,20 +254,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromLA/</loc>
-    
-    <lastmod>2024-04-07</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToLogIngestionAPI/</loc>
-    
-    <lastmod>2024-04-07</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/</loc>
     
     <lastmod>2024-04-07</lastmod>
@@ -276,6 +262,20 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPacks/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromLA/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToLogIngestionAPI/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -324,6 +324,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/ActivityLogsInsights/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AccessControlMode/</loc>
     
     <lastmod>2024-04-07</lastmod>
@@ -331,7 +338,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/ActivityLogsInsights/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -352,13 +359,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/</loc>
-    
-    <lastmod>2024-04-07</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ResourceHealthAlert/</loc>
     
     <lastmod>2024-04-07</lastmod>
@@ -373,13 +373,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToDiagnosticsSettings/</loc>
-    
-    <lastmod>2024-04-07</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/Ignite2021/</loc>
     
     <lastmod>2024-04-07</lastmod>
@@ -387,14 +380,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowMetricAlertisFired/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToDiagnosticsSettings/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -415,7 +408,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AlertProcessingRule/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowMetricAlertisFired/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -423,6 +416,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AlertProcessingRule/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -437,6 +437,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_DNS/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_AMPLS/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -467,6 +474,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/tags/Azure-Private-Link/</loc>
+    <lastmod>2024-04-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/tags/AMPLS/</loc>
     <lastmod>2024-04-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
