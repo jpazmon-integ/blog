@@ -30,7 +30,7 @@ tags:
 
 ## DNS 構成について
 
-DNS 構成については上記 blog  [DNS サーバーの手動構成] (https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_DNS/#DNS-サーバーの手動構成) の構成を踏襲して図 2 の右上の表に記載されている FQDN を Private Link がデプロイした際に同時に作成される下図 3 のプライベート エンドポイントの IP アドレス（※1）に変換して通信できる環境を構築します。
+DNS 構成については上記 blog  [DNS サーバーの手動構成](https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_DNS/#DNS-サーバーの手動構成) の構成を踏襲して図 2 の右上の表に記載されている FQDN を Private Link がデプロイした際に同時に作成される下図 3 のプライベート エンドポイントの IP アドレス（※1）に変換して通信できる環境を構築します。
 ※1 今回の検証環境では 10.13.1.4 ～ 10.13.1.17 となります。尚、Arc 向けの プライベート エンドポイントの IP アドレスは引き続き 10.13.0.4 ～ 10.13.0.9 となります。
 
 ■図 3. AMPLS 向けプライベート エンドポイントの [DNS の構成] 画面
@@ -48,7 +48,7 @@ AMPLS では、後述する ”データ収集ルール”（以後、DCR ）に
 
 
 上記 blog でArc にオンボードさせたマシン（コンピューター名が ”AAPLS001vm” ）から 作成した プライベート エンドポイント向けのアドレスに疎通できるか [Test-NetConnection](https://learn.microsoft.com/en-us/powershell/module/nettcpip/test-netconnection?view=windowsserver2022-ps) で確認しました。
-下図 5 の通りプライベート IP 向けに疎通（TcpTestSucceeded の結果が True）になっていることが確認できます。
+下図 5 の通りプライベート IP 向けに疎通が成功（TcpTestSucceeded の結果が True）となっていることが確認できます。
 
 ■図 5. コンピューター  ”AAPLS001vm” からの疎通確認
 ![](Arc_AAMPLS_AMPLS/05.png)
@@ -56,8 +56,8 @@ AMPLS では、後述する ”データ収集ルール”（以後、DCR ）に
 
 
 ### DCR の設定確認
-上記までの状態になれば NW ならびに DNS の構成は構築できているので、最後に実際にログを採取するための設定である DCR の設定ページを確認します。
-DCR では、”ログの送り先の Log Analytics ワークスペース”および ”AMPLS 経由でログを送付するリソース（マシン）のデータ収集エンドポイント”は下図のように 図 4 で設定した AMPLS の [Azure Monitor リソース] である必用があります。
+上記までの状態になれば NW ならびに DNS の構成は構築できているので、最後に実際にログを採取するための設定である DCR の設定ページの内容を確認します。
+DCR では、”ログの送り先の Log Analytics ワークスペース” および ”AMPLS 経由でログを送付するリソース（マシン）のデータ収集エンドポイント”は下図のように 図 4 で設定した AMPLS の [Azure Monitor リソース] である必用があります。
 
 ■図 6. DCR の [データ ソース] 画面
 ![](Arc_AAMPLS_AMPLS/06.png)
