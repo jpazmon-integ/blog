@@ -9,6 +9,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/general/TeamIntroductionfromInternship/</loc>
     
     <lastmod>2024-04-07</lastmod>
@@ -30,21 +37,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/</loc>
-    
-    <lastmod>2024-04-07</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/general/HowWeWorkRemotely/</loc>
-    
-    <lastmod>2024-04-07</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/ThePipelineWasNotRunBecauseAPipelineIsAlreadyRunningError/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -72,13 +65,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/MigrateRunAsAccountsToManagedIdentity/</loc>
-    
-    <lastmod>2024-04-07</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/general/HowToCreateSR/</loc>
     
     <lastmod>2024-04-07</lastmod>
@@ -86,7 +72,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/HowtoStartOrStopVMsbyAutomation/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/automation/ThePipelineWasNotRunBecauseAPipelineIsAlreadyRunningError/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/MigrateRunAsAccountsToManagedIdentity/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -128,6 +121,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/HowtoStartOrStopVMsbyAutomation/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/</loc>
     
     <lastmod>2024-04-07</lastmod>
@@ -163,20 +163,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/</loc>
-    
-    <lastmod>2024-04-07</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/</loc>
-    
-    <lastmod>2024-04-07</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/</loc>
     
     <lastmod>2024-04-07</lastmod>
@@ -191,7 +177,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -213,6 +199,20 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/automatically_install_ama/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -254,13 +254,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPacks/</loc>
-    
-    <lastmod>2024-04-07</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromLA/</loc>
     
     <lastmod>2024-04-07</lastmod>
@@ -276,6 +269,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPacks/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -310,14 +310,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/Azure_Monitor_VM_insights_using_AMA/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/Azure_Monitor_VM_insights_using_AMA/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -338,13 +338,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/</loc>
-    
-    <lastmod>2024-04-07</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AMALinux_Perf/</loc>
     
     <lastmod>2024-04-07</lastmod>
@@ -353,6 +346,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CustomLog/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
