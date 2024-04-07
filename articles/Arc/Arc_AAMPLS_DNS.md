@@ -24,7 +24,7 @@ tags:
 
 [オンプレミスの DNS 転送を構成する](https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/private-link-security#configure-on-premises-dns-forwarding) に記載しておりますようにオンプレミスのマシンまたはサーバーでは、プライベート リンクの DNS レコードをプライベート エンドポイントの IP アドレスに解決できる必要があります。 
 
-具体的には図 1. の右下の表に記載されている FQDN を Private Link がデプロイした際に同時に作成される下図 2. プライベート エンドポイントの IP アドレス（※1）に変換して通信できる環境が必要となります。
+具体的には図 1 の右下の表に記載されている FQDN を Private Link がデプロイした際に同時に作成される下図 2. プライベート エンドポイントの IP アドレス（※1）に変換して通信できる環境が必要となります。
 ※1 今回の検証環境では 10.13.0.4 ～ 10.13.0.9 となります。
 
 ■図 2. プライベート エンドポイントの [DNS の構成] 画面
@@ -49,7 +49,7 @@ tags:
 
 ### DNS サーバーの手動構成
 オンプレにあるマシンが参照する DNS サーバーの A レコードとして登録する仕組みです。
-今回の検証ではこちらの仕組みを採用し、 DNS サーバー （IP アドレス 10.11.1.5） に下図 4. のようにレコードを登録します。
+今回の検証ではこちらの仕組みを採用し、 DNS サーバー （IP アドレス 10.11.1.5） に下図 4 のようにレコードを登録します。
 また Azure Arc へオンボードさせるマシンの DNS 参照先のアドレスを当サーバー（IP アドレス 10.11.1.5）に設定します。
 
 ■図 4. プライベート エンドポイントの [DNS の構成] 画面
@@ -64,7 +64,7 @@ hosts ファイルに図 1 に記載しているエンドポイントの FQDN �
 ## オンボード処理の通信シーケンスをみてみる
 
 ### 検証構成
-下図 5.  は 図 1. の下部の再掲となりますが、今回の検証環境の構成は以下となります。
+下図 5 は 図 1 の下部の再掲となり、今回の検証環境の構成となります。
 ■図 5. 検証環境構成
 ![](Arc_AAMPLS_DNS/05.png)
 
@@ -73,7 +73,7 @@ Arc にオンボードさせるマシンはコンピューター名が ”AAPLS0
 ![](Arc_AAMPLS_DNS/06.png)
 
 また [トラブルシューティング](https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/private-link-security#troubleshooting) に記載されている nslookup の結果は以下の通りとなり、DNS サーバーの設定したレコードとおりプライベート IP アドレスが返ってきます。
-■図 7. コンピューター名の ”AAPLS001vm” ネットワーク構成
+■図 7. コンピューター名 ”AAPLS001vm” のネットワーク構成
 ![](Arc_AAMPLS_DNS/07.png)
 
 
@@ -88,7 +88,7 @@ Arc にオンボードさせるマシンはコンピューター名が ”AAPLS0
 ■図 8. Arc エージェントをダウンロードする際の DNS 通信のキャプチャ
 ![](Arc_AAMPLS_DNS/08.png)
 
-■図 9. download.microsoft.com`との通信時のキャプチャ
+■図 9. `download.microsoft.com`との通信時のキャプチャ
 ![](Arc_AAMPLS_DNS/09.png)
 
 続けてインストールされた Arc エージェントにより Azure Arc へオンボードする際の通信についてです。
@@ -111,7 +111,7 @@ INFO    Machine overview page: https://portal.azure.com/#@yyyy/resource/subscrip
 ■図 10. オンボード処理
 ![](Arc_AAMPLS_DNS/10.png)
 
-上記処理の時の DNS 通信と ‘je.his.arc.azure.com‘との通信時のキャプチャとなります。
+上記処理の時の DNS 通信と `je.his.arc.azure.com` との通信時のキャプチャとなります。
 図11 に注目いただくと DNS サーバーに登録したプライベート エンドポイントの FQDN については名前解決した結果、プライベート IP アドレスになっていることがわかります。
 一方 `management.azure.com` の IP アドレスは `4.150.240.10` というグローバル IP アドレスとなっていることがわかります。
 このようにプライベート エンドポイントが作成された宛先（FQDN）については、プライベート IP アドレスの応答を正しく受けれない構成の場合、正しく通信ができないこととなります。
@@ -120,7 +120,7 @@ INFO    Machine overview page: https://portal.azure.com/#@yyyy/resource/subscrip
 ■図 11. オンボード処理の際の DNS 通信のキャプチャ
 ![](Arc_AAMPLS_DNS/11.png)
 
-■図 12.  ‘je.his.arc.azure.com‘ との通信時のキャプチャ
+■図 12. `je.his.arc.azure.com` との通信時のキャプチャ
 ![](Arc_AAMPLS_DNS/12.png)
 
 問題なく Arc へオンボードできれば下図 13. のようにオンボードしたコンピューター  ”AAPLS001vm” のステータスを確認することが可能となります。
