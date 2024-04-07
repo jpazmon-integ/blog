@@ -254,20 +254,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromLA/</loc>
-    
-    <lastmod>2024-04-07</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToLogIngestionAPI/</loc>
-    
-    <lastmod>2024-04-07</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/</loc>
     
     <lastmod>2024-04-07</lastmod>
@@ -276,6 +262,20 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPacks/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromLA/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToLogIngestionAPI/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -296,14 +296,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/HowToChangeLAWSDataRetentionPeriod/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/HowToChangeLAWSDataRetentionPeriod/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -338,13 +338,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/</loc>
-    
-    <lastmod>2024-04-07</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AMALinux_Perf/</loc>
     
     <lastmod>2024-04-07</lastmod>
@@ -359,7 +352,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -373,7 +366,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToDiagnosticsSettings/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -387,14 +380,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowMetricAlertisFired/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToDiagnosticsSettings/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -415,7 +408,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AlertProcessingRule/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowMetricAlertisFired/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
@@ -423,6 +416,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/</loc>
+    
+    <lastmod>2024-04-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AlertProcessingRule/</loc>
     
     <lastmod>2024-04-07</lastmod>
     
