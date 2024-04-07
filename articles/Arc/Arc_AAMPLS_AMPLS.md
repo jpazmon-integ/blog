@@ -13,8 +13,8 @@ tags:
 
 今回は、Azure Private Link  を使った Azure Arc および Azure Monitor を構成した際の DNS 構成例や実際にログ採取する際の通信シーケンスを実際に検証環境を構成してご紹介いたします。
 当ページの内容は以下 2 稿 の内容を踏まえて記載しております。ご一読いただき当ページの内容を参照いただけますと幸いです。
-  -  [Azure Private Link  を使った Azure Arc への接続 - NW 構成] (https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_NW/) 
-  -  [Azure Private Link  を使った Azure Arc への接続 - DNS 構成] (https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_DNS/) 
+  -  [Azure Private Link  を使った Azure Arc への接続 - NW 構成](https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_NW/) 
+  -  [Azure Private Link  を使った Azure Arc への接続 - DNS 構成](https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_DNS/) 
 
 今回説明する構成は公開情報 [Azure Private Link を使用して、サーバーを Azure Arc に安全に接続する](https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/private-link-security)に記載しております構成イメージ図を踏まえると下図 1 のような構成となります。
 ■図1 Azure Private Link を使った Azure Arc + Azure Monitor の構成イメージ
