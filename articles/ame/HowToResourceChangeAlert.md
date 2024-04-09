@@ -100,7 +100,7 @@ arg("").resourcechanges
 | where timestamp >= ago(5min) // arg("") で検索するテーブルにはアラートルールの粒度や期間指定が機能しないため、クエリで期間を指定します。
 ```
 
-![image](https://github.com/sakkuntyo/cssblog/assets/20591351/01da721e-2011-4df9-ab3a-1feed3008c21)
+![image](https://github.com/jpazmon-integ/blog/assets/20591351/b2bf9d45-e674-42c3-8ff0-a379a279f883)
 
 ## 設定手順
 
@@ -123,15 +123,15 @@ arg("").resourcechanges
 | where timestamp >= ago(5min) // arg("") で検索するテーブルにはアラートルールの粒度や期間指定が機能しないため、クエリで期間を指定します。
 ```
 
-![image](https://github.com/sakkuntyo/cssblog/assets/20591351/01da721e-2011-4df9-ab3a-1feed3008c21)
+![image](https://github.com/jpazmon-integ/blog/assets/20591351/44446061-6026-496f-b58c-7f655829dd20)
 
 3. "新しいアラート ルール" より アラートルールの作成画面へ移動します。
 
-![image](https://github.com/sakkuntyo/cssblog/assets/20591351/58c560b1-c619-414d-9403-3185e507ae5f)
+![image](https://github.com/jpazmon-integ/blog/assets/20591351/b3a8b68b-f4d0-4552-af19-b9c166344a4b)
 
 4. 条件 セクションでは例えば以下の設定値とします。
 
-![image](https://github.com/sakkuntyo/cssblog/assets/20591351/f90210e5-94b1-4ab2-931f-1671ca13b631)
+![image](https://github.com/jpazmon-integ/blog/assets/20591351/4aa04086-1b30-41de-a27a-5900ff31072b)
 
 - 測定
   - メジャー: テーブルの行
@@ -151,14 +151,14 @@ arg("").resourcechanges
 
 ARG へのクエリにはサブスクリプションスコープの閲覧者ロールが必要ですが、Default を選択した場合、アラートルールは ARG を閲覧できず検知されません。
 
-![image](https://github.com/sakkuntyo/cssblog/assets/20591351/086a3aca-12de-417b-8095-0f9910dd2cea)
+![image](https://github.com/jpazmon-integ/blog/assets/20591351/fd33236a-3074-4f31-8e13-e21800c8a68b)
 
 7. アラートルールの マネージドID の権限設定
 
 モニター > アラート > アラート ルール > ID (プレビュー) を確認します。
 この時、もしもシステム割り当て済 が オフ となっている場合にはオンにします。
 
-![image](https://github.com/sakkuntyo/cssblog/assets/20591351/5989c4b1-1194-461b-806a-d2d9ff0db5af)
+![image](https://github.com/jpazmon-integ/blog/assets/20591351/2e593167-0352-4583-922e-c4a804d8072b)
 
 Azure ロールの割り当て へ進み、サブスクリプションスコープの閲覧者権限を付与します。
 
@@ -200,8 +200,8 @@ on CorrelationId
 
 マネージドID へ Azure Resource Graph のログを確認するために必要なロールが割り当てられているかご確認ください。
 
-![image](https://github.com/sakkuntyo/cssblog-addnotice-argalert/assets/20591351/577be7a2-99f8-44cf-9a38-151e5f6e613f)
-![image](https://github.com/sakkuntyo/cssblog-addnotice-argalert/assets/20591351/fd28c672-216f-4426-a2ce-01d0713fca9e)
+![image](https://github.com/jpazmon-integ/blog/assets/20591351/2dfafd2e-4c55-4846-a03c-bb1449cd4535)
+![image](https://github.com/jpazmon-integ/blog/assets/20591351/74417dc5-47ea-4a65-90e5-df115fdd445e)
 
 Azure Resource Graph のログを表示するために、サブスクリプションスコープの read 権限が必要となります。
 
