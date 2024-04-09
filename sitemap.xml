@@ -44,6 +44,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/general/HowToCreateSR/</loc>
+    
+    <lastmod>2024-04-09</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/ThePipelineWasNotRunBecauseAPipelineIsAlreadyRunningError/</loc>
     
     <lastmod>2024-04-09</lastmod>
@@ -79,7 +86,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/general/HowToCreateSR/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/automation/Automation-Update-AutomationRunAsCredential/</loc>
     
     <lastmod>2024-04-09</lastmod>
     
@@ -121,7 +128,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/Automation-Update-AutomationRunAsCredential/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/troubleshooting_telemetry/</loc>
     
     <lastmod>2024-04-09</lastmod>
     
@@ -129,13 +136,6 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/</loc>
-    
-    <lastmod>2024-04-09</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/troubleshooting_telemetry/</loc>
     
     <lastmod>2024-04-09</lastmod>
     
@@ -164,6 +164,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/</loc>
+    
+    <lastmod>2024-04-09</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/automatically_install_ama/</loc>
     
     <lastmod>2024-04-09</lastmod>
     
@@ -212,13 +219,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/automatically_install_ama/</loc>
-    
-    <lastmod>2024-04-09</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM/</loc>
     
     <lastmod>2024-04-09</lastmod>
@@ -254,6 +254,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/</loc>
+    
+    <lastmod>2024-04-09</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPacks/</loc>
     
     <lastmod>2024-04-09</lastmod>
@@ -269,13 +276,6 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToLogIngestionAPI/</loc>
-    
-    <lastmod>2024-04-09</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/</loc>
     
     <lastmod>2024-04-09</lastmod>
     
@@ -387,6 +387,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowLogAlertZeroRecordFired/</loc>
+    
+    <lastmod>2024-04-09</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowMetricAlertisFired/</loc>
     
     <lastmod>2024-04-09</lastmod>
@@ -402,13 +409,6 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/DiagnosticSettings/</loc>
-    
-    <lastmod>2024-04-09</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowLogAlertZeroRecordFired/</loc>
     
     <lastmod>2024-04-09</lastmod>
     
