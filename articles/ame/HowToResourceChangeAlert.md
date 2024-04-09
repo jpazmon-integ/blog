@@ -191,3 +191,19 @@ arg("").resourcechanges
 on CorrelationId 
 | order by TimeGenerated
 ```
+
+## Q＆A
+
+### アラートが発生しない
+
+#### マネージドID へ サブスクリプションスコープの read 権限は付与されていますか？
+
+マネージドID へ Azure Resource Graph のログを確認するために必要なロールが割り当てられているかご確認ください。
+
+![image](https://github.com/sakkuntyo/cssblog-addnotice-argalert/assets/20591351/577be7a2-99f8-44cf-9a38-151e5f6e613f)
+![image](https://github.com/sakkuntyo/cssblog-addnotice-argalert/assets/20591351/fd28c672-216f-4426-a2ce-01d0713fca9e)
+
+Azure Resource Graph のログを表示するために、サブスクリプションスコープの read 権限が必要となります。
+
+そのため、例えば マネージドID へ サブスクリプションスコープ の閲覧者権限が付与されていない場合には、アラートルールは Azure Resource Graph のログが確認できず、アラートは発生しません。
+
