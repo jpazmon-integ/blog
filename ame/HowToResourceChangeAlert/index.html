@@ -19,8 +19,10 @@
 <meta property="og:image" content="https://github.com/sakkuntyo/cssblog/assets/20591351/f90210e5-94b1-4ab2-931f-1671ca13b631">
 <meta property="og:image" content="https://github.com/sakkuntyo/cssblog/assets/20591351/086a3aca-12de-417b-8095-0f9910dd2cea">
 <meta property="og:image" content="https://github.com/sakkuntyo/cssblog/assets/20591351/5989c4b1-1194-461b-806a-d2d9ff0db5af">
+<meta property="og:image" content="https://github.com/sakkuntyo/cssblog-addnotice-argalert/assets/20591351/577be7a2-99f8-44cf-9a38-151e5f6e613f">
+<meta property="og:image" content="https://github.com/sakkuntyo/cssblog-addnotice-argalert/assets/20591351/fd28c672-216f-4426-a2ce-01d0713fca9e">
 <meta property="article:published_time" content="2023-11-08T15:00:00.000Z">
-<meta property="article:modified_time" content="2024-04-08T13:30:53.358Z">
+<meta property="article:modified_time" content="2024-04-09T03:00:30.129Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="How-To">
 <meta property="article:tag" content="Tips">
@@ -111,7 +113,7 @@
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+588cc296-b782-58e1-80a9-782e57042df2%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E5%A4%89%E6%9B%B4%E3%82%92%E6%A4%9C%E7%9F%A5%E3%81%99%E3%82%8B%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2Fame%2FHowToResourceChangeAlert%2F%29%0A*+Content+Source%3A+%5Barticles%2Fame%2FHowToResourceChangeAlert.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2Fame%2FHowToResourceChangeAlert.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/" data-id="cluqzqhip001u0np04b34fpf9" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/" data-id="clursnngn001u0nmk2ce09y4h" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -208,6 +210,11 @@
 <p>AzureActivity テーブルは resourcechanges テーブルと CorrelationId が同じになるため、結合可能です。</p>
 <p>そのため、以下のクエリで結合し、検索する事ができます。このクエリをアラートルールで指定し、検知する事も可能です。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">arg(&quot;&quot;).resourcechanges</span><br><span class="line">| extend timestamp = todatetime(properties[&quot;changeAttributes&quot;][&quot;timestamp&quot;])</span><br><span class="line">| extend changes = properties[&quot;changes&quot;]</span><br><span class="line">| extend ResourceId = tostring(properties[&quot;targetResourceId&quot;])</span><br><span class="line">| extend CorrelationId = tostring(properties[&quot;changeAttributes&quot;][&quot;correlationId&quot;]) // AzureActivity (アクティビティログ) と結合可能</span><br><span class="line">| where timestamp &gt;= ago(14d) // arg(&quot;&quot;) で検索するテーブルにはアラートルールの粒度や期間指定が機能しないため、クエリで期間を指定します。</span><br><span class="line">| join kind=leftouter (</span><br><span class="line">  AzureActivity // Administrative を送る診断設定が必要です。</span><br><span class="line">  | where CategoryValue =~ &quot;Administrative&quot;</span><br><span class="line">  | where ActivityStatusValue =~ &quot;Start&quot; // 一度の操作 でStart,Success 等複数のログが出るため、Start のログのみ対象とします。</span><br><span class="line">)</span><br><span class="line">on CorrelationId </span><br><span class="line">| order by TimeGenerated</span><br></pre></td></tr></table></figure>
+
+<h2 id="Q＆A"><a href="#Q＆A" class="headerlink" title="Q＆A"></a>Q＆A</h2><h3 id="アラートが発生しない"><a href="#アラートが発生しない" class="headerlink" title="アラートが発生しない"></a>アラートが発生しない</h3><h4 id="マネージドID-へ-サブスクリプションスコープの-read-権限は付与されていますか？"><a href="#マネージドID-へ-サブスクリプションスコープの-read-権限は付与されていますか？" class="headerlink" title="マネージドID へ サブスクリプションスコープの read 権限は付与されていますか？"></a>マネージドID へ サブスクリプションスコープの read 権限は付与されていますか？</h4><p>マネージドID へ Azure Resource Graph のログを確認するために必要なロールが割り当てられているかご確認ください。</p>
+<p><img src="https://github.com/sakkuntyo/cssblog-addnotice-argalert/assets/20591351/577be7a2-99f8-44cf-9a38-151e5f6e613f" alt="image"><br><img src="https://github.com/sakkuntyo/cssblog-addnotice-argalert/assets/20591351/fd28c672-216f-4426-a2ce-01d0713fca9e" alt="image"></p>
+<p>Azure Resource Graph のログを表示するために、サブスクリプションスコープの read 権限が必要となります。</p>
+<p>そのため、例えば マネージドID へ サブスクリプションスコープ の閲覧者権限が付与されていない場合には、アラートルールは Azure Resource Graph のログが確認できず、アラートは発生しません。</p>
 
       
       
