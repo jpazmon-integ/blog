@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_AMPLS/08.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_AMPLS/09.png">
 <meta property="article:published_time" content="2024-04-07T12:00:00.000Z">
-<meta property="article:modified_time" content="2024-04-10T05:26:31.546Z">
+<meta property="article:modified_time" content="2024-04-10T05:27:15.805Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Azure Arc">
 <meta property="article:tag" content="HowTo">
@@ -115,7 +115,7 @@
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+3934bf4a-3bd4-5fb7-b5a2-89da1de5ca51%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Private+Link++%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F+Azure+Arc+%2B+Azure+Monitor%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FArc%2FArc_AAMPLS_AMPLS%2F%29%0A*+Content+Source%3A+%5Barticles%2FArc%2FArc_AAMPLS_AMPLS.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FArc%2FArc_AAMPLS_AMPLS.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_AMPLS/" data-id="clutdbbg500000nq9du0i0162" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_AMPLS/" data-id="clutdc9o700000nnvdefv3hyx" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -130,7 +130,8 @@
 <p>今回説明する構成は公開情報 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/private-link-security">Azure Private Link を使用して、サーバーを Azure Arc に安全に接続する</a>に記載しております構成イメージ図を踏まえると下図 1 のような構成となります。<br>■図1 Azure Private Link を使った Azure Arc + Azure Monitor の構成イメージ<br><img src="/blog/Arc/Arc_AAMPLS_AMPLS/01.png"></p>
 <p>以後、Azure Private Link  を使った Azure Monitor を AMPLS と記載いたします。<br>ご説明にあたって、当方の検証環境は以下の通りです。</p>
 <p>■図 2. 検証環境の構成イメージ<br><img src="/blog/Arc/Arc_AAMPLS_AMPLS/02.png"></p>
-<h2 id="DNS-構成について"><a href="#DNS-構成について" class="headerlink" title="DNS 構成について"></a>DNS 構成について</h2><p>DNS 構成については上記 blog  <a href="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_DNS/#DNS-%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%81%AE%E6%89%8B%E5%8B%95%E6%A7%8B%E6%88%90">DNS サーバーの手動構成</a> の構成を踏襲して図 2 の右上の表に記載されている FQDN を Private Link がデプロイした際に同時に作成される下図 3 のプライベート エンドポイントの IP アドレス（※1）に変換して通信できる環境を構築します。<br>※1 今回の検証環境では 10.13.1.4 ～ 10.13.1.17 となります。尚、Arc 向けの プライベート エンドポイントの IP アドレスは引き続き 10.13.0.4 ～ 10.13.0.9 となります。</p>
+<h2 id="DNS-構成について"><a href="#DNS-構成について" class="headerlink" title="DNS 構成について"></a>DNS 構成について</h2><p>DNS 構成については上記 blog  <a href="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_DNS/#DNS-%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%81%AE%E6%89%8B%E5%8B%95%E6%A7%8B%E6%88%90">DNS サーバーの手動構成</a> の構成を踏襲して図 2 の右上の表に記載されている FQDN を Private Link がデプロイした際に同時に作成される下図 3 のプライベート エンドポイントの IP アドレス（※1）に変換して通信できる環境を構築します。</p>
+<p>※1 今回の検証環境では 10.13.1.4 ～ 10.13.1.17 となります。尚、Arc 向けの プライベート エンドポイントの IP アドレスは引き続き 10.13.0.4 ～ 10.13.0.9 となります。</p>
 <p>■図 3. AMPLS 向けプライベート エンドポイントの [DNS の構成] 画面<br><img src="/blog/Arc/Arc_AAMPLS_AMPLS/03.png"></p>
 <p>AMPLS では、後述する ”データ収集ルール”（以後、DCR ）においてリソース（今回は VM ”AAPLS001vm”）に対する ”データ収集エンドポイント” を設定する必要があります。<br>それを AMPLS の ”Azure Monitor リソース” に紐づける事を忘れないようご留意ください。<br>この設定が不足していると上図 3 における 10.13.1.15 ～ 10.13.1.17 のインターフェースのアドレスとそれに紐づく FQDN が登録されずログが採取できません。</p>
 <p>■図 4. AMPLS の [Azure Monitor リソース] 画面<br><img src="/blog/Arc/Arc_AAMPLS_AMPLS/04.png"></p>
