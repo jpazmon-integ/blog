@@ -73,7 +73,7 @@ Arc にオンボードさせるマシンはコンピューター名が ”AAPLS0
 ![](Arc_AAMPLS_DNS/06.png)
 
 また [トラブルシューティング](https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/private-link-security#troubleshooting) に記載されている nslookup の結果は以下の通りとなり、DNS サーバーの設定したレコードとおりプライベート IP アドレスが返ってきます。
-■図 7. コンピューター名 ”AAPLS001vm” のネットワーク構成
+■図 7. 特定エンドポイントへの nslookup の結果
 ![](Arc_AAMPLS_DNS/07.png)
 
 
