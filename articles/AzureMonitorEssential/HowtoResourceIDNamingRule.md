@@ -24,8 +24,8 @@ tags:
 ## 1. はじめに
 サブスクリプション名、リソース グループ名、およびリソース名の命名規則につきまして、日本語でリソースを作成すること自体は可能ですが、一方で製品の動作不具合が発生する要因となる可能性があるため、日本語にて命名することは推奨されておりません。
 
-以下、弊社 Azure サポート チームの過去ブログもご参照ください。
-[jpaztech1.z11.web.core.windows.net/リソースグループ名の制限について]<br>(https://jpaztech1.z11.web.core.windows.net/%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E5%90%8D%E3%81%AE%E5%88%B6%E9%99%90%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6.html)
+以下、弊社 Azure サポート チームの過去ブログもご参照ください。<br>
+[jpaztech1.z11.web.core.windows.net/リソースグループ名の制限について](https://jpaztech1.z11.web.core.windows.net/%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E5%90%8D%E3%81%AE%E5%88%B6%E9%99%90%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6.html)
 
 以下、リソースの命名規則についての公開情報もございますので併せてご確認ください。<br>
 [リソースの名前付けに関する制限事項 - Azure Resource Manager](https://learn.microsoft.com/ja-jp/azure/azure-resource-manager/management/resource-name-rules)
@@ -54,7 +54,7 @@ Azure Monitor エージェントの前提条件として、マネージド ID �
 
 ### 2-3. 診断設定が消えることがある
 日本語を含む、英数字以外の文字がリソース名に含まれる場合、診断設定を作成しても設定が消えることがあります。
-上記事象については以下の公開情報にも記載があるとおり、診断設定が英数字以外の文字をサポートしないために発生する事象であり、製品の不具合ではないです。
+上記事象については以下の公開情報にも記載があるとおり、診断設定が英数字以外の文字をサポートしないために発生する事象であり、製品の不具合ではないです。<br>
 [resourceID の 非 ASCII 文字が原因で設定が消える]
 (https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal#setting-disappears-because-of-non-ascii-characters-in-resourceid)
 
@@ -64,7 +64,7 @@ Azure Monitor エージェントの前提条件として、マネージド ID �
 診断設定の動作につきましては事例を添えてご説明いたします。
 以下に、自動スケーリングの診断設定のリソース名に日本語が含まれる場合の動作を例にしてご説明いたします。
 
-<自動スケーリングの診断設定例>
+- 自動スケーリングの診断設定例
 1. Azure Portal の言語設定が日本語の場合、カスタム自動スケーリングを設定すると自動スケーリング設定の名前が日本語にて作成されます。
 ![](./HowtoResourceIDNamingRule/png2.png)
 <br>
