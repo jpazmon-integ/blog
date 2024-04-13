@@ -15,7 +15,7 @@ tags:
 - [1. はじめに](#1-はじめに)
 - [2. 事例](#2-事例)
   - [2-1. Azure Monitor エージェントにおけるログ収集が失敗することがある](#2-1-Azure Monitor エージェントにおけるログ収集が失敗することがある)
-  - [2-2. アラート ルールの発報が失敗することがある](#2-2アラート ルールの発報が失敗することがある)
+  - [2-2. アラート ルールの発報が失敗することがある](#2-2-アラート ルールの発報が失敗することがある)
   - [2-3. 診断設定が消えることがある](#2-3-診断設定が消えることがある)
 - [3. まとめ](#3-まとめ)
 
@@ -55,23 +55,23 @@ Azure Monitor エージェントの前提条件として、マネージド ID �
 (https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal#setting-disappears-because-of-non-ascii-characters-in-resourceid)
 
 ※ なお、現在は診断設定名を設定すると以下のようにメッセージが表示されます。
-![](./HowtoResourceIDNamingRule/ping1.png)
+![](./HowtoResourceIDNamingRule/png1.png)
 
 診断設定の動作につきましては事例を添えてご説明いたします。
 以下に、自動スケーリングの診断設定のリソース名に日本語が含まれる場合の動作を例にしてご説明いたします。
 
 <自動スケーリングの診断設定例>
 1. Azure Portal の言語設定が日本語の場合、カスタム自動スケーリングを設定すると、自動スケーリング設定の名前が日本語として作成されてしまいます。
-![](./HowtoResourceIDNamingRule/ping2.png)
+![](./HowtoResourceIDNamingRule/png2.png)
 
 2. 上記状態で保存し、診断設定を以下のように作成します。
-![](./HowtoResourceIDNamingRule/ping3.png)
+![](./HowtoResourceIDNamingRule/png3.png)
 
 4. 作成に成功し、表示上も正しく作成されたように見えます。
-![](./HowtoResourceIDNamingRule/ping4.png)
+![](./HowtoResourceIDNamingRule/png4.png)
 
 5. 1 時間経過後に確認してみると、診断設定が消えてしまいます。
-![](./HowtoResourceIDNamingRule/ping5.png)
+![](./HowtoResourceIDNamingRule/png5.png)
 
 事例は以上です。上記のように、日本語文字が含まれる場合には設定が消えてしまう場合があります。
 なお、もしも日本語で診断設定が作成された場合の回避策としては、既定で入力されている自動スケーリング設定の名前を英数字に入力し直していただく必要がある点ご留意ください。
