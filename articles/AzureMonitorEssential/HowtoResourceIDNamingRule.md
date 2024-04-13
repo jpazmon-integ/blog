@@ -25,9 +25,9 @@ tags:
 サブスクリプション名、リソース グループ名、およびリソース名の命名規則につきまして、日本語でリソースを作成すること自体は可能ですが、一方で製品の動作不具合が発生する要因となる可能性があるため、日本語にて命名することは推奨されておりません。
 
 以下、弊社 Azure サポート チームの過去ブログもご参照ください。
-[jpaztech1.z11.web.core.windows.net/リソースグループ名の制限について](https://jpaztech1.z11.web.core.windows.net/%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E5%90%8D%E3%81%AE%E5%88%B6%E9%99%90%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6.html)
+[jpaztech1.z11.web.core.windows.net/リソースグループ名の制限について]<br>(https://jpaztech1.z11.web.core.windows.net/%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E5%90%8D%E3%81%AE%E5%88%B6%E9%99%90%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6.html)
 
-以下、リソースの命名規則についての公開情報もございますので併せてご確認ください。
+以下、リソースの命名規則についての公開情報もございますので併せてご確認ください。<br>
 [リソースの名前付けに関する制限事項 - Azure Resource Manager](https://learn.microsoft.com/ja-jp/azure/azure-resource-manager/management/resource-name-rules)
 
 また、過去にはトラブルシューティングが必要なケースにて設定に問題がない場合であっても、最終的に日本語のリソースが存在したことが起因で製品不具合が発生していた事例もありました。
