@@ -66,7 +66,7 @@ Azure Monitor エージェントの前提条件として、マネージド ID �
 
 <自動スケーリングの診断設定を例>
 1. Azure Portal の言語設定が日本語の場合、カスタム自動スケーリングを設定すると、自動スケーリング設定の名前が日本語として作成されます。
-![png2.png](/.attachments/png2-9e53c67a-864b-401a-b7fb-1fad4c3d5af5.png)
+![png2.png](articles/AzureMonitorEssential/HowtoResourceIDNamingRule/png1.png)
 
 2. 上記状態で保存し、診断設定を以下のように作成します。
 ![png3.png](/.attachments/png3-458e1165-79de-4817-8f6d-b967f2ebc5b4.png)
