@@ -1,105 +1,66 @@
----
-title: Azure VM の診断設定とそれ以外のリソースにおける診断設定について
-date: 2023-12-14 00:00:00
-tags:
-  - How-To
-  - Azure Monitor Essentials
-  - Diagnostics settings
-  - Azure Diagnostics extension
-  - WAD
-  - LAD
----
-
-こんにちは、Azure Monitoring サポート チームの北村です。
-今回のブログでは Azure VM の診断設定と、それ以外のリソースにおける診断設定の違いをご説明します。
-皆さんは、Azure Monitor には "診断設定" という名前の機能が 2 つ存在することをご存知ですか？
-どちらの機能もログやメトリックを収集しますが、実は全く別の機能です。しかし、同じ名前の機能のため、この 2 つの違いについてのお問い合わせが多く寄せられます。そこで、今回はこの 2 つの機能の違いに焦点をあてて機能の概要をご説明します！
-
-<br>
+こんにちは、Azure Monitor サポートの山口です。
+今回は、Azure Monitor のリソースにて、リソース名を日本語で設定したことによって発生する事象をご案内いたします。
 
 <!-- more -->
-## 目次
-- [1. 診断設定という名前の機能は 2 つある](#1-診断設定という名前の機能は-2-つある)
-- [2. Azure VM の診断設定](#2-アラート-メールの登録解除に関するよくあるご質問)
-- [3. Azure Monitor の診断設定](#3-Azure-Monitor-の診断設定)
-- [4. Azure VM のプラット フォーム メトリックを収集する方法](#4-Azure-VM-のプラット-フォーム-メトリックを収集する方法)
 
-<br>
+はじめに、サブスクリプション名、リソース グループ名、およびリソース名の命名規則につきまして、日本語でリソースを作成すること自体は可能ですが、一方で製品の動作不具合が発生する要因となる可能性があるため、日本語を命名することは推奨されておりません。
 
+以下、弊社 Azure サポート チームの過去ブログもご参照ください。
+[jpaztech1.z11.web.core.windows.net/リソースグループ名の制限について](https://jpaztech1.z11.web.core.windows.net/%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E5%90%8D%E3%81%AE%E5%88%B6%E9%99%90%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6.html)
 
-## 1. 診断設定という名前の機能は 2 つある
-本記事の冒頭でも記載したとおり、"診断設定" という名前の機能は 2 つあります。
-ここでは 2 つの機能を明確に区別するため、"Azure VM の診断設定" と "Azure Monitor の診断設定" と呼ぶことにします。
-下表は、この 2 つの機能の主な違いです。この機能の共通点は、対象リソースのメトリックやログを収集するという点です。
+以下、リソースの命名規則についての公開情報もございますので併せてご確認ください。
+[リソースの名前付けに関する制限事項 - Azure Resource Manager](https://learn.microsoft.com/ja-jp/azure/azure-resource-manager/management/resource-name-rules)
 
-| 機能名 | [Azure VM の診断設定](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview) | [Azure Monitor の診断設定](https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal)  |
-| --------------- | ----------------- | ----------------- | 
-| 対象リソース | Azure VM  | [公開情報](https://learn.microsoft.com/ja-JP/azure/azure-monitor/reference/supported-logs/logs-index) に記載のリソース|
-| 送信するデータ | ゲスト OS のメトリックとログ | Azure プラットフォームのメトリックとログ |
-| データの宛先 | ストレージ アカウント、Azure Monitor メトリック、Event Hubs | Log Analytics ワークスペース、ストレージ アカウント、 <br> イベント ハブ、サード パーティの製品 |
-| 拡張機能 | あり (Azure Diagnostics 拡張機能) | なし |
+また、過去にはトラブルシューティングが必要なケースにて設定に問題がない場合であっても、最終的に日本語のリソースがあったことが起因で製品不具合が発生ていた事例もありました。
 
-<br>
+上記より、リソース名が日本語の場合は製品が正しく動作しない可能性があるため、Azure リソースの命名には 英数字のみでの設定をご検討いただけますと幸いです。なお、リソース名は基本的に変更することが出来ないため、既に日本語を設定している場合はリソースを再作成いただく必要がある点はご留意ください。
 
+本記事では、現在確認できている、日本語でリソース名を設定することにより製品が正常に動作しない事例について 3 つご紹介いたします。 
 
-## 2. Azure VM の診断設定
-Azure VM に [Azure Diagnostics 拡張機能](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview)をインストールし、ゲスト OS のログやメトリックをストレージ アカウントに送信する機能です。Windows 用の Azure Diagnostics 拡張機能 は Windows Azure Diagnostics extension (WAD)、Linux 用は Linux Azure Diagnostics extension (LAD) と呼ばれています。Azure ポータル から対象の Azure VM を選択し、[監視] - [診断設定] から有効化することができます。設定手順の詳細は [こちら](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview#installation-and-configuration) をご覧ください。
-![](./HowToDiagnosticsSettings/image01.png)
+## 1. Azure Monitor エージェントにおけるログ収集が失敗することがある
+リソース ID に日本語文字が含まれる場合、正常にログが収集されない場合があります。 
+Azure Monitor エージェントの前提条件として、マネージド ID が有効化されている必要がありますが、日本語文字が含まれることにより、正常に認証が行われず、その結果としてエージェントが正常に動作しない場合があります。
+その結果、エージェントがインストールされ、前提条件を満たしていてもログ、メトリックが収集できないといった事例が確認されております。
+ 
+## 2. アラート ルールの発報が失敗することがある
+日本語文字の関係で、アラート ルールが正常に動作せず、しきい値を満たしたにもかかわらず発報されなかった事例を複数確認しております。
+なお、本事象は必ず発生するわけではないため、現在正常に動作している場合であっても、今後発生する場合があります。
+そのため、可能であれば同じ条件で日本語を含まないアラート ルールに変更することをご検討ください。
 
-Azure Monitor では、VM に拡張機能をインストールしてゲスト OS のメトリックやログを収集する機能に Log Analytics エージェントや Azure Monitor エージェントがあります。これらのエージェントとの主な違いは、ログの収集先です。
-Log Analytics エージェントや Azure Monitor エージェントでは Log Analytics ワークスペースにログを収集します。
-ストレージ アカウントは Log Analytics ワークスペースと比べて低コストでログを保持することが可能であり、より長い期間ログを保管することができます。そのため、低コストでログやメトリックを保管されたい場合や、より長い期間ログを保管されたいときに Azure Diagnostics 拡張機能をご利用されることが多いように思います。
+## 3. 診断設定が消えることがある
+日本語を含む、英数字以外の文字がリソース名に含まれる場合、診断設定を作成しても設定が消えることがあります。
+上記事象については以下の公開情報にも記載があるとおり、診断設定が英数字以外の文字をサポートしないために発生する事象であり、製品の不具合ではないです。
+[resourceID の 非 ASCII 文字が原因で設定が消える]
+(https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal#setting-disappears-because-of-non-ascii-characters-in-resourceid)
 
-> [!NOTE]
-> Azure Diagnostics 拡張機能がサポートしている OS は [こちら](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/agents-overview#compare-to-legacy-agents) をご確認ください。
-> ゲスト OS やメトリックに関する説明は [こちらの記事](https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/) をご覧ください。また、Log Analytics エージェントは 2024 年 8 月 31 日に廃止が予定されており、Azure Monitor エージェントへの移行をお願いしております。詳細は [公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration) をご確認ください。
-
-<br>
+※ なお、現在は診断設定名を設定すると以下のようにメッセージが表示されます。
+![png1.png](/.attachments/png1-adf95137-df2e-4e5b-a84b-cda3d77d6ad4.png)
 
 
-## 3. Azure Monitor の診断設定
-Azure プラットフォームのメトリックやログを Log Analytics ワークスペースやストレージ アカウント等に送信する機能です。
-"Azure Monitor の診断設定" は、すべてのリソースでサポートしているわけではございません。基本的に [公開情報](https://learn.microsoft.com/ja-JP/azure/azure-monitor/reference/supported-logs/logs-index) に掲載されているリソースでサポートされています。基本的には Azure ポータルから対象リソースを選択し、[監視] - [診断設定] から構築することが可能です。設定手順の詳細は [こちら](https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal#create-diagnostic-settings) をご覧ください。
-![](./HowToDiagnosticsSettings/image02.png)
+もう少し詳細を説明したいため、以下に、自動スケーリングの診断設定を例にしてご説明いたします。
+
+<自動スケーリングの診断設定例>
+1. Azure Portal の言語設定が日本語の場合、カスタム自動スケーリングを設定すると、自動スケーリング設定の名前が日本語として作成されます。
+![png2.png](/.attachments/png2-9e53c67a-864b-401a-b7fb-1fad4c3d5af5.png)
+
+2. 上記状態で保存し、診断設定を以下のように作成します。
+![png3.png](/.attachments/png3-458e1165-79de-4817-8f6d-b967f2ebc5b4.png)
 
 
-プラットフォームのメトリックは既定で収集されます。メトリックは Azure 基盤側のメトリック データベースに保存され、Azure ポータルの[メトリック エクスプローラー](https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/metrics-getting-started)等から確認できます。一方で、プラットフォームのログは "Azure Monitor の診断設定" を構築しない限り、収集することはできません。プラット フォームのメトリックを既定の保持期間 ([93 日間](https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-platform-metrics#platform-and-custom-metrics))以上保管したい場合やプラットフォームのログを保管/監視したい場合にご利用いただける機能です。
-
-> [!NOTE]
-> メトリックは、Azure リソースから一定の間隔で自動で収集される数値データです。
-> プラットフォーム メトリックは、Azure リソースから一定の間隔で自動で収集される数値データであり、正常性やパフォーマンスに関する情報です。
-> プラットフォーム のログは Azure リソース内で実行された操作に関する情報です。ログはリソースの種類によって異なります。
-> Azure プラットフォームのメトリックやログの詳細は、[Azure Monitor のサポートされるメトリック](https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/supported-metrics/metrics-index) や [Azure リソース ログ](https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/resource-logs) の公開情報をご覧ください。
-
-<br>
+3. 作成に成功し、表示上も正しく作成されたように見えます。
+![png3.png](/.attachments/png3-fefeefa1-3da3-4b0f-a5ae-3390c89069ce.png)
 
 
-## 4. Azure VM のプラット フォーム メトリックを収集する方法
-ここまでお読みいただいて「Azure VM のプラットフォーム メトリックを保管したい場合は、どうしたらいいの？」と思われた方もいるかもしれません。弊社サポートにも「Azure VM のホスト OS メトリックを Log Aanalytics ワークスペースに送信したい」というお問い合わせをよくいただきます。
+4. 1 時間経過後に確認してみると、診断設定が消えてしまいます。
+![png5.png](/.attachments/png5-7a868bac-e081-447e-bde2-ff75ee343c99.png)
 
-Azure VM には、2 種類のメトリック (ゲスト OS メトリックとホスト OS メトリック) があります。ゲスト OS メトリックは VM 上に Azure Monitor エージェント等をインストールして収集しますが、[ホスト OS メトリック (VM のホストで管理しているメトリック データ)](https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/supported-metrics/microsoft-classiccompute-virtualmachines-metrics) は既定で収集されます。このホスト OS メトリックは、Azure PowerShell 等で "Azure Monitor の診断設定" を構築することで、Log Analytics ワークスペース等に収集することができます。
-
-以下は Azure PowerShell で Azure VM のプラットフォーム メトリックを Log Analytics ワークスペースに送信する設定例です。
-"Azure Monitor の診断設定" を構築するためのコマンドの詳細につきましては、[こちら](https://learn.microsoft.com/ja-jp/powershell/module/az.monitor/new-azdiagnosticsetting?view=azps-10.3.0) をご覧ください。
-
-```CMD
-$metric = @()
-$metric += New-AzDiagnosticSettingMetricSettingsObject -Enabled $true -Category AllMetrics
-New-AzDiagnosticSetting -Name '診断設定の名前' -ResourceId <仮想マシンのリソース ID> -WorkspaceId <Log Analytics ワークスペースのリソース ID> -Metric $metric
-```
-
-"Azure Monitor の診断設定" で送信したプラットフォーム メトリックは AzureMetrics テーブルに収集されます。
-なお、上記コマンドを実行し、ログが出力されるまで時間がかかる場合がございます。上記コマンドを実行してから約 1 ～ 2 時間後に Log Analytics ワークスペース上でログが収集されているかどうかをご確認ください。
-![](./HowToDiagnosticsSettings/image03.png)
+例は以上です。
+上記のように、日本語文字が含まれる場合には設定が消えてしまう場合があります。
+なお、もしも日本語で診断設定を作成してしまっている場合は、既定で入力される自動スケーリング設定の名前を英数字に入力し直していただく必要がある点ご留意ください。
 
 
-> [!NOTE]
-> サンプル スクリプトを実行するには、Azure PowerShell をインストールいただく必要がございます。
-> Azure PowerShell をインストール方法は [弊社公開情報](https://learn.microsoft.com/ja-jp/powershell/azure/install-azure-powershell?view=azps-10.2.0&viewFallbackFrom=azps-8.1.0) をご覧ください。
-> なお、Azure PowerShell や Azure CLI を使用する際には Azure Cloud Shell が便利です。ポータルでログインしているユーザーの認証情報が引き継がれるため、Connect-AzAccount コマンド等の実行は不要です。
-> [弊社公開情報](https://learn.microsoft.com/ja-JP/azure/cloud-shell/overview) にも利用方法を掲載しておりますので、ご覧いただけますと幸いです。
+#まとめ
+今回は Azure Monitor のリソースにおける、日本語 でリソース名を設定することによる影響についてご案内しました。
+日本語文字での設定自体は可能ですが、日本語を使用することにより不具合が発生する事象を複数確認しておりますので、よろしければリソース名は "英数字" での設定をご検討ください。
 
-<br>
-
-上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。
-最後までお読みいただきありがとうございました！
+※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。
