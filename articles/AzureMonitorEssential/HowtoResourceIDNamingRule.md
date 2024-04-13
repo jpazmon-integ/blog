@@ -56,12 +56,15 @@ Azure Monitor エージェントの前提条件として、マネージド ID �
 日本語を含む、英数字以外の文字がリソース名に含まれる場合、診断設定を作成しても設定が消えることがあります。
 ただし本事象は以下の公開情報にも記載があるとおり、診断設定が英数字以外の文字をサポートしないために発生する事象であるため、製品の不具合ではないです。<br>
 [resourceID の 非 ASCII 文字が原因で設定が消える](https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal#setting-disappears-because-of-non-ascii-characters-in-resourceid)
+<br>
 
 ※ なお、現在は診断設定名を設定すると以下のようにメッセージが表示されます。
 ![](./HowtoResourceIDNamingRule/png1.png)
+<br>
 
 診断設定の動作につきましては事例を添えてご説明いたします。
 以下に、自動スケーリングの診断設定のリソース名に日本語が含まれる場合の動作を例にしてご説明いたします。
+<br>
 
 [自動スケーリングの診断設定例]
 1. Azure Portal の言語設定が日本語の場合、カスタム自動スケーリングを設定すると自動スケーリング設定の名前が日本語にて作成されます。
