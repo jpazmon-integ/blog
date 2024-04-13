@@ -55,8 +55,7 @@ Azure Monitor エージェントの前提条件として、マネージド ID �
 ### 2-3. 診断設定が消えることがある
 日本語を含む、英数字以外の文字がリソース名に含まれる場合、診断設定を作成しても設定が消えることがあります。
 上記事象については以下の公開情報にも記載があるとおり、診断設定が英数字以外の文字をサポートしないために発生する事象であり、製品の不具合ではないです。<br>
-[resourceID の 非 ASCII 文字が原因で設定が消える]
-(https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal#setting-disappears-because-of-non-ascii-characters-in-resourceid)
+[resourceID の 非 ASCII 文字が原因で設定が消える](https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal#setting-disappears-because-of-non-ascii-characters-in-resourceid)
 
 ※ なお、現在は診断設定名を設定すると以下のようにメッセージが表示されます。
 ![](./HowtoResourceIDNamingRule/png1.png)
