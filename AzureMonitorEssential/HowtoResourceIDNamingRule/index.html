@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowtoResourceIDNamingRule/png4.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowtoResourceIDNamingRule/png5.png">
 <meta property="article:published_time" content="2024-04-12T15:00:00.000Z">
-<meta property="article:modified_time" content="2024-04-13T14:30:46.454Z">
+<meta property="article:modified_time" content="2024-04-13T14:40:24.840Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="How-To">
 <meta property="article:tag" content="Tips">
@@ -110,7 +110,7 @@
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+7843b17b-0503-537c-bf45-2c3952e0db4f%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Monitor+%E3%81%AE%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E3%80%81%E6%97%A5%E6%9C%AC%E8%AA%9E+%E3%81%A7%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E5%90%8D%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AB%E3%82%88%E3%82%8B%E5%BD%B1%E9%9F%BF%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FHowtoResourceIDNamingRule%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FHowtoResourceIDNamingRule.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FHowtoResourceIDNamingRule.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowtoResourceIDNamingRule/" data-id="cluy72rsm000e0onwh7gaahrq" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowtoResourceIDNamingRule/" data-id="cluy7f5cz000e0oqq58e3d8gd" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -139,16 +139,16 @@
 <p>※ なお、現在は診断設定名を設定すると以下のようにメッセージが表示されます。<br><img src="/blog/AzureMonitorEssential/HowtoResourceIDNamingRule/png1.png"><br><br></p>
 <p>診断設定の動作につきましては事例を添えてご説明いたします。<br>以下に、自動スケーリングの診断設定のリソース名に日本語が含まれる場合の動作を例にしてご説明いたします。<br><br></p>
 <p>[自動スケーリングの診断設定例]</p>
-<ul>
+<ol>
 <li><p>Azure Portal の言語設定が日本語の場合、カスタム自動スケーリングを設定すると自動スケーリング設定の名前が日本語にて作成されます。<br><img src="/blog/AzureMonitorEssential/HowtoResourceIDNamingRule/png2.png"></p>
-<br></li>
+</li>
 <li><p>上記状態で保存し、診断設定を以下のように作成します。<br><img src="/blog/AzureMonitorEssential/HowtoResourceIDNamingRule/png3.png"></p>
-<br></li>
+</li>
 <li><p>診断設定の作成に成功し、表示上も正しく作成されたように見えます。<br><img src="/blog/AzureMonitorEssential/HowtoResourceIDNamingRule/png4.png"></p>
-<br></li>
+</li>
 <li><p>1 時間経過後に確認してみると、診断設定が消えてしまいます。<br><img src="/blog/AzureMonitorEssential/HowtoResourceIDNamingRule/png5.png"></p>
-<br></li>
-</ul>
+</li>
+</ol>
 <p>事例は以上です。上記のように、日本語文字が含まれる場合には設定が消えてしまう場合があります。<br>なお、もしも日本語でリソースが作成された場合の回避策としては、既定で入力されている自動スケーリング設定の名前を英数字に入力し再設定いただくことをご検討ください。<br><br></p>
 <h2 id="3-まとめ"><a href="#3-まとめ" class="headerlink" title="3. まとめ"></a>3. まとめ</h2><p>今回は Azure Monitor のリソースにおける、日本語 でリソース名を設定することによる影響についてご案内しました。<br>日本語文字での設定自体は可能ですが、日本語を使用することにより不具合が発生する事象を複数確認しておりますので、よろしければリソース名は “英数字” での設定をご検討ください。</p>
 <p>最後までお読みいただきありがとうございました！</p>
