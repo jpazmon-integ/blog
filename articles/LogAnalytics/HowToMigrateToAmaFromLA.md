@@ -40,9 +40,117 @@ Log Analytics エージェントが 2024 年 8 月に廃止することに伴い
 <br>
 
 ### Q2. Azure Monitor エージェントへ移行した後も、既存のアラート ルールを利用することはできますか。
-はい、Azure Monitor エージェントへ移行した後も既存のアラート ルールをご利用いただけます。
-ログ収集先の Log Analytics ワークスペースを変更する場合はアラート ルールの再作成が必要ですが、
-同一のワークスペースへログを収集する場合はそのままご利用いただけます。
+基本的に移行後も既存のアラート ルールをご利用いただけますが、アラート ルールの設定と監視するログの種類によっては、動作しないものも存在する可能性もございます。念のため、移行する際にアラート ルールの動作もご確認いただけますと幸いです。特に、以下の場合は注意が必要です。
+
+
+#### ①. Log Analytics エージェントと Azure Monitor エージェントで異なる Log Analytics ワークスペースを利用する場合
+移行前後でログの収集先が変わりますため、アラート ルールのスコープが Log Analytics ワークスペースとなっている場合は、再設定が必要となります。
+
+
+#### ②	. Event テーブルの監視で EventLevel と EventLevelName 列の値を利用している場合
+Log Analytics エージェントと Azure Monitor エージェントで収集される Event (Windows イベント ログ) のデータで、 EventLevel と EventLevelName のマッピングに一部変更がございます。Event を監視するアラート ルールでこれらの値を使用している場合は、動作の確認が必要です。
+
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax" colspan="2">Windows イベント&nbsp;&nbsp;ビューアー</th>
+    <th class="tg-0pky" colspan="2">Log Analytics エージェント</th>
+    <th class="tg-0pky" colspan="2">Azure Monitor エージェント</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0lax">EventLevel</td>
+    <td class="tg-0lax">EventLevelName</td>
+    <td class="tg-0pky">EventLevel</td>
+    <td class="tg-0pky">EventLevelName</td>
+    <td class="tg-0pky">EventLevel</td>
+    <td class="tg-0pky">EventLevelName</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">Critical</td>
+    <td class="tg-0pky">1</td>
+    <td class="tg-0pky">Error</td>
+    <td class="tg-0pky">1</td>
+    <td class="tg-0pky">Critical</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">2</td>
+    <td class="tg-0lax">Error</td>
+    <td class="tg-0pky">1</td>
+    <td class="tg-0pky">Error</td>
+    <td class="tg-0pky">2</td>
+    <td class="tg-0pky">Error</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">3</td>
+    <td class="tg-0lax">Warning</td>
+    <td class="tg-0lax">2</td>
+    <td class="tg-0lax">Warning</td>
+    <td class="tg-0lax">3</td>
+    <td class="tg-0lax">Warning</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">4</td>
+    <td class="tg-0lax">Information</td>
+    <td class="tg-0lax">4</td>
+    <td class="tg-0lax">Information</td>
+    <td class="tg-0lax">4</td>
+    <td class="tg-0lax">Information</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">5</td>
+    <td class="tg-0lax">Verbose</td>
+    <td class="tg-0lax">-</td>
+    <td class="tg-0lax">-</td>
+    <td class="tg-0lax">5</td>
+    <td class="tg-0lax">Verbose</td>
+  </tr>
+</tbody>
+</table>
+
+
+※	Log Analytics エージェントは Verbose レベルのイベント ログは収集しない
+
+※	Log Analytics エージェントは Critical レベルのイベント ログを Error として収集する
+
+
+#### ③	. Syslog テーブルの監視で SeverityLevel 列の値を利用している場合
+Log Analytics エージェントと Azure Monitor エージェントで収集される Syslog (Linux の Syslog) のデータで、 SeverityLevel の値に一部変更がございます。Syslog を監視するアラート ルールでこれらの値を使用している場合は、動作の確認が必要です。
+
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0pky">エージェント</th>
+    <th class="tg-lboi" colspan="4">SeverityLevel</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0pky"><span style="font-weight:bold">Log Analytics エージェント</span></td>
+    <td class="tg-0pky">warn</td>
+    <td class="tg-0lax">err</td>
+    <td class="tg-0lax">crit</td>
+    <td class="tg-0lax">emerg</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky"><span style="font-weight:bold">Azure Monitor エージェント</span></td>
+    <td class="tg-0pky">warning</td>
+    <td class="tg-0lax">error</td>
+    <td class="tg-0lax">critical</td>
+    <td class="tg-0lax">emergency</td>
+  </tr>
+</tbody>
+</table>
+
+#### ④. カスタム ログの監視で Computer 列の値を利用している場合
+
+Log Analytics エージェントのカスタム ログでは、 Computer 列に対象 VM のホスト名が収集されていますが、
+移行後の Azure Monitor エージェントのカスタム ログでは、 Computer 列の値は収集されなくなります。カスタム ログを監視するアラート ルールで Computer 列の値を利用している場合は、動作の確認が必要です。
+
+
+
 
 <br>
 
