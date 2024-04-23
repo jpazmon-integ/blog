@@ -23,9 +23,7 @@ Log Analytics ワークスペースでは指定した[保持期間](https://lear
   - [2.3 データが削除されるまでにかかる時間](#2-3-データが削除されるまでにかかる時間)
   - [2.4 パージの操作は元に戻すことはできない](#2-4-パージの操作は元に戻すことはできない)
 - [3. Purge の REST API で削除する手順](#3-Purge-の-REST-API-で削除する手順)
-- [4. データが削除されたかどうかを確認する手順](#4-データが削除されたかどうかを確認する手順)
-  - [4-1. Get Purge Status の REST API で確認する](#4-1-Get-Purge-Status-の-REST-API-で確認する)
-  - [4-2. Operation テーブルで確認する](#4-2-Operation-テーブルで確認する)
+- [4. データが削除されたかどうかを確認する方法](#4-データが削除されたかどうかを確認する方法)
 
 <br>
 
@@ -59,8 +57,8 @@ Purge の REST API を実行するには、明示的に [Data Purger (データ�
 <br>
 
 ### 2.3 データが削除されるまでにかかる時間
-Purge の REST API によるログの削除は[基本的に数分 ～ 数時間で反映されますが、最大 30 日かかる場合もございます](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/personal-data-mgmt#exporting-and-deleting-personal-data)。
-データが削除されたかどうかをご確認されたい場合は、後述の [4. データが削除されたかどうかを確認する手順](#4-データが削除されたかどうかを確認する手順) をご参照ください。
+Purge の REST API によるログの削除は[基本的に数分 ～ 数時間で反映されますが、最大 30 日かかる場合がございます](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/personal-data-mgmt#exporting-and-deleting-personal-data)。
+データが削除されたかどうかを確認する場合は、Log Analytics ワークスペース上でクエリを実行してください。
 
 <br>
 
@@ -112,56 +110,38 @@ Parameters (赤線で囲った部分) では、対象のワークスペースが
 
 
 4. 以下のように HTTP Response Code: 202 と表示されることを確認し、"operationId" をメモします。
-後述しますが、"operationId" はデータの削除状況を確認する際に必要です。
+後述しますが、"operationId" はパージ操作の受付状態を確認する際に必要です。
 ![](./LogAnalyticsWorkspacePurge/image08.png)
 
+<br>
+<br>
 
-5. パージの操作が完了した後に、クエリを実行してログが削除されたことを確認します。
-以下は API を実行する前と同じクエリを実行した結果です。
-TimeGenerated が 2023/12/26 07:50:00 UTC より前のログは表示されますが、TimeGenerated が 2023/12/26 07:50:00 UTC より後のログは表示されません。
+## 4. データが削除されたかどうかを確認する方法
+Purge の REST API によってデータが削除されたかどうかを確認する場合は、Log Analytics ワークスペース上でクエリを実行いただく必要がございます。時間の範囲や列名等で条件句をご指定いただき、対象のログが削除されたかどうかをご確認ください。
+
+弊社環境では、以下のようなクエリを実行し、ログが削除されたことを確認しました。
+データを削除する前には、TimeGenerated が 2023/12/26 07:45 UTC ～ 2023/12/27 18:46 UTC の Heartbeat ログが存在しておりました。今回は TimeGenerated が 2023/12/26 07:50:00 UTC より後のログを削除しました。この Heartbeat クエリを実行したところ、TimeGenerated が 2023/12/26 07:50:00 UTC より前のログは表示されますが、TimeGenerated が 2023/12/26 07:50:00 UTC より後のログは表示されませんでした。このことより、2023/12/26 07:50:00 UTC より後のログが削除されたことがわかります。
 ![](./LogAnalyticsWorkspacePurge/image15.png)
 
-
-<br>
 <br>
 
-## 4. データが削除されたかどうかを確認する手順
-Purge の REST API によってデータが削除されたかどうかを確認したい場合は、以下の手順にてご確認ください。
+また、パージ操作の受付状態は [Get Purge Status](https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/get-purge-status?view=rest-loganalytics-2020-08-01&tabs=HTTP) という REST API で確認することができます。この REST API で completed が返された場合には、パージ操作が受付されたことを意味しますが、パージ操作が受付されてからデータが削除されるまでに最大 30 日かかる場合がありますので、ご了承ください。それでは Get Purge Status の REST API の実行手順をご紹介します。
 
-<br>
+- #### Get Purge Status の REST API でパージの受付状態を確認する
+Purge の REST API と同様、Get Purge Status の REST API も[弊社サイト](https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/get-purge-status?view=rest-loganalytics-2020-08-01&tabs=HTTP) の "Try It" から API を実行いただけます。この REST API を実行するためには、purgeId が必要です。この purgeId とは、Purge の REST API を実行した際に表示された "operationId" の値です ([3. Purge の REST API で削除する手順](#3-Purge-の-REST-API-で削除する手順) の手順 4. でメモした値です)。パージ操作の受付状態を確認する場合は、必ず "operationId" をメモしていただきますようお願いいたします。
 
-### 4-1. Get Purge Status の REST API で確認する
-[Get Purge Status](https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/get-purge-status?view=rest-loganalytics-2020-08-01&tabs=HTTP) の REST API でパージ操作の状態を確認できます。この REST API を実行するためには、purgeId が必要です。
-この purgeId とは、Purge の REST API を実行した際に表示された "operatonId" の値です。
-データの削除状態を確認されたい場合は、必ず "operatonId" をメモしていただきますようお願いいたします。
 
-Purge の REST API と同様、[弊社サイト](https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/get-purge-status?view=rest-loganalytics-2020-08-01&tabs=HTTP) の "Try It" から API を実行いただけます。
-Parameters では、Purge の REST API を実行した際に表示された "operatonId" と、対象のワークスペースが存在するサブスクリプション、リソース グループ、ワークスペースの名前を指定します。
+1. [こちら](https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/get-purge-status?view=rest-loganalytics-2020-08-01&tabs=HTTP)のサイトにアクセスし、”Try It” を選択します。
+![](./LogAnalyticsWorkspacePurge/image16.png)
+
+2. Parameters では、Purge の REST API を実行した際に表示された "operationId" と、対象のワークスペースが存在するサブスクリプション、リソース グループ、ワークスペースの名前を指定します。
 ![](./LogAnalyticsWorkspacePurge/image09.png)
 
-API を実行すると以下のとおり status が表示されます。
-パージの操作が完了していない場合は pending が返されます。
+3. API を実行すると以下のとおり status が表示されます。パージ操作の受付が完了していない場合は pending が返されます。
 ![](./LogAnalyticsWorkspacePurge/image10.png)
-
-パージの操作が完了した場合には completed が返されます。
+パージ操作が受付された場合は completed が返されます。
 ![](./LogAnalyticsWorkspacePurge/image13.png)
 
-<br>
-
-### 4-2. Operation テーブルで確認する
-[Operation テーブル](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/monitor-workspace)は、Log Analytics ワークスペース上で発生した問題や警告等が記録されるテーブルです。こちらのテーブルにパージ操作の情報も記録されます。対象のワークスペースにて以下のようなクエリを実行しますと、パージ操作の状態を確認することができます。
-
-```CMD
-Operation
-| where OperationCategory =~ "Workspace data management"
-| where Detail contains "Purge"
-```
-
-以下は弊社検証環境にて上記クエリを実行した例です。Detail 列には "Purge operation started for table:Heartbeat" と記録されており、Heartbeat テーブルに対してパージの操作が開始されたことが分かります。
-![](./LogAnalyticsWorkspacePurge/image11.png)
-
-パージの操作が完了しますと Detail 列に "Purge operation completed for table:Heartbeat" と記録されます。
-![](./LogAnalyticsWorkspacePurge/image12.png)
 
 <br>
 
