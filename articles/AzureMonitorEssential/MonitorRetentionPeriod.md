@@ -1,6 +1,6 @@
 ---
 title: Azure Monitor の各種データの保持期間について
-date: 2024-05-17 00:00:00
+date: 2024-05-14 00:00:00
 tags:
   - Log Analytics
   - Azure Monitor Essential
@@ -33,6 +33,8 @@ tags:
 | メトリック   | プラットフォーム メトリック    | 93 日間                                  |
 |              | クラシック ゲスト OS メトリック | 14 日間                                  |
 |              | ゲスト OS メトリック            | 93 日間                                  |
+|              | Application Insights ログ ベースのメトリック            | Application Insights リソースに紐づいたLog Analytics ワークスペースの保持設定に依存                                  |
+|              | Prometheus メトリック            | 18 ヶ月間                               |
 | ログ         |                                 | Log Analytics ワークスペースの保持設定に依存 |
 | アクティビティ ログ        |                                 | 90 日間 |
 
@@ -65,6 +67,18 @@ tags:
 ※ 以下は Linux の Azure VM に Azure Monitor エージェントをインストールし、ゲスト OS メトリックを表示した例です。
 ![](./MonitorRetentionPeriod/image09.png)
 
+
+<br>
+
+##### Application Insights ログ ベースのメトリック
+[Application Insights ログ ベースのメトリック](https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics) は、Application Insights SDK や OpenTelemetry Distro、自動インストルメンテーション機能によって Application Insights リソースに送信された各種ログ データをもとに表示されるメトリックです。
+Application Insights リソースに保存されたログ データをもとに表示するため、**データ保持期間は Application Insights リソースに紐づいた Log Analytics ワークスペースの保持期間に依存**します。
+
+<br>
+
+##### Prometheus メトリック
+[Prometheus メトリック](https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-platform-metrics#prometheus-metrics) は、AKS や Azure Arc enabled k8s から Azure Monitor ワークスペースに出力された[メトリック データ](https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/prometheus-metrics-overview)です。
+このメトリックの保持期間は ***18 か月間***です。
 
 <br>
 
