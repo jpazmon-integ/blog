@@ -46,6 +46,205 @@ Azure Functions の VNET 統合の方法につきましては、下記の公開�
 > 弊社検証環境では、Windows OS の .NET 6.0 にて確認いたしました。
 
 ### 2. Azure Functions にテスト ロジックを実装します。
+#### Visual Studio Code を使って作成
+下記の公開情報をもとに、Azure Functions にデプロイする関数を作成します。  
+Visual Studio Code を使って関数を作成するための前提条件などは、下記の公開情報をご一読ください。
+- [Visual Studio Code を使用して Azure Functions を開発する](https://learn.microsoft.com/ja-jp/azure/azure-functions/functions-develop-vs-code?tabs=node-v4%2Cpython-v2%2Cisolated-process&pivots=programming-language-csharp)
+
+上記公開情報に従って、HTTP Triger の関数を作成します。  
+※ ここでは、C# (.NET 8 Isolated) のランタイムを選択しております。
+
+プロジェクト ファイルに、下記のコードを追加して Application Insights SDK を導入します。
+```xml
+    <PackageReference Include="Microsoft.Azure.WebJobs.Logging.ApplicationInsights" Version="3.0.35" /> <!-- Ensure you’re using the latest version --> 
+```
+![](./privateAvailabilityTestSampleCode/2024-05-20_02.png)
+
+> C# の Functions に Application Insights SDK を導入する場合は、標準の Application Insights SDK ではなく必ず "Microsoft.Azure.WebJobs.Logging.ApplicationInsights" をインストールしてください。
+- [Azure Functions を使用する C# クラス ライブラリ関数を開発する - カスタム テレメトリをログに記録する](https://learn.microsoft.com/ja-jp/azure/azure-functions/functions-dotnet-class-library?tabs=v4%2Ccmd#log-custom-telemetry-in-c-functions)
+
+![](./privateAvailabilityTestSampleCode/2024-05-20_03.png)
+
+
+その後、HTTP Triger のクラスに下記のようにコードを修正します。  
+※ 検証環境では TimerTrigger1 というクラス名で動かしています。
+
+using 宣言は下記のとおりです。
+```cs
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.Extensions.Logging;
+using Microsoft.ApplicationInsights;
+using Microsoft.ApplicationInsights.DataContracts;
+using Microsoft.ApplicationInsights.Extensibility;
+using System.Diagnostics;
+```
+
+プライベート変数として TelemetryClient クラスの変数を定義し、コンストラクタは下記のとおり改修します。
+```cs
+        private readonly TelemetryClient telemetryClient;
+
+        public TimerTrigger1(ILoggerFactory loggerFactory, TelemetryConfiguration telemetryConfiguration)
+        {
+            _logger = loggerFactory.CreateLogger<TimerTrigger1>();
+            this.telemetryClient = new TelemetryClient(telemetryConfiguration);
+        }
+```
+
+Run 関数は下記のとおりです。  
+Application Insights へ送信するテスト結果インスタンス (AvailabilityTelemetry) を生成し、テストを実施、結果を指定し TrackAvailability() を呼び出して Application Insights へ結果を出力します。
+```cs
+        [Function("TimerTrigger1")]
+        public async Task Run([TimerTrigger("0 */5 * * * *")] TimerInfo myTimer)
+        {
+            string testName = "Function Name";
+            string location = Environment.GetEnvironmentVariable("REGION_NAME");
+            var availability = new AvailabilityTelemetry
+            {
+                Name = testName,
+                RunLocation = location,
+                Success = false,
+            };
+
+            availability.Context.Operation.ParentId = Activity.Current.SpanId.ToString();
+            availability.Context.Operation.Id = Activity.Current.RootId;
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            try
+            {
+                using (var activity = new Activity("AvailabilityContext"))
+                {
+                    activity.Start();
+                    availability.Id = Activity.Current.SpanId.ToString();
+                    // Run business logic 
+                    await RunAvailabilityTestAsync();
+                }
+                availability.Success = true;
+            }
+
+            catch (Exception ex)
+            {
+                availability.Message = ex.Message;
+                throw;
+            }
+
+            finally
+            {
+                stopwatch.Stop();
+                availability.Duration = stopwatch.Elapsed;
+                availability.Timestamp = DateTimeOffset.UtcNow;
+                telemetryClient.TrackAvailability(availability);
+                telemetryClient.Flush();
+            }
+        }
+```
+
+別途下記のようなビジネス ロジックを実装し、この中で監視対象の Web サイトへアクセスします。  
+アクセスした結果は、適宜呼び出し元に返却します。  
+テスト結果が NG の場合は、例外をスローしても良いかもしれません。  
+例外をスローする場合は、必ず呼び出し元で Catch して Application Insights へ結果を出力しましょう。
+```cs
+        private async Task RunAvailabilityTestAsync()
+        {
+            using (var httpClient = new HttpClient())
+            {
+                // TODO: Replace with your business logic 
+                await httpClient.GetStringAsync("https://www.bing.com/");
+            }
+        }
+```
+
+TimerTrigger1 クラスの全体はこのような感じで実装しております。
+```cs
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.Extensions.Logging;
+using Microsoft.ApplicationInsights;
+using Microsoft.ApplicationInsights.DataContracts;
+using Microsoft.ApplicationInsights.Extensibility;
+using System.Diagnostics;
+
+namespace Company.Function
+{
+    public class TimerTrigger1
+    {
+        private readonly ILogger _logger;
+        private readonly TelemetryClient telemetryClient;
+
+        public TimerTrigger1(ILoggerFactory loggerFactory, TelemetryConfiguration telemetryConfiguration)
+        {
+            _logger = loggerFactory.CreateLogger<TimerTrigger1>();
+            this.telemetryClient = new TelemetryClient(telemetryConfiguration);
+        }
+
+        [Function("TimerTrigger1")]
+        public async Task Run([TimerTrigger("0 */5 * * * *")] TimerInfo myTimer)
+        {
+            string testName = "Function Name";
+            string location = Environment.GetEnvironmentVariable("REGION_NAME");
+            var availability = new AvailabilityTelemetry
+            {
+                Name = testName,
+                RunLocation = location,
+                Success = false,
+            };
+
+            availability.Context.Operation.ParentId = Activity.Current.SpanId.ToString();
+            availability.Context.Operation.Id = Activity.Current.RootId;
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            try
+            {
+                using (var activity = new Activity("AvailabilityContext"))
+                {
+                    activity.Start();
+                    availability.Id = Activity.Current.SpanId.ToString();
+                    // Run business logic 
+                    await RunAvailabilityTestAsync();
+                }
+                availability.Success = true;
+            }
+
+            catch (Exception ex)
+            {
+                availability.Message = ex.Message;
+                throw;
+            }
+
+            finally
+            {
+                stopwatch.Stop();
+                availability.Duration = stopwatch.Elapsed;
+                availability.Timestamp = DateTimeOffset.UtcNow;
+                telemetryClient.TrackAvailability(availability);
+                telemetryClient.Flush();
+            }
+        }
+
+        private async Task RunAvailabilityTestAsync()
+        {
+            using (var httpClient = new HttpClient())
+            {
+                // TODO: Replace with your business logic 
+                await httpClient.GetStringAsync("https://www.bing.com/");
+            }
+        }
+
+    }
+}
+
+```
+
+その後、当該関数が実行されると、テスト コードの結果として Application Insights に可用性テストの結果が記録されます。
+
+![](./privateAvailabilityTestSampleCode/2024-05-20_04.png)
+
+
+#### Azure Portal から作成 
+> Azure Portal からの作成は、.NET インプロセス モデルのみサポートしております。  
+> また、インプロセス モデルはサポート終了予定で、今後は Visual Studio Code などを使って作成する必要がある点ご留意ください。
+
+
 その 1 でご準備いただいた Functions リソースに対して、タイマー トリガーの関数を作成します。
 関数名やスケジュールは、貴社のご要件に合うよう適宜ご指定くださいませ。
 
