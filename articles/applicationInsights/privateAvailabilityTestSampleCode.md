@@ -54,13 +54,23 @@ Visual Studio Code を使って関数を作成するための前提条件など�
 上記公開情報に従って、HTTP Triger の関数を作成します。  
 ※ ここでは、C# (.NET 8 Isolated) のランタイムを選択しております。
 
+![](./privateAvailabilityTestSampleCode/2024-05-20_05.png)
+![](./privateAvailabilityTestSampleCode/2024-05-20_01.png)
+![](./privateAvailabilityTestSampleCode/2024-05-20_06.png)
+![](./privateAvailabilityTestSampleCode/2024-05-20_07.png)
+![](./privateAvailabilityTestSampleCode/2024-05-20_08.png)
+![](./privateAvailabilityTestSampleCode/2024-05-20_09.png)
+![](./privateAvailabilityTestSampleCode/2024-05-20_10.png)
+![](./privateAvailabilityTestSampleCode/2024-05-20_11.png)
+
+
 プロジェクト ファイルに、下記のコードを追加して Application Insights SDK を導入します。
 ```xml
     <PackageReference Include="Microsoft.Azure.WebJobs.Logging.ApplicationInsights" Version="3.0.35" /> <!-- Ensure you’re using the latest version --> 
 ```
 ![](./privateAvailabilityTestSampleCode/2024-05-20_02.png)
 
-> C# の Functions に Application Insights SDK を導入する場合は、標準の Application Insights SDK ではなく必ず "Microsoft.Azure.WebJobs.Logging.ApplicationInsights" をインストールしてください。
+> 注意 : C# の Functions に Application Insights SDK を導入する場合は、標準の Application Insights SDK ではなく必ず "Microsoft.Azure.WebJobs.Logging.ApplicationInsights" をインストールしてください。
 - [Azure Functions を使用する C# クラス ライブラリ関数を開発する - カスタム テレメトリをログに記録する](https://learn.microsoft.com/ja-jp/azure/azure-functions/functions-dotnet-class-library?tabs=v4%2Ccmd#log-custom-telemetry-in-c-functions)
 
 ![](./privateAvailabilityTestSampleCode/2024-05-20_03.png)
