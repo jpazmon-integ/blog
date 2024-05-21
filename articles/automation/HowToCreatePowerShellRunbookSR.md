@@ -1,6 +1,6 @@
 ---
 title: Azure Automation の PowerShell Runbook に関するお問い合わせを発行いただく前の確認ポイント
-date: 2024-05-10 00:00:00
+date: 2024-05-21 00:00:00
 tags:
   - Automation
   - Runbook
