@@ -4,32 +4,25 @@
   <meta charset="utf-8">
   
   
-  <title>Log Analytics の新機能 Basic Logs と Archived Logs について | Japan Azure Monitoring Support Blog</title>
+  <title>Azure Automation の PowerShell Runbook に関するお問い合わせを発行いただく前の確認ポイント | Japan Azure Monitoring Support Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="こんにちは！ Azure Monitoring サポート チームの北村です。 今回は Log Analytics の新機能としてプレビューで提供されている Basic Logs と Archived Logs をご紹介いたします。Log Analytics ワークスペースにログを収集しているが、コストを削減したい…という方にはお勧めしたい機能です。本記事では Basic Logs と Archiv">
+  <meta name="description" content="こんにちは、Azure Monitoring サポート チームの花房です！今回は Azure Automation の PowerShell Runbook でよくいただくお問い合わせをもとに、いくつか起票前にご確認いただきたいポイントをご紹介いたします。今回ご紹介するポイントをふまえてお問い合わせを発行いただきますと、よりスムーズな調査が可能ですので、少しでもご参考になれば幸いです！   本ブロ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Log Analytics の新機能 Basic Logs と Archived Logs について">
-<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/index.html">
+<meta property="og:title" content="Azure Automation の PowerShell Runbook に関するお問い合わせを発行いただく前の確認ポイント">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/automation/HowToCreatePowerShellRunbookSR/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは！ Azure Monitoring サポート チームの北村です。 今回は Log Analytics の新機能としてプレビューで提供されている Basic Logs と Archived Logs をご紹介いたします。Log Analytics ワークスペースにログを収集しているが、コストを削減したい…という方にはお勧めしたい機能です。本記事では Basic Logs と Archiv">
+<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの花房です！今回は Azure Automation の PowerShell Runbook でよくいただくお問い合わせをもとに、いくつか起票前にご確認いただきたいポイントをご紹介いたします。今回ご紹介するポイントをふまえてお問い合わせを発行いただきますと、よりスムーズな調査が可能ですので、少しでもご参考になれば幸いです！   本ブロ">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image01.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image02.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image03.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image04.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image05.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image06.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image07.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image08.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image09.png">
-<meta property="article:published_time" content="2022-08-16T15:00:00.000Z">
-<meta property="article:modified_time" content="2024-05-21T05:24:06.291Z">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/automation/HowToCreatePowerShellRunbookSR/gallery.png">
+<meta property="article:published_time" content="2024-05-20T15:00:00.000Z">
+<meta property="article:modified_time" content="2024-05-21T05:24:06.463Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="How-To">
 <meta property="article:tag" content="Tips">
-<meta property="article:tag" content="Log Analytics">
+<meta property="article:tag" content="Automation">
+<meta property="article:tag" content="Runbook">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image01.png">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/automation/HowToCreatePowerShellRunbookSR/gallery.png">
   
     <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
   
@@ -91,7 +84,7 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-LogAnalytics/BasicLogsAndArchivedLogs" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-automation/HowToCreatePowerShellRunbookSR" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -100,7 +93,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Log Analytics の新機能 Basic Logs と Archived Logs について
+      Azure Automation の PowerShell Runbook に関するお問い合わせを発行いただく前の確認ポイント
     </h1>
   
 
@@ -108,72 +101,69 @@
       <div class="article-share">
         Last Update: 
         <a href="" class="article-date-single">
-  <time datetime="2022-08-16T15:00:00.000Z" itemprop="datePublished">2022-08-17</time>
+  <time datetime="2024-05-20T15:00:00.000Z" itemprop="datePublished">2024-05-21</time>
 </a>
         
         
-        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+bf943bbb-e1c1-5e72-9bba-63d4fe46ce65%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BLog+Analytics+%E3%81%AE%E6%96%B0%E6%A9%9F%E8%83%BD+Basic+Logs+%E3%81%A8+Archived+Logs+%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FBasicLogsAndArchivedLogs%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FBasicLogsAndArchivedLogs.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FBasicLogsAndArchivedLogs.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+c9574921-70e0-55a9-8074-825bc41da483%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Automation+%E3%81%AE+PowerShell+Runbook+%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B%E3%82%92%E7%99%BA%E8%A1%8C%E3%81%84%E3%81%9F%E3%81%A0%E3%81%8F%E5%89%8D%E3%81%AE%E7%A2%BA%E8%AA%8D%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2Fautomation%2FHowToCreatePowerShellRunbookSR%2F%29%0A*+Content+Source%3A+%5Barticles%2Fautomation%2FHowToCreatePowerShellRunbookSR.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2Fautomation%2FHowToCreatePowerShellRunbookSR.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/" data-id="clwfya4ex00120npl1bty1gd2" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/automation/HowToCreatePowerShellRunbookSR/" data-id="clwfya4fm002l0npl83xk7jyi" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは！ Azure Monitoring サポート チームの北村です。</p>
-<p>今回は Log Analytics の新機能としてプレビューで提供されている Basic Logs と Archived Logs をご紹介いたします。<br>Log Analytics ワークスペースにログを収集しているが、コストを削減したい…という方にはお勧めしたい機能です。<br>本記事では Basic Logs と Archived Logs の概要とその設定方法をご案内します。</p>
+        <p>こんにちは、Azure Monitoring サポート チームの花房です！<br>今回は Azure Automation の PowerShell Runbook でよくいただくお問い合わせをもとに、いくつか起票前にご確認いただきたいポイントをご紹介いたします。<br>今回ご紹介するポイントをふまえてお問い合わせを発行いただきますと、よりスムーズな調査が可能ですので、少しでもご参考になれば幸いです！  </p>
+<p>本ブログでは、以下の 2 つのシナリオのお問い合わせにフォーカスいたします。<br>シナリオ A. Azure Automation の PowerShell Runbook がうまく動作していない、エラーとなる<br>シナリオ B. Runbook の書き方が分からない  </p>
+<br>
 <span id="more"></span>
 
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
-<li>Basic Logs とは</li>
-<li>Archived Logs とは </li>
-<li>Azure CLI コマンドを利用した Basic Logs の設定方法</li>
-<li>Azure CLI コマンドを利用した Archived Logs の設定方法</li>
-<li>まとめ</li>
+<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
+<li><a href="#%E3%82%B7%E3%83%8A%E3%83%AA%E3%82%AA-a--azure-automation-%E3%81%AE-powershell-runbook-%E3%81%8C%E3%81%86%E3%81%BE%E3%81%8F%E5%8B%95%E4%BD%9C%E3%81%97%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E3%82%A8%E3%83%A9%E3%83%BC%E3%81%A8%E3%81%AA%E3%82%8B">シナリオ A. Azure Automation の PowerShell Runbook がうまく動作していない、エラーとなる</a><ul>
+<li><a href="#%E3%82%B7%E3%83%8A%E3%83%AA%E3%82%AA-a-%E3%81%AE%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B%E7%99%BA%E8%A1%8C%E5%89%8D%E3%81%AE%E7%A2%BA%E8%AA%8D%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88">シナリオ A のお問い合わせ発行前の確認ポイント</a></li>
 </ul>
-<h2 id="Basic-Logs-とは"><a href="#Basic-Logs-とは" class="headerlink" title="Basic Logs とは"></a>Basic Logs とは</h2><p>まず、Basic Logs のプレビュー リリースに伴い、Azure Monitor のすべての機能を使用できる Log Analytics ワークスペース内の<br>テーブルは Analytics Logs と呼ばれるようになりました。今まで Log Analytics ワークスペースに収集されていたログは<br>すべて Analytics Logs であり、デフォルトでは Analytics Logs となっています。</p>
-<p>そして、今回の大幅なアップデートに伴い、Analytics Logs とは別に Basic Logs というプランが追加されました。<br>Basic Logs のデフォルトのデータ保有期間は 8 日間であり、クエリで使用できる演算子が限定的であったり、<br>アラートには使用できない等の制限事項がございます。<br>しかし、Azure Monitor のすべての機能を使用できないという制約がある分、Analytics Logs より安くご利用いただけます。</p>
-<p><strong>Analytics Logs と Basic Logs の違い</strong><br>※ <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/log-analytics-workspace-overview#log-data-plans-preview">Log Analytics ワークスペースの概要 - ログ データ プラン（プレビュー）</a> より抜粋<br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image01.png"></p>
-<p>&lt;参考&gt;</p>
-<ul>
-<li>Basic Logs で使用できる演算子は <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/basic-logs-query?tabs=portal-1#kql-language-limits">KQL 言語の制限</a> をご覧ください。</li>
-<li>現在はすべてのテーブルで Basic Logs のプランを選択することはできません。サポート テーブルは <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/basic-logs-configure?tabs=cli-1,cli-2#which-tables-support-basic-logs">Basic Logs をサポートするテーブル</a> でご確認ください。</li>
-<li>Basic Logs のご利用料金は <a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">Azure Monitor の価格</a> の [Basic ログ] をご確認ください。<br><br><br></li>
+</li>
+<li><a href="#%E3%82%B7%E3%83%8A%E3%83%AA%E3%82%AA-b-powershell-runbook-%E3%81%AE%E6%9B%B8%E3%81%8D%E6%96%B9%E3%81%8C%E5%88%86%E3%81%8B%E3%82%89%E3%81%AA%E3%81%84">シナリオ B. PowerShell Runbook の書き方が分からない</a><ul>
+<li><a href="#%E3%82%B7%E3%83%8A%E3%83%AA%E3%82%AA-b-%E3%81%AE%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B%E7%99%BA%E8%A1%8C%E5%89%8D%E3%81%AE%E7%A2%BA%E8%AA%8D%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88">シナリオ B のお問い合わせ発行前の確認ポイント</a></li>
 </ul>
-<h2 id="Archived-Logs-とは"><a href="#Archived-Logs-とは" class="headerlink" title="Archived Logs とは"></a>Archived Logs とは</h2><p>Archived Logs は、名前のとおりログをアーカイブ領域に移動させ、長期保管するための機能です。<br>Analytics Logs は 最大 730 日、Basic Logs は 8 日間しかログを保持できませんが、<br>Archived Logs では 最大 7 年間データを保持することができます。<br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image02.png"></p>
-<p>&lt;参考&gt;</p>
-<ul>
-<li>アーカイブしたデータにアクセスする場合はデータを復元するかジョブで検索する必要があります。詳細は <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/log-analytics-workspace-overview#data-retention-and-archive">データ保持とアーカイブ</a> をご確認ください。</li>
-<li>Archived Logs のご利用料金は <a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">Azure Monitor の価格</a> をご参照ください。<br><br><br></li>
+</li>
+<li><a href="#automation-%E3%81%AE%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B%E3%81%A8%E3%81%97%E3%81%A6%E8%B5%B7%E7%A5%A8%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88">Automation のお問い合わせとして起票する場合</a></li>
+<li><a href="#%E5%85%B1%E9%80%9A%E3%81%AE%E6%B3%A8%E6%84%8F%E7%82%B9-%E3%82%AE%E3%83%A3%E3%83%A9%E3%83%AA%E3%83%BC%E3%81%AE-runbook-%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">共通の注意点 (ギャラリーの Runbook について)</a></li>
+<li><a href="#%E3%81%95%E3%81%84%E3%81%94%E3%81%AB">さいごに</a></li>
 </ul>
-<h2 id="Azure-CLI-コマンドを利用した-Basic-Logs-の設定方法"><a href="#Azure-CLI-コマンドを利用した-Basic-Logs-の設定方法" class="headerlink" title="Azure CLI コマンドを利用した Basic Logs の設定方法"></a>Azure CLI コマンドを利用した Basic Logs の設定方法</h2><p>それでは Basic Logs の設定をしてみましょう！<br>本記事では <code>az monitor log-analytics workspace table update</code> コマンドを使用し、テーブル単位で設定する方法をご案内します。<br>Log Analytics ワークスペース名、ワークスペースが属するリソース グループ名、テーブル名等を指定し、以下のとおり実行します。</p>
-<p><code>az monitor log-analytics workspace table update --subscription &lt;サブスクリプション名&gt; --resource-group &lt;リソース グループ名&gt; --workspace-name &lt;ワークスペース名&gt; --name &lt;テーブル名&gt; --plan Basic</code><br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image03.png"></p>
-<p>Azure portal から変更内容を確認することができます。Log Analytics ワークスペース から [全般] - [ログ] を選択し、<br>Basic Logs プランに変更したテーブル名をクリックすると、テーブル名の右横に <strong>基本ログ</strong> と表示されていることがわかります。<br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image04.png"></p>
-<p>なお、Basic Logs に変更する前は、以下のとおり表示されます（Analytics Logs とは表示されません）。<br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image05.png"></p>
-<p>また、<code>az monitor log-analytics workspace table show</code> コマンドで設定内容を確認することもできます。<br>下図の実行例では <code>plan</code> が <strong>Basic</strong> 、<code>retentionInDays</code> が <strong>8</strong> となっていることがわかります。</p>
-<p><code>az monitor log-analytics workspace table show --subscription &lt;サブスクリプション名&gt; --resource-group &lt;リソース グループ名&gt; --workspace-name &lt;ワークスペース名&gt; --name &lt;テーブル名&gt; --output table</code><br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image06.png"></p>
-<p>&lt;ご参考&gt;<br>Basic Logs に関する設定方法等につきましては、下記弊社公開情報にも掲載しております。<br>Azure portal から設定する手順等につきましても以下をご覧ください。</p>
-<ul>
-<li>Basic Logs の設定方法 : <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/basic-logs-configure?tabs=cli-1,cli-2#set-table-configuration">テーブル構成の設定</a> もご覧ください。</li>
-<li>Basic Logs の確認方法 : <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/basic-logs-configure?tabs=cli-1,cli-2#check-table-configuration">テーブル構成の確認</a> にも掲載しております。<br><br><br></li>
-</ul>
-<h2 id="Azure-CLI-コマンドを利用した-Archived-Logs-の設定方法"><a href="#Azure-CLI-コマンドを利用した-Archived-Logs-の設定方法" class="headerlink" title="Azure CLI コマンドを利用した Archived Logs の設定方法"></a>Azure CLI コマンドを利用した Archived Logs の設定方法</h2><p>Basic Logs と同様に、Azure CLI コマンドで設定する方法をご紹介します。こちらもテーブル単位で指定します。</p>
-<p><code>az monitor log-analytics workspace table update</code> コマンドには、保有期間を設定するパラメータが 2 つあります。<br><code>retention-time</code> は Basic Logs もしくは Analytics Logs として保有する期間、<br><code>total-retention-time</code> は Archived Logs としての保有期間を含めた、データの総保有期間を意味します。<br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image07.png"></p>
-<p>以下の例では、Basic Logs を設定したテーブルに対し、 <code>total-retention-time</code> を <code>11</code> 日間に指定しています。<br>つまり、Basic Logs として 8 日間、Archived Logs として 3 日間の合計 11 日間、データが保持されることになります。</p>
-<p><code>az monitor log-analytics workspace table update --subscription &lt;サブスクリプション名&gt; --resource-group &lt;リソース グループ名&gt; --workspace-name &lt;ワークスペース名&gt; --name &lt;テーブル名&gt; ----retention-time &lt;アーカイブされる前のデータ保有期間&gt; --total-retention-time &lt;総保有期間&gt;</code><br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image08.png"></p>
-<p>なお、Basic Logs と同様に下記コマンドで設定内容を確認することができます。<br><code>az monitor log-analytics workspace table show --subscription &lt;サブスクリプション名&gt; --resource-group &lt;リソース グループ名&gt; --workspace-name &lt;ワークスペース名&gt; --name &lt;テーブル名&gt;</code><br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image09.png"></p>
-<p>&lt;ご参考&gt;<br>Archived Logs に関する設定方法につきましては、下記弊社公開情報にも掲載しております。<br>Azure portal から設定する手順等につきましても以下をご覧ください。</p>
-<ul>
-<li>Archived Logs の設定方法 : <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/data-retention-archive?tabs=cli-1,api-2#set-retention-and-archive-policy-by-table">テーブル別に保持ポリシーとアーカイブ ポリシーを設定する</a> </li>
-<li>Archived Logs の確認方法 : <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/data-retention-archive?tabs=cli-1,cli-2#get-retention-and-archive-policy-by-table">テーブル別の保持ポリシーとアーカイブ ポリシーを取得する</a><br><br><br></li>
-</ul>
-<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>本記事では、以下についてご案内いたしましたが、いかがでしたでしょうか。</p>
-<ul>
-<li>Basic Logs とは</li>
-<li>Archived Logs とは </li>
-<li>Azure CLI コマンドを利用した Basic Logs の設定方法</li>
-<li>Azure CLI コマンドを利用した Archived Logs の設定方法</li>
-</ul>
-<p>本記事が少しでもお役に立ちましたら幸いです。<br>以上、Log Analytics の新しい機能 Basic Logs と Archived Logs の概要と設定方法についてお伝えしました。<br>最後までお読みいただきありがとうございました！</p>
+<br>
+
+<h2 id="シナリオ-A-Azure-Automation-の-PowerShell-Runbook-がうまく動作していない、エラーとなる"><a href="#シナリオ-A-Azure-Automation-の-PowerShell-Runbook-がうまく動作していない、エラーとなる" class="headerlink" title="シナリオ A . Azure Automation の PowerShell Runbook がうまく動作していない、エラーとなる"></a>シナリオ A . Azure Automation の PowerShell Runbook がうまく動作していない、エラーとなる</h2><p>「Azure Automation の Runbook がうまく動作していないようだけれど要因が分からない」 という場合に、お問い合わせいただくことがございます。<br>この要因には、”Azure Automation 側 (Azure 基盤側)” と “お客様のスクリプト側” のどちらかに問題があることが考えられます。  </p>
+<p>このどちらかを切り分けるため、「お客様のスクリプトには問題がなさそう」 ということをまずお客様にてご確認いただくことで、弊社での調査がスムーズになり、より短い調査時間で見解をご案内できます！  </p>
+<p>前提として、本サポート サービスでは、お客様のスクリプトの解析は行っておりません。<br>(これは Azure Automation に限りません。)<br>お客様のスクリプトを弊社で解析することは、大変な時間を要しますし、間違っている場合には調査結果も異なることになります。<br>結果、大変な調査時間をいただいたにも関わらず、見当違いの回答を差し上げることにもなってしまいます。<br>これは、せっかくお待ちいただいたお客様にとっても、一生懸命に調査した私どもサポート エンジニアにとっても、とても残念な結果です。<br>このような点からも、お客様のスクリプトは、お客様にて解析いただく必要がございます。  </p>
+<p>一方で、お客様にてスクリプトの問題なのかをご判断いただくのは難しい場合があるかと存じます。<br>そのような場合、以下のポイントをご参照くださいませ！  </p>
+<br>
+
+<h3 id="シナリオ-A-のお問い合わせ発行前の確認ポイント"><a href="#シナリオ-A-のお問い合わせ発行前の確認ポイント" class="headerlink" title="シナリオ A のお問い合わせ発行前の確認ポイント"></a>シナリオ A のお問い合わせ発行前の確認ポイント</h3><p><strong>★ A-1. ローカルで動作するのか</strong><br>対象の Runbook (PowerShell スクリプト) がローカルで実行した際もエラーとなる場合には、Automation 固有の問題ではないと考えられます。<br>スクリプトをデバックしていただき、エラーの対象となるリソースのお問い合わせとして起票いただけますと、よりスムーズな調査が可能です。<br>一方で、ローカルでは問題なく動作する場合、Automation 側の問題である可能性がございます。<br>この場合には、Automation のお問い合わせとして起票ください！<br>その際に添えていただきたい情報は、後述の 「Automation のお問い合わせとして起票する場合」 をご参照くださいませ。  </p>
+<p><strong>★ A-2. 出力されるエラーはスクリプト内で自前で記録したものか</strong><br>Automation で 「xxxx」 というエラーがジョブに記録されている、という状態の場合、そのエラー内容を記録しているスクリプトの該当箇所を特定します。<br>もしもスクリプト側で write-log などで記録しているエラーなのであれば、スクリプト内のデバックを続けることが出来るかと存じます。<br>エラーとなっている個所を特定ができたら、そのエラーに関連しているリソースのお問い合わせとして起票します。  </p>
+<p><strong>★ A-3. これまで Automation 上で動作していたか</strong><br>これまでは Automation 上で問題なく動作していたが、Runbook の内容を変更していないにも関わらずエラーが発生しているような場合には、Automation 側の問題である可能性が考えられます。<br>Automation のお問い合わせとして起票ください！<br>その際に添えていただきたい情報は、後述の 「Automation のお問い合わせとして起票する場合」 をご参照くださいませ。  </p>
+<br>
+
+<h2 id="シナリオ-B-PowerShell-Runbook-の書き方が分からない"><a href="#シナリオ-B-PowerShell-Runbook-の書き方が分からない" class="headerlink" title="シナリオ B. PowerShell Runbook の書き方が分からない"></a>シナリオ B. PowerShell Runbook の書き方が分からない</h2><p>「“xxxx” という処理を自動化したいけれど、PowerShell Runbook での実現方法が分からない」 という場合に、お問い合わせいただくことがございます。<br>「“xxxx” という処理を実現するためのスクリプトの書き方を知りたい」 というお問い合わせを頂戴することもございます。<br>こちらも前提として、本サポート サービスでは基本的にお客様の要件に合わせたスクリプトのご提供は行っておりません。<br>(こちらも Azure Automation に限りません。)<br>スクリプトは、まずはお客様にて作成ください。  </p>
+<p>その上で、例えば 「Automation 上で xxxx のコマンドは問題なく動作するのか」 という Automation 観点での具体的な内容であれば、ご支援することは可能です！</p>
+<br>
+
+<h3 id="シナリオ-B-のお問い合わせ発行前の確認ポイント"><a href="#シナリオ-B-のお問い合わせ発行前の確認ポイント" class="headerlink" title="シナリオ B のお問い合わせ発行前の確認ポイント"></a>シナリオ B のお問い合わせ発行前の確認ポイント</h3><p><strong>★ B-1.Automation の PowerShell Runbook で実装するうえで固有の内容か</strong>  </p>
+<p>PowerShell Runbook で実装するうえでの固有の内容であれば、ご支援できます！<br>例えば、「xxx コマンドは Azure Runbook 上で利用できるか」 というご質問です。<br>なお、ローカルで実行可能な PowerShell であれば、基本的に Automation の PowerShell Runbook でもご利用いただけます。<br>このため、ローカルで動作するスクリプトまではお客様で作成ください。</p>
+<p>また、Automation のお問い合わせとして起票いただく際には、ご状況に応じて後述の 「Automation のお問い合わせとして起票する場合」 の情報を添えていただければと存じます。</p>
+ <br>
+
+<h2 id="共通の注意点-ギャラリーの-Runbook-について"><a href="#共通の注意点-ギャラリーの-Runbook-について" class="headerlink" title="共通の注意点 (ギャラリーの Runbook について)"></a>共通の注意点 (ギャラリーの Runbook について)</h2><p>Azure Automationでは、ギャラリーご提供している PowerShell Runbook があります。<br><img src="/blog/automation/HowToCreatePowerShellRunbookSR/gallery.png"></p>
+<p>これらは弊社コミュニティメンバーの有志により作成・提供されております。<br>ただ、分かりにくくて大変恐縮なのですが、これらは弊社の正式な製品ではなく、あくまでサンプルであり、Runbook 内に不具合が見つかったとしても修正される保証はございません。<br>このため、ギャラリーで提供されている Runbook は、お客様の環境でも動作確認の上でご利用をいただけましたら幸いです。  </p>
+<br>
+
+<h2 id="Automation-のお問い合わせとして起票する場合"><a href="#Automation-のお問い合わせとして起票する場合" class="headerlink" title="Automation のお問い合わせとして起票する場合"></a>Automation のお問い合わせとして起票する場合</h2><p>上記のポイントをご確認いただき、Automation で調査が必要と考えられる場合には、どうぞいつでもお問い合わせくださいませ！</p>
+<p>その際に、以下の情報を添えていただけますと、より迅速に調査に着手することが可能です。<br>-サブスクリプション ID<br>-Automation アカウント名<br>-Runbook 名<br>-ジョブ ID  </p>
+<br>
+
+<h2 id="さいごに"><a href="#さいごに" class="headerlink" title="さいごに"></a>さいごに</h2><p>今回は Automation の PowerShell Runbook のお問い合わせを起票いただく際に、ご確認いただきたいポイントをご案内いたしました！<br>私どもサポート チームも、精一杯お問い合わせのご状況や背景や内容を把握したうえで、できる限り迅速なご支援できるよう、毎日調査をしております。<br>ただ、回答までにお時間を要することもございます。<br>少しでもスムーズな回答のために、お客様にて実装された点はお客様にてご確認いただけたらと存じます。  </p>
+<p>ただ、お客さまでは判断が難しい点もあるかと存じます！<br>そのような場合に、上記ポイントが少しでもお客様のお役に立てば大変幸いです。  </p>
+<p>最後までお読みいただきありがとうございました！  </p>
 
       
       
@@ -187,10 +177,10 @@
     <footer class="article-footer">
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
 
         
-        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/BasicLogsAndArchivedLogs.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/automation/HowToCreatePowerShellRunbookSR.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
         
     </footer>
   </div>
@@ -198,19 +188,10 @@
     
 <nav id="article-nav">
   
-    <a href="../UpdateLAHealth/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">次の記事</strong>
-      <div class="article-nav-title">
-        
-          Log Analytics ワークスペースの正常性を示す指標の更新について
-        
-      </div>
-    </a>
   
-  
-    <a href="../LogAnalyticsResultsUpgrade/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../../AzureMonitorEssential/MonitorRetentionPeriod/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前の記事</strong>
-      <div class="article-nav-title">Log Analytics のアップグレード</div>
+      <div class="article-nav-title">Azure Monitor の各種データの保持期間について</div>
     </a>
   
 </nav>
@@ -229,7 +210,7 @@
       <ul>
         
           <li>
-            <a href="../../automation/HowToCreatePowerShellRunbookSR/">Azure Automation の PowerShell Runbook に関するお問い合わせを発行いただく前の確認ポイント</a>
+            <a href="">Azure Automation の PowerShell Runbook に関するお問い合わせを発行いただく前の確認ポイント</a>
           </li>
         
           <li>
@@ -237,7 +218,7 @@
           </li>
         
           <li>
-            <a href="../HowToMigrateToAmaFromLA/">Log Analytics エージェントから Azure Monitor エージェントへの移行に関するよくあるご質問集</a>
+            <a href="../../LogAnalytics/HowToMigrateToAmaFromLA/">Log Analytics エージェントから Azure Monitor エージェントへの移行に関するよくあるご質問集</a>
           </li>
         
           <li>
