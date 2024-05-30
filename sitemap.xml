@@ -37,21 +37,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/general/AboutMonandIntg/</loc>
-    
-    <lastmod>2024-05-30</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/general/HowWeWorkRemotely/</loc>
-    
-    <lastmod>2024-05-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/general/HowToCreateSR/</loc>
     
     <lastmod>2024-05-30</lastmod>
     
@@ -79,6 +65,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/general/AboutMonandIntg/</loc>
+    
+    <lastmod>2024-05-30</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/MigrateRunAsAccountsToManagedIdentity/</loc>
     
     <lastmod>2024-05-30</lastmod>
@@ -86,21 +79,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/Automation-Update-AutomationRunAsCredential/</loc>
-    
-    <lastmod>2024-05-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/DifferenceRunAsAccountAndManagedID/</loc>
-    
-    <lastmod>2024-05-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/HowToCreatePowerShellRunbookSR/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/general/HowToCreateSR/</loc>
     
     <lastmod>2024-05-30</lastmod>
     
@@ -135,14 +114,28 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/troubleshooting_telemetry/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/automation/Automation-Update-AutomationRunAsCredential/</loc>
     
     <lastmod>2024-05-30</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/migrateWorkspaceAiFAQ/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/automation/DifferenceRunAsAccountAndManagedID/</loc>
+    
+    <lastmod>2024-05-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/HowToCreatePowerShellRunbookSR/</loc>
+    
+    <lastmod>2024-05-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/troubleshooting_telemetry/</loc>
     
     <lastmod>2024-05-30</lastmod>
     
@@ -170,6 +163,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/migrateWorkspaceAiFAQ/</loc>
+    
+    <lastmod>2024-05-30</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutAvailabilityTest/</loc>
     
     <lastmod>2024-05-30</lastmod>
@@ -178,20 +178,6 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/</loc>
-    
-    <lastmod>2024-05-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/SystemLanguageNotEnglishNoPython2Bug/</loc>
-    
-    <lastmod>2024-05-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/UpdateLAHealth/</loc>
     
     <lastmod>2024-05-30</lastmod>
     
@@ -220,6 +206,20 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/</loc>
+    
+    <lastmod>2024-05-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/SystemLanguageNotEnglishNoPython2Bug/</loc>
+    
+    <lastmod>2024-05-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/UpdateLAHealth/</loc>
     
     <lastmod>2024-05-30</lastmod>
     
@@ -261,13 +261,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/</loc>
-    
-    <lastmod>2024-05-30</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPacks/</loc>
     
     <lastmod>2024-05-30</lastmod>
@@ -276,6 +269,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToLogIngestionAPI/</loc>
+    
+    <lastmod>2024-05-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/</loc>
     
     <lastmod>2024-05-30</lastmod>
     
@@ -437,6 +437,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AlertProcessingRule/</loc>
+    
+    <lastmod>2024-05-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/Arc/Arc_onboard_FAQ/</loc>
     
     <lastmod>2024-05-30</lastmod>
     
