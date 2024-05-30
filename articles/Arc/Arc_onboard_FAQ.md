@@ -1,5 +1,3 @@
-ファイル名：Arc_onboard_FAQ.md
-
 ---
 title: Azure Arc のオンボードスクリプトの留意点
 date: 2024-05-30 21:00:00
