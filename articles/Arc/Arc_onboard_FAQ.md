@@ -4,13 +4,13 @@ date: 2024-03-30 17:00:00
 tags:
   - Azure Arc
   - HowTo
-  - Azure Private Link
+  - script
 ---
 
 <!-- more -->
 こんにちは、Azure Monitoring チームの 佐藤 です。
 
-今回は、Azure Private Link を使った Azure Arc への接続に関するよくあるお問い合わせ内容とその回答について紹介したいと思います。
+今回は、Azure Private Link を使った Azure Arc への接続に関するよくあるお問い合わせ内容とその回答について紹介します。
 Azure Arc にオンボードさせるにはオンプレミスマシン（もしくは AWS のようなクラウド上の VM）には、Azure Connected Machine エージェント （以後、Arc エージェントと呼称します）をインストールする必要があります。
 
 その Arc エージェントを使用して Azure Arc にオンボード（管理状態）にするには以下ネットワーク要件を満たす必要がございます。
