@@ -1,6 +1,6 @@
 ---
 title: Azure VM における死活監視の考え方
-date: 2024-07-19 00:00:00
+date: 2024-07-01 00:00:00
 tags:
   - Log Analytics
   - Azure Monitor Essential
@@ -72,16 +72,22 @@ VM ホストは、以下の方法で監視できます。
 - メトリック 'VM Availability Metric (Preview)' を監視する方法
 - リソース正常性を監視する方法
 
+本ブログでは上記 2 つの方法をご紹介しますが、この他にも VM のホスト監視を行う方法がございます。[こちら](https://learn.microsoft.com/ja-jp/azure/virtual-machines/flash-overview#next-steps) の公開情報にも掲載されておりますので、併せてご確認いただけますと幸いです。
+
 <br>
 
 ### 3-1. メトリック 'VM Availability Metric (Preview)' を監視する方法
-[VM Availability Metric (Preview) （VM 可用性メトリック (プレビュー)）](https://learn.microsoft.com/ja-jp/azure/virtual-machines/monitor-vm-reference#vm-availability-metric-preview)は Azure VM のホストが出力するメトリックであり、VM の可用性を確認することができます。このメトリックは Heartbeat 収集する Azure Monitor エージェントや Log Analytics エージェントとは関係ないため、エージェントから Log Analytics ワークスペースへのログの出力に問題が発生した際もメトリックは出力されます。
+[VM Availability Metric (Preview) （VM 可用性メトリック (プレビュー)）](https://learn.microsoft.com/ja-jp/azure/virtual-machines/monitor-vm-reference#vm-availability-metric-preview)は Azure VM のホストが出力するメトリックであり、VM の可用性を確認することができます。このメトリックは Heartbeat を収集する Azure Monitor エージェントや Log Analytics エージェントとは関係ないため、エージェントから Log Analytics ワークスペースへのログの出力に問題が発生した際もメトリックは出力されます。
 ![](./MonitorVM02/image01.png)
 
 VM Availability Metric (Preview) の値が 1 の場合は、VM が実行中であり、利用可能であることを表します。
 つまり、この値が 1 より小さい場合には VM の可用性が低下していることになりますので、このメトリックを監視するメトリック アラートを構成することで、VM の可用性が低下した場合に発報させることが可能です。
 このメトリックを利用したアラート ルールの設定方法については、[こちら](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/tutorial-monitor-vm-alert-availability#view-vm-availability-metric-in-metrics-explorer)の弊社公開情報をご参照ください。
 ![](./MonitorVM02/image02.png)
+
+
+> [!WARNING]
+> VM Availability Metric (Preview) のメトリック アラートで Azure VM が "停止済み (割り当て解除) " を検知することはできません。VM が "停止済み (割り当て解除)" の場合は VM Availability Metric (Preview) の値は [NULL](https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/metrics-aggregation-explained#null-and-zero-values) になりますが、メトリック アラートではメトリックの値が NULL であることを検知できないためです。予めご留意ください。
 
 <br>
 
@@ -96,7 +102,7 @@ VM Availability Metric (Preview) の値が 1 の場合は、VM が実行中で�
 
 
 
-"イベントの状態" が Active である場合、リソースの正常性が異常な状態であることを表し、Resolved に変化した場合、異常な状態から正常な状態に遷移したことを表します。"リソースの状態" が Unavailable はリソースが利用可能でないことを意味し、Available はリソースが利用可能であることを意味します。
+"イベントの状態" が Active である場合、リソースの正常性が異常な状態であることを表し、Resolved に変化した場合、異常な状態から正常な状態に遷移したことを表します。また、"リソースの状態" が Unavailable はリソースが利用可能でないことを意味し、Available はリソースが利用可能であることを意味します。
 
 つまり、以下の設定にすると、
 リソースの状態が 「Available」 の状態から 「Unavailable」 に遷移したタイミングと、
@@ -125,14 +131,14 @@ VM ゲストは、以下の方法で監視できます。
 
 ### 4-1. Heratbeat を利用したログ アラート
 Heartbeat は Log Analytics エージェントや Azure Monitor エージェントによって Log Analytics ワークスペースに収集されます。
-Log Analytics ワークスペースに収集された Heartbeat を利用して、死活監視のログ アラート ルールを構成することが可能です。
+Log Analytics ワークスペースに収集された Heartbeat を利用して、死活監視の[ログ アラート ルール](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule)を構成することが可能です。
 例えば、直近 10 分以内に Heartbeat が収集されていることを確認するログ アラート ルールが発報した場合、アラートが実行された時点から 過去 10 分以内に Heartbeat が途絶えたことになり、該当のマシンにて何らかの問題が発生している可能性がございます。なお、Heartbeat のログ アラートが発報したとしても、必ずしも仮想マシンに問題が発生しているとは限りません。エージェント自体に問題が発生している場合や、ログの収集遅延によってアラートが発報する場合もございます。
 <!--- https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM/ --->
 
 <br>
 
 ### 4-2. Heartbeat を利用したログのメトリック アラート
-[ログのメトリック アラート](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-metric-logs)は、Azure Montior エージェントや Log Analytics エージェントで収集されたログをメトリックに変換し、メトリックを評価するアラート ルールです。
+[ログのメトリック アラート](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-metric-logs)は、Azure Monitor エージェントや Log Analytics エージェントで収集されたログをメトリックに変換し、メトリックを評価するアラート ルールです。
 
 ログが生成され、Log Analytics のエンドポイントに対してログを送信し、メトリックに変換されてメトリックを検索できるようになるまでの時間と、ログが生成され、Log Analytics のエンドポイントに対してログを送信し、Log Analytics ワークスペース上でアラートの検索クエリでログを検索できるようになるまでの時間を比較した場合、前者の方が早く処理が実施されます。このため、ログ アラート ルールと比較し、「ログのメトリック アラート」の方がよりリアルタイムに近い監視が可能です。
 
@@ -152,7 +158,9 @@ VM で動作するアプリケーションの死活監視を行います。
 
 可用性テストは、「メトリック 'VM Availability Metric (Preview)' を監視する方法」、「Heartbeat を利用した監視方法」および「リソース正常性を監視する方法」とは独立した機能です。アプリケーションが動作している際に Heartbeat に異常が発生しても、可用性テストが正常であればアプリケーションに問題は起きておらず、VM も正常に動作していると判断いただけます。[可用性テストの設定方法](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability-standard-tests)及び、[アラート ルールの設定方法](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability-alerts) は、公開情報をご参照いただけますと幸いです。
 
-なお、標準テストは、インターネットからアクセスできるエンドポイントが必要です。
+なお、Application Insights の可用性テストを使って監視を行う場合は、監視対象の VM に HTTP/HTTPS のリクエストを受け取るための Web サーバー構築が必要です。Application Insights の可用性テストは、Application Insights で管理しているテスト クライアントから監視対象の VM に対して定期的に HTTP/HTTPS のプロトコルでリクエストを送信し、期待するレスポンスが返ってくるかどうかを評価する機能であるためです。HTTP/HTTPS リクエストを受け取る Web サーバーが構築されていないとご利用出来ないので、ご注意ください。
+
+また、標準テストは、インターネットからアクセスできるエンドポイントが必要です。
 もしプライベート ネットワークからのみを許可する機能の監視を行う必要がありましたら、弊社サポート ブログでご案内しております [Azure Functions を使用した可用性テスト](https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/)を作成いただけますと幸いです。
 
 
@@ -168,7 +176,7 @@ Heartbeat のアラートを構築しているお客様には申し訳ござい�
 - Azure Monitor エージェントや Log Analytics エージェントがインストールされたコンピューターに一時的に負荷が発生し、エージェントの動作に影響した。
 - 何らかの原因で Azure Monitor エージェントや Log Analytics エージェントが停止していた。
 - 何らかの原因でネットワークに異常が発生し、クライアントから Log Analytics ワークスペースへのデータ送信に失敗。エージェント側の再試行処理により、データの取り込みに時間を要した。
-- Azure 基盤側で問題が発生し、Log Analytics ワークスペース上でクエリ検索できるまでに時間を要した
+- Azure 基盤側で問題が発生し、Log Analytics ワークスペース上でクエリ検索できるまでに時間を要した。
 
 
 また、ログのメトリック アラートではエージェントから Log Analytics のエンドポイントにデータが送信された後、基盤側でログをメトリックに変換します。そのため、Log Analytics のエンドポイントにデータが到着するまでに遅延が発生した場合や、メトリックへの変換処理にて遅延が発生した場合には、ログのメトリック アラートでも収集遅延による誤検知が発生する可能性がございます。
