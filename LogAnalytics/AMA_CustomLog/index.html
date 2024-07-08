@@ -22,10 +22,9 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CustomLog/AMACustomlog_09.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CustomLog/AMACustomlog_12.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CustomLog/AMACustomlog_13.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CustomLog/AMACustomlog_14.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CustomLog/AMACustomlog_15.png">
 <meta property="article:published_time" content="2023-03-22T01:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-03T00:13:00.514Z">
+<meta property="article:modified_time" content="2024-07-08T08:40:13.831Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Log Analytics">
 <meta property="article:tag" content="Azure Monitor Agent">
@@ -115,7 +114,7 @@
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+0f9a0a41-0464-57c5-b0b5-9a47c0796cb6%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Monitor+%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%A7%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0+%E3%83%AD%E3%82%B0%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FAMA_CustomLog%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FAMA_CustomLog.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FAMA_CustomLog.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CustomLog/" data-id="cly533onx000v0nmi0em84j1m" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CustomLog/" data-id="clycqf8gp000v0nmq1u3w4yvn" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -139,9 +138,11 @@
 </ol>
 <p><img src="/blog/LogAnalytics/AMA_CustomLog/AMACustomlog_01.png"></p>
 <ol start="2">
-<li>データ収集エンドポイント (DCE) を任意の名前、リソース グループを指定して作成します。<br>この時、DCE を作成する宛先のリージョンと、ログを収集する予定の VM が存在しているリージョンは一致している必要があります。</li>
+<li>データ収集エンドポイント (DCE) を任意の名前、リソース グループを指定して作成します。<!--
+2024/07/08 コメントアウト
+この時、DCE を作成する宛先のリージョンと、ログを収集する予定の VM が存在しているリージョンは一致している必要があります。</li>
 </ol>
-<p><img src="/blog/LogAnalytics/AMA_CustomLog/AMACustomlog_02.png"></p>
+<p>–&gt;<br><img src="/blog/LogAnalytics/AMA_CustomLog/AMACustomlog_02.png"></p>
 <h2 id="カスタム-ログ-テーブルを作成する"><a href="#カスタム-ログ-テーブルを作成する" class="headerlink" title="カスタム ログ テーブルを作成する"></a>カスタム ログ テーブルを作成する</h2><ul>
 <li>カスタム テーブルを作成する<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-text-log?tabs=portal#create-a-custom-table">https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-text-log?tabs=portal#create-a-custom-table</a></li>
 </ul>
@@ -186,11 +187,21 @@
 </ul>
 <h2 id="正常に収集されない場合"><a href="#正常に収集されない場合" class="headerlink" title="正常に収集されない場合"></a>正常に収集されない場合</h2><p>カスタム ログを設定し、OS 上にログが出力された後、2 時間程度経過しないと Log Analytics ワークスペース上でクエリが出来ない場合があります。<br>ログを出力したまま、数時間お待ちいただき、クエリをお試し下さい。</p>
 <p>また、時間経過してもログが収集されない場合、以下の点をご確認下さい。</p>
+<!--
+2024/07/08 コメントアウト
+
+1. DCR 上で、紐づけている VM に対して DCE が設定されているか確認下さい。
+![](/blog/LogAnalytics/AMA_CustomLog/AMACustomlog_14.png)
+DCE が設定されていない場合、作成した DCE を設定します。
+ドロップボックスから選択出来ない場合、VM と DCE のリージョンが異なっていることが想定されますので、同一のリージョンに作成する必要があります。
+-->
+
+<!--
+2024/07/08 コメントアウト
+2. VM の Heartbeat ログが到達しているか確認下さい。
+-->
 <ol>
-<li><p>DCR 上で、紐づけている VM に対して DCE が設定されているか確認下さい。<br><img src="/blog/LogAnalytics/AMA_CustomLog/AMACustomlog_14.png"><br>DCE が設定されていない場合、作成した DCE を設定します。<br>ドロップボックスから選択出来ない場合、VM と DCE のリージョンが異なっていることが想定されますので、同一のリージョンに作成する必要があります。</p>
-</li>
-<li><p>VM の Heartbeat ログが到達しているか確認下さい。<br>Log Analytics ワークスペース上で以下のクエリを実行し、収集対象の VM から Heartbeat ログが取得されているか確認下さい。<br>Heartbeat ログは通常、1 分間に 1 回 Log Analytics ワークスペースへ送られてきます。</p>
-</li>
+<li>VM の Heartbeat ログが到達しているか確認下さい。<br>Log Analytics ワークスペース上で以下のクエリを実行し、収集対象の VM から Heartbeat ログが取得されているか確認下さい。<br>Heartbeat ログは通常、1 分間に 1 回 Log Analytics ワークスペースへ送られてきます。</li>
 </ol>
 <ul>
 <li>クエリ<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Heartbeat | top 10 by TimeGenerated</span><br></pre></td></tr></table></figure></li>
