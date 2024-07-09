@@ -18,7 +18,7 @@ tags:
   - [3-1. メトリック ‘VM Availability Metric (Preview)’ を監視する方法](#3-1-メトリック-‘VM-Availability-Metric-Preview-’-を監視する方法)
   - [3-2. リソース正常性を監視する方法](#3-2-リソース正常性を監視する方法)
 - [4. VM ゲストの監視](#4-VM-ゲストの監視)
-  - [4-1. Heratbeat を利用したログ アラート](#4-1-Heratbeat-を利用したログ-アラート)
+  - [4-1. Heartbeat を利用したログ アラート](#4-1-Heartbeat-を利用したログ-アラート)
   - [4-2. Heartbeat を利用したログのメトリック アラート](#4-2-Heartbeat-を利用したログのメトリック-アラート)
 - [5. VM 上で稼働している機能の監視](#5-VM-上で稼働している機能の監視)
 - [6. Heartbeat の収集遅延に影響されない監視方法](#6-Heartbeat-の収集遅延に影響されない監視方法)
@@ -124,12 +124,12 @@ VM のリソース正常性アラート ルールの設定方法については�
 ## 4. VM ゲストの監視
 VM ゲストは、以下の方法で監視できます。
 
-- Heratbeat を利用したログ アラート
+- Heartbeat を利用したログ アラート
 - Heartbeat を利用したログのメトリック アラート
 
 <br>
 
-### 4-1. Heratbeat を利用したログ アラート
+### 4-1. Heartbeat を利用したログ アラート
 Heartbeat は Log Analytics エージェントや Azure Monitor エージェントによって Log Analytics ワークスペースに収集されます。
 Log Analytics ワークスペースに収集された Heartbeat を利用して、死活監視の[ログ アラート ルール](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule)を構成することが可能です。
 例えば、直近 10 分以内に Heartbeat が収集されていることを確認するログ アラート ルールが発報した場合、アラートが実行された時点から 過去 10 分以内に Heartbeat が途絶えたことになり、該当のマシンにて何らかの問題が発生している可能性がございます。なお、Heartbeat のログ アラートが発報したとしても、必ずしも仮想マシンに問題が発生しているとは限りません。エージェント自体に問題が発生している場合や、ログの収集遅延によってアラートが発報する場合もございます。
