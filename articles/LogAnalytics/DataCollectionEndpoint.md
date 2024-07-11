@@ -47,7 +47,7 @@ Azure Monitor エージェントを使用してログやメトリックを収集
 [カスタム ログ](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-text-log?tabs=portal)、および [IIS ログ](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-iis)を取り込む際または[ログ インジェスト API](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-ingestion-api-overview)を使用してログ収集を行いたい場合に必要です。
 
 ### 構成アクセス エンドポイント
-Azure Monitor エージェントがデータ収集ルール (DCR) の構成情報を取得するためのエンドポイントです。  
+Azure Monitor エージェントがデータ収集ルールの構成情報を取得するためのエンドポイントです。  
 データ収集元となる仮想マシン (以下、VM) に紐づけられます。  
 [Azure Monitor Private Link Scope (AMPLS)](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-security) を使用してログ収集を行いたい場合に必要です。
 
@@ -102,7 +102,7 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent
 ## 具体的なシナリオ
 ### ログ インジェスト API が使用したい / カスタム ログ または IIS ログを収集したい
 * ログ インジェスト エンドポイント用の DCE が必要です。
-* DCE はそれと紐づけを行う DCE と送信先 Log Analytics ワークスペースと同じリージョンに存在している必要があります。
+* DCE はそれと紐づけを行うデータ収集ルールと送信先 Log Analytics ワークスペースと同じリージョンに存在している必要があります。
 
 #### 例 1
 ![alt text](./DataCollectionEndpoint/logingest_ex1.png)
@@ -146,7 +146,7 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent
 **A2.** ログ インジェスト エンドポイント、構成アクセス エンドポイントのどちらが必要かによって考え方が異なります。  
 
 ログ インジェスト エンドポイントだけが必要な場合、必要な DCE の最低数は、送信先の Log Analytics ワークスペースと使用するデータ収集ルールが存在するリージョンの数です。  
-この際、1 つの Log Analytics ワークスペースと、それに紐づいている DCR, DCE は同じリージョンに存在している必要があります。  
+この際、1 つの Log Analytics ワークスペースと、それに紐づいているデータ収集ルール, DCE は同じリージョンに存在している必要があります。  
 
 構成アクセス エンドポイントだけが必要な場合、必要な DCE の最低数は送信元の VM が存在しているリージョンの数です。
 この際、VM とそれに紐づける DCE は同じリージョンに存在している必要があります (複数の VM に同じ DCE を設定することができます)。
@@ -155,7 +155,7 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent
 
 **Q3.** データ収集エンドポイントには料金がかかりますか？
 ***
-**A1.** データ収集エンドポイントの使用にあたり、料金は発生しません。
+**A3.** データ収集エンドポイントの使用にあたり、料金は発生しません。
 
 **Q4.** Windows VM と Linux VM, どちらに対しても同じデータ収集エンドポイントを指定できますか？
 ***
