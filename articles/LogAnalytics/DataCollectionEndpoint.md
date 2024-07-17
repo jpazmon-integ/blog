@@ -143,7 +143,7 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent
 #### 例 4
 ![alt text](./DataCollectionEndpoint/configaccess_ex4.png)
 
-### ログ インジェスト API が使用したい / カスタム ログ または IIS ログを収集したい かつ Azure Private Link Scope を使用してログを収集したい
+### ログ インジェスト API を使用したい / カスタム ログ または IIS ログを収集したい かつ Azure Private Link Scope を使用してログを収集したい
 * ログ インジェスト エンドポイント用の DCE と構成アクセス エンドポイント用の DCE が必要です。
 * VM、 Log Analytics ワークスペース、データ収集ルールが同じリージョンに存在する場合、これらと同じリージョンに存在する DCE 1 つをログ インジェスト エンドポイントと構成アクセス エンドポイントの両方に使用できます。
 
