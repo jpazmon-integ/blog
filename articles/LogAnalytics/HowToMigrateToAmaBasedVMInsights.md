@@ -191,10 +191,13 @@ InsightsMetrics
 > 重複してログが収集されることにより、ログ アラート ルールが発報することがございます。
 
 > [!WARNING]  
-> B の方法は、既に VM にインストールされている Dependency Agent の名前が "DependencyAgentWindows" (Windows OS 用) または "DependencyAgentLinux" (Linux OS 用) の場合に有効です。  
-それ以外の名前の場合は、1 の作業の前に既存の Dependency Agent をアンインストールしていただく必要があります。  
-なお、VM にインストールされているエージェントの名前の確認は、Azure portal の VM リソース ページの 設定 > 拡張機能とアプリケーション のメニューで表示される、"名前" 列からご確認いただけます。
-![](./HowToMigrateToAmaBasedVMInsights/image13.png)
+> B の方法は、既に VM にインストールされている Dependency エージェントの名前が "DependencyAgentWindows" (Windows OS 用) または "DependencyAgentLinux" (Linux OS 用) の場合に有効です。  
+それ以外の名前の場合は、1 の作業の前に既存の Dependency エージェントをアンインストールしていただく必要があります。  
+> <VM にインストールされているエージェントの名前の確認方法>  
+Azure portal の VM リソース ページの 設定 > 拡張機能とアプリケーション のメニューで表示される、"名前" 列からご確認いただけます。
+![](./HowToMigrateToAmaBasedVMInsights/image13.png)  
+> <Dependency エージェントのアンインストール方法>  
+Azure portal の VM リソース ページの 設定 > 拡張機能とアプリケーション のメニューで表示される拡張機能のうち、 "種類" に "DependencyAgent" が含まれるものを押下し、続いて"アンインストール" を押下します。
 
 <br>
 
