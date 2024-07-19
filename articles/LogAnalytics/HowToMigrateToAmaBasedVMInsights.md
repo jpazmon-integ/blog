@@ -186,9 +186,15 @@ InsightsMetrics
 ![](./HowToMigrateToAmaBasedVMInsights/image11.png)
 
 
-> [!WARNING]
+> [!WARNING]  
 > 上記 B. の手順の場合は、作業中はログが二重に収集されることをご留意ください。
 > 重複してログが収集されることにより、ログ アラート ルールが発報することがございます。
+
+> [!WARNING]  
+> B の方法は、既に VM にインストールされている Dependency Agent の名前が "DependencyAgentWindows" (Windows OS 用) または "DependencyAgentLinux" (Linux OS 用) の場合に有効です。  
+それ以外の名前の場合は、1 の作業の前に既存の Dependency Agent をアンインストールしていただく必要があります。  
+なお、VM にインストールされているエージェントの名前の確認は、Azure portal の VM リソース ページの 設定 > 拡張機能とアプリケーション のメニューで表示される、"名前" 列からご確認いただけます。
+![](./HowToMigrateToAmaBasedVMInsights/image13.png)
 
 <br>
 
