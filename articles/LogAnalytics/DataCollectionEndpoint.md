@@ -44,7 +44,7 @@ Azure Monitor エージェントを使用してログやメトリックを収集
 ## データ収集ルールが使用するエンドポイントの種類
 ### ログ インジェスト エンドポイント
 ログをデータ インジェスト パイプラインに取り込むエンドポイントです。  
-[カスタム ログ](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-text-log?tabs=portal)、および [IIS ログ](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-iis)を取り込む際または[ログ インジェスト API](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-ingestion-api-overview)を使用してログ収集を行いたい場合に必要です。
+[カスタム ログ](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-text-log?tabs=portal)、および [IIS ログ](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-iis)を取り込む際または[ログ インジェスト API ](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-ingestion-api-overview)を使用してログ収集を行いたい場合に必要です。
 
 ### メトリック インジェスト エンドポイント
 メトリックをデータ インジェスト パイプラインに取り込むエンドポイントです。  
@@ -117,12 +117,16 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent
 
 ### ログ インジェスト API を使用したい / カスタム ログ または IIS ログを収集したい
 * ログ インジェスト エンドポイント用の DCE が必要です。
-* DCE はそれと紐づけを行うデータ収集ルールと送信先 Log Analytics ワークスペースと同じリージョンに存在している必要があります。
+* DCE は DCE と紐づけを行うデータ収集ルール、および送信先 Log Analytics ワークスペースと同じリージョンに存在している必要があります。
 
 #### 例 1
+VM が Log Analytics ワークスペースおよびデータ収集ルールと同じリージョン (下図のリージョン A) に存在する場合、DCE (ログ インジェスト エンドポイント) もリージョン A に配置します。  
+
 ![alt text](./DataCollectionEndpoint/logingest_ex1.png)
 
 #### 例 2
+VM が Log Analyics ワークスペースおよびデータ収集ルールと異なるリージョンに存在する場合、DCE は Log Analyics ワークスペースおよびデータ収集ルールと同じリージョン (下図のリージョン B) に配置します。  
+
 ![alt text](./DataCollectionEndpoint/logingest_ex2.png)
 
 ### Azure Private Link Scope を使用してログを収集したい
@@ -132,32 +136,41 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent
 ※ 以降の図内では、簡略化のためグローバル/リージョン共通のログ インジェスト エンドポイントを省略しております。
 
 #### 例 1
+VM が Log Analytics ワークスペースおよびデータ収集ルールと同じリージョン (下図のリージョン A) に存在する場合、DCE (構成アクセス エンドポイント) もリージョン A に配置します。  
+
 ![alt text](./DataCollectionEndpoint/configaccess_ex1.png)
 
 #### 例 2
-![alt text](./DataCollectionEndpoint/configaccess_ex2.png)
+1 つのデータ収集ルールに複数の VM を紐づける場合、それぞれの VM に対して DCE (構成アクセス エンドポイント) を設定する必要があります。  
+VM と VM に設定する DCE は同じリージョンに存在している必要があります。  
 
-#### 例 3
-![alt text](./DataCollectionEndpoint/configaccess_ex3.png)
-
-#### 例 4
 ![alt text](./DataCollectionEndpoint/configaccess_ex4.png)
 
 ### ログ インジェスト API を使用したい / カスタム ログ または IIS ログを収集したい かつ Azure Private Link Scope を使用してログを収集したい
 * ログ インジェスト エンドポイント用の DCE と構成アクセス エンドポイント用の DCE が必要です。
-* VM、 Log Analytics ワークスペース、データ収集ルールが同じリージョンに存在する場合、これらと同じリージョンに存在する DCE 1 つをログ インジェスト エンドポイントと構成アクセス エンドポイントの両方に使用できます。
+* 必要な DCE の数は VM が Log Analytics ワークスペースおよびデータ収集ルールと同じリージョンに存在しているかどうかで変わります。
+
+#### 例 1
+VM と Log Analytics ワークスペース、データ収集ルールが 1 つのリージョン (下図のリージョン A) に存在する場合、1 つの DCE をログ インジェスト エンドポイントと構成アクセス エンドポイントの両方に設定することで、収集の要件を達成することができます。  
 
 ![alt text](./DataCollectionEndpoint/dceshared_ex1.png)
 
+#### 例 2
+VM が Log Analytics ワークスペースおよびデータ収集ルールと異なるリージョンに存在する場合、2 つの DCE が必要です。
+構成アクセス エンドポイントとしての DCE は VM と同じリージョンに、ログ インジェスト エンドポイントとしての DCE は Log Analytics ワークスペースおよびデータ収集ルールと同じリージョンに、それぞれ配置する必要があります。
+
+![alt text](./DataCollectionEndpoint/dcenotshared.png)
+
 ## データ収集エンドポイントに関する FAQ
 **Q1.** 既存のデータ収集エンドポイントが 1 つ存在する場合、それをデータ収集ルール作成時の [基本] タブと [リソース] の両方で指定することはできますか？
-***
 
 **A1.** はい、可能です。  
 ただし、この場合はデータ収集ルール、送信先 Log Analytics ワークスペース (メトリック収集の場合は Azure Monitor ワークスペース)、送信元 VM、データ収集エンドポイントがすべて同じリージョンに存在する必要があります。
 
-**Q2.** 最低限必要なデータ収集エンドポイントの数が分かりません。どのように考えればよいですか？
 ***
+
+**Q2.** 最低限必要なデータ収集エンドポイントの数が分かりません。どのように考えればよいですか？
+
 **A2.** ログ インジェスト エンドポイント (メトリック収集の場合はメトリック インジェスト エンドポイント)、構成アクセス エンドポイントのどちらが必要かによって考え方が異なります。  
 
 ログ インジェスト エンドポイント (メトリック インジェスト エンドポイント) だけが必要な場合、必要な DCE の最低数は、送信先の Log Analytics ワークスペース (Azure Monitor ワークスペース) と使用するデータ収集ルールが存在するリージョンの数です。  
@@ -168,12 +181,16 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent
 
 なお、ログ インジェスト エンドポイントおよびメトリック インジェスト エンドポイントと構成アクセス エンドポイントの両方が必要な場合、それぞれのエンドポイントの条件を満たしていれば、 1 つのエンドポイントをログ インジェスト エンドポイントおよびメトリック インジェスト エンドポイントと構成アクセス エンドポイントの両方に使用することが可能です。
 
-**Q3.** データ収集エンドポイントには料金がかかりますか？
 ***
+
+**Q3.** データ収集エンドポイントには料金がかかりますか？
+
 **A3.** データ収集エンドポイントの使用にあたり、料金は発生しません。
 
-**Q4.** Windows VM と Linux VM, どちらに対しても同じデータ収集エンドポイントを指定できますか？
 ***
+
+**Q4.** Windows VM と Linux VM, どちらに対しても同じデータ収集エンドポイントを指定できますか？
+
 **A4.** OS の種類に関わらず、複数の VM に 1 つのDCE (構成アクセス エンドポイント) を紐づけることが可能です。  
 この際も、VM とそれに紐づける DCE は同じリージョンに存在している必要があります。
 
