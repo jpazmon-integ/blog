@@ -29,8 +29,9 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image7.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image10.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image11.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image13.png">
 <meta property="article:published_time" content="2023-11-05T15:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-09T05:57:59.226Z">
+<meta property="article:modified_time" content="2024-07-23T07:29:11.080Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Tips">
 <meta property="article:tag" content="Log Analytics">
@@ -124,7 +125,7 @@
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+279e70cc-d1c5-5c18-b660-a54ed95a3230%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BMigrate+to+Azure+Monitor+agent%E2%80%93based+VM+insights+by+31+August+2024+%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FHowToMigrateToAmaBasedVMInsights%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FHowToMigrateToAmaBasedVMInsights.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FHowToMigrateToAmaBasedVMInsights.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/" data-id="clye02f2c00ag0nmc68x925aj" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/" data-id="clyy3hmeg00ag0np95d5125gw" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -259,6 +260,7 @@
 </li>
 </ol>
 <div class="alert is-warning"><p class="alert-title">警告</p><p>上記 B. の手順の場合は、作業中はログが二重に収集されることをご留意ください。</p><p>重複してログが収集されることにより、ログ アラート ルールが発報することがございます。</p></div>
+<div class="alert is-warning"><p class="alert-title">警告</p><p>B の方法は、既に VM にインストールされている Dependency エージェントの名前が “DependencyAgentWindows” (Windows OS 用) または “DependencyAgentLinux” (Linux OS 用) の場合に有効です。</p><p>それ以外の名前の場合は、1 の作業の前に既存の Dependency エージェントをアンインストールしていただく必要があります。</p><p>&lt;VM にインストールされているエージェントの名前の確認方法&gt;</p><p>Azure portal の VM リソース ページの 設定 &gt; 拡張機能とアプリケーション のメニューで表示される、”名前” 列からご確認いただけます。</p><p><img src="/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/image13.png"></p><p>&lt;Dependency エージェントのアンインストール方法&gt;</p><p>Azure portal の VM リソース ページの 設定 &gt; 拡張機能とアプリケーション のメニューで表示される拡張機能のうち、 “種類” に “DependencyAgent” が含まれるものを押下し、続いて”アンインストール” を押下します。</p></div>
 <br>
 
 <h3 id="3-留意事項"><a href="#3-留意事項" class="headerlink" title="3. 留意事項"></a>3. 留意事項</h3><p>今回ご紹介した移行手順は、あくまで VM insights のための移行手順です。<br>VM insights 以外の監視データを収集するように Log Analytics エージェントを構成されている場合、<br>Log Analytics エージェントをアンインストールすれば、今まで Log Analytics エージェントによってログは収集されなくなります。<br>Log Analytics エージェントで VM insights 以外の収集設定もされている場合は、下記弊社公開情報をご参照いただき Azure Monitor エージェントによる収集設定をご実施いただくようお願いいたします。</p>
