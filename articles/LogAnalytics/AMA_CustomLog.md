@@ -37,7 +37,6 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-collection
 ![](./AMA_CustomLog/AMACustomlog_01.png)
 
 2. データ収集エンドポイント (DCE) を任意の名前、リソース グループを指定して作成します。
-この時、DCE を作成する宛先のリージョンと、ログを収集する予定の VM が存在しているリージョンは一致している必要があります。
 
 ![](./AMA_CustomLog/AMACustomlog_02.png)
 
@@ -168,12 +167,7 @@ https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/todatetimefunc
 
 また、時間経過してもログが収集されない場合、以下の点をご確認下さい。
 
-1. DCR 上で、紐づけている VM に対して DCE が設定されているか確認下さい。
-![](./AMA_CustomLog/AMACustomlog_14.png)
-DCE が設定されていない場合、作成した DCE を設定します。
-ドロップボックスから選択出来ない場合、VM と DCE のリージョンが異なっていることが想定されますので、同一のリージョンに作成する必要があります。
-
-2. VM の Heartbeat ログが到達しているか確認下さい。
+1. VM の Heartbeat ログが到達しているか確認下さい。
 Log Analytics ワークスペース上で以下のクエリを実行し、収集対象の VM から Heartbeat ログが取得されているか確認下さい。
 Heartbeat ログは通常、1 分間に 1 回 Log Analytics ワークスペースへ送られてきます。
 
