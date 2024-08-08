@@ -27,7 +27,7 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-per
 今回は、Azure portal でデフォルトで用意されてないパフォーマンス カウンター (以降、カスタム パフォーマンス カウンター) の収集設定方法についてご紹介します。
 
 
-## カスタムのパフォーマンス カウンターの収集手順
+## カスタム パフォーマンス カウンターの収集手順
 ### 事前準備
 以下のリソースがご自身の環境にあることを確認してください。
 * データ収集元となる Windows OS の仮想マシン (以下 VM)
