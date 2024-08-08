@@ -69,7 +69,7 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-win
 
 7. [確認と作成] タブにて "作成" を押下し、完了です。
 
-### イベント ログの収集の確認
+### Windows イベント ログの収集の確認
 1. Azure portal にログインします。
 2. [データ収集ルールの作成](#データ収集ルールの作成) の 6 で選択した Log Analytics ワークスペースのページを開きます。
 3. 左ペインの [ログ] を押下し、以下のクエリを貼り付け、実行します。
