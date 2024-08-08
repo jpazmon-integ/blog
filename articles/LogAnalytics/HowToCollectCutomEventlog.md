@@ -16,8 +16,9 @@ tags:
 - はじめに
 - カスタムのイベント ログの収集手順
   - 事前準備
-  - 収集したいイベント ログの XPath の取得
-  - データ収集ルールの作成
+  - 収集したいイベント ログの XPath を取得する
+  - データ収集ルールを作成する
+  - Windows イベント ログが収集されていることを確認する
 - まとめ
 
 ## はじめに
@@ -33,7 +34,7 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-win
 * データ収集元となる Windows OS の仮想マシン (以下 VM)
 * データ収集先となる Log Analytics ワークスペース
 
-### 収集したいイベント ログの XPath の取得
+### 収集したいイベント ログの XPath を取得する
 任意のイベント ログをデータ収集ルールのデータ ソースとして指定し、収集設定したい場合、そのイベント ログの XPath が必要になります。
 以下の手順に沿って任意のイベント ログの XPath を取得することができます。  
 
@@ -53,7 +54,7 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-win
 
     ![alt text](./HowToCollectCustomEventlog/eventviewer_xml.png)
 
-### データ収集ルールの作成
+### データ収集ルールを作成する
 1. Azure potral にログインします。
 2. "deta collection rules" を選択します。
 3. "作成" を押下し、"基本" タブの各値を入力します。  
@@ -69,7 +70,7 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-win
 
 7. [確認と作成] タブにて "作成" を押下し、完了です。
 
-### Windows イベント ログの収集の確認
+### Windows イベント ログが収集されていることを確認する
 1. Azure portal にログインします。
 2. [データ収集ルールの作成](#データ収集ルールの作成) の 6 で選択した Log Analytics ワークスペースのページを開きます。
 3. 左ペインの [ログ] を押下し、以下のクエリを貼り付け、実行します。
