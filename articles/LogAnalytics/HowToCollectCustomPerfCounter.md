@@ -41,8 +41,8 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-per
 2. 左ペインで Monitoring Tools > Performance Monitor (モニター ツール > パフォーマンス モニター) を押下します。ウィンドウ中央に折れ線グラフが表示されます。  
 ![alt text](./HowToCollectCustomPerfCounter/performancemonitor-screen1.png)
 
-3. 上部 + ボタンを押下し、確認したいパフォーマンス カウンターを押下します。この際、"選択したオブジェクトのインスタンス (I)" に複数の値が表示されている場合は任意のインスタンスも押下します。  
-"追加" を押下し、"OK" を押下します。  
+3. 上部 [+] ボタンを押下し、確認したいパフォーマンス カウンターを押下します。この際、"選択したオブジェクトのインスタンス (I)" に複数の値が表示されている場合は任意のインスタンスも押下します。  
+[追加] を押下し、[OK] を押下します。  
 
 例 : パフォーマンス カウンターにインスタンスがない場合
 ![alt text](./HowToCollectCustomPerfCounter/performancemonitor-screen2.png)  
@@ -65,7 +65,7 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-per
 ### データ収集ルールを作成する
 1. Azure potral にログインします。
 2. "deta collection rules" を選択します。
-3. "作成" を押下し、"基本" タブの各値を入力します。  
+3. [作成] を押下し、"基本" タブの各値を入力します。  
     続いて "リソース" タブで収集元 VM を選択・追加します。
 4. "収集と配信" タブで [データ ソースの追加] を押下します。  
     右ペイン内 "データ ソース" タブの "データ ソースの種類" で [パフォーマンス カウンター] を選択します。  
