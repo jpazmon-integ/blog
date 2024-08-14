@@ -24,7 +24,7 @@ tags:
 ## はじめに
 Windows イベント ログは、データ収集ルール (DCR) のデータ ソースとして使用できるものの 1 つです。  
 Windows イベント ログの種類は多数存在し、Azure portal でデフォルトで用意されているものと、そうでないものがあります。  
-今回は、Azure portal でデフォルトで用意されていない Windows イベント ログ (以降、Windows イベント ログ) の収集設定方法についてご紹介します。
+今回は、Azure portal でデフォルトで用意されていない Windows イベント ログ (以降、カスタム Windows イベント ログ) の収集設定方法についてご紹介します。
 
 https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-windows-events
 
@@ -50,25 +50,41 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-win
     ![alt text](./HowToCollectCustomEventlog/eventviewer_filter.png)  
 
 4. フィルターの設定ができたら、同ウィンドウの "XML" タブを開きます。
-`<Select Path="2で選択したフォルダ">` と `</Select>` の間の `*[System[(Level=...) and (EventID=...)]]` の箇所を手元にメモします。
+   以下 2 点を手元にメモします。
+   - `<Select Path="2で選択したフォルダ">` の `2で選択したフォルダ` -- A
+   - `<Select Path="2で選択したフォルダ">` と `</Select>` の間の `*[System[(Level=...) and (EventID=...)]]` の箇所 -- B
 
     ![alt text](./HowToCollectCustomEventlog/eventviewer_xml.png)
+
+> [!NOTE]  
+> 上記の方法で取得した XPath が有効であるかを確認したい場合、ローカルで確認することができます。  
+> 手順は以下の通りです。  
+> 1. Windows コンピュータで、PowerShell を開きます。  
+> 2. 以下のクエリを実行します。  
+>    この際、$XPath には、上記 4 で取得した B の値を設定してください。  
+>    また、$LogName には、上記 4 で取得した A の値を設定してください。  
+> ```   
+> $XPath = '*[System[EventID=1035]]'   
+> $LogName = 'Application' 
+> Get-WinEvent -LogName $LogName -FilterXPath $XPath
+> ```  
+> 3. 結果を確認します。ログの一覧が表示されれば、指定した XPath は有効であると判断できます。
 
 ### データ収集ルールを作成する
 1. Azure potral にログインします。
 2. "deta collection rules" を選択します。
-3. "作成" を押下し、"基本" タブの各値を入力します。  
+3. [作成] を押下し、"基本" タブの各値を入力します。  
     続いて "リソース" タブで収集元 VM を選択・追加します。
-4. "収集と配信" タブで "データ ソースの追加" を押下します。  
+4. "収集と配信" タブで [データ ソースの追加] を押下します。  
     右ペイン内 "データ ソース" タブの "データ ソースの種類" で "Windows イベント ログ" を選択します。  
-5. [カスタム] を押下し、入力欄に [収集したいイベント ログの XPath の取得](#収集したいイベント-ログの-xpath-の取得) にて取得した XPath の先頭に `System!` を足したものを入力し、[追加] を押下します。  
+5. [カスタム] を押下し、入力欄に [収集したいイベント ログの XPath の取得](#収集したいイベント-ログの-xpath-の取得) にて取得した XPath の先頭に `<4で取得した A の値>!` ("<>" は不要です) を足したものを入力し、[追加] を押下します。  
     ![alt text](./HowToCollectCustomEventlog/dcr_addDatasource.png)
 
-6. "次へ : ターゲット >" を押下し、"+ ターゲットの追加" を押下します。  
+6. [次へ : ターゲット >] を押下し、[+ ターゲットの追加] を押下します。  
     "ターゲットの種類" で "Azure Monitor Logs" を選択し、収集先となる Log Analytics ワークスペースを選択し、"データ ソースの追加" を押下します。  
     ![alt text](./HowToCollectCustomEventlog/dcr_addTarget.png)
 
-7. [確認と作成] タブにて "作成" を押下し、完了です。
+7. [確認と作成] タブにて [作成] を押下し、完了です。
 
 ### Windows イベント ログが収集されていることを確認する
 1. Azure portal にログインします。
