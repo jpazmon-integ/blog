@@ -23,8 +23,12 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-per
 
 ## はじめに
 パフォーマンス カウンターは、データ収集ルール (DCR) のデータ ソースとして使用できるものの 1 つです。  
-パフォーマンス カウンターの種類は多数存在し、Azure portal でデフォルトで用意されているものと、そうでないものがあります。
-今回は、Azure portal でデフォルトで用意されてないパフォーマンス カウンター (以降、カスタム パフォーマンス カウンター) の収集設定方法についてご紹介します。
+パフォーマンス カウンターの種類は多数存在し、Azure portal でデフォルトで用意されているものと、そうでないものがあります。  
+Linux OS のマシンについては、収集可能なパフォーマンス カウンターの種類が固定されている一方、Windows OS のマシンではデフォルトで用意されていないパフォーマンス カウンターも収集することが可能です。  
+今回は、Azure portal でデフォルトで用意されてないパフォーマンス カウンター (以降、カスタム パフォーマンス カウンター) の収集設定方法についてご紹介します。  
+
+なお、Linux OS のマシンから収集できるパフォーマンス カウンターの一覧については、以下弊社サポート チームのブログをご参照ください。  
+[Azure Monitor Agent for Linux で取得可能なパフォーマンス カウンターの一覧](https://jpazmon-integ.github.io/blog/LogAnalytics/AMALinux_Perf/)
 
 
 ## カスタム パフォーマンス カウンターの収集手順
@@ -61,6 +65,10 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-per
     
 インスタンスがある場合 : `\<オブジェクト>(<インスタンス>)\<カウンター>`  
     例 : `\LogicalDisk(C:)\% Free Space`
+
+> [!NOTE]  
+> カウンター名にアンパサンド (`&`) が含まれている場合は、`&` を `&amp;` に置き換えてください。  
+> 例 : カウンター列の値が `Free & Zero Page List Bytes` の場合、パフォーマンス カウンター名は `\Memory\Free &amp; Zero Page List Bytes` となります。
 
 ### データ収集ルールを作成する
 1. Azure potral にログインします。
