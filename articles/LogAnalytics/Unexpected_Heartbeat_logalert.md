@@ -39,41 +39,43 @@ ingestion_time() 列 : Log Analytics ワークスペースに取り込まれ、�
 - インジェスト時間のチェック
 https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-ingestion-time#check-ingestion-time
 
-Heartbeat
-| where _ResourceId contains "<仮想マシン名>" //<仮想マシン名> は、遅延状況を確認したいログの収集元マシン名に置き換えます
-| order by TimeGenerated asc​
-| extend E2EIngestionLatency = ingestion_time() - TimeGenerated​ // ①
-| extend AgentLatency = _TimeReceived - TimeGenerated​ // ②
-| project TimeGenerated, Computer, E2EIngestionLatency, AgentLatency, _TimeReceived, ingestion_time(), Category​
-| order by E2EIngestionLatency
-
-① : エージェントがデータを検知してから、データがクエリ可能になるまでの所要時間を計算します
-② : エージェントがデータを検知してから、Azure に届くまでの所要時間を計算します
-
+Heartbeat<br>
+| where _ResourceId contains "<仮想マシン名>" //<仮想マシン名> は、遅延状況を確認したいログの収集元マシン名に置き換えます<br>
+| order by TimeGenerated asc​<br>
+| extend E2EIngestionLatency = ingestion_time() - TimeGenerated​ // ①<br>
+| extend AgentLatency = _TimeReceived - TimeGenerated​ // ②<br>
+| project TimeGenerated, Computer, E2EIngestionLatency, AgentLatency, _TimeReceived, ingestion_time(), Category​<br>
+| order by E2EIngestionLatency<br>
+<br>
+① : エージェントがデータを検知してから、データがクエリ可能になるまでの所要時間を計算します<br>
+② : エージェントがデータを検知してから、Azure に届くまでの所要時間を計算します<br>
+<br>
 上述のクエリを実行いただくことで、① として計算した値が大きい順に以下の表なテーブル形式でデータが出力されます。
 
 エージェントがデータを検知してからログがクエリ可能な状態に処理されるまで、おおよそ 3 分ほどの時間を要します。
 E2EIngestionLatency 列の値をご確認いただき、遅延の有無をご確認ください。
 
 ![](./Unexpected_Heartbeat_logalert/image001.png)
-例えば、上述のハイライトの場合ですと、以下のようになっております。
-E2EIngestionLatency : 18 分 8 秒
+例えば、上述のハイライトの場合ですと、以下のようになっております。<br>
+<br>
+E2EIngestionLatency : 18 分 8 秒<br>
 AgentLatency : 18 分 2 秒
-
+<br>
+<br>
 この場合、AgentLatency が大きいために E2EIngestionLatency の値が大きくなっています。
 すなわち、エージェントがデータを検知してから Azure に届くまでの過程で時間を要していることがわかります。
 
 # 3. Heartbeat ログの遅延が確認されたら
-2 に記載のクエリにより Heartbeat ログの遅延が確認された場合、以下 2 パターンの遅延の仕方がございます。
-パターン 1 : E2EIngestionLatency が大きく、かつ AgentLatency も大きい
-パターン 2 : E2EIngestionLatency が大きいが、 AgentLatency は小さい
+2 に記載のクエリにより Heartbeat ログの遅延が確認された場合、以下 2 パターンの遅延の仕方がございます。<br>
+パターン 1 : E2EIngestionLatency が大きく、かつ AgentLatency も大きい<br>
+パターン 2 : E2EIngestionLatency が大きいが、 AgentLatency は小さい<br>
 
-遅延箇所により遅延の発生原因が異なります。
-それぞれのパターンについて、以下に詳述します。
+遅延箇所により遅延の発生原因が異なります。<br>
+それぞれのパターンについて、以下に詳述します。<br>
 
 ## パターン 1 : E2EIngestionLatency が大きく、かつ AgentLatency も大きい
-この場合、エージェントがデータを検知してから Azure に届くまでに時間を要しています。
-考えられる主な原因は以下の 2 つでございます。
+この場合、エージェントがデータを検知してから Azure に届くまでに時間を要しています。<br>
+考えられる主な原因は以下の 2 つでございます。<br>
 - ご利用いただいているネットワークの問題
 - エージェントで発生している問題
 
@@ -94,32 +96,32 @@ cd "C:\Packages\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent\1.X.X.X
 ### Linux OS の場合
 対象の Linux OS 上で作業を実施してください。
 以下のコマンドを任意のディレクトリ上で実行します。
-
-$ mkdir ama_tst
-$ cd ama_tst
-$ wget https://github.com/Azure/azure-linux-extensions/raw/master/AzureMonitorAgent/ama_tst/ama_tst.tgz
-$ tar -xzvf ama_tst.tgz
-$ sudo sh ama_troubleshooter.sh
-"Please select an option:" と表示されますので、"L" を入力し、エンターキーを押します。
-"Output Directory:" と表示されますので、"." を入力し、エンターキーを押します。
-
-シェルが終了しますと、"amalogs" から始まるディレクトリ、またはファイルがカレントディレクトリに出力されます。
-こちらが Azure Monitor エージェントのログでございます。
-
+<br>
+$ mkdir ama_tst<br>
+$ cd ama_tst<br>
+$ wget https://github.com/Azure/azure-linux-extensions/raw/master/AzureMonitorAgent/ama_tst/ama_tst.tgz<br>
+$ tar -xzvf ama_tst.tgz<br>
+$ sudo sh ama_troubleshooter.sh<br>
+"Please select an option:" と表示されますので、"L" を入力し、エンターキーを押します。<br>
+"Output Directory:" と表示されますので、"." を入力し、エンターキーを押します。<br>
+<br>
+シェルが終了しますと、"amalogs" から始まるディレクトリ、またはファイルがカレントディレクトリに出力されます。<br>
+こちらが Azure Monitor エージェントのログでございます。<br>
+<br>
 
 事象発生直後のほうが、ログに残存している情報が多いため、
-弊社サポート窓口にお問い合わせいただく場合でも事象発生後なるべくお早めにログを取得いただくことをお勧めいたします。
-ログ ファイルがディレクトリとなっている場合には、弊社にご提供いただきます際には圧縮いただきますようお願いいたします。
+弊社サポート窓口にお問い合わせいただく場合でも事象発生後なるべくお早めにログを取得いただくことをお勧めいたします。<br>
+ログ ファイルがディレクトリとなっている場合には、弊社にご提供いただきます際には圧縮いただきますようお願いいたします。<br>
 
 また、エージェントのバージョンが最新でない場合には、
-過去のエージェント特有の不具合として事象が発生する可能性もございます。
-エージェントは不具合の修正などを目的としたアップグレードが行われております。
-そのため、エージェントは最新バージョンをご利用いただくことを合わせてご検討ください。
+過去のエージェント特有の不具合として事象が発生する可能性もございます。<br>
+エージェントは不具合の修正などを目的としたアップグレードが行われております。<br>
+そのため、エージェントは最新バージョンをご利用いただくことを合わせてご検討ください。<br>
 
 ## パターン 2 : E2EIngestionLatency が大きいが、 AgentLatency は小さい
-この場合、AgentLatency が小さいことからエージェントがデータを検知してから Azure に届くまでの経路に問題はありません。
-一方で、Azure に届いてからクエリ可能になるまでに時間を要しているため E2EIngestionLatency の値が大きくなっています。
+この場合、AgentLatency が小さいことからエージェントがデータを検知してから Azure に届くまでの経路に問題はありません。<br>
+一方で、Azure に届いてからクエリ可能になるまでに時間を要しているため E2EIngestionLatency の値が大きくなっています。<br>
 この場合、Azure 内部の処理 (受信したデータをクエリ可能となるよう行う処理) に時間がかかっております。
-
+<br>
 なぜ Azure 内部の処理に時間がかかったか詳細な原因を調査されたい場合には、サポート リクエストを発行いただくことで調査が可能です。
 
