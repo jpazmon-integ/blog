@@ -81,17 +81,15 @@ AgentLatency : 18 分 2 秒
 
 エージェントで問題が発生しているかどうかは、以下の手順でエージェントのログを取得いただくことでご確認いただけます。
 ### Windows OS の場合
-1. 問題が発生した Windows サーバーへ管理者権限にてログインします。
-2. PowerShell ウインドウを管理者権限にて開きます。
-3. 以下のコマンドを実行します。
-cd "C:\Packages\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent\1.X.X.X\Troubleshooter"
-(X にはバージョン番号が入ります。環境に応じて変更下さい。)
-
-.\AgentTroubleshooter.exe --ama -v
-
-4. ログ採取が行われますのでそのまま待機します。
-5. "C:\Packages\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent\1.X.X.X\Troubleshooter" フォルダ内 AgentTroubleshooterOutput.zip ファイルが作成されます。
-こちらが Azure Monitor エージェントのログでございます。
+1. 問題が発生した Windows サーバーへ管理者権限にてログインします。<br>
+2. PowerShell ウインドウを管理者権限にて開きます。<br>
+3. 以下のコマンドを実行します。<br>
+cd "C:\Packages\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent\1.X.X.X\Troubleshooter"<br>
+(X にはバージョン番号が入ります。環境に応じて変更下さい。)<br>
+    .\AgentTroubleshooter.exe --ama -v<br>
+4. ログ採取が行われますのでそのまま待機します。<br>
+5. "C:\Packages\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent\1.X.X.X\Troubleshooter" フォルダ内 AgentTroubleshooterOutput.zip ファイルが作成されます。<br>
+こちらが Azure Monitor エージェントのログでございます。<br>
 
 ### Linux OS の場合
 対象の Linux OS 上で作業を実施してください。
