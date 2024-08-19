@@ -8,7 +8,9 @@ tags:
 
 こんにちは、Azure Monitoring チームの徳田です。
 
-本ブログでは、以下の公開情報に記載されています、についてご説明します。
+本ブログでは、以下の公開情報に記載されています、Azure Monitor エージェントを使用してカスタムの Windows イベント ログを収集する方法についてご説明します。  
+
+https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-windows-events
 
 <!-- more -->
 
