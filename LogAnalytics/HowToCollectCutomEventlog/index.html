@@ -4,30 +4,26 @@
   <meta charset="utf-8">
   
   
-  <title>既定で用意されているもの以外のパフォーマンス カウンターを収集する方法 | Japan Azure Monitoring Support Blog</title>
+  <title>既定で用意されているもの以外のイベント ログを収集する方法 | Japan Azure Monitoring Support Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="こんにちは、Azure Monitoring チームの徳田です。 本ブログでは、以下の公開情報に記載されています、Azure Monitor エージェントを使用してカスタムのパフォーマンス カウンターを収集するためのデータ収集ルールの作成方法についてご説明します。 https:&#x2F;&#x2F;learn.microsoft.com&#x2F;ja-jp&#x2F;azure&#x2F;azure-monitor&#x2F;agents&#x2F;data-c">
+  <meta name="description" content="こんにちは、Azure Monitoring チームの徳田です。 本ブログでは、以下の公開情報に記載されています、についてご説明します。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="既定で用意されているもの以外のパフォーマンス カウンターを収集する方法">
-<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomPerfCounter/index.html">
+<meta property="og:title" content="既定で用意されているもの以外のイベント ログを収集する方法">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCutomEventlog/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは、Azure Monitoring チームの徳田です。 本ブログでは、以下の公開情報に記載されています、Azure Monitor エージェントを使用してカスタムのパフォーマンス カウンターを収集するためのデータ収集ルールの作成方法についてご説明します。 https:&#x2F;&#x2F;learn.microsoft.com&#x2F;ja-jp&#x2F;azure&#x2F;azure-monitor&#x2F;agents&#x2F;data-c">
+<meta property="og:description" content="こんにちは、Azure Monitoring チームの徳田です。 本ブログでは、以下の公開情報に記載されています、についてご説明します。">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomPerfCounter/performancemonitor-screen1.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomPerfCounter/performancemonitor-screen2.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomPerfCounter/performancemonitor-screen3.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomPerfCounter/performancemonitor-screen4.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomPerfCounter/dcr-addcustomperf.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomPerfCounter/dcr-addcustomperf2.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomPerfCounter/dcr-addtargets.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomPerfCounter/law-checklog.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCutomEventlog/HowToCollectCustomEventlog/eventviewer_1.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCutomEventlog/HowToCollectCustomEventlog/eventviewer_filter.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCutomEventlog/HowToCollectCustomEventlog/eventviewer_xml.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCutomEventlog/HowToCollectCustomEventlog/laws_eventlog.png">
 <meta property="article:published_time" content="2024-08-18T15:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-19T07:46:01.896Z">
+<meta property="article:modified_time" content="2024-08-19T07:46:01.912Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="How-To">
 <meta property="article:tag" content="Log Analytics">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomPerfCounter/performancemonitor-screen1.png">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCutomEventlog/HowToCollectCustomEventlog/eventviewer_1.png">
   
     <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
   
@@ -89,7 +85,7 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-LogAnalytics/HowToCollectCustomPerfCounter" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-LogAnalytics/HowToCollectCutomEventlog" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -98,7 +94,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      既定で用意されているもの以外のパフォーマンス カウンターを収集する方法
+      既定で用意されているもの以外のイベント ログを収集する方法
     </h1>
   
 
@@ -110,78 +106,72 @@
 </a>
         
         
-        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+89c574e4-211e-54f7-a5e8-539052507834%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E6%97%A2%E5%AE%9A%E3%81%A7%E7%94%A8%E6%84%8F%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%82%82%E3%81%AE%E4%BB%A5%E5%A4%96%E3%81%AE%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9+%E3%82%AB%E3%82%A6%E3%83%B3%E3%82%BF%E3%83%BC%E3%82%92%E5%8F%8E%E9%9B%86%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FHowToCollectCustomPerfCounter%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FHowToCollectCustomPerfCounter.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FHowToCollectCustomPerfCounter.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+62f15061-67cb-531d-b2e9-39b6e5a5b927%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E6%97%A2%E5%AE%9A%E3%81%A7%E7%94%A8%E6%84%8F%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%82%82%E3%81%AE%E4%BB%A5%E5%A4%96%E3%81%AE%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88+%E3%83%AD%E3%82%B0%E3%82%92%E5%8F%8E%E9%9B%86%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FHowToCollectCutomEventlog%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FHowToCollectCutomEventlog.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FHowToCollectCutomEventlog.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomPerfCounter/" data-id="cm00ozahb001c0npf6mbbatx6" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCutomEventlog/" data-id="cm00ozahc001d0npfau8s7159" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>こんにちは、Azure Monitoring チームの徳田です。</p>
-<p>本ブログでは、以下の公開情報に記載されています、Azure Monitor エージェントを使用してカスタムのパフォーマンス カウンターを収集するためのデータ収集ルールの作成方法についてご説明します。</p>
-<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-performance">https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-performance</a></p>
+<p>本ブログでは、以下の公開情報に記載されています、についてご説明します。</p>
 <span id="more"></span>
 
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
 <li>はじめに</li>
-<li>カスタムのパフォーマンス カウンターの収集手順<ul>
+<li>カスタムのイベント ログの収集手順<ul>
 <li>事前準備</li>
-<li>収集したいパフォーマンス カウンター名の取得</li>
-<li>データ収集ルールの作成</li>
+<li>収集したいイベント ログの XPath を取得する</li>
+<li>データ収集ルールを作成する</li>
+<li>Windows イベント ログが収集されていることを確認する</li>
 </ul>
 </li>
 <li>まとめ</li>
 </ul>
-<h2 id="はじめに"><a href="#はじめに" class="headerlink" title="はじめに"></a>はじめに</h2><p>パフォーマンス カウンターは、データ収集ルール (DCR) のデータ ソースとして使用できるものの 1 つです。<br>パフォーマンス カウンターの種類は多数存在し、Azure portal でデフォルトで用意されているものと、そうでないものがあります。  </p>
-<p>Linux OS のマシンについては、収集可能なパフォーマンス カウンターの種類が固定されている一方、Windows OS のマシンではデフォルトで用意されていないパフォーマンス カウンターも収集することが可能です。<br>今回は、Azure portal でデフォルトで用意されてないパフォーマンス カウンター (以降、カスタム パフォーマンス カウンター) の収集設定方法についてご紹介します。  </p>
-<p>なお、Linux OS のマシンから収集できるパフォーマンス カウンターの一覧については、以下弊社サポート チームのブログをご参照ください。<br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/AMALinux_Perf/">Azure Monitor Agent for Linux で取得可能なパフォーマンス カウンターの一覧</a></p>
-<h2 id="カスタム-パフォーマンス-カウンターの収集手順"><a href="#カスタム-パフォーマンス-カウンターの収集手順" class="headerlink" title="カスタム パフォーマンス カウンターの収集手順"></a>カスタム パフォーマンス カウンターの収集手順</h2><h3 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h3><p>以下のリソースがご自身の環境にあることを確認してください。</p>
+<h2 id="はじめに"><a href="#はじめに" class="headerlink" title="はじめに"></a>はじめに</h2><p>Windows イベント ログは、データ収集ルール (DCR) のデータ ソースとして使用できるものの 1 つです。<br>Windows イベント ログの種類は多数存在し、Azure portal でデフォルトで用意されているものと、そうでないものがあります。<br>今回は、Azure portal でデフォルトで用意されていない Windows イベント ログ (以降、カスタム Windows イベント ログ) の収集設定方法についてご紹介します。</p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-windows-events">https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-windows-events</a></p>
+<h2 id="カスタム-Windows-イベント-ログの収集手順"><a href="#カスタム-Windows-イベント-ログの収集手順" class="headerlink" title="カスタム Windows イベント ログの収集手順"></a>カスタム Windows イベント ログの収集手順</h2><h3 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h3><p>以下のリソースがご自身の環境にあることを確認してください。</p>
 <ul>
 <li>データ収集元となる Windows OS の仮想マシン (以下 VM)</li>
 <li>データ収集先となる Log Analytics ワークスペース</li>
 </ul>
-<h3 id="パフォーマンス-カウンター名を取得する"><a href="#パフォーマンス-カウンター名を取得する" class="headerlink" title="パフォーマンス カウンター名を取得する"></a>パフォーマンス カウンター名を取得する</h3><p>データ収集ルールのカスタム パフォーマンス カウンターに含まれないパフォーマンス カウンターを取得したい場合、以下の手順に沿って任意のパフォーマンス カウンター名を取得します。  </p>
+<h3 id="収集したいイベント-ログの-XPath-を取得する"><a href="#収集したいイベント-ログの-XPath-を取得する" class="headerlink" title="収集したいイベント ログの XPath を取得する"></a>収集したいイベント ログの XPath を取得する</h3><p>任意のイベント ログをデータ収集ルールのデータ ソースとして指定し、収集設定したい場合、そのイベント ログの XPath が必要になります。<br>以下の手順に沿って任意のイベント ログの XPath を取得することができます。  </p>
 <ol>
-<li><p>VM のスタート画面で “パフォーマンス モニター” または “Performance Monitor” を検索し、開きます。</p>
+<li><p>VM のスタート画面で “イベント ビューアー” または “Event Viewer” を検索し、開きます。</p>
 </li>
-<li><p>左ペインで Monitoring Tools &gt; Performance Monitor (モニター ツール &gt; パフォーマンス モニター) を押下します。ウィンドウ中央に折れ線グラフが表示されます。<br><img src="/blog/LogAnalytics/HowToCollectCustomPerfCounter/performancemonitor-screen1.png" alt="alt text"></p>
+<li><p>左ペインで “Windows ログ” を押下し、配下の “Application”, “セキュリティ”, “Setup”, “システム”, “Forwarded Events” のいずれかを押下します。<br><img src="./HowToCollectCustomEventlog/eventviewer_1.png" alt="alt text"></p>
 </li>
-<li><p>上部 [+] ボタンを押下し、確認したいパフォーマンス カウンターを押下します。この際、”選択したオブジェクトのインスタンス (I)” に複数の値が表示されている場合は任意のインスタンスも押下します。<br>[追加] を押下し、[OK] を押下します。  </p>
+<li><p>右ペインで “現在のログをフィルター” を押下します。<br>以下のようなウィンドウが表示されるため、”フィルター” タブで以下 2 つのパラメーターを設定します。</p>
 </li>
 </ol>
-<p>例 : パフォーマンス カウンターにインスタンスがない場合<br><img src="/blog/LogAnalytics/HowToCollectCustomPerfCounter/performancemonitor-screen2.png" alt="alt text">  </p>
-<p>例 : パフォーマンス カウンターにインスタンスがある場合<br><img src="/blog/LogAnalytics/HowToCollectCustomPerfCounter/performancemonitor-screen3.png" alt="alt text"></p>
+<ul>
+<li>イベント レベル</li>
+<li>イベント ID<br>  <img src="./HowToCollectCustomEventlog/eventviewer_filter.png" alt="alt text">  </li>
+</ul>
 <ol start="4">
-<li>折れ線グラフの下に、選択したパフォーマンス カウンターの一覧が表示されます。<br>オブジェクト、インスタンス、カウンター列を参照し、以下のルールに従ってパフォーマンス カウンター名を手元にメモします。  </li>
-</ol>
-<p><img src="/blog/LogAnalytics/HowToCollectCustomPerfCounter/performancemonitor-screen4.png" alt="alt text"></p>
-<p>インスタンスがない場合 : <code>\&lt;オブジェクト&gt;\&lt;カウンター&gt;</code><br>    例 : <code>\System\File Read Bytes/sec</code>  </p>
-<p>インスタンスがある場合 : <code>\&lt;オブジェクト&gt;(&lt;インスタンス&gt;)\&lt;カウンター&gt;</code><br>    例 : <code>\LogicalDisk(C:)\% Free Space</code></p>
-<div class="alert is-info"><p class="alert-title">Note</p><p>カウンター名にアンパサンド (<code>&amp;</code>) が含まれている場合は、<code>&amp;</code> を <code>&amp;amp;</code> に置き換えてください。</p><p>例 : カウンター列の値が <code>Free &amp; Zero Page List Bytes</code> の場合、パフォーマンス カウンター名は <code>\Memory\Free &amp;amp; Zero Page List Bytes</code> となります。</p></div>
-<h3 id="データ収集ルールを作成する"><a href="#データ収集ルールを作成する" class="headerlink" title="データ収集ルールを作成する"></a>データ収集ルールを作成する</h3><ol>
-<li><p>Azure potral にログインします。</p>
-</li>
-<li><p>“deta collection rules” を選択します。</p>
-</li>
-<li><p>[作成] を押下し、”基本” タブの各値を入力します。<br> 続いて “リソース” タブで収集元 VM を選択・追加します。</p>
-</li>
-<li><p>“収集と配信” タブで [データ ソースの追加] を押下します。<br> 右ペイン内 “データ ソース” タブの “データ ソースの種類” で [パフォーマンス カウンター] を選択します。<br> その下にパフォーマンス カウンターの一覧が表示されます。</p>
-</li>
-<li><p>[カスタム] を押下し、収集したいパフォーマンス カウンターのチェックボックスにチェックを入れます。<br> (2024 年 7 月時点では、デフォルトですべてのカスタム パフォーマンス カウンターのチェックボックスにチェックが入っています。そのため、収集不要なカウンター場合は、そちらのチェックを外していただく必要があります。)<br> <img src="/blog/LogAnalytics/HowToCollectCustomPerfCounter/dcr-addcustomperf.png" alt="alt text"><br> 表示されているパフォーマンス カウンター以外のものを収集したい場合は、<a href="#%E5%8F%8E%E9%9B%86%E3%81%97%E3%81%9F%E3%81%84%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9-%E3%82%AB%E3%82%A6%E3%83%B3%E3%82%BF%E3%83%BC%E5%90%8D%E3%81%AE%E5%8F%96%E5%BE%97">収集したいパフォーマンス カウンター名の取得</a> で取得したパフォーマンス カウンター名を入力し、”追加” を押下した後、チェック ボックスにチェックを入れます。<br> <img src="/blog/LogAnalytics/HowToCollectCustomPerfCounter/dcr-addcustomperf2.png" alt="alt text"></p>
-</li>
-<li><p>[次へ : ターゲット &gt;] を押下し、[+ ターゲットの追加] を押下します。<br> “ターゲットの種類” で [Azure Monitor Logs] を選択し、収集先となる Log Analytics ワークスペースを選択し、[データ ソースの追加] を押下します。<br> <img src="/blog/LogAnalytics/HowToCollectCustomPerfCounter/dcr-addtargets.png" alt="alt text"></p>
-</li>
-<li><p>“確認と作成” タブにて [作成] を押下し、完了です。</p>
+<li><p>フィルターの設定ができたら、同ウィンドウの “XML” タブを開きます。<br>以下 2 点を手元にメモします。</p>
+<ul>
+<li><code>&lt;Select Path=&quot;2で選択したフォルダ&quot;&gt;</code> の <code>2で選択したフォルダ</code> – A</li>
+<li><code>&lt;Select Path=&quot;2で選択したフォルダ&quot;&gt;</code> と <code>&lt;/Select&gt;</code> の間の <code>*[System[(Level=...) and (EventID=...)]]</code> の箇所 – B</li>
+</ul>
+<p> <img src="./HowToCollectCustomEventlog/eventviewer_xml.png" alt="alt text"></p>
 </li>
 </ol>
-<h3 id="パフォーマンス-カウンターが収集されていることを確認する"><a href="#パフォーマンス-カウンターが収集されていることを確認する" class="headerlink" title="パフォーマンス カウンターが収集されていることを確認する"></a>パフォーマンス カウンターが収集されていることを確認する</h3><ol>
-<li>Azure portal にログインします。</li>
-<li><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90">データ収集ルールの作成</a> の 6 で選択した Log Analytics ワークスペースのページを開きます。</li>
-<li>左ペインの [ログ] を押下し、以下のクエリを貼り付け、実行します。<br> なお、where から始まる行は、収集の有無を確認したいパフォーマンス カウンターのオブジェクト名、インスタンス名、カウンター名に置き換えてください。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Perf</span><br><span class="line">| where ObjectName == &quot;オブジェクト名&quot;</span><br><span class="line">| where InstanceName == &quot;インスタンス名&quot;</span><br><span class="line">| where CounterName == &quot;カウンター名&quot;</span><br><span class="line">| sort by TimeGenerated</span><br></pre></td></tr></table></figure>
-例 : パフォーマンス カウンター名が <code>\LogicalDisk(C:)\% Free Space</code> の場合<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Perf</span><br><span class="line">| where ObjectName == &quot;LogicalDisk&quot;</span><br><span class="line">| where InstanceName == &quot;C:&quot;</span><br><span class="line">| where CounterName == &quot;% Free Space&quot;</span><br><span class="line">| sort by TimeGenerated</span><br></pre></td></tr></table></figure></li>
-<li>以下画像のようにログが表示されれば、ログが収集できています。<br><img src="/blog/LogAnalytics/HowToCollectCustomPerfCounter/law-checklog.png" alt="alt text"></li>
+<blockquote>
+<p>[!NOTE]<br>上記の方法で取得した XPath が有効であるかを確認したい場合、ローカルで確認することができます。<br>手順は以下の通りです。  </p>
+<ol>
+<li>Windows コンピュータで、PowerShell を開きます。  </li>
+<li>以下のクエリを実行します。<br>この際、$XPath には、上記 4 で取得した B の値を設定してください。<br>また、$LogName には、上記 4 で取得した A の値を設定してください。  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$XPath = &#x27;*[System[EventID=1035]]&#x27;   </span><br><span class="line">$LogName = &#x27;Application&#x27; </span><br><span class="line">Get-WinEvent -LogName $LogName -FilterXPath $XPath</span><br><span class="line">```  </span><br><span class="line">3. 結果を確認します。ログの一覧が表示されれば、指定した XPath は有効であると判断できます。</span><br><span class="line"></span><br><span class="line">### データ収集ルールを作成する</span><br><span class="line">1. Azure potral にログインします。</span><br><span class="line">2. &quot;deta collection rules&quot; を選択します。</span><br><span class="line">3. [作成] を押下し、&quot;基本&quot; タブの各値を入力します。  </span><br><span class="line">   続いて &quot;リソース&quot; タブで収集元 VM を選択・追加します。</span><br><span class="line">4. &quot;収集と配信&quot; タブで [データ ソースの追加] を押下します。  </span><br><span class="line">   右ペイン内 &quot;データ ソース&quot; タブの &quot;データ ソースの種類&quot; で &quot;Windows イベント ログ&quot; を選択します。  </span><br><span class="line">5. [カスタム] を押下し、入力欄に [収集したいイベント ログの XPath の取得](#収集したいイベント-ログの-xpath-の取得) にて取得した XPath の先頭に `&lt;4で取得した A の値&gt;!` (&quot;&lt;&gt;&quot; は不要です) を足したものを入力し、[追加] を押下します。  </span><br><span class="line">   ![alt text](./HowToCollectCustomEventlog/dcr_addDatasource.png)</span><br><span class="line"></span><br><span class="line">6. [次へ : ターゲット &gt;] を押下し、[+ ターゲットの追加] を押下します。  </span><br><span class="line">   &quot;ターゲットの種類&quot; で &quot;Azure Monitor Logs&quot; を選択し、収集先となる Log Analytics ワークスペースを選択し、&quot;データ ソースの追加&quot; を押下します。  </span><br><span class="line">   ![alt text](./HowToCollectCustomEventlog/dcr_addTarget.png)</span><br><span class="line"></span><br><span class="line">7. [確認と作成] タブにて [作成] を押下し、完了です。</span><br><span class="line"></span><br><span class="line">### Windows イベント ログが収集されていることを確認する</span><br><span class="line">1. Azure portal にログインします。</span><br><span class="line">2. [データ収集ルールの作成](#データ収集ルールの作成) の 6 で選択した Log Analytics ワークスペースのページを開きます。</span><br><span class="line">3. 左ペインの [ログ] を押下し、以下のクエリを貼り付け、実行します。</span><br><span class="line">  なお、where から始まる行は、収集の有無を確認したい EventID およびイベントレベルに置き換えてください。</span><br></pre></td></tr></table></figure>
+Event<br>| where EventID == &lt;イベント ID&gt;<br>| where EventLevelName == “Information” // 又は where EventLevel == “4”<br>| sort by TimeGenerated</li>
 </ol>
-<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>本ブログではパフォーマンス カウンターおよびカスタム パフォーマンス カウンターの収集設定方法についてご紹介しました。<br>データ収集ルールでは、収集したいパフォーマンス カウンターのパフォーマンス カウンター名を指定することで、任意のログを収集することができます。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">例 : EventID が 7036 または 7040 の Information レベルのログ </span><br></pre></td></tr></table></figure>
+<p>Event<br>| where EventID == 7036 or EventID == 7040<br>| where EventLevelName == “Information”<br>| sort by TimeGenerated</p>
+<p>```</p>
+<ol start="4">
+<li>以下画像のようにログが表示されれば、ログが収集できています。<br><img src="./HowToCollectCustomEventlog/laws_eventlog.png" alt="alt text"></li>
+</ol>
+<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>本ブログではカスタム Windows イベント ログの収集設定方法についてご紹介しました。<br>データ収集ルールでは、収集したいイベント ログの XPath を指定することで、任意のログを収集することができます。</p>
 
       
       
@@ -198,7 +188,7 @@
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li></ul>
 
         
-        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/HowToCollectCustomPerfCounter.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/HowToCollectCutomEventlog.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
         
     </footer>
   </div>
@@ -206,10 +196,19 @@
     
 <nav id="article-nav">
   
+    <a href="../HowToCollectCustomPerfCounter/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          既定で用意されているもの以外のパフォーマンス カウンターを収集する方法
+        
+      </div>
+    </a>
   
-    <a href="../HowToCollectCutomEventlog/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="../DataCollectionEndpoint/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前の記事</strong>
-      <div class="article-nav-title">既定で用意されているもの以外のイベント ログを収集する方法</div>
+      <div class="article-nav-title">データ収集ルール作成時のデータ収集エンドポイントの構成について</div>
     </a>
   
 </nav>
@@ -228,11 +227,11 @@
       <ul>
         
           <li>
-            <a href="">既定で用意されているもの以外のパフォーマンス カウンターを収集する方法</a>
+            <a href="../HowToCollectCustomPerfCounter/">既定で用意されているもの以外のパフォーマンス カウンターを収集する方法</a>
           </li>
         
           <li>
-            <a href="../HowToCollectCutomEventlog/">既定で用意されているもの以外のイベント ログを収集する方法</a>
+            <a href="">既定で用意されているもの以外のイベント ログを収集する方法</a>
           </li>
         
           <li>
