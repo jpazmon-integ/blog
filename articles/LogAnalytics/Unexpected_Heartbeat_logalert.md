@@ -1,3 +1,11 @@
+---
+title: マシンが起動中にも関わらず Heartbeat ログ アラートが発報された場合の調査方法
+date: 2024-08-29 10:00:00
+tags:
+  - Azure Monitor Agent
+  - Log Analytics
+---
+
 こんにちは、Azure Monitoring チームの佐藤です！<br>
 今回は、Heartbeat ログ アラート ルールが発報したが、マシンは稼働しているという状況、
 特に Heartbeat ログの遅延により期待しないアラートの発報が発生した場合の調査方法についてご紹介いたします。<br>
