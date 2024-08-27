@@ -98,6 +98,30 @@ VM Availability Metric (Preview) のメトリックを表示できましたら�
 - ルックバック期間 : 5 分
 
 
+---
+**<補足> Azure VM のライブ マイグレーションによる可用性メトリックの影響について**
+Azure VM のライブ マイグレーションの影響で、一時的に VM Availability Metric (Preview) の値が 1 ではなく 0 と出力される可能性がございます。この場合、直近 5 分間の VM Availability Metric (Preview) の平均値が 1 を下回り、Azure VM が稼働しているのにも関わらず期待しないアラートが発報する恐れがございます。もしライブ マイグレーションの影響によるメトリック アラートの発報を回避されたい場合は、アラート発報条件を見直していただくことをご検討ください。
+
+- 例 : 5 分間のうち、1 分間メトリック値が 0 だった場合を許容したい**
+シグナル名 : VM Availability Metric (Preview)
+しきい値 : Static
+集計の種類 : 平均
+演算子 : 次の値より小さい
+単位 : カウント
+しきい値 : 0.8
+確認する間隔 : 5 分
+ルックバック期間 : 5 分
+
+- 例 : 5 分間連続でメトリック値が 0 だった場合にアラートを発報したい
+シグナル名 : VM Availability Metric (Preview)
+しきい値 : Static
+集計の種類 : 最大
+演算子 : 次の値より小さい
+単位 : カウント
+しきい値 : 1
+確認する間隔 : 5 分
+ルックバック期間 : 5 分
+---
 
 > [!NOTE]
 > メトリック アラートの設定項目につきましては、[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-metric-alert-rule)をご覧ください。
@@ -145,6 +169,6 @@ Azure Monitor のアラート機能では、[アクション グループ](https
 
 
 本記事の冒頭でもお伝えしておりますとおり、***Azure VM の死活監視には複数の方法がございます***。
-[Azure VM における死活監視の考え方](https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM02/) のブログもご覧いただき、お客様のご要件に合った監視設定を構築いただけまと幸いです！
+[Azure VM における死活監視の考え方](https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM02/) のブログもご覧いただき、お客様のご要件に合った監視設定を構築いただけますと幸いです！
 上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。
 最後までお読みいただきありがとうございました！
