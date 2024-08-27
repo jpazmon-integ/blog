@@ -34,7 +34,7 @@ VM Availability Metric (Preview) （VM 可用性メトリック (プレビュー
 ## 2. 可用性メトリック ‘VM Availability Metric (Preview)’ とは
 可用性メトリックは Azure VM のホストが出力するメトリックです。[ホスト メトリック](https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/supported-metrics/microsoft-compute-virtualmachines-metrics)は仮想マシンを作成すると自動的に収集されます。このホスト メトリックの中で、VM の可用性を表すメトリックが「VM Availability Metric (Preview)」です。
 
-このメトリックの値が 1 の場合は VM が実行中であり、利用可能であることを表します。
+このメトリックの値が 1 の場合は、VM が実行中であり、利用可能であることを表します。
 このメトリックの値が 0 の場合は、VM を利用できない状態であることを意味します。
 つまり、このメトリックの値が 1 を下回ったことを検知するアラートを作成いただくことで、VM ホストにおける可用性を監視することができます。
 
