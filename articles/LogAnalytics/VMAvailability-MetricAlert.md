@@ -34,11 +34,11 @@ VM Availability Metric (Preview) （VM 可用性メトリック (プレビュー
 ## 2. 可用性メトリック ‘VM Availability Metric (Preview)’ とは
 可用性メトリックは Azure VM のホストが出力するメトリックです。[ホスト メトリック](https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/supported-metrics/microsoft-compute-virtualmachines-metrics)は仮想マシンを作成すると自動的に収集されます。このホスト メトリックの中で、VM の可用性を表すメトリックが「VM Availability Metric (Preview)」です。
 
-このメトリックの値が 1 の場合は、VM が実行中であり、利用可能であることを表します。
-このメトリックの値が 0 の場合は、VM を利用できない状態であることを意味します。
+このメトリックの値が 1 の場合は VM が実行中であり、利用可能であることを表します。
+このメトリックの値が 0 の場合は VM を利用できない状態であることを意味します。
 つまり、このメトリックの値が 1 を下回ったことを検知するアラートを作成いただくことで、VM ホストにおける可用性を監視することができます。
 
-ご注意いただきたい点は、このメトリックでは ***Azure VM が "停止済み (割り当て解除) " を検知することができない***ことです。
+ご注意いただきたい点は、このメトリックでは **Azure VM が "停止済み (割り当て解除) " を検知することができない**ことです。
 VM が "停止済み (割り当て解除)" の場合は、メトリックの値が [NULL](https://learn.microsoft.com/ja-jp/azure/virtual-machines/monitor-vm-reference#vm-availability-metric-preview) になります。
 しかし、メトリック アラートではメトリックの値が [NULL](https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/metrics-aggregation-explained#null-and-zero-values) であることを検知できませんので、予めご留意ください。
 ![](./VMAvailability-MetricAlert/image01.png)
@@ -52,7 +52,7 @@ VM が "停止済み (割り当て解除)" の場合は、メトリックの値�
 
 <br>
 
-***1). 監視対象の Azure VM のメトリック エクスプローラーを開きます。***
+**1). 監視対象の Azure VM のメトリック エクスプローラーを開きます。**
 Azure portal にログインし、監視対象の Azure VM を開きます。
 Azure VM のリソース メニュー [メトリック] を選択し、VM Availability Metric (Preview) のメトリックを表示します。
 [メトリックの名前空間] で「仮想マシン ホスト」を選択し、[メトリック] で「VM Availability Metric (Preview)」を検索してください。
@@ -69,7 +69,7 @@ Azure VM のリソース メニュー [メトリック] を選択し、VM Availa
 
 <br>
 
-***2). メトリック アラートの発報条件を指定します。*** 
+**2). メトリック アラートの発報条件を指定します。** 
 VM Availability Metric (Preview) のメトリックを表示できましたら、画面上部の [新しいアラート ルール] をクリックします。
 ![](./VMAvailability-MetricAlert/image04.png)
 
@@ -129,7 +129,7 @@ Azure VM のライブ マイグレーションの影響で、一時的に VM Ava
 
 <br>
 
-***3). アラートで通知する方法を指定します。***
+**3). アラートで通知する方法を指定します。**
 Azure Monitor のアラート機能では、[アクション グループ](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups) というリソースでアラートを通知する方法を定義します。新規で作成する場合は [+ アクション グループの作成]、既存のグループを指定する場合は [+ アクション グループの選択] をクリックします。
 ![](./VMAvailability-MetricAlert/image06.png)
 
@@ -145,7 +145,7 @@ Azure Monitor のアラート機能では、[アクション グループ](https
 
 <br>
 
-***4. アラート ルールの名前、アラートの重大度等を設定します。***
+**4. アラート ルールの名前、アラートの重大度等を設定します。**
 [アラート ルールの詳細] では、重大度、アラート ルール名、アラート ルールの説明を設定します。
 [詳細設定オプション] では、アラート ルールの有効化や自動解決を設定します。
 
