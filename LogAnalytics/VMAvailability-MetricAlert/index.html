@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>可用性メトリック ‘VM Availability Metric (Preview)’ のメトリック アラートについて | Japan Azure Monitoring Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは、Azure Monitoring チームの北村です。今回は Azure VM のホストが出力するメトリック ‘VM Availability Metric (Preview)’ を利用したメトリック アラートの設定方法をご紹介します。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="可用性メトリック ‘VM Availability Metric (Preview)’ のメトリック アラートについて">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="こんにちは、Azure Monitoring チームの北村です。今回は Azure VM のホストが出力するメトリック ‘VM Availability Metric (Preview)’ を利用したメトリック アラートの設定方法をご紹介します。">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/image01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/image02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/image03.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/image04.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/image05.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/image06.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/image07.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/image08.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/image09.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/image10.png">
+<meta property="article:published_time" content="2024-08-29T15:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-28T04:59:56.765Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="How-To">
+<meta property="article:tag" content="Log Analytics">
+<meta property="article:tag" content="Azure Monitor Essential">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/image01.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-LogAnalytics/VMAvailability-MetricAlert" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      可用性メトリック ‘VM Availability Metric (Preview)’ のメトリック アラートについて
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2024-08-29T15:00:00.000Z" itemprop="datePublished">2024-08-30</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+85d3d457-410a-560b-a346-839d7dd82b4f%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF+%E2%80%98VM+Availability+Metric+%28Preview%29%E2%80%99+%E3%81%AE%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF+%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FVMAvailability-MetricAlert%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FVMAvailability-MetricAlert.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FVMAvailability-MetricAlert.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/" data-id="cm0de0d5800250np5axo6es04" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは、Azure Monitoring チームの北村です。<br>今回は Azure VM のホストが出力するメトリック ‘VM Availability Metric (Preview)’ を利用したメトリック アラートの設定方法をご紹介します。</p>
+<br>
+
+<span id="more"></span>
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li><a href="#1-%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB">1. はじめに</a></li>
+<li><a href="#2-%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E2%80%98VM-Availability-Metric-Preview-%E2%80%99-%E3%81%A8%E3%81%AF">2. 可用性メトリック ‘VM Availability Metric (Preview)’ とは</a></li>
+<li><a href="#3-%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E2%80%98VM-Availability-Metric-Preview-%E2%80%99-%E3%81%AE%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E8%A8%AD%E5%AE%9A%E6%89%8B%E9%A0%86">3. 可用性メトリック ‘VM Availability Metric (Preview)’ のメトリック アラート設定手順</a></li>
+</ul>
+<br>
+
+
+<h2 id="1-はじめに"><a href="#1-はじめに" class="headerlink" title="1. はじめに"></a>1. はじめに</h2><p><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM02/">Azure VM の死活監視にはいくつか方法があります</a>。<br>Azure Monitor エージェントによって収集される Heartbeat を利用した監視をご利用されている方が多いかと思いますが、<br>今回は可用性メトリック ‘VM Availability Metric (Preview)’ のメトリック アラートの設定方法をご紹介します。</p>
+<p>VM Availability Metric (Preview) （VM 可用性メトリック (プレビュー)）は Azure VM のホストが出力するメトリックであり、VM ホストを監視することができます。このメトリックを利用したメトリック アラートを構成することで、VM の可用性が低下していることを検知することができます。</p>
+<br>
+
+
+<h2 id="2-可用性メトリック-‘VM-Availability-Metric-Preview-’-とは"><a href="#2-可用性メトリック-‘VM-Availability-Metric-Preview-’-とは" class="headerlink" title="2. 可用性メトリック ‘VM Availability Metric (Preview)’ とは"></a>2. 可用性メトリック ‘VM Availability Metric (Preview)’ とは</h2><p>可用性メトリックは Azure VM のホストが出力するメトリックです。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/supported-metrics/microsoft-compute-virtualmachines-metrics">ホスト メトリック</a>は仮想マシンを作成すると自動的に収集されます。このホスト メトリックの中で、VM の可用性を表すメトリックが「VM Availability Metric (Preview)」です。</p>
+<p>このメトリックの値が 1 の場合は VM が実行中であり、利用可能であることを表します。<br>このメトリックの値が 0 の場合は VM を利用できない状態であることを意味します。<br>つまり、このメトリックの値が 1 を下回ったことを検知するアラートを作成いただくことで、VM ホストにおける可用性を監視することができます。</p>
+<p>ご注意いただきたい点は、このメトリックでは <strong>Azure VM が “停止済み (割り当て解除) “ を検知することができない</strong>ことです。<br>VM が “停止済み (割り当て解除)” の場合は、メトリックの値が <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/monitor-vm-reference#vm-availability-metric-preview">NULL</a> になります。<br>しかし、メトリック アラートではメトリックの値が <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/metrics-aggregation-explained#null-and-zero-values">NULL</a> であることを検知できませんので、予めご留意ください。<br><img src="/blog/LogAnalytics/VMAvailability-MetricAlert/image01.png"></p>
+<br>
+
+
+<h2 id="3-可用性メトリック-‘VM-Availability-Metric-Preview-’-のメトリック-アラート設定手順"><a href="#3-可用性メトリック-‘VM-Availability-Metric-Preview-’-のメトリック-アラート設定手順" class="headerlink" title="3. 可用性メトリック ‘VM Availability Metric (Preview)’ のメトリック アラート設定手順"></a>3. 可用性メトリック ‘VM Availability Metric (Preview)’ のメトリック アラート設定手順</h2><p>それでは、可用性メトリック ‘VM Availability Metric (Preview)’ のメトリック アラートを設定してみましょう！<br>本記事では 5 分おきにメトリックの値を確認し、過去 5 分以内に記録された可用性メトリックの平均値が 1 を下回った場合に発報するメトリック アラートを設定します。</p>
+<br>
+
+<p><strong>1). 監視対象の Azure VM のメトリック エクスプローラーを開きます。</strong><br>Azure portal にログインし、監視対象の Azure VM を開きます。<br>Azure VM のリソース メニュー [メトリック] を選択し、VM Availability Metric (Preview) のメトリックを表示します。<br>[メトリックの名前空間] で「仮想マシン ホスト」を選択し、[メトリック] で「VM Availability Metric (Preview)」を検索してください。<br><img src="/blog/LogAnalytics/VMAvailability-MetricAlert/image02.png"></p>
+<p>下図では [集計] で「平均」を選択していますが、これは指定した期間のメトリックを集計する方法を意味します。<br>例えば、以下の場合は [時間の範囲] で指定した過去 30 分以内に記録されたメトリックを、[時間の粒度] の 5 分間隔でキャプチャされたメトリック値の平均が表示されます。可用性メトリックでは、平均、最小値、最大値の集計方法がサポートされています。<br><img src="/blog/LogAnalytics/VMAvailability-MetricAlert/image03.png"></p>
+<div class="alert is-info"><p class="alert-title">Note</p><p>メトリック エクスプローラーの使い方は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/analyze-metrics">弊社公開情報</a> をご参照ください。また、メトリックの集計の考え方につきましては、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/metrics-aggregation-explained#aggregation-types">こちら</a> の公開情報をご覧ください。</p></div>
+<br>
+
+<p><strong>2). メトリック アラートの発報条件を指定します。</strong><br>VM Availability Metric (Preview) のメトリックを表示できましたら、画面上部の [新しいアラート ルール] をクリックします。<br><img src="/blog/LogAnalytics/VMAvailability-MetricAlert/image04.png"></p>
+<p>この画面では、アラートの発報条件を指定します。メトリック アラートの評価に関わる主な項目は以下のとおりです。</p>
+<ul>
+<li>確認する間隔 : 評価を行う頻度</li>
+<li>ルックバック期間 : 1 回の評価を行う際に評価の対象となる期間</li>
+<li>集計の種類 : [ルックバック期間] で指定した期間のメトリックを集計する方法</li>
+</ul>
+<p><img src="/blog/LogAnalytics/VMAvailability-MetricAlert/image05.png"></p>
+<p>[確認する間隔] は評価を行う頻度であり、「何分おきに評価を行うか」を表します。<br>[ルックバック期間] は「1 回の評価を行う際に評価の対象となる期間」を表します。<br>今回は 5 分おきに評価を行い、過去 5 分以内に記録された可用性メトリックの平均値が 1 を下回った場合に発報させたいので、以下の通り設定します。</p>
+<ul>
+<li>シグナル名 : VM Availability Metric (Preview) </li>
+<li>しきい値 : Static</li>
+<li>集計の種類 : 平均</li>
+<li>演算子 : 次の値より小さい</li>
+<li>単位 : カウント</li>
+<li>しきい値 : 1</li>
+<li>確認する間隔 : 5 分</li>
+<li>ルックバック期間 : 5 分</li>
+</ul>
+<hr>
+<p><strong>&lt;補足&gt; Azure VM のライブ マイグレーションによる可用性メトリックの影響について</strong><br>Azure VM のライブ マイグレーションの影響で、一時的に VM Availability Metric (Preview) の値が 1 ではなく 0 と出力される可能性がございます。この場合、直近 5 分間の VM Availability Metric (Preview) の平均値が 1 を下回り、Azure VM が稼働しているのにも関わらず期待しないアラートが発報する恐れがございます。もしライブ マイグレーションの影響によるメトリック アラートの発報を回避されたい場合は、アラート発報条件を見直していただくことをご検討ください。</p>
+<ul>
+<li><p>例 : 5 分間のうち、1 分間メトリック値が 0 だった場合を許容したい<br>シグナル名 : VM Availability Metric (Preview)<br>しきい値 : Static<br>集計の種類 : 平均<br>演算子 : 次の値より小さい<br>単位 : カウント<br>しきい値 : 0.8<br>確認する間隔 : 5 分<br>ルックバック期間 : 5 分</p>
+</li>
+<li><p>例 : 5 分間連続でメトリック値が 0 だった場合にアラートを発報したい<br>シグナル名 : VM Availability Metric (Preview)<br>しきい値 : Static<br>集計の種類 : 最大<br>演算子 : 次の値より小さい<br>単位 : カウント<br>しきい値 : 1<br>確認する間隔 : 5 分<br>ルックバック期間 : 5 分</p>
+</li>
+</ul>
+<hr>
+<div class="alert is-info"><p class="alert-title">Note</p><p>メトリック アラートの設定項目につきましては、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-metric-alert-rule">弊社公開情報</a>をご覧ください。</p></div>
+<br>
+
+<p><strong>3). アラートで通知する方法を指定します。</strong><br>Azure Monitor のアラート機能では、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">アクション グループ</a> というリソースでアラートを通知する方法を定義します。新規で作成する場合は [+ アクション グループの作成]、既存のグループを指定する場合は [+ アクション グループの選択] をクリックします。<br><img src="/blog/LogAnalytics/VMAvailability-MetricAlert/image06.png"></p>
+<p>例えば、アラートをメールで通知する場合には、[通知のタイプ] で “電子メール/SMS メッセージ/プッシュ/音声” を選択し、通知するメール アドレスを指定します。<br><img src="/blog/LogAnalytics/VMAvailability-MetricAlert/image07.png"></p>
+<p>また、[アクション] では、アクション グループがトリガーされた際に実行するアクションを選択できます (今回は設定しません)。<br><img src="/blog/LogAnalytics/VMAvailability-MetricAlert/image08.png"></p>
+<div class="alert is-info"><p class="alert-title">Note</p><p>アクション グループの概要や設定手順につきましては、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups#create-an-action-group-in-the-azure-portal">弊社公開情報</a>をご覧ください。</p></div>
+<br>
+
+<p><strong>4. アラート ルールの名前、アラートの重大度等を設定します。</strong><br>[アラート ルールの詳細] では、重大度、アラート ルール名、アラート ルールの説明を設定します。<br>[詳細設定オプション] では、アラート ルールの有効化や自動解決を設定します。</p>
+<p><strong>[アラートを自動的に解決する] にチェックをいれた場合には、アラートの閾値を満たす度にアラートは発報しません。</strong><br>このようなアラートは “<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#alerts-and-state">ステートフルなアラート</a>“ と呼ばれ、アラートの閾値を満たしたときに一度発報し、アラートが解決したとみなされたときに、解決したことが通知されます。メトリック アラートの場合は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts">3 回連続で閾値を満たさなかった場合に解決したとみなされます</a>。</p>
+<p><strong>[アラートを自動的に解決する] にチェックをいれた場合には、アラートの閾値を満たす度にアラートが発報します。</strong> お客様のご要件に合わせてご設定ください。<br><img src="/blog/LogAnalytics/VMAvailability-MetricAlert/image09.png"></p>
+<div class="alert is-info"><p class="alert-title">Note</p><p>ステートフルなアラートの詳細につきましては、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts">弊社公開情報</a>をご覧ください。</p></div>
+<br>
+
+<p><strong>5). 最後に設定した内容を確認し、[作成] をクリックします。</strong><br>手順は以上です。</p>
+<p>アラートの履歴は、Azure portal にログインいただき、[モニター] &gt; [アラート] から確認いただけます。<br>以下の例では、アラートの評価時点から過去 5 分間の可用性メトリック ‘VM Availability Metric (Preview)’ の平均値が 1 を下回ったため、アラートが発報していることが分かります。<br><img src="/blog/LogAnalytics/VMAvailability-MetricAlert/image10.png"></p>
+<p>本記事の冒頭でもお伝えしておりますとおり、<strong>Azure VM の死活監視には複数の方法がございます</strong>。<br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM02/">Azure VM における死活監視の考え方</a> のブログもご覧いただき、お客様のご要件に合った監視設定を構築いただけますと幸いです！<br>上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。<br>最後までお読みいただきありがとうございました！</p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Essential/" rel="tag">Azure Monitor Essential</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/VMAvailability-MetricAlert.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../HowToCollectCustomEventlog/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">既定で用意されているもの以外のイベント ログを収集する方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">可用性メトリック ‘VM Availability Metric (Preview)’ のメトリック アラートについて</a>
+          </li>
+        
+          <li>
+            <a href="../HowToCollectCustomEventlog/">既定で用意されているもの以外のイベント ログを収集する方法</a>
+          </li>
+        
+          <li>
+            <a href="../HowToCollectCustomPerfCounter/">既定で用意されているもの以外のパフォーマンス カウンターを収集する方法</a>
+          </li>
+        
+          <li>
+            <a href="../DataCollectionEndpoint/">データ収集ルール作成時のデータ収集エンドポイントの構成について</a>
+          </li>
+        
+          <li>
+            <a href="../MonitorVM02/">Azure VM における死活監視の考え方</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/AMPLS/" rel="tag">AMPLS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Arc/" rel="tag">Azure Arc</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Diagnostics-extension/" rel="tag">Azure Diagnostics extension</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent/" rel="tag">Azure Monitor Agent</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essential/" rel="tag">Azure Monitor Essential</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" rel="tag">Azure Monitor エージェント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Private-Link/" rel="tag">Azure Private Link</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostic-settings/" rel="tag">Diagnostic settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostics-settings/" rel="tag">Diagnostics settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HowTo/" rel="tag">HowTo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/LAD/" rel="tag">LAD</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Alert/" rel="tag">Log Alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" rel="tag">Log Analytics エージェント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-ID/" rel="tag">Managed ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-Identity/" rel="tag">Managed Identity</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Migration/" rel="tag">Migration</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Run-As-Account/" rel="tag">Run As Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sandbox/" rel="tag">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StartAzureV2VMs/" rel="tag">StartAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StopAzureV2VMs/" rel="tag">StopAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM/" rel="tag">VM</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM-insights/" rel="tag">VM insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WAD/" rel="tag">WAD</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Worker/" rel="tag">Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/howto/" rel="tag">howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/" rel="tag">アクションのミュート</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" rel="tag">アラート処理ルール</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%89-script/" rel="tag">オンボード script</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" rel="tag">クエリ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" rel="tag">コスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%BF%E3%83%BC-API/" rel="tag">データ コレクター API</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%91%E3%83%BC%E3%82%B8/" rel="tag">パージ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" rel="tag">マネージド ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB/" rel="tag">ログ アラート ルール</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88-API/" rel="tag">ログ インジェスト API</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%81%9C%E6%AD%A2/" rel="tag">停止</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%88%86%E6%9E%90%E6%83%85%E5%A0%B1/" rel="tag">分析情報</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" rel="tag">実行アカウント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/" rel="tag">移行</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" rel="tag">自動化</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%B5%B7%E5%8B%95/" rel="tag">起動</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/">How-To</a><span class="tag-list-count">32</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/">Tips</a><span class="tag-list-count">26</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/">Azure Monitor Essentials</a><span class="tag-list-count">9</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/">Azure Monitor</a><span class="tag-list-count">7</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/">FAQ</a><span class="tag-list-count">9</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/">Log Analytics</a><span class="tag-list-count">29</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/">Troubleshooting</a><span class="tag-list-count">4</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">8</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/">Automation</a><span class="tag-list-count">10</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/">チーム紹介</a><span class="tag-list-count">5</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/">移行</a><span class="tag-list-count">2</span><ul></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/08/">2024 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/07/">2024 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/05/">2024 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/04/">2024 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/03/">2024 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/01/">2024 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/12/">2023 / 12</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/11/">2023 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/10/">2023 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/09/">2023 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/07/">2023 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/06/">2023 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/03/">2023 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/01/">2023 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/11/">2022 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/10/">2022 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/09/">2022 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/08/">2022 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/AMPLS/" style="font-size: 10px;">AMPLS</a> <a href="../../tags/Application-Insights/" style="font-size: 15.83px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 17.5px;">Automation</a> <a href="../../tags/Azure-Arc/" style="font-size: 12.5px;">Azure Arc</a> <a href="../../tags/Azure-Diagnostics-extension/" style="font-size: 10px;">Azure Diagnostics extension</a> <a href="../../tags/Azure-Monitor/" style="font-size: 15px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Agent/" style="font-size: 11.67px;">Azure Monitor Agent</a> <a href="../../tags/Azure-Monitor-Essential/" style="font-size: 11.67px;">Azure Monitor Essential</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 16.67px;">Azure Monitor Essentials</a> <a href="../../tags/Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" style="font-size: 10px;">Azure Monitor エージェント</a> <a href="../../tags/Azure-Private-Link/" style="font-size: 11.67px;">Azure Private Link</a> <a href="../../tags/Diagnostic-settings/" style="font-size: 10.83px;">Diagnostic settings</a> <a href="../../tags/Diagnostics-settings/" style="font-size: 10px;">Diagnostics settings</a> <a href="../../tags/FAQ/" style="font-size: 16.67px;">FAQ</a> <a href="../../tags/General/" style="font-size: 14.17px;">General</a> <a href="../../tags/How-To/" style="font-size: 20px;">How-To</a> <a href="../../tags/HowTo/" style="font-size: 11.67px;">HowTo</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 10.83px;">Job</a> <a href="../../tags/LAD/" style="font-size: 10px;">LAD</a> <a href="../../tags/Log-Alert/" style="font-size: 10px;">Log Alert</a> <a href="../../tags/Log-Analytics/" style="font-size: 19.17px;">Log Analytics</a> <a href="../../tags/Log-Analytics-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" style="font-size: 10px;">Log Analytics エージェント</a> <a href="../../tags/Managed-ID/" style="font-size: 10px;">Managed ID</a> <a href="../../tags/Managed-Identity/" style="font-size: 10px;">Managed Identity</a> <a href="../../tags/MetricAlert/" style="font-size: 10px;">MetricAlert</a> <a href="../../tags/Migration/" style="font-size: 10px;">Migration</a> <a href="../../tags/Run-As-Account/" style="font-size: 10px;">Run As Account</a> <a href="../../tags/RunAs-Account/" style="font-size: 12.5px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 13.33px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 18.33px;">Tips</a> <a href="../../tags/Troubleshooting/" style="font-size: 12.5px;">Troubleshooting</a> <a href="../../tags/VM/" style="font-size: 10px;">VM</a> <a href="../../tags/VM-insights/" style="font-size: 10px;">VM insights</a> <a href="../../tags/WAD/" style="font-size: 10px;">WAD</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/howto/" style="font-size: 10px;">howto</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/" style="font-size: 10px;">アクションのミュート</a> <a href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" style="font-size: 10px;">アラート処理ルール</a> <a href="../../tags/%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%89-script/" style="font-size: 10px;">オンボード script</a> <a href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" style="font-size: 10px;">クエリ</a> <a href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" style="font-size: 10px;">コスト</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 13.33px;">チーム紹介</a> <a href="../../tags/%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%BF%E3%83%BC-API/" style="font-size: 10px;">データ コレクター API</a> <a href="../../tags/%E3%83%91%E3%83%BC%E3%82%B8/" style="font-size: 10px;">パージ</a> <a href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" style="font-size: 10.83px;">マネージド ID</a> <a href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB/" style="font-size: 10px;">ログ アラート ルール</a> <a href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88-API/" style="font-size: 10px;">ログ インジェスト API</a> <a href="../../tags/%E5%81%9C%E6%AD%A2/" style="font-size: 10px;">停止</a> <a href="../../tags/%E5%88%86%E6%9E%90%E6%83%85%E5%A0%B1/" style="font-size: 10px;">分析情報</a> <a href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" style="font-size: 11.67px;">可用性テスト</a> <a href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" style="font-size: 10px;">実行アカウント</a> <a href="../../tags/%E7%A7%BB%E8%A1%8C/" style="font-size: 10.83px;">移行</a> <a href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" style="font-size: 10px;">自動化</a> <a href="../../tags/%E8%B5%B7%E5%8B%95/" style="font-size: 10px;">起動</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
