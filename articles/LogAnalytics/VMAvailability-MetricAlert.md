@@ -152,7 +152,7 @@ Azure Monitor のアラート機能では、[アクション グループ](https
 **[アラートを自動的に解決する] にチェックをいれた場合には、アラートの閾値を満たす度にアラートは発報しません。**
 このようなアラートは "[ステートフルなアラート](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#alerts-and-state)" と呼ばれ、アラートの閾値を満たしたときに一度発報し、アラートが解決したとみなされたときに、解決したことが通知されます。メトリック アラートの場合は、[3 回連続で閾値を満たさなかった場合に解決したとみなされます](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts)。
 
-**[アラートを自動的に解決する] にチェックをいれた場合には、アラートの閾値を満たす度にアラートが発報します。** お客様のご要件に合わせてご設定ください。
+**[アラートを自動的に解決する] にチェックをいれない場合は、アラートの閾値を満たす度にアラートが発報します。** お客様のご要件に合わせてご設定ください。
 ![](./VMAvailability-MetricAlert/image09.png)
 
 > [!NOTE]
