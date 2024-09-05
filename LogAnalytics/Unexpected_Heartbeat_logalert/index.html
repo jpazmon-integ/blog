@@ -4,41 +4,23 @@
   <meta charset="utf-8">
   
   
-  <title>Windows セキュリティ イベントログの収集 | Japan Azure Monitoring Support Blog</title>
+  <title>マシンが起動中にも関わらず Heartbeat ログ アラートが発報された場合の調査方法 | Japan Azure Monitoring Support Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="こんにちは！ Azure Monitoring &amp; Integration サポート チームの北村です。 今回は Log Analytics ワークスペースにセキュリティ イベント ログを収集する方法をご案内いたします。ご利用されているエージェントによってログ収集方法が異なりますので、エージェントごとに設定方法をご紹介いたします。">
+  <meta name="description" content="こんにちは、Azure Monitoring チームの佐藤です！今回は、Heartbeat ログ アラート ルールが発報したが、マシンは稼働しているという状況、特に Heartbeat ログの遅延により期待しないアラートが発報した場合の調査方法についてご紹介いたします。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Windows セキュリティ イベントログの収集">
-<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/index.html">
+<meta property="og:title" content="マシンが起動中にも関わらず Heartbeat ログ アラートが発報された場合の調査方法">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/Unexpected_Heartbeat_logalert/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは！ Azure Monitoring &amp; Integration サポート チームの北村です。 今回は Log Analytics ワークスペースにセキュリティ イベント ログを収集する方法をご案内いたします。ご利用されているエージェントによってログ収集方法が異なりますので、エージェントごとに設定方法をご紹介いたします。">
+<meta property="og:description" content="こんにちは、Azure Monitoring チームの佐藤です！今回は、Heartbeat ログ アラート ルールが発報したが、マシンは稼働しているという状況、特に Heartbeat ログの遅延により期待しないアラートが発報した場合の調査方法についてご紹介いたします。">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/image01.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/image02.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/image03.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step01.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step02.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step03.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step04.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step05.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step06.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step07.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step08.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step01.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step02.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step03.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step04_01.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step04_02.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step05.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step06.png">
-<meta property="article:published_time" content="2022-04-03T15:00:00.000Z">
-<meta property="article:modified_time" content="2024-09-05T00:45:26.608Z">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/Unexpected_Heartbeat_logalert/image001.png">
+<meta property="article:published_time" content="2024-09-05T01:00:00.000Z">
+<meta property="article:modified_time" content="2024-09-05T00:45:26.736Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="How-To">
-<meta property="article:tag" content="Tips">
 <meta property="article:tag" content="Log Analytics">
+<meta property="article:tag" content="Azure Monitor Agent">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/image01.png">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/Unexpected_Heartbeat_logalert/image001.png">
   
     <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
   
@@ -100,7 +82,7 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-LogAnalytics/HowToCollectWindowsSecurityEvents" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-LogAnalytics/Unexpected_Heartbeat_logalert" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -109,7 +91,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Windows セキュリティ イベントログの収集
+      マシンが起動中にも関わらず Heartbeat ログ アラートが発報された場合の調査方法
     </h1>
   
 
@@ -117,76 +99,64 @@
       <div class="article-share">
         Last Update: 
         <a href="" class="article-date-single">
-  <time datetime="2022-04-03T15:00:00.000Z" itemprop="datePublished">2022-04-04</time>
+  <time datetime="2024-09-05T01:00:00.000Z" itemprop="datePublished">2024-09-05</time>
 </a>
         
         
-        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+a2e0241b-5f16-5704-9976-bd34dfc1d5be%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BWindows+%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3+%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%83%AD%E3%82%B0%E3%81%AE%E5%8F%8E%E9%9B%86%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FHowToCollectWindowsSecurityEvents%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FHowToCollectWindowsSecurityEvents.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FHowToCollectWindowsSecurityEvents.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+5bcef5df-1151-5913-ab2e-0c1e4f09bf57%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%8C%E8%B5%B7%E5%8B%95%E4%B8%AD%E3%81%AB%E3%82%82%E9%96%A2%E3%82%8F%E3%82%89%E3%81%9A+Heartbeat+%E3%83%AD%E3%82%B0+%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%8C%E7%99%BA%E5%A0%B1%E3%81%95%E3%82%8C%E3%81%9F%E5%A0%B4%E5%90%88%E3%81%AE%E8%AA%BF%E6%9F%BB%E6%96%B9%E6%B3%95%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FUnexpected_Heartbeat_logalert%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FUnexpected_Heartbeat_logalert.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FUnexpected_Heartbeat_logalert.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/" data-id="cm0okfwd9001f0nnyc5b88r2e" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/Unexpected_Heartbeat_logalert/" data-id="cm0okfwdh00210nny9lfq92vq" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは！ Azure Monitoring &amp; Integration サポート チームの北村です。</p>
-<p>今回は Log Analytics ワークスペースにセキュリティ イベント ログを収集する方法をご案内いたします。<br>ご利用されているエージェントによってログ収集方法が異なりますので、エージェントごとに設定方法をご紹介いたします。</p>
+        <p>こんにちは、Azure Monitoring チームの佐藤です！<br><br>今回は、Heartbeat ログ アラート ルールが発報したが、マシンは稼働しているという状況、<br>特に Heartbeat ログの遅延により期待しないアラートが発報した場合の調査方法についてご紹介いたします。<br></p>
 <span id="more"></span>
 
-<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
-<li>Log Analytics エージェントと Azure Monitor エージェントにおける収集方法の違い</li>
-<li>Log Analytics エージェントによるセキュリティ イベント ログ収集の設定</li>
-<li>Azure Monitor エージェントによるセキュリティ イベント ログ収集の設定</li>
-<li>まとめ</li>
-</ul>
-<h2 id="Log-Analytics-エージェントと-Azure-Monitor-エージェントにおける収集方法の違い"><a href="#Log-Analytics-エージェントと-Azure-Monitor-エージェントにおける収集方法の違い" class="headerlink" title="Log Analytics エージェントと Azure Monitor エージェントにおける収集方法の違い"></a>Log Analytics エージェントと Azure Monitor エージェントにおける収集方法の違い</h2><p>Azure Monitor でセキュリティ イベント ログを収集する場合、<br>Azure Monitor エージェント または Log Analytics エージェントを使用します。<br>冒頭でも申し上げたとおり、エージェントによって収集方法が異なります (下表参照)。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/image01.png"></p>
-<h3 id="Log-Analytics-エージェントによるログ収集"><a href="#Log-Analytics-エージェントによるログ収集" class="headerlink" title="Log Analytics エージェントによるログ収集"></a>Log Analytics エージェントによるログ収集</h3><p>Log Analytics エージェントは、他の Windows イベント ログとは異なり、<br>Log Analytics ワークスペースの [エージェント構成] からセキュリティ イベント ログの収集を設定することができません。<br>Microsoft Defender for Cloud または Microsoft Sentinel を使用する必要があり、ログは SecurityEvent テーブルに送信されます。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/image02.png"></p>
-<p>&lt;参考&gt;<br>– Log Analytics エージェントを使用して Windows イベント ログのデータ ソースを収集する - [Windows イベント ログの構成] を<br>ご参照ください。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/data-sources-windows-events#configuring-windows-event-logs">https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/data-sources-windows-events#configuring-windows-event-logs</a><br>– Microsoft Sentinel に送信できるセキュリティ イベント ログは下記弊社公開情報をご覧ください。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/sentinel/windows-security-event-id-reference">https://docs.microsoft.com/ja-jp/azure/sentinel/windows-security-event-id-reference</a></p>
-<h3 id="Azure-Monitor-エージェントによるログ収集"><a href="#Azure-Monitor-エージェントによるログ収集" class="headerlink" title="Azure Monitor エージェントによるログ収集"></a>Azure Monitor エージェントによるログ収集</h3><p>Azure Monitor エージェントでは、他の Windows イベント ログと同様に、<br>データ収集ルール (DCR) でセキュリティ イベント ログを収集することができます。ログは、Event テーブルに送信されます。<br>また、Microsoft Sentinel を使用して Azure Monitor エージェント経由でログを収集することもできますが、<br>その場合は SecurityEvent テーブルに送信されます (Log Analytics エージェントを使用する場合と同様です)。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/image03.png"></p>
-<p>&lt;参考&gt;<br>– 新しい Azure Monitor エージェントを使用して Windows セキュリティ イベントを収集する方法はありますか?<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/faq#----azure-monitor-------------windows--------------------------">https://docs.microsoft.com/ja-jp/azure/azure-monitor/faq#----azure-monitor-------------windows--------------------------</a></p>
-<h2 id="Log-Analytics-エージェントによるセキュリティ-イベント-ログ収集の設定"><a href="#Log-Analytics-エージェントによるセキュリティ-イベント-ログ収集の設定" class="headerlink" title="Log Analytics エージェントによるセキュリティ イベント ログ収集の設定"></a>Log Analytics エージェントによるセキュリティ イベント ログ収集の設定</h2><p>ここでは、Microsoft Sentinel を使用した Log Analytics エージェントによる セキュリティ イベント ログの収集手順をご紹介します。<br>下記手順は Azure VM を使用することを前提としております。</p>
+
 <ol>
-<li><p>Azure portal から Microsoft Sentinel を選択します。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step01.png"></p>
-</li>
-<li><p>Microsoft Sentinel の画面上部の [+ 作成] をクリックします。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step02.png"></p>
-</li>
-<li><p>新しい Log Analytics ワークスペースを作成する場合は、<br>画面上部の [+ 新しいワークスペースの作成] をクリックしてください。本手順では既に作成済みのワークスペースを選択します。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step03.png"></p>
-</li>
-<li><p>リソース メニュー の [データ コネクタ] から [レガシ エージェントを使用したセキュリティ イベント] のコネクタを選択し、<br>画面左下部の [コネクタ ページを開く] をクリックします。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step04.png"></p>
-</li>
-<li><p>Log Analytics エージェントをダウンロードします。<br>[Azure Windows 仮想マシンのエージェントをダウンロードしてインストールする] をクリックします。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step05.png"></p>
-</li>
-<li><p>セキュリティ イベント ログを収集する仮想マシンを選択し、Log Analytics ワークスペースに接続します。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step06.png"></p>
-</li>
-<li><p>収集するイベントを選択し、[変更の適用] を選択します。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step07.png"></p>
-</li>
-<li><p>Microsoft Sentinel のリソース メニューの [ログ] から SecurityEvent テーブルにログが収集されていることが分かります。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/LA/step08.png"></p>
-</li>
+<li>マシンが稼働しているにもかかわらず Heartbeat ログ アラート ルールが発報するシナリオ</li>
+<li>Heartbeat ログの収集状況を確認する方法</li>
+<li>Heartbeat ログの遅延が確認されたら</li>
 </ol>
-<p>&lt;参考&gt;<br>– 使用した Microsoft Sentinel のコネクタは [レガシ エージェントを使用したセキュリティ イベント (Windows)] です。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/sentinel/data-connectors-reference#security-events-via-legacy-agent-windows">https://docs.microsoft.com/ja-jp/azure/sentinel/data-connectors-reference#security-events-via-legacy-agent-windows</a><br>– 上記手順は、下記弊社公開情報にも掲載しております。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/sentinel/connect-azure-windows-microsoft-services?tabs=SA,LAA#windows-agent-based-connections">https://docs.microsoft.com/ja-jp/azure/sentinel/connect-azure-windows-microsoft-services?tabs=SA%2CLAA#windows-agent-based-connections</a></p>
-<h3 id="Azure-Monitor-エージェントによるセキュリティ-イベント-ログ収集の設定"><a href="#Azure-Monitor-エージェントによるセキュリティ-イベント-ログ収集の設定" class="headerlink" title="Azure Monitor エージェントによるセキュリティ イベント ログ収集の設定"></a>Azure Monitor エージェントによるセキュリティ イベント ログ収集の設定</h3><p>次に、Azure VM で データ収集ルール (DCR) を使用したセキュリティ イベント ログの収集設定手順をご紹介します。</p>
-<ol>
-<li><p>Azure portal から [モニター] を開きます。左リソース メニューから [設定] - [データ収集ルール] を選択し、<br>画面左上部の [+ 作成] をクリックします。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step01.png"></p>
-</li>
-<li><p>データ収集ルールを作成します。以下のとおり必要項目を入力します。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step02.png"></p>
-</li>
-<li><p>[+ リソースの追加] をクリックし、セキュリティ イベント ログを収集する仮想マシンを選択します。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step03.png"></p>
-</li>
-<li><p>[+ データ ソースの追加] を選択します。データ ソースの種類に [Windows event logs] の [セキュリティ] を選択します。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step04_01.png"><br>次にログを収集する Log Analytics ワークスペースを選択します。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step04_02.png"></p>
-</li>
-<li><p>最後に設定内容を確認し、[作成] をクリックします。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step05.png"></p>
-</li>
-<li><p>前述 4. で指定した Log Analytics ワークスペースの [ログ] から Event テーブルにセキュリティ イベント ログが収集されていることが分かります。<br><img src="/blog/LogAnalytics/HowToCollectWindowsSecurityEvents/AMA/step06.png"></p>
-</li>
-</ol>
-<p>&lt;参考&gt;<br>– データ収集ルール (DCR) につきましては、下記公開情報をご覧ください。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-rule-azure-monitor-agent">https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-rule-azure-monitor-agent</a><br>– Azure Monitor エージェントでも、Microsoft Sentinel にセキュリティ イベント ログを収集することは可能です。<br>使用するコネクタは下記弊社公開情報をご覧ください。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/sentinel/data-connectors-reference#windows-security-events-via-ama">https://docs.microsoft.com/ja-jp/azure/sentinel/data-connectors-reference#windows-security-events-via-ama</a></p>
-<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>本記事では、以下についてご案内いたしましたが、ご理解いただけましたでしょうか。</p>
+<h1 id="1-マシンが稼働しているにもかかわらず-Heartbeat-ログ-アラート-ルールが発報するシナリオ"><a href="#1-マシンが稼働しているにもかかわらず-Heartbeat-ログ-アラート-ルールが発報するシナリオ" class="headerlink" title="1. マシンが稼働しているにもかかわらず Heartbeat ログ アラート ルールが発報するシナリオ"></a>1. マシンが稼働しているにもかかわらず Heartbeat ログ アラート ルールが発報するシナリオ</h1><p>マシンが稼働しているにもかかわらず Heartbeat ログ アラート が発報する原因として、<br>主に以下がございます。<br><br>主な要因 1 : Heartbeat ログの欠損<br><br>-&gt; 何らかの原因によりマシンから Heartbeat ログが届かなくなり、それによりアラートの発報条件を満たし発報する。<br></p>
+<p>主な要因 2 : Heartbeat ログの遅延<br><br>-&gt; Heartbeat ログの収集に遅延発生したことで、アラートの発報条件を満たし発報する。<br></p>
+<p>主な要因 3 : サービスに問題が発生している状況<br></p>
+<p>今回はこのなかでも、主な要因 2 (遅延) にスポットライトを当ててみます。<br></p>
+<h1 id="2-Heartbeat-ログの収集遅延状況を確認する方法"><a href="#2-Heartbeat-ログの収集遅延状況を確認する方法" class="headerlink" title="2. Heartbeat ログの収集遅延状況を確認する方法"></a>2. Heartbeat ログの収集遅延状況を確認する方法</h1><p>以下のクエリにより、まず Heartbeat ログの遅延状況をご確認いただくことが可能です。<br><br>(※ たとえば、ログが 30 分遅延して収集されてしまった環境の場合、10:30 に収集されるべきログが Log Analytics ワークスペースに到着するのは 11:00 でございます。<br><br>    10:30 ~ 11:00 の間に 10:30 に収集されたログを確認した場合、クエリに該当するレコードがない旨表示されることにご留意ください。)<br></p>
+<p>Log Analytics ワークスペースの各テーブルに存在する以下の 3 列を使用して、収集遅延状況を確認することが可能です。<br><br>各列の名称およびどのような値を格納しているかについては以下の通りでございます。​<br><br>(列名 : どのような値を格納しているか の順で記載いたします。)<br></p>
+<p>TimeGenerated 列 : エージェントでデータを検知した時刻<br><br>_TimeReceived 列 : データが Azure に届いた時刻<br><br>ingestion_time() 列 : Log Analytics ワークスペースに取り込まれ、クエリが可能になった時刻<br></p>
+<p>// 参考情報<br></p>
 <ul>
-<li>Log Analytics エージェントと Azure Monitor エージェントにおける収集方法の違い</li>
-<li>Log Analytics エージェントによるセキュリティ イベント ログ収集の設定</li>
-<li>Azure Monitor エージェントによるセキュリティ イベント ログ収集の設定</li>
+<li>インジェスト時間のチェック<br><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-ingestion-time#check-ingestion-time">https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-ingestion-time#check-ingestion-time</a><br></li>
 </ul>
-<p>本記事がご理解の助けとして、お役立ていただければ幸いです。<br>以上、Windows セキュリティ イベント ログの収集設定についてお伝えしました。</p>
-<p>最後までお読みいただきありがとうございました！</p>
+<p>Heartbeat<br><br>| where _ResourceId contains “&lt;仮想マシン名&gt;” //&lt;仮想マシン名&gt; は、遅延状況を確認したいログの収集元マシン名に置き換えます<br><br>| order by TimeGenerated asc​<br><br>| extend E2EIngestionLatency = ingestion_time() - TimeGenerated​ // ①<br><br>| extend AgentLatency = _TimeReceived - TimeGenerated​ // ②<br><br>| project TimeGenerated, Computer, E2EIngestionLatency, AgentLatency, _TimeReceived, ingestion_time(), Category​<br><br>| order by E2EIngestionLatency<br><br><br><br>① : エージェントがデータを検知してから、データがクエリ可能になるまでの所要時間を計算します<br><br>② : エージェントがデータを検知してから、Azure に届くまでの所要時間を計算します<br><br><br><br>上述のクエリを実行いただくことで、① として計算した値が大きい順に以下の表なテーブル形式でデータが出力されます。</p>
+<p>エージェントがデータを検知してからログがクエリ可能な状態に処理されるまで、おおよそ 3 分ほどの時間を要します。<br><br>E2EIngestionLatency 列の値をご確認いただき、遅延の有無をご確認ください。<br></p>
+<p><img src="/blog/LogAnalytics/Unexpected_Heartbeat_logalert/image001.png"><br>例えば、上述のハイライトの場合ですと、以下のようになっております。<br><br><br><br>E2EIngestionLatency : 18 分 8 秒<br><br>AgentLatency : 18 分 2 秒<br><br><br><br><br>この場合、AgentLatency が大きいために E2EIngestionLatency の値が大きくなっています。<br>すなわち、エージェントがデータを検知してから Azure に届くまでの過程で時間を要していることがわかります。</p>
+<h1 id="3-Heartbeat-ログの遅延が確認されたら"><a href="#3-Heartbeat-ログの遅延が確認されたら" class="headerlink" title="3. Heartbeat ログの遅延が確認されたら"></a>3. Heartbeat ログの遅延が確認されたら</h1><p>2 に記載のクエリにより Heartbeat ログの遅延が確認された場合、以下 2 パターンの遅延の仕方がございます。<br><br>パターン 1 : E2EIngestionLatency が大きく、かつ AgentLatency も大きい<br><br>パターン 2 : E2EIngestionLatency が大きいが、 AgentLatency は小さい<br></p>
+<p>遅延箇所により遅延の発生原因が異なります。<br><br>それぞれのパターンについて、以下に詳述します。<br></p>
+<h2 id="パターン-1-E2EIngestionLatency-が大きく、かつ-AgentLatency-も大きい"><a href="#パターン-1-E2EIngestionLatency-が大きく、かつ-AgentLatency-も大きい" class="headerlink" title="パターン 1 : E2EIngestionLatency が大きく、かつ AgentLatency も大きい"></a>パターン 1 : E2EIngestionLatency が大きく、かつ AgentLatency も大きい</h2><p>この場合、エージェントがデータを検知してから Azure に届くまでに時間を要しています。<br><br>考えられる主な原因は以下の 2 つでございます。<br></p>
+<ul>
+<li>ご利用いただいているネットワークの問題<br></li>
+<li>エージェントで発生している問題<br></li>
+</ul>
+<p>エージェントで問題が発生しているかどうかは、以下の手順でエージェントのログを取得いただくことでご確認いただけます。</p>
+<h3 id="Windows-OS-の場合"><a href="#Windows-OS-の場合" class="headerlink" title="Windows OS の場合"></a>Windows OS の場合</h3><ol>
+<li>問題が発生した Windows サーバーへ管理者権限にてログインします。<br></li>
+<li>PowerShell ウインドウを管理者権限にて開きます。<br></li>
+<li>以下のコマンドを実行します。<br><br>cd “C:\Packages\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent\1.X.X.X\Troubleshooter”<br><br>(X にはバージョン番号が入ります。環境に応じて変更下さい。)<br><br> .\AgentTroubleshooter.exe –ama -v<br></li>
+<li>ログ採取が行われますのでそのまま待機します。<br></li>
+<li>“C:\Packages\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent\1.X.X.X\Troubleshooter” フォルダ内 AgentTroubleshooterOutput.zip ファイルが作成されます。<br><br>こちらが Azure Monitor エージェントのログでございます。<br></li>
+</ol>
+<h3 id="Linux-OS-の場合"><a href="#Linux-OS-の場合" class="headerlink" title="Linux OS の場合"></a>Linux OS の場合</h3><p>対象の Linux OS 上で作業を実施してください。<br>以下のコマンドを任意のディレクトリ上で実行します。<br><br><br>$ mkdir ama_tst<br><br>$ cd ama_tst<br><br>$ wget <a target="_blank" rel="noopener" href="https://github.com/Azure/azure-linux-extensions/raw/master/AzureMonitorAgent/ama_tst/ama_tst.tgz">https://github.com/Azure/azure-linux-extensions/raw/master/AzureMonitorAgent/ama_tst/ama_tst.tgz</a><br><br>$ tar -xzvf ama_tst.tgz<br><br>$ sudo sh ama_troubleshooter.sh<br><br>“Please select an option:” と表示されますので、”L” を入力し、エンターキーを押します。<br><br>“Output Directory:” と表示されますので、”.” を入力し、エンターキーを押します。<br><br><br><br>シェルが終了しますと、”amalogs” から始まるディレクトリ、またはファイルがカレントディレクトリに出力されます。<br><br>こちらが Azure Monitor エージェントのログでございます。<br><br><br></p>
+<p>事象発生直後のほうが、ログに残存している情報が多いため、<br>弊社サポート窓口にお問い合わせいただく場合でも事象発生後なるべくお早めにログを取得いただくことをお勧めいたします。<br><br>ログ ファイルがディレクトリとなっている場合には、弊社にご提供いただきます際には圧縮いただきますようお願いいたします。<br></p>
+<p>また、エージェントのバージョンが最新でない場合には、<br>過去のエージェント特有の不具合として事象が発生する可能性もございます。<br><br>エージェントは不具合の修正などを目的としたアップグレードが行われております。<br><br>そのため、エージェントは最新バージョンをご利用いただくことを合わせてご検討ください。<br></p>
+<h2 id="パターン-2-E2EIngestionLatency-が大きいが、-AgentLatency-は小さい"><a href="#パターン-2-E2EIngestionLatency-が大きいが、-AgentLatency-は小さい" class="headerlink" title="パターン 2 : E2EIngestionLatency が大きいが、 AgentLatency は小さい"></a>パターン 2 : E2EIngestionLatency が大きいが、 AgentLatency は小さい</h2><p>この場合、AgentLatency が小さいことからエージェントがデータを検知してから Azure に届くまでの経路に問題はありません。<br><br>一方で、Azure に届いてからクエリ可能になるまでに時間を要しているため E2EIngestionLatency の値が大きくなっています。<br><br>この場合、Azure 内部の処理 (受信したデータをクエリ可能となるよう行う処理) に時間がかかっております。<br><br><br>なぜ Azure 内部の処理に時間がかかったか詳細な原因を調査されたい場合には、サポート リクエストを発行いただくことで調査が可能です。<br><br><br><br>Heartbeat 監視は、Log Analytics ワークスペースのデータ取り込み遅延によって期待どおり監視出来ない可能性がございます。<br><br>コンピューターの死活監視として、Heartbeat の監視以外にも様々な方法がございます。<br><br>下記の記事に死活監視に関する内容が記載しております。<br><br>こちらもあわせてご参考ください<br><br><br></p>
+<ul>
+<li>Azure VM における死活監視の考え方<br><br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM02/">https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM02/</a><br><br>
+上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。
+最後までお読みいただきありがとうございました！</li>
+</ul>
 
       
       
@@ -200,10 +170,10 @@
     <footer class="article-footer">
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Agent/" rel="tag">Azure Monitor Agent</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li></ul>
 
         
-        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/HowToCollectWindowsSecurityEvents.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/Unexpected_Heartbeat_logalert.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
         
     </footer>
   </div>
@@ -211,19 +181,10 @@
     
 <nav id="article-nav">
   
-    <a href="../HowToChangeLAWSDataRetentionPeriod/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">次の記事</strong>
-      <div class="article-nav-title">
-        
-          Log Analytics ワークスペースの保有期間の変更
-        
-      </div>
-    </a>
   
-  
-    <a href="../../AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../VMAvailability-MetricAlert/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前の記事</strong>
-      <div class="article-nav-title">アラート通知メールのカスタマイズについて</div>
+      <div class="article-nav-title">可用性メトリック ‘VM Availability Metric (Preview)’ のメトリック アラートについて</div>
     </a>
   
 </nav>
@@ -242,7 +203,7 @@
       <ul>
         
           <li>
-            <a href="../Unexpected_Heartbeat_logalert/">マシンが起動中にも関わらず Heartbeat ログ アラートが発報された場合の調査方法</a>
+            <a href="">マシンが起動中にも関わらず Heartbeat ログ アラートが発報された場合の調査方法</a>
           </li>
         
           <li>
