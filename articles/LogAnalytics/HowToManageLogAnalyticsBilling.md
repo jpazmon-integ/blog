@@ -217,8 +217,9 @@ GET "https://management.azure.com/subscriptions/{サブスクリプション ID}
 #### 2-1-1. 不要なログの収集を停止する
 インジェスト量を減らすためにまずはじめに検討できることは、不要なログの収集を停止することです。  
 
-以下は、不要なログの収集を停止する主な例です。
-##### ■ データ収集ルールをカスタマイズして不要なデータの収集を減らす
+以下は、不要なログの収集を停止する主な例です。  
+
+■ **データ収集ルールをカスタマイズして不要なデータの収集を減らす**  
 Azure Monitor エージェントとデータ収集ルールを用いたデータ収集を行っている場合、以下のログについては設定を変えることで、収集・監視が必要なログのみを Log Analytics ワークスペース内に収集することができます。
 - パフォーマンス カウンター
 - Windows イベント ログ
@@ -237,6 +238,22 @@ Azure Monitor エージェントとデータ収集ルールを用いたデータ
 **Linux Syslog**
 - [Syslog データの収集を構成する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-syslog#configure-collection-of-syslog-data)  
 ![](./HowToManageLogAnalyticsBilling/docs-syslog.png)
+
+■ **Application Insights のサンプリング機能を用いて収集ログを減らす**
+  
+Application Insights では、サンプリング機能が実装されております。  
+このサンプリング機能では、アプリケーションから出力されるテレメトリ データの出力量を抑えることが出来ます。  
+サンプリングを使用することで、APM に必要なデータをコストの観点で効率的に収集出来ます。  
+もし Application Insights に紐づくデータのコストを抑えたい要望がある場合は、一度サンプリング機能をご検討ください。
+
+- [Sampling in Application Insights](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/sampling-classic-api)
+
+■ **Container Insights の収集設定をカスタマイズして不要なデータの収集を減らす**  
+Container Insights を有効化していただくことで、AKS や Azure Arc enabled k8s から、コンテナに関するログやパフォーマンス情報を、Log Analytics ワークスペースに収集することが可能です。  
+一方で Container Insights のログ収集設定によっては収集されるログが増え、コスト増加に繋がります。  
+もし不要な Container Insights に関連するログが存在する場合は、Container Insights のログ収集設定の見直しをご検討ください。  
+
+- [Configure log collection in Container insights](https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-data-collection-configure?tabs=portal)
 
 #### 2-1-2. 日次上限を設定しデータのインジェスト量を一定量までに抑える
 Log Analytics ワークスペースに日次上限とは、1 日あたりのデータのインジェスト量の上限値を指します。  
@@ -290,14 +307,14 @@ Log Analytics ワークスペース内のデータは、対話型保持と長期
 
 以下に、ストレージ アカウントまたは Event Hubs にログを送信する 2 つの方法と、Log Analytics ワークスペース内のデータを削除する方法をご紹介します。
 
-###### ■ データ エクスポート ルールを利用してエクスポートする
+■ **データ エクスポート ルールを利用してエクスポートする**
 - 選択したテーブルごとに、データをストレージ アカウント、または Event Hubs にエクスポート・保存できます。
 - ストレージ アカウント、または Event Hubs にエクスポート・保存されるデータは、Log Analytics ワークスペースにも収集されます。  
   そのため、コストを抑えたい場合は、テーブルの保有期間を無料期間の範囲に収める、または[Log Analytics ワークスペース内のデータを削除する](#log-analytics-ワークスペース内のデータを削除する)で削除する必要があります。
 - より詳細な情報は、以下弊社サイトをご参照ください。  
 [Azure Monitor の Log Analytics ワークスペース データ エクスポート](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal)
 
-###### ■ データ収集ルールを構成して直接アップロードする (プレビュー)
+■ **データ収集ルールを構成して直接アップロードする (プレビュー)**
 - データ収集ルールを構成することで、Azure Monitor エージェントを使用して収集したデータを、直接ストレージ アカウント、または Event Hubs へアップロードすることができます。  
 - この方法では、Log Analytics ワークスペースにはデータが収集されないため、ワークスペース内のデータを削除する必要はありません。
 - 本機能がサポートされているデータ型には制限がございます (2024 年 9 月時点)。詳細は、以下弊社サイトをご確認ください。  
@@ -307,7 +324,7 @@ Log Analytics ワークスペース内のデータは、対話型保持と長期
 (*4) ストレージ アカウントの価格は以下サイトからご確認ください。  
 [Azure Blob Storage の価格](https://azure.microsoft.com/ja-jp/pricing/details/storage/blobs/)
 
-##### 2-2-3. Log Analytics ワークスペース内のデータを削除する
+#### 2-2-3. Log Analytics ワークスペース内のデータを削除する
 Log Analytics ワークスペースに収集されたデータは、REST API で削除することができます。
 この REST API を使用すると、テーブル名やカラム名を指定して特定のデータを削除することが可能です。  
 クエリ実行による分析が不要になったデータや、[2-2-2. データの保有量を調整する](#2-2-2-データの保有量を調整する) で別の場所へ移動したデータを Log Analytics ワークスペースから削除することで、データの保有料金を抑えることができます。  
