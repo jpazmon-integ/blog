@@ -4,26 +4,25 @@
   <meta charset="utf-8">
   
   
-  <title>Log Analytics ワークスペースの保有期間の変更 | Japan Azure Monitoring Support Blog</title>
+  <title>メトリック アラート ルールで NULL を検知することはできない | Japan Azure Monitoring Support Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="こんにちは！ Azure Monitoring &amp; Integration サポート チームの北村です。 今回は Log Analytics ワークスペースのデータ保有期間の変更方法をご案内いたします。Azure portal では ワークスペースの保有期間は、30、31、60、90、120、180、270、365、550、および 730 日 しか設定できません。そのため、前述した日数以外">
+  <meta name="description" content="こんにちは、Azure Monitoring チームの北村です。今回はメトリックがない (NULL) 場合のメトリック アラート ルールの動作について説明します。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Log Analytics ワークスペースの保有期間の変更">
-<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToChangeLAWSDataRetentionPeriod/index.html">
+<meta property="og:title" content="メトリック アラート ルールで NULL を検知することはできない">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは！ Azure Monitoring &amp; Integration サポート チームの北村です。 今回は Log Analytics ワークスペースのデータ保有期間の変更方法をご案内いたします。Azure portal では ワークスペースの保有期間は、30、31、60、90、120、180、270、365、550、および 730 日 しか設定できません。そのため、前述した日数以外">
+<meta property="og:description" content="こんにちは、Azure Monitoring チームの北村です。今回はメトリックがない (NULL) 場合のメトリック アラート ルールの動作について説明します。">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToChangeLAWSDataRetentionPeriod/image01.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToChangeLAWSDataRetentionPeriod/image02.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToChangeLAWSDataRetentionPeriod/image03.png">
-<meta property="article:published_time" content="2022-04-03T15:00:00.000Z">
-<meta property="article:modified_time" content="2024-09-17T08:34:10.159Z">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/image01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/image02.png">
+<meta property="article:published_time" content="2024-09-17T15:00:00.000Z">
+<meta property="article:modified_time" content="2024-09-17T08:34:10.115Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="How-To">
-<meta property="article:tag" content="Tips">
-<meta property="article:tag" content="Log Analytics">
+<meta property="article:tag" content="MetricAlert">
+<meta property="article:tag" content="Azure Monitor Essential">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToChangeLAWSDataRetentionPeriod/image01.png">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/image01.png">
   
     <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
   
@@ -85,7 +84,7 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-LogAnalytics/HowToChangeLAWSDataRetentionPeriod" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-AzureMonitorEssential/UnableToDetectNullMetric" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -94,7 +93,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Log Analytics ワークスペースの保有期間の変更
+      メトリック アラート ルールで NULL を検知することはできない
     </h1>
   
 
@@ -102,42 +101,51 @@
       <div class="article-share">
         Last Update: 
         <a href="" class="article-date-single">
-  <time datetime="2022-04-03T15:00:00.000Z" itemprop="datePublished">2022-04-04</time>
+  <time datetime="2024-09-17T15:00:00.000Z" itemprop="datePublished">2024-09-18</time>
 </a>
         
         
-        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+cf5c43ad-b2eb-50a9-8e98-d1b594c6494c%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BLog+Analytics+%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AE%E4%BF%9D%E6%9C%89%E6%9C%9F%E9%96%93%E3%81%AE%E5%A4%89%E6%9B%B4%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FHowToChangeLAWSDataRetentionPeriod%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FHowToChangeLAWSDataRetentionPeriod.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FHowToChangeLAWSDataRetentionPeriod.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+09fb108b-0da5-5cff-b499-cf24fa820b22%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF+%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88+%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%A7+NULL+%E3%82%92%E6%A4%9C%E7%9F%A5%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FUnableToDetectNullMetric%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FUnableToDetectNullMetric.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FUnableToDetectNullMetric.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToChangeLAWSDataRetentionPeriod/" data-id="cm166gwi4001c0onx2rpz6mfh" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/" data-id="cm166gwht000q0onx3ojp06c7" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは！ Azure Monitoring &amp; Integration サポート チームの北村です。</p>
-<p>今回は Log Analytics ワークスペースのデータ保有期間の変更方法をご案内いたします。<br>Azure portal では ワークスペースの保有期間は、30、31、60、90、120、180、270、365、550、および 730 日 しか設定できません。そのため、前述した日数以外の値を設定する場合は、Azure PowerShell や Azure CLI で設定する必要があります。<br>今回は、Azure portal 以外での設定変更方法として、Azure PowerShell と Azure CLI コマンドの例をご紹介します。</p>
-<span id="more"></span>
+        <p>こんにちは、Azure Monitoring チームの北村です。<br>今回はメトリックがない (NULL) 場合のメトリック アラート ルールの動作について説明します。</p>
+<br>
 
+<span id="more"></span>
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
-<li>Log Analytics ワークスペースの保有期間</li>
-<li>Azure CLI コマンドを利用した設定</li>
-<li>Azure PowerShell を利用した設定</li>
-<li>まとめ</li>
+<li><a href="#1-%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB">1. はじめに</a></li>
+<li><a href="#2-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%81%8C-NULL-%E3%81%AE%E7%8A%B6%E6%85%8B%E3%81%A8%E3%81%AF">2. メトリックが NULL の状態とは</a></li>
+<li><a href="#3-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%81%8C-NULL-%E3%81%AE%E5%A0%B4%E5%90%88%E3%81%AF%E8%A9%95%E4%BE%A1%E3%81%8C%E3%82%B9%E3%82%AD%E3%83%83%E3%83%97%E3%81%95%E3%82%8C%E3%82%8B">3. メトリックが NULL の場合は評価がスキップされる</a></li>
+<li><a href="#4-%E3%81%BE%E3%81%A8%E3%82%81">4. まとめ</a><br></li>
 </ul>
-<h2 id="Log-Analytics-ワークスペースの保有期間"><a href="#Log-Analytics-ワークスペースの保有期間" class="headerlink" title="Log Analytics ワークスペースの保有期間"></a>Log Analytics ワークスペースの保有期間</h2><p>まず、Log Analytics ワークスペースの保有期間は、30 日から 730 日まで設定できます。<br>730 日間を超えてログ データを保持する場合は、Azure ストーレジ アカウントや Azure イベント ハブにエクスポートすることを<br>ご検討ください。</p>
-<p>– Azure Monitor ログで使用量とコストを管理する - [データ保持期間の変更]<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/manage-cost-storage#change-the-data-retention-period">https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/manage-cost-storage#change-the-data-retention-period</a></p>
-<h2 id="Azure-CLI-コマンドを利用した設定"><a href="#Azure-CLI-コマンドを利用した設定" class="headerlink" title="Azure CLI コマンドを利用した設定"></a>Azure CLI コマンドを利用した設定</h2><p><code>az monitor log-analytics workspace update</code> コマンドは、Log Analytics ワークスペースの設定を更新するコマンドです。<br>Log Analytics ワークスペース名、ワークスペースが属するリソース グループ名、retention-time に 30 ～ 730 の範囲で<br>任意の保持期間日数を指定します。</p>
-<p><code>az monitor log-analytics workspace update --resource-group &lt;リソースグループ名&gt; --workspace-name &lt;ワークスペース名&gt; --retention-time &lt;保有期間&gt;</code><br><img src="/blog/LogAnalytics/HowToChangeLAWSDataRetentionPeriod/image01.png"></p>
-<p>上記コマンドで変更した内容は、Azure portal から確認することもできます。<br>Log Analytics ワークスペース - [使用量と推定コスト] - [データ保有期間] をご覧ください。<br><img src="/blog/LogAnalytics/HowToChangeLAWSDataRetentionPeriod/image02.png"></p>
-<p>&lt;ご参考&gt;<br>– az monitor log-analytics workspace update<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/cli/azure/monitor/log-analytics/workspace?view=azure-cli-latest#az-monitor-log-analytics-workspace-update">https://docs.microsoft.com/ja-jp/cli/azure/monitor/log-analytics/workspace?view=azure-cli-latest#az-monitor-log-analytics-workspace-update</a><br>– az monitor log-analytics workspace show<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/cli/azure/monitor/log-analytics/workspace?view=azure-cli-latest#az-monitor-log-analytics-workspace-show">https://docs.microsoft.com/ja-jp/cli/azure/monitor/log-analytics/workspace?view=azure-cli-latest#az-monitor-log-analytics-workspace-show</a><br>※ 上記コマンドでは、Log Analytics ワークスペースの設定値を確認することができます。</p>
-<h2 id="Azure-PowerShell-を使用した設定"><a href="#Azure-PowerShell-を使用した設定" class="headerlink" title="Azure PowerShell を使用した設定"></a>Azure PowerShell を使用した設定</h2><p>前述の Azure CLI コマンドと同様、Log Analytics ワークスペースの設定を更新するコマンドを使用します。<br>Log Analytics ワークスペース名、ワークスペースが属するリソース グループ名、RetentionInDays に 30 ～ 730 の範囲で<br>任意の保持期間日数を指定します。<br><code>Set-AzOperationalInsightsWorkspace -ResourceGroupName &quot;&lt;リソースグループ名&gt;&quot; -Name &quot;&lt;ワークスペース名&gt;&quot; -RetentionInDays &lt;保有期間&gt;</code><br><img src="/blog/LogAnalytics/HowToChangeLAWSDataRetentionPeriod/image03.png"></p>
-<p>&lt;ご参考&gt;<br>下記弊社公開情報は、Az PowerShell 7.2.0 の情報でございます。お客様がご利用されているバージョンに沿った公開情報を<br>ご覧ください。<br>– Set-AzOperationalInsightsWorkspace<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/powershell/module/az.operationalinsights/set-azoperationalinsightsworkspace?view=azps-7.2.0">https://docs.microsoft.com/en-us/powershell/module/az.operationalinsights/set-azoperationalinsightsworkspace?view=azps-7.2.0</a><br>– Get-AzOperationalInsightsWorkspace<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/powershell/module/az.operationalinsights/get-azoperationalinsightsworkspace?view=azps-7.2.0">https://docs.microsoft.com/en-us/powershell/module/az.operationalinsights/get-azoperationalinsightsworkspace?view=azps-7.2.0</a><br>※ 上記コマンドでは、Log Analytics  ワークスペースの設定値を確認することができます。</p>
-<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>本記事では、以下についてご案内いたしましたが、ご理解いただけましたでしょうか。</p>
-<ul>
-<li>Log Analytics ワークスペースの保有期間</li>
-<li>Azure CLI コマンドを利用した設定</li>
-<li>Azure PowerShellを利用した設定</li>
-</ul>
-<p>本記事が少しでもお役に立ちましたら幸いです。<br>以上、Log Analytics  ワークスペース の保有期間の変更方法についてお伝えしました。<br>最後までお読みいただきありがとうございました！</p>
+<h2 id="1-はじめに"><a href="#1-はじめに" class="headerlink" title="1. はじめに"></a>1. はじめに</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#metric-alerts">メトリック アラート ルール</a>でテストを実施したが、しきい値を満たしている状況なのに想定どおりに発報しない・・・というお問い合わせをいただくことがございます。このようなときにご確認いただきたい点は「メトリックが出力されているかどうか」です。<br>本ブログのタイトルのとおり、メトリック アラート ルールでは「NULL」を検知することはできません。対象の評価期間の間、メトリックが NULL の場合は、アラート ルールが評価をスキップするためです。一方で、評価期間中に一度でも値が記録された場合は、その値をもとに評価が実行されます (評価はスキップされません)。</p>
+<br>
+
+<h2 id="2-メトリックが-NULL-の状態とは"><a href="#2-メトリックが-NULL-の状態とは" class="headerlink" title="2. メトリックが NULL の状態とは"></a>2. メトリックが NULL の状態とは</h2><p>メトリックが「NULL」の状態は、メトリックが何も出力されていないことを意味します。<br>詳細は <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/metrics-aggregation-explained#null-and-zero-values">弊社公開情報</a> をご参照いただきたく存じますが、NULL はゼロ値とは異なります。</p>
+<p>ここでは Azure VM の<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/monitor-vm-reference#vm-availability-metric-preview">可用性メトリック ‘VM Availability Metric (Preview)’</a> を、折れ線グラフで描画した例に説明します。<br>この<a href="https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/#2-%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E2%80%98VM-Availability-Metric-Preview-%E2%80%99-%E3%81%A8%E3%81%AF">メトリック</a>では VM が実行中の場合は 1 が記録されますが、Azure VM が “停止済み (割り当て解除)” の場合はメトリックの値が NULL になります。</p>
+<p>VM が実行している間は 1 が記録されます。<br><img src="/blog/AzureMonitorEssential/UnableToDetectNullMetric/image01.png"></p>
+<p>一方で、VM が “停止済み (割り当て解除)” の場合はメトリックが記録されず、破線となっていることがわかります。<br><img src="/blog/AzureMonitorEssential/UnableToDetectNullMetric/image02.png"></p>
+<div class="alert is-info"><p class="alert-title">Note</p><p>メトリック エクスプローラーの使い方は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/analyze-metrics">弊社公開情報</a> をご参照ください。また、エクスプローラー上で確認した際に値が 0 と表示されていても、アラート ルールの評価時には NULL と認識されるメトリックもございます。メトリックが NULL と判定されたことにより評価がスキップされていると推測される場合には、一度対象のメトリックを意図的に記録いただき、アラートが検知するかどうかをご確認いただきますようお願いいたします。</p></div>
+<br>
+
+
+<h2 id="3-メトリックが-NULL-の場合は評価がスキップされる"><a href="#3-メトリックが-NULL-の場合は評価がスキップされる" class="headerlink" title="3. メトリックが NULL の場合は評価がスキップされる"></a>3. メトリックが NULL の場合は評価がスキップされる</h2><p>冒頭でもお伝えしたとおり、メトリック アラート ルールは、評価期間の間、メトリックがずっと NULL の場合は評価をスキップします。以下に例を示します。</p>
+<p><strong>例 1.</strong><br>00:00  NULL<br>00:01  NULL<br>00:02  NULL<br>00:03  NULL<br>00:04  NULL</p>
+<p>例えば、上記のようにメトリックが出力されていない状況だったとします。<br>この状態で、アラート ルールが 00:00 ~ 00:04 のメトリックを対象に評価したとします。<br>このとき、対象の期間メトリックはずっと NULL のため、アラート ルールはこの評価をスキップします。このため、アラートを検知することはありません。</p>
+<p><strong>例 2.</strong><br>00:00  NULL<br>00:01  1<br>00:02  NULL<br>00:03  0<br>00:04  NULL</p>
+<p>例えば、00:01 と 00:03 にメトリックが記録され、それ以外は NULL だったとします。<br>この状態で、アラート ルールが 00:00 ~ 00:04 のメトリックを対象に評価した場合は、00:01 と 00:03 の値をもとに評価が実行されますので、アラート ルールの評価はスキップされません。</p>
+<br>
+
+
+<h2 id="4-まとめ"><a href="#4-まとめ" class="headerlink" title="4. まとめ"></a>4. まとめ</h2><p>メトリック アラート ルールにてテストを実施された際には、メトリックが出力されているかどうかをご確認ください。<br>もし期待どおりメトリックが出力されていなかった場合は、メトリックが出力されるように一度意図的に Azure リソースを操作ください。メトリックの出力条件について詳細を知りたい場合は、お手数ですが対象の Azure サービス観点でメトリックに関するお問合せをご起票ください。お問合せいただく際には、「なぜメトリックの出力条件が知りたいのか?」について背景をご共有いただくとスムーズなコミュニケーションが期待出来ます。</p>
+<p><strong>&lt;お問い合わせ文の例&gt;</strong><br>Azure VM の可用性メトリックを監視するメトリック アラート ルールの動作検証を実施したい。<br>メトリック値が 1 になる条件は分かるが 0 になる条件が分からず、メトリック アラート ルールの動作検証のために可用性メトリックが 0 となる条件について知りたいです。</p>
+<br>
+
+<p>上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。<br>最後までお読みいただきありがとうございました！</p>
 
       
       
@@ -151,10 +159,10 @@
     <footer class="article-footer">
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Essential/" rel="tag">Azure Monitor Essential</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li></ul>
 
         
-        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/HowToChangeLAWSDataRetentionPeriod.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/AzureMonitorEssential/UnableToDetectNullMetric.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
         
     </footer>
   </div>
@@ -162,19 +170,10 @@
     
 <nav id="article-nav">
   
-    <a href="../../applicationInsights/aboutCostOfAi/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">次の記事</strong>
-      <div class="article-nav-title">
-        
-          Application Insights のログの料金について
-        
-      </div>
-    </a>
   
-  
-    <a href="../HowToCollectWindowsSecurityEvents/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../../LogAnalytics/Unexpected_Heartbeat_logalert/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前の記事</strong>
-      <div class="article-nav-title">Windows セキュリティ イベントログの収集</div>
+      <div class="article-nav-title">マシンが起動中にも関わらず Heartbeat ログ アラートが発報された場合の調査方法</div>
     </a>
   
 </nav>
@@ -193,23 +192,23 @@
       <ul>
         
           <li>
-            <a href="../../AzureMonitorEssential/UnableToDetectNullMetric/">メトリック アラート ルールで NULL を検知することはできない</a>
+            <a href="">メトリック アラート ルールで NULL を検知することはできない</a>
           </li>
         
           <li>
-            <a href="../Unexpected_Heartbeat_logalert/">マシンが起動中にも関わらず Heartbeat ログ アラートが発報された場合の調査方法</a>
+            <a href="../../LogAnalytics/Unexpected_Heartbeat_logalert/">マシンが起動中にも関わらず Heartbeat ログ アラートが発報された場合の調査方法</a>
           </li>
         
           <li>
-            <a href="../VMAvailability-MetricAlert/">可用性メトリック ‘VM Availability Metric (Preview)’ のメトリック アラートについて</a>
+            <a href="../../LogAnalytics/VMAvailability-MetricAlert/">可用性メトリック ‘VM Availability Metric (Preview)’ のメトリック アラートについて</a>
           </li>
         
           <li>
-            <a href="../HowToCollectCustomEventlog/">既定で用意されているもの以外のイベント ログを収集する方法</a>
+            <a href="../../LogAnalytics/HowToCollectCustomEventlog/">既定で用意されているもの以外のイベント ログを収集する方法</a>
           </li>
         
           <li>
-            <a href="../HowToCollectCustomPerfCounter/">既定で用意されているもの以外のパフォーマンス カウンターを収集する方法</a>
+            <a href="../../LogAnalytics/HowToCollectCustomPerfCounter/">既定で用意されているもの以外のパフォーマンス カウンターを収集する方法</a>
           </li>
         
       </ul>
