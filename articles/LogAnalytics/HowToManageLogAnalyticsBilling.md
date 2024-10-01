@@ -34,6 +34,7 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/analyze-usage
 - [2-2. データの保持にかかるコストを抑える](#2-2-データの保持にかかるコストを抑える)
   - [2-2-1. データの保有期間を調整する](#2-2-1-データの保有期間を調整する)
   - [2-2-2. データの保有量を調整する](#2-2-2-データの保有量を調整する)
+  - [2-2-3. Log Analytics ワークスペース内のデータを削除する](#2-2-3-log-analytics-ワークスペース内のデータを削除する)
 - [まとめ](#まとめ)
 
 ## はじめに
@@ -266,8 +267,10 @@ Log Analytics ワークスペースに日次上限とは、1 日あたりのデ�
 > - リソースの正常性の状態を観察したり、アラートを受信したりする機能に影響が出る可能性
 > - ワークスペースで利用できる最新のデータに機能が依存している他の Azure サービスやソリューションに影響を与える可能性  
 
+
 日次上限については、以下弊社サイトでもご案内しております。  
-- [Log Analytics ワークスペースの日次上限を設定する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/daily-cap)
+- [Log Analytics ワークスペースの日次上限を設定する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/daily-cap)  
+
 
 ### 2-2. データの保持にかかるコストを抑える
 データの保持に対してかかるコストは、保有期間と保持するデータ量に基づいて決定します。
@@ -282,13 +285,15 @@ Log Analytics ワークスペース内のデータは、対話型保持と長期
 
 テーブル プランによって、設定できる最大の対話型保持期間が異なります。
 分析プランでは、テーブルの対話型保持期間を最大 2 年間まで延長できます。 
-基本プランと補助プランの対話型保持期間は 30 日間に固定されています。
+基本プランと補助プランの対話型保持期間は 30 日間に固定されています。  
+
 
 > [!NOTE]  
 > (*2) 各種データには、無料の対話型保持期間が設けられています。  
 > この無料期間を超えて Log Analytics ワークスペース内にデータを保有するためには、費用がかかります。  
 > ![](./HowToManageLogAnalyticsBilling/dataretention-cost.png)  
- 
+
+
 > [!IMPORTANT]  
 > (*3) 以下のことは、対話型保持されているデータに対してのみ実行でき、長期保持されているデータに対しては実行できません。  
 > - クエリを通したデータ取得  
@@ -297,7 +302,7 @@ Log Analytics ワークスペース内のデータは、対話型保持と長期
 検索ジョブの実行、またはログの復元には別途費用がかかります。
 >   - [Azure Monitor で検索ジョブを実行する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/search-jobs?tabs=portal-1%2Cportal-2)
 >   - [Azure Monitor でログを復元する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/restore?tabs=api-1)
->   - それぞれにかかる費用は、[Azure Monitor の価格](https://azure.microsoft.com/ja-jp/pricing/details/monitor/)の "ジョブの検索"、"復元" の項目をご確認ください。
+>   - それぞれにかかる費用は、[Azure Monitor の価格](https://azure.microsoft.com/ja-jp/pricing/details/monitor/)の "ジョブの検索"、"復元" の項目をご確認ください。  
 
 
 #### 2-2-2. データの保有量を調整する
@@ -329,7 +334,8 @@ Log Analytics ワークスペースに収集されたデータは、REST API で
 この REST API を使用すると、テーブル名やカラム名を指定して特定のデータを削除することが可能です。  
 クエリ実行による分析が不要になったデータや、[2-2-2. データの保有量を調整する](#2-2-2-データの保有量を調整する) で別の場所へ移動したデータを Log Analytics ワークスペースから削除することで、データの保有料金を抑えることができます。  
 詳細は、以下のブログをご参照ください。
-[Log Analytics ワークスペースのデータを削除する方法](https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsWorkspacePurge/)
+[Log Analytics ワークスペースのデータを削除する方法](https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsWorkspacePurge/)  
+
 
 > [!IMPORTANT]  
 > 上記、データの削除によって削除されたデータは Log Analytics ワークスペースへ再び戻すことはできません。  
