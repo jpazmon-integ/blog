@@ -1,6 +1,6 @@
 ---
 title: <Windows 版> Azure Monitor エージェントを利用した性能監視（CPU、メモリ、ディスク)
-date: 2024-10-31 00:00:00
+date: 2024-10-02 00:00:00
 tags:
   - Log Analytics
   - Azure Monitor Essentials
@@ -494,5 +494,6 @@ Azure Monitor のアラート機能では、[アクション グループ](https
 
 
 今回は Windows VM 向けの性能監視におけるアラート ルールの設定手順をご紹介しました。いかがでしたでしょうか。
+また、[公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/queries/perf)に Perf のサンプル クエリも掲載されておりますので、こちらもご覧いただけますと幸いです。
 上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。
 最後までお読みいただきありがとうございました！
