@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToManageLogAnalyticsBilling/docs-syslog.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToManageLogAnalyticsBilling/dataretention-cost.png">
 <meta property="article:published_time" content="2024-09-17T15:00:00.000Z">
-<meta property="article:modified_time" content="2024-10-08T06:00:39.347Z">
+<meta property="article:modified_time" content="2024-10-28T06:27:33.146Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="How-To">
 <meta property="article:tag" content="Log Analytics">
@@ -107,7 +107,7 @@
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+e840004a-6f32-5ac8-96ca-1201e3d0ef5f%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BLog+Analytics+%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88%E5%A2%97%E5%8A%A0%E3%81%AE%E5%8E%9F%E5%9B%A0%E3%82%92%E5%88%86%E6%9E%90%E3%81%97%E3%82%B3%E3%82%B9%E3%83%88%E5%89%8A%E6%B8%9B%E3%82%92%E6%A4%9C%E8%A8%8E%E3%81%99%E3%82%8B%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FHowToManageLogAnalyticsBilling%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FHowToManageLogAnalyticsBilling.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FHowToManageLogAnalyticsBilling.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToManageLogAnalyticsBilling/" data-id="cm2018eb700bd0nnv1ra8avai" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToManageLogAnalyticsBilling/" data-id="cm2sn000d00bd0nps2lzx9j25" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -266,58 +266,51 @@ GET “<a target="_blank" rel="noopener" href="https://management.azure.com/subs
 </ul>
 <h4 id="2-1-2-日次上限を設定しデータのインジェスト量を一定量までに抑える"><a href="#2-1-2-日次上限を設定しデータのインジェスト量を一定量までに抑える" class="headerlink" title="2-1-2. 日次上限を設定しデータのインジェスト量を一定量までに抑える"></a>2-1-2. 日次上限を設定しデータのインジェスト量を一定量までに抑える</h4><p>Log Analytics ワークスペースに日次上限とは、1 日あたりのデータのインジェスト量の上限値を指します。<br>一時的なインジェスト量の上昇がみられた場合、日次上限を設定することで予期しないインジェスト量の増加を防ぐことができます。  </p>
 <p>1 日のデータのインジェスト量が日次上限に達すると、その日の残りの時間は、課金対象のデータの収集が自動的に停止します (*1)。</p>
-<div class="alert is-important"><p class="alert-title">重要</p><p>(*1) データ収集が停止すると、以下の影響が起こりうることをご確認の上、日次上限を設定してください。  </p>
+<p><strong>重要</strong><br>(*1) データ収集が停止すると、以下の影響が起こりうることをご確認の上、日次上限を設定してください。  </p>
 <ul>
-<li>リソースの正常性の状態を観察したり、アラートを受信したりする機能に影響が出る可能性</li>
+<li>リソースの正常性の状態を観察したり、アラートを受信したりする機能に影響が出る可能性  </li>
 <li>ワークスペースで利用できる最新のデータに機能が依存している他の Azure サービスやソリューションに影響を与える可能性  </li>
 </ul>
-</blockquote>
-<p>日次上限については、以下弊社サイトでもご案内しております。  </p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/daily-cap">Log Analytics ワークスペースの日次上限を設定する</a>  </li>
-</ul>
-<h3 id="2-2-データの保持にかかるコストを抑える"><a href="#2-2-データの保持にかかるコストを抑える" class="headerlink" title="2-2. データの保持にかかるコストを抑える"></a>2-2. データの保持にかかるコストを抑える</h3><p>データの保持に対してかかるコストは、保有期間と保持するデータ量に基づいて決定します。</p><p>保持するデータ量は、データのインジェスト量とその保有期間によって決まるため、データ保持にかかるコストを抑えるためには、まずは前述の<a href="#2-1-%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88%E3%81%AB%E3%81%8B%E3%81%8B%E3%82%8B%E3%82%B3%E3%82%B9%E3%83%88%E3%82%92%E6%8A%91%E3%81%88%E3%82%8B">データのインジェスト量の見直し</a>と、以下でご案内する、<a href="#2-2-1-%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E4%BF%9D%E6%9C%89%E6%9C%9F%E9%96%93%E3%82%92%E8%AA%BF%E6%95%B4%E3%81%99%E3%82%8B">保有期間の調整</a>が有効です。</p>
+<p>日次上限については、以下弊社サイトでもご案内しております。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/daily-cap">Log Analytics ワークスペースの日次上限を設定する</a>  </p>
+<h3 id="2-2-データの保持にかかるコストを抑える"><a href="#2-2-データの保持にかかるコストを抑える" class="headerlink" title="2-2. データの保持にかかるコストを抑える"></a>2-2. データの保持にかかるコストを抑える</h3><p>データの保持に対してかかるコストは、保有期間と保持するデータ量に基づいて決定します。<br>保持するデータ量は、データのインジェスト量とその保有期間によって決まるため、データ保持にかかるコストを抑えるためには、まずは前述の<a href="#2-1-%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88%E3%81%AB%E3%81%8B%E3%81%8B%E3%82%8B%E3%82%B3%E3%82%B9%E3%83%88%E3%82%92%E6%8A%91%E3%81%88%E3%82%8B">データのインジェスト量の見直し</a>と、以下でご案内する、<a href="#2-2-1-%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E4%BF%9D%E6%9C%89%E6%9C%9F%E9%96%93%E3%82%92%E8%AA%BF%E6%95%B4%E3%81%99%E3%82%8B">保有期間の調整</a>が有効です。</p>
 <h4 id="2-2-1-データの保有期間を調整する"><a href="#2-2-1-データの保有期間を調整する" class="headerlink" title="2-2-1. データの保有期間を調整する"></a>2-2-1. データの保有期間を調整する</h4><p>Log Analytics ワークスペース内のデータは、対話型保持と長期保持のいずれかの状態で保持されます。</p>
 <ul>
 <li>対話型保持 : この状態では、データは監視、トラブルシューティング、ほぼリアルタイムの分析に利用できます。各種データには無料の対話型保持期間が設けられています (*2)。</li>
 <li>長期保持 (アーカイブ) : 対話型保持よりも低コストでデータを保持できます。ただし、データに対するアクセス方法に、制限があります (*3)。</li>
 </ul>
 <p>そして、各テーブルに対して、対話型保持と長期保持の期間を設定することができ、対話型保持期間が終了したデータは、長期保持されます (対話型保持期間と長期保持期間の合計は最大 12 年に設定可能です)。</p>
-<p>テーブル プランによって、設定できる最大の対話型保持期間が異なります。</p><p>分析プランでは、テーブルの対話型保持期間を最大 2 年間まで延長できます。</p><p>基本プランと補助プランの対話型保持期間は 30 日間に固定されています。  </p>
-<blockquote>
-<p>[!NOTE]</p><p>(*2) 各種データには、無料の対話型保持期間が設けられています。</p><p>この無料期間を超えて Log Analytics ワークスペース内にデータを保有するためには、費用がかかります。</p><p><img src="/blog/LogAnalytics/HowToManageLogAnalyticsBilling/dataretention-cost.png">  </p></div>
-<div class="alert is-important"><p class="alert-title">重要</p><p>(*3) 以下のことは、対話型保持されているデータに対してのみ実行でき、長期保持されているデータに対しては実行できません。  </p>
+<p>テーブル プランによって、設定できる最大の対話型保持期間が異なります。<br>分析プランでは、テーブルの対話型保持期間を最大 2 年間まで延長できます。<br>基本プランと補助プランの対話型保持期間は 30 日間に固定されています。  </p>
+<p><strong>インフォメーション</strong><br>(*2) 各種データには、無料の対話型保持期間が設けられています。<br>この無料期間を超えて Log Analytics ワークスペース内にデータを保有するためには、費用がかかります。<br><img src="/blog/LogAnalytics/HowToManageLogAnalyticsBilling/dataretention-cost.png">  </p>
+<p><strong>重要</strong><br>(*3) 以下のことは、対話型保持されているデータに対してのみ実行でき、長期保持されているデータに対しては実行できません。  </p>
 <ul>
 <li>クエリを通したデータ取得  </li>
 <li>テーブル プランに基づいた視覚化、アラート、およびその他の機能やサービスでのデータ利用  </li>
-<li>長期保持されているデータに対してアクセスするためには、検索ジョブの実行、またはログの復元が必要です。</p><p>検索ジョブの実行、またはログの復元には別途費用がかかります。<ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/search-jobs?tabs=portal-1,portal-2">Azure Monitor で検索ジョブを実行する</a></li>
+<li>長期保持されているデータに対してアクセスするためには、検索ジョブの実行、またはログの復元が必要です。<br>検索ジョブの実行、またはログの復元には別途費用がかかります。  <ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/search-jobs?tabs=portal-1,portal-2">Azure Monitor で検索ジョブを実行する</a>  </li>
 <li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/restore?tabs=api-1">Azure Monitor でログを復元する</a></li>
 <li>それぞれにかかる費用は、<a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">Azure Monitor の価格</a>の “ジョブの検索”、”復元” の項目をご確認ください。  </li>
 </ul>
 </li>
 </ul>
-</blockquote>
 <h4 id="2-2-2-データの保有量を調整する"><a href="#2-2-2-データの保有量を調整する" class="headerlink" title="2-2-2. データの保有量を調整する"></a>2-2-2. データの保有量を調整する</h4><p>データの保有量を削減するためにできるもう一つの方法は、現在保有しているワークスペース内のデータをストレージ アカウントにエクスポートし、ワークスペース内のデータを削除することです。</p>
 <p>ストレージ アカウントの価格 (*4) は、<a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">Log Analytics ワークスペースの保有料金</a>よりも低価格なため、収集したデータに対して対話型クエリを実行する予定がない場合は、ストレージ アカウントにデータをエクスポート (移動) し、ワークスペース内のデータを削除することで、コストを抑えられます。 </p>
 <p>以下に、ストレージ アカウントまたは Event Hubs にログを送信する 2 つの方法と、Log Analytics ワークスペース内のデータを削除する方法をご紹介します。</p>
 <p>■ <strong>データ エクスポート ルールを利用してエクスポートする</strong></p>
 <ul>
 <li>選択したテーブルごとに、データをストレージ アカウント、または Event Hubs にエクスポート・保存できます。</li>
-<li>ストレージ アカウント、または Event Hubs にエクスポート・保存されるデータは、Log Analytics ワークスペースにも収集されます。</p><p>そのため、コストを抑えたい場合は、テーブルの保有期間を無料期間の範囲に収める、または<a href="#log-analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E5%86%85%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E5%89%8A%E9%99%A4%E3%81%99%E3%82%8B">Log Analytics ワークスペース内のデータを削除する</a>で削除する必要があります。</li>
-<li>より詳細な情報は、以下弊社サイトをご参照ください。</p><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal">Azure Monitor の Log Analytics ワークスペース データ エクスポート</a></li>
+<li>ストレージ アカウント、または Event Hubs にエクスポート・保存されるデータは、Log Analytics ワークスペースにも収集されます。<br>そのため、コストを抑えたい場合は、テーブルの保有期間を無料期間の範囲に収める、または<a href="#log-analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E5%86%85%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E5%89%8A%E9%99%A4%E3%81%99%E3%82%8B">Log Analytics ワークスペース内のデータを削除する</a>で削除する必要があります。</li>
+<li>より詳細な情報は、以下弊社サイトをご参照ください。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal">Azure Monitor の Log Analytics ワークスペース データ エクスポート</a></li>
 </ul>
 <p>■ <strong>データ収集ルールを構成して直接アップロードする (プレビュー)</strong></p>
 <ul>
 <li>データ収集ルールを構成することで、Azure Monitor エージェントを使用して収集したデータを、直接ストレージ アカウント、または Event Hubs へアップロードすることができます。  </li>
 <li>この方法では、Log Analytics ワークスペースにはデータが収集されないため、ワークスペース内のデータを削除する必要はありません。</li>
-<li>本機能がサポートされているデータ型には制限がございます (2024 年 9 月時点)。詳細は、以下弊社サイトをご確認ください。</p><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-send-data-to-event-hubs-and-storage?tabs=windows,windows-1#whats-supported">サポートされている機能</a></li>
+<li>本機能がサポートされているデータ型には制限がございます (2024 年 9 月時点)。詳細は、以下弊社サイトをご確認ください。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-send-data-to-event-hubs-and-storage?tabs=windows,windows-1#whats-supported">サポートされている機能</a></li>
 <li>本機能は 2024 年 9 月時点では、パブリック プレビュー段階です。仕様が余儀なく変更される可能性があるため、使用の際はこちらの点にご留意ください。</li>
 </ul>
-<p>(*4) ストレージ アカウントの価格は以下サイトからご確認ください。</p><p><a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/storage/blobs/">Azure Blob Storage の価格</a></p>
-<h4 id="2-2-3-Log-Analytics-ワークスペース内のデータを削除する"><a href="#2-2-3-Log-Analytics-ワークスペース内のデータを削除する" class="headerlink" title="2-2-3. Log Analytics ワークスペース内のデータを削除する"></a>2-2-3. Log Analytics ワークスペース内のデータを削除する</h4><p>Log Analytics ワークスペースに収集されたデータは、REST API で削除することができます。</p><p>この REST API を使用すると、テーブル名やカラム名を指定して特定のデータを削除することが可能です。</p><p>クエリ実行による分析が不要になったデータや、<a href="#2-2-2-%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E4%BF%9D%E6%9C%89%E9%87%8F%E3%82%92%E8%AA%BF%E6%95%B4%E3%81%99%E3%82%8B">2-2-2. データの保有量を調整する</a> で別の場所へ移動したデータを Log Analytics ワークスペースから削除することで、データの保有料金を抑えることができます。</p><p>詳細は、以下のブログをご参照ください。</p><p><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsWorkspacePurge/">Log Analytics ワークスペースのデータを削除する方法</a>  </p>
-<blockquote>
-<p>[!IMPORTANT]</p><p>上記、データの削除によって削除されたデータは Log Analytics ワークスペースへ再び戻すことはできません。</p><p>そのため、削除を実行する際は最新の注意を払ってください。</p></div>
+<p>(*4) ストレージ アカウントの価格は以下サイトからご確認ください。<br><a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/storage/blobs/">Azure Blob Storage の価格</a></p>
+<h4 id="2-2-3-Log-Analytics-ワークスペース内のデータを削除する"><a href="#2-2-3-Log-Analytics-ワークスペース内のデータを削除する" class="headerlink" title="2-2-3. Log Analytics ワークスペース内のデータを削除する"></a>2-2-3. Log Analytics ワークスペース内のデータを削除する</h4><p>Log Analytics ワークスペースに収集されたデータは、REST API で削除することができます。<br>この REST API を使用すると、テーブル名やカラム名を指定して特定のデータを削除することが可能です。<br>クエリ実行による分析が不要になったデータや、<a href="#2-2-2-%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E4%BF%9D%E6%9C%89%E9%87%8F%E3%82%92%E8%AA%BF%E6%95%B4%E3%81%99%E3%82%8B">2-2-2. データの保有量を調整する</a> で別の場所へ移動したデータを Log Analytics ワークスペースから削除することで、データの保有料金を抑えることができます。<br>詳細は、以下のブログをご参照ください。<br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsWorkspacePurge/">Log Analytics ワークスペースのデータを削除する方法</a>  </p>
+<p><strong>重要</strong><br>上記、データの削除によって削除されたデータは Log Analytics ワークスペースへ再び戻すことはできません。<br>そのため、削除を実行する際は最新の注意を払ってください。</p>
 <h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>本記事では、Log Analytics ワークスペースのコストを分析し、それぞれのコスト増加原因に対する対処法をご紹介しました。<br>まずはデータのインジェスト量、保有量、および保有期間の設定を確認し、どこにコストがかかっているかを特定し、適切な対処法を取ることが、コストの削減およびコスト増加の抑制につながります。  </p>
 
       
