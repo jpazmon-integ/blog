@@ -2,14 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/general/TeamIntroductionfromInternship/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/general/mdsFalseAlerts/</loc>
     
     <lastmod>2024-10-30</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/general/mdsFalseAlerts/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/</loc>
+    
+    <lastmod>2024-10-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/general/TeamIntroductionfromInternship/</loc>
     
     <lastmod>2024-10-30</lastmod>
     
@@ -30,21 +37,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/</loc>
-    
-    <lastmod>2024-10-30</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/general/HowWeWorkRemotely/</loc>
-    
-    <lastmod>2024-10-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/gettingExeTimeOfJobForSpecificPeriodAutomation/</loc>
     
     <lastmod>2024-10-30</lastmod>
     
@@ -79,21 +72,14 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/gettingExeTimeOfJobForSpecificPeriodAutomation/</loc>
+    
+    <lastmod>2024-10-30</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/MigrateRunAsAccountsToManagedIdentity/</loc>
-    
-    <lastmod>2024-10-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/wrongSlotNameAfterSwapping/</loc>
-    
-    <lastmod>2024-10-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/</loc>
     
     <lastmod>2024-10-30</lastmod>
     
@@ -135,6 +121,20 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/wrongSlotNameAfterSwapping/</loc>
+    
+    <lastmod>2024-10-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/</loc>
+    
+    <lastmod>2024-10-30</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/applicationInsights/troubleshooting_telemetry/</loc>
     
     <lastmod>2024-10-30</lastmod>
@@ -170,20 +170,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/</loc>
-    
-    <lastmod>2024-10-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/</loc>
-    
-    <lastmod>2024-10-30</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/</loc>
     
     <lastmod>2024-10-30</lastmod>
@@ -198,6 +184,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/</loc>
+    
+    <lastmod>2024-10-30</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/automatically_install_ama/</loc>
     
     <lastmod>2024-10-30</lastmod>
@@ -205,7 +198,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/</loc>
     
     <lastmod>2024-10-30</lastmod>
     
@@ -240,6 +233,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/</loc>
+    
+    <lastmod>2024-10-30</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM02/</loc>
     
     <lastmod>2024-10-30</lastmod>
@@ -254,14 +254,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/</loc>
     
     <lastmod>2024-10-30</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/</loc>
     
     <lastmod>2024-10-30</lastmod>
     
@@ -282,13 +282,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToLogIngestionAPI/</loc>
-    
-    <lastmod>2024-10-30</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/</loc>
     
     <lastmod>2024-10-30</lastmod>
@@ -303,7 +296,21 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToLogIngestionAPI/</loc>
+    
+    <lastmod>2024-10-30</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromLA/</loc>
+    
+    <lastmod>2024-10-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromAzureDiagnostics/</loc>
     
     <lastmod>2024-10-30</lastmod>
     
