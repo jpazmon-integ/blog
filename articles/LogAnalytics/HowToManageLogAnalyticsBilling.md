@@ -262,14 +262,14 @@ Log Analytics ワークスペースに日次上限とは、1 日あたりのデ�
 
 1 日のデータのインジェスト量が日次上限に達すると、その日の残りの時間は、課金対象のデータの収集が自動的に停止します (*1)。
 
-> [!IMPORTANT]  
-> (*1) データ収集が停止すると、以下の影響が起こりうることをご確認の上、日次上限を設定してください。  
-> - リソースの正常性の状態を観察したり、アラートを受信したりする機能に影響が出る可能性
-> - ワークスペースで利用できる最新のデータに機能が依存している他の Azure サービスやソリューションに影響を与える可能性  
-
-
+**重要**  
+(*1) データ収集が停止すると、以下の影響が起こりうることをご確認の上、日次上限を設定してください。  
+- リソースの正常性の状態を観察したり、アラートを受信したりする機能に影響が出る可能性  
+- ワークスペースで利用できる最新のデータに機能が依存している他の Azure サービスやソリューションに影響を与える可能性  
+  
+  
 日次上限については、以下弊社サイトでもご案内しております。  
-- [Log Analytics ワークスペースの日次上限を設定する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/daily-cap)  
+[Log Analytics ワークスペースの日次上限を設定する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/daily-cap)  
 
 
 ### 2-2. データの保持にかかるコストを抑える
@@ -288,21 +288,21 @@ Log Analytics ワークスペース内のデータは、対話型保持と長期
 基本プランと補助プランの対話型保持期間は 30 日間に固定されています。  
 
 
-> [!NOTE]  
-> (*2) 各種データには、無料の対話型保持期間が設けられています。  
-> この無料期間を超えて Log Analytics ワークスペース内にデータを保有するためには、費用がかかります。  
-> ![](./HowToManageLogAnalyticsBilling/dataretention-cost.png)  
+**インフォメーション**  
+(*2) 各種データには、無料の対話型保持期間が設けられています。  
+この無料期間を超えて Log Analytics ワークスペース内にデータを保有するためには、費用がかかります。  
+![](./HowToManageLogAnalyticsBilling/dataretention-cost.png)  
 
 
-> [!IMPORTANT]  
-> (*3) 以下のことは、対話型保持されているデータに対してのみ実行でき、長期保持されているデータに対しては実行できません。  
-> - クエリを通したデータ取得  
-> - テーブル プランに基づいた視覚化、アラート、およびその他の機能やサービスでのデータ利用  
-> - 長期保持されているデータに対してアクセスするためには、検索ジョブの実行、またはログの復元が必要です。  
-検索ジョブの実行、またはログの復元には別途費用がかかります。
->   - [Azure Monitor で検索ジョブを実行する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/search-jobs?tabs=portal-1%2Cportal-2)
->   - [Azure Monitor でログを復元する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/restore?tabs=api-1)
->   - それぞれにかかる費用は、[Azure Monitor の価格](https://azure.microsoft.com/ja-jp/pricing/details/monitor/)の "ジョブの検索"、"復元" の項目をご確認ください。  
+**重要**  
+(*3) 以下のことは、対話型保持されているデータに対してのみ実行でき、長期保持されているデータに対しては実行できません。  
+- クエリを通したデータ取得  
+- テーブル プランに基づいた視覚化、アラート、およびその他の機能やサービスでのデータ利用  
+- 長期保持されているデータに対してアクセスするためには、検索ジョブの実行、またはログの復元が必要です。  
+検索ジョブの実行、またはログの復元には別途費用がかかります。  
+  - [Azure Monitor で検索ジョブを実行する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/search-jobs?tabs=portal-1%2Cportal-2)  
+  - [Azure Monitor でログを復元する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/restore?tabs=api-1)
+  - それぞれにかかる費用は、[Azure Monitor の価格](https://azure.microsoft.com/ja-jp/pricing/details/monitor/)の "ジョブの検索"、"復元" の項目をご確認ください。  
 
 
 #### 2-2-2. データの保有量を調整する
@@ -337,9 +337,9 @@ Log Analytics ワークスペースに収集されたデータは、REST API で
 [Log Analytics ワークスペースのデータを削除する方法](https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsWorkspacePurge/)  
 
 
-> [!IMPORTANT]  
-> 上記、データの削除によって削除されたデータは Log Analytics ワークスペースへ再び戻すことはできません。  
-> そのため、削除を実行する際は最新の注意を払ってください。
+**重要**   
+上記、データの削除によって削除されたデータは Log Analytics ワークスペースへ再び戻すことはできません。  
+そのため、削除を実行する際は最新の注意を払ってください。
 
 ## まとめ
 本記事では、Log Analytics ワークスペースのコストを分析し、それぞれのコスト増加原因に対する対処法をご紹介しました。  
