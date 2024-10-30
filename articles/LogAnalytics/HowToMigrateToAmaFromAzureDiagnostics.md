@@ -1,6 +1,6 @@
 ---
 title: Retirement notice ： Migrate to Azure Monitor Agent before 31 March 2026 について
-date: 2024-11-01 00:00:00
+date: 2024-10-31 00:00:00
 tags:
   - Azure Diagnostics extension
   - LAD
@@ -75,12 +75,7 @@ To check which extensions are installed on your VM, select Extensions + applicat
 
 ## 2. 移行が必要かどうかを確認する方法
 [Azure Diagnostics 拡張機能](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview) は 2026 年 3 月 31 日に廃止される予定のため、引き続きパフォーマンス カウンターやログ データの収集を行うためには、同等の機能を有する [Azure Monitor エージェント](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-overview)への移行をお願いしております。
-
 Azure Diagnostics 拡張機能は [Azure VM の診断設定](https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToDiagnosticsSettings/#2-Azure-VM-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A) を有効化することで、Azure VM にインストールされ、ゲスト OS のログやメトリックをストレージ アカウントに送信します。Windows 用の Azure Diagnostics 拡張機能 は Windows Azure Diagnostics extension (WAD)、Linux 用は Linux Azure Diagnostics extension (LAD) と呼ばれています。Azure Monitor エージェントは、基本的に Log Analytics ワークスペースへログ収集を行います。[ストレージ アカウントへのエクスポートを行いたい場合は別途設定が必要です](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-send-data-to-event-hubs-and-storage?tabs=windows%2Cwindows-1)。
-
-
-※ Azure ポータル から対象の Azure VM を選択し、[監視] - [診断設定] から有効化します。
-![](./HowToMigrateToAmaFromAzureDiagnostics/image01.png)
 
 
 <br>
@@ -123,7 +118,7 @@ extentionType が LinuxDiagnostic の場合は、Linux 用の Azure Diagnostics 
 ## 3. 移行手順
 ### 3-1. Azure Diagnostics 拡張機能 (WAD/LAD) で収集しているデータの種類を確認する
 Azure VM の [監視] - [診断設定] より、現在のデータ収集設定をご確認ください。下図は Linux VM の設定画面です。
-![](./HowToMigrateToAmaFromAzureDiagnostics/image02.png)
+![](./HowToMigrateToAmaFromAzureDiagnostics/image01.png)
 
 
 <br>
@@ -144,7 +139,7 @@ Azure ポータルから Azure Diagnostics 拡張機能 (WAD/LAD) をアンイ�
 1. Azure ポータル上で VM を開き、画面左側の [設定] > [拡張機能とアプリケーション] を選択します。
 2. 一覧から Azure Diagnostics 拡張機能をクリックします。Windows マシンの場合は [種類] が IaaSDiagnostics を含むもの、Linux マシンの場合は [種類] が LinuxDiagnostic を含むものが該当します。
 3. 画面右上の [アンインストール] を選択します。
-![](./HowToMigrateToAmaFromAzureDiagnostics/image03.png)
+![](./HowToMigrateToAmaFromAzureDiagnostics/image02.png)
 
 -----------------
 上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。
