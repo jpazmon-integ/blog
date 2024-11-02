@@ -74,8 +74,8 @@ Linux の場合は "AzureMonitorLinuxAgent"、Windows の場合は "AzureMonitor
 3. 2 のアンインストールの完了が確認出来たら、以下のコマンドを実行します。
     * <> の箇所はお客様の環境に合わせてご変更ください。実行時、<> は不要です
     * 自動アップグレード機能を有効化したくない場合は、`-EnableAutomaticUpgrade $true` を削除して実行してください。  
-    * `-HandlerVersion` としてマイナー バージョンまでを指定することはできません。  
-      (例えば、1.31.0 と 1.31.1 が利用可能な場合でも、`1.31` までが指定可能で、`1.31.1` を指定してインストールすることはできません。)
+    * `-HandlerVersion` としてマイナー バージョンまでを指定することはできません。
+      詳細については、本手順末尾の `インストール可能なバージョンの確認方法とコマンドでのバージョンの指定方法` をご参照ください。
 
     (Linux の場合)
    ```
@@ -86,12 +86,29 @@ Linux の場合は "AzureMonitorLinuxAgent"、Windows の場合は "AzureMonitor
    ```
    Set-AzVMExtension -Name AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resourcegroup-name> -VMName <vm-name> -Location <region-name> -HandlerVersion <version> -DisableAutoUpgradeMinorVersion -EnableAutomaticUpgrade $true
    ```
-4. 1 の  [拡張機能とアプリケーション]  にて、Azure Monitor エージェントの "状態" が "Provisioning Succeeded" となれば、完了です。
+4. 1 の  [拡張機能とアプリケーション]  にて、Azure Monitor エージェントの "状態" が "Provisioning Succeeded" となれば、完了です。  
+
+> [!NOTE] インストール可能なバージョンの確認方法とコマンドでのバージョンの指定方法  
+> - 使用可能なエージェントのバージョンの一覧は、以下の PowerShell コマンドを実行することで確認できます。  
+  (`<region>` には、マシンが存在するリージョンを指定してください。)
+> ```  
+> # Windows の場合
+> ((Get-AzVMExtensionImage -Location "<region>" -PublisherName "Microsoft.Azure.Monitor" -Type "AzureMonitorWindowsAgent").Version | Sort-Object -Property { [Version]$_})  
+>  
+> # Linux の場合  
+> ((Get-AzVMExtensionImage -Location "<region>" -PublisherName "Microsoft.Azure.Monitor" -Type "AzureMonitorLinuxAgent").Version | Sort-Object -Property { [Version]$_})
+> ```  
+> - 注意点として、コマンドを使用して Azure Monitor エージェントをインストールする場合、マイナー バージョンは指定することができかねます。  
+> 例えばもし 1.31.1 をご指定いただいた場合、下図のように `The value of parameter typeHandlerVersion is invalid.` のエラーが発生します。  
+> そのため、必ずマイナーバージョン ("1.xx.y" の ".y" の部分) を削除した状態で拡張機能のバージョンをご指定ください。 
+> ![](./TroubleshootingAMALogIngestion/setazvmextension-error.png)
 
 ## 通信要件の確認
 マシンにインストールされた Azure Monitor エージェントがマシンのログを Log Analytics ワークスペースに送信したい場合は、マシン (Azure Monitor エージェント) が必要なエンドポイントへ接続できるよう設定する必要があります。  
 
 接続できる必要のあるエンドポイントは以下の通りです。  
+(`<>` で囲まれた箇所は環境に合わせて変更してください。  
+実行時に `<>` は不要です。)  
 
 `global.handler.control.monitor.azure.com`  
 
@@ -99,9 +116,11 @@ Linux の場合は "AzureMonitorLinuxAgent"、Windows の場合は "AzureMonitor
 
 `<log-analytics-workspace-id>.ods.opinsights.azure.com`  
 
-Log Analytics ワークスペース内のカスタム ログ テーブルにデータを送信する場合は、以下のエンドポイントへの接続も必要です。  
+Log Analytics ワークスペース内のカスタム ログ テーブルにデータを送信する場合は、以下のエンドポイントへの接続も必要です。   
+
 `<data-collection-endpoint>.<virtual-machine-region-name>.ingest.monitor.azure.com`  
-＊ 実際の値は、使用しているデータ収集ルールに設定しているデータ収集エンドポイントを Azure portal で開き、[概要] の "ログ インジェスト" を確認してください。  
+
+＊ `<data-collection-endpoint>` の値は、使用しているデータ収集ルールに設定しているデータ収集エンドポイントを Azure portal で開き、[概要] の "ログ インジェスト" を確認してください。  
    こちらに記載されている値から "https://" を除いたものがエンドポイントです。  
    ![](./TroubleshootingAMALogIngestion/dce-logingest.png)
 
@@ -109,8 +128,8 @@ Log Analytics ワークスペース内のカスタム ログ テーブルにデ�
 上記エンドポイントへ接続できているかどうかは、以下の方法で確認可能です。  
 
 **■ Windows の場合**  
-以下のコマンドを実行し、出力結果に `TcpTestSucceeded : True` が記載されていれば、エンドポイントに接続できています。  
-( `<endpoint>` の箇所は、上記のエンドポイントに置き換えてください)
+PowerShell を開き、以下のコマンドを実行し、出力結果に `TcpTestSucceeded : True` が記載されていれば、エンドポイントに接続できています。  
+( `<endpoint>` の箇所は、上記のエンドポイントのうち確認したいものに置き換えてください)
 ```
 Test-NetConnection <endpoint> -port 443
 ```  
@@ -118,20 +137,66 @@ Test-NetConnection <endpoint> -port 443
 ![](./TroubleshootingAMALogIngestion/result-tnc.png)
 
 **■ Linux の場合**  
-以下のコマンドを実行し、出力結果に `CONNECTED` が記載されていれば、エンドポイントに接続できています。  
+ターミナルを開き、以下のコマンドを実行し、出力結果に `CONNECTED` が記載されていれば、エンドポイントに接続できています。  
 
 ```
-Test-NetConnection <endpoint> -port 443
+echo | openssl s_client -connect <endpoint>:443 -servername <endpoint> -showcerts
 ```  
 (結果例)  
 ![](./TroubleshootingAMALogIngestion/result-echo.png)
 
-### エンドポイントへ接続できていない場合の対処方法
-ネットワーク構成を確認し、エンドポイントへの接続を拒否するような設定が適用されていないかを確認してください。  
-プロキシ サーバーやロード バランサーなどを介してログを送信するよう構成している場合は、プロキシ サーバーやロード バランサーのネットワーク設定も確認してください。  
+### エンドポイントへ接続できていない場合の対処方法  
+**エンドポイントへの接続を許可する**
+まずはネットワーク構成を確認し、エンドポイントへの接続を拒否するような設定が適用されていないかを確認してください。  
+プロキシ サーバーやファイアウォールが設置されている場合は、これらの設定により、上記のエンドポイントへの接続が拒否されている可能性があります。
 
-上記内容を含む、Azure Monitor エージェントを使用する上でのネットワーク要件については、以下の弊社公開情報もご参照ください。  
+**名前解決の問題を解消する**
+上記のコマンドの実行結果で以下のように表示された場合は、何らかの要因でエンドポイントの名前解決に失敗しています。  
+- Windows の場合：`RemoteAddress` が空欄
+- Linux の場合：`Name or service not known` が表示される  
+
+このように名前解決に失敗している場合は、お客様環境の DNS 構成の見直しをご検討ください。  
+また、[AMPLS (Azure Monitor Private Link Scope)](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-security) を使用している場合は、後述の[通信要件の確認 (AMPLS を使用している場合)](#通信要件の確認-ampls-を使用している場合)をご確認ください。
+
+(ご参考)  
+Azure Monitor エージェントを使用する上でのネットワーク要件については、以下の弊社公開情報でもご案内しています。  
 [Azure Monitor エージェントのネットワーク構成](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-network-configuration?tabs=PowerShellWindows)
+
+
+## 通信要件の確認 (AMPLS を使用している場合)  
+上記 `通信要件の確認` ではログ収集のために接続が必要なエンド ポイントを紹介しました。  
+[AMPLS (Azure Monitor Private Link Scope)](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-security) を使用している場合、名前解決の結果 Global IP への通信を試みてしまい、結果、必要なエンドポイントに接続できていない可能性もございます。  
+AMPLS に関連するエンドポイントへの接続失敗のよくある原因といたしましては、下記の 2 点が考えられます。  
+以下に、それぞれの確認方法と対処法をご紹介します。
+
+### A: AMPLS に対して、Log Analytics ワークスペースやデータ収集エンドポイントが追加出来ていない  
+**確認方法**  
+Azure portal から、当該 AMPLS リソースの [構成] > [Azure Monitor リソース] よりご確認可能です。  
+![](./TroubleshootingAMALogIngestion/ampls-monitorresource.png)
+
+**対処方法**  
+もし[通信要件の確認](#通信要件の確認) で紹介したエンドポイントが追加出来ていない場合は、[+ 追加] からこれらのエンドポイントの追加をお願いします。  
+
+### B: AMPLS のプライベート エンドポイントに紐づくプライベート DNS ゾーンの設定がおかしい  
+お客様環境によっては、AMPLS のためのプライベート DNS ゾーンが作成されます。  
+＊ privatelink.monitor.azure.com や privatelink.ods.opinsights.azure.com などです。
+
+これらのプライベート DNS ゾーンには、AMA がインストールされたマシンに関係する VNET (仮想ネットワーク) をリンクさせる必要があります。  
+(例えば、ログ収集対象のマシンが存在する VNET がプライベート DNS ゾーンにリンクされていない、などです。)  
+もし適切な VNET がリンクされていない場合は、AMA がインストールされたマシンから各エンドポイントの名前解決を実施しても Private IP に変換されず、結果、エンドポイントへの接続に失敗します。  
+
+**確認方法**  
+1. Azure portal から、当該 AMPLS リソースの [構成] > [プライベート エンドポイント接続] のページを開き、 "プライベート エンドポイント" を押下し、プライベート エンドポイントのリソース ページに移動します。  
+2. つづいて、[設定] > [DNS の構成] を押下し、"構成名" が "privatelink-monitor-azure-com" である行の "プライベート DNS ゾーン" を押下します。  
+![](./TroubleshootingAMALogIngestion/ampls-privatednszone.png)  
+3. プライベート DNS ゾーンのリソース ページに遷移したら、[DNS の管理] > [仮想ネットワーク リンク] を押下し、AMA がインストールされたマシンに関係する VNET が追加されているかを確認します。 
+![](./TroubleshootingAMALogIngestion/ampls-linkedvnets.png)   
+
+**対処方法**
+上記 3 で、AMA がインストールされたマシンに関係する VNET が追加されていなかった場合は、同ページの [+ 追加] から必要な VNET を追加してください。  
+
+その他、AMPLS に関する設定方法については、下記公開情報をご参照ください。  
+[プライベート リンクを構成する | 自分のプライベート リンク セットアップを確認および検証する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-configure#review-and-validate-your-private-link-setup)
 
 
 ## データ収集ルールの設定の確認
@@ -183,7 +248,7 @@ Azure Monitor エージェントを使用する場合は、マシンにシステ
 ### マネージド ID が割り当てられていないときの対処方法  
 以下の手順で、システム割り当てマネージド ID を割り当ててください。  
 
-** ■ システム割り当てマネージド ID の割り当て手順 **  
+**■ システム割り当てマネージド ID の割り当て手順**  
 1. Azure portal で確認対象のマシンを開きます。  
 2. 左ペインの [セキュリティ] > [ID] を押下し、[システム割り当て済み] タブを開きます。  
 3. "状態" の "オン" を押下し、しばらく待つと、システム割り当てマネージド ID が割り当てられます。  
