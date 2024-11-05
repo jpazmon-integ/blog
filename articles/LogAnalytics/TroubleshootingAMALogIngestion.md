@@ -107,8 +107,7 @@ Linux の場合は "AzureMonitorLinuxAgent"、Windows の場合は "AzureMonitor
 マシンにインストールされた Azure Monitor エージェントがマシンのログを Log Analytics ワークスペースに送信したい場合は、マシン (Azure Monitor エージェント) が必要なエンドポイントへ接続できるよう設定する必要があります。  
 
 接続できる必要のあるエンドポイントは以下の通りです。  
-(`<>` で囲まれた箇所は環境に合わせて変更してください。  
-実行時に `<>` は不要です。)  
+(`<>` で囲まれた箇所は環境に合わせて変更してください。実行時に `<>` は不要です。)  
 
 `global.handler.control.monitor.azure.com`  
 
@@ -146,11 +145,11 @@ echo | openssl s_client -connect <endpoint>:443 -servername <endpoint> -showcert
 ![](./TroubleshootingAMALogIngestion/result-echo.png)
 
 ### エンドポイントへ接続できていない場合の対処方法  
-**エンドポイントへの接続を許可する**
+**エンドポイントへの接続を許可する**  
 まずはネットワーク構成を確認し、エンドポイントへの接続を拒否するような設定が適用されていないかを確認してください。  
 プロキシ サーバーやファイアウォールが設置されている場合は、これらの設定により、上記のエンドポイントへの接続が拒否されている可能性があります。
 
-**名前解決の問題を解消する**
+**名前解決の問題を解消する**  
 上記のコマンドの実行結果で以下のように表示された場合は、何らかの要因でエンドポイントの名前解決に失敗しています。  
 - Windows の場合：`RemoteAddress` が空欄
 - Linux の場合：`Name or service not known` が表示される  
@@ -169,7 +168,7 @@ Azure Monitor エージェントを使用する上でのネットワーク要件
 AMPLS に関連するエンドポイントへの接続失敗のよくある原因といたしましては、下記の 2 点が考えられます。  
 以下に、それぞれの確認方法と対処法をご紹介します。
 
-### A: AMPLS に対して、Log Analytics ワークスペースやデータ収集エンドポイントが追加出来ていない  
+### 原因 A: AMPLS に対して、Log Analytics ワークスペースやデータ収集エンドポイントが追加出来ていない  
 **確認方法**  
 Azure portal から、当該 AMPLS リソースの [構成] > [Azure Monitor リソース] よりご確認可能です。  
 ![](./TroubleshootingAMALogIngestion/ampls-monitorresource.png)
@@ -177,7 +176,7 @@ Azure portal から、当該 AMPLS リソースの [構成] > [Azure Monitor リ
 **対処方法**  
 もし[通信要件の確認](#通信要件の確認) で紹介したエンドポイントが追加出来ていない場合は、[+ 追加] からこれらのエンドポイントの追加をお願いします。  
 
-### B: AMPLS のプライベート エンドポイントに紐づくプライベート DNS ゾーンの設定がおかしい  
+### 原因 B: AMPLS のプライベート エンドポイントに紐づくプライベート DNS ゾーンの設定がおかしい  
 お客様環境によっては、AMPLS のためのプライベート DNS ゾーンが作成されます。  
 ＊ privatelink.monitor.azure.com や privatelink.ods.opinsights.azure.com などです。
 
@@ -192,7 +191,7 @@ Azure portal から、当該 AMPLS リソースの [構成] > [Azure Monitor リ
 3. プライベート DNS ゾーンのリソース ページに遷移したら、[DNS の管理] > [仮想ネットワーク リンク] を押下し、AMA がインストールされたマシンに関係する VNET が追加されているかを確認します。 
 ![](./TroubleshootingAMALogIngestion/ampls-linkedvnets.png)   
 
-**対処方法**
+**対処方法**  
 上記 3 で、AMA がインストールされたマシンに関係する VNET が追加されていなかった場合は、同ページの [+ 追加] から必要な VNET を追加してください。  
 
 その他、AMPLS に関する設定方法については、下記公開情報をご参照ください。  
@@ -253,7 +252,7 @@ Azure Monitor エージェントを使用する場合は、マシンにシステ
 2. 左ペインの [セキュリティ] > [ID] を押下し、[システム割り当て済み] タブを開きます。  
 3. "状態" の "オン" を押下し、しばらく待つと、システム割り当てマネージド ID が割り当てられます。  
 
-** ■ ユーザー割り当てマネージド ID の割り当て手順 ** 
+**■ ユーザー割り当てマネージド ID の割り当て手順**  
 1. ユーザー割り当てマネージド ID を作成していない場合は、ユーザー割り当てマネージド ID を作成します。  
    [参考：ユーザー割り当てマネージド ID を作成する](https://learn.microsoft.com/ja-jp/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp#create-a-user-assigned-managed-identity)
 2. Azure portal で確認対象のマシンを開き、左ペインの [セキュリティ] > [ID] を押下し、[ユーザー割り当て済み] タブを開きます。  
