@@ -33,7 +33,8 @@ Heartbeat が収集できていない場合は、ログ収集設定以前もと�
     - [ログ送信先となる Log Analytics ワークスペースを設定/変更する方法](#ログ送信先となる-log-analytics-ワークスペースを設定変更する方法)
 - [マネージド ID の設定の確認](#マネージド-id-の設定の確認)
     - [確認方法](#確認方法-4)
-    - [システム割り当てマネージド ID が割り当てられていないときの対処方法](#システム割り当てマネージド-id-が割り当てられていないときの対処方法)
+    - [システム割り当てマネージド ID が割り当てられていないときの対処方法](#システム割り当てマネージド-id-が割り当てられていないときの対処方法)  
+- [トラブルシューティングをしても問題が解決しない場合](#トラブルシューティングをしても問題が解決しない場合)
 - [おわりに](#おわりに)
 
 ## はじめに
@@ -120,7 +121,7 @@ Log Analytics ワークスペース内のカスタム ログ テーブルにデ�
 
 `<data-collection-endpoint>.<virtual-machine-region-name>.ingest.monitor.azure.com`  
 
-＊ `<data-collection-endpoint>` の値は、使用しているデータ収集ルールに設定しているデータ収集エンドポイントを Azure portal で開き、[概要] の "ログ インジェスト" を確認してください。  
+＊ `<data-collection-endpoint>.<virtual-machine-region-name>` の値は、使用しているデータ収集ルールに設定しているデータ収集エンドポイントを Azure portal で開き、[概要] の "ログ インジェスト" を確認してください。  
    こちらに記載されている値から "https://" を除いたものがエンドポイントです。  
    ![](./TroubleshootingAMALogIngestion/dce-logingest.png)
 
@@ -261,7 +262,69 @@ Azure Monitor エージェントを使用する場合は、マシンにシステ
 
 なお、マネージド ID については、以下弊社サイトでもご案内しています。  
 - [Azure Monitor エージェントの要件 | アクセス許可](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-requirements#permissions)
-- [Azure リソース用マネージド ID とは | マネージド ID の種類](https://learn.microsoft.com/ja-jp/entra/identity/managed-identities-azure-resources/overview#managed-identity-types)
+- [Azure リソース用マネージド ID とは | マネージド ID の種類](https://learn.microsoft.com/ja-jp/entra/identity/managed-identities-azure-resources/overview#managed-identity-types)  
+
+
+## トラブルシューティングをしても問題が解決しない場合  
+上記対応を実施しても事象が解決しない場合は、お気兼ねなく Azure portal からサポート リクエストをご起票ください。  
+
+ご起票の手順は以下の通りです。
+1. 以下のいずれかの方法でサポート リクエストを開きます。  
+   A. ページ上部、グローバル ヘッダー内の [?] アイコンを押下します。  
+      ![](./TroubleshootingAMALogIngestion/open-sr-1.png) 
+
+   B. リソース ページの左ペイン内 [ヘルプ] > [サポートとトラブルシューティング] を押下します。  
+2. "どのようなご用件ですか?" の欄に、発生している問題の概要を入力し、[移動] を押下します。   
+   (例："Azure Monitor エージェントでログ収集が出来ない")  
+
+   ![](./TroubleshootingAMALogIngestion/sr-input-description.png)    
+3. "問題が発生しているのは、どのサービスですか?" の欄に "Azure Monitor Agent (AMA) on Windows machine" か "Azure Monitor Agent (AMA) on Linux machine" ("監視+管理" のカテゴリ内にございます) を選択し、[Next] を押下します。
+4. "問題が発生しているのはどのサブスクリプションですか?" で、該当するサブスクリプションを選択し。[Next] を押下します。  
+5. "What issue are you having?" で以下のように選択し、[Next] を押下します。  
+   - Problem type: "I created a DCR but the data is not in the Log Analytics Workspace"  
+   - Problem subtype: No Heartbeat events in Log Analytics Workcspace  
+
+   手順 3 - 5 を完了すると、以下のような状態になります。  
+
+   ![](./TroubleshootingAMALogIngestion/sr-currentselection.png) 
+6. [サポートに問い合わせる] を押下し、"ヘルプ + サポート" 内の [サポート リクエストの作成] を押下します。  
+   ("新しいサポート リクエスト" のページに遷移します。)
+
+   ![](./TroubleshootingAMALogIngestion/create-sr.png)    
+7. "リソース" で [リソースの選択] を押下し、以下のように問題が発生しているリソース (VM) を選択します。  
+
+   ![](./TroubleshootingAMALogIngestion/newsr-select-resource.png)  
+8. [次へ] を 2 回押下し、"追加の詳細" タブへ移動します。  
+   以下 3 つの項目と、その他の必要な情報を入力します。  
+   - "問題が発生し始めたのはいつですか"  
+   - "説明": 「問題内容・実施いただいたアクション・対象のリソース名・お問合せのゴールやお客様のご状況」をご記入いただくと調査がスムーズに進み、結果的に問題解消までの時間短縮が期待できます。  
+     (記入例)  
+     ```
+     XXXX という名称の Azure VM リソースに対して AMA の拡張機能をインストールしましたが、Log Analytics ワークスペースに対して Heartbeat ログが全く収集されません。
+ 
+     以下のブログを参考に AMA の再インストールを試しましたが、事象は解消しませんでした。  
+     <<< 参照した公開情報やブログの URL >>>
+     ネットワーク要件も確認しましたが、問題が無いことを確認しました。
+ 
+     使用しているデータ収集ルールののリソース名は ZZZZ です。
+     データ収集エンドポイントは使用していません。
+     MM 月 DD 日までにエンドユーザー様へ環境を引き渡す必要があり、問題解消を急いでおります。
+     まずは復旧を優先したいと考えておりますので、復旧のためのサポートをお願いします。
+     ```  
+     ＊ 記載内容については、以下のブログ記事もご参照ください。  
+     - [お問い合わせの発行方法について](https://jpaztech.github.io/blog/information/How-to-inquiry-to-the-Azure-Support/)  
+     - [（障害対応編）最速でテクニカルサポートから求める回答を得る方法](https://zenn.dev/microsoft/articles/f0ad86348bc9ac)  
+
+   - "ファイルのアップロード": 可能であれば、Azure Monitor エージェントのログ ファイル (＊) を採取し、こちらに添付してください。  
+   (＊) Azure Monitor エージェントのログ ファイルの採取方法は、下記の公開情報をご参照ください。  
+        - [Windows オペレーティング システム (OS) の Azure Monitor エージェント トラブルシューティング ツールの使用方法](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/troubleshooter-ama-windows?tabs=WindowsPowerShell)  
+        - [Linux オペレーティング システム (OS) の Azure Monitor エージェント トラブルシューティング ツールの使用方法](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/troubleshooter-ama-linux?tabs=redhat%2CGenerateLogs)  
+
+   (記入例)
+   ![](./TroubleshootingAMALogIngestion/newsr-additionalinfo.png)  
+
+9. [次へ] を押下し、"確認と作成" タブで問題がなければ、[作成] を押下し、サポート リクエストの起票が完了してください。
+
 
 ## おわりに
 今回は、Azure Monitor エージェントを使用したログ収集が行われない場合の、初期トラブルシューティング方法についてご案内しました。  
