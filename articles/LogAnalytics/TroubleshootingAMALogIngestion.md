@@ -267,24 +267,24 @@ Azure Monitor エージェントを使用する場合は、マシンにシステ
 
 ## トラブルシューティングをしても問題が解決しない場合  
 上記対応を実施しても事象が解決しない場合は、お気兼ねなく Azure portal からサポート リクエストをご起票ください。  
+ご起票の手順は以下の通りです。  
 
-ご起票の手順は以下の通りです。
 1. 以下のいずれかの方法でサポート リクエストを開きます。  
    A. ページ上部、グローバル ヘッダー内の [?] アイコンを押下します。  
       ![](./TroubleshootingAMALogIngestion/open-sr-1.png) 
 
    B. リソース ページの左ペイン内 [ヘルプ] > [サポートとトラブルシューティング] を押下します。  
 2. "どのようなご用件ですか?" の欄に、発生している問題の概要を入力し、[移動] を押下します。   
-   (例："Azure Monitor エージェントでログ収集が出来ない")  
+   (例："Azure Monitor エージェントでログが収集できない")  
 
    ![](./TroubleshootingAMALogIngestion/sr-input-description.png)    
-3. "問題が発生しているのは、どのサービスですか?" の欄に "Azure Monitor Agent (AMA) on Windows machine" か "Azure Monitor Agent (AMA) on Linux machine" ("監視+管理" のカテゴリ内にございます) を選択し、[Next] を押下します。
+3. "問題が発生しているのは、どのサービスですか?" で "Azure Monitor Agent (AMA) on Windows machine" か "Azure Monitor Agent (AMA) on Linux machine" ("監視+管理" のカテゴリ内にございます) を選択し、[Next] を押下します。
 4. "問題が発生しているのはどのサブスクリプションですか?" で、該当するサブスクリプションを選択し。[Next] を押下します。  
 5. "What issue are you having?" で以下のように選択し、[Next] を押下します。  
-   - Problem type: "I created a DCR but the data is not in the Log Analytics Workspace"  
-   - Problem subtype: No Heartbeat events in Log Analytics Workcspace  
+   - "Problem type": "I created a DCR but the data is not in the Log Analytics Workspace"  
+   - "Problem subtype": No Heartbeat events in Log Analytics Workcspace  
 
-   手順 3 - 5 を完了すると、以下のような状態になります。  
+   手順 3 - 5 が完了すると、以下のような状態になります。  
 
    ![](./TroubleshootingAMALogIngestion/sr-currentselection.png) 
 6. [サポートに問い合わせる] を押下し、"ヘルプ + サポート" 内の [サポート リクエストの作成] を押下します。  
@@ -323,7 +323,9 @@ Azure Monitor エージェントを使用する場合は、マシンにシステ
    (記入例)
    ![](./TroubleshootingAMALogIngestion/newsr-additionalinfo.png)  
 
-9. [次へ] を押下し、"確認と作成" タブで問題がなければ、[作成] を押下し、サポート リクエストの起票が完了してください。
+9. [次へ] を押下し、"確認と作成" タブで問題がなければ、[作成] を押下します。  
+   こちらでサポート リクエストの起票は完了です。  
+   弊社からの連絡をお待ちください。
 
 
 ## おわりに
