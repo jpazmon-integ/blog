@@ -90,20 +90,20 @@ Linux の場合は "AzureMonitorLinuxAgent"、Windows の場合は "AzureMonitor
    ```
 4. 1 の  [拡張機能とアプリケーション]  にて、Azure Monitor エージェントの "状態" が "Provisioning Succeeded" となれば、完了です。  
 
-> [!NOTE] インストール可能なバージョンの確認方法とコマンドでのバージョンの指定方法  
-> - 使用可能なエージェントのバージョンの一覧は、以下の PowerShell コマンドを実行することで確認できます。  
+**(補足) インストール可能なバージョンの確認方法とコマンドでのバージョンの指定方法**  
+- 使用可能なエージェントのバージョンの一覧は、以下の PowerShell コマンドを実行することで確認できます。  
   (`<region>` には、マシンが存在するリージョンを指定してください。)
-> ```  
-> # Windows の場合
-> ((Get-AzVMExtensionImage -Location "<region>" -PublisherName "Microsoft.Azure.Monitor" -Type "AzureMonitorWindowsAgent").Version | Sort-Object -Property { [Version]$_})  
->  
-> # Linux の場合  
-> ((Get-AzVMExtensionImage -Location "<region>" -PublisherName "Microsoft.Azure.Monitor" -Type "AzureMonitorLinuxAgent").Version | Sort-Object -Property { [Version]$_})
-> ```  
-> - 注意点として、コマンドを使用して Azure Monitor エージェントをインストールする場合、マイナー バージョンは指定することができかねます。  
-> 例えばもし 1.31.1 をご指定いただいた場合、下図のように `The value of parameter typeHandlerVersion is invalid.` のエラーが発生します。  
-> そのため、必ずマイナーバージョン ("1.xx.y" の ".y" の部分) を削除した状態で拡張機能のバージョンをご指定ください。 
-> ![](./TroubleshootingAMALogIngestion/setazvmextension-error.png)
+   ```  
+   # Windows の場合
+   ((Get-AzVMExtensionImage -Location "<region>" -PublisherName "Microsoft.Azure.Monitor" -Type "AzureMonitorWindowsAgent").Version | Sort-Object -Property { [Version]$_})  
+   
+   # Linux の場合  
+   ((Get-AzVMExtensionImage -Location "<region>" -PublisherName "Microsoft.Azure.Monitor" -Type "AzureMonitorLinuxAgent").Version | Sort-Object -Property { [Version]$_})
+   ```  
+- 注意点として、コマンドを使用して Azure Monitor エージェントをインストールする場合、マイナー バージョンは指定することができかねます。  
+例えばもし 1.31.1 をご指定いただいた場合、下図のように `The value of parameter typeHandlerVersion is invalid.` のエラーが発生します。  
+そのため、必ずマイナーバージョン ("1.xx.y" の ".y" の部分) を削除した状態で拡張機能のバージョンをご指定ください。 
+![](./TroubleshootingAMALogIngestion/setazvmextension-error.png)
 
 ## 通信要件の確認
 マシンにインストールされた Azure Monitor エージェントがマシンのログを Log Analytics ワークスペースに送信したい場合は、マシン (Azure Monitor エージェント) が必要なエンドポイントへ接続できるよう設定する必要があります。  
