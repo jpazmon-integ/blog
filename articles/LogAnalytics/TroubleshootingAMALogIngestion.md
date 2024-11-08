@@ -91,16 +91,19 @@ Linux の場合は "AzureMonitorLinuxAgent"、Windows の場合は "AzureMonitor
 4. 1 の  [拡張機能とアプリケーション]  にて、Azure Monitor エージェントの "状態" が "Provisioning Succeeded" となれば、完了です。  
 
 **(補足) インストール可能なバージョンの確認方法とコマンドでのバージョンの指定方法**  
-- 使用可能なエージェントのバージョンの一覧は、以下の PowerShell コマンドを実行することで確認できます。  
-  (`<region>` には、マシンが存在するリージョンを指定してください。)
+使用可能なエージェントのバージョンの一覧は、以下の PowerShell コマンドを実行することで確認できます。(`<region>` には、マシンが存在するリージョンを指定してください。)  
+
+  (Windows の場合)  
    ```  
-   # Windows の場合
    ((Get-AzVMExtensionImage -Location "<region>" -PublisherName "Microsoft.Azure.Monitor" -Type "AzureMonitorWindowsAgent").Version | Sort-Object -Property { [Version]$_})  
-   
-   # Linux の場合  
+   ```  
+
+   (Linux の場合)  
+   ```  
    ((Get-AzVMExtensionImage -Location "<region>" -PublisherName "Microsoft.Azure.Monitor" -Type "AzureMonitorLinuxAgent").Version | Sort-Object -Property { [Version]$_})
    ```  
-- 注意点として、コマンドを使用して Azure Monitor エージェントをインストールする場合、マイナー バージョンは指定することができかねます。  
+
+注意点として、コマンドを使用して Azure Monitor エージェントをインストールする場合、マイナー バージョンは指定することができかねます。  
 例えばもし 1.31.1 をご指定いただいた場合、下図のように `The value of parameter typeHandlerVersion is invalid.` のエラーが発生します。  
 そのため、必ずマイナーバージョン ("1.xx.y" の ".y" の部分) を削除した状態で拡張機能のバージョンをご指定ください。 
 ![](./TroubleshootingAMALogIngestion/setazvmextension-error.png)
@@ -130,7 +133,8 @@ Log Analytics ワークスペース内のカスタム ログ テーブルにデ�
 
 **■ Windows の場合**  
 PowerShell を開き、以下のコマンドを実行し、出力結果に `TcpTestSucceeded : True` が記載されていれば、エンドポイントに接続できています。  
-( `<endpoint>` の箇所は、上記のエンドポイントのうち確認したいものに置き換えてください)
+( `<endpoint>` の箇所は、上記のエンドポイントのうち確認したいものに置き換えてください)  
+
 ```
 Test-NetConnection <endpoint> -port 443
 ```  
@@ -176,7 +180,7 @@ Azure portal から、当該 AMPLS リソースの [構成] > [Azure Monitor リ
 ![](./TroubleshootingAMALogIngestion/ampls-monitorresource.png)
 
 **対処方法**  
-もし[通信要件の確認](#通信要件の確認) で紹介したエンドポイントが追加出来ていない場合は、[+ 追加] からこれらのエンドポイントの追加をお願いします。  
+もし当該 Log Analytics ワークスペースやデータ収集エンドポイントが追加できていない場合は、[+ 追加] からこれらのリソースの追加をお願いします。  
 
 ### 原因 B: AMPLS のプライベート エンドポイントに紐づくプライベート DNS ゾーンの設定がおかしい  
 お客様環境によっては、AMPLS のためのプライベート DNS ゾーンが作成されます。  
@@ -298,19 +302,7 @@ Azure Monitor エージェントを使用する場合は、マシンにシステ
    以下 3 つの項目と、その他の必要な情報を入力します。  
    - "問題が発生し始めたのはいつですか"  
    - "説明": 「問題内容・実施いただいたアクション・対象のリソース名・お問合せのゴールやお客様のご状況」をご記入いただくと調査がスムーズに進み、結果的に問題解消までの時間短縮が期待できます。  
-     (記入例)  
-     ```
-     XXXX という名称の Azure VM リソースに対して AMA の拡張機能をインストールしましたが、Log Analytics ワークスペースに対して Heartbeat ログが全く収集されません。
- 
-     以下のブログを参考に AMA の再インストールを試しましたが、事象は解消しませんでした。  
-     <<< 参照した公開情報やブログの URL >>>
-     ネットワーク要件も確認しましたが、問題が無いことを確認しました。
- 
-     使用しているデータ収集ルールののリソース名は ZZZZ です。
-     データ収集エンドポイントは使用していません。
-     MM 月 DD 日までにエンドユーザー様へ環境を引き渡す必要があり、問題解消を急いでおります。
-     まずは復旧を優先したいと考えておりますので、復旧のためのサポートをお願いします。
-     ```  
+     ＊ サンプルを後述しております。必要に応じてご利用ください。  
      ＊ 記載内容については、以下のブログ記事もご参照ください。  
      - [お問い合わせの発行方法について](https://jpaztech.github.io/blog/information/How-to-inquiry-to-the-Azure-Support/)  
      - [（障害対応編）最速でテクニカルサポートから求める回答を得る方法](https://zenn.dev/microsoft/articles/f0ad86348bc9ac)  
@@ -320,7 +312,21 @@ Azure Monitor エージェントを使用する場合は、マシンにシステ
         - [Windows オペレーティング システム (OS) の Azure Monitor エージェント トラブルシューティング ツールの使用方法](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/troubleshooter-ama-windows?tabs=WindowsPowerShell)  
         - [Linux オペレーティング システム (OS) の Azure Monitor エージェント トラブルシューティング ツールの使用方法](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/troubleshooter-ama-linux?tabs=redhat%2CGenerateLogs)  
 
-   (記入例)
+   ("説明" 欄のサンプル)  
+   ```
+   XXXX という名称の Azure VM リソースに対して AMA の拡張機能をインストールしましたが、Log Analytics ワークスペースに対して Heartbeat ログが全く収集されません。
+
+   以下のブログを参考に AMA の再インストールを試しましたが、事象は解消しませんでした。  
+   <<< 参照した公開情報やブログの URL >>>
+   ネットワーク要件も確認しましたが、問題が無いことを確認しました。
+
+   使用しているデータ収集ルールののリソース名は ZZZZ です。
+   データ収集エンドポイントは使用していません。
+   MM 月 DD 日までにエンドユーザー様へ環境を引き渡す必要があり、問題解消を急いでおります。
+   まずは復旧を優先したいと考えておりますので、復旧のためのサポートをお願いします。
+   ```  
+
+   (記入例)  
    ![](./TroubleshootingAMALogIngestion/newsr-additionalinfo.png)  
 
 9. [次へ] を押下し、"確認と作成" タブで問題がなければ、[作成] を押下します。  
