@@ -15,25 +15,15 @@ Heartbeat が収集できていない場合は、ログ収集設定以前もと�
 今回は、Heartbeat をはじめとしたログが収集されないときの、はじめのトラブルシューティング方法をご紹介します。
 
 ## 目次
+- [目次](#目次)
 - [はじめに](#はじめに)
 - [サポート対象 OS の確認](#サポート対象-os-の確認)
 - [マシンの起動状態の確認](#マシンの起動状態の確認)
-    - [確認方法](#確認方法)
-    - [マシンが起動していないときの対処方法](#マシンが起動していないときの対処方法)
 - [Azure Monitor エージェントの状態の確認](#azure-monitor-エージェントの状態の確認)
-    - [確認方法](#確認方法-1)
-    - [Azure Monitor エージェントが正常に稼働していない場合の対処方法](#azure-monitor-エージェントが正常に稼働していない場合の対処方法)
 - [通信要件の確認](#通信要件の確認)
-    - [確認方法](#確認方法-2)
-    - [エンドポイントへ接続できていない場合の対処方法](#エンドポイントへ接続できていない場合の対処方法)
 - [通信要件の確認 (AMPLS を使用している場合)](#通信要件の確認-ampls-を使用している場合)
 - [データ収集ルールの設定の確認](#データ収集ルールの設定の確認)
-    - [確認方法](#確認方法-3)
-    - [マシンとデータ収集ルールを関連付いていない場合の対処方法](#マシンとデータ収集ルールを関連付いていない場合の対処方法)
-    - [ログ送信先となる Log Analytics ワークスペースを設定/変更する方法](#ログ送信先となる-log-analytics-ワークスペースを設定変更する方法)
 - [マネージド ID の設定の確認](#マネージド-id-の設定の確認)
-    - [確認方法](#確認方法-4)
-    - [システム割り当てマネージド ID が割り当てられていないときの対処方法](#システム割り当てマネージド-id-が割り当てられていないときの対処方法)  
 - [トラブルシューティングをしても問題が解決しない場合](#トラブルシューティングをしても問題が解決しない場合)
 - [おわりに](#おわりに)
 
@@ -93,15 +83,15 @@ Linux の場合は "AzureMonitorLinuxAgent"、Windows の場合は "AzureMonitor
 **(補足) インストール可能なバージョンの確認方法とコマンドでのバージョンの指定方法**  
 使用可能なエージェントのバージョンの一覧は、以下の PowerShell コマンドを実行することで確認できます。(`<region>` には、マシンが存在するリージョンを指定してください。)  
 
-  (Windows の場合)  
-   ```  
-   ((Get-AzVMExtensionImage -Location "<region>" -PublisherName "Microsoft.Azure.Monitor" -Type "AzureMonitorWindowsAgent").Version | Sort-Object -Property { [Version]$_})  
-   ```  
+(Windows の場合)  
+```
+((Get-AzVMExtensionImage -Location "<region>" -PublisherName "Microsoft.Azure.Monitor" -Type "AzureMonitorWindowsAgent").Version | Sort-Object -Property { [Version]$_})  
+```
 
-   (Linux の場合)  
-   ```  
-   ((Get-AzVMExtensionImage -Location "<region>" -PublisherName "Microsoft.Azure.Monitor" -Type "AzureMonitorLinuxAgent").Version | Sort-Object -Property { [Version]$_})
-   ```  
+(Linux の場合)  
+```
+((Get-AzVMExtensionImage -Location "<region>" -PublisherName "Microsoft.Azure.Monitor" -Type "AzureMonitorLinuxAgent").Version | Sort-Object -Property { [Version]$_})
+```
 
 注意点として、コマンドを使用して Azure Monitor エージェントをインストールする場合、マイナー バージョンは指定することができかねます。  
 例えばもし 1.31.1 をご指定いただいた場合、下図のように `The value of parameter typeHandlerVersion is invalid.` のエラーが発生します。  
@@ -137,16 +127,19 @@ PowerShell を開き、以下のコマンドを実行し、出力結果に `TcpT
 
 ```
 Test-NetConnection <endpoint> -port 443
-```  
+```
+
 (結果例)  
 ![](./TroubleshootingAMALogIngestion/result-tnc.png)
+
 
 **■ Linux の場合**  
 ターミナルを開き、以下のコマンドを実行し、出力結果に `CONNECTED` が記載されていれば、エンドポイントに接続できています。  
 
 ```
 echo | openssl s_client -connect <endpoint>:443 -servername <endpoint> -showcerts
-```  
+```
+
 (結果例)  
 ![](./TroubleshootingAMALogIngestion/result-echo.png)
 
@@ -324,7 +317,7 @@ Azure Monitor エージェントを使用する場合は、マシンにシステ
    データ収集エンドポイントは使用していません。
    MM 月 DD 日までにエンドユーザー様へ環境を引き渡す必要があり、問題解消を急いでおります。
    まずは復旧を優先したいと考えておりますので、復旧のためのサポートをお願いします。
-   ```  
+   ```
 
    (記入例)  
    ![](./TroubleshootingAMALogIngestion/newsr-additionalinfo.png)  
