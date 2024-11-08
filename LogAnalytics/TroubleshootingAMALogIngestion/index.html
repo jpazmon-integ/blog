@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Azure Monitor エージェントを使用したログ収集が行われない場合のトラブルシューティングについて | Japan Azure Monitoring Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは、Azure Monitoring チームの徳田です。 Azure Monitor エージェントを使用したログ収集を行っている場合、Log Analytics ワークスペースには、Heartbeat と呼ばれるログが 1 分毎に収集されます。この Heartbeat はマシンの死活監視にも使用されることがありますが、何らかの理由でこの Heartbeat が収集されないことがあります。H">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Azure Monitor エージェントを使用したログ収集が行われない場合のトラブルシューティングについて">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/TroubleshootingAMALogIngestion/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="こんにちは、Azure Monitoring チームの徳田です。 Azure Monitor エージェントを使用したログ収集を行っている場合、Log Analytics ワークスペースには、Heartbeat と呼ばれるログが 1 分毎に収集されます。この Heartbeat はマシンの死活監視にも使用されることがありますが、何らかの理由でこの Heartbeat が収集されないことがあります。H">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/TroubleshootingAMALogIngestion/newsr-additionalinfo.png">
+<meta property="article:published_time" content="2024-11-08T05:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-08T04:31:51.860Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="Tips">
+<meta property="article:tag" content="Log Analytics">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/TroubleshootingAMALogIngestion/newsr-additionalinfo.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-LogAnalytics/TroubleshootingAMALogIngestion" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Azure Monitor エージェントを使用したログ収集が行われない場合のトラブルシューティングについて
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2024-11-08T05:00:00.000Z" itemprop="datePublished">2024-11-08</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+0bf6f8f4-ccee-50ed-ad87-9f76bffb0b6e%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Monitor+%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%9F%E3%83%AD%E3%82%B0%E5%8F%8E%E9%9B%86%E3%81%8C%E8%A1%8C%E3%82%8F%E3%82%8C%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AE%E3%83%88%E3%83%A9%E3%83%96%E3%83%AB%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FTroubleshootingAMALogIngestion%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FTroubleshootingAMALogIngestion.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FTroubleshootingAMALogIngestion.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/TroubleshootingAMALogIngestion/" data-id="cm388pllc00bp0np75vuebev7" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは、Azure Monitoring チームの徳田です。</p>
+<p>Azure Monitor エージェントを使用したログ収集を行っている場合、Log Analytics ワークスペースには、Heartbeat と呼ばれるログが 1 分毎に収集されます。<br>この Heartbeat はマシンの死活監視にも使用されることがありますが、何らかの理由でこの Heartbeat が収集されないことがあります。<br>Heartbeat が収集できていない場合は、ログ収集設定以前もところで問題が発生していることも多く、その場合は、Heartbeat 以外のログ収集も停止してしまいます。</p>
+<p>今回は、Heartbeat をはじめとしたログが収集されないときの、はじめのトラブルシューティング方法をご紹介します。</p>
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB">はじめに</a></li>
+<li><a href="#%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E5%AF%BE%E8%B1%A1-os-%E3%81%AE%E7%A2%BA%E8%AA%8D">サポート対象 OS の確認</a></li>
+<li><a href="#%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%AE%E8%B5%B7%E5%8B%95%E7%8A%B6%E6%85%8B%E3%81%AE%E7%A2%BA%E8%AA%8D">マシンの起動状態の確認</a><ul>
+<li><a href="#%E7%A2%BA%E8%AA%8D%E6%96%B9%E6%B3%95">確認方法</a></li>
+<li><a href="#%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%8C%E8%B5%B7%E5%8B%95%E3%81%97%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E3%81%A8%E3%81%8D%E3%81%AE%E5%AF%BE%E5%87%A6%E6%96%B9%E6%B3%95">マシンが起動していないときの対処方法</a></li>
+</ul>
+</li>
+<li><a href="#azure-monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%AE%E7%8A%B6%E6%85%8B%E3%81%AE%E7%A2%BA%E8%AA%8D">Azure Monitor エージェントの状態の確認</a><ul>
+<li><a href="#%E7%A2%BA%E8%AA%8D%E6%96%B9%E6%B3%95-1">確認方法</a></li>
+<li><a href="#azure-monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%8C%E6%AD%A3%E5%B8%B8%E3%81%AB%E7%A8%BC%E5%83%8D%E3%81%97%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AE%E5%AF%BE%E5%87%A6%E6%96%B9%E6%B3%95">Azure Monitor エージェントが正常に稼働していない場合の対処方法</a></li>
+</ul>
+</li>
+<li><a href="#%E9%80%9A%E4%BF%A1%E8%A6%81%E4%BB%B6%E3%81%AE%E7%A2%BA%E8%AA%8D">通信要件の確認</a><ul>
+<li><a href="#%E7%A2%BA%E8%AA%8D%E6%96%B9%E6%B3%95-2">確認方法</a></li>
+<li><a href="#%E3%82%A8%E3%83%B3%E3%83%89%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E3%81%B8%E6%8E%A5%E7%B6%9A%E3%81%A7%E3%81%8D%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AE%E5%AF%BE%E5%87%A6%E6%96%B9%E6%B3%95">エンドポイントへ接続できていない場合の対処方法</a></li>
+</ul>
+</li>
+<li><a href="#%E9%80%9A%E4%BF%A1%E8%A6%81%E4%BB%B6%E3%81%AE%E7%A2%BA%E8%AA%8D-ampls-%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E5%A0%B4%E5%90%88">通信要件の確認 (AMPLS を使用している場合)</a></li>
+<li><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%81%AE%E7%A2%BA%E8%AA%8D">データ収集ルールの設定の確認</a><ul>
+<li><a href="#%E7%A2%BA%E8%AA%8D%E6%96%B9%E6%B3%95-3">確認方法</a></li>
+<li><a href="#%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%A8%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86%E3%83%AB%E3%83%BC%E3%83%AB%E3%82%92%E9%96%A2%E9%80%A3%E4%BB%98%E3%81%84%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AE%E5%AF%BE%E5%87%A6%E6%96%B9%E6%B3%95">マシンとデータ収集ルールを関連付いていない場合の対処方法</a></li>
+<li><a href="#%E3%83%AD%E3%82%B0%E9%80%81%E4%BF%A1%E5%85%88%E3%81%A8%E3%81%AA%E3%82%8B-log-analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%82%92%E8%A8%AD%E5%AE%9A%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95">ログ送信先となる Log Analytics ワークスペースを設定/変更する方法</a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%81%AE%E7%A2%BA%E8%AA%8D">マネージド ID の設定の確認</a><ul>
+<li><a href="#%E7%A2%BA%E8%AA%8D%E6%96%B9%E6%B3%95-4">確認方法</a></li>
+<li><a href="#%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E5%89%B2%E3%82%8A%E5%BD%93%E3%81%A6%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E3%81%8C%E5%89%B2%E3%82%8A%E5%BD%93%E3%81%A6%E3%82%89%E3%82%8C%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E3%81%A8%E3%81%8D%E3%81%AE%E5%AF%BE%E5%87%A6%E6%96%B9%E6%B3%95">システム割り当てマネージド ID が割り当てられていないときの対処方法</a>  </li>
+</ul>
+</li>
+<li><a href="#%E3%83%88%E3%83%A9%E3%83%96%E3%83%AB%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%82%92%E3%81%97%E3%81%A6%E3%82%82%E5%95%8F%E9%A1%8C%E3%81%8C%E8%A7%A3%E6%B1%BA%E3%81%97%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88">トラブルシューティングをしても問題が解決しない場合</a></li>
+<li><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB">おわりに</a></li>
+</ul>
+<h2 id="はじめに"><a href="#はじめに" class="headerlink" title="はじめに"></a>はじめに</h2><p>Azure Monitor を使用したログ収集が行われない場合の要因は多岐にわたります。<br>以下では、その中でもよくある原因の特定とその対処方法をご案内します。</p>
+<h2 id="サポート対象-OS-の確認"><a href="#サポート対象-OS-の確認" class="headerlink" title="サポート対象 OS の確認"></a>サポート対象 OS の確認</h2><p>ご利用中のマシンの OS において Azure Monitor エージェントの利用がサポートされていない場合、当仮想マシン上でのエージェントの正常な動作は保証されておりません。<br>そのため、まずはじめに、使用している OS が Azure Monitor エージェントのサポート対象であるかをご確認ください。  </p>
+<p>Azure Monitor エージェントがサポートする OS は、以下公開情報にてご確認いただけます。  </p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-supported-operating-systems">Azure Monitor エージェントでサポートされるオペレーティング システムと環境</a></p>
+<h2 id="マシンの起動状態の確認"><a href="#マシンの起動状態の確認" class="headerlink" title="マシンの起動状態の確認"></a>マシンの起動状態の確認</h2><p>サポート対象であることが分かったのち、次に確認すべきことは、マシンが正常に起動した状態であるかです。<br>マシンが起動していない場合は、ログ収集が行われません。  </p>
+<h3 id="確認方法"><a href="#確認方法" class="headerlink" title="確認方法"></a>確認方法</h3><p>Azure portal では、対象のマシンの [概要] ページ内の “基本” &gt; “状態” からご確認いただけます。</p>
+<h3 id="マシンが起動していないときの対処方法"><a href="#マシンが起動していないときの対処方法" class="headerlink" title="マシンが起動していないときの対処方法"></a>マシンが起動していないときの対処方法</h3><p>マシンが起動されていない場合 (“状態” が “停止済み” となっている場合) は、対象のマシンの [概要] ページ内の [開始] ボタンより起動させ、ログ収集が再開するかどうかをご確認ください。</p>
+<h2 id="Azure-Monitor-エージェントの状態の確認"><a href="#Azure-Monitor-エージェントの状態の確認" class="headerlink" title="Azure Monitor エージェントの状態の確認"></a>Azure Monitor エージェントの状態の確認</h2><p>マシンが問題なく起動していても、Azure Monitor エージェントが正常に稼働しておらず、ログ収集が行われない場合があります。  </p>
+<h3 id="確認方法-1"><a href="#確認方法-1" class="headerlink" title="確認方法"></a>確認方法</h3><p>Azure portal で対象のマシンを開き、左ペインの [設定] &gt; [拡張機能とアプリケーション] を開きます。<br>Linux の場合は “AzureMonitorLinuxAgent”、Windows の場合は “AzureMonitorWindowsAgent” の “状態” が “Provisioning Succeeded” となっている場合は、Azure Monitor エージェントが正常に稼働していることを意味します。</p>
+<h3 id="Azure-Monitor-エージェントが正常に稼働していない場合の対処方法"><a href="#Azure-Monitor-エージェントが正常に稼働していない場合の対処方法" class="headerlink" title="Azure Monitor エージェントが正常に稼働していない場合の対処方法"></a>Azure Monitor エージェントが正常に稼働していない場合の対処方法</h3><ul>
+<li>Azure Monitor エージェントの状態が “Provisioning Succeeded” になっていない場合は、一度マシン自体を再起動し、しばらく待って “Provisioning Succeeded” になるかをご確認ください。  </li>
+<li>それでも “Provisioning Succeeded” とならない場合は、下記の手順で、エージェントの再インストール をお試しください。これにより事象が解決する場合があります。</li>
+</ul>
+<p>■ Azure Monitor エージェントの再インストール手順</p>
+<ol>
+<li><p>Azure portal で対象のマシンを開き、左ペインの [拡張機能とアプリケーション] を開きます。</p>
+</li>
+<li><p>“種類” に “AzureMonitorLinuxAgent” (Linux の場合)、または “AzureMonitorWindowsAgent” (Windows の場合) が含まれるものを押下し、右ペインの [アンインストール] を押下します。</p>
+</li>
+<li><p>2 のアンインストールの完了が確認出来たら、以下のコマンドを実行します。</p>
+<ul>
+<li>&lt;&gt; の箇所はお客様の環境に合わせてご変更ください。実行時、&lt;&gt; は不要です</li>
+<li>自動アップグレード機能を有効化したくない場合は、<code>-EnableAutomaticUpgrade $true</code> を削除して実行してください。  </li>
+<li><code>-HandlerVersion</code> としてマイナー バージョンまでを指定することはできません。<br>詳細については、本手順末尾の <code>インストール可能なバージョンの確認方法とコマンドでのバージョンの指定方法</code> をご参照ください。</li>
+</ul>
+<p> (Linux の場合)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-AzVMExtension -Name AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName &lt;resourcegroup-name&gt; -VMName &lt;vm-name&gt; -Location &lt;region-name&gt; -HandlerVersion &lt;version&gt; -DisableAutoUpgradeMinorVersion -EnableAutomaticUpgrade $true</span><br></pre></td></tr></table></figure>
+
+<p>(Windows の場合)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-AzVMExtension -Name AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName &lt;resourcegroup-name&gt; -VMName &lt;vm-name&gt; -Location &lt;region-name&gt; -HandlerVersion &lt;version&gt; -DisableAutoUpgradeMinorVersion -EnableAutomaticUpgrade $true</span><br></pre></td></tr></table></figure></li>
+<li><p>1 の  [拡張機能とアプリケーション]  にて、Azure Monitor エージェントの “状態” が “Provisioning Succeeded” となれば、完了です。  </p>
+</li>
+</ol>
+<blockquote>
+<p>[!NOTE] インストール可能なバージョンの確認方法とコマンドでのバージョンの指定方法  </p>
+<ul>
+<li>使用可能なエージェントのバージョンの一覧は、以下の PowerShell コマンドを実行することで確認できます。<br>(<code>&lt;region&gt;</code> には、マシンが存在するリージョンを指定してください。)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"># Windows の場合</span><br><span class="line">((Get-AzVMExtensionImage -Location &quot;&lt;region&gt;&quot; -PublisherName &quot;Microsoft.Azure.Monitor&quot; -Type &quot;AzureMonitorWindowsAgent&quot;).Version | Sort-Object -Property &#123; [Version]$_&#125;)  </span><br><span class="line"> </span><br><span class="line"># Linux の場合  </span><br><span class="line">((Get-AzVMExtensionImage -Location &quot;&lt;region&gt;&quot; -PublisherName &quot;Microsoft.Azure.Monitor&quot; -Type &quot;AzureMonitorLinuxAgent&quot;).Version | Sort-Object -Property &#123; [Version]$_&#125;)</span><br><span class="line">```  </span><br><span class="line">- 注意点として、コマンドを使用して Azure Monitor エージェントをインストールする場合、マイナー バージョンは指定することができかねます。  </span><br><span class="line">例えばもし 1.31.1 をご指定いただいた場合、下図のように `The value of parameter typeHandlerVersion is invalid.` のエラーが発生します。  </span><br><span class="line">そのため、必ずマイナーバージョン (&quot;1.xx.y&quot; の &quot;.y&quot; の部分) を削除した状態で拡張機能のバージョンをご指定ください。 </span><br><span class="line">![](/blog/LogAnalytics/TroubleshootingAMALogIngestion/setazvmextension-error.png)</span><br><span class="line"></span><br><span class="line">## 通信要件の確認</span><br><span class="line">マシンにインストールされた Azure Monitor エージェントがマシンのログを Log Analytics ワークスペースに送信したい場合は、マシン (Azure Monitor エージェント) が必要なエンドポイントへ接続できるよう設定する必要があります。  </span><br><span class="line"></span><br><span class="line">接続できる必要のあるエンドポイントは以下の通りです。  </span><br><span class="line">(`&lt;&gt;` で囲まれた箇所は環境に合わせて変更してください。実行時に `&lt;&gt;` は不要です。)  </span><br><span class="line"></span><br><span class="line">`global.handler.control.monitor.azure.com`  </span><br><span class="line"></span><br><span class="line">`&lt;virtual-machine-region-name&gt;.handler.control.monitor.azure.com` </span><br><span class="line"></span><br><span class="line">`&lt;log-analytics-workspace-id&gt;.ods.opinsights.azure.com`  </span><br><span class="line"></span><br><span class="line">Log Analytics ワークスペース内のカスタム ログ テーブルにデータを送信する場合は、以下のエンドポイントへの接続も必要です。   </span><br><span class="line"></span><br><span class="line">`&lt;data-collection-endpoint&gt;.&lt;virtual-machine-region-name&gt;.ingest.monitor.azure.com`  </span><br><span class="line"></span><br><span class="line">＊ `&lt;data-collection-endpoint&gt;.&lt;virtual-machine-region-name&gt;` の値は、使用しているデータ収集ルールに設定しているデータ収集エンドポイントを Azure portal で開き、[概要] の &quot;ログ インジェスト&quot; を確認してください。  </span><br><span class="line">  こちらに記載されている値から &quot;https://&quot; を除いたものがエンドポイントです。  </span><br><span class="line">  ![](/blog/LogAnalytics/TroubleshootingAMALogIngestion/dce-logingest.png)</span><br><span class="line"></span><br><span class="line">### 確認方法</span><br><span class="line">上記エンドポイントへ接続できているかどうかは、以下の方法で確認可能です。  </span><br><span class="line"></span><br><span class="line">**■ Windows の場合**  </span><br><span class="line">PowerShell を開き、以下のコマンドを実行し、出力結果に `TcpTestSucceeded : True` が記載されていれば、エンドポイントに接続できています。  </span><br><span class="line">( `&lt;endpoint&gt;` の箇所は、上記のエンドポイントのうち確認したいものに置き換えてください)</span><br></pre></td></tr></table></figure>
+Test-NetConnection <endpoint> -port 443</li>
+</ul>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(結果例)  </span><br><span class="line">![](/blog/LogAnalytics/TroubleshootingAMALogIngestion/result-tnc.png)</span><br><span class="line"></span><br><span class="line">**■ Linux の場合**  </span><br><span class="line">ターミナルを開き、以下のコマンドを実行し、出力結果に `CONNECTED` が記載されていれば、エンドポイントに接続できています。  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>echo | openssl s_client -connect <endpoint>:443 -servername <endpoint> -showcerts</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br></pre></td><td class="code"><pre><span class="line">(結果例)  </span><br><span class="line">![](/blog/LogAnalytics/TroubleshootingAMALogIngestion/result-echo.png)</span><br><span class="line"></span><br><span class="line">### エンドポイントへ接続できていない場合の対処方法  </span><br><span class="line">**エンドポイントへの接続を許可する**  </span><br><span class="line">まずはネットワーク構成を確認し、エンドポイントへの接続を拒否するような設定が適用されていないかを確認してください。  </span><br><span class="line">プロキシ サーバーやファイアウォールが設置されている場合は、これらの設定により、上記のエンドポイントへの接続が拒否されている可能性があります。</span><br><span class="line"></span><br><span class="line">**名前解決の問題を解消する**  </span><br><span class="line">上記のコマンドの実行結果で以下のように表示された場合は、何らかの要因でエンドポイントの名前解決に失敗しています。  </span><br><span class="line">- Windows の場合：`RemoteAddress` が空欄</span><br><span class="line">- Linux の場合：`Name or service not known` が表示される  </span><br><span class="line"></span><br><span class="line">このように名前解決に失敗している場合は、お客様環境の DNS 構成の見直しをご検討ください。  </span><br><span class="line">また、[AMPLS (Azure Monitor Private Link Scope)](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-security) を使用している場合は、後述の[通信要件の確認 (AMPLS を使用している場合)](#通信要件の確認-ampls-を使用している場合)をご確認ください。</span><br><span class="line"></span><br><span class="line">(ご参考)  </span><br><span class="line">Azure Monitor エージェントを使用する上でのネットワーク要件については、以下の弊社公開情報でもご案内しています。  </span><br><span class="line">[Azure Monitor エージェントのネットワーク構成](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-network-configuration?tabs=PowerShellWindows)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 通信要件の確認 (AMPLS を使用している場合)  </span><br><span class="line">上記 `通信要件の確認` ではログ収集のために接続が必要なエンド ポイントを紹介しました。  </span><br><span class="line">[AMPLS (Azure Monitor Private Link Scope)](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-security) を使用している場合、名前解決の結果 Global IP への通信を試みてしまい、結果、必要なエンドポイントに接続できていない可能性もございます。  </span><br><span class="line">AMPLS に関連するエンドポイントへの接続失敗のよくある原因といたしましては、下記の 2 点が考えられます。  </span><br><span class="line">以下に、それぞれの確認方法と対処法をご紹介します。</span><br><span class="line"></span><br><span class="line">### 原因 A: AMPLS に対して、Log Analytics ワークスペースやデータ収集エンドポイントが追加出来ていない  </span><br><span class="line">**確認方法**  </span><br><span class="line">Azure portal から、当該 AMPLS リソースの [構成] &gt; [Azure Monitor リソース] よりご確認可能です。  </span><br><span class="line">![](/blog/LogAnalytics/TroubleshootingAMALogIngestion/ampls-monitorresource.png)</span><br><span class="line"></span><br><span class="line">**対処方法**  </span><br><span class="line">もし[通信要件の確認](#通信要件の確認) で紹介したエンドポイントが追加出来ていない場合は、[+ 追加] からこれらのエンドポイントの追加をお願いします。  </span><br><span class="line"></span><br><span class="line">### 原因 B: AMPLS のプライベート エンドポイントに紐づくプライベート DNS ゾーンの設定がおかしい  </span><br><span class="line">お客様環境によっては、AMPLS のためのプライベート DNS ゾーンが作成されます。  </span><br><span class="line">＊ privatelink.monitor.azure.com や privatelink.ods.opinsights.azure.com などです。</span><br><span class="line"></span><br><span class="line">これらのプライベート DNS ゾーンには、AMA がインストールされたマシンに関係する VNET (仮想ネットワーク) をリンクさせる必要があります。  </span><br><span class="line">(例えば、ログ収集対象のマシンが存在する VNET がプライベート DNS ゾーンにリンクされていない、などです。)  </span><br><span class="line">もし適切な VNET がリンクされていない場合は、AMA がインストールされたマシンから各エンドポイントの名前解決を実施しても Private IP に変換されず、結果、エンドポイントへの接続に失敗します。  </span><br><span class="line"></span><br><span class="line">**確認方法**  </span><br><span class="line">1. Azure portal から、当該 AMPLS リソースの [構成] &gt; [プライベート エンドポイント接続] のページを開き、 &quot;プライベート エンドポイント&quot; を押下し、プライベート エンドポイントのリソース ページに移動します。  </span><br><span class="line">2. つづいて、[設定] &gt; [DNS の構成] を押下し、&quot;構成名&quot; が &quot;privatelink-monitor-azure-com&quot; である行の &quot;プライベート DNS ゾーン&quot; を押下します。  </span><br><span class="line">![](/blog/LogAnalytics/TroubleshootingAMALogIngestion/ampls-privatednszone.png)  </span><br><span class="line">3. プライベート DNS ゾーンのリソース ページに遷移したら、[DNS の管理] &gt; [仮想ネットワーク リンク] を押下し、AMA がインストールされたマシンに関係する VNET が追加されているかを確認します。 </span><br><span class="line">![](/blog/LogAnalytics/TroubleshootingAMALogIngestion/ampls-linkedvnets.png)   </span><br><span class="line"></span><br><span class="line">**対処方法**  </span><br><span class="line">上記 3 で、AMA がインストールされたマシンに関係する VNET が追加されていなかった場合は、同ページの [+ 追加] から必要な VNET を追加してください。  </span><br><span class="line"></span><br><span class="line">その他、AMPLS に関する設定方法については、下記公開情報をご参照ください。  </span><br><span class="line">[プライベート リンクを構成する | 自分のプライベート リンク セットアップを確認および検証する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-configure#review-and-validate-your-private-link-setup)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## データ収集ルールの設定の確認</span><br><span class="line">Azure Monitor エージェントを使用してログ収集を行う場合、データ収集ルールを使用して、対象のマシンと、ログ収集先の Log Analytics ワークスペースを指定します。  </span><br><span class="line">確認対象のマシンが、データ収集ルールに関連付けられているか、ログ収集を確認している Log Analytics ワークスペースが合っているかを、確認してください。</span><br><span class="line"></span><br><span class="line">### 確認方法</span><br><span class="line">**■ マシンとデータ収集ルールの関連付け**  </span><br><span class="line">1. Azure portal でデータ収集ルールのリソース ページを開きます。  </span><br><span class="line">2. 左ペインの [構成] &gt; [リソース] を開きます。  </span><br><span class="line">   ここに、確認対象のマシンが表示されていることを確認してください。</span><br><span class="line"></span><br><span class="line">**■ ログ収集先の Log Analytics ワークスペース**  </span><br><span class="line">1. Azure portal でデータ収集ルールのリソース ページを開きます。  </span><br><span class="line">2. 左ペインの [構成] &gt; [データ ソース] を開きます。  </span><br><span class="line">3. 表示されているデータ ソースを押下し、右ペインの [ターゲット] タブを開きます。  </span><br><span class="line">   ここに表示される Log Analytics ワークスペースに、ログが収集されます。  </span><br><span class="line">   ![](/blog/LogAnalytics/TroubleshootingAMALogIngestion/check-dcr-target.png)</span><br><span class="line"></span><br><span class="line">### マシンとデータ収集ルールを関連付いていない場合の対処方法</span><br><span class="line">以下の手順でマシンとデータ収集ルールを関連付けます。</span><br><span class="line">1. Azure portal でデータ収集ルールのリソース ページを開きます。  </span><br><span class="line">2. 左ペインの [構成] &gt; [リソース] を開きます。 </span><br><span class="line">   [追加] を押下し、関連付けたいマシンを選択します。 </span><br><span class="line">3. [適用] を押下し、完了です。</span><br><span class="line"></span><br><span class="line">### ログ送信先となる Log Analytics ワークスペースを設定/変更する方法</span><br><span class="line">ログ送信先となる Log Analytics ワークスペースを設定/変更したい場合は、以下の手順を実施してください。  </span><br><span class="line">1. Azure portal でデータ収集ルールのリソース ページを開きます。  </span><br><span class="line">2. 左ペインの [構成] &gt; [データ ソース] を開きます。</span><br><span class="line">3. 設定対象のデータ ソースを押下し、右ペイン内の [ターゲット] タブを開きます。</span><br><span class="line">4. 現在設定されているターゲット (ワークスペース) を変更したい場合は、既存のターゲットのゴミ箱アイコンを押下し、削除します。</span><br><span class="line">5. [ターゲットの追加] を押下し、設定したい Log Analytics ワークスペースを選択します。</span><br><span class="line">6. [保存] を押下し、完了です。</span><br><span class="line"></span><br><span class="line">## マネージド ID の設定の確認</span><br><span class="line">Azure Monitor エージェントを使用する場合は、マシンにシステム割り当てマネージド ID または、ユーザー マネージド ID が割り当てられている必要があります。  </span><br><span class="line"></span><br><span class="line">### 確認方法</span><br><span class="line">1. Azure portal で確認対象のマシンを開きます。  </span><br><span class="line">2. (システム割り当てマネージド ID の場合)   </span><br><span class="line">   左ペインの [セキュリティ] &gt; [ID] を押下し、[システム割り当て済み] タブを開きます。  </span><br><span class="line">   &quot;状態&quot; が &quot;オン&quot; になっていれば、そのマシンにはシステム割り当てマネージド ID が割り当てられています。  </span><br><span class="line">   ![](/blog/LogAnalytics/TroubleshootingAMALogIngestion/check-systemassignedId.png)  </span><br><span class="line">   (ユーザー割り当てマネージド ID の場合)  </span><br><span class="line">   左ペインの [セキュリティ] &gt; [ID] を押下し、[ユーザー割り当て済み] タブを開きます。  </span><br><span class="line">   ユーザー割り当てマネージド ID が表示されていれば、そのマシンにはユーザー割り当てマネージド ID が割り当てられています。  </span><br><span class="line"></span><br><span class="line">### マネージド ID が割り当てられていないときの対処方法  </span><br><span class="line">以下の手順で、システム割り当てマネージド ID を割り当ててください。  </span><br><span class="line"></span><br><span class="line">**■ システム割り当てマネージド ID の割り当て手順**  </span><br><span class="line">1. Azure portal で確認対象のマシンを開きます。  </span><br><span class="line">2. 左ペインの [セキュリティ] &gt; [ID] を押下し、[システム割り当て済み] タブを開きます。  </span><br><span class="line">3. &quot;状態&quot; の &quot;オン&quot; を押下し、しばらく待つと、システム割り当てマネージド ID が割り当てられます。  </span><br><span class="line"></span><br><span class="line">**■ ユーザー割り当てマネージド ID の割り当て手順**  </span><br><span class="line">1. ユーザー割り当てマネージド ID を作成していない場合は、ユーザー割り当てマネージド ID を作成します。  </span><br><span class="line">   [参考：ユーザー割り当てマネージド ID を作成する](https://learn.microsoft.com/ja-jp/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp#create-a-user-assigned-managed-identity)</span><br><span class="line">2. Azure portal で確認対象のマシンを開き、左ペインの [セキュリティ] &gt; [ID] を押下し、[ユーザー割り当て済み] タブを開きます。  </span><br><span class="line">3. [追加] を押下し、右ペインで使用したいユーザー割り当てマネージド ID を選択し、[追加] を押下し、完了です。</span><br><span class="line"></span><br><span class="line">なお、マネージド ID については、以下弊社サイトでもご案内しています。  </span><br><span class="line">- [Azure Monitor エージェントの要件 | アクセス許可](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-requirements#permissions)</span><br><span class="line">- [Azure リソース用マネージド ID とは | マネージド ID の種類](https://learn.microsoft.com/ja-jp/entra/identity/managed-identities-azure-resources/overview#managed-identity-types)  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## トラブルシューティングをしても問題が解決しない場合  </span><br><span class="line">上記対応を実施しても事象が解決しない場合は、お気兼ねなく Azure portal からサポート リクエストをご起票ください。  </span><br><span class="line">ご起票の手順は以下の通りです。  </span><br><span class="line"></span><br><span class="line">1. 以下のいずれかの方法でサポート リクエストを開きます。  </span><br><span class="line">   A. ページ上部、グローバル ヘッダー内の [?] アイコンを押下します。  </span><br><span class="line">      ![](/blog/LogAnalytics/TroubleshootingAMALogIngestion/open-sr-1.png) </span><br><span class="line"></span><br><span class="line">   B. リソース ページの左ペイン内 [ヘルプ] &gt; [サポートとトラブルシューティング] を押下します。  </span><br><span class="line">2. &quot;どのようなご用件ですか?&quot; の欄に、発生している問題の概要を入力し、[移動] を押下します。   </span><br><span class="line">   (例：&quot;Azure Monitor エージェントでログが収集できない&quot;)  </span><br><span class="line"></span><br><span class="line">   ![](/blog/LogAnalytics/TroubleshootingAMALogIngestion/sr-input-description.png)    </span><br><span class="line">3. &quot;問題が発生しているのは、どのサービスですか?&quot; で &quot;Azure Monitor Agent (AMA) on Windows machine&quot; か &quot;Azure Monitor Agent (AMA) on Linux machine&quot; (&quot;監視+管理&quot; のカテゴリ内にございます) を選択し、[Next] を押下します。</span><br><span class="line">4. &quot;問題が発生しているのはどのサブスクリプションですか?&quot; で、該当するサブスクリプションを選択し。[Next] を押下します。  </span><br><span class="line">5. &quot;What issue are you having?&quot; で以下のように選択し、[Next] を押下します。  </span><br><span class="line">   - &quot;Problem type&quot;: &quot;I created a DCR but the data is not in the Log Analytics Workspace&quot;  </span><br><span class="line">   - &quot;Problem subtype&quot;: No Heartbeat events in Log Analytics Workcspace  </span><br><span class="line"></span><br><span class="line">   手順 3 - 5 が完了すると、以下のような状態になります。  </span><br><span class="line"></span><br><span class="line">   ![](/blog/LogAnalytics/TroubleshootingAMALogIngestion/sr-currentselection.png) </span><br><span class="line">6. [サポートに問い合わせる] を押下し、&quot;ヘルプ + サポート&quot; 内の [サポート リクエストの作成] を押下します。  </span><br><span class="line">   (&quot;新しいサポート リクエスト&quot; のページに遷移します。)</span><br><span class="line"></span><br><span class="line">   ![](/blog/LogAnalytics/TroubleshootingAMALogIngestion/create-sr.png)    </span><br><span class="line">7. &quot;リソース&quot; で [リソースの選択] を押下し、以下のように問題が発生しているリソース (VM) を選択します。  </span><br><span class="line"></span><br><span class="line">   ![](/blog/LogAnalytics/TroubleshootingAMALogIngestion/newsr-select-resource.png)  </span><br><span class="line">8. [次へ] を 2 回押下し、&quot;追加の詳細&quot; タブへ移動します。  </span><br><span class="line">   以下 3 つの項目と、その他の必要な情報を入力します。  </span><br><span class="line">   - &quot;問題が発生し始めたのはいつですか&quot;  </span><br><span class="line">   - &quot;説明&quot;: 「問題内容・実施いただいたアクション・対象のリソース名・お問合せのゴールやお客様のご状況」をご記入いただくと調査がスムーズに進み、結果的に問題解消までの時間短縮が期待できます。  </span><br><span class="line">     (記入例)  </span><br></pre></td></tr></table></figure>
+<pre><code> XXXX という名称の Azure VM リソースに対して AMA の拡張機能をインストールしましたが、Log Analytics ワークスペースに対して Heartbeat ログが全く収集されません。
+
+ 以下のブログを参考に AMA の再インストールを試しましたが、事象は解消しませんでした。  
+ &lt;&lt;&lt; 参照した公開情報やブログの URL &gt;&gt;&gt;
+ ネットワーク要件も確認しましたが、問題が無いことを確認しました。
+
+ 使用しているデータ収集ルールののリソース名は ZZZZ です。
+ データ収集エンドポイントは使用していません。
+ MM 月 DD 日までにエンドユーザー様へ環境を引き渡す必要があり、問題解消を急いでおります。
+ まずは復旧を優先したいと考えておりますので、復旧のためのサポートをお願いします。
+ ```  
+ ＊ 記載内容については、以下のブログ記事もご参照ください。  
+ - [お問い合わせの発行方法について](https://jpaztech.github.io/blog/information/How-to-inquiry-to-the-Azure-Support/)  
+ - [（障害対応編）最速でテクニカルサポートから求める回答を得る方法](https://zenn.dev/microsoft/articles/f0ad86348bc9ac)  
+</code></pre>
+<ul>
+<li>“ファイルのアップロード”: 可能であれば、Azure Monitor エージェントのログ ファイル (＊) を採取し、こちらに添付してください。<br>(＊) Azure Monitor エージェントのログ ファイルの採取方法は、下記の公開情報をご参照ください。  <ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/troubleshooter-ama-windows?tabs=WindowsPowerShell">Windows オペレーティング システム (OS) の Azure Monitor エージェント トラブルシューティング ツールの使用方法</a>  </li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/troubleshooter-ama-linux?tabs=redhat,GenerateLogs">Linux オペレーティング システム (OS) の Azure Monitor エージェント トラブルシューティング ツールの使用方法</a>  </li>
+</ul>
+</li>
+</ul>
+<p>   (記入例)<br>   <img src="/blog/LogAnalytics/TroubleshootingAMALogIngestion/newsr-additionalinfo.png">  </p>
+<ol start="9">
+<li>[次へ] を押下し、”確認と作成” タブで問題がなければ、[作成] を押下します。<br>こちらでサポート リクエストの起票は完了です。<br>弊社からの連絡をお待ちください。</li>
+</ol>
+<h2 id="おわりに"><a href="#おわりに" class="headerlink" title="おわりに"></a>おわりに</h2><p>今回は、Azure Monitor エージェントを使用したログ収集が行われない場合の、初期トラブルシューティング方法についてご案内しました。<br>この情報が、事象解決の一助となれば幸いです。</p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/TroubleshootingAMALogIngestion.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../HowToMigrateToAmaFromAzureDiagnostics/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Retirement notice ： Migrate to Azure Monitor Agent before 31 March 2026 について</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">Azure Monitor エージェントを使用したログ収集が行われない場合のトラブルシューティングについて</a>
+          </li>
+        
+          <li>
+            <a href="../HowToMigrateToAmaFromAzureDiagnostics/">Retirement notice ： Migrate to Azure Monitor Agent before 31 March 2026 について</a>
+          </li>
+        
+          <li>
+            <a href="../HowToCreatePerfLogAlertForLinux/">&lt;Linux 版&gt; Azure Monitor エージェントを利用した性能監視（CPU、メモリ、ディスク)</a>
+          </li>
+        
+          <li>
+            <a href="../../AzureMonitorEssential/LogAlert_NewEmailTemplate_2024/">ログ アラートのメール フォーマット変更について</a>
+          </li>
+        
+          <li>
+            <a href="../HowToCreatePerfLogAlertForWin/">&lt;Windows 版&gt; Azure Monitor エージェントを利用した性能監視（CPU、メモリ、ディスク)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/AMPLS/" rel="tag">AMPLS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Arc/" rel="tag">Azure Arc</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Diagnostics-extension/" rel="tag">Azure Diagnostics extension</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent/" rel="tag">Azure Monitor Agent</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essential/" rel="tag">Azure Monitor Essential</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" rel="tag">Azure Monitor エージェント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Private-Link/" rel="tag">Azure Private Link</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostic-settings/" rel="tag">Diagnostic settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostics-settings/" rel="tag">Diagnostics settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HowTo/" rel="tag">HowTo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/LAD/" rel="tag">LAD</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Alert/" rel="tag">Log Alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" rel="tag">Log Analytics エージェント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-ID/" rel="tag">Managed ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-Identity/" rel="tag">Managed Identity</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Migration/" rel="tag">Migration</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Run-As-Account/" rel="tag">Run As Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sandbox/" rel="tag">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StartAzureV2VMs/" rel="tag">StartAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StopAzureV2VMs/" rel="tag">StopAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM/" rel="tag">VM</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM-insights/" rel="tag">VM insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WAD/" rel="tag">WAD</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Worker/" rel="tag">Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/howto/" rel="tag">howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/" rel="tag">アクションのミュート</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" rel="tag">アラート処理ルール</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%89-script/" rel="tag">オンボード script</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" rel="tag">クエリ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" rel="tag">コスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%BF%E3%83%BC-API/" rel="tag">データ コレクター API</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%91%E3%83%BC%E3%82%B8/" rel="tag">パージ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" rel="tag">マネージド ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB/" rel="tag">ログ アラート ルール</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88-API/" rel="tag">ログ インジェスト API</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%81%9C%E6%AD%A2/" rel="tag">停止</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%88%86%E6%9E%90%E6%83%85%E5%A0%B1/" rel="tag">分析情報</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" rel="tag">実行アカウント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/" rel="tag">移行</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" rel="tag">自動化</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%B5%B7%E5%8B%95/" rel="tag">起動</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/">How-To</a><span class="tag-list-count">38</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/">Tips</a><span class="tag-list-count">28</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/">Azure Monitor Essentials</a><span class="tag-list-count">12</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/">Azure Monitor</a><span class="tag-list-count">7</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/">FAQ</a><span class="tag-list-count">9</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/">Log Analytics</a><span class="tag-list-count">34</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/">Troubleshooting</a><span class="tag-list-count">4</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">8</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/">Automation</a><span class="tag-list-count">10</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/">チーム紹介</a><span class="tag-list-count">5</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/">移行</a><span class="tag-list-count">2</span><ul></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/11/">2024 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/10/">2024 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/09/">2024 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/08/">2024 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/07/">2024 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/05/">2024 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/04/">2024 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/03/">2024 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/01/">2024 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/12/">2023 / 12</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/11/">2023 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/10/">2023 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/09/">2023 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/07/">2023 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/06/">2023 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/03/">2023 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/01/">2023 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/11/">2022 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/10/">2022 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/09/">2022 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/08/">2022 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/AMPLS/" style="font-size: 10px;">AMPLS</a> <a href="../../tags/Application-Insights/" style="font-size: 15.38px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 16.92px;">Automation</a> <a href="../../tags/Azure-Arc/" style="font-size: 12.31px;">Azure Arc</a> <a href="../../tags/Azure-Diagnostics-extension/" style="font-size: 10.77px;">Azure Diagnostics extension</a> <a href="../../tags/Azure-Monitor/" style="font-size: 14.62px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Agent/" style="font-size: 13.85px;">Azure Monitor Agent</a> <a href="../../tags/Azure-Monitor-Essential/" style="font-size: 12.31px;">Azure Monitor Essential</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 17.69px;">Azure Monitor Essentials</a> <a href="../../tags/Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" style="font-size: 10px;">Azure Monitor エージェント</a> <a href="../../tags/Azure-Private-Link/" style="font-size: 11.54px;">Azure Private Link</a> <a href="../../tags/Diagnostic-settings/" style="font-size: 10.77px;">Diagnostic settings</a> <a href="../../tags/Diagnostics-settings/" style="font-size: 10px;">Diagnostics settings</a> <a href="../../tags/FAQ/" style="font-size: 16.15px;">FAQ</a> <a href="../../tags/General/" style="font-size: 13.85px;">General</a> <a href="../../tags/How-To/" style="font-size: 20px;">How-To</a> <a href="../../tags/HowTo/" style="font-size: 11.54px;">HowTo</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 10.77px;">Job</a> <a href="../../tags/LAD/" style="font-size: 10.77px;">LAD</a> <a href="../../tags/Log-Alert/" style="font-size: 10px;">Log Alert</a> <a href="../../tags/Log-Analytics/" style="font-size: 19.23px;">Log Analytics</a> <a href="../../tags/Log-Analytics-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" style="font-size: 10px;">Log Analytics エージェント</a> <a href="../../tags/Managed-ID/" style="font-size: 10px;">Managed ID</a> <a href="../../tags/Managed-Identity/" style="font-size: 10px;">Managed Identity</a> <a href="../../tags/MetricAlert/" style="font-size: 10.77px;">MetricAlert</a> <a href="../../tags/Migration/" style="font-size: 10px;">Migration</a> <a href="../../tags/Run-As-Account/" style="font-size: 10px;">Run As Account</a> <a href="../../tags/RunAs-Account/" style="font-size: 12.31px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 13.08px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 18.46px;">Tips</a> <a href="../../tags/Troubleshooting/" style="font-size: 12.31px;">Troubleshooting</a> <a href="../../tags/VM/" style="font-size: 10px;">VM</a> <a href="../../tags/VM-insights/" style="font-size: 10px;">VM insights</a> <a href="../../tags/WAD/" style="font-size: 10.77px;">WAD</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/howto/" style="font-size: 10px;">howto</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/" style="font-size: 10px;">アクションのミュート</a> <a href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" style="font-size: 10px;">アラート処理ルール</a> <a href="../../tags/%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%89-script/" style="font-size: 10px;">オンボード script</a> <a href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" style="font-size: 10px;">クエリ</a> <a href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" style="font-size: 10px;">コスト</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 13.08px;">チーム紹介</a> <a href="../../tags/%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%BF%E3%83%BC-API/" style="font-size: 10px;">データ コレクター API</a> <a href="../../tags/%E3%83%91%E3%83%BC%E3%82%B8/" style="font-size: 10px;">パージ</a> <a href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" style="font-size: 10.77px;">マネージド ID</a> <a href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB/" style="font-size: 10px;">ログ アラート ルール</a> <a href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88-API/" style="font-size: 10px;">ログ インジェスト API</a> <a href="../../tags/%E5%81%9C%E6%AD%A2/" style="font-size: 10px;">停止</a> <a href="../../tags/%E5%88%86%E6%9E%90%E6%83%85%E5%A0%B1/" style="font-size: 10px;">分析情報</a> <a href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" style="font-size: 11.54px;">可用性テスト</a> <a href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" style="font-size: 10px;">実行アカウント</a> <a href="../../tags/%E7%A7%BB%E8%A1%8C/" style="font-size: 10.77px;">移行</a> <a href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" style="font-size: 10px;">自動化</a> <a href="../../tags/%E8%B5%B7%E5%8B%95/" style="font-size: 10px;">起動</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
