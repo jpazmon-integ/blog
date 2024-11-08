@@ -326,7 +326,7 @@ Azure Monitor エージェントを使用する場合は、マシンにシステ
    まずは復旧を優先したいと考えておりますので、復旧のためのサポートをお願いします。
    ```  
 
-   (記入例)
+   (記入例)  
    ![](./TroubleshootingAMALogIngestion/newsr-additionalinfo.png)  
 
 9. [次へ] を押下し、"確認と作成" タブで問題がなければ、[作成] を押下します。  
