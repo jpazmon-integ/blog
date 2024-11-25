@@ -15,13 +15,13 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-win
 <!-- more -->
 
 ## 目次
-- はじめに
-- カスタムのイベント ログの収集手順
-  - 事前準備
-  - 収集したいイベント ログの XPath を取得する
-  - データ収集ルールを作成する
-  - Windows イベント ログが収集されていることを確認する
-- まとめ
+- [はじめに](#はじめに)
+- [カスタム Windows イベント ログの収集手順](#カスタム-Windows-イベント-ログの収集手順)
+  - [事前準備](#事前準備)
+  - [収集したいイベント ログの XPath を取得する](#収集したいイベント-ログの-XPath-を取得する)
+  - [データ収集ルールを作成する](#データ収集ルールを作成する)
+  - [Windows イベント ログが収集されていることを確認する](#Windows-イベント-ログが収集されていることを確認する)
+- [まとめ](#まとめ)
 
 ## はじめに
 Windows イベント ログは、データ収集ルール (DCR) のデータ ソースとして使用できるものの 1 つです。  
@@ -58,19 +58,20 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-win
 
     ![](./HowToCollectCustomEventlog/eventviewer_xml.png)
 
-> [!NOTE]
-> 上記の方法で取得した XPath が有効であるかを確認したい場合、ローカルで確認することができます。  
-> 手順は以下の通りです。  
-> 1. Windows コンピュータで、PowerShell を開きます。  
-> 2. 以下のクエリを実行します。  
->    この際、$XPath には、上記 4 で取得した B の値を設定してください。  
->    また、$LogName には、上記 4 で取得した A の値を設定してください。  
-> ```   
-> $XPath = '*[System[EventID=1035]]'   
-> $LogName = 'Application' 
-> Get-WinEvent -LogName $LogName -FilterXPath $XPath
-> ```
-> 3. 結果を確認します。ログの一覧が表示されれば、指定した XPath は有効であると判断できます。
+
+**補足**
+上記の方法で取得した XPath が有効であるかを確認したい場合、ローカルで確認することができます。  
+手順は以下の通りです。  
+1. Windows コンピュータで、PowerShell を開きます。  
+2. 以下のクエリを実行します。  
+   この際、$XPath には、上記 4 で取得した B の値を設定してください。  
+   また、$LogName には、上記 4 で取得した A の値を設定してください。  
+```   
+$XPath = '*[System[EventID=1035]]'   
+$LogName = 'Application' 
+Get-WinEvent -LogName $LogName -FilterXPath $XPath
+```
+3. 結果を確認します。ログの一覧が表示されれば、指定した XPath は有効であると判断できます。
 
 ### データ収集ルールを作成する
 1. Azure potral にログインします。
