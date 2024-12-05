@@ -24,9 +24,9 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/analyze-usage
     - [1-1-2. クエリを実行して確認する](#1-1-2-クエリを実行して確認する)
 - [1-2. データの保有量の推移を確認する](#1-2-データの保有量の推移を確認する)
 - [1-3. データの保有期間を確認する](#1-3-データの保有期間を確認する)
-  - [1-3-1. Azure portal から確認する](#1-3-1-azure-portal-から確認する)
-  - [1-3-2. PowerShell または Azure CLI を使用して確認する](#1-3-2-powershell-または-azure-cli-を使用して確認する)
-  - [1-3-3. API を使用して確認する](#1-3-3-api-を使用して確認する)
+  - [1-3-1. Azure portal から確認する](#1-3-1-Azure-portal-から確認する)
+  - [1-3-2. PowerShell または Azure CLI を使用して確認する](#1-3-2-PowerShell-または-Azure-CLI-を使用して確認する)
+  - [1-3-3. API を使用して確認する](#1-3-3-API-を使用して確認する)
 - [2. コストを抑える](#2-コストを抑える)
 - [2-1. データのインジェストにかかるコストを抑える](#2-1-データのインジェストにかかるコストを抑える)
   - [2-1-1. 不要なログの収集を停止する](#2-1-1-不要なログの収集を停止する)
@@ -34,7 +34,7 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/analyze-usage
 - [2-2. データの保持にかかるコストを抑える](#2-2-データの保持にかかるコストを抑える)
   - [2-2-1. データの保有期間を調整する](#2-2-1-データの保有期間を調整する)
   - [2-2-2. データの保有量を調整する](#2-2-2-データの保有量を調整する)
-  - [2-2-3. Log Analytics ワークスペース内のデータを削除する](#2-2-3-log-analytics-ワークスペース内のデータを削除する)
+  - [2-2-3. Log Analytics ワークスペース内のデータを削除する](#2-2-3-Log-Analytics-ワークスペース内のデータを削除する)
 - [まとめ](#まとめ)
 
 ## はじめに
@@ -187,11 +187,13 @@ Usage
    ■ PowerShell の場合
    ```
    Get-AzOperationalInsightsTable -ResourceGroupName <リソース グループ名> -WorkspaceName <ワークスペース名> -tableName <テーブル名>
-   ```  
+   ```
+
    ■ Azure CLI の場合
    ```
    az monitor log-analytics workspace table show --resource-group <リソース グループ名> --workspace-name <ワークスペース名> --name <テーブル名>
    ```
+
 3. 結果を確認します。  
    返ってきた結果のうち、`RetentionInDays` が対話型の保有期間を、`TotalRetentionInDays` が保有期間の合計を示します。  
    (Azure CLI の場合はそれぞれ `retentionInDays`, `totalRetentionInDays` です。)  
@@ -339,7 +341,7 @@ Log Analytics ワークスペースに収集されたデータは、REST API で
 
 **重要**   
 上記、データの削除によって削除されたデータは Log Analytics ワークスペースへ再び戻すことはできません。  
-そのため、削除を実行する際は最新の注意を払ってください。
+そのため、削除を実行する際は細心の注意を払ってください。
 
 ## まとめ
 本記事では、Log Analytics ワークスペースのコストを分析し、それぞれのコスト増加原因に対する対処法をご紹介しました。  
