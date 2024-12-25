@@ -122,15 +122,23 @@ Log Analytics ワークスペース内のカスタム ログ テーブルにデ�
 上記エンドポイントへ接続できているかどうかは、以下の方法で確認可能です。  
 
 **■ Windows の場合**  
-PowerShell を開き、以下のコマンドを実行し、出力結果に `TcpTestSucceeded : True` が記載されていれば、エンドポイントに接続できています。  
-( `<endpoint>` の箇所は、上記のエンドポイントのうち確認したいものに置き換えてください)  
+PowerShell を開き、以下のコマンドを実行し、出力結果に `TcpTestSucceeded : True` が記載されていれば、エンドポイントに接続できています  
+(* Azure Firewlall を使用している場合は、後述の "ご注意点" をご確認ください)。  
 
+( `<endpoint>` の箇所は、上記のエンドポイントのうち確認したいものに置き換えてください)  
 ```
 Test-NetConnection <endpoint> -port 443
 ```
 
 (結果例)  
-![](./TroubleshootingAMALogIngestion/result-tnc.png)
+![](./TroubleshootingAMALogIngestion/result-tnc.png)  
+
+
+**ご注意点**  
+Azure Firewall を使用している環境の場合、Test-NetConnection の結果が `TcpTestSucceeded : True` であっても、実際にはエンドポイントに通信できない場合があります。  
+これは、クライアントとエンドポイント間の通信が Azure Firewall のアプリケーション ルールによって拒否される場合があるためです。  
+詳細については、以下弊社サポート チーム ブログをご参照ください。  
+[Azure Firewall の各ルールの動作について](https://jpaztech.github.io/blog/network/firewall-rules/)
 
 
 **■ Linux の場合**  
