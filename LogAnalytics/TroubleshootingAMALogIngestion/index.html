@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/TroubleshootingAMALogIngestion/newsr-select-resource.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/TroubleshootingAMALogIngestion/newsr-additionalinfo.png">
 <meta property="article:published_time" content="2024-11-08T05:00:00.000Z">
-<meta property="article:modified_time" content="2024-12-05T08:50:15.901Z">
+<meta property="article:modified_time" content="2024-12-25T01:32:43.660Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Tips">
 <meta property="article:tag" content="Log Analytics">
@@ -119,7 +119,7 @@
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+0bf6f8f4-ccee-50ed-ad87-9f76bffb0b6e%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Monitor+%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%9F%E3%83%AD%E3%82%B0%E5%8F%8E%E9%9B%86%E3%81%8C%E8%A1%8C%E3%82%8F%E3%82%8C%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AE%E3%83%88%E3%83%A9%E3%83%96%E3%83%AB%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FTroubleshootingAMALogIngestion%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FTroubleshootingAMALogIngestion.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FTroubleshootingAMALogIngestion.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/TroubleshootingAMALogIngestion/" data-id="cm4b2ty1v00bp0no5anks1cn6" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/TroubleshootingAMALogIngestion/" data-id="cm538097i00bt0nlm33hkbonc" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -190,10 +190,12 @@
 <p><code>&lt;data-collection-endpoint&gt;.&lt;virtual-machine-region-name&gt;.ingest.monitor.azure.com</code>  </p>
 <p>＊ <code>&lt;data-collection-endpoint&gt;.&lt;virtual-machine-region-name&gt;</code> の値は、使用しているデータ収集ルールに設定しているデータ収集エンドポイントを Azure portal で開き、[概要] の “ログ インジェスト” を確認してください。<br>   こちらに記載されている値から “https://“ を除いたものがエンドポイントです。<br>   <img src="/blog/LogAnalytics/TroubleshootingAMALogIngestion/dce-logingest.png"></p>
 <h3 id="確認方法-2"><a href="#確認方法-2" class="headerlink" title="確認方法"></a>確認方法</h3><p>上記エンドポイントへ接続できているかどうかは、以下の方法で確認可能です。  </p>
-<p><strong>■ Windows の場合</strong><br>PowerShell を開き、以下のコマンドを実行し、出力結果に <code>TcpTestSucceeded : True</code> が記載されていれば、エンドポイントに接続できています。<br>( <code>&lt;endpoint&gt;</code> の箇所は、上記のエンドポイントのうち確認したいものに置き換えてください)  </p>
+<p><strong>■ Windows の場合</strong><br>PowerShell を開き、以下のコマンドを実行し、出力結果に <code>TcpTestSucceeded : True</code> が記載されていれば、エンドポイントに接続できています<br>(* Azure Firewlall を使用している場合は、後述の “ご注意点” をご確認ください)。  </p>
+<p>( <code>&lt;endpoint&gt;</code> の箇所は、上記のエンドポイントのうち確認したいものに置き換えてください)  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Test-NetConnection &lt;endpoint&gt; -port 443</span><br></pre></td></tr></table></figure>
 
-<p>(結果例)<br><img src="/blog/LogAnalytics/TroubleshootingAMALogIngestion/result-tnc.png"></p>
+<p>(結果例)<br><img src="/blog/LogAnalytics/TroubleshootingAMALogIngestion/result-tnc.png">  </p>
+<p><strong>ご注意点</strong><br>Azure Firewall を使用している環境の場合、Test-NetConnection の結果が <code>TcpTestSucceeded : True</code> であっても、実際にはエンドポイントに通信できない場合があります。<br>これは、クライアントとエンドポイント間の通信が Azure Firewall のアプリケーション ルールによって拒否される場合があるためです。<br>詳細については、以下弊社サポート チーム ブログをご参照ください。<br><a target="_blank" rel="noopener" href="https://jpaztech.github.io/blog/network/firewall-rules/">Azure Firewall の各ルールの動作について</a></p>
 <p><strong>■ Linux の場合</strong><br>ターミナルを開き、以下のコマンドを実行し、出力結果に <code>CONNECTED</code> が記載されていれば、エンドポイントに接続できています。  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo | openssl s_client -connect &lt;endpoint&gt;:443 -servername &lt;endpoint&gt; -showcerts</span><br></pre></td></tr></table></figure>
 
