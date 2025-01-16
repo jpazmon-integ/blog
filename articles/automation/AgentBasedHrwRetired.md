@@ -1,5 +1,5 @@
 ---
-title: [廃止] エージェント ベースの Hybrid Runbook Worker がご利用いただけなくなります
+title: 「廃止」 エージェント ベースの Hybrid Runbook Worker がご利用いただけなくなります
 date: 2022-10-25 14:00:00
 tags:
   - Azure Monitor
@@ -105,12 +105,16 @@ PowerShell スクリプトを Cloud Shell の PowerShell にて実行し、「CS
 ![](./AgentBasedHrwRetired/pict-7.png)
 
 
-#### 注意点・補足
+#### 注意点
 - Cloud Shell は、Bash ではなく PowerShell としてご利用ください。
 - テナントに複数のサブスクリプションが存在する場合、期待しないサブスクリプションに対して処理が実行される可能性がございます。期待しないサブスクリプションに処理が実行される場合は、予め「Set-AzContext -SubscriptionID "<対象サブスクリプション ID>"」のコマンドレットを実行ください。
+- Azure portal にアクセスしているユーザーには、最低でもサブスクリプション スコープに閲覧者ロールを付与してください。サブスクリプション内のすべての Azure Automation リソースを参照するためです。
+
+#### 補足
 - Cloud Shell のターミナルに PowerShell スクリプトをペーストする場合は、「Ctrl + V」ではなく「Shift + Insert」をご利用ください。
 - 出力される CSV には、エージェント ベースの Hybrid Runbook Worker しか出力されません。
-
+- この PowerShell スクリプトを実行することで、Azure リソースが更新されることはございません。
+- この PowerShell スクリプトを実行することで、Hybrid Runbook Worker として稼働している Azure VM が停止することはございません。
 
 
 #### サンプル スクリプト
