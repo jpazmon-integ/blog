@@ -423,7 +423,14 @@ curl -H "Content-Type: application/json" -X POST -d '{"data":{"baseData":{"ver":
 もし IP アドレスの数に問題が無いのにもかかわらずプロビジョニング状態が「Failed」の場合、一度適当なリソースを AMPLS から削除いただき、改めて追加してください。  
 それでも問題が改善しない場合は、お手数ではございますがサポート リクエストをご起票ください。
 
+### その 4. コレクション レベルが "無効" になっている
+.NET (.NET Framework ではない) の Web アプリケーションを App Service にデプロイし、自動インストルメンテーションを用いて Application Insights と統合している場合。  
+App Service リソースの Application Insights を確認し、コレクション レベルが "無効" になっていると Application Insights にテレメトリが出力されません。
+![](./troubleshooting_telemetry/pict24.png)
 
+もしコレクション レベルが "無効" の場合は "推奨" にご変更ください。  
+なおコレクション レベルを変更すると、App Service の環境変数が変更されるため App Service の再起動が実施されます。  
+再起動される点について、予めご留意ください。
 
 # ケース 2. 一部の種類のテレメトリが Application Insights にまったく収集されなくなった
 ## 問題の概要
