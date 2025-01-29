@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Azure Monitor のアラートに関するよくあるご質問 | Japan Azure Monitoring Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは、Azure Monitoring サポート チームの北村です。今回は Azure Monitor のアラートに関するよくあるご質問をご紹介します。リソース正常性アラートやサービス正常性アラートについては、別途ブログを投稿しておりますので併せてご覧いただけますと幸いです！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Azure Monitor のアラートに関するよくあるご質問">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの北村です。今回は Azure Monitor のアラートに関するよくあるご質問をご紹介します。リソース正常性アラートやサービス正常性アラートについては、別途ブログを投稿しておりますので併せてご覧いただけますと幸いです！">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image04.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image05.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image06.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image07.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image08.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image09.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image10.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image19.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image03.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image11.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image12.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image14.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image15.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image16.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image17.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image18.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image15.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image13.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image20.png">
+<meta property="article:published_time" content="2025-01-28T15:00:00.000Z">
+<meta property="article:modified_time" content="2025-01-29T02:34:10.402Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="How-To">
+<meta property="article:tag" content="Azure Monitor Essentials">
+<meta property="article:tag" content="FAQ">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image04.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-AzureMonitorEssential/MonitorAlertFAQ" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Azure Monitor のアラートに関するよくあるご質問
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2025-01-28T15:00:00.000Z" itemprop="datePublished">2025-01-29</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+32f328b8-12cf-5a80-a754-c9868b6b656d%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Monitor+%E3%81%AE%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E3%81%94%E8%B3%AA%E5%95%8F%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FMonitorAlertFAQ%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FMonitorAlertFAQ.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FMonitorAlertFAQ.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/" data-id="cm6ham3gu00du0nlva5ld5s50" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回は Azure Monitor のアラートに関するよくあるご質問をご紹介します。<br><a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ResourceHealthAlert/">リソース正常性アラート</a>や<a href="https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/">サービス正常性アラート</a>については、別途ブログを投稿しておりますので併せてご覧いただけますと幸いです！</p>
+<br>
+
+<span id="more"></span>
+<h4 id="lt-メトリック-アラート-ルール-gt"><a href="#lt-メトリック-アラート-ルール-gt" class="headerlink" title="&lt;メトリック アラート ルール&gt;"></a>&lt;メトリック アラート ルール&gt;</h4><ul>
+<li><a href="#Q-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E9%A0%85%E7%9B%AE%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. メトリック アラート ルールの設定項目を教えてください。</a></li>
+<li><a href="#Q-%E9%9D%99%E7%9A%84%E3%81%97%E3%81%8D%E3%81%84%E5%80%A4%E3%81%AE%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%A7%E3%80%812-%E5%9B%9E%E9%80%A3%E7%B6%9A%E3%81%A7%E3%81%97%E3%81%8D%E3%81%84%E5%80%A4%E3%82%92%E6%BA%80%E3%81%9F%E3%81%97%E3%81%9F%E6%99%82%E3%81%AB%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%82%92%E7%99%BA%E5%A0%B1%E3%81%95%E3%81%9B%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. 静的しきい値のメトリック アラート ルールで、2 回連続でしきい値を満たした時にアラートを発報させることはできますか。</a></li>
+<li><a href="#Q-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%8C%E5%AE%9F%E8%A1%8C%E3%81%95%E3%82%8C%E3%82%8B%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. メトリック アラート ルールが実行されるタイミングを指定することはできますか。</a></li>
+<li><a href="#Q-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%A7%E6%99%82%E9%96%93%E5%B8%AF%E3%81%AB%E3%82%88%E3%81%A3%E3%81%A6%E6%9D%A1%E4%BB%B6%E3%82%92%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. メトリック アラート ルールで時間帯によって条件を変更することはできますか。</a></li>
+<li><a href="#Q-%E3%82%B9%E3%83%86%E3%83%BC%E3%83%88%E3%83%95%E3%83%AB%E3%81%AA%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%A7%E8%B5%B7%E5%8B%95%E6%B8%88%E3%81%BF-Fired-%E3%81%AE%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%82%92%E3%80%81%E6%89%8B%E5%8B%95%E3%81%A7%E8%A7%A3%E6%B1%BA%E6%B8%88%E3%81%BF-Resolved-%E3%81%AB%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. ステートフルなメトリック アラート ルールで起動済み (Fired) のアラートを、手動で解決済み (Resolved) に変更することはできますか。</a></li>
+<li><a href="#Q-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E3%83%87%E3%82%A3%E3%83%A1%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%B3%E5%80%A4%E3%81%AE%E3%83%89%E3%83%AD%E3%83%83%E3%83%97-%E3%83%80%E3%82%A6%E3%83%B3%E3%81%AB%E5%80%A4%E3%81%8C%E8%A1%A8%E7%A4%BA%E3%81%95%E3%82%8C%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82">Q. メトリック アラート ルールのディメンション値のドロップ ダウンに値が表示されません。</a></li>
+<li><a href="#Q-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E7%B7%A8%E9%9B%86%E7%94%BB%E9%9D%A2%E3%81%AE-%E3%83%97%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC-%E3%81%A7%E3%81%AF%E3%81%97%E3%81%8D%E3%81%84%E5%80%A4%E3%82%92%E6%BA%80%E3%81%9F%E3%81%97%E3%81%A6%E3%81%84%E3%81%9F%E3%82%88%E3%81%86%E3%81%AB%E8%A6%8B%E3%81%88%E3%81%BE%E3%81%99%E3%81%8C%E3%80%81%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%8C%E7%99%BA%E5%A0%B1%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82">Q. メトリック アラート ルール編集画面の [プレビュー] ではしきい値を満たしていたように見えますが、アラートが発報していません。</a></li>
+<li><a href="#Q-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E5%88%A9%E7%94%A8%E6%96%99%E9%87%91%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. メトリック アラート ルールの利用料金を教えてください。</a></li>
+</ul>
+<br>
+
+<h4 id="lt-ログ-アラート-ルール-gt"><a href="#lt-ログ-アラート-ルール-gt" class="headerlink" title="&lt;ログ アラート ルール&gt;"></a>&lt;ログ アラート ルール&gt;</h4><ul>
+<li><a href="#Q-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E9%A0%85%E7%9B%AE%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. ログ アラート ルールの設定項目を教えてください。</a></li>
+<li><a href="#Q-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%8C%E5%AE%9F%E8%A1%8C%E3%81%95%E3%82%8C%E3%82%8B%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. ログ アラート ルールが実行されるタイミングを指定することはできますか。</a></li>
+<li><a href="#Q-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E3%83%87%E3%82%A3%E3%83%A1%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%B3%E5%80%A4%E3%81%AE%E3%83%89%E3%83%AD%E3%83%83%E3%83%97-%E3%83%80%E3%82%A6%E3%83%B3%E3%81%AB%E5%80%A4%E3%81%8C%E8%A1%A8%E7%A4%BA%E3%81%95%E3%82%8C%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82">Q  ログ アラート ルールのディメンション値のドロップダウンに値が表示されません。</a></li>
+<li><a href="#Q-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%A7%E3%83%87%E3%82%A3%E3%83%A1%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%97%E3%80%81%E5%90%84%E3%83%87%E3%82%A3%E3%83%A1%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%AD%E3%82%B0%E3%81%8C-0-%E4%BB%B6%E3%81%AE%E3%81%A8%E3%81%8D%E3%81%AB%E7%99%BA%E5%A0%B1%E3%81%99%E3%82%8B%E3%83%AB%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E6%88%90%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82%E7%89%B9%E5%AE%9A%E3%81%AE%E3%83%87%E3%82%A3%E3%83%A1%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E5%90%AB%E3%82%80%E3%83%AD%E3%82%B0%E3%81%AE%E5%87%BA%E5%8A%9B%E3%82%92%E5%81%9C%E6%AD%A2%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%E3%81%8C%E3%80%81%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%8C%E7%99%BA%E5%A0%B1%E3%81%97%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82">Q. ログ アラート ルールでディメンションを設定し、各ディメンションのログが 0 件のときに発報するルールを作成しました。特定のディメンションを含むログの出力を停止しましたが、アラートが発報しません。</a></li>
+<li><a href="#Q-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E3%82%92%E9%96%8B%E3%81%84%E3%81%9F%E3%81%A8%E3%81%93%E3%82%8D%E3%80%81%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AB%E3%82%88%E3%81%A3%E3%81%A6-UI-%E3%81%8C%E7%95%B0%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82">Q. ログ アラート ルールの設定画面を開いたところ、アラート ルールによって UI が異なります。</a></li>
+<li><a href="#Q-%E6%97%A7-API-%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3-2018-04-16-%E4%BB%A5%E5%89%8D-%E3%81%AE%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. 旧 API (バージョン 2018-04-16 以前) のログ アラート ルールを作成する方法を教えてください。</a></li>
+<li><a href="#Q-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%A7%E9%80%9A%E7%9F%A5%E3%81%95%E3%82%8C%E3%82%8B%E3%83%A1%E3%83%BC%E3%83%AB%E3%81%AE%E4%BB%B6%E5%90%8D%E3%82%84%E6%9C%AC%E6%96%87%E3%82%92%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%9E%E3%82%A4%E3%82%BA%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. ログ アラート ルールで通知されるメールの件名や本文をカスタマイズすることはできますか。</a></li>
+<li><a href="#Q-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%A7%E9%80%9A%E7%9F%A5%E3%81%95%E3%82%8C%E3%81%9F%E3%83%A1%E3%83%BC%E3%83%AB%E3%81%AE%E4%BB%B6%E5%90%8D%E3%82%84%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%88%E3%81%8C%E5%A4%89%E3%82%8F%E3%82%8A%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82%E5%8E%9F%E5%9B%A0%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. ログ アラート ルールで通知されたメールの件名やフォーマットが変わりました。原因を教えてください。</a></li>
+<li><a href="#Q-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%8C%E5%8B%9D%E6%89%8B%E3%81%AB%E7%84%A1%E5%8A%B9%E5%8C%96%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82%E8%80%83%E3%81%88%E3%82%89%E3%82%8C%E3%82%8B%E5%8E%9F%E5%9B%A0%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. ログ アラート ルールが勝手に無効化されていました。考えられる原因を教えてください。</a></li>
+<li><a href="#Q-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E5%88%A9%E7%94%A8%E6%96%99%E9%87%91%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. ログ アラート ルールの利用料金を教えてください。</a></li>
+</ul>
+<br>
+
+<h4 id="lt-アクティビティ-ログ-アラート（サービス正常性アラート、リソース正常性アラート、アクティビティ-ログ-アラート）-gt"><a href="#lt-アクティビティ-ログ-アラート（サービス正常性アラート、リソース正常性アラート、アクティビティ-ログ-アラート）-gt" class="headerlink" title="&lt;アクティビティ ログ アラート（サービス正常性アラート、リソース正常性アラート、アクティビティ ログ アラート）&gt;"></a>&lt;アクティビティ ログ アラート（サービス正常性アラート、リソース正常性アラート、アクティビティ ログ アラート）&gt;</h4><ul>
+<li><a href="#Q-%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%A7%E3%83%86%E3%82%B9%E3%83%88%E7%99%BA%E5%A0%B1%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E5%8F%AF%E8%83%BD%E3%81%A7%E3%81%99%E3%81%8B%E3%80%82">Q. サービス正常性アラートでテスト発報することは可能ですか。</a></li>
+<li><a href="#Q-%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%A7%E9%80%9A%E7%9F%A5%E3%81%95%E3%82%8C%E3%81%9F%E5%86%85%E5%AE%B9%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E7%A2%BA%E8%AA%8D%E3%81%97%E3%81%9F%E3%81%84%E3%81%A7%E3%81%99%E3%80%82">Q. サービス正常性アラートで通知された内容について確認したいです。</a></li>
+<li><a href="#Q-%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%A7%E9%80%9A%E7%9F%A5%E3%81%95%E3%82%8C%E3%81%9F%E3%83%A1%E3%83%BC%E3%83%AB%E3%82%92%E3%80%81%E3%83%A1%E3%83%BC%E3%83%AB%E3%81%AE%E4%BB%B6%E5%90%8D%E3%81%A7%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E5%88%86%E3%81%91%E3%81%97%E3%81%9F%E3%81%84%E3%81%A7%E3%81%99%E3%80%82%E4%BB%B6%E5%90%8D%E3%81%AE%E3%83%AB%E3%83%BC%E3%83%AB%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. サービス正常性アラートで通知されたメールを、メールの件名でフォルダ分けしたいです。件名のルールを教えてください。</a></li>
+<li><a href="#Q-%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%A7%E3%80%81%E7%8F%BE%E5%9C%A8%E5%88%A9%E7%94%A8%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E9%80%9A%E7%9F%A5%E3%81%AE%E3%81%BF%E3%82%92%E5%8F%97%E3%81%91%E5%8F%96%E3%82%8A%E3%81%9F%E3%81%84%E3%81%A7%E3%81%99%E3%80%82">Q. サービス正常性アラートで、現在利用しているサービスに関する通知のみを受け取りたいです。</a></li>
+<li><a href="#Q-Azure-%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%AE%E5%BB%83%E6%AD%A2%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E9%80%9A%E7%9F%A5%E3%82%92%E5%8F%97%E3%81%91%E5%8F%96%E3%82%8A%E3%80%81%E9%80%9A%E7%9F%A5%E3%81%AE%E5%86%85%E5%AE%B9%E3%81%AB%E6%B2%BF%E3%81%A3%E3%81%A6%E7%A7%BB%E8%A1%8C%E4%BD%9C%E6%A5%AD%E3%82%92%E5%AE%9F%E6%96%BD%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%E3%81%8C%E3%80%81%E5%90%8C%E6%A7%98%E3%81%AE%E9%80%9A%E7%9F%A5%E3%81%8C%E5%86%8D%E5%BA%A6%E9%80%9A%E7%9F%A5%E3%81%95%E3%82%8C%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82%E5%AF%BE%E5%BF%9C%E3%81%8C%E5%AE%8C%E4%BA%86%E3%81%97%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%8C%E5%AD%98%E5%9C%A8%E3%81%99%E3%82%8B%E3%81%A8%E3%81%84%E3%81%86%E3%81%93%E3%81%A8%E3%81%A7%E3%81%97%E3%82%87%E3%81%86%E3%81%8B%E3%80%82">Q. Azure サービスの廃止に関する通知を受け取り、通知の内容に沿って移行作業を実施しましたが、同様の通知が再度通知されました。対応が完了していないリソースが存在するということでしょうか。</a></li>
+<li><a href="#Q-%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%82%84%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%80%81%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3-%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E3%81%A7%E3%83%A1%E3%83%BC%E3%83%AB%E9%80%9A%E7%9F%A5%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82%E5%88%A9%E7%94%A8%E6%96%99%E9%87%91%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. サービス正常性アラートやリソース正常性アラートを利用し、アクション グループでメール通知を設定しています。利用料金を教えてください。</a></li>
+</ul>
+<br>
+
+
+<h4 id="lt-アクション-グループ、アラート処理ルール-gt"><a href="#lt-アクション-グループ、アラート処理ルール-gt" class="headerlink" title="&lt;アクション グループ、アラート処理ルール&gt;"></a>&lt;アクション グループ、アラート処理ルール&gt;</h4><ul>
+<li><a href="#Q-%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3-%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E3%81%AE%E5%87%A6%E7%90%86%E3%81%8C%E5%A4%B1%E6%95%97%E3%81%97%E3%81%9F%E3%81%93%E3%81%A8%E3%82%92%E6%A4%9C%E7%9F%A5%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%E3%81%AF%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. アクション グループの処理が失敗したことを検知する方法はありますか。</a></li>
+<li><a href="#Q-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%8C%E7%99%BA%E5%A0%B1%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%E3%81%8C%E3%80%81%E3%83%A1%E3%83%BC%E3%83%AB%E3%81%8C%E5%B1%8A%E3%81%84%E3%81%A6%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82%E8%80%83%E3%81%88%E3%82%89%E3%82%8C%E3%82%8B%E5%8E%9F%E5%9B%A0%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. アラートが発報しましたが、メールが届いていません。考えられる原因を教えてください。</a></li>
+<li><a href="#Q-%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3-%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E3%81%A7%E3%83%A1%E3%83%BC%E3%83%AB%E3%82%92%E9%80%9A%E7%9F%A5%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82%E5%88%A9%E7%94%A8%E6%96%99%E9%87%91%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. アクション グループでメールを通知しています。利用料金を教えてください。</a></li>
+<li><a href="#Q-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%81%A7%E3%81%AF%E3%80%81%E9%80%9A%E7%9F%A5%E3%82%92%E6%8A%91%E5%88%B6%E3%81%97%E3%81%9F%E3%81%84%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8C%E3%81%B0%E3%82%88%E3%81%84%E3%81%AE%E3%81%A7%E3%81%97%E3%82%87%E3%81%86%E3%81%8B%E3%80%82">Q. アラート処理ルールのスコープでは、通知を抑制したいアラート ルールを指定すればよいのでしょうか。</a></li>
+<li><a href="#Q-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%81%8C%E3%80%81Azure-%E3%83%9D%E3%83%BC%E3%82%BF%E3%83%AB%E3%81%AE-%E7%9B%A3%E8%A6%96-gt-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%81%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%8C%E7%99%BA%E5%A0%B1%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%82%88%E3%81%86%E3%81%A7%E3%81%99%E3%80%82">Q. アラート処理ルールを利用していますが、Azure ポータルの [監視] &gt; [アラート] でアラートが発報しているようです。</a></li>
+<li><a href="#Q-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AB%E3%82%88%E3%81%A3%E3%81%A6%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E9%80%9A%E7%9F%A5%E3%81%8C%E6%8A%91%E5%88%B6%E3%81%95%E3%82%8C%E3%81%9F%E3%81%93%E3%81%A8%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. アラート処理ルールによってアラート ルールの通知が抑制されたことを確認する方法を教えてください。</a></li>
+<li><a href="#Q-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%81%AF%E3%80%8C%E3%82%B5%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%8D%E3%82%84%E3%80%8C%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9-%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E3%80%8D%E3%81%AE%E5%8D%98%E4%BD%8D%E3%81%A7%E7%99%BB%E9%8C%B2%E3%81%97%E3%81%9F%E6%96%B9%E3%81%8C%E3%82%88%E3%81%84%E3%81%A7%E3%81%99%E3%81%8B%E3%80%82">Q. アラート処理ルールのスコープは「サブスクリプション」や「リソース グループ」の単位で登録した方がよいですか</a></li>
+<li><a href="#Q-%E3%82%B9%E3%83%86%E3%83%BC%E3%83%88%E3%83%95%E3%83%AB%E3%81%AA%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%8C%E3%80%8C%E8%A7%A3%E6%B1%BA%E3%80%8D%E3%81%97%E3%81%9F%E3%81%A8%E3%81%8D%E3%81%AE%E3%81%BF%E9%80%9A%E7%9F%A5%E3%82%92%E6%8A%91%E5%88%B6%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. ステートフルなアラート ルールを設定しています。アラートが「解決」したときのみ通知を抑制することはできますか。</a></li>
+<li><a href="#Q-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%A7%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%AE%E9%80%9A%E7%9F%A5%E3%82%92%E6%8A%91%E5%88%B6%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. アラート処理ルールでサービス正常性アラートの通知を抑制することはできますか。</a></li>
+</ul>
+<br>
+<br>
+<br>
+
+
+<hr>
+<h3 id="メトリック-アラート-ルール"><a href="#メトリック-アラート-ルール" class="headerlink" title="メトリック アラート ルール"></a>メトリック アラート ルール</h3><hr>
+<h3 id="Q-メトリック-アラート-ルールの設定項目を教えてください。"><a href="#Q-メトリック-アラート-ルールの設定項目を教えてください。" class="headerlink" title="Q. メトリック アラート ルールの設定項目を教えてください。"></a>Q. メトリック アラート ルールの設定項目を教えてください。</h3><p>メトリック アラート ルールの設定項目は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-metric-alert-rule">公開情報</a>をご確認いただけますと幸いです。<br>また、動的しきい値を利用したメトリック アラートについては <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-dynamic-thresholds">こちら</a>の公開情報もご参照ください。</p>
+<details><summary><b>アラート ロジック</b></summary>
+メトリックの値を集計する方法、集計された値と比較する際のしきい値等を指定します。
+
+<p>※ 静的しきい値を選択したときの設定項目です。<br><img width="500" src="../MonitorAlertFAQ/image04.png"></p>
+<p>※ 動的しきい値を選択したときの設定項目です。<br><img width="500" src="../MonitorAlertFAQ/image05.png"></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>しきい値</td>
+<td>静的しきい値では指定した値に基づいて評価されます。<br> 動的しきい値では機械学習アルゴリズムを使用してメトリックの動作パターンが継続的に学習され、予期しない動作に該当するしきい値が計算されます。</td>
+</tr>
+<tr>
+<td>集計の種類</td>
+<td>[ルックバック期間] で設定した期間において、データをまとめる方法を選択します。</td>
+</tr>
+<tr>
+<td>演算子</td>
+<td>集計された値と比較する際に、どの様な比較を行うかを設定します。</td>
+</tr>
+<tr>
+<td>しきい値 (静的しきい値)</td>
+<td>集計された値と比較する際に使用するしきい値を数値で設定します。</td>
+</tr>
+<tr>
+<td>しきい値の感度 (動的しきい値)</td>
+<td>アラートをトリガーする感度のレベルを指定します。</td>
+</tr>
+</tbody></table>
+</details>
+
+<br>
+
+<details><summary><b>ディメンション</b></summary>
+ディメンションは、メトリック値に関する追加のデータ (名前と値のペア) です。
+メトリックは、個々のリソースごとに記録されますが、ディメンションはメトリックの値をより詳細に説明するための追加情報とお考えください。
+ディメンションを分割しない場合、メトリックのデータをより細かく分析するための要素を考慮せずに集計されます。
+一方で、ディメンションを分割した場合には、そのディメンションで集計されたデータが監視され、メトリックのデータをより細かく分析することができます。
+また、複数のディメンション値を選択した場合は、その組み合わせによって集計されたデータごとに監視されます。
+詳細は<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering)">こちら</a>の公開情報ごご覧いただけますと幸いです。
+<img width="700" src="../MonitorAlertFAQ/image06.png">
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ディメンション名</td>
+<td>メトリックの特定列によって分割したい場合に利用します。</td>
+</tr>
+</tbody></table>
+</details>
+
+<br>
+
+<details><summary><b>評価するタイミング</b></summary>
+1 回の評価を行う際に評価の対象となる期間と、評価の頻度を設定します。
+
+<p>※ 静的しきい値を選択したときの設定項目です。<br><img width="500" src="../MonitorAlertFAQ/image07.png"></p>
+<p>※ 動的しきい値を選択したときの設定項目です。<br><img width="500" src="../MonitorAlertFAQ/image08.png"></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>確認する間隔</td>
+<td>集計された値としきい値の比較を行う頻度です。[確認する間隔] は [ルックバック期間] で設定した期間以下とする必要があります。</td>
+</tr>
+<tr>
+<td>ルックバック期間</td>
+<td>1 回の評価を行う際に評価の対象となる期間を設定します。</td>
+</tr>
+<tr>
+<td>違反の数 (動的しきい値)</td>
+<td>アラートをトリガーするために発生する必要がある違反の数を設定します。</td>
+</tr>
+<tr>
+<td>範囲 (動的しきい値)</td>
+<td>違反の数を評価する期間です。[範囲] で指定した期間を、[ルックバック期間] で分割され、しきい値を違反していた数を確認します。</td>
+</tr>
+</tbody></table>
+</details>
+
+<br>
+<br>
+<br>
+
+
+<h3 id="Q-静的しきい値のメトリック-アラート-ルールで、2-回連続でしきい値を満たした時にアラートを発報させることはできますか。"><a href="#Q-静的しきい値のメトリック-アラート-ルールで、2-回連続でしきい値を満たした時にアラートを発報させることはできますか。" class="headerlink" title="Q. 静的しきい値のメトリック アラート ルールで、2 回連続でしきい値を満たした時にアラートを発報させることはできますか。"></a>Q. 静的しきい値のメトリック アラート ルールで、2 回連続でしきい値を満たした時にアラートを発報させることはできますか。</h3><p>メトリック アラートでは「特定の条件を満たした状態が N 回継続したときに通知する」という設定ではできません。</p>
+<p>一方で、監視対象のメトリックが<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/metrics-index">プラットフォーム メトリック</a>であり、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings#metrics">Azure Monitor の診断設定</a>でメトリックを Log Analytics ワークスペースに転送できる場合には、ログ アラート ルールにてご要件を満たす設定が実現できる可能性があります。</p>
+<p>ログ アラート ルールの場合は [違反の数] を利用することで、特定の条件を満たした状態が N 回継続したときに通知することが可能です。大まかな設定手順は以下の通りです。</p>
+<ol>
+<li><a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToDiagnosticsSettings/">Azure Monitor の診断設定</a>の機能で Log Analytics ワークスペースにメトリックをエクスポートする</li>
+<li>対象の Log Analytics ワークスペースをスコープにして、ログ アラート ルールを作成する</li>
+</ol>
+<p>メトリックを Log Analytics ワークスペースにエクスポートすると、Log Analytics ワークスペース上では <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/tables/azuremetrics">AzureMetrics</a> というテーブルに格納されます。例えば、Azure VM の Percentage CPU の平均値を監視している場合、以下のようなクエリでメトリックの平均値を確認することができます。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AzureMetrics</span><br><span class="line">| where _ResourceId =~ &quot;&lt;リソース ID&gt;&quot; // 目的のリソースで絞ります</span><br><span class="line">| where MetricName contains &quot;Percentage CPU&quot; // 目的のメトリックで絞り込みます</span><br><span class="line">| project TimeGenerated, ResourceProvider, MetricName, Average</span><br></pre></td></tr></table></figure>
+<img width="700" src="../MonitorAlertFAQ/image09.png">
+
+<p>ログ アラート ルールの場合は、これらの値を利用してログ アラート ルールを設定します。<br>例えば、[評価の頻度] が 5 分、[集計の粒度] が 5 分、[違反の数] を 3、[評価期間] が 15 分と設定したとします。<br>この場合、[評価の頻度] の 5 分毎に、15 分の [評価期間] が 5 分の [集計の粒度] で分割されます (15 ÷ 5 = 3)。この 3 つのグループの中で閾値を違反するグループが 3 つあった場合にアラートが発報します。ログ アラート ルールの設定項目は、本ブログの「<a href="#Q-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E9%A0%85%E7%9B%AE%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">ログ アラート ルールの設定項目を教えてください</a>」もご覧ください。<br><img width="700" src="../MonitorAlertFAQ/image10.png"></p>
+<br>
+<br>
+
+
+<h3 id="Q-メトリック-アラート-ルールが実行されるタイミングを指定することはできますか。"><a href="#Q-メトリック-アラート-ルールが実行されるタイミングを指定することはできますか。" class="headerlink" title="Q. メトリック アラート ルールが実行されるタイミングを指定することはできますか。"></a>Q. メトリック アラート ルールが実行されるタイミングを指定することはできますか。</h3><p>Azure Monitor のアラート ルールでは、アラートが実行されるタイミングを指定することはできません。<br>アラート ルールが作成された時点から指定された &quot;確認する間隔&quot; のタイミングでアラート ルールが実行されるとご認識ください。</p>
+<br>
+<br>
+
+
+<h3 id="Q-メトリック-アラート-ルールで時間帯によって条件を変更することはできますか。"><a href="#Q-メトリック-アラート-ルールで時間帯によって条件を変更することはできますか。" class="headerlink" title="Q. メトリック アラート ルールで時間帯によって条件を変更することはできますか。"></a>Q. メトリック アラート ルールで時間帯によって条件を変更することはできますか。</h3><p>メトリック アラート ルールで時間帯によって条件を変更することはできません。<br>時間帯によって条件を変更したい場合には、以下の方法をご検討ください。</p>
+<ul>
+<li>複数のメトリック アラート ルールを作成し、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-processing-rules?tabs=portal">アラート処理ルール</a>を使用して特定の時間帯の通知を抑制する</li>
+<li>監視対象のメトリックをログとして Log Analytics ワークスペースに収集できる場合には、ログ アラート ルールで監視する</li>
+</ul>
+<br>
+<br>
+
+
+<h3 id="Q-ステートフルなメトリック-アラート-ルールで起動済み-Fired-のアラートを、手動で解決済み-Resolved-に変更することはできますか。"><a href="#Q-ステートフルなメトリック-アラート-ルールで起動済み-Fired-のアラートを、手動で解決済み-Resolved-に変更することはできますか。" class="headerlink" title="Q. ステートフルなメトリック アラート ルールで起動済み (Fired) のアラートを、手動で解決済み (Resolved) に変更することはできますか。"></a>Q. ステートフルなメトリック アラート ルールで起動済み (Fired) のアラートを、手動で解決済み (Resolved) に変更することはできますか。</h3><p>いいえ、手動で解決済みに変更することはできません。<br>メトリックの値がしきい値を満たさなくなるように Azure リソースを操作してください。</p>
+<br>
+<br>
+
+
+
+<h3 id="Q-メトリック-アラート-ルールのディメンション値のドロップ-ダウンに値が表示されません。"><a href="#Q-メトリック-アラート-ルールのディメンション値のドロップ-ダウンに値が表示されません。" class="headerlink" title="Q. メトリック アラート ルールのディメンション値のドロップ ダウンに値が表示されません。"></a>Q. メトリック アラート ルールのディメンション値のドロップ ダウンに値が表示されません。</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-metric-alert-rule">ディメンションは過去 48 時間のデータをもとに表示されます</a>。<br>過去 48 時間以内に当該ディメンション値を含むメトリックが記録されていない場合は、ディメンション値のドロップダウンには表示されません。ディメンション値が表示されない場合はカスタム値として設定いただきますようお願いいたします。</p>
+<br>
+<br>
+
+
+<h3 id="Q-メトリック-アラート-ルール編集画面の-プレビュー-ではしきい値を満たしていたように見えますが、アラートが発報していません。"><a href="#Q-メトリック-アラート-ルール編集画面の-プレビュー-ではしきい値を満たしていたように見えますが、アラートが発報していません。" class="headerlink" title="Q. メトリック アラート ルール編集画面の [プレビュー] ではしきい値を満たしていたように見えますが、アラートが発報していません。"></a>Q. メトリック アラート ルール編集画面の [プレビュー] ではしきい値を満たしていたように見えますが、アラートが発報していません。</h3><p>下図はプレビュー画面であり、実際のアラート ルールの評価時刻やルックバック期間に基づいた集計の粒度で表示されていない場合がございます。このため、実際にはしきい値を満たしていない場合でも、プレビュー画面上ではしきい値を満たしているように表示されてしまう場合もございます。<br><img width="700" src="../MonitorAlertFAQ/image19.png"></p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/analyze-metrics#configure-the-time-range">こちら</a>の公開情報の手順に沿って、しきい値を満たしていたと推測される時間帯のメトリック値をご確認ください。<br>メトリック エクスプローラー上でもアラートのしきい値を満たしている場合には、何らかの原因によりアラートが想定通り発報しなかった可能性がございます。アラートの検知漏れの調査をご要望の場合には、<a href="https://jpazmon-integ.github.io/blog/general/HowToCreateSR/#4-3-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%8C%E6%83%B3%E5%AE%9A%E3%81%A9%E3%81%8A%E3%82%8A%E3%81%AB%E5%8B%95%E4%BD%9C%E3%81%97%E3%81%AA%E3%81%84-%E6%A4%9C%E7%9F%A5%E3%82%82%E3%82%8C">以下の情報</a>をご記載の上、お問い合わせをご起票ください。</p>
+<p>・アラート ルールのリソース ID<br>・アラートが発報されることが想定された日時 (タイムゾーンを明記してご記載ください。例. 2024-12-30 12:00 JST)</p>
+<br>
+<br>
+
+
+<h3 id="Q-メトリック-アラート-ルールの利用料金を教えてください。"><a href="#Q-メトリック-アラート-ルールの利用料金を教えてください。" class="headerlink" title="Q. メトリック アラート ルールの利用料金を教えてください。"></a>Q. メトリック アラート ルールの利用料金を教えてください。</h3><p>メトリック アラート ルールは、監視対象の時系列ごとに課金されます。時系列はメトリックではなく、監視する単位とお考え下さい。例えば、静的メトリック アラート ルールで 10 個の VM を対象に 4 つのメトリックを監視した場合の月額料金は以下のとおりです。</p>
+<p><strong>(10 VM * 4 メトリック時系列/VM - 10 無料ユニット分) * メトリック時系列あたりの価格/月</strong></p>
+<p>また、アラート ルールにご指定いただくメトリック数 (条件数) 以外に、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-metric-multiple-time-series-single-rule?WT.mc_id=Portal-Microsoft_Azure_Monitoring#alert-rule-on-multiple-time-series">ディメンション分割した場合もメトリックの時系列が増加します</a>。例えば、静的メトリック アラート ルールで 10 個の VM を対象に 4 つのメトリックを監視し、このうち 1 つのメトリックで 1 つのディメンションを選択してディメンションの値を 2 つ指定した場合、月額料金は以下のように計算されます。</p>
+<p><strong>(10 VM * 3 メトリック時系列/VM + 10 VM * 1 メトリック時系列/VM * 1 ディメンション * 2 個 - 10 無料ユニット分) * メトリック時系列あたりの価格/月</strong></p>
+<p>価格の詳細は <a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">Azure Monitor 価格サイト</a>や<a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/calculator/">計算ツール</a>をご覧ください。<br>なお、アクション グループによってメールや SMS 等でアラートを通知している場合には、別途アクション グループに関するご利用料金も発生しますのでご留意ください。</p>
+<br>
+<br>
+<br>
+
+
+<hr>
+<h3 id="ログ-アラート-ルール"><a href="#ログ-アラート-ルール" class="headerlink" title="ログ アラート ルール"></a>ログ アラート ルール</h3><hr>
+<h3 id="Q-ログ-アラート-ルールの設定項目を教えてください。"><a href="#Q-ログ-アラート-ルールの設定項目を教えてください。" class="headerlink" title="Q. ログ アラート ルールの設定項目を教えてください。"></a>Q. ログ アラート ルールの設定項目を教えてください。</h3><p>ログ アラート ルールの設定項目は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule">公開情報</a>をご確認いただけますと幸いです。</p>
+<details><summary><b>測定</b></summary>
+ログ検索を行う検索期間、実行結果の集計方法を指定します。
+例えば、[集計の粒度] を 10 分、[集計の種類] を [平均] とした場合、10 分間の期間にあるデータを平均化し、その値をアラート検知に利用します。
+<img width="500" src="../MonitorAlertFAQ/image01.png">
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>メジャー</td>
+<td>集計対象のテーブルの行または数値列を選択します。</td>
+</tr>
+<tr>
+<td>集計の種類</td>
+<td>[集計の粒度] で設定した期間において、データをまとめる方法を選択します。</td>
+</tr>
+<tr>
+<td>集計の粒度</td>
+<td>クエリで取得したログを一つのグループにまとめる単位を示します。</td>
+</tr>
+</tbody></table>
+</details>
+
+<br>
+
+<details><summary><b>ディメンション</b></summary>
+ディメンションごとに分割すると、数値列または文字列の組み合わせがグループ化され、複数の Azure リソースで同じ条件を監視できます。複数のディメンション値を選択した場合は、その組み合わせによって生成される時系列ごとに独自のアラートがトリガーされ、個別に処理されます。
+<img width="700" src="../MonitorAlertFAQ/image02.png">
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>リソース ID 列</td>
+<td>クエリ結果に リソース ID が含まれていると、自動的に検出され、選択状態となります。リソース ID を指定した場合、リソース ID 毎にアラートのターゲットとして分割され、リソース ID 別にアラートの検知、通知が行われます。</td>
+</tr>
+<tr>
+<td>ディメンション名</td>
+<td>リソース ID 以外の特定列によって分割したい場合に利用します。</td>
+</tr>
+</tbody></table>
+</details>
+
+
+<br>
+
+<details><summary><b>アラートロジック</b></summary>
+[測定] の設定によって集計された値と比較する際のしきい値と、評価の頻度を設定します。
+<img width="500" src="../MonitorAlertFAQ/image03.png">
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>演算子</td>
+<td>[測定] の設定によって集計された値と比較する際に、どの様な比較を行うかを設定します。</td>
+</tr>
+<tr>
+<td>しきい値</td>
+<td>[測定] の設定によって集計された値と比較する際に、使用するしきい値を数値で設定します。</td>
+</tr>
+<tr>
+<td>評価の頻度</td>
+<td>[測定] の設定によって集計された値としきい値の比較を行う頻度です。[評価の頻度] は [集計の粒度] で設定した期間以下とする必要があります。</td>
+</tr>
+</tbody></table>
+</details>
+
+<br>
+<br>
+
+
+
+
+<h3 id="Q-ログ-アラート-ルールが実行されるタイミングを指定することはできますか。"><a href="#Q-ログ-アラート-ルールが実行されるタイミングを指定することはできますか。" class="headerlink" title="Q. ログ アラート ルールが実行されるタイミングを指定することはできますか。"></a>Q. ログ アラート ルールが実行されるタイミングを指定することはできますか。</h3><p>Azure Monitor のアラート ルールでは、アラートが実行されるタイミングを指定することはできません。<br>アラート ルールが作成された時点から指定された &quot;評価の頻度&quot; のタイミングでアラート ルールが実行されるとご認識ください。</p>
+<br>
+<br>
+
+
+
+<h3 id="Q-ログ-アラート-ルールのディメンション値のドロップ-ダウンに値が表示されません。"><a href="#Q-ログ-アラート-ルールのディメンション値のドロップ-ダウンに値が表示されません。" class="headerlink" title="Q. ログ アラート ルールのディメンション値のドロップ ダウンに値が表示されません。"></a>Q. ログ アラート ルールのディメンション値のドロップ ダウンに値が表示されません。</h3><p>メトリック アラート ルールと同様、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule">ディメンションは過去 48 時間のデータをもとに表示されます</a>。<br>過去 48 時間以内に当該ディメンション値を含むログが記録されていない場合は、ディメンション値のドロップダウンには表示されません。ディメンション値が表示されない場合はカスタム値として設定いただきますようお願いいたします。</p>
+<br>
+<br>
+
+
+<h3 id="Q-ログ-アラート-ルールでディメンションを設定し、各ディメンションのログが-0-件のときに発報するルールを作成しました。特定のディメンションを含むログの出力を停止しましたが、アラートが発報しません。"><a href="#Q-ログ-アラート-ルールでディメンションを設定し、各ディメンションのログが-0-件のときに発報するルールを作成しました。特定のディメンションを含むログの出力を停止しましたが、アラートが発報しません。" class="headerlink" title="Q. ログ アラート ルールでディメンションを設定し、各ディメンションのログが 0 件のときに発報するルールを作成しました。特定のディメンションを含むログの出力を停止しましたが、アラートが発報しません。"></a>Q. ログ アラート ルールでディメンションを設定し、各ディメンションのログが 0 件のときに発報するルールを作成しました。特定のディメンションを含むログの出力を停止しましたが、アラートが発報しません。</h3><p>ログ アラート ルールでディメンションを分割した場合、すべてのディメンションのログが 0 件のときにはアラートが検知されますが、一部のディメンションが 0 件のときには、アラートが検知されません。例を用いて説明します。</p>
+<p>例えば、Windows マシンでパフォーマンス カウンターを収集し、「\Process(*)\ID Process」を監視するアラートを構成していたとします。<br>ログ アラート ルールに対して下記のようなクエリを指定し、Computer と InstanceName でディメンション分割されたと仮定します。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Perf</span><br><span class="line">| where ObjectName == &quot;Process&quot;</span><br><span class="line">| where CounterName == &quot;ID Process&quot;</span><br></pre></td></tr></table></figure>
+
+<p>このアラート ルールで [集計の粒度] を 5 分とした場合、下記のように直近 5 分間のログを検索し Computer、InstanceName 列でレコード数を集計したデータを、ログ アラート ルールは確認します。つまり、<strong>Log Analytics ワークスペースに存在するログ</strong>に対してディメンション分割されます。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Perf</span><br><span class="line">| where TimeGenerated &gt; ago(5m) // 集計粒度が 5 分なので、直近 5 分間のログを取得</span><br><span class="line">| where ObjectName == &quot;Process&quot;</span><br><span class="line">| where CounterName == &quot;ID Process&quot;</span><br><span class="line">| summarize count() by Computer, InstanceName, bin (TimeGenerated, 5m) // Computer と InstanceName でレコード数を集計する</span><br></pre></td></tr></table></figure>
+
+
+<p>上記のクエリで特定のプロセスを停止し、5 分以上当該プロセス情報が送信されていなかったとしても、<strong>そもそも直近 5 分間のログとして監視対象のプロセスに該当するログが存在しないため、そのプロセスに対するディメンション分割ができず、アラート ルールは検知できません</strong>。</p>
+<p>一方で、下記のようにログ アラート ルールを設定いただくことで、このような問題を回避することができます。<br>このクエリでは、過去 2 日間のデータをプロセス リストとして取得し、直近 5 分間のデータとジョインしてレコードの数をカウントします。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">let Computer_InstanceList =</span><br><span class="line">( Perf</span><br><span class="line">| where TimeGenerated &gt; ago(2d)</span><br><span class="line">| where ObjectName == &quot;Process&quot;</span><br><span class="line">| where CounterName == &quot;ID Process&quot;</span><br><span class="line">| summarize max(TimeGenerated) by Computer, InstanceName </span><br><span class="line">);</span><br><span class="line">Perf</span><br><span class="line">| where TimeGenerated &gt; ago(5m)</span><br><span class="line">| where ObjectName == &quot;Process&quot;</span><br><span class="line">| where CounterName == &quot;ID Process&quot;</span><br><span class="line">| summarize count() by Computer, InstanceName </span><br><span class="line">| join kind=rightouter Computer_InstanceList on $left.Computer == $right.Computer and $left.InstanceName == $right.InstanceName</span><br><span class="line">| extend AggregatedValue = iif(isnull(count_), 0, count_)</span><br><span class="line">| project ComputerName = Computer1, AggregatedValue, InstanceName = InstanceName1</span><br></pre></td></tr></table></figure>
+
+<p><strong>&lt; 測定 &gt;</strong><br>メジャー : AggregatedValue<br>集計の種類 : 合計<br>集計の粒度 : 2 日</p>
+<p><strong>&lt; ディメンションで分割する &gt;</strong><br>リソース ID 列 : 分割しない<br>ディメンション設定 : ComputerName と InstanceName を指定</p>
+<p><strong>&lt; アラート ロジック &gt;</strong><br>演算子 : 次の値以下<br>しきい値 : 0<br>評価の頻度 : 5 分</p>
+<br>
+<br>
+
+
+<h3 id="Q-ログ-アラート-ルールの設定画面を開いたところ、アラート-ルールによって-UI-が異なります。"><a href="#Q-ログ-アラート-ルールの設定画面を開いたところ、アラート-ルールによって-UI-が異なります。" class="headerlink" title="Q. ログ アラート ルールの設定画面を開いたところ、アラート ルールによって UI が異なります。"></a>Q. ログ アラート ルールの設定画面を開いたところ、アラート ルールによって UI が異なります。</h3><p>ログ アラート ルールの API バージョンによって UI が異なります。<br>API のバージョンが 2021-08-01 以降の場合は新 UI、バージョン 2018-04-16 以前であれば旧 UI で表示されます。</p>
+<p>旧 UI のアラート条件を設定する画面です。<br><img width="1000" src="../MonitorAlertFAQ/image11.png"></p>
+<p>新 UI のアラート条件を設定する画面です。<br><img width="1000" src="../MonitorAlertFAQ/image12.png"></p>
+<p>ログ アラート ルールの API バージョンは、Azure Resource Graph クエリで確認することができます。Azure ポータルで [Resource Graph エクスプローラー] (<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/governance/resource-graph/first-query-portal">Azure Resource Graph エクスプローラー</a>) を開き、API バージョンをご確認ください。また、API バージョンの違いによる UI の差異については、<a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/#%E6%96%B0%E3%81%97%E3%81%84-API-%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3-API-%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3-2021-08-01-%E3%81%AE%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E4%BD%9C%E6%88%90%E7%94%BB%E9%9D%A2">こちら</a>のブログでも紹介しておりますので、ぜひご覧下さい。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">resources</span><br><span class="line">| where subscriptionId == &quot;サブスクリプション ID&quot;</span><br><span class="line">| where type == &quot;microsoft.insights/scheduledqueryrules&quot;</span><br><span class="line">| extend createdWithApiVersion = properties[&#x27;createdWithApiVersion&#x27;]</span><br><span class="line">| where kind != &#x27;LogToMetric&#x27;</span><br><span class="line">| project id, createdWithApiVersion</span><br></pre></td></tr></table></figure>
+
+<br>
+<br>
+
+
+<h3 id="Q-旧-API-バージョン-2018-04-16-以前-のログ-アラート-ルールを作成する方法を教えてください。"><a href="#Q-旧-API-バージョン-2018-04-16-以前-のログ-アラート-ルールを作成する方法を教えてください。" class="headerlink" title="Q. 旧 API (バージョン 2018-04-16 以前) のログ アラート ルールを作成する方法を教えてください。"></a>Q. 旧 API (バージョン 2018-04-16 以前) のログ アラート ルールを作成する方法を教えてください。</h3><p>旧 API バージョンのログ アラート ルールを作成する場合は ARM テンプレートや REST API を利用してアラート ルールをデプロイしてください。Azure ポータルからログ アラート ルールを作成した場合は、現行の API (バージョン 2021-08-01 以降) でデプロイされます。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/resource-manager-alerts-log?tabs=json#number-of-results-template-up-to-version-2018-04-16">弊社サイト</a>の 「(バージョン 2018-04-16 以前) 」 と記載されたテンプレートは旧 API バージョンの ARM テンプレートになります。また、REST API の場合は<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/rest/api/monitor/scheduled-query-rules/create-or-update?view=rest-monitor-2018-04-16&tabs=HTTP">こちら</a>のサイトをご覧ください。</p>
+<br>
+<br>
+
+
+<h3 id="Q-ログ-アラート-ルールで通知されるメールの件名や本文をカスタマイズすることはできますか。"><a href="#Q-ログ-アラート-ルールで通知されるメールの件名や本文をカスタマイズすることはできますか。" class="headerlink" title="Q. ログ アラート ルールで通知されるメールの件名や本文をカスタマイズすることはできますか。"></a>Q. ログ アラート ルールで通知されるメールの件名や本文をカスタマイズすることはできますか。</h3><p><a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/#%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E9%80%9A%E7%9F%A5%E3%83%A1%E3%83%BC%E3%83%AB%E3%81%AF%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%9E%E3%82%A4%E3%82%BA%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84">Azure Monitor で通知されるアラートのメールは、カスタマイズすることはできません</a>。<br>メール本文のカスタマイズが必要な場合には、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/logic-apps/logic-apps-overview">Logic Apps</a> 等でお客様にて作りこんでいただく必要がございます。<br>弊社 <a target="_blank" rel="noopener" href="https://jpazinteg.github.io/blog/LogicApps/Integration-logAlertRule/">Integration Support Blog</a>では Logic Apps を利用してログ アラート ルールのメールを通知する方法を紹介しておりますので、ご覧いただけますと幸いです。</p>
+<br>
+<br>
+
+
+<h3 id="Q-ログ-アラート-ルールで通知されたメールの件名やフォーマットが変わりました。原因を教えてください。"><a href="#Q-ログ-アラート-ルールで通知されたメールの件名やフォーマットが変わりました。原因を教えてください。" class="headerlink" title="Q. ログ アラート ルールで通知されたメールの件名やフォーマットが変わりました。原因を教えてください。"></a>Q. ログ アラート ルールで通知されたメールの件名やフォーマットが変わりました。原因を教えてください。</h3><p>ログ アラート ルールの API バージョンの差異によってフォーマットが異なるメールが通知された可能性がございます。<br><a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/updates/new-email-templates-for-log-search-alerts-api-version-20210801-and-up/">現行の API (バージョン 2021-08-01 以降) のログ アラート ルール (ログ アラート ルール V2) で、非共通アラート スキーマの場合に送られる通知メールのフォーマットが変更されました</a>。アラート ルールによって通知されるメールのフォーマットが異なる場合には、アクション グループの共通アラート スキーマの設定をご確認ください。<a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogAlert_NewEmailTemplate_2024/">こちら</a>のブログでアクション グループの設定を確認する方法や、フォーマットが変更された背景等をご案内しておりますので、ご確認いただけますと幸いです。</p>
+<br>
+<br>
+
+
+<h3 id="Q-ログ-アラート-ルールが勝手に無効化されていました。考えられる原因を教えてください。"><a href="#Q-ログ-アラート-ルールが勝手に無効化されていました。考えられる原因を教えてください。" class="headerlink" title="Q. ログ アラート ルールが勝手に無効化されていました。考えられる原因を教えてください。"></a>Q. ログ アラート ルールが勝手に無効化されていました。考えられる原因を教えてください。</h3><p>ログ アラート ルールの検索クエリの実行が継続して失敗している可能性があります。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-troubleshoot-log#a-log-search-alert-didnt-fire-when-it-should-have">ログ アラート ルールは、クエリなどの失敗が 1 週間続いた場合、Azure Monitor によって自動で無効化されます</a>。クエリの構文や該当のテーブルにログが出力されているかどうかをご確認ください。</p>
+<p>また、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details">ログ アラート ルールにて Azure Data Explorer や Azure Resource Graph クエリを設定する際には、システム割り当てマネージド ID、またはユーザー割り当てマネージド ID を有効化し、閲覧者権限を付与いただく必要がございます</a>。マネージド ID に必要な権限が付与されていない場合、Azure Data Explorer や Azure Resource Graph に対してクエリを実行できません。Azure Data Explorer や Azure Resource Graph クエリを設定している場合には、マネージド ID に必要な権限が付与されているかどうかもご確認ください。</p>
+<br>
+<br>
+
+
+<h3 id="Q-ログ-アラート-ルールの利用料金を教えてください。"><a href="#Q-ログ-アラート-ルールの利用料金を教えてください。" class="headerlink" title="Q. ログ アラート ルールの利用料金を教えてください。"></a>Q. ログ アラート ルールの利用料金を教えてください。</h3><p>ログ アラート ルールは、評価の頻度毎に月額料金が設定されています。また、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#monitor-multiple-instances-of-a-resource-using-dimensions">ディメンション分割した場合、評価される時系列が増えますので時系列に対するご利用料金も発生します</a>。</p>
+<p>例えば、評価の頻度が 5 分のログ アラート ルールで 2 つのディメンションを選択し、それぞれディメンションの値を 2 つ指定した場合、評価される時系列は 2 * 2 = 4 時系列となり、月額料金は以下のように計算されます。</p>
+<p><strong>頻度 5 分のログ アラート ルールの価格/月 + (4 時系列 - 無料の 1 時系列) * 頻度 5 分の時系列の価格/月</strong></p>
+<p>価格の詳細は <a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">Azure Monitor 価格サイト</a>や<a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/calculator/">計算ツール</a>をご覧ください。<br>なお、アクション グループによってメールや SMS 等でアラートを通知している場合には、別途アクション グループに関するご利用料金も発生しますのでご留意ください。</p>
+<br>
+<br>
+<br>
+
+<hr>
+<h3 id="アクティビティ-ログ-アラート（サービス正常性アラート、リソース正常性アラート、アクティビティ-ログ-アラート）"><a href="#アクティビティ-ログ-アラート（サービス正常性アラート、リソース正常性アラート、アクティビティ-ログ-アラート）" class="headerlink" title="アクティビティ ログ アラート（サービス正常性アラート、リソース正常性アラート、アクティビティ ログ アラート）"></a>アクティビティ ログ アラート（サービス正常性アラート、リソース正常性アラート、アクティビティ ログ アラート）</h3><hr>
+<h3 id="Q-サービス正常性アラートでテスト発報することは可能ですか。"><a href="#Q-サービス正常性アラートでテスト発報することは可能ですか。" class="headerlink" title="Q. サービス正常性アラートでテスト発報することは可能ですか。"></a>Q. サービス正常性アラートでテスト発報することは可能ですか。</h3><p>サービス正常性アラートでは、テスト アラートという仕組みはございません。<br>一方で、アクション グループにはテスト通知機能がございます。通知のテストを実施されたい場合には、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups#test-an-action-group-in-the-azure-portal">テスト アクション グループ</a>機能をご利用いただけますと幸いです。</p>
+<br>
+<br>
+
+<h3 id="Q-サービス正常性アラートで通知された内容について確認したいです。"><a href="#Q-サービス正常性アラートで通知された内容について確認したいです。" class="headerlink" title="Q. サービス正常性アラートで通知された内容について確認したいです。"></a>Q. サービス正常性アラートで通知された内容について確認したいです。</h3><p>サービス正常性アラートで通知された内容についてご不明な点がある場合、基本的には該当するサービス観点でお問い合わせをご起票くださいますようお願いいたします。サービス正常性のメールでは、メールの下部に該当するサービス名が記載されております (下記例の場合は Azure Resource Manager 観点でお問い合わせをご起票ください)。<br><img width="700" src="../MonitorAlertFAQ/image14.png"><br>また、サービス正常性のイベントには Tracking-ID (追跡 ID) が付与されておりますので、Tracking-ID の情報もご記載ください。</p>
+<br>
+<br>
+
+
+<h3 id="Q-サービス正常性アラートで通知されたメールを、メールの件名でフォルダ分けしたいです。件名のルールを教えてください。"><a href="#Q-サービス正常性アラートで通知されたメールを、メールの件名でフォルダ分けしたいです。件名のルールを教えてください。" class="headerlink" title="Q. サービス正常性アラートで通知されたメールを、メールの件名でフォルダ分けしたいです。件名のルールを教えてください。"></a>Q. サービス正常性アラートで通知されたメールを、メールの件名でフォルダ分けしたいです。件名のルールを教えてください。</h3><p>サービス正常性アラートのメールの件名や本文の内容は、特に決められた形式はございません。<br>メールの件名や通知内容は各サービスの弊社開発エンジニアが決定しております。ご参考までに過去に通知されたサービス正常性アラートの件名やメールで通知された内容を紹介しますが、決められた形式はないこと、ご了承ください。</p>
+<table style="border-collapse: collapse; width: 100%;">
+  <thead>
+    <tr>
+      <th style="border: 0.5px solid lightgray; text-align: center; padding: 8px; width: 180px;">イベントの種類</th>
+      <th style="border: 0.5px solid lightgray; text-align: center; padding: 8px; width: 250px;">イベントの内容</th>
+      <th style="border: 0.5px solid lightgray; text-align: center; padding: 8px; width: 250px;">過去に通知されたメール件名の例</th>
+      <th style="border: 0.5px solid lightgray; text-align: center; padding: 8px;">過去に通知されたメールの内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 0.5px solid lightgray; padding: 8px;">サービスに関する問題</td>
+      <td style="border: 0.5px solid lightgray; padding: 8px;">サービスの問題は、Azure サービスに影響する問題が発生した際のイベント</td>
+      <td style="border: 0.5px solid lightgray; padding: 8px;">Azure Resource Manager - Investigating</td>
+      <td style="border: 0.5px solid lightgray; padding: 8px;">Azure Resource Managerプラットフォームに依存するサービスのリソース作成で問題が発生する可能性があることを通知した内容です。</td>
+    </tr>
+    <tr>
+      <td style="border: 0.5px solid lightgray; padding: 8px;">計画メンテナンス</td>
+      <td style="border: 0.5px solid lightgray; padding: 8px;">定期的なメンテナンスは、Azure サービスの可用性に影響を及ぼす可能性のあるメンテナンスが発生した際のイベント</td>
+      <td style="border: 0.5px solid lightgray; padding: 8px;">Advance Notification for Scheduled Maintenance to Azure Database for MySQL</td>
+      <td style="border: 0.5px solid lightgray; padding: 8px;">Azure Database for MySQLの定期メンテナンスの事前通知のメールです。</td>
+    </tr>
+    <tr>
+      <td style="border: 0.5px solid lightgray; padding: 8px;">正常性の勧告</td>
+      <td style="border: 0.5px solid lightgray; padding: 8px;">ユーザーが注目すべき Azure サービスの変更が発生した際のイベント</td>
+      <td style="border: 0.5px solid lightgray; padding: 8px;">Action recommended: Allow communication with new Azure SQL Database gateways by 1 September 2020</td>
+      <td style="border: 0.5px solid lightgray; padding: 8px;">SQL Databaseの更新に伴い、推奨される操作をご案内した内容です。</td>
+    </tr>
+    <tr>
+      <td style="border: 0.5px solid lightgray; padding: 8px;">セキュリティ アドバイザリ</td>
+      <td style="border: 0.5px solid lightgray; padding: 8px;">Azure サービスの可用性に影響する可能性があるセキュリティ関連の通知または違反があった際のイベント</td>
+      <td style="border: 0.5px solid lightgray; padding: 8px;">Security - Critical: Certificate Authority revocation due to non-compliance of your certificates potentially impacting</td>
+      <td style="border: 0.5px solid lightgray; padding: 8px;">一部の証明書の失効に伴う影響について通知をするメールです。</td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+<br>
+
+
+<h3 id="Q-サービス正常性アラートで、現在利用しているサービスに関する通知のみを受け取りたいです。"><a href="#Q-サービス正常性アラートで、現在利用しているサービスに関する通知のみを受け取りたいです。" class="headerlink" title="Q. サービス正常性アラートで、現在利用しているサービスに関する通知のみを受け取りたいです。"></a>Q. サービス正常性アラートで、現在利用しているサービスに関する通知のみを受け取りたいです。</h3><p>サービス正常性アラート設定時の “サービス” や “リージョン” ですべて選択いただくことをご検討ください。<br>サービス正常性アラートは、ご利用いただいているサービスのご利用いただいているリージョンを対象としたイベントが発生した場合にのみ通知が行われる仕組みです。このため、サブスクリプション上のすべてのサービス、リージョンおよびイベントの種類を選択した場合にも、利用していないリソースに対してアラートは発生いたしません。サービス正常性アラートの<a href="https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/">サポート ブログ</a> もあわせてご確認ください。</p>
+<br>
+<br>
+
+
+<h3 id="Q-Azure-サービスの廃止に関する通知を受け取り、通知の内容に沿って移行作業を実施しましたが、同様の通知が再度通知されました。対応が完了していないリソースが存在するということでしょうか。"><a href="#Q-Azure-サービスの廃止に関する通知を受け取り、通知の内容に沿って移行作業を実施しましたが、同様の通知が再度通知されました。対応が完了していないリソースが存在するということでしょうか。" class="headerlink" title="Q. Azure サービスの廃止に関する通知を受け取り、通知の内容に沿って移行作業を実施しましたが、同様の通知が再度通知されました。対応が完了していないリソースが存在するということでしょうか。"></a>Q. Azure サービスの廃止に関する通知を受け取り、通知の内容に沿って移行作業を実施しましたが、同様の通知が再度通知されました。対応が完了していないリソースが存在するということでしょうか。</h3><p>サービスの廃止や仕様の変更等、ご利用いただいているお客様に影響が大きいと推測される通知は、対象となるリソースが存在しない場合も、そのサービスをご利用いただいている幅広いお客様に通知させていただくことがございます。予めご了承ください。</p>
+<br>
+<br>
+
+
+<h3 id="Q-サービス正常性アラートやリソース正常性アラートを利用し、アクション-グループでメール通知を設定しています。利用料金を教えてください。"><a href="#Q-サービス正常性アラートやリソース正常性アラートを利用し、アクション-グループでメール通知を設定しています。利用料金を教えてください。" class="headerlink" title="Q. サービス正常性アラートやリソース正常性アラートを利用し、アクション グループでメール通知を設定しています。利用料金を教えてください。"></a>Q. サービス正常性アラートやリソース正常性アラートを利用し、アクション グループでメール通知を設定しています。利用料金を教えてください。</h3><p>メールの通知に関する費用のみが発生します。<br>アラート ルールで通知する場合、基本的にアラート ルールに対する料金と通知の料金が発生します。アクティビティ ログ アラート (サービス正常性やリソース正常性アラートを含む) の場合は、アラート ルールに対する料金は発生しません。<br>価格の詳細は <a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">Azure Monitor 価格サイト</a>や<a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/calculator/">計算ツール</a>をご覧ください。</p>
+<div class="alert is-info"><p class="alert-title">Note</p><p>リソース正常性アラートについては別途<a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ResourceHealthAlert/">ブログ</a>を作成しております。</p></div>
+<br>
+<br>
+<br>
+
+
+<hr>
+<h3 id="アクション-グループ、アラート処理ルール"><a href="#アクション-グループ、アラート処理ルール" class="headerlink" title="アクション グループ、アラート処理ルール"></a>アクション グループ、アラート処理ルール</h3><hr>
+<h3 id="Q-アクション-グループの処理が失敗したことを検知する方法はありますか。"><a href="#Q-アクション-グループの処理が失敗したことを検知する方法はありますか。" class="headerlink" title="Q. アクション グループの処理が失敗したことを検知する方法はありますか。"></a>Q. アクション グループの処理が失敗したことを検知する方法はありますか。</h3><p>誠に恐れ入りますが、基本的にアクション グループの失敗を検知する方法はございません。<br>アクション グループによる通知処理が失敗する原因は、主に以下の 2 つが考えらえます。</p>
+<ul>
+<li>Azure 側の障害でアクション グループがトリガーされなかった</li>
+<li>アクション グループはトリガーされたが、何かしらの原因で処理が失敗した</li>
+</ul>
+<p>前者の場合は Azure の<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/service-health/overview">サービス正常性アラート</a>で通知される可能性はございます。<br>一方で、後者の場合はお客様環境で確認いただく方法がなく、現時点でアクション グループの失敗を検知することができません。</p>
+<p>アクション グループによって通知処理が失敗した原因の調査をご希望の場合は、<a href="https://jpazmon-integ.github.io/blog/general/HowToCreateSR/#4-5-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%8C%E7%99%BA%E5%A0%B1%E3%81%97%E3%81%9F%E3%81%8C%E3%80%81%E3%83%A1%E3%83%BC%E3%83%AB%E3%81%A7%E9%80%9A%E7%9F%A5%E3%81%95%E3%82%8C%E3%81%AA%E3%81%84">以下の情報</a>をもってお問い合わせをご起票くださいますようお願いいたします。</p>
+<p>・アラート ルールのリソース ID<br>・アクション グループのリソース ID<br>・アラートが発報した日時 (タイムゾーンを明記してご記載ください。例. 2023-03-15 12:00 JST)<br>・<a href="https://jpazmon-integ.github.io/blog/general/HowToCreateSR/#4-4-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%8C%E6%83%B3%E5%AE%9A%E3%81%A9%E3%81%8A%E3%82%8A%E3%81%AB%E5%8B%95%E4%BD%9C%E3%81%97%E3%81%AA%E3%81%84-%E8%AA%A4%E6%A4%9C%E7%9F%A5">アラート ID</a></p>
+<br>
+<br>
+
+
+<h3 id="Q-アラートが発報しましたが、メールが届いていません。考えられる原因を教えてください。"><a href="#Q-アラートが発報しましたが、メールが届いていません。考えられる原因を教えてください。" class="headerlink" title="Q. アラートが発報しましたが、メールが届いていません。考えられる原因を教えてください。"></a>Q. アラートが発報しましたが、メールが届いていません。考えられる原因を教えてください。</h3><p>考えられる主な原因は以下の通りです。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-troubleshoot#i-didnt-receive-the-expected-email">こちら</a>の公開情報にもトラブルシューティングのステップが掲載されておりますのでご確認ください。</p>
+<ul>
+<li>通知されたメール アドレスが許可されていない</li>
+<li>アラート処理ルールによってメールの通知が抑制された</li>
+<li>アクション グループで登録解除されていた</li>
+<li>メールのレート制限に達した</li>
+</ul>
+<p>Azure Monitor から送られるメールは以下のアドレスが利用されます。メール アドレスがブロックされていないかどうかをご確認ください。</p>
+<p>・azure-noreply@microsoft.com<br>・azureemail-noreply@microsoft.com<br>・alerts-noreply@mail.windowsazure.com</p>
+<p>アラート処理ルールによってメールの通知が抑制された可能性もございます。<br>Azure ポータルの [監視] - [アラート] から、アラート処理ルールでアラートの通知が抑制されていないかどうかをご確認ください。<br><img width="900" src="../MonitorAlertFAQ/image15.png"></p>
+<p>アクション グループのメール アドレスが登録解除されている可能性もございます。<br>Azure ポータルからアクション グループの編集画面を開き、[通知] の [状態] で <strong>登録解除済み</strong> と表示されている場合は、<a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/">こちら</a> のブログを参考にメール アドレスの再登録をお願いいたします。<br><img width="700" src="../MonitorAlertFAQ/image16.png"></p>
+<p>また、アクション グループには<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/service-limits#action-groups">制限</a>がございます。メールの場合は 1 時間に 100 通のレート制限があり、この制限に触れた場合は通知が停止されます。この制限に抵触すると、当該のアドレスに「We’ve temporarily paused your Azure email notifications」という通知メールが届きますので、このレート制限の影響でメールが届いていないとご判断いただけます。<br><img width="600" src="../MonitorAlertFAQ/image17.png"></p>
+<p>上記に該当しない場合は、Azure Monitoring サポートまでお問い合わせをご起票ください。<br>お問い合わせをご起票いただく際には、<a href="https://jpazmon-integ.github.io/blog/general/HowToCreateSR/#4-5-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%8C%E7%99%BA%E5%A0%B1%E3%81%97%E3%81%9F%E3%81%8C%E3%80%81%E3%83%A1%E3%83%BC%E3%83%AB%E3%81%A7%E9%80%9A%E7%9F%A5%E3%81%95%E3%82%8C%E3%81%AA%E3%81%84">以下の情報</a>をご連携くださいますようお願いいたします。</p>
+<p>・アラート ルールのリソース ID<br>・アクション グループのリソース ID<br>・アラートが発報した日時 (タイムゾーンを明記してご記載ください。例. 2023-03-15 12:00 JST)<br>・<a href="https://jpazmon-integ.github.io/blog/general/HowToCreateSR/#4-4-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%8C%E6%83%B3%E5%AE%9A%E3%81%A9%E3%81%8A%E3%82%8A%E3%81%AB%E5%8B%95%E4%BD%9C%E3%81%97%E3%81%AA%E3%81%84-%E8%AA%A4%E6%A4%9C%E7%9F%A5">アラート ID</a></p>
+<br>
+<br>
+
+
+<h3 id="Q-アクション-グループでメールを通知しています。利用料金を教えてください。"><a href="#Q-アクション-グループでメールを通知しています。利用料金を教えてください。" class="headerlink" title="Q. アクション グループでメールを通知しています。利用料金を教えてください。"></a>Q. アクション グループでメールを通知しています。利用料金を教えてください。</h3><p>サブスクリプション毎に 1,000 通までは無料でご利用いただけますが、この無料枠を超えた場合はご利用料金が発生します。<br>100,000 通につき $2 の場合、1,001 通目から 100,000 通目までは、$2 となります。<br>100,001 通 から 200,000 通目までは、さらに + $2 となり、＄4 となります。<br>現時点の価格の詳細は <a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">Azure Monitor 価格サイト</a>や<a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/calculator/">計算ツール</a>をご覧ください。通知の種類 (メール、webhook、SMS など) によってご利用料金が異なりますので、アクション グループの設定内容に応じてご確認ください。</p>
+<br>
+<br>
+
+
+<h3 id="Q-アラート処理ルールのスコープでは、通知を抑制したいアラート-ルールを指定すればよいのでしょうか。"><a href="#Q-アラート処理ルールのスコープでは、通知を抑制したいアラート-ルールを指定すればよいのでしょうか。" class="headerlink" title="Q. アラート処理ルールのスコープでは、通知を抑制したいアラート ルールを指定すればよいのでしょうか。"></a>Q. アラート処理ルールのスコープでは、通知を抑制したいアラート ルールを指定すればよいのでしょうか。</h3><p>いいえ。アラート処理ルールのスコープでは、<strong>影響を受けるリソース</strong>を指定してください。<br><strong>影響を受けるリソース</strong> は、Azure ポータルの [監視] &gt; [アラート] でご確認いただけます。<br><a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AlertProcessingRule/#2-1-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%A7%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%81%AF%E3%80%81%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%84">必ずしも、アラート ルールのスコープと 影響を受けるリソース が一致するとは限りません</a>ので、ご注意ください。</p>
+<p>また、スコープでサブスクリプションやリソース グループを選択することも可能ですが、サブスクリプションやリソース グループに存在するリソースを対象とした、すべてのアラート ルールにアラート処理ルールが適用されますので、ご注意ください。<br><img width="900" src="../MonitorAlertFAQ/image18.png"></p>
+<br>
+<br>
+
+
+<h3 id="Q-アラート処理ルールを利用していますが、Azure-ポータルの-監視-gt-アラート-でアラートが発報しているようです。"><a href="#Q-アラート処理ルールを利用していますが、Azure-ポータルの-監視-gt-アラート-でアラートが発報しているようです。" class="headerlink" title="Q. アラート処理ルールを利用していますが、Azure ポータルの [監視] &gt; [アラート] でアラートが発報しているようです。"></a>Q. アラート処理ルールを利用していますが、Azure ポータルの [監視] &gt; [アラート] でアラートが発報しているようです。</h3><p>アラート処理ルールは、<strong>アクション グループの適用/抑制を行う機能であり、アラート ルールの実行自体を抑制するものではございません。</strong> アラートの発報や解決自体を抑制する機能ではございませんので、ご留意ください。</p>
+<br>
+<br>
+
+
+<h3 id="Q-アラート処理ルールによってアラート-ルールの通知が抑制されたことを確認する方法を教えてください。"><a href="#Q-アラート処理ルールによってアラート-ルールの通知が抑制されたことを確認する方法を教えてください。" class="headerlink" title="Q. アラート処理ルールによってアラート ルールの通知が抑制されたことを確認する方法を教えてください。"></a>Q. アラート処理ルールによってアラート ルールの通知が抑制されたことを確認する方法を教えてください。</h3><p>Azure ポータルの [監視] - [アラート] を開き、[履歴] を選択してください。<br>アラート処理ルールでアラートの通知が抑制された場合は、以下のように表示されます。<br><img width="900" src="../MonitorAlertFAQ/image15.png"></p>
+<br>
+<br>
+
+
+
+<h3 id="Q-アラート処理ルールのスコープは「サブスクリプション」や「リソース-グループ」の単位で登録した方がよいですか。"><a href="#Q-アラート処理ルールのスコープは「サブスクリプション」や「リソース-グループ」の単位で登録した方がよいですか。" class="headerlink" title="Q. アラート処理ルールのスコープは「サブスクリプション」や「リソース グループ」の単位で登録した方がよいですか。"></a>Q. アラート処理ルールのスコープは「サブスクリプション」や「リソース グループ」の単位で登録した方がよいですか。</h3><p>弊社としては推奨している単位はございません。<br>監視対象となるリソース、リソース グループ、サブスクリプションのいずれか、お客様のご要件に沿うものをご指定ください。</p>
+<p>アラート処理ルールのスコープでサブスクリプションやリソース グループを選択した場合、その配下に存在するリソースを対象とした、すべてのアラート ルールにアラート処理ルールが適用されます。特定のアラート ルールにアラート処理ルールを適用されたい場合には、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-processing-rules?tabs=portal#scope-and-filters-for-alert-processing-rules">フィルター</a>の条件で [アラート ルール ID] もしくは [アラート ルール名] で通知を抑制したいアラート ルールをご指定ください。<br><img width="700" src="../MonitorAlertFAQ/image13.png"></p>
+<br>
+<br>
+
+
+<h3 id="Q-ステートフルなアラート-ルールを設定しています。アラートが「解決」したときのみ通知を抑制することはできますか。"><a href="#Q-ステートフルなアラート-ルールを設定しています。アラートが「解決」したときのみ通知を抑制することはできますか。" class="headerlink" title="Q. ステートフルなアラート ルールを設定しています。アラートが「解決」したときのみ通知を抑制することはできますか。"></a>Q. ステートフルなアラート ルールを設定しています。アラートが「解決」したときのみ通知を抑制することはできますか。</h3><p>はい、可能です。<br>アラート処理ルールでは、任意の時間帯にアクション グループを適用したり、抑制したりすることができます。<br>下図のようにアラートの条件に対して「解決済み」をご指定いただくことで、解決済みのアラートに対してアクション グループを抑制することが可能です。<br><img width="900" src="../MonitorAlertFAQ/image20.png"></p>
+<br>
+<br>
+
+
+<h3 id="Q-アラート処理ルールでサービス正常性アラートの通知を抑制することはできますか。"><a href="#Q-アラート処理ルールでサービス正常性アラートの通知を抑制することはできますか。" class="headerlink" title="Q. アラート処理ルールでサービス正常性アラートの通知を抑制することはできますか。"></a>Q. アラート処理ルールでサービス正常性アラートの通知を抑制することはできますか。</h3><p>いいえ。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-processing-rules?tabs=portal#add-action-groups-to-all-alert-types">サービス正常性アラートはアラート処理ルールで通知を抑制することはできません</a>。</p>
+<br>
+<br>
+
+<p>上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。<br>最後までお読みいただきありがとうございました！</p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/AzureMonitorEssential/MonitorAlertFAQ.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../LogAnalytics/AMA_CMA_FW/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">CMA/AMA とエンドポイントの通信経路上に Azure Firewall がある場合の注意事項</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">Azure Monitor のアラートに関するよくあるご質問</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/AMA_CMA_FW/">CMA/AMA とエンドポイントの通信経路上に Azure Firewall がある場合の注意事項</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/TroubleshootingAMALogIngestion/">Azure Monitor エージェントを使用したログ収集が行われない場合のトラブルシューティングについて</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/HowToMigrateToAmaFromAzureDiagnostics/">Retirement notice ： Migrate to Azure Monitor Agent before 31 March 2026 について</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/HowToCreatePerfLogAlertForLinux/">&lt;Linux 版&gt; Azure Monitor エージェントを利用した性能監視（CPU、メモリ、ディスク)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/AMPLS/" rel="tag">AMPLS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Arc/" rel="tag">Azure Arc</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Diagnostics-extension/" rel="tag">Azure Diagnostics extension</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent/" rel="tag">Azure Monitor Agent</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essential/" rel="tag">Azure Monitor Essential</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" rel="tag">Azure Monitor エージェント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Private-Link/" rel="tag">Azure Private Link</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostic-settings/" rel="tag">Diagnostic settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostics-settings/" rel="tag">Diagnostics settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HowTo/" rel="tag">HowTo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/LAD/" rel="tag">LAD</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Alert/" rel="tag">Log Alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" rel="tag">Log Analytics エージェント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-ID/" rel="tag">Managed ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-Identity/" rel="tag">Managed Identity</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Migration/" rel="tag">Migration</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Run-As-Account/" rel="tag">Run As Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sandbox/" rel="tag">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StartAzureV2VMs/" rel="tag">StartAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StopAzureV2VMs/" rel="tag">StopAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshoot/" rel="tag">Troubleshoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM/" rel="tag">VM</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM-insights/" rel="tag">VM insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WAD/" rel="tag">WAD</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Worker/" rel="tag">Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/howto/" rel="tag">howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/" rel="tag">アクションのミュート</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" rel="tag">アラート処理ルール</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%89-script/" rel="tag">オンボード script</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" rel="tag">クエリ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" rel="tag">コスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%BF%E3%83%BC-API/" rel="tag">データ コレクター API</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%91%E3%83%BC%E3%82%B8/" rel="tag">パージ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" rel="tag">マネージド ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB/" rel="tag">ログ アラート ルール</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88-API/" rel="tag">ログ インジェスト API</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%81%9C%E6%AD%A2/" rel="tag">停止</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%88%86%E6%9E%90%E6%83%85%E5%A0%B1/" rel="tag">分析情報</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" rel="tag">実行アカウント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/" rel="tag">移行</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" rel="tag">自動化</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%B5%B7%E5%8B%95/" rel="tag">起動</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/">How-To</a><span class="tag-list-count">39</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/">Tips</a><span class="tag-list-count">28</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/">Azure Monitor Essentials</a><span class="tag-list-count">13</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/">Azure Monitor</a><span class="tag-list-count">7</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/">FAQ</a><span class="tag-list-count">10</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/">Log Analytics</a><span class="tag-list-count">35</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/">Troubleshooting</a><span class="tag-list-count">4</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">8</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/">Automation</a><span class="tag-list-count">10</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/">チーム紹介</a><span class="tag-list-count">5</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/">移行</a><span class="tag-list-count">2</span><ul></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/01/">2025 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/11/">2024 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/10/">2024 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/09/">2024 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/08/">2024 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/07/">2024 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/05/">2024 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/04/">2024 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/03/">2024 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/01/">2024 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/12/">2023 / 12</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/11/">2023 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/10/">2023 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/09/">2023 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/07/">2023 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/06/">2023 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/03/">2023 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/01/">2023 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/11/">2022 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/10/">2022 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/09/">2022 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/08/">2022 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/AMPLS/" style="font-size: 10px;">AMPLS</a> <a href="../../tags/Application-Insights/" style="font-size: 15.83px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 16.67px;">Automation</a> <a href="../../tags/Azure-Arc/" style="font-size: 12.5px;">Azure Arc</a> <a href="../../tags/Azure-Diagnostics-extension/" style="font-size: 10.83px;">Azure Diagnostics extension</a> <a href="../../tags/Azure-Monitor/" style="font-size: 15px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Agent/" style="font-size: 14.17px;">Azure Monitor Agent</a> <a href="../../tags/Azure-Monitor-Essential/" style="font-size: 12.5px;">Azure Monitor Essential</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 17.5px;">Azure Monitor Essentials</a> <a href="../../tags/Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" style="font-size: 10px;">Azure Monitor エージェント</a> <a href="../../tags/Azure-Private-Link/" style="font-size: 11.67px;">Azure Private Link</a> <a href="../../tags/Diagnostic-settings/" style="font-size: 10.83px;">Diagnostic settings</a> <a href="../../tags/Diagnostics-settings/" style="font-size: 10px;">Diagnostics settings</a> <a href="../../tags/FAQ/" style="font-size: 16.67px;">FAQ</a> <a href="../../tags/General/" style="font-size: 14.17px;">General</a> <a href="../../tags/How-To/" style="font-size: 20px;">How-To</a> <a href="../../tags/HowTo/" style="font-size: 11.67px;">HowTo</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 10.83px;">Job</a> <a href="../../tags/LAD/" style="font-size: 10.83px;">LAD</a> <a href="../../tags/Log-Alert/" style="font-size: 10px;">Log Alert</a> <a href="../../tags/Log-Analytics/" style="font-size: 19.17px;">Log Analytics</a> <a href="../../tags/Log-Analytics-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" style="font-size: 10px;">Log Analytics エージェント</a> <a href="../../tags/Managed-ID/" style="font-size: 10px;">Managed ID</a> <a href="../../tags/Managed-Identity/" style="font-size: 10px;">Managed Identity</a> <a href="../../tags/MetricAlert/" style="font-size: 10.83px;">MetricAlert</a> <a href="../../tags/Migration/" style="font-size: 10px;">Migration</a> <a href="../../tags/Run-As-Account/" style="font-size: 10px;">Run As Account</a> <a href="../../tags/RunAs-Account/" style="font-size: 12.5px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 13.33px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 18.33px;">Tips</a> <a href="../../tags/Troubleshoot/" style="font-size: 10px;">Troubleshoot</a> <a href="../../tags/Troubleshooting/" style="font-size: 12.5px;">Troubleshooting</a> <a href="../../tags/VM/" style="font-size: 10px;">VM</a> <a href="../../tags/VM-insights/" style="font-size: 10px;">VM insights</a> <a href="../../tags/WAD/" style="font-size: 10.83px;">WAD</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/howto/" style="font-size: 10px;">howto</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/" style="font-size: 10px;">アクションのミュート</a> <a href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" style="font-size: 10px;">アラート処理ルール</a> <a href="../../tags/%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%89-script/" style="font-size: 10px;">オンボード script</a> <a href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" style="font-size: 10px;">クエリ</a> <a href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" style="font-size: 10px;">コスト</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 13.33px;">チーム紹介</a> <a href="../../tags/%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%BF%E3%83%BC-API/" style="font-size: 10px;">データ コレクター API</a> <a href="../../tags/%E3%83%91%E3%83%BC%E3%82%B8/" style="font-size: 10px;">パージ</a> <a href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" style="font-size: 10.83px;">マネージド ID</a> <a href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB/" style="font-size: 10px;">ログ アラート ルール</a> <a href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88-API/" style="font-size: 10px;">ログ インジェスト API</a> <a href="../../tags/%E5%81%9C%E6%AD%A2/" style="font-size: 10px;">停止</a> <a href="../../tags/%E5%88%86%E6%9E%90%E6%83%85%E5%A0%B1/" style="font-size: 10px;">分析情報</a> <a href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" style="font-size: 11.67px;">可用性テスト</a> <a href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" style="font-size: 10px;">実行アカウント</a> <a href="../../tags/%E7%A7%BB%E8%A1%8C/" style="font-size: 10.83px;">移行</a> <a href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" style="font-size: 10px;">自動化</a> <a href="../../tags/%E8%B5%B7%E5%8B%95/" style="font-size: 10px;">起動</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
