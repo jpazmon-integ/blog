@@ -44,7 +44,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image19.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image20.png">
 <meta property="article:published_time" content="2024-10-30T15:00:00.000Z">
-<meta property="article:modified_time" content="2025-01-29T02:34:10.526Z">
+<meta property="article:modified_time" content="2025-02-04T08:37:42.434Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="How-To">
 <meta property="article:tag" content="Azure Monitor Essentials">
@@ -136,7 +136,7 @@
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+0dee8ad7-208e-5392-a0a5-f1bad9d82e83%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%3CLinux+%E7%89%88%3E+Azure+Monitor+%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%81%9F%E6%80%A7%E8%83%BD%E7%9B%A3%E8%A6%96%EF%BC%88CPU%E3%80%81%E3%83%A1%E3%83%A2%E3%83%AA%E3%80%81%E3%83%87%E3%82%A3%E3%82%B9%E3%82%AF%29%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FHowToCreatePerfLogAlertForLinux%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FHowToCreatePerfLogAlertForLinux.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FHowToCreatePerfLogAlertForLinux.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/" data-id="cm6ham3gj00db0nlvdrqr270n" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/" data-id="cm6q88pj200d80nn5aq832u8k" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -147,22 +147,23 @@
 
 
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
 <li><a href="#1-%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB">1. はじめに</a><ul>
 <li><a href="#1-1-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%A8%E3%81%AF">1-1. ログ アラート ルールとは</a></li>
-<li><a href="#1-2-Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%81%9F-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%81%AE%E6%B5%81%E3%82%8C">1-2. Azure Monitor エージェントを利用した ログ アラート ルールの設定の流れ</a></li>
+<li><a href="#1-2-azure-monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%81%9F-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%81%AE%E6%B5%81%E3%82%8C">1-2. Azure Monitor エージェントを利用した ログ アラート ルールの設定の流れ</a></li>
 <li><a href="#1-3-%E6%9C%AC%E3%83%96%E3%83%AD%E3%82%B0%E3%81%A7%E7%B4%B9%E4%BB%8B%E3%81%99%E3%82%8B%E5%86%85%E5%AE%B9%E3%81%AE%E5%89%8D%E6%8F%90">1-3. 本ブログで紹介する内容の前提</a></li>
 </ul>
 </li>
-<li><a href="2-%E6%80%A7%E8%83%BD%E7%9B%A3%E8%A6%96%EF%BC%88CPU%E3%80%81%E3%83%A1%E3%83%A2%E3%83%AA%E3%80%81%E3%83%87%E3%82%A3%E3%82%B9%E3%82%AF%EF%BC%89-%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9-%E3%82%AB%E3%82%A6%E3%83%B3%E3%82%BF%E3%83%BC">2. 性能監視（CPU、メモリ、ディスク） に関するパフォーマンス カウンター</a></li>
+<li><a href="#2-%E6%80%A7%E8%83%BD%E7%9B%A3%E8%A6%96cpu%E3%83%A1%E3%83%A2%E3%83%AA%E3%83%87%E3%82%A3%E3%82%B9%E3%82%AF-%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9-%E3%82%AB%E3%82%A6%E3%83%B3%E3%82%BF%E3%83%BC">2. 性能監視（CPU、メモリ、ディスク） に関するパフォーマンス カウンター</a></li>
 <li><a href="#3-%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9-%E3%82%AB%E3%82%A6%E3%83%B3%E3%82%BF%E3%83%BC%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86%E3%83%AB%E3%83%BC%E3%83%AB">3. パフォーマンス カウンターのデータ収集ルール</a><ul>
 <li><a href="#3-1-%E6%97%A2%E5%AE%9A%E3%81%A7%E7%94%A8%E6%84%8F%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9-%E3%82%AB%E3%82%A6%E3%83%B3%E3%82%BF%E3%83%BC%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">3-1. 既定で用意されているパフォーマンス カウンターについて</a></li>
 <li><a href="#3-2-%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9-%E3%82%AB%E3%82%A6%E3%83%B3%E3%82%BF%E3%83%BC%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86%E3%83%AB%E3%83%BC%E3%83%AB%E8%A8%AD%E5%AE%9A%E6%89%8B%E9%A0%86">3-2. パフォーマンス カウンターのデータ収集ルール設定手順</a></li>
 </ul>
 </li>
 <li><a href="#4-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E4%B8%BB%E3%81%AA%E8%A8%AD%E5%AE%9A%E9%A0%85%E7%9B%AE">4. ログ アラート ルールの主な設定項目</a></li>
-<li><a href="#5-CPU-%E4%BD%BF%E7%94%A8%E7%8E%87%E3%82%92%E7%9B%A3%E8%A6%96%E3%81%99%E3%82%8B%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB">5. CPU 使用率を監視するログ アラート ルール</a><ul>
-<li><a href="#5-1-CPU-%E4%BD%BF%E7%94%A8%E7%8E%87%E3%81%AE%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E4%BE%8B">5-1. CPU 使用率のログ アラート ルールの設定例</a></li>
-<li><a href="#5-2-CPU-%E4%BD%BF%E7%94%A8%E7%8E%87%E3%81%AE%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E6%89%8B%E9%A0%86">5-2. CPU 使用率のログ アラート ルールの設定手順</a></li>
+<li><a href="#5-cpu-%E4%BD%BF%E7%94%A8%E7%8E%87%E3%82%92%E7%9B%A3%E8%A6%96%E3%81%99%E3%82%8B%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB">5. CPU 使用率を監視するログ アラート ルール</a><ul>
+<li><a href="#5-1-cpu-%E4%BD%BF%E7%94%A8%E7%8E%87%E3%81%AE%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E4%BE%8B">5-1. CPU 使用率のログ アラート ルールの設定例</a></li>
+<li><a href="#5-2-cpu-%E4%BD%BF%E7%94%A8%E7%8E%87%E3%81%AE%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E6%89%8B%E9%A0%86">5-2. CPU 使用率のログ アラート ルールの設定手順</a></li>
 </ul>
 </li>
 <li><a href="#6-%E3%83%A1%E3%83%A2%E3%83%AA%E4%BD%BF%E7%94%A8%E7%8E%87%E3%82%92%E7%9B%A3%E8%A6%96%E3%81%99%E3%82%8B%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB">6. メモリ使用率を監視するログ アラート ルール</a><ul>
@@ -237,17 +238,17 @@
 </thead>
 <tbody><tr>
 <td>CPU</td>
-<td>Processor(_Total)% Processor Time</td>
+<td>Processor(_Total)\% Processor Time</td>
 <td>Perf &#124; where ObjectName == &#39;Processor&#39; and CounterName == &#39;% Processor Time&#39; and InstanceName == &#39;total&#39;</td>
 </tr>
 <tr>
 <td>メモリ</td>
-<td>Memory(*)% Used Memory</td>
+<td>Memory(*)\% Used Memory</td>
 <td>Perf &#124; where ObjectName == &#39;Memory&#39; and CounterName == &#39;% Used Memory&#39;</td>
 </tr>
 <tr>
 <td>ディスク</td>
-<td>Logical Disk(*)% Used Space</td>
+<td>Logical Disk(*)\% Used Space</td>
 <td>Perf &#124; where ObjectName == &#39;Logical Disk&#39; and CounterName == &#39;% Used Space&#39;</td>
 </tr>
 </tbody></table>
@@ -599,7 +600,7 @@
 
 
 
-<h3 id="7-1-ディスク空き容量率のログ-アラート-ルールの設定例"><a href="#7-1-ディスク空き容量率のログ-アラート-ルールの設定例" class="headerlink" title="7-1. ディスク空き容量率のログ アラート ルールの設定例"></a>7-1. ディスク空き容量率のログ アラート ルールの設定例</h3><p>データ収集ルールでは Logical Disk(*)% Used Space を設定しているため、各ファイル システムの使用率と各ファイル システム合計での使用率が収集されます。そのため、特定のファイル システムを監視する場合にはディメンションで InstanceName を選択し、値を指定します。今回は InstanceName が /var の使用率を監視するアラート ルールを作成します。</p>
+<h3 id="7-1-ディスク空き容量率のログ-アラート-ルールの設定例"><a href="#7-1-ディスク空き容量率のログ-アラート-ルールの設定例" class="headerlink" title="7-1. ディスク空き容量率のログ アラート ルールの設定例"></a>7-1. ディスク空き容量率のログ アラート ルールの設定例</h3><p>データ収集ルールでは Logical Disk(*)\% Used Space を設定しているため、各ファイル システムの使用率と各ファイル システム合計での使用率が収集されます。そのため、特定のファイル システムを監視する場合にはディメンションで InstanceName を選択し、値を指定します。今回は InstanceName が /var の使用率を監視するアラート ルールを作成します。</p>
 <table>
 <thead>
 <tr>
