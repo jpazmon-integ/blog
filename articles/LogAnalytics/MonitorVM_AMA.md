@@ -1,6 +1,6 @@
 ---
 title: Azure Monitor エージェントにより収集される Heartbeat ログを使用した死活監視方法
-date: 2025-02-15 00:00:00
+date: 2025-02-14 00:00:00
 tags:
   - Log Analytics
   - Azure Monitor Essentials
