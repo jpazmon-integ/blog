@@ -14,10 +14,20 @@ tags:
 
 <!-- more -->
 ## Q & A タイトル
+
+#### <Azure Monitor の診断設定の全般>
 - [Q. Azure Monitor の診断設定について教えてください。](#Q-Azure-Monitor-の診断設定について教えてください。)
 - [Q. Azure VM にも「診断設定」というメニューがありますが、Azure Monitor の診断設定とは異なる機能ですか。](#Q-Azure-VM-にも「診断設定」というメニューがありますが、Azure-Monitor-の診断設定とは異なる機能ですか。)
 - [Q. Azure Monitor の診断設定は、すべてのリソースでサポートしていますか。](#Q-Azure-Monitor-の診断設定は、すべてのリソースでサポートしていますか。)
 - [Q. Azure Monitor の診断設定の設定手順を教えてください。](#Q-Azure-Monitor-の診断設定の設定手順を教えてください。)
+- [Q. Azure Monitor の診断設定を構成する前に生成されたログやメトリック、アクティビティ ログは、ストレージ アカウントや Log Analytics ワークスペースにエクスポートされますか。](#Q-Azure-Monitor-の診断設定を構成する前に生成されたログやメトリック、アクティビティ-ログは、ストレージ-アカウントや-Log-Analytics-ワークスペースにエクスポートされますか。)
+- [Q. Azure Monitor の診断設定の構成を検討しています。私の環境の場合、コストはどれぐらいになりますか。](#Q-Azure-Monitor-の診断設定の構成を検討しています。私の環境の場合、コストはどれぐらいになりますか。)
+
+
+<br>
+
+
+#### <リソース ログ・メトリックのエクスポート>
 - [Q. Azure リソースのログやメトリックを Log Analytics ワークスペースにエクスポートすることを検討しています。必要な権限を教えてください。](#Q-Azure-リソースのログやメトリックを-Log-Analytics-ワークスペースにエクスポートすることを検討しています。必要な権限を教えてください。)
 - [Q. Azure リソースのログやメトリックをストレージアカウントにエクスポートすることを検討しています。必要な権限を教えてください。](#Q-Azure-リソースのログやメトリックをストレージアカウントにエクスポートすることを検討しています。必要な権限を教えてください。)
 - [Q. 複数のサブスクリプションのリソース ログやメトリックを、一つの Log Analytics ワークスペースにエクスポートすることは可能ですか。](#Q-複数のサブスクリプションのリソース-ログやメトリックを、一つの-Log-Analytics-ワークスペースにエクスポートすることは可能ですか。)
@@ -27,6 +37,12 @@ tags:
 - [Q. Azure Monitor の診断設定でリソース ログとメトリックを、Log Analytics ワークスペースにエクスポートしています。データの格納場所を教えてください。](#Q-Azure-Monitor-の診断設定でリソース-ログとメトリックを、Log-Analytics-ワークスペースにエクスポートしています。データの格納場所を教えてください。)
 - [Q. Azure Monitor の診断設定でリソース ログとメトリックを、ストレージ アカウントにエクスポートしています。データの格納場所を変更することはできますか。](#Q-Azure-Monitor-の診断設定でリソース-ログとメトリックを、ストレージ-アカウントにエクスポートしています。データの格納場所を変更することはできますか。)
 - [Q. Azure VM のプラットフォーム メトリック (ホスト OS メトリック) を Log Analytics ワークスペースにエクスポートしたいのですが、Azure ポータル上に設定画面が見当たりません。](#Q-Azure-VM-のプラットフォーム-メトリック-ホスト-OS-メトリック-を-Log-Analytics-ワークスペースにエクスポートしたいのですが、Azure-ポータル上に設定画面が見当たりません。)
+
+
+<br>
+
+
+#### <アクティビティ ログのエクスポート>
 - [Q. アクティビティ ログの診断設定の設定手順を教えてください。](#Q-アクティビティ-ログの診断設定の設定手順を教えてください。)
 - [Q. アクティビティ ログのカテゴリの詳細を教えてください。](#Q-アクティビティ-ログのカテゴリの詳細を教えてください。)
 - [Q. アクティビティ ログを Log Analytics ワークスペースにエクスポートすることを検討しています。診断設定を構成するために必要な権限を教えてください。](#Q-アクティビティ-ログを-Log-Analytics-ワークスペースにエクスポートすることを検討しています。診断設定を構成するために必要な権限を教えてください。)
@@ -36,14 +52,24 @@ tags:
 - [Q. Azure Monitor の診断設定で、アクティビティ ログをストレージ アカウントにエクスポートしています。データの格納場所を教えてください。](#Q-Azure-Monitor-の診断設定で、アクティビティ-ログをストレージ-アカウントにエクスポートしています。データの格納場所を教えてください。)
 - [Q. Azure Monitor の診断設定で、アクティビティ ログを Log Analytics ワークスペースにエクスポートしています。データの格納場所を教えてください。](#Q-Azure-Monitor-の診断設定で、アクティビティ-ログを-Log-Analytics-ワークスペースにエクスポートしています。データの格納場所を教えてください。)
 - [Q. アクティビティ ログを Log Analytics ワークスペースにエクスポートした場合、Log Analytics ワークスペースに対する料金が発生しますか。](#Q-アクティビティ-ログを-Log-Analytics-ワークスペースにエクスポートした場合、Log-Analytics-ワークスペースに対する料金が発生しますか。)
-- [Q. Azure Monitor の診断設定によるプラットフォーム メトリックやリソース ログのエクスポートは、100 % のデータ エクスポートを保証していますか。](#Q-Azure-Monitor-の診断設定によるプラットフォーム-メトリックやリソース-ログのエクスポートは、100-のデータ-エクスポートを保証していますか。)
-- [Q. Log Analytics ワークスペースやストレージ アカウントにログやメトリックをエクスポートしていますが、データが格納されていません。考えられる原因を教えてください。](#Q-Log-Analytics-ワークスペースやストレージ-アカウントにログやメトリックをエクスポートしていますが、データが格納されていません。考えられる原因を教えてください。)
-- [Q. Azure Monitor の診断設定を構成する前に生成されたログやメトリックは、ストレージ アカウントや Log Analytics ワークスペースにエクスポートされますか。](#Q-Azure-Monitor-の診断設定を構成する前に生成されたログやメトリックは、ストレージ-アカウントや-Log-Analytics-ワークスペースにエクスポートされますか。)
-- [Q. Azure Monitor の診断設定を構成しましたが、設定が消えてしまいました。](#Q-Azure-Monitor-の診断設定を構成しましたが、設定が消えてしまいました。)
 
 
 <br>
 
+
+### <トラブルシューティング>
+- [Q. Azure Monitor の診断設定によるプラットフォーム メトリックやリソース ログのエクスポートは、100 % のデータ エクスポートを保証していますか。](#Q-Azure-Monitor-の診断設定によるプラットフォーム-メトリックやリソース-ログのエクスポートは、100-のデータ-エクスポートを保証していますか。)
+- [Q. Log Analytics ワークスペースやストレージ アカウントにログやメトリックをエクスポートしていますが、データが格納されていません。考えられる原因を教えてください。](#Q-Log-Analytics-ワークスペースやストレージ-アカウントにログやメトリックをエクスポートしていますが、データが格納されていません。考えられる原因を教えてください。)
+- [Q. Azure Monitor の診断設定を構成しましたが、設定が消えてしまいました。](#Q-Azure-Monitor-の診断設定を構成しましたが、設定が消えてしまいました。)
+- [Q. 新たに Azure Monitor の診断設定を構成しようとしたところ、ストレージ アカウントの保持期間を指定する項目が表示されません。以前は、診断設定にてストレージ アカウントにエクスポートした場合、保持期間を指定する項目が表示されていました。](#Q-新たに-Azure-Monitor-の診断設定を構成しようとしたところ、ストレージ-アカウントの保持期間を指定する項目が表示されません。以前は、診断設定にてストレージ-アカウントにエクスポートした場合、保持期間を指定する項目が表示されていました。)
+
+
+<br>
+
+
+--------------------------------------------------------
+### Azure Monitor の診断設定の全般
+--------------------------------------------------------
 ### Q. Azure Monitor の診断設定について教えてください。
 [Azure プラットフォームのメトリックやログ、アクティビティ ログを Log Analytics ワークスペース等にエクスポートする機能](https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal)です。
 [プラットフォームのメトリック](https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/metrics-index)は Azure リソースから一定の間隔で自動で収集される数値データであり、既定で収集されます。メトリックは Azure 基盤側のメトリック データベースに保存され、Azure ポータルの[メトリック エクスプローラー](https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/analyze-metrics)から確認できます。
@@ -88,9 +114,29 @@ Azure ポータルから Azure VM を開くと [診断設定] という項目が
 <br>
 
 
+### Q. Azure Monitor の診断設定を構成する前に生成されたログやメトリック、アクティビティ ログは、ストレージ アカウントや Log Analytics ワークスペースにエクスポートされますか。
+いいえ、エクスポートされません。
+診断設定の構成後に生成されたログやメトリックがエクスポートされます。
 
+
+<br>
+
+### Q. Azure Monitor の診断設定の構成を検討しています。私の環境の場合、コストはどれぐらいになりますか。
+誠に残念ではございますが、発生する具体的なコストについては一概に回答出来ません。
+理由は、ご利用いただいている Azure サービスの種類やリソースの数・Azure のご利用方法など、お客様の環境に影響して出力されるログの量が変わるからです。
+
+弊社といたしましては、[料金計算ツール](https://azure.microsoft.com/ja-jp/pricing/calculator/?service=monitor)を用いてコストをお見積りいただくか、最低限の Azure リソースに対して一時的に診断設定をご構築いただき、1 日あたりのログ量を計測いただくことを一般的な戦略として案内しております。Azure Monitor のコスト見積もりに関しましては、[下記](https://learn.microsoft.com/ja-jp/azure/azure-monitor/cost-estimate)の公開情報もご覧いただけますと幸いです。
+
+<br>
+<br>
+<br>
+
+
+--------------------------------------------------------
+#### リソース ログ・メトリックのエクスポート
+--------------------------------------------------------
 ### Q. Azure リソースのログやメトリックを Log Analytics ワークスペースにエクスポートすることを検討しています。必要な権限を教えてください。
-診断設定を構成するリソース側と、ログのエクスポート先となる Log Analyltics ワークスペース側で、以下の権限が必要です。
+診断設定を構成するリソース側と、ログのエクスポート先となる Log Analytics ワークスペース側で、以下の権限が必要です。
 診断設定に関する必要な権限は、[公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/roles-permissions-security#monitoring-contributor)にも掲載されておりますのでご覧ください。また、[ロールの割り当て手順](https://learn.microsoft.com/ja-jp/azure/role-based-access-control/role-assignments-portal?tabs=delegate-condition)や[カスタム ロールの作成手順](https://learn.microsoft.com/ja-jp/azure/role-based-access-control/custom-roles-portal) も公開情報をご確認ください。
 
 - **診断設定を構成するリソース側に必要な権限 (診断設定の作成、変更、削除)**
@@ -102,7 +148,7 @@ Azure Monitor の組み込みロールの場合、[Monitoring Contributor (監�
 "Microsoft.Insights/DiagnosticSettings/delete"
 ```
 
-- **ログのエクスポート先となる Log Analyltics ワークスペースに必要な権限**
+- **ログのエクスポート先となる Log Analytics ワークスペースに必要な権限**
 Azure Monitor の組み込みロールの場合、[Monitoring Contributor (監視共同作成者)](https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles/monitor#monitoring-contributor) や [Log Analytics Contributor (Log Analytics 共同作成者)](https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles/analytics#log-analytics-contributor) が該当します。
 ```
 "Microsoft.OperationalInsights/workspaces/read",
@@ -194,7 +240,7 @@ insights-logs-{log category name}/resourceId=/SUBSCRIPTIONS/{subscription ID}/RE
 
 ### Q. Azure Monitor の診断設定でリソース ログとメトリックを、Log Analytics ワークスペースにエクスポートしています。データの格納場所を教えてください。
 メトリックを Log Analytics ワークスペースにエクスポートした場合は <strong><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/tables/azuremetrics">AzureMetrics</a></strong> テーブルにデータが格納されます。
-リソース共通で AzureMetrics テーブルにエクスポートされますので、複数のリソースを 1 つの Log Analytics ワークスペースにエクスポートしている場合は、リソース ID (_ReosourceId) やメトリック名 (MetirceName) 等の条件を指定して検索してください。AzureMetrics テーブルのサンプル クエリは、[こちら](https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/queries/azuremetrics)の公開情報をご覧ください。
+リソース共通で AzureMetrics テーブルにエクスポートされますので、複数のリソースを 1 つの Log Analytics ワークスペースにエクスポートしている場合は、リソース ID (_ResourceId) やメトリック名 (MetricName) 等の条件を指定して検索してください。AzureMetrics テーブルのサンプル クエリは、[こちら](https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/queries/azuremetrics)の公開情報をご覧ください。
 <img width="900" src="../MonitorDiagnosticsSettingFAQ/image08.png">
 
 
@@ -215,8 +261,9 @@ AzureDiagnostics テーブルのサンプル クエリは、[こちら](https://
 
 
 
-### Q. Azure Monitor の診断設定でリソース ログとメトリックを、ストレージ アカウントにエクスポートしています。データの格納場所を変更することはできますか。
-いいえ、できません。
+### Q. Azure Monitor の診断設定でリソース ログとメトリックを、ストレージ アカウントにエクスポートしています。データの格納場所のコンテナーを変更することはできますか。
+いいえ、データの格納場所のコンテナーを変更することはできません。
+リソース ログとメトリックを、ストレージ アカウントにエクスポートした場合は、[Q. Azure Monitor の診断設定でリソース ログとメトリックを、ストレージ アカウントにエクスポートしています。データの格納場所を教えてください。](#Q-Azure-Monitor-の診断設定でリソース-ログとメトリックを、ストレージ-アカウントにエクスポートしています。データの格納場所を教えてください。) や [Q. Azure Monitor の診断設定でリソース ログとメトリックを、Log Analytics ワークスペースにエクスポートしています。データの格納場所を教えてください。](#Q-Azure-Monitor-の診断設定でリソース-ログとメトリックを、Log-Analytics-ワークスペースにエクスポートしています。データの格納場所を教えてください。) に記載した格納場所にコンテナーが作成されます。
 
 
 <br>
@@ -229,9 +276,13 @@ Azure VM の[プラットフォーム メトリック (ホスト OS メトリッ
 
 
 <br>
+<br>
+<br>
 
 
-
+--------------------------------------------------------
+### アクティビティ ログのエクスポート
+--------------------------------------------------------
 ### Q. アクティビティ ログの診断設定の設定手順を教えてください。
 Azure ポータルから設定する場合は [監視] を検索し、[アクティビティ ログ] の [診断設定] から構成いただけます。
 設定手順の詳細は[こちら](https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal)の公開情報をご覧ください。
@@ -250,7 +301,7 @@ Azure ポータルから設定する場合は [監視] を検索し、[アクテ
 
 
 ### Q. アクティビティ ログを Log Analytics ワークスペースにエクスポートすることを検討しています。診断設定を構成するために必要な権限を教えてください。
-診断設定を構成するサブスクリプションと、ログのエクスポート先となる Log Analyltics ワークスペース側で以下の権限が必要です。Azure Monitor の組み込みロールの場合、サブスクリプションをスコープとして [Monitoring Contributor (監視共同作成者)](https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles/monitor#monitoring-contributor) や [Log Analytics Contributor (Log Analytics 共同作成者)](https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles/analytics#log-analytics-contributor) を付与いただけますと幸いです。[ロールの割り当て手順](https://learn.microsoft.com/ja-jp/azure/role-based-access-control/role-assignments-portal?tabs=delegate-condition)や[カスタム ロールの作成手順](https://learn.microsoft.com/ja-jp/azure/role-based-access-control/custom-roles-portal) は公開情報をご覧ください。
+診断設定を構成するサブスクリプションと、ログのエクスポート先となる Log Analytics ワークスペース側で以下の権限が必要です。Azure Monitor の組み込みロールの場合、サブスクリプションをスコープとして [Monitoring Contributor (監視共同作成者)](https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles/monitor#monitoring-contributor) や [Log Analytics Contributor (Log Analytics 共同作成者)](https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles/analytics#log-analytics-contributor) を付与いただけますと幸いです。[ロールの割り当て手順](https://learn.microsoft.com/ja-jp/azure/role-based-access-control/role-assignments-portal?tabs=delegate-condition)や[カスタム ロールの作成手順](https://learn.microsoft.com/ja-jp/azure/role-based-access-control/custom-roles-portal) は公開情報をご覧ください。
 
 - **サブスクリプション スコープで必要な権限 (診断設定の作成、変更、削除)**
 ```
@@ -260,7 +311,7 @@ Azure ポータルから設定する場合は [監視] を検索し、[アクテ
 "Microsoft.Insights/DiagnosticSettings/delete"
 ```
 
-- **ログのエクスポート先となる Log Analyltics ワークスペースに必要な権限**
+- **ログのエクスポート先となる Log Analytics ワークスペースに必要な権限**
 ```
 "Microsoft.OperationalInsights/workspaces/read",
 "Microsoft.OperationalInsights/workspaces/sharedKeys/action"
@@ -337,9 +388,13 @@ AzureMetrics テーブルのサンプル クエリは、[こちら](https://lear
 
 
 <br>
+<br>
+<br>
 
 
-
+--------------------------------------------------------
+### トラブルシューティング
+--------------------------------------------------------
 ### Q. Azure Monitor の診断設定によるプラットフォーム メトリックやリソース ログのエクスポートは、100 % のデータ エクスポートを保証していますか。
 いいえ、[100 % のデータ エクスポートを保証しておりません](https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal#possibility-of-duplicated-or-dropped-data)。
 診断設定は、1 日あたりペタバイト単位のデータをお手頃な価格で、効率よくエクスポートすることを前提に設計されているため、完全なトランザクションは保証しておらず、ログやプラットフォーム メトリックが一部欠損する可能性がございます。[診断設定によるプラットフォーム メトリックやリソース ログの一部欠損について](https://jpazmon-integ.github.io/blog/AzureMonitorEssential/DiagnosticSettings/)のブログでも紹介しておりますので、ご確認いただけますと幸いです。
@@ -380,18 +435,17 @@ AzureMetrics テーブルのサンプル クエリは、[こちら](https://lear
 
 
 
-### Q. Azure Monitor の診断設定を構成する前に生成されたログやメトリックは、ストレージ アカウントや Log Analytics ワークスペースにエクスポートされますか。
-いいえ、エクスポートされません。
-診断設定の構成後に生成されたログやメトリックがエクスポートされます。
-
-
-<br>
-
-
-
 ### Q. Azure Monitor の診断設定を構成しましたが、設定が消えてしまいました。
 [日本語を含む、英数字以外の文字がリソース名に含まれる場合、診断設定を作成しても設定が消えることがあります](https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowtoResourceIDNamingRule/#2-3-%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%81%8C%E6%B6%88%E3%81%88%E3%82%8B%E3%81%93%E3%81%A8%E3%81%8C%E3%81%82%E3%82%8B)。
 ただし本事象は[公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal#setting-disappears-because-of-non-ascii-characters-in-resourceid)にも記載があるとおり、診断設定が英数字以外の文字をサポートしないために発生する事象であるため、製品の不具合ではございません。
+
+<br>
+
+### Q. 新たに Azure Monitor の診断設定を構成しようとしたところ、ストレージ アカウントの保持期間を指定する項目が表示されません。以前は、診断設定にてストレージ アカウントにエクスポートした場合、保持期間を指定する項目が表示されていました。
+[こちら](https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/)のブログでもご紹介しておりますとおり、診断設定固有のストレージ アカウントの保持機能は廃止されます。
+以前は、診断設定にてストレージ アカウントを出力先としていた場合、診断設定側でログの保持期間の指定ができましたが、今後はストレージ アカウント側の Azure Storage ライフサイクル管理にて保持期間を指定する必要がございます。
+また、診断設定固有のストレージ アカウントの保持機能の廃止に伴う移行手順は、[こちら](https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/migrate-to-azure-storage-lifecycle-policy?tabs=portal)の公開情報をご覧ください。
+
 
 
 <br>
