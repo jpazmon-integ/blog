@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Azure Monitor の診断設定に関するよくあるご質問 | Japan Azure Monitoring Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは、Azure Monitoring サポート チームの北村です。今回は Azure Monitor の診断設定に関するよくあるご質問をご紹介します。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Azure Monitor の診断設定に関するよくあるご質問">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorDiagnosticsSettingFAQ/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの北村です。今回は Azure Monitor の診断設定に関するよくあるご質問をご紹介します。">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorDiagnosticsSettingFAQ/image01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorDiagnosticsSettingFAQ/image02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorDiagnosticsSettingFAQ/image03.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorDiagnosticsSettingFAQ/image04.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorDiagnosticsSettingFAQ/image05.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorDiagnosticsSettingFAQ/image06.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorDiagnosticsSettingFAQ/image07.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorDiagnosticsSettingFAQ/image08.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorDiagnosticsSettingFAQ/image09.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorDiagnosticsSettingFAQ/image10.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorDiagnosticsSettingFAQ/image11.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorDiagnosticsSettingFAQ/image12.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorDiagnosticsSettingFAQ/image13.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorDiagnosticsSettingFAQ/image14.png">
+<meta property="article:published_time" content="2025-02-19T15:00:00.000Z">
+<meta property="article:modified_time" content="2025-02-19T08:07:05.425Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="How-To">
+<meta property="article:tag" content="Azure Monitor Essentials">
+<meta property="article:tag" content="FAQ">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorDiagnosticsSettingFAQ/image01.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-AzureMonitorEssential/MonitorDiagnosticsSettingFAQ" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Azure Monitor の診断設定に関するよくあるご質問
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2025-02-19T15:00:00.000Z" itemprop="datePublished">2025-02-20</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+f0e1cd8e-ca45-52c4-b1c6-7840cc497310%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Monitor+%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E3%81%94%E8%B3%AA%E5%95%8F%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FMonitorDiagnosticsSettingFAQ%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FMonitorDiagnosticsSettingFAQ.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FMonitorDiagnosticsSettingFAQ.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorDiagnosticsSettingFAQ/" data-id="cm7bmr4iy00df0nte3yws9npp" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回は <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal">Azure Monitor の診断設定</a>に関するよくあるご質問をご紹介します。</p>
+<br>
+
+<span id="more"></span>
+<h2 id="Q-amp-A-タイトル"><a href="#Q-amp-A-タイトル" class="headerlink" title="Q &amp; A タイトル"></a>Q &amp; A タイトル</h2><h4 id="lt-Azure-Monitor-の診断設定の全般-gt"><a href="#lt-Azure-Monitor-の診断設定の全般-gt" class="headerlink" title="&lt;Azure Monitor の診断設定の全般&gt;"></a>&lt;Azure Monitor の診断設定の全般&gt;</h4><ul>
+<li><a href="#Q-Azure-Monitor-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. Azure Monitor の診断設定について教えてください。</a></li>
+<li><a href="#Q-Azure-VM-%E3%81%AB%E3%82%82%E3%80%8C%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%80%8D%E3%81%A8%E3%81%84%E3%81%86%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E3%81%8C%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99%E3%81%8C%E3%80%81Azure-Monitor-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%81%A8%E3%81%AF%E7%95%B0%E3%81%AA%E3%82%8B%E6%A9%9F%E8%83%BD%E3%81%A7%E3%81%99%E3%81%8B%E3%80%82">Q. Azure VM にも「診断設定」というメニューがありますが、Azure Monitor の診断設定とは異なる機能ですか。</a></li>
+<li><a href="#Q-Azure-Monitor-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%81%AF%E3%80%81%E3%81%99%E3%81%B9%E3%81%A6%E3%81%AE%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%A7%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. Azure Monitor の診断設定は、すべてのリソースでサポートしていますか。</a></li>
+<li><a href="#Q-Azure-Monitor-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%81%AE%E8%A8%AD%E5%AE%9A%E6%89%8B%E9%A0%86%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. Azure Monitor の診断設定の設定手順を教えてください。</a></li>
+<li><a href="#Q-Azure-Monitor-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%82%92%E6%A7%8B%E6%88%90%E3%81%99%E3%82%8B%E5%89%8D%E3%81%AB%E7%94%9F%E6%88%90%E3%81%95%E3%82%8C%E3%81%9F%E3%83%AD%E3%82%B0%E3%82%84%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%80%81%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0%E3%81%AF%E3%80%81%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%82%84-Log-Analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. Azure Monitor の診断設定を構成する前に生成されたログやメトリック、アクティビティ ログは、ストレージ アカウントや Log Analytics ワークスペースにエクスポートされますか。</a></li>
+<li><a href="#Q-Azure-Monitor-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%81%AE%E6%A7%8B%E6%88%90%E3%82%92%E6%A4%9C%E8%A8%8E%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82%E7%A7%81%E3%81%AE%E7%92%B0%E5%A2%83%E3%81%AE%E5%A0%B4%E5%90%88%E3%80%81%E3%82%B3%E3%82%B9%E3%83%88%E3%81%AF%E3%81%A9%E3%82%8C%E3%81%90%E3%82%89%E3%81%84%E3%81%AB%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. Azure Monitor の診断設定の構成を検討しています。私の環境の場合、コストはどれぐらいになりますか。</a></li>
+</ul>
+<br>
+
+
+<h4 id="lt-リソース-ログ・メトリックのエクスポート-gt"><a href="#lt-リソース-ログ・メトリックのエクスポート-gt" class="headerlink" title="&lt;リソース ログ・メトリックのエクスポート&gt;"></a>&lt;リソース ログ・メトリックのエクスポート&gt;</h4><ul>
+<li><a href="#Q-Azure-%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%AE%E3%83%AD%E3%82%B0%E3%82%84%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%82%92-Log-Analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%82%92%E6%A4%9C%E8%A8%8E%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82%E5%BF%85%E8%A6%81%E3%81%AA%E6%A8%A9%E9%99%90%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. Azure リソースのログやメトリックを Log Analytics ワークスペースにエクスポートすることを検討しています。必要な権限を教えてください。</a></li>
+<li><a href="#Q-Azure-%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%AE%E3%83%AD%E3%82%B0%E3%82%84%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%82%92%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%82%92%E6%A4%9C%E8%A8%8E%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82%E5%BF%85%E8%A6%81%E3%81%AA%E6%A8%A9%E9%99%90%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. Azure リソースのログやメトリックをストレージアカウントにエクスポートすることを検討しています。必要な権限を教えてください。</a></li>
+<li><a href="#Q-%E8%A4%87%E6%95%B0%E3%81%AE%E3%82%B5%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9-%E3%83%AD%E3%82%B0%E3%82%84%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%82%92%E3%80%81%E4%B8%80%E3%81%A4%E3%81%AE-Log-Analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E5%8F%AF%E8%83%BD%E3%81%A7%E3%81%99%E3%81%8B%E3%80%82">Q. 複数のサブスクリプションのリソース ログやメトリックを、一つの Log Analytics ワークスペースにエクスポートすることは可能ですか。</a></li>
+<li><a href="#Q-%E8%A4%87%E6%95%B0%E3%81%AE%E3%82%B5%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9-%E3%83%AD%E3%82%B0%E3%82%84%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%82%92%E3%80%81%E4%B8%80%E3%81%A4%E3%81%AE%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E5%8F%AF%E8%83%BD%E3%81%A7%E3%81%99%E3%81%8B%E3%80%82">Q. 複数のサブスクリプションのリソース ログやメトリックを、一つのストレージ アカウントにエクスポートすることは可能ですか。</a></li>
+<li><a href="#Q-%E5%88%A5%E3%83%86%E3%83%8A%E3%83%B3%E3%83%88%E3%81%AE-Log-Analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%82%84%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E5%AF%BE%E3%81%97%E3%81%A6%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%82%92%E6%A7%8B%E6%88%90%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E5%8F%AF%E8%83%BD%E3%81%A7%E3%81%99%E3%81%8B%E3%80%82">Q. 別テナントの Log Analytics ワークスペースやストレージ アカウントに対して診断設定を構成することは可能ですか。</a></li>
+<li><a href="#Q-Azure-Monitor-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%81%A7%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9-%E3%83%AD%E3%82%B0%E3%81%A8%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%82%92%E3%80%81%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E6%A0%BC%E7%B4%8D%E5%A0%B4%E6%89%80%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. Azure Monitor の診断設定でリソース ログとメトリックを、ストレージ アカウントにエクスポートしています。データの格納場所を教えてください。</a></li>
+<li><a href="#Q-Azure-Monitor-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%81%A7%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9-%E3%83%AD%E3%82%B0%E3%81%A8%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%82%92%E3%80%81Log-Analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E6%A0%BC%E7%B4%8D%E5%A0%B4%E6%89%80%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. Azure Monitor の診断設定でリソース ログとメトリックを、Log Analytics ワークスペースにエクスポートしています。データの格納場所を教えてください。</a></li>
+<li><a href="#Q-Azure-Monitor-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%81%A7%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9-%E3%83%AD%E3%82%B0%E3%81%A8%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%82%92%E3%80%81%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E6%A0%BC%E7%B4%8D%E5%A0%B4%E6%89%80%E3%82%92%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. Azure Monitor の診断設定でリソース ログとメトリックを、ストレージ アカウントにエクスポートしています。データの格納場所を変更することはできますか。</a></li>
+<li><a href="#Q-Azure-VM-%E3%81%AE%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%83%9B%E3%82%B9%E3%83%88-OS-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%92-Log-Analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%9F%E3%81%84%E3%81%AE%E3%81%A7%E3%81%99%E3%81%8C%E3%80%81Azure-%E3%83%9D%E3%83%BC%E3%82%BF%E3%83%AB%E4%B8%8A%E3%81%AB%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E3%81%8C%E8%A6%8B%E5%BD%93%E3%81%9F%E3%82%8A%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82">Q. Azure VM のプラットフォーム メトリック (ホスト OS メトリック) を Log Analytics ワークスペースにエクスポートしたいのですが、Azure ポータル上に設定画面が見当たりません。</a></li>
+</ul>
+<br>
+
+
+<h4 id="lt-アクティビティ-ログのエクスポート-gt"><a href="#lt-アクティビティ-ログのエクスポート-gt" class="headerlink" title="&lt;アクティビティ ログのエクスポート&gt;"></a>&lt;アクティビティ ログのエクスポート&gt;</h4><ul>
+<li><a href="#Q-%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%81%AE%E8%A8%AD%E5%AE%9A%E6%89%8B%E9%A0%86%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. アクティビティ ログの診断設定の設定手順を教えてください。</a></li>
+<li><a href="#Q-%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0%E3%81%AE%E3%82%AB%E3%83%86%E3%82%B4%E3%83%AA%E3%81%AE%E8%A9%B3%E7%B4%B0%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. アクティビティ ログのカテゴリの詳細を教えてください。</a></li>
+<li><a href="#Q-%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0%E3%82%92-Log-Analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%82%92%E6%A4%9C%E8%A8%8E%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%82%92%E6%A7%8B%E6%88%90%E3%81%99%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AB%E5%BF%85%E8%A6%81%E3%81%AA%E6%A8%A9%E9%99%90%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. アクティビティ ログを Log Analytics ワークスペースにエクスポートすることを検討しています。診断設定を構成するために必要な権限を教えてください。</a></li>
+<li><a href="#Q-%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0%E3%82%92%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%82%92%E6%A4%9C%E8%A8%8E%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%82%92%E6%A7%8B%E6%88%90%E3%81%99%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AB%E5%BF%85%E8%A6%81%E3%81%AA%E6%A8%A9%E9%99%90%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. アクティビティ ログをストレージ アカウントにエクスポートすることを検討しています。診断設定を構成するために必要な権限を教えてください。</a></li>
+<li><a href="#Q-%E7%89%B9%E5%AE%9A%E3%81%AE%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%AE%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0%E3%82%92%E3%80%81Log-Analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%82%84%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E5%8F%AF%E8%83%BD%E3%81%A7%E3%81%99%E3%81%8B%E3%80%82">Q. 特定のリソースのアクティビティ ログを、Log Analytics ワークスペースやストレージ アカウントにエクスポートすることは可能ですか。</a></li>
+<li><a href="#Q-Azure-%E3%83%9D%E3%83%BC%E3%82%BF%E3%83%AB%E3%81%8B%E3%82%89%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9-%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E3%81%AE-%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0-gt-%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A-%E3%82%92%E9%96%8B%E3%81%8F%E3%81%A8%E3%80%81%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%81%8C%E8%A1%A8%E7%A4%BA%E3%81%95%E3%82%8C%E3%81%BE%E3%81%99%E3%80%82%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9-%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E5%8D%98%E4%BD%8D%E3%81%A7%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%82%92%E4%BD%9C%E6%88%90%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%AE%E3%81%A7%E3%81%97%E3%82%87%E3%81%86%E3%81%8B%E3%80%82">Q. Azure ポータルからリソース グループの [アクティビティ ログ] &gt; [診断設定] を開くと、アクティビティ ログの診断設定が表示されます。リソース グループ単位でアクティビティ ログの診断設定を作成できるのでしょうか。</a></li>
+<li><a href="#Q-Azure-Monitor-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%81%A7%E3%80%81%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0%E3%82%92%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E6%A0%BC%E7%B4%8D%E5%A0%B4%E6%89%80%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. Azure Monitor の診断設定で、アクティビティ ログをストレージ アカウントにエクスポートしています。データの格納場所を教えてください。</a></li>
+<li><a href="#Q-Azure-Monitor-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%81%A7%E3%80%81%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0%E3%82%92-Log-Analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E6%A0%BC%E7%B4%8D%E5%A0%B4%E6%89%80%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. Azure Monitor の診断設定で、アクティビティ ログを Log Analytics ワークスペースにエクスポートしています。データの格納場所を教えてください。</a></li>
+<li><a href="#Q-%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0%E3%82%92-Log-Analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%9F%E5%A0%B4%E5%90%88%E3%80%81Log-Analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E6%96%99%E9%87%91%E3%81%8C%E7%99%BA%E7%94%9F%E3%81%97%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. アクティビティ ログを Log Analytics ワークスペースにエクスポートした場合、Log Analytics ワークスペースに対する料金が発生しますか。</a></li>
+</ul>
+<br>
+
+
+<h3 id="lt-トラブルシューティング-gt"><a href="#lt-トラブルシューティング-gt" class="headerlink" title="&lt;トラブルシューティング&gt;"></a>&lt;トラブルシューティング&gt;</h3><ul>
+<li><a href="#Q-Azure-Monitor-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%81%AB%E3%82%88%E3%82%8B%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%82%84%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9-%E3%83%AD%E3%82%B0%E3%81%AE%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%AF%E3%80%81100-%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%82%92%E4%BF%9D%E8%A8%BC%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. Azure Monitor の診断設定によるプラットフォーム メトリックやリソース ログのエクスポートは、100 % のデータ エクスポートを保証していますか。</a></li>
+<li><a href="#Q-Log-Analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%82%84%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E3%83%AD%E3%82%B0%E3%82%84%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%82%92%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%81%8C%E3%80%81%E3%83%87%E3%83%BC%E3%82%BF%E3%81%8C%E6%A0%BC%E7%B4%8D%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82%E8%80%83%E3%81%88%E3%82%89%E3%82%8C%E3%82%8B%E5%8E%9F%E5%9B%A0%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. Log Analytics ワークスペースやストレージ アカウントにログやメトリックをエクスポートしていますが、データが格納されていません。考えられる原因を教えてください。</a></li>
+<li><a href="#Q-Azure-Monitor-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%82%92%E6%A7%8B%E6%88%90%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%E3%81%8C%E3%80%81%E8%A8%AD%E5%AE%9A%E3%81%8C%E6%B6%88%E3%81%88%E3%81%A6%E3%81%97%E3%81%BE%E3%81%84%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82">Q. Azure Monitor の診断設定を構成しましたが、設定が消えてしまいました。</a></li>
+<li><a href="#Q-%E6%96%B0%E3%81%9F%E3%81%AB-Azure-Monitor-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%82%92%E6%A7%8B%E6%88%90%E3%81%97%E3%82%88%E3%81%86%E3%81%A8%E3%81%97%E3%81%9F%E3%81%A8%E3%81%93%E3%82%8D%E3%80%81%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AE%E4%BF%9D%E6%8C%81%E6%9C%9F%E9%96%93%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E9%A0%85%E7%9B%AE%E3%81%8C%E8%A1%A8%E7%A4%BA%E3%81%95%E3%82%8C%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82%E4%BB%A5%E5%89%8D%E3%81%AF%E3%80%81%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%81%AB%E3%81%A6%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%9F%E5%A0%B4%E5%90%88%E3%80%81%E4%BF%9D%E6%8C%81%E6%9C%9F%E9%96%93%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E9%A0%85%E7%9B%AE%E3%81%8C%E8%A1%A8%E7%A4%BA%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82">Q. 新たに Azure Monitor の診断設定を構成しようとしたところ、ストレージ アカウントの保持期間を指定する項目が表示されません。以前は、診断設定にてストレージ アカウントにエクスポートした場合、保持期間を指定する項目が表示されていました。</a></li>
+</ul>
+<br>
+
+
+<hr>
+<h3 id="Azure-Monitor-の診断設定の全般"><a href="#Azure-Monitor-の診断設定の全般" class="headerlink" title="Azure Monitor の診断設定の全般"></a>Azure Monitor の診断設定の全般</h3><hr>
+<h3 id="Q-Azure-Monitor-の診断設定について教えてください。"><a href="#Q-Azure-Monitor-の診断設定について教えてください。" class="headerlink" title="Q. Azure Monitor の診断設定について教えてください。"></a>Q. Azure Monitor の診断設定について教えてください。</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal">Azure プラットフォームのメトリックやログ、アクティビティ ログを Log Analytics ワークスペース等にエクスポートする機能</a>です。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/metrics-index">プラットフォームのメトリック</a>は Azure リソースから一定の間隔で自動で収集される数値データであり、既定で収集されます。メトリックは Azure 基盤側のメトリック データベースに保存され、Azure ポータルの<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/analyze-metrics">メトリック エクスプローラー</a>から確認できます。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/logs-index">プラットフォームのログ</a>は Azure リソース内で実行された操作に関するデータであり、Azure Monitor の診断設定を構成しない限り、収集することはできません。プラット フォームのメトリックを既定の保持期間 (<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-platform-metrics#platform-and-custom-metrics">93 日間</a>) 以上保管したい場合やプラットフォームのログを保管・監視したい場合にご利用いただける機能です。</p>
+<br>
+
+
+
+<h3 id="Q-Azure-VM-にも「診断設定」というメニューがありますが、Azure-Monitor-の診断設定とは異なる機能ですか。"><a href="#Q-Azure-VM-にも「診断設定」というメニューがありますが、Azure-Monitor-の診断設定とは異なる機能ですか。" class="headerlink" title="Q. Azure VM にも「診断設定」というメニューがありますが、Azure Monitor の診断設定とは異なる機能ですか。"></a>Q. Azure VM にも「診断設定」というメニューがありますが、Azure Monitor の診断設定とは異なる機能ですか。</h3><p>はい、Azure VM のメニューで表示される「診断設定」は、Azure Monitor の診断設定とは別の機能です。<br>Azure ポータルから Azure VM を開くと [診断設定] という項目がありますが、これは Azure VM に <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview">Azure Diagnostics 拡張機能</a>をインストールし、ゲスト OS のログやメトリックをストレージ アカウントに送信する機能です。この 2 つの機能の違いについては、<a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToDiagnosticsSettings/">Azure VM の診断設定とそれ以外のリソースにおける診断設定について</a> のブログで詳しく説明しておりますので、ご覧いただけますと幸いです。<br><img width="700" src="../MonitorDiagnosticsSettingFAQ/image01.png"></p>
+<br>
+
+
+
+<h3 id="Q-Azure-Monitor-の診断設定は、すべてのリソースでサポートしていますか。"><a href="#Q-Azure-Monitor-の診断設定は、すべてのリソースでサポートしていますか。" class="headerlink" title="Q. Azure Monitor の診断設定は、すべてのリソースでサポートしていますか。"></a>Q. Azure Monitor の診断設定は、すべてのリソースでサポートしていますか。</h3><p>いいえ、Azure Monitor の診断設定は、すべてのリソースでサポートしておりません。<br>基本的には、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/logs-index#supported-metrics-and-log-categories-by-resource-type">こちら</a>の公開情報でサポート状況をご確認いただけます。<br>メトリックの場合は、上記公開情報経由でアクセスできる各ページに掲載されている表の [DS エクスポート] 列が「はい」の場合、診断設定で Log Analytics ワークスペース等にエクスポート可能です。下図は <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/supported-metrics/microsoft-automation-automationaccounts-metrics">Microsoft.Automation/automationAccounts</a> の例です。<br><img width="700" src="../MonitorDiagnosticsSettingFAQ/image02.png"></p>
+<p>ログの場合は、各ページにカテゴリやログの出力先テーブル (宛先が Log Analytics ワークスペースの場合) が記載されています。<br>下図は <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/supported-logs/microsoft-automation-automationaccounts-logs">Microsoft.Automation/automationAccounts</a> の例です。<br><img width="700" src="../MonitorDiagnosticsSettingFAQ/image03.png"></p>
+<br>
+
+
+
+<h3 id="Q-Azure-Monitor-の診断設定の設定手順を教えてください。"><a href="#Q-Azure-Monitor-の診断設定の設定手順を教えてください。" class="headerlink" title="Q. Azure Monitor の診断設定の設定手順を教えてください。"></a>Q. Azure Monitor の診断設定の設定手順を教えてください。</h3><p>基本的には Azure ポータルから対象リソースを選択し、[監視] - [診断設定] から構成することが可能です。<br>設定手順の詳細は<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal">こちら</a>の公開情報をご覧ください。<br><img width="750" src="../MonitorDiagnosticsSettingFAQ/image04.png"></p>
+<br>
+
+
+<h3 id="Q-Azure-Monitor-の診断設定を構成する前に生成されたログやメトリック、アクティビティ-ログは、ストレージ-アカウントや-Log-Analytics-ワークスペースにエクスポートされますか。"><a href="#Q-Azure-Monitor-の診断設定を構成する前に生成されたログやメトリック、アクティビティ-ログは、ストレージ-アカウントや-Log-Analytics-ワークスペースにエクスポートされますか。" class="headerlink" title="Q. Azure Monitor の診断設定を構成する前に生成されたログやメトリック、アクティビティ ログは、ストレージ アカウントや Log Analytics ワークスペースにエクスポートされますか。"></a>Q. Azure Monitor の診断設定を構成する前に生成されたログやメトリック、アクティビティ ログは、ストレージ アカウントや Log Analytics ワークスペースにエクスポートされますか。</h3><p>いいえ、エクスポートされません。<br>診断設定の構成後に生成されたログやメトリックがエクスポートされます。</p>
+<br>
+
+<h3 id="Q-Azure-Monitor-の診断設定の構成を検討しています。私の環境の場合、コストはどれぐらいになりますか。"><a href="#Q-Azure-Monitor-の診断設定の構成を検討しています。私の環境の場合、コストはどれぐらいになりますか。" class="headerlink" title="Q. Azure Monitor の診断設定の構成を検討しています。私の環境の場合、コストはどれぐらいになりますか。"></a>Q. Azure Monitor の診断設定の構成を検討しています。私の環境の場合、コストはどれぐらいになりますか。</h3><p>誠に残念ではございますが、発生する具体的なコストについては一概に回答出来ません。<br>理由は、ご利用いただいている Azure サービスの種類やリソースの数・Azure のご利用方法など、お客様の環境に影響して出力されるログの量が変わるからです。</p>
+<p>弊社といたしましては、<a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/calculator/?service=monitor">料金計算ツール</a>を用いてコストをお見積りいただくか、最低限の Azure リソースに対して一時的に診断設定をご構築いただき、1 日あたりのログ量を計測いただくことを一般的な戦略として案内しております。Azure Monitor のコスト見積もりに関しましては、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/cost-estimate">下記</a>の公開情報もご覧いただけますと幸いです。</p>
+<br>
+<br>
+<br>
+
+
+<hr>
+<h4 id="リソース-ログ・メトリックのエクスポート"><a href="#リソース-ログ・メトリックのエクスポート" class="headerlink" title="リソース ログ・メトリックのエクスポート"></a>リソース ログ・メトリックのエクスポート</h4><hr>
+<h3 id="Q-Azure-リソースのログやメトリックを-Log-Analytics-ワークスペースにエクスポートすることを検討しています。必要な権限を教えてください。"><a href="#Q-Azure-リソースのログやメトリックを-Log-Analytics-ワークスペースにエクスポートすることを検討しています。必要な権限を教えてください。" class="headerlink" title="Q. Azure リソースのログやメトリックを Log Analytics ワークスペースにエクスポートすることを検討しています。必要な権限を教えてください。"></a>Q. Azure リソースのログやメトリックを Log Analytics ワークスペースにエクスポートすることを検討しています。必要な権限を教えてください。</h3><p>診断設定を構成するリソース側と、ログのエクスポート先となる Log Analytics ワークスペース側で、以下の権限が必要です。<br>診断設定に関する必要な権限は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/roles-permissions-security#monitoring-contributor">公開情報</a>にも掲載されておりますのでご覧ください。また、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/role-assignments-portal?tabs=delegate-condition">ロールの割り当て手順</a>や<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/custom-roles-portal">カスタム ロールの作成手順</a> も公開情報をご確認ください。</p>
+<ul>
+<li><p><strong>診断設定を構成するリソース側に必要な権限 (診断設定の作成、変更、削除)</strong><br>Azure Monitor の組み込みロールの場合、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles/monitor#monitoring-contributor">Monitoring Contributor (監視共同作成者)</a> や <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles/analytics#log-analytics-contributor">Log Analytics Contributor (Log Analytics 共同作成者)</a> が該当します。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;*/read&quot;,</span><br><span class="line">&quot;Microsoft.Insights/DiagnosticSettings/read&quot;,</span><br><span class="line">&quot;Microsoft.Insights/DiagnosticSettings/write&quot;,</span><br><span class="line">&quot;Microsoft.Insights/DiagnosticSettings/delete&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>ログのエクスポート先となる Log Analytics ワークスペースに必要な権限</strong><br>Azure Monitor の組み込みロールの場合、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles/monitor#monitoring-contributor">Monitoring Contributor (監視共同作成者)</a> や <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles/analytics#log-analytics-contributor">Log Analytics Contributor (Log Analytics 共同作成者)</a> が該当します。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;Microsoft.OperationalInsights/workspaces/read&quot;,</span><br><span class="line">&quot;Microsoft.OperationalInsights/workspaces/sharedKeys/action&quot;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<br>
+
+
+
+<h3 id="Q-Azure-リソースのログやメトリックをストレージアカウントにエクスポートすることを検討しています。必要な権限を教えてください。"><a href="#Q-Azure-リソースのログやメトリックをストレージアカウントにエクスポートすることを検討しています。必要な権限を教えてください。" class="headerlink" title="Q. Azure リソースのログやメトリックをストレージアカウントにエクスポートすることを検討しています。必要な権限を教えてください。"></a>Q. Azure リソースのログやメトリックをストレージアカウントにエクスポートすることを検討しています。必要な権限を教えてください。</h3><p>診断設定を構成するリソース側と、ログのエクスポート先となるストレージ アカウント側で、以下の権限が必要です。<br>診断設定に関する必要な権限は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/roles-permissions-security#limit-access-to-monitoring-related-storage-accounts">公開情報</a>にも掲載されておりますのでご覧ください。また、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/role-assignments-portal?tabs=delegate-condition">ロールの割り当て手順</a>や<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/custom-roles-portal">カスタム ロールの作成手順</a> も公開情報をご確認ください。</p>
+<ul>
+<li><p><strong>診断設定を構成するリソース側に必要な権限 (診断設定の作成、変更、削除)</strong><br>Azure Monitor の組み込みロールの場合、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles/monitor#monitoring-contributor">Monitoring Contributor (監視共同作成者)</a> や <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles/analytics#log-analytics-contributor">Log Analytics Contributor (Log Analytics 共同作成者)</a> が該当します。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;*/read&quot;,</span><br><span class="line">&quot;Microsoft.Insights/DiagnosticSettings/read&quot;,</span><br><span class="line">&quot;Microsoft.Insights/DiagnosticSettings/write&quot;,</span><br><span class="line">&quot;Microsoft.Insights/DiagnosticSettings/delete&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>ログのエクスポート先となるストレージアカウントに必要な権限</strong><br>Azure Monitor の組み込みロールの場合、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles/analytics#log-analytics-contributor">Log Analytics Contributor (Log Analytics 共同作成者)</a> が該当します。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;Microsoft.Storage/storageAccounts/Read&quot;,</span><br><span class="line">&quot;Microsoft.Storage/storageAccounts/listkeys/action&quot;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<br>
+
+
+
+<h3 id="Q-複数のサブスクリプションのリソース-ログやメトリックを、一つの-Log-Analytics-ワークスペースにエクスポートすることは可能ですか。"><a href="#Q-複数のサブスクリプションのリソース-ログやメトリックを、一つの-Log-Analytics-ワークスペースにエクスポートすることは可能ですか。" class="headerlink" title="Q. 複数のサブスクリプションのリソース ログやメトリックを、一つの Log Analytics ワークスペースにエクスポートすることは可能ですか。"></a>Q. 複数のサブスクリプションのリソース ログやメトリックを、一つの Log Analytics ワークスペースにエクスポートすることは可能ですか。</h3><p>はい、可能です。<br>各リソースの診断設定で同一の Log Analytics ワークスペースをご指定ください。</p>
+<br>
+
+
+
+<h3 id="Q-複数のサブスクリプションのリソース-ログやメトリックを、一つのストレージ-アカウントにエクスポートすることは可能ですか。"><a href="#Q-複数のサブスクリプションのリソース-ログやメトリックを、一つのストレージ-アカウントにエクスポートすることは可能ですか。" class="headerlink" title="Q. 複数のサブスクリプションのリソース ログやメトリックを、一つのストレージ アカウントにエクスポートすることは可能ですか。"></a>Q. 複数のサブスクリプションのリソース ログやメトリックを、一つのストレージ アカウントにエクスポートすることは可能ですか。</h3><p>はい、可能です。<br>ただし、診断設定を構成するリソースとストレージ アカウントは、<u>同じリージョン</u>である必要がございます。<br>診断設定の宛先に関する制限事項は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings#destination-limitations">こちら</a>の公開情報もご確認ください。</p>
+<br>
+
+
+
+<h3 id="Q-別テナントの-Log-Analytics-ワークスペースやストレージ-アカウントに対して診断設定を構成することは可能ですか。"><a href="#Q-別テナントの-Log-Analytics-ワークスペースやストレージ-アカウントに対して診断設定を構成することは可能ですか。" class="headerlink" title="Q. 別テナントの Log Analytics ワークスペースやストレージ アカウントに対して診断設定を構成することは可能ですか。"></a>Q. 別テナントの Log Analytics ワークスペースやストレージ アカウントに対して診断設定を構成することは可能ですか。</h3><p>はい、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings#destination-limitations">Azure Lighthouse を使用することで別テナントの Log Analytics ワークスペースやストレージ アカウントにリソース ログやメトリックをエクスポートすることが可能です</a>。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/lighthouse/overview">Azure Lighthouse</a> では、あるテナントのリソースへのアクセスを、別テナント内のユーザーやグループに委任することができます。詳細は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/lighthouse/how-to/onboard-customer">Azure Lighthouse への顧客のオンボード</a>をご覧ください。</p>
+<br>
+
+
+
+<h3 id="Q-Azure-Monitor-の診断設定でリソース-ログとメトリックを、ストレージ-アカウントにエクスポートしています。データの格納場所を教えてください。"><a href="#Q-Azure-Monitor-の診断設定でリソース-ログとメトリックを、ストレージ-アカウントにエクスポートしています。データの格納場所を教えてください。" class="headerlink" title="Q. Azure Monitor の診断設定でリソース ログとメトリックを、ストレージ アカウントにエクスポートしています。データの格納場所を教えてください。"></a>Q. Azure Monitor の診断設定でリソース ログとメトリックを、ストレージ アカウントにエクスポートしています。データの格納場所を教えてください。</h3><p>メトリックやログをストレージ アカウントにエクスポートすると、追加 BLOB が作成されます。<br>診断設定で<strong>メトリック</strong>をストレージ アカウントにエクスポートした場合には、以下の命名規則で BLOB が作成されます。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insights-metrics-pt1m/resourceId=/SUBSCRIPTIONS/&#123;subscription ID&#125;/RESOURCEGROUPS/&#123;resource group name&#125;/PROVIDERS/&#123;resource provider name&#125;/&#123;resource type&#125;/&#123;resource name&#125;/y=&#123;four-digit numeric year&#125;/m=&#123;two-digit numeric month&#125;/d=&#123;two-digit numeric day&#125;/h=&#123;two-digit 24-hour clock hour&#125;/m=00/PT1H.json</span><br></pre></td></tr></table></figure>
+
+<p>リソース共通で <strong>insights-metrics-pt1m</strong> コンテナーに情報が格納されます。<br><img width="650" src="../MonitorDiagnosticsSettingFAQ/image05.png"></p>
+<br>
+
+<p>診断設定で<strong>ログ</strong>をストレージ アカウントにエクスポートした場合には、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/resource-logs#send-to-azure-storage">以下の命名規則</a>で BLOB が作成されます。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insights-logs-&#123;log category name&#125;/resourceId=/SUBSCRIPTIONS/&#123;subscription ID&#125;/RESOURCEGROUPS/&#123;resource group name&#125;/PROVIDERS/&#123;resource provider name&#125;/&#123;resource type&#125;/&#123;resource name&#125;/y=&#123;four-digit numeric year&#125;/m=&#123;two-digit numeric month&#125;/d=&#123;two-digit numeric day&#125;/h=&#123;two-digit 24-hour clock hour&#125;/m=00/PT1H.json</span><br></pre></td></tr></table></figure>
+
+<p><strong>insights-logs-{log category name}</strong> の {log category name} はリソースおよび収集するログの種類により異なりますが、基本的に<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/logs-index">こちら</a>の公開情報経由で参照可能なカテゴリ名が利用されます。例えば、ロジック アプリの診断設定で WorkflowRuntime カテゴリのログをエクスポートした場合、insights-logs-workflowruntime コンテナーに情報が格納されます。<br><img width="650" src="../MonitorDiagnosticsSettingFAQ/image06.png"></p>
+<p>ログのカテゴリは、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/logs-index">こちら</a>の公開情報経由で <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/supported-logs/microsoft-logic-workflows-logs">Microsoft.Logic のワークフロー</a>のページを開くと確認できます。<br><img width="650" src="../MonitorDiagnosticsSettingFAQ/image07.png"></p>
+<br>
+
+
+
+<h3 id="Q-Azure-Monitor-の診断設定でリソース-ログとメトリックを、Log-Analytics-ワークスペースにエクスポートしています。データの格納場所を教えてください。"><a href="#Q-Azure-Monitor-の診断設定でリソース-ログとメトリックを、Log-Analytics-ワークスペースにエクスポートしています。データの格納場所を教えてください。" class="headerlink" title="Q. Azure Monitor の診断設定でリソース ログとメトリックを、Log Analytics ワークスペースにエクスポートしています。データの格納場所を教えてください。"></a>Q. Azure Monitor の診断設定でリソース ログとメトリックを、Log Analytics ワークスペースにエクスポートしています。データの格納場所を教えてください。</h3><p>メトリックを Log Analytics ワークスペースにエクスポートした場合は <strong><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/tables/azuremetrics">AzureMetrics</a></strong> テーブルにデータが格納されます。<br>リソース共通で AzureMetrics テーブルにエクスポートされますので、複数のリソースを 1 つの Log Analytics ワークスペースにエクスポートしている場合は、リソース ID (_ResourceId) やメトリック名 (MetricName) 等の条件を指定して検索してください。AzureMetrics テーブルのサンプル クエリは、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/queries/azuremetrics">こちら</a>の公開情報をご覧ください。<br><img width="900" src="../MonitorDiagnosticsSettingFAQ/image08.png"></p>
+<p>リソース ログを Log Analytics ワークスペースに送信する場合は <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/resource-logs#send-to-log-analytics-workspace">2 種類の収集モード</a>があり、<strong><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/tables/AzureDiagnostics">AzureDiagnostics</a></strong> テーブル、または <strong>リソース固有のテーブル</strong>に格納されます。</p>
+<ul>
+<li><strong>Azure Diagnostics</strong> - すべてのデータが AzureDiagnostics テーブルに書き込まれます。</li>
+<li><strong>リソース固有</strong> - データは、リソースのカテゴリごとに個別のテーブルに書き込まれます。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/resource-logs#select-the-collection-mode">Azure Diagnostics とリソース固有の両方のモードをサポートしている場合</a>は、ターゲットとして Log Analytics ワークスペースを選択すると、ターゲット テーブルを選択するオプションが表示されます。各リソースのログ出力先は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/logs-index#supported-metrics-and-log-categories-by-resource-type">こちら</a>の公開情報経由で参照可能な表や、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/resource-logs-schema#service-specific-schemas">Azure リソース ログの共通およびサービス固有のスキーマ</a>、各リソース側の公開情報等をご確認ください。<br><img width="500" src="../MonitorDiagnosticsSettingFAQ/image09.png"></p>
+<p>例えば、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/supported-logs/microsoft-automation-automationaccounts-logs">Microsoft.Automation/automationAccounts</a> の場合、AzureDiagnostics テーブルにエクスポートされることが分かります。<br>AzureDiagnostics テーブルのサンプル クエリは、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/queries/azurediagnostics">こちら</a>の公開情報をご覧ください。<br><img width="700" src="../MonitorDiagnosticsSettingFAQ/image10.png"></p>
+<br>
+
+
+
+<h3 id="Q-Azure-Monitor-の診断設定でリソース-ログとメトリックを、ストレージ-アカウントにエクスポートしています。データの格納場所のコンテナーを変更することはできますか。"><a href="#Q-Azure-Monitor-の診断設定でリソース-ログとメトリックを、ストレージ-アカウントにエクスポートしています。データの格納場所のコンテナーを変更することはできますか。" class="headerlink" title="Q. Azure Monitor の診断設定でリソース ログとメトリックを、ストレージ アカウントにエクスポートしています。データの格納場所のコンテナーを変更することはできますか。"></a>Q. Azure Monitor の診断設定でリソース ログとメトリックを、ストレージ アカウントにエクスポートしています。データの格納場所のコンテナーを変更することはできますか。</h3><p>いいえ、データの格納場所のコンテナーを変更することはできません。<br>リソース ログとメトリックを、ストレージ アカウントにエクスポートした場合は、<a href="#Q-Azure-Monitor-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%81%A7%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9-%E3%83%AD%E3%82%B0%E3%81%A8%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%82%92%E3%80%81%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E6%A0%BC%E7%B4%8D%E5%A0%B4%E6%89%80%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. Azure Monitor の診断設定でリソース ログとメトリックを、ストレージ アカウントにエクスポートしています。データの格納場所を教えてください。</a> や <a href="#Q-Azure-Monitor-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%81%A7%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9-%E3%83%AD%E3%82%B0%E3%81%A8%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%82%92%E3%80%81Log-Analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E6%A0%BC%E7%B4%8D%E5%A0%B4%E6%89%80%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. Azure Monitor の診断設定でリソース ログとメトリックを、Log Analytics ワークスペースにエクスポートしています。データの格納場所を教えてください。</a> に記載した格納場所にコンテナーが作成されます。</p>
+<br>
+
+
+
+<h3 id="Q-Azure-VM-のプラットフォーム-メトリック-ホスト-OS-メトリック-を-Log-Analytics-ワークスペースにエクスポートしたいのですが、Azure-ポータル上に設定画面が見当たりません。"><a href="#Q-Azure-VM-のプラットフォーム-メトリック-ホスト-OS-メトリック-を-Log-Analytics-ワークスペースにエクスポートしたいのですが、Azure-ポータル上に設定画面が見当たりません。" class="headerlink" title="Q. Azure VM のプラットフォーム メトリック (ホスト OS メトリック) を Log Analytics ワークスペースにエクスポートしたいのですが、Azure ポータル上に設定画面が見当たりません。"></a>Q. Azure VM のプラットフォーム メトリック (ホスト OS メトリック) を Log Analytics ワークスペースにエクスポートしたいのですが、Azure ポータル上に設定画面が見当たりません。</h3><p>Azure VM の<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/supported-metrics/microsoft-classiccompute-virtualmachines-metrics">プラットフォーム メトリック (ホスト OS メトリック)</a> に関する診断設定は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=powershell">Azure PowerShell</a> 等で設定可能です。<br>設定手順の詳細は、<a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToDiagnosticsSettings/#4-Azure-VM-%E3%81%AE%E3%83%97%E3%83%A9%E3%83%83%E3%83%88-%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%82%92%E5%8F%8E%E9%9B%86%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95">こちら</a>のブログをご参照ください。</p>
+<br>
+<br>
+<br>
+
+
+<hr>
+<h3 id="アクティビティ-ログのエクスポート"><a href="#アクティビティ-ログのエクスポート" class="headerlink" title="アクティビティ ログのエクスポート"></a>アクティビティ ログのエクスポート</h3><hr>
+<h3 id="Q-アクティビティ-ログの診断設定の設定手順を教えてください。"><a href="#Q-アクティビティ-ログの診断設定の設定手順を教えてください。" class="headerlink" title="Q. アクティビティ ログの診断設定の設定手順を教えてください。"></a>Q. アクティビティ ログの診断設定の設定手順を教えてください。</h3><p>Azure ポータルから設定する場合は [監視] を検索し、[アクティビティ ログ] の [診断設定] から構成いただけます。<br>設定手順の詳細は<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal">こちら</a>の公開情報をご覧ください。<br><img width="750" src="../MonitorDiagnosticsSettingFAQ/image11.png"></p>
+<br>
+
+
+<h3 id="Q-アクティビティ-ログのカテゴリの詳細を教えてください。"><a href="#Q-アクティビティ-ログのカテゴリの詳細を教えてください。" class="headerlink" title="Q. アクティビティ ログのカテゴリの詳細を教えてください。"></a>Q. アクティビティ ログのカテゴリの詳細を教えてください。</h3><p>アクティビティ ログのカテゴリの詳細は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/activity-log-schema">Azure アクティビティ ログのイベント スキーマ</a>の公開情報をご覧ください。</p>
+<br>
+
+
+
+<h3 id="Q-アクティビティ-ログを-Log-Analytics-ワークスペースにエクスポートすることを検討しています。診断設定を構成するために必要な権限を教えてください。"><a href="#Q-アクティビティ-ログを-Log-Analytics-ワークスペースにエクスポートすることを検討しています。診断設定を構成するために必要な権限を教えてください。" class="headerlink" title="Q. アクティビティ ログを Log Analytics ワークスペースにエクスポートすることを検討しています。診断設定を構成するために必要な権限を教えてください。"></a>Q. アクティビティ ログを Log Analytics ワークスペースにエクスポートすることを検討しています。診断設定を構成するために必要な権限を教えてください。</h3><p>診断設定を構成するサブスクリプションと、ログのエクスポート先となる Log Analytics ワークスペース側で以下の権限が必要です。Azure Monitor の組み込みロールの場合、サブスクリプションをスコープとして <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles/monitor#monitoring-contributor">Monitoring Contributor (監視共同作成者)</a> や <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles/analytics#log-analytics-contributor">Log Analytics Contributor (Log Analytics 共同作成者)</a> を付与いただけますと幸いです。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/role-assignments-portal?tabs=delegate-condition">ロールの割り当て手順</a>や<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/custom-roles-portal">カスタム ロールの作成手順</a> は公開情報をご覧ください。</p>
+<ul>
+<li><p><strong>サブスクリプション スコープで必要な権限 (診断設定の作成、変更、削除)</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;*/read&quot;,</span><br><span class="line">&quot;Microsoft.Insights/DiagnosticSettings/read&quot;,</span><br><span class="line">&quot;Microsoft.Insights/DiagnosticSettings/write&quot;,</span><br><span class="line">&quot;Microsoft.Insights/DiagnosticSettings/delete&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>ログのエクスポート先となる Log Analytics ワークスペースに必要な権限</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;Microsoft.OperationalInsights/workspaces/read&quot;,</span><br><span class="line">&quot;Microsoft.OperationalInsights/workspaces/sharedKeys/action&quot;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<br>
+
+
+
+<h3 id="Q-アクティビティ-ログをストレージ-アカウントにエクスポートすることを検討しています。診断設定を構成するために必要な権限を教えてください。"><a href="#Q-アクティビティ-ログをストレージ-アカウントにエクスポートすることを検討しています。診断設定を構成するために必要な権限を教えてください。" class="headerlink" title="Q. アクティビティ ログをストレージ アカウントにエクスポートすることを検討しています。診断設定を構成するために必要な権限を教えてください。"></a>Q. アクティビティ ログをストレージ アカウントにエクスポートすることを検討しています。診断設定を構成するために必要な権限を教えてください。</h3><p>診断設定を構成するサブスクリプションと、ログのエクスポート先となるストレージ アカウント側で以下の権限が必要です。Azure Monitor の組み込みロールの場合、サブスクリプションをスコープとして <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles/monitor#monitoring-contributor">Monitoring Contributor (監視共同作成者)</a> や <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles/analytics#log-analytics-contributor">Log Analytics Contributor (Log Analytics 共同作成者)</a> を付与いただけますと幸いです。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/role-assignments-portal?tabs=delegate-condition">ロールの割り当て手順</a>や<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/custom-roles-portal">カスタム ロールの作成手順</a> は公開情報をご覧ください。</p>
+<ul>
+<li><p><strong>サブスクリプション スコープで必要な権限 (診断設定の作成、変更、削除)</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;*/read&quot;,</span><br><span class="line">&quot;Microsoft.Insights/DiagnosticSettings/read&quot;,</span><br><span class="line">&quot;Microsoft.Insights/DiagnosticSettings/write&quot;,</span><br><span class="line">&quot;Microsoft.Insights/DiagnosticSettings/delete&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>ログのエクスポート先となるストレージアカウントに必要な権限</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;Microsoft.Storage/storageAccounts/Read&quot;,</span><br><span class="line">&quot;Microsoft.Storage/storageAccounts/listkeys/action&quot;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<br>
+
+
+
+<h3 id="Q-特定のリソースのアクティビティ-ログを、Log-Analytics-ワークスペースやストレージ-アカウントにエクスポートすることは可能ですか。"><a href="#Q-特定のリソースのアクティビティ-ログを、Log-Analytics-ワークスペースやストレージ-アカウントにエクスポートすることは可能ですか。" class="headerlink" title="Q. 特定のリソースのアクティビティ ログを、Log Analytics ワークスペースやストレージ アカウントにエクスポートすることは可能ですか。"></a>Q. 特定のリソースのアクティビティ ログを、Log Analytics ワークスペースやストレージ アカウントにエクスポートすることは可能ですか。</h3><p>いいえ、特定のリソースのアクティビティ ログのみをエクスポートすることはできません。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/resource-manager-diagnostic-settings?tabs=json#diagnostic-setting-for-an-activity-log">アクティビティ ログの診断設定はサブスクリプション単位で指定する</a>ものであり、リソース単位で設定することはできません。</p>
+<br>
+
+
+
+<h3 id="Q-Azure-ポータルからリソース-グループの-アクティビティ-ログ-gt-診断設定-を開くと、アクティビティ-ログの診断設定が表示されます。リソース-グループ単位でアクティビティ-ログの診断設定を作成できるのでしょうか。"><a href="#Q-Azure-ポータルからリソース-グループの-アクティビティ-ログ-gt-診断設定-を開くと、アクティビティ-ログの診断設定が表示されます。リソース-グループ単位でアクティビティ-ログの診断設定を作成できるのでしょうか。" class="headerlink" title="Q. Azure ポータルからリソース グループの [アクティビティ ログ] &gt; [診断設定] を開くと、アクティビティ ログの診断設定が表示されます。リソース グループ単位でアクティビティ ログの診断設定を作成できるのでしょうか。"></a>Q. Azure ポータルからリソース グループの [アクティビティ ログ] &gt; [診断設定] を開くと、アクティビティ ログの診断設定が表示されます。リソース グループ単位でアクティビティ ログの診断設定を作成できるのでしょうか。</h3><p>いいえ、できません。<br>リソース グループの [アクティビティ ログ] &gt; [診断設定] からも、アクティビティ ログの診断設定が表示されますが、あくまで表示されているだけであり、アクティビティ ログの診断設定はサブスクリプション単位でしか設定できません。</p>
+<br>
+
+
+
+<h3 id="Q-Azure-Monitor-の診断設定で、アクティビティ-ログをストレージ-アカウントにエクスポートしています。データの格納場所を教えてください。"><a href="#Q-Azure-Monitor-の診断設定で、アクティビティ-ログをストレージ-アカウントにエクスポートしています。データの格納場所を教えてください。" class="headerlink" title="Q. Azure Monitor の診断設定で、アクティビティ ログをストレージ アカウントにエクスポートしています。データの格納場所を教えてください。"></a>Q. Azure Monitor の診断設定で、アクティビティ ログをストレージ アカウントにエクスポートしています。データの格納場所を教えてください。</h3><p>アクティビティ ログをストレージ アカウントにエクスポートすると、追加 BLOB が作成され、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/activity-log?tabs=powershell#send-to-azure-storage">以下の命名規則</a>で BLOB が作成されます。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insights-activity-logs/resourceId=/SUBSCRIPTIONS/&#123;subscription ID&#125;/y=&#123;four-digit numeric year&#125;/m=&#123;two-digit numeric month&#125;/d=&#123;two-digit numeric day&#125;/h=&#123;two-digit 24-hour clock hour&#125;/m=00/PT1H.json</span><br></pre></td></tr></table></figure>
+
+<p>リソース共通で <strong>insights-activity-logs</strong> コンテナーに情報が格納されます。<br><img width="650" src="../MonitorDiagnosticsSettingFAQ/image12.png"></p>
+<br>
+
+
+
+<h3 id="Q-Azure-Monitor-の診断設定で、アクティビティ-ログを-Log-Analytics-ワークスペースにエクスポートしています。データの格納場所を教えてください。"><a href="#Q-Azure-Monitor-の診断設定で、アクティビティ-ログを-Log-Analytics-ワークスペースにエクスポートしています。データの格納場所を教えてください。" class="headerlink" title="Q. Azure Monitor の診断設定で、アクティビティ ログを Log Analytics ワークスペースにエクスポートしています。データの格納場所を教えてください。"></a>Q. Azure Monitor の診断設定で、アクティビティ ログを Log Analytics ワークスペースにエクスポートしています。データの格納場所を教えてください。</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/activity-log?tabs=powershell#send-to-log-analytics-workspace">アクティビティ ログを Log Analytics ワークスペースにエクスポートした場合</a>は <strong><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/tables/azureactivity">AzureActivity</a></strong> テーブルにデータが格納されます。<br>AzureMetrics テーブルのサンプル クエリは、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/queries/azureactivity">こちら</a>の公開情報をご覧ください。<br><img width="900" src="../MonitorDiagnosticsSettingFAQ/image13.png"></p>
+<br>
+
+
+<h3 id="Q-アクティビティ-ログを-Log-Analytics-ワークスペースにエクスポートした場合、Log-Analytics-ワークスペースに対する料金が発生しますか。"><a href="#Q-アクティビティ-ログを-Log-Analytics-ワークスペースにエクスポートした場合、Log-Analytics-ワークスペースに対する料金が発生しますか。" class="headerlink" title="Q. アクティビティ ログを Log Analytics ワークスペースにエクスポートした場合、Log Analytics ワークスペースに対する料金が発生しますか。"></a>Q. アクティビティ ログを Log Analytics ワークスペースにエクスポートした場合、Log Analytics ワークスペースに対する料金が発生しますか。</h3><p>いいえ、アクティビティ ログを Log Analytics ワークスペースにエクスポートしても、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/activity-log?tabs=powershell#send-to-log-analytics-workspace">Log Analytics ワークスペースに対するインジェスト料金や保持料金は発生しません</a>。</p>
+<br>
+<br>
+<br>
+
+
+<hr>
+<h3 id="トラブルシューティング"><a href="#トラブルシューティング" class="headerlink" title="トラブルシューティング"></a>トラブルシューティング</h3><hr>
+<h3 id="Q-Azure-Monitor-の診断設定によるプラットフォーム-メトリックやリソース-ログのエクスポートは、100-のデータ-エクスポートを保証していますか。"><a href="#Q-Azure-Monitor-の診断設定によるプラットフォーム-メトリックやリソース-ログのエクスポートは、100-のデータ-エクスポートを保証していますか。" class="headerlink" title="Q. Azure Monitor の診断設定によるプラットフォーム メトリックやリソース ログのエクスポートは、100 % のデータ エクスポートを保証していますか。"></a>Q. Azure Monitor の診断設定によるプラットフォーム メトリックやリソース ログのエクスポートは、100 % のデータ エクスポートを保証していますか。</h3><p>いいえ、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal#possibility-of-duplicated-or-dropped-data">100 % のデータ エクスポートを保証しておりません</a>。<br>診断設定は、1 日あたりペタバイト単位のデータをお手頃な価格で、効率よくエクスポートすることを前提に設計されているため、完全なトランザクションは保証しておらず、ログやプラットフォーム メトリックが一部欠損する可能性がございます。<a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/DiagnosticSettings/">診断設定によるプラットフォーム メトリックやリソース ログの一部欠損について</a>のブログでも紹介しておりますので、ご確認いただけますと幸いです。</p>
+<br>
+
+
+
+<h3 id="Q-Log-Analytics-ワークスペースやストレージ-アカウントにログやメトリックをエクスポートしていますが、データが格納されていません。考えられる原因を教えてください。"><a href="#Q-Log-Analytics-ワークスペースやストレージ-アカウントにログやメトリックをエクスポートしていますが、データが格納されていません。考えられる原因を教えてください。" class="headerlink" title="Q. Log Analytics ワークスペースやストレージ アカウントにログやメトリックをエクスポートしていますが、データが格納されていません。考えられる原因を教えてください。"></a>Q. Log Analytics ワークスペースやストレージ アカウントにログやメトリックをエクスポートしていますが、データが格納されていません。考えられる原因を教えてください。</h3><p>考えられる原因は以下の通りです。<br>なお、<a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/DiagnosticSettings/">診断設定によるエクスポートでは、制約上、プラットフォーム メトリックやログの一部欠損は発生する可能性がございます</a>ので、予めご留意ください。</p>
+<p><strong>1. ログの出力に時間を要している</strong><br>診断設定は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings#requirements-and-limitations">基本的には 90 分以内にデータがエクスポートされ始めますが、これよりもお時間がかかることもございます</a>。<br>診断設定の構成後、1 日程度お時間をおいていただき、ログを確認できるかどうかをご確認いただけますと幸いです。</p>
+<p><strong>2. 対象のログがそもそも生成されていない</strong><br>診断設定を構成しますと、リソース側から出力されたログは、基盤側の内部パイプラインを通じて Log Analytics ワークスペースやストレージ アカウントに送信されます。そもそもリソース側でログが生成されていない場合には、Log Analytics ワークスペースやストレージ アカウントにはログが収集されません。各リソースのログが生成される条件や契機をご確認されたい場合には、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/logs-index">各リソース観点</a>でお問い合わせのご起票をお願いいたします。</p>
+<p><strong>3. ストレージ アカウントのネットワーク設定で “信頼された Microsoft サービス” が許可されていない</strong><br>ログの出力先がストレージ アカウントの場合は、ストレージ アカウントのネットワーク設定により、データがエクスポートされていない可能性がございます。宛先のストレージ アカウントが選択したネットワークからのアクセスを許可する構成である場合、 <u>[信頼されたサービスの一覧にある Azure サービスがこのストレージ アカウントにアクセスすることを許可します]</u> が有効になっているかどうかをご確認ください。</p>
+<p>完全に外部からのアクセスを無効にすると、Azure Monitor サービスからの通信が遮断され、ログやメトリックをエクスポートすることができません。また、選択したネットワークからのアクセスを許可する構成の場合、Azure Monitor サービスからの通信を許可するために <u>[信頼されたサービスの一覧にある Azure サービスがこのストレージ アカウントにアクセスすることを許可します] </u>を有効にしていただく必要がございます。<br><img width="900" src="../MonitorDiagnosticsSettingFAQ/image14.png"></p>
+<p>上記に該当せず、一部の欠損ではなく継続的にログやメトリックが出力されていない場合は、下記の情報をお寄せいただき、弊社サポート窓口までお問い合わせください。</p>
+<p>・診断設定を構成しているリソースのリソース ID<br>・診断設定の名前<br>・ログやメトリックが出力されることが想定された日時 (タイムゾーンを明記してご記載ください。例. 2024-12-30 12:00 JST)<br>・出力されることが想定されたログのカテゴリ名やメトリック名</p>
+<br>
+
+
+
+<h3 id="Q-Azure-Monitor-の診断設定を構成しましたが、設定が消えてしまいました。"><a href="#Q-Azure-Monitor-の診断設定を構成しましたが、設定が消えてしまいました。" class="headerlink" title="Q. Azure Monitor の診断設定を構成しましたが、設定が消えてしまいました。"></a>Q. Azure Monitor の診断設定を構成しましたが、設定が消えてしまいました。</h3><p><a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowtoResourceIDNamingRule/#2-3-%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%81%8C%E6%B6%88%E3%81%88%E3%82%8B%E3%81%93%E3%81%A8%E3%81%8C%E3%81%82%E3%82%8B">日本語を含む、英数字以外の文字がリソース名に含まれる場合、診断設定を作成しても設定が消えることがあります</a>。<br>ただし本事象は<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal#setting-disappears-because-of-non-ascii-characters-in-resourceid">公開情報</a>にも記載があるとおり、診断設定が英数字以外の文字をサポートしないために発生する事象であるため、製品の不具合ではございません。</p>
+<br>
+
+<h3 id="Q-新たに-Azure-Monitor-の診断設定を構成しようとしたところ、ストレージ-アカウントの保持期間を指定する項目が表示されません。以前は、診断設定にてストレージ-アカウントにエクスポートした場合、保持期間を指定する項目が表示されていました。"><a href="#Q-新たに-Azure-Monitor-の診断設定を構成しようとしたところ、ストレージ-アカウントの保持期間を指定する項目が表示されません。以前は、診断設定にてストレージ-アカウントにエクスポートした場合、保持期間を指定する項目が表示されていました。" class="headerlink" title="Q. 新たに Azure Monitor の診断設定を構成しようとしたところ、ストレージ アカウントの保持期間を指定する項目が表示されません。以前は、診断設定にてストレージ アカウントにエクスポートした場合、保持期間を指定する項目が表示されていました。"></a>Q. 新たに Azure Monitor の診断設定を構成しようとしたところ、ストレージ アカウントの保持期間を指定する項目が表示されません。以前は、診断設定にてストレージ アカウントにエクスポートした場合、保持期間を指定する項目が表示されていました。</h3><p><a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/">こちら</a>のブログでもご紹介しておりますとおり、診断設定固有のストレージ アカウントの保持機能は廃止されます。<br>以前は、診断設定にてストレージ アカウントを出力先としていた場合、診断設定側でログの保持期間の指定ができましたが、今後はストレージ アカウント側の Azure Storage ライフサイクル管理にて保持期間を指定する必要がございます。<br>また、診断設定固有のストレージ アカウントの保持機能の廃止に伴う移行手順は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/migrate-to-azure-storage-lifecycle-policy?tabs=portal">こちら</a>の公開情報をご覧ください。</p>
+<br>
+
+
+<p>上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。<br>最後までお読みいただきありがとうございました！</p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/AzureMonitorEssential/MonitorDiagnosticsSettingFAQ.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../LogAnalytics/MonitorVM_AMA/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Azure Monitor エージェントにより収集される Heartbeat ログを使用した死活監視方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">Azure Monitor の診断設定に関するよくあるご質問</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/MonitorVM_AMA/">Azure Monitor エージェントにより収集される Heartbeat ログを使用した死活監視方法</a>
+          </li>
+        
+          <li>
+            <a href="../MonitorAlertFAQ/">Azure Monitor のアラートに関するよくあるご質問</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/AMA_CMA_FW/">CMA/AMA とエンドポイントの通信経路上に Azure Firewall がある場合の注意事項</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/TroubleshootingAMALogIngestion/">Azure Monitor エージェントを使用したログ収集が行われない場合のトラブルシューティングについて</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/AMPLS/" rel="tag">AMPLS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Arc/" rel="tag">Azure Arc</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Diagnostics-extension/" rel="tag">Azure Diagnostics extension</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent/" rel="tag">Azure Monitor Agent</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essential/" rel="tag">Azure Monitor Essential</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" rel="tag">Azure Monitor エージェント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Private-Link/" rel="tag">Azure Private Link</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostic-settings/" rel="tag">Diagnostic settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostics-settings/" rel="tag">Diagnostics settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HowTo/" rel="tag">HowTo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/LAD/" rel="tag">LAD</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Alert/" rel="tag">Log Alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" rel="tag">Log Analytics エージェント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-ID/" rel="tag">Managed ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-Identity/" rel="tag">Managed Identity</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Migration/" rel="tag">Migration</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Run-As-Account/" rel="tag">Run As Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sandbox/" rel="tag">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StartAzureV2VMs/" rel="tag">StartAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StopAzureV2VMs/" rel="tag">StopAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshoot/" rel="tag">Troubleshoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM/" rel="tag">VM</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM-insights/" rel="tag">VM insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WAD/" rel="tag">WAD</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Worker/" rel="tag">Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/howto/" rel="tag">howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/" rel="tag">アクションのミュート</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" rel="tag">アラート処理ルール</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%89-script/" rel="tag">オンボード script</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" rel="tag">クエリ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" rel="tag">コスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%BF%E3%83%BC-API/" rel="tag">データ コレクター API</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%91%E3%83%BC%E3%82%B8/" rel="tag">パージ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" rel="tag">マネージド ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB/" rel="tag">ログ アラート ルール</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88-API/" rel="tag">ログ インジェスト API</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%81%9C%E6%AD%A2/" rel="tag">停止</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%88%86%E6%9E%90%E6%83%85%E5%A0%B1/" rel="tag">分析情報</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" rel="tag">実行アカウント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/" rel="tag">移行</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" rel="tag">自動化</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%B5%B7%E5%8B%95/" rel="tag">起動</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/">How-To</a><span class="tag-list-count">41</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/">Tips</a><span class="tag-list-count">28</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/">Azure Monitor Essentials</a><span class="tag-list-count">15</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/">Azure Monitor</a><span class="tag-list-count">7</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/">FAQ</a><span class="tag-list-count">11</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/">Log Analytics</a><span class="tag-list-count">36</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/">Troubleshooting</a><span class="tag-list-count">4</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">8</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/">Automation</a><span class="tag-list-count">10</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/">チーム紹介</a><span class="tag-list-count">5</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/">移行</a><span class="tag-list-count">2</span><ul></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/02/">2025 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/01/">2025 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/11/">2024 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/10/">2024 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/09/">2024 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/08/">2024 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/07/">2024 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/05/">2024 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/04/">2024 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/03/">2024 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/01/">2024 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/12/">2023 / 12</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/11/">2023 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/10/">2023 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/09/">2023 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/07/">2023 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/06/">2023 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/03/">2023 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/01/">2023 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/11/">2022 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/10/">2022 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/09/">2022 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/08/">2022 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/AMPLS/" style="font-size: 10px;">AMPLS</a> <a href="../../tags/Application-Insights/" style="font-size: 15.38px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 16.15px;">Automation</a> <a href="../../tags/Azure-Arc/" style="font-size: 12.31px;">Azure Arc</a> <a href="../../tags/Azure-Diagnostics-extension/" style="font-size: 10.77px;">Azure Diagnostics extension</a> <a href="../../tags/Azure-Monitor/" style="font-size: 14.62px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Agent/" style="font-size: 14.62px;">Azure Monitor Agent</a> <a href="../../tags/Azure-Monitor-Essential/" style="font-size: 12.31px;">Azure Monitor Essential</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 17.69px;">Azure Monitor Essentials</a> <a href="../../tags/Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" style="font-size: 10px;">Azure Monitor エージェント</a> <a href="../../tags/Azure-Private-Link/" style="font-size: 11.54px;">Azure Private Link</a> <a href="../../tags/Diagnostic-settings/" style="font-size: 10.77px;">Diagnostic settings</a> <a href="../../tags/Diagnostics-settings/" style="font-size: 10px;">Diagnostics settings</a> <a href="../../tags/FAQ/" style="font-size: 16.92px;">FAQ</a> <a href="../../tags/General/" style="font-size: 13.85px;">General</a> <a href="../../tags/How-To/" style="font-size: 20px;">How-To</a> <a href="../../tags/HowTo/" style="font-size: 11.54px;">HowTo</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 10.77px;">Job</a> <a href="../../tags/LAD/" style="font-size: 10.77px;">LAD</a> <a href="../../tags/Log-Alert/" style="font-size: 10px;">Log Alert</a> <a href="../../tags/Log-Analytics/" style="font-size: 19.23px;">Log Analytics</a> <a href="../../tags/Log-Analytics-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" style="font-size: 10px;">Log Analytics エージェント</a> <a href="../../tags/Managed-ID/" style="font-size: 10px;">Managed ID</a> <a href="../../tags/Managed-Identity/" style="font-size: 10px;">Managed Identity</a> <a href="../../tags/MetricAlert/" style="font-size: 10.77px;">MetricAlert</a> <a href="../../tags/Migration/" style="font-size: 10px;">Migration</a> <a href="../../tags/Run-As-Account/" style="font-size: 10px;">Run As Account</a> <a href="../../tags/RunAs-Account/" style="font-size: 12.31px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 13.08px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 18.46px;">Tips</a> <a href="../../tags/Troubleshoot/" style="font-size: 10px;">Troubleshoot</a> <a href="../../tags/Troubleshooting/" style="font-size: 12.31px;">Troubleshooting</a> <a href="../../tags/VM/" style="font-size: 10px;">VM</a> <a href="../../tags/VM-insights/" style="font-size: 10px;">VM insights</a> <a href="../../tags/WAD/" style="font-size: 10.77px;">WAD</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/howto/" style="font-size: 10px;">howto</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/" style="font-size: 10px;">アクションのミュート</a> <a href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" style="font-size: 10px;">アラート処理ルール</a> <a href="../../tags/%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%89-script/" style="font-size: 10px;">オンボード script</a> <a href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" style="font-size: 10px;">クエリ</a> <a href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" style="font-size: 10px;">コスト</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 13.08px;">チーム紹介</a> <a href="../../tags/%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%BF%E3%83%BC-API/" style="font-size: 10px;">データ コレクター API</a> <a href="../../tags/%E3%83%91%E3%83%BC%E3%82%B8/" style="font-size: 10px;">パージ</a> <a href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" style="font-size: 10.77px;">マネージド ID</a> <a href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB/" style="font-size: 10px;">ログ アラート ルール</a> <a href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88-API/" style="font-size: 10px;">ログ インジェスト API</a> <a href="../../tags/%E5%81%9C%E6%AD%A2/" style="font-size: 10px;">停止</a> <a href="../../tags/%E5%88%86%E6%9E%90%E6%83%85%E5%A0%B1/" style="font-size: 10px;">分析情報</a> <a href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" style="font-size: 11.54px;">可用性テスト</a> <a href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" style="font-size: 10px;">実行アカウント</a> <a href="../../tags/%E7%A7%BB%E8%A1%8C/" style="font-size: 10.77px;">移行</a> <a href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" style="font-size: 10px;">自動化</a> <a href="../../tags/%E8%B5%B7%E5%8B%95/" style="font-size: 10px;">起動</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
