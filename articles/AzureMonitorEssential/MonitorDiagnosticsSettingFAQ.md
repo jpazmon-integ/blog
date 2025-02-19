@@ -1,6 +1,6 @@
 ---
 title: Azure Monitor の診断設定に関するよくあるご質問
-date: 2025-02-27 00:00:00
+date: 2025-02-20 00:00:00
 tags:
   - How-To
   - FAQ
