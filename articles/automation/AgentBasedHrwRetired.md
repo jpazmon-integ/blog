@@ -1,14 +1,14 @@
 ---
-title: 「廃止」 エージェント ベースの Hybrid Runbook Worker がご利用いただけなくなります
-date: 2025-01-16 14:00:00
+title: エージェント ベースの Hybrid Runbook Worker がご利用いただけなくなります
+date: 2025-02-20 14:00:00
 tags:
-  - Azure Monitor
-  - Diagnostic settings
+  - Automation
   - Tips
 ---
 
 こんにちは、Azure Monitoring サポート チームの北山です。  
 今回の記事では、Azure Automation のエージェント ベースの Hybrid Runbook Worker 廃止について記載します。
+[Retirement: All Azure Automation jobs running on Agent-based Hybrid Worker will be stopped from 1 April 2025](https://azure.microsoft.com/ja-jp/updates/?id=477734)
 
 <!-- more -->
 # 目次
@@ -49,7 +49,9 @@ Log Analytics エージェントの後継版である Azure Monitor エージェ
 エージェント ベースの Hybrid Runbook Worker に関しましては、2024 年の 8 月にすでにサポートが終了しております。  
 サポートは終了していましたが、引き続きエージェント ベースの Hybrid Runbook Worker がご利用いただけておりました。  
 
-**しかし、2025 年 4 月 1 日からはエージェント ベースの Hybrid Runbook Worker がご利用できなくなります。**
+しかし、下記の更新情報に記載がございますとおり **2025 年 4 月 1 日からはエージェント ベースの Hybrid Runbook Worker がご利用できなくなります。**
+
+[Retirement: All Azure Automation jobs running on Agent-based Hybrid Worker will be stopped from 1 April 2025](https://azure.microsoft.com/ja-jp/updates/?id=477734)
 
 # どのような影響を受けるか
 エージェント ベースの Hybrid Runbook Worker 上でジョブを実行した場合、ジョブ実行が正常に動作しません。  
@@ -81,7 +83,7 @@ Log Analytics エージェントの後継版である Azure Monitor エージェ
 
 ### 2. PowerShell スクリプトを実行して確認する方法
 #### 実行方法
-下記の PowerShell スクリプトを Azure Portal の Cloud Shell にて実行することで、エージェント ベースの Hybrid Runbook Worker 一覧を CSV 形式で出力が可能です。
+後述する PowerShell スクリプトを Azure Portal の Cloud Shell にて実行することで、エージェント ベースの Hybrid Runbook Worker 一覧を CSV 形式で出力が可能です。
 - [Azure Cloud Shell の概要](https://learn.microsoft.com/ja-jp/azure/cloud-shell/overview)
 
 PowerShell スクリプトを Cloud Shell の PowerShell にて実行し、「CSV file has been created: Agent-basedHRWs.csv」が出力されれば処理は完了です。
