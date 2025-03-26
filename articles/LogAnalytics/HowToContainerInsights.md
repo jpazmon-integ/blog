@@ -1,7 +1,7 @@
 
 ---
 title: Container Insights のご紹介
-date: 2025-03-22 00:00:00
+date: 2025-03-26 00:00:00
 tags:
  - How-To
  - Log Analytics
@@ -15,7 +15,7 @@ tags:
 
 ## Container Insights とは？
 AKS クラスターをはじめとした コンテナー環境へデプロイすることで、コンテナー環境で収集された情報を ログとして Log Analytics ワークスペースに収集する、Azure Monitor の製品です。
-Log Analytics ワークスペースへ収集した情報は通常の VM などから収集したログと同じように、KQL を使用した情報の分析やログ アラート ルールをはじめとした処理に使用することができます。
+Log Analytics ワークスペースへ収集した情報は通常の VM などから収集したログと同じように、KQL を使用して、情報の分析やログ アラート ルールの処理を行うことができます。
 
 Kubernetes 監視用の Azure Monitor の機能
 https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-overview 
@@ -61,10 +61,10 @@ https://learn.microsoft.com/ja-jp/azure/aks/outbound-rules-control-egress#azure-
 
 ### その他前提条件
 Container Insights 有効化の際は、以下の前提条件をご確認ください。
-・Azure CLI バージョンが 2.43.0 以降であること。Azure CLI バージョン 2.49.0 以降では、マネージド ID 認証を使用した、Container Insights がデフォルトとなります。
-・Azure k8s-extension バージョンが 1.3.7 以降であること。マネージド ID 認証は、k8s-extension バージョン 1.43.0 以降ではデフォルトで使用されます。
+・Azure CLI バージョン 2.49.0 以降では、CLI によるオンボーディングを実行すると、既定でマネージド ID 認証を使用する Container Insights が有効化されます。
+・Azure k8s-extension バージョンが 1.3.7 以降であること。k8s-extension バージョン 1.43.0 以降では、既定でマネージド ID 認証が使用されます。
 
-※ マネージド ID 認証は、ARO (Azure Red Hat Openshift) または Windows ノードを使用する Azure Arc 対応 Kubernetes クラスターではサポートされていません。 
+※ マネージド ID 認証は、ARO (Azure Red Hat OpenShift) または Windows ノードを使用する Azure Arc 対応 Kubernetes クラスターではサポートされていません。 
   上記環境にて Container Insights をご利用される場合は、レガシー認証を使用して Container Insights の有効化を実施ください。
 
 Kubernetes クラスターの監視を有効にする - コンテナー分析情報を有効にする - 前提条件
@@ -79,7 +79,7 @@ I. AKS リソースの作成時に Container Insights も一緒に有効化す�
 
 以下の画面にて有効化を行うことが可能です。
 [コンテナー ログを有効にする] にチェックを入れていただき、ログを送信する先の Log Analytics ワークスペースを指定します。
-指定しない場合は、デフォルトの Log Analytics ワークスペース (DefaultWorkspace- からはじまる Log Analytics ワークスペース) が新規作成、もしくは自動的に指定されます。
+指定しない場合は、規定の Log Analytics ワークスペース (DefaultWorkspace- からはじまる Log Analytics ワークスペース) が新規作成、もしくは自動的に指定されます。
 
 ![リソース作成時に有効化](./HowToContainerInsights/01.png)
 
@@ -98,6 +98,11 @@ az aks enable-addons --addon monitoring --name "<AKS クラスター名>" --reso
 Azure Arc 対応クラスターをご利用の場合は、こちらのコマンドをご利用ください。
 ```
 az k8s-extension create --name azuremonitor-containers --cluster-name "<Azure Arc 対応クラスター名>" --resource-group "<リソース グループ名>" --cluster-type connectedClusters --extension-type Microsoft.AzureMonitor.Containers --configuration-settings logAnalyticsWorkspaceResourceID="<Log Analytics ワークスペースのリソース ID>"
+```
+
+ARO (Azure Red Hat OpenShift) または Windows ノードを使用する Azure Arc 対応 Kubernetes クラスターに対しては、以下のコマンドにてレガシー認証を利用した Container Insights を有効化します。
+```
+az k8s-extension create --name azuremonitor-containers --cluster-name "<Azure Arc 対応クラスター名>" --resource-group "<リソース グループ名>" --cluster-type connectedClusters --extension-type Microsoft.AzureMonitor.Containers ---configuration-settings logAnalyticsWorkspaceResourceID="<Log Analytics ワークスペースのリソース ID>" amalogs.useAADAuth=false
 ```
 
 その他のクラスターで有効化を行う方法につきましては、以下の弊社公開情報にコマンドのサンプルがございますので、ご参照ください。
@@ -122,9 +127,9 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insig
 ### 有効化の確認方法
 Contianer Insights は、Azure Monitor にて使用されているエージェント (Azure Monitor エージェント) の仕組みを使用し、ログを Log Analytics ワークスペースへ送信いたします。
 そのため、Container Insights を有効化いたしますと、ログの送信先 log Analytics ワークスペースに対して Heartbeat ログが 1 分間隔で送信されます。
-こちらにて Container Insights の有効化をご確認いただければと存じます。
+Container Insights の有効化が正常に行われたかご確認いただければと存じます。
 
-![Container Insights の有効化確認](./HowToContainerInsights/03.png)
+![Container Insights の有効化確認](./HowToContainerInsights/04.png)
 
 heartbeat ログの確認方法につきましては、以下の記事をご参照ください。
 Azure Monitor エージェントにより収集される Heartbeat ログを使用した死活監視方法
@@ -132,7 +137,7 @@ https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM_AMA/#%E4%BE%8B-1-%E3
 
 
 ### Container Insights の無効化方法
-誤った方法で設定変更を行ってしまった場合や、特定の設定を実施いただく際に必要な手順として、 Container Insights の無効化をご案内させていただく場合がございます。
+誤った方法で設定変更を行ってしまった場合や、特定の設定を実施いただく際に必要な手順として、Container Insights の無効化をご案内させていただく場合がございます。
 無効化の際は以下のコマンドをご実行ください。
 ```
 az k8s-extension delete --name azuremonitor-containers --cluster-type connectedClusters --cluster-name <クラスター名> --resource-group <リソース グループ名>
