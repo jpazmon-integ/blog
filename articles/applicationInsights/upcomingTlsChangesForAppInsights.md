@@ -1,6 +1,6 @@
 ---
 title: Application Insights の TLS に関する変更のご案内
-date: 2025-02-20 14:00:00
+date: 2025-03-27 14:00:00
 tags:
   - Application Insights
   - Tips
@@ -10,19 +10,19 @@ tags:
 今回の記事では、Application Insights の TLS 変更に関するご案内 (Tracking ID : TT8T-TR0) について記載します。
 
 <!-- more -->
-# 目次
-- [目次](#目次)
-- [用語](#用語)
-  - [Hybrid Runbook Worker](#hybrid-runbook-worker)
-  - [エージェント ベースの Hybrid Runbook Worker](#エージェント-ベースの-hybrid-runbook-worker)
-  - [拡張機能ベースの Hybrid Runbook Worker](#拡張機能ベースの-hybrid-runbook-worker)
 - [概要](#概要)
 - [どのような影響を受けるか](#どのような影響を受けるか)
 - [いつから影響を受けるか](#いつから影響を受けるか)
 - [影響を受けるお客様](#影響を受けるお客様)
-  - [エージェント ベースの Hybrid Runbook Worker を利用しているか確認する方法](#エージェント-ベースの-hybrid-runbook-worker-を利用しているか確認する方法)
-- [移行方法](#移行方法)
+- [影響を受けているか確認する方法](#影響を受けているか確認する方法)
+  - [1. 接続文字列を用いて Application Insights と連携している場合](#1-接続文字列を用いて-application-insights-と連携している場合)
+  - [2. インストルメンテーション キーを用いて Application Insights と連携している場合](#2-インストルメンテーション-キーを用いて-application-insights-と連携している場合)
+- [よくあるご質問](#よくあるご質問)
+  - [私は接続文字列とインストルメンテーション キーのどちらを利用していますか?](#私は接続文字列とインストルメンテーション-キーのどちらを利用していますか)
+  - [なんとかして使っている TLS のバージョンをチェックすることは出来ますか?](#なんとかして使っている-tls-のバージョンをチェックすることは出来ますか)
+  - [正常性イベントに記載があった "You can determine if you're using TLS 1.0 or 1.1 by enabling logging." とはどういう意味ですか?](#正常性イベントに記載があった-you-can-determine-if-youre-using-tls-10-or-11-by-enabling-logging-とはどういう意味ですか)
 - [最後に](#最後に)
+
 
 # 概要
 下記のサービス正常性に関する記事となります。
