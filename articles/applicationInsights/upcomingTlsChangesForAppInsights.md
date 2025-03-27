@@ -212,6 +212,15 @@ Global IP アドレスは一つでは無いため、下図のように複数回�
 > 詳細は下記の公開情報をご参考ください。  
 > [仮想ネットワークを Azure App Service に統合する際のトラブルシューティング](https://learn.microsoft.com/ja-jp/troubleshoot/azure/app-service/troubleshoot-vnet-integration-apps)
 
+
+## 正常性イベントに記載があった "You can determine if you're using TLS 1.0 or 1.1 by enabling logging." とはどういう意味ですか?
+結論から申し上げますと、こちらの方法では TLS 1.0 / 1.1 を使っているかどうかの特定は出来ません。  
+お客様に誤った情報を発信して混乱を招いてしまい、大変申し訳ございませんでした。  
+
+ログを収集するために Application Insights を有効化いただいても、TLS バージョンを特定することは出来ません。  
+大変恐れ入りますが、本ブログ記事に記載させていただいた方法でご確認いただけますと幸いです。
+
+
 # 最後に
 もし移行方法についてご質問がある場合やトラブル解決のためにサポートが必要な場合は、Azure portal より Application Insights 観点でお問い合わせください。  
 以上となります。
