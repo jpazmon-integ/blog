@@ -148,7 +148,9 @@ TLS 1.0 に関して、弊社からお客様向けにガイダンスを提供し
 > App Service や Azure Functions の場合、環境変数を変更すると再起動が実施されます。
 > その結果一時的にアクセス出来ない状況が考えられるため、環境変数の設定は十分ご留意くださいませ。
 
+
 その他、接続文字列に関する参考情報は下記となります。  
+> 下記の公開情報に Java の記載がございませんが、Java 用の OpenTelemetry Distro と Classic SDK (v2.5.1 と 3.x) は接続文字列に対応しております。
 - [Application Insights の接続文字列 # 接続文字列を設定する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/connection-strings#set-a-connection-string)
 ![](./upcomingTlsChangesForAppInsights/pict3.png)
 
