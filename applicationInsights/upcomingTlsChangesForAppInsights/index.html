@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Application Insights の TLS に関する変更のご案内 | Japan Azure Monitoring Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは、Azure Monitoring サポート チームの北山です。今回の記事では、Application Insights の TLS 変更に関するご案内 (Tracking ID : TT8T-TR0) について記載します。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Application Insights の TLS に関する変更のご案内">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/applicationInsights/upcomingTlsChangesForAppInsights/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの北山です。今回の記事では、Application Insights の TLS 変更に関するご案内 (Tracking ID : TT8T-TR0) について記載します。">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict1.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict2.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict3.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict4.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict5.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict6.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict7.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict8.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict9.png">
+<meta property="article:published_time" content="2025-03-31T02:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-31T02:31:51.948Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="Tips">
+<meta property="article:tag" content="Application Insights">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict1.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-applicationInsights/upcomingTlsChangesForAppInsights" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Application Insights の TLS に関する変更のご案内
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2025-03-31T02:00:00.000Z" itemprop="datePublished">2025-03-31</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+a190bf22-127f-51fd-b87d-bd34c3cfc8ac%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BApplication+Insights+%E3%81%AE+TLS+%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E5%A4%89%E6%9B%B4%E3%81%AE%E3%81%94%E6%A1%88%E5%86%85%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FapplicationInsights%2FupcomingTlsChangesForAppInsights%2F%29%0A*+Content+Source%3A+%5Barticles%2FapplicationInsights%2FupcomingTlsChangesForAppInsights.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FapplicationInsights%2FupcomingTlsChangesForAppInsights.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/upcomingTlsChangesForAppInsights/" data-id="cm8wge3t800ch0nla8h0003dn" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは、Azure Monitoring サポート チームの北山です。<br>今回の記事では、Application Insights の TLS 変更に関するご案内 (Tracking ID : TT8T-TR0) について記載します。</p>
+<span id="more"></span>
+<ul>
+<li><a href="#%E6%A6%82%E8%A6%81">概要</a></li>
+<li><a href="#%E3%81%A9%E3%81%AE%E3%82%88%E3%81%86%E3%81%AA%E5%BD%B1%E9%9F%BF%E3%82%92%E5%8F%97%E3%81%91%E3%82%8B%E3%81%8B">どのような影響を受けるか</a></li>
+<li><a href="#%E3%81%84%E3%81%A4%E3%81%8B%E3%82%89%E5%BD%B1%E9%9F%BF%E3%82%92%E5%8F%97%E3%81%91%E3%82%8B%E3%81%8B">いつから影響を受けるか</a></li>
+<li><a href="#%E5%BD%B1%E9%9F%BF%E3%82%92%E5%8F%97%E3%81%91%E3%82%8B%E3%81%8A%E5%AE%A2%E6%A7%98">影響を受けるお客様</a></li>
+<li><a href="#%E5%BD%B1%E9%9F%BF%E3%82%92%E5%8F%97%E3%81%91%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95">影響を受けているか確認する方法</a><ul>
+<li><a href="#1-%E6%8E%A5%E7%B6%9A%E6%96%87%E5%AD%97%E5%88%97%E3%82%92%E7%94%A8%E3%81%84%E3%81%A6-application-insights-%E3%81%A8%E9%80%A3%E6%90%BA%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E5%A0%B4%E5%90%88">1. 接続文字列を用いて Application Insights と連携している場合</a></li>
+<li><a href="#2-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%AB%E3%83%A1%E3%83%B3%E3%83%86%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3-%E3%82%AD%E3%83%BC%E3%82%92%E7%94%A8%E3%81%84%E3%81%A6-application-insights-%E3%81%A8%E9%80%A3%E6%90%BA%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E5%A0%B4%E5%90%88">2. インストルメンテーション キーを用いて Application Insights と連携している場合</a></li>
+</ul>
+</li>
+<li><a href="#%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E3%81%94%E8%B3%AA%E5%95%8F">よくあるご質問</a><ul>
+<li><a href="#%E7%A7%81%E3%81%AF%E6%8E%A5%E7%B6%9A%E6%96%87%E5%AD%97%E5%88%97%E3%81%A8%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%AB%E3%83%A1%E3%83%B3%E3%83%86%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3-%E3%82%AD%E3%83%BC%E3%81%AE%E3%81%A9%E3%81%A1%E3%82%89%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%81%8B">私は接続文字列とインストルメンテーション キーのどちらを利用していますか?</a></li>
+<li><a href="#%E3%81%AA%E3%82%93%E3%81%A8%E3%81%8B%E3%81%97%E3%81%A6%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B-tls-%E3%81%AE%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%82%92%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E5%87%BA%E6%9D%A5%E3%81%BE%E3%81%99%E3%81%8B">なんとかして使っている TLS のバージョンをチェックすることは出来ますか?</a></li>
+<li><a href="#%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%81%AB%E8%A8%98%E8%BC%89%E3%81%8C%E3%81%82%E3%81%A3%E3%81%9F-you-can-determine-if-youre-using-tls-10-or-11-by-enabling-logging-%E3%81%A8%E3%81%AF%E3%81%A9%E3%81%86%E3%81%84%E3%81%86%E6%84%8F%E5%91%B3%E3%81%A7%E3%81%99%E3%81%8B">正常性イベントに記載があった “You can determine if you’re using TLS 1.0 or 1.1 by enabling logging.” とはどういう意味ですか?</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9C%80%E5%BE%8C%E3%81%AB">最後に</a></li>
+</ul>
+<p>下記のサービス正常性に関する記事となります。</p>
+<table>
+  <tr>
+    <th style="width: 150px;">項目名</th>
+    <th>項目値</th>
+  </tr>
+  <tr>
+    <td>題名</td>
+    <td>Action required: Upcoming TLS changes for Azure Monitor Application Insights</td>
+  </tr>
+  <tr>
+    <td>追跡 ID</td>
+    <td>TT8T-TR0</td>
+  </tr>
+  <tr>
+    <td>影響を受けるリージョン</td>
+    <td>Southeast Asia; East US; West US 2; Sweden Central; South Africa West; West US 3; Canada Central; UK South; Global; South India; North Central US; New Zealand North; West India; Australia Central 2; France South; Switzerland North; Jio India West; Italy North; Central US; Japan West; Australia Southeast; Mexico Central; Qatar Central; Switzerland West; Central India; East US 2 EUAP; Taiwan North; East Asia; UAE Central; Canada East; West US; France Central; Norway West; Germany West Central; South Africa North; West Europe; East US 2; Israel Central; Australia Central; Central US EUAP; Brazil Southeast; Japan East; Korea South; Germany North; Brazil South; UK West; Indonesia Central; Sweden South; West Central US; South Central US; Jio India Central; North Europe; Australia East; UAE North; Spain Central; Norway East; Korea Central; Poland Central</td>
+  </tr>
+  <tr>
+    <td>正常性イベントの種類</td>
+    <td>正常性の勧告</td>
+  </tr>
+</table>
+
+<br>
+
+<p>内容は下記のとおりです。</p>
+<p><strong>原文</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">You’re receiving this notification because you&#x27;re associated with one or more Azure subscriptions that use Azure Monitor Application Insights.</span><br><span class="line"></span><br><span class="line">To enhance security and provide best-in-class encryption for your data, we&#x27;ll require all connections to Azure Monitor Application Insights to be secured using Transport Layer Security (TLS) 1.2 or later beginning 1 May 2025, when support for TLS 1.0 and 1.1 will end.</span><br><span class="line"></span><br><span class="line">If you&#x27;re already using TLS 1.2 or later, no further action is required.</span><br><span class="line"></span><br><span class="line"># Required action</span><br><span class="line">If you&#x27;re using TLS 1.0 or 1.1 for Azure Monitor Application Insights, you&#x27;ll need to switch to TLS 1.2 or later by 1 May 2025. You can determine if you&#x27;re using TLS 1.0 or 1.1 by enabling logging.</span><br></pre></td></tr></table></figure>
+
+<p><strong>日本語</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">あなたは、Azure Monitor Application Insights をご利用いただいている Azure サブスクリプションに関連付けられているため、この通知を受け取っています。</span><br><span class="line"></span><br><span class="line">データのセキュリティ強化と最先端の暗号化を提供するため、2025年5月1日より、Azure Monitor Application Insights へのすべての接続で TLS 1.2 以降の使用を必須とし、TLS 1.0 および 1.1 のサポートを終了します。</span><br><span class="line"></span><br><span class="line">すでに TLS 1.2 以降を使用している場合は、追加の対応は不要です。</span><br><span class="line"></span><br><span class="line"># 必要なアクション</span><br><span class="line">クライアント側で TLS 1.0 または 1.1 を使って Azure Monitor Application Insights と通信している場合は、2025年5月1日までにクライアント側を TLS 1.2 以降へ移行する必要があります。</span><br><span class="line">使用中の TLS バージョンを確認するには、ログを有効化してください。</span><br></pre></td></tr></table></figure>
+
+<h1 id="どのような影響を受けるか"><a href="#どのような影響を受けるか" class="headerlink" title="どのような影響を受けるか"></a>どのような影響を受けるか</h1><p>クライアント側 (OS の設定もしくは、ランタイム・Web アプリケーション側の設定) にて、TLS 1.1 もしくは 1.0 のプロトコルでサーバーと通信する設定の場合、期待どおり Application Insights に各種テレメトリが送信されません。<br>結果として、Application Insights に各種ログやメトリックが保存されず、期待どおり Web アプリケーションの監視が出来なくなります。</p>
+<h1 id="いつから影響を受けるか"><a href="#いつから影響を受けるか" class="headerlink" title="いつから影響を受けるか"></a>いつから影響を受けるか</h1><p>2025 年 5 月 1 日からです。</p>
+<h1 id="影響を受けるお客様"><a href="#影響を受けるお客様" class="headerlink" title="影響を受けるお客様"></a>影響を受けるお客様</h1><p>監視対象の Web アプリケーションをホストしているクライアント側で、TLS 1.1 もしくは 1.0 のプロトコルを使ってサーバーと通信をしているお客様です。</p>
+<h1 id="影響を受けているか確認する方法"><a href="#影響を受けているか確認する方法" class="headerlink" title="影響を受けているか確認する方法"></a>影響を受けているか確認する方法</h1><h2 id="1-接続文字列を用いて-Application-Insights-と連携している場合"><a href="#1-接続文字列を用いて-Application-Insights-と連携している場合" class="headerlink" title="1. 接続文字列を用いて Application Insights と連携している場合"></a>1. 接続文字列を用いて Application Insights と連携している場合</h2><p>この場合、お客様に実施いただく対処は不要です。<br>接続文字列を用いて Application Insights と連携している場合、監視対象の Web アプリケーションは接続文字列に含まれるリージョナル インストルメンテーション エンドポイントに対して各種テレメトリを送信しております。</p>
+<p>例えば下記の接続文字列の場合、Japan East に展開されたリージョナル エンドポイント (<strong>japaneast-1.in.applicationinsights.azure.com</strong>) 宛に各種テレメトリを送信します。</p>
+<blockquote>
+<p>InstrumentationKey=XXXX;IngestionEndpoint=<a target="_blank" rel="noopener" href="https://japaneast-1.in.applicationinsights.azure.com/;LiveEndpoint=https://japaneast.livediagnostics.monitor.azure.com/;ApplicationId=XXX">https://japaneast-1.in.applicationinsights.azure.com/;LiveEndpoint=https://japaneast.livediagnostics.monitor.azure.com/;ApplicationId=XXX</a></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/ip-addresses">IP addresses used by Azure Monitor</a><br><img src="/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict1.png"></p>
+<p>このリージョナル インジェスト エンドポイントに関しましては、もともとサーバー側で TLS 1.1 / 1.0 を利用しておりません。<br>そのため、接続文字列を用いて Application Insights と連携していてかつ、Application Insights リソースに各種テレメトリが送信できている状況であれば、クライアント側はすでに TLS 1.2 以上で通信しております。<br>そのため、対処は不要です。</p>
+<h2 id="2-インストルメンテーション-キーを用いて-Application-Insights-と連携している場合"><a href="#2-インストルメンテーション-キーを用いて-Application-Insights-と連携している場合" class="headerlink" title="2. インストルメンテーション キーを用いて Application Insights と連携している場合"></a>2. インストルメンテーション キーを用いて Application Insights と連携している場合</h2><p>インストルメンテーション キーを用いて Application Insights と連携している場合、グローバル インジェスト エンドポイントに対して各種テレメトリを送信しております。<br>このエンドポイントは、現在も TLS 1.0 / 1.1 をサポートしております。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/ip-addresses">IP addresses used by Azure Monitor</a></p>
+<p><img src="/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict2.png"></p>
+<p>インストルメンテーション キーを用いて Application Insights と連携している場合は、場合によってはクライアント側の対処が必要です。<br>対処の要否確認方法は、Web アプリケーションをホストしている OS の種類やランタイムによって異なります。<br>TLS 1.0 に関して、弊社からお客様向けにガイダンスを提供しております。<br>確認方法は環境によって異なるため一概にはお答えできませんが、下記公開情報をご参考くださいませ。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/security/engineering/solving-tls1-problem">TLS 1.0の問題の解決、第2版</a></li>
+<li><a target="_blank" rel="noopener" href="https://jpaztech.github.io/blog/network/tls1.2_migration/">Azure Network 製品について TLS 1.2 以降に移行するアナウンスの補足 (Tracking ID:7_8G-D8Z)</a></li>
+</ul>
+<h1 id="よくあるご質問"><a href="#よくあるご質問" class="headerlink" title="よくあるご質問"></a>よくあるご質問</h1><h2 id="私は接続文字列とインストルメンテーション-キーのどちらを利用していますか"><a href="#私は接続文字列とインストルメンテーション-キーのどちらを利用していますか" class="headerlink" title="私は接続文字列とインストルメンテーション キーのどちらを利用していますか?"></a>私は接続文字列とインストルメンテーション キーのどちらを利用していますか?</h2><p>お客様の実装方法によって確認方法が異なります。<br>インストルメンテーション キーや接続文字列の指定方法は、いくつか方法がございます。<br>ランタイムによって実装方法が異なる可能性がございますが、基本的には下記のとおりです。</p>
+<ol>
+<li>環境変数で指定する</li>
+<li>ご利用いただいている Azure Monitor OpenTelemetry Distro や Classic Application Insights SDK の設定ファイルで指定する</li>
+<li>ソース コード上にハードコーディングする</li>
+</ol>
+<p>上記の方法が存在するため、確認自体はお客様にて実施いただく必要がございます。<br>これは、弊社ではお客様が管理しているデータにアクセス出来ないためです。  </p>
+<p>お問い合わせを頂いている中で、一番多い連携方法は環境変数で指定する方法です。<br>インストルメンテーション キーと接続文字列で使用される環境変数は下記のとおりです。</p>
+<ul>
+<li><code>APPINSIGHTS_INSTRUMENTATIONKEY</code> : インストルメンテーション キーを指定するために使われます。</li>
+<li><code>APPLICATIONINSIGHTS_CONNECTION_STRING</code> : 接続文字列を指定するために使われます。</li>
+</ul>
+<p>もし環境変数に  <code>APPINSIGHTS_INSTRUMENTATIONKEY</code> が指定されている場合は、環境変数から <code>APPINSIGHTS_INSTRUMENTATIONKEY</code> を削除して <code>APPLICATIONINSIGHTS_CONNECTION_STRING</code> のみをご指定ください。</p>
+<blockquote>
+<p>App Service や Azure Functions の場合、環境変数を変更すると再起動が実施されます。<br>その結果一時的にアクセス出来ない状況が考えられるため、環境変数の設定は十分ご留意くださいませ。</p>
+</blockquote>
+<p>その他、接続文字列に関する参考情報は下記となります。  </p>
+<blockquote>
+<p>下記の公開情報に Java の記載がございませんが、Java 用の OpenTelemetry Distro と Classic SDK (v2.5.1 と 3.x) は接続文字列に対応しております。</p>
+</blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/connection-strings#set-a-connection-string">Application Insights の接続文字列 # 接続文字列を設定する</a><br><img src="/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict3.png"></li>
+</ul>
+<p>もしお客様自身でご確認いただいていも分からない場合は、お気兼ねなく Azure portal よりサポート リクエストをご起票ください。<br>その際は下記の情報をご連携いただけると、よりスムーズにサポートを提供出来ると存じます。</p>
+<ul>
+<li>監視対象 Web アプリケーションのランタイム (.NET, Java, Node.js など)</li>
+<li>Application Insights との統合方法 (手動インストルメンテーション or 自動インストルメンテーション)</li>
+<li>手動インストルメンテーションの場合、組み込んでいただいているパッケージ情報 (パッケージ名とパッケージのバージョン)</li>
+<li>自動インストルメンテーションの場合、デプロイ先の Azure リソース ID (App Service のリソース ID)</li>
+<li>宛先の Application Insights リソースのリソース ID</li>
+</ul>
+<h2 id="なんとかして使っている-TLS-のバージョンをチェックすることは出来ますか"><a href="#なんとかして使っている-TLS-のバージョンをチェックすることは出来ますか" class="headerlink" title="なんとかして使っている TLS のバージョンをチェックすることは出来ますか?"></a>なんとかして使っている TLS のバージョンをチェックすることは出来ますか?</h2><p>パケットキャプチャーを取得することで、ご確認可能です。<br>App Service にデプロイいただいている状況を例に、方法について記載します。</p>
+<blockquote>
+<p>下記に記載する方法は、TLS のバージョン問わず Application Insights のエンドポイントと通信が出来ている前提です。<br>何らかの理由で通信が出来ない場合は、TLS ハンドシェイクの箇所をご確認いただく必要がある点についてご留意ください。</p>
+</blockquote>
+<p><strong>手順 1</strong><br>Azure portal にアクセスして、Web アプリケーションをデプロイしている App Service リソースのページへ移動します。<br>“問題の診断と解決” ページにて、”Collect Network Trace” を選びます。</p>
+<p><img src="/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict4.png"></p>
+<blockquote>
+<p>こちらは Windows 版 App Service のみです。<br>Linux 版の場合は手動にて採取いただく必要がございます。<br>詳細は下記の公開情報をご参照ください。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/troubleshoot/azure/app-service/troubleshoot-vnet-integration-apps">仮想ネットワークを Azure App Service に統合する際のトラブルシューティング</a></p>
+</blockquote>
+<p><strong>手順 2</strong><br>監視対象の Web アプリケーションが稼働していることを確認して、”Collect Network Trace” をクリックします。<br>すると、60 秒間ネットワーク トレースが採取され続けます。</p>
+<p><img src="/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict5.png"></p>
+<p><strong>手順 3</strong><br>60 秒後、収集が完了します。<br>ハイパーリンクから、収集したトレース ファイルをダウンロードします。</p>
+<p><img src="/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict6.png"></p>
+<p><strong>手順 4</strong><br>弊社のツールである <a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/download/details.aspx?id=4865">Microsoft Network Monitor</a> を使って、ダウンロードしたキャプチャ ファイルを開きます。</p>
+<blockquote>
+<p>Wireshark など、他のパケット解析ツールでも問題ございません。  </p>
+</blockquote>
+<p><img src="/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict7.png"></p>
+<p><strong>手順 5</strong><br>30 秒ごとに実施される Application Insights へのテレメトリ送信処理のパケットを確認し、TLS フレームの詳細で利用しているバージョンを確認します。<br>下図のように 1.2 を使っていれば対処は不要です。<br><img src="/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict8.png"></p>
+<p>宛先となる Application Insights の IP アドレスですが、接続文字列に指定されたインジェスト エンドポイントを名前解決することで確認可能です。<br>App Service の場合 Kudu にてご確認可能です。<br>Global IP アドレスは一つでは無いため、下図のように複数回実行いただくことを推奨します。</p>
+<p><img src="/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict9.png"></p>
+<blockquote>
+<p>名前解決は、Windows 版の App Service の場合は nameresolver を使います。<br>Linux 版の場合は nslookup を使います。<br>詳細は下記の公開情報をご参考ください。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/troubleshoot/azure/app-service/troubleshoot-vnet-integration-apps">仮想ネットワークを Azure App Service に統合する際のトラブルシューティング</a></p>
+</blockquote>
+<h2 id="正常性イベントに記載があった-“You-can-determine-if-you’re-using-TLS-1-0-or-1-1-by-enabling-logging-”-とはどういう意味ですか"><a href="#正常性イベントに記載があった-“You-can-determine-if-you’re-using-TLS-1-0-or-1-1-by-enabling-logging-”-とはどういう意味ですか" class="headerlink" title="正常性イベントに記載があった “You can determine if you’re using TLS 1.0 or 1.1 by enabling logging.” とはどういう意味ですか?"></a>正常性イベントに記載があった “You can determine if you’re using TLS 1.0 or 1.1 by enabling logging.” とはどういう意味ですか?</h2><p>結論から申し上げますと、こちらの方法では TLS 1.0 / 1.1 を使っているかどうかの特定は出来ません。<br>お客様に誤った情報を発信して混乱を招いてしまい、大変申し訳ございませんでした。  </p>
+<p>ログを収集するために Application Insights を有効化いただいても、TLS バージョンを特定することは出来ません。<br>大変恐れ入りますが、本ブログ記事に記載させていただいた方法でご確認いただけますと幸いです。</p>
+<h1 id="最後に"><a href="#最後に" class="headerlink" title="最後に"></a>最後に</h1><p>もし移行方法についてご質問がある場合やトラブル解決のためにサポートが必要な場合は、Azure portal より Application Insights 観点でお問い合わせください。<br>以上となります。</p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/applicationInsights/upcomingTlsChangesForAppInsights.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../LogAnalytics/HowToContainerInsights/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Container Insights のご紹介</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">Application Insights の TLS に関する変更のご案内</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/HowToContainerInsights/">Container Insights のご紹介</a>
+          </li>
+        
+          <li>
+            <a href="../../automation/AgentBasedHrwRetired/">エージェント ベースの Hybrid Runbook Worker がご利用いただけなくなります</a>
+          </li>
+        
+          <li>
+            <a href="../../AzureMonitorEssential/MonitorDiagnosticsSettingFAQ/">Azure Monitor の診断設定に関するよくあるご質問</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/MonitorVM_AMA/">Azure Monitor エージェントにより収集される Heartbeat ログを使用した死活監視方法</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/AMPLS/" rel="tag">AMPLS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Arc/" rel="tag">Azure Arc</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Diagnostics-extension/" rel="tag">Azure Diagnostics extension</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent/" rel="tag">Azure Monitor Agent</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essential/" rel="tag">Azure Monitor Essential</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" rel="tag">Azure Monitor エージェント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Private-Link/" rel="tag">Azure Private Link</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Container-Insights/" rel="tag">Container Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostic-settings/" rel="tag">Diagnostic settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostics-settings/" rel="tag">Diagnostics settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HowTo/" rel="tag">HowTo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/LAD/" rel="tag">LAD</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Alert/" rel="tag">Log Alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" rel="tag">Log Analytics エージェント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-ID/" rel="tag">Managed ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-Identity/" rel="tag">Managed Identity</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Migration/" rel="tag">Migration</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Run-As-Account/" rel="tag">Run As Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sandbox/" rel="tag">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StartAzureV2VMs/" rel="tag">StartAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StopAzureV2VMs/" rel="tag">StopAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshoot/" rel="tag">Troubleshoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM/" rel="tag">VM</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM-insights/" rel="tag">VM insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WAD/" rel="tag">WAD</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Worker/" rel="tag">Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/howto/" rel="tag">howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/" rel="tag">アクションのミュート</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" rel="tag">アラート処理ルール</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%89-script/" rel="tag">オンボード script</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" rel="tag">クエリ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" rel="tag">コスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%BF%E3%83%BC-API/" rel="tag">データ コレクター API</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%91%E3%83%BC%E3%82%B8/" rel="tag">パージ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" rel="tag">マネージド ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB/" rel="tag">ログ アラート ルール</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88-API/" rel="tag">ログ インジェスト API</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%81%9C%E6%AD%A2/" rel="tag">停止</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%88%86%E6%9E%90%E6%83%85%E5%A0%B1/" rel="tag">分析情報</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" rel="tag">実行アカウント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/" rel="tag">移行</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" rel="tag">自動化</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%B5%B7%E5%8B%95/" rel="tag">起動</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/">How-To</a><span class="tag-list-count">42</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/">Tips</a><span class="tag-list-count">30</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/">Azure Monitor Essentials</a><span class="tag-list-count">15</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/">Azure Monitor</a><span class="tag-list-count">7</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/">FAQ</a><span class="tag-list-count">11</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/">Log Analytics</a><span class="tag-list-count">37</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/">Troubleshooting</a><span class="tag-list-count">4</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">9</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/">Automation</a><span class="tag-list-count">11</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/">チーム紹介</a><span class="tag-list-count">5</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/">移行</a><span class="tag-list-count">2</span><ul></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/03/">2025 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/02/">2025 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/01/">2025 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/11/">2024 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/10/">2024 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/09/">2024 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/08/">2024 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/07/">2024 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/05/">2024 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/04/">2024 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/03/">2024 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/01/">2024 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/12/">2023 / 12</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/11/">2023 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/10/">2023 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/09/">2023 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/07/">2023 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/06/">2023 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/03/">2023 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/01/">2023 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/11/">2022 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/10/">2022 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/09/">2022 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/08/">2022 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/AMPLS/" style="font-size: 10px;">AMPLS</a> <a href="../../tags/Application-Insights/" style="font-size: 15.83px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 16.67px;">Automation</a> <a href="../../tags/Azure-Arc/" style="font-size: 12.5px;">Azure Arc</a> <a href="../../tags/Azure-Diagnostics-extension/" style="font-size: 10.83px;">Azure Diagnostics extension</a> <a href="../../tags/Azure-Monitor/" style="font-size: 15px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Agent/" style="font-size: 15px;">Azure Monitor Agent</a> <a href="../../tags/Azure-Monitor-Essential/" style="font-size: 12.5px;">Azure Monitor Essential</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 17.5px;">Azure Monitor Essentials</a> <a href="../../tags/Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" style="font-size: 10px;">Azure Monitor エージェント</a> <a href="../../tags/Azure-Private-Link/" style="font-size: 11.67px;">Azure Private Link</a> <a href="../../tags/Container-Insights/" style="font-size: 10px;">Container Insights</a> <a href="../../tags/Diagnostic-settings/" style="font-size: 10.83px;">Diagnostic settings</a> <a href="../../tags/Diagnostics-settings/" style="font-size: 10px;">Diagnostics settings</a> <a href="../../tags/FAQ/" style="font-size: 16.67px;">FAQ</a> <a href="../../tags/General/" style="font-size: 14.17px;">General</a> <a href="../../tags/How-To/" style="font-size: 20px;">How-To</a> <a href="../../tags/HowTo/" style="font-size: 11.67px;">HowTo</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 10.83px;">Job</a> <a href="../../tags/LAD/" style="font-size: 10.83px;">LAD</a> <a href="../../tags/Log-Alert/" style="font-size: 10px;">Log Alert</a> <a href="../../tags/Log-Analytics/" style="font-size: 19.17px;">Log Analytics</a> <a href="../../tags/Log-Analytics-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" style="font-size: 10px;">Log Analytics エージェント</a> <a href="../../tags/Managed-ID/" style="font-size: 10px;">Managed ID</a> <a href="../../tags/Managed-Identity/" style="font-size: 10px;">Managed Identity</a> <a href="../../tags/MetricAlert/" style="font-size: 10.83px;">MetricAlert</a> <a href="../../tags/Migration/" style="font-size: 10px;">Migration</a> <a href="../../tags/Run-As-Account/" style="font-size: 10px;">Run As Account</a> <a href="../../tags/RunAs-Account/" style="font-size: 12.5px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 13.33px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 18.33px;">Tips</a> <a href="../../tags/Troubleshoot/" style="font-size: 10px;">Troubleshoot</a> <a href="../../tags/Troubleshooting/" style="font-size: 12.5px;">Troubleshooting</a> <a href="../../tags/VM/" style="font-size: 10px;">VM</a> <a href="../../tags/VM-insights/" style="font-size: 10px;">VM insights</a> <a href="../../tags/WAD/" style="font-size: 10.83px;">WAD</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/howto/" style="font-size: 10px;">howto</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/" style="font-size: 10px;">アクションのミュート</a> <a href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" style="font-size: 10px;">アラート処理ルール</a> <a href="../../tags/%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%89-script/" style="font-size: 10px;">オンボード script</a> <a href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" style="font-size: 10px;">クエリ</a> <a href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" style="font-size: 10px;">コスト</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 13.33px;">チーム紹介</a> <a href="../../tags/%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%BF%E3%83%BC-API/" style="font-size: 10px;">データ コレクター API</a> <a href="../../tags/%E3%83%91%E3%83%BC%E3%82%B8/" style="font-size: 10px;">パージ</a> <a href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" style="font-size: 10.83px;">マネージド ID</a> <a href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB/" style="font-size: 10px;">ログ アラート ルール</a> <a href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88-API/" style="font-size: 10px;">ログ インジェスト API</a> <a href="../../tags/%E5%81%9C%E6%AD%A2/" style="font-size: 10px;">停止</a> <a href="../../tags/%E5%88%86%E6%9E%90%E6%83%85%E5%A0%B1/" style="font-size: 10px;">分析情報</a> <a href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" style="font-size: 11.67px;">可用性テスト</a> <a href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" style="font-size: 10px;">実行アカウント</a> <a href="../../tags/%E7%A7%BB%E8%A1%8C/" style="font-size: 10.83px;">移行</a> <a href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" style="font-size: 10px;">自動化</a> <a href="../../tags/%E8%B5%B7%E5%8B%95/" style="font-size: 10px;">起動</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
