@@ -133,11 +133,10 @@ az vm extension set `
 
 **DisableAutoUpgradeMinorVersion**
 - このパラメーターは、Set-AzVMExtension が実行される際 (拡張機能をインストールするときや手動アップグレードするとき) に、どのバージョンがインストールされる (どのバージョンにアップグレードされる) かを指定するものです。
-- `-DisableAutoUpgradeMinorVersion $true` とした場合は、`-TypeHandlerVersion` に指定したバージョンがインストールされ (`-TypeHandlerVersion` に指定したバージョンにアップグレードされ) ます。 
-- `-DisableAutoUpgradeMinorVersion $false` とした場合、その時使用できる最新の安定したマイナー バージョンがインストールされ (にアップグレードされ) ます。
+- `-DisableAutoUpgradeMinorVersion:$true` または `-DisableAutoUpgradeMinorVersion` とした場合は、`-TypeHandlerVersion` に指定したバージョンがインストールされ (`-TypeHandlerVersion` に指定したバージョンにアップグレードされ) ます。 
+- `-DisableAutoUpgradeMinorVersion:$false` とした場合、その時使用できる最新の安定したマイナー バージョンがインストールされ (にアップグレードされ) ます。
 
 (ご参考)
-[Azure の仮想マシンとスケール セットの拡張機能の自動アップグレード | EnableAutomaticUpgrade と AutoUpgradeMinorVersion の違い](https://learn.microsoft.com/ja-jp/azure/virtual-machines/automatic-extension-upgrade?tabs=RestAPI1%2CRestAPI2#difference-between-enableautomaticupgrade-and-autoupgrademinorversion)
 [Set-AzVMExtension](https://learn.microsoft.com/en-us/powershell/module/az.compute/set-azvmextension?view=azps-13.4.0)
 [az vm extension | az vm extension set | 省略可能のパラメーター](https://learn.microsoft.com/ja-jp/cli/azure/vm/extension?view=azure-cli-latest#az-vm-extension-set-optional-parameters)
 
@@ -233,7 +232,7 @@ AMAの自動アップグレードが失敗した場合、バージョンアッ�
 
 <br>
 
-![アクティビティ ログの例](./AMAAutoupgradeFAQ/upgrade-activitylog.jpg)
+![アクティビティ ログの例](./AMAAutoupgradeFAQ/upgrade-activitylog.png)
 
 <br>
 
