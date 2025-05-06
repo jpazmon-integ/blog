@@ -10,7 +10,7 @@ tags:
 
 [更新履歴]
 - 2024/01/06 : ブログ公開
-- 2025/04/16 : Delete Data API の情報を追記
+- 2025/05/07 : Delete Data API の情報を追記
 
 
 こんにちは、Azure Monitoring サポート チームの北村です。
