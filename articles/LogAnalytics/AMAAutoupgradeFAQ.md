@@ -232,7 +232,7 @@ AMAの自動アップグレードが失敗した場合、バージョンアッ�
 
 <br>
 
-![アクティビティ ログの例](./AMAAutoupgradeFAQ/upgrade-activitylog.png)
+![](./AMAAutoupgradeFAQ/upgrade-activitylog.png)
 
 <br>
 
@@ -250,7 +250,7 @@ Heartbeat
 
 <br>
 
-![Heartbeat ログから Version を確認したときの例](./AMAAutoupgradeFAQ/Heartbeat-versions.png)
+![](./AMAAutoupgradeFAQ/Heartbeat-versions.png)
 
 <br>
 
