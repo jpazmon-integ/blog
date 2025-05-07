@@ -227,7 +227,7 @@ AMAの自動アップグレードが失敗した場合、バージョンアッ�
 --------------------------------------------------------
 
 アクティビティ ログから確認が可能です。  
-具体的には、Create or Update Virtual Machine Extension というアクティビティ ログが記録されます。  
+具体的には、以下の画像のように、Create or Update Virtual Machine Extension というアクティビティ ログが記録されます。  
 なお、手動で拡張機能をアップロードした場合も同様のログが記録されますため、こちらの点についてご留意ください。
 
 <br>
@@ -238,8 +238,9 @@ AMAの自動アップグレードが失敗した場合、バージョンアッ�
 
 また、各マシンで動作している Azure Monitor エージェントのバージョンは、Log Analytics ワークスペースの Heartbeat テーブルの Version 列からもご確認いただけます。  
 そのため、当該エージェントのバージョンがどのタイミングで変更されたかは、Heartbeat ログからもご確認が可能です。
+以下は確認のためのサンプル クエリおよびクエリ実行結果の例です。
 
-// クエリの例
+■ サンプル クエリ
 ```
 Heartbeat
 | where _ResourceId =~ "<VMResourceId>"
@@ -250,6 +251,7 @@ Heartbeat
 
 <br>
 
+■ サンプル クエリの実行結果の例　　
 ![](./AMAAutoupgradeFAQ/Heartbeat-versions.png)
 
 <br>
