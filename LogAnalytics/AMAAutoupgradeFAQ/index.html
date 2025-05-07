@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問集 | Japan Azure Monitoring Support Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは、Azure Monitoring チームの徳田です。本ブログでは、Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問に対する回答をご紹介いたします。弊社公開情報としては以下のページにてご紹介しておりますため、こちらも併せてご参照ください。Azure の仮想マシンとスケール セットの拡張機能の自動アップグレード">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問集">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="こんにちは、Azure Monitoring チームの徳田です。本ブログでは、Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問に対する回答をご紹介いたします。弊社公開情報としては以下のページにてご紹介しておりますため、こちらも併せてご参照ください。Azure の仮想マシンとスケール セットの拡張機能の自動アップグレード">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/updatecycle.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/azureportal-manualupgrade.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/upgrade-activitylog.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/Heartbeat-versions.png">
+<meta property="article:published_time" content="2025-05-07T03:00:00.000Z">
+<meta property="article:modified_time" content="2025-05-07T06:34:58.041Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="How-To">
+<meta property="article:tag" content="Azure Monitor Agent">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/updatecycle.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-LogAnalytics/AMAAutoupgradeFAQ" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問集
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2025-05-07T03:00:00.000Z" itemprop="datePublished">2025-05-07</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+d864202e-fdd7-57d4-9bea-bc062e809a54%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Monitor+%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%AE%E8%87%AA%E5%8B%95%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E6%A9%9F%E8%83%BD%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E3%81%94%E8%B3%AA%E5%95%8F%E9%9B%86%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FAMAAutoupgradeFAQ%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FAMAAutoupgradeFAQ.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FAMAAutoupgradeFAQ.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/" data-id="cmadkd9jf00bx0nqn7ho226rs" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは、Azure Monitoring チームの徳田です。<br>本ブログでは、Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問に対する回答をご紹介いたします。<br>弊社公開情報としては以下のページにてご紹介しておりますため、こちらも併せてご参照ください。<br><br><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/automatic-extension-upgrade?tabs=RestAPI1,RestAPI2">Azure の仮想マシンとスケール セットの拡張機能の自動アップグレード</a></p>
+<span id="more"></span>
+
+<br>
+
+<!-- more -->
+<h2 id="Q-amp-A-タイトル"><a href="#Q-amp-A-タイトル" class="headerlink" title="Q &amp; A タイトル"></a>Q &amp; A タイトル</h2><h3 id="lt-自動アップグレード有効化に関する質問-gt"><a href="#lt-自動アップグレード有効化に関する質問-gt" class="headerlink" title="&lt;自動アップグレード有効化に関する質問&gt;"></a>&lt;自動アップグレード有効化に関する質問&gt;</h3><ul>
+<li><a href="#Q-%E8%87%AA%E5%8B%95%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%82%92%E6%9C%89%E5%8A%B9%E5%8C%96%E3%81%99%E3%82%8B%E6%89%8B%E9%A0%86%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. 自動アップグレードを有効化する手順を教えてください。</a></li>
+<li><a href="#Q-Set-AzVMExtension-%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AE-EnableAutomaticUpgrade-%E3%81%A8-DisableAutoUpgradeMinorVersion-%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E3%83%BC%E3%81%AE%E9%81%95%E3%81%84%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. Set-AzVMExtension コマンドの EnableAutomaticUpgrade と DisableAutoUpgradeMinorVersion パラメーターの違いについて教えてください。</a></li>
+</ul>
+<h3 id="lt-自動アップグレードの実行に関する質問-gt"><a href="#lt-自動アップグレードの実行に関する質問-gt" class="headerlink" title="&lt;自動アップグレードの実行に関する質問&gt;"></a>&lt;自動アップグレードの実行に関する質問&gt;</h3><ul>
+<li><a href="#Q-%E3%81%A9%E3%81%AE%E3%82%88%E3%81%86%E3%81%AA%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%A7%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%81%95%E3%82%8C%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82%E5%88%A9%E7%94%A8%E8%80%85%E5%81%B4%E3%81%A7%E6%8C%87%E5%AE%9A%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. どのようなタイミングでアップグレードされますか。利用者側で指定できますか。</a></li>
+<li><a href="#Q-%E6%9C%80%E6%96%B0%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%8C%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%81%95%E3%82%8C%E3%81%A6%E3%81%99%E3%81%90%E3%81%AB%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%81%95%E3%82%8C%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. 最新バージョンがリリースされてすぐにアップグレードされますか。</a></li>
+<li><a href="#Q-%E5%88%A9%E7%94%A8%E4%B8%AD%E3%81%AE%E3%83%AA%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%A7%E6%9C%80%E6%96%B0%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%8C%E5%88%A9%E7%94%A8%E5%8F%AF%E8%83%BD%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%81%8C%E3%80%81%E8%87%AA%E5%8B%95%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%81%AB%E3%82%88%E3%82%8B%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%81%8C%E3%81%BE%E3%81%A0%E8%A1%8C%E3%82%8F%E3%82%8C%E3%81%A6%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82%E3%81%99%E3%81%90%E3%81%AB%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%81%97%E3%81%9F%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AF%E3%81%A9%E3%81%86%E3%81%99%E3%82%8C%E3%81%B0%E3%81%84%E3%81%84%E3%81%A7%E3%81%99%E3%81%8B%E3%80%82">Q. 利用中のリージョンで最新バージョンが利用可能になっていますが、自動アップグレードによるアップグレードがまだ行われていません。すぐにアップグレードしたい場合はどうすればいいですか。</a></li>
+</ul>
+<h3 id="lt-アップグレード時に関する質問-gt"><a href="#lt-アップグレード時に関する質問-gt" class="headerlink" title="&lt;アップグレード時に関する質問&gt;"></a>&lt;アップグレード時に関する質問&gt;</h3><ul>
+<li><a href="#Q-%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E4%B8%AD%E3%81%AF%E3%83%AD%E3%82%B0%E5%8F%8E%E9%9B%86%E3%81%8C%E5%81%9C%E6%AD%A2%E3%81%97%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82%E5%81%9C%E6%AD%A2%E6%9C%9F%E9%96%93%E4%B8%AD%E3%81%AE%E3%83%AD%E3%82%B0%E3%81%AF%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E5%BE%8C%E3%81%AB%E5%86%8D%E9%80%81%E3%81%95%E3%82%8C%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. アップグレード中はログ収集が停止しますか。停止期間中のログはアップグレード後に再送されますか。</a></li>
+<li><a href="#Q-%E5%81%9C%E6%AD%A2%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B-VM-%E3%81%AB%E5%AF%BE%E3%81%97%E3%81%A6%E8%87%AA%E5%8B%95%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%81%AF%E8%A1%8C%E3%82%8F%E3%82%8C%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. 停止している VM に対して自動アップグレードは行われますか。</a></li>
+<li><a href="#Q-%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%81%AE%E9%9A%9B%E3%81%AB%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3-OS-%E3%81%AF%E5%81%9C%E6%AD%A2%E3%83%BB%E5%86%8D%E8%B5%B7%E5%8B%95%E3%81%95%E3%82%8C%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. アップグレードの際に仮想マシン (OS) は停止・再起動されますか。</a></li>
+<li><a href="#Q-%E8%87%AA%E5%8B%95%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%81%8C%E5%A4%B1%E6%95%97%E3%81%97%E3%81%9F%E5%A0%B4%E5%90%88%E3%81%AF%E5%86%8D%E5%AE%9F%E8%A1%8C%E3%81%95%E3%82%8C%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. 自動アップグレードが失敗した場合は再実行されますか。</a></li>
+</ul>
+<h3 id="lt-その他-gt"><a href="#lt-その他-gt" class="headerlink" title="&lt;その他&gt;"></a>&lt;その他&gt;</h3><ul>
+<li><a href="#Q-%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%81%AE%E6%88%90%E5%90%A6%E3%81%AF%E7%A2%BA%E8%AA%8D%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. アップグレードの成否は確認できますか。</a></li>
+<li><a href="#Q-Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%AE%E5%90%84%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%AE%E6%83%85%E5%A0%B1%E3%81%AF%E3%81%A9%E3%81%93%E3%81%A7%E7%A2%BA%E8%AA%8D%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. Azure Monitor エージェントの各バージョンの情報はどこで確認できますか。</a></li>
+</ul>
+<br>
+
+<h3 id="lt-自動アップグレード有効化に関する質問-gt-1"><a href="#lt-自動アップグレード有効化に関する質問-gt-1" class="headerlink" title="&lt;自動アップグレード有効化に関する質問&gt;"></a>&lt;自動アップグレード有効化に関する質問&gt;</h3><hr>
+<h3 id="Q-自動アップグレードを有効化する手順を教えてください。"><a href="#Q-自動アップグレードを有効化する手順を教えてください。" class="headerlink" title="Q. 自動アップグレードを有効化する手順を教えてください。"></a>Q. 自動アップグレードを有効化する手順を教えてください。</h3><hr>
+<p>自動アップグレードを有効化する方法には、主に以下の様なものがあります。</p>
+<ul>
+<li><a href="#Azure-portal-%E4%B8%8A%E3%81%A7%E6%9C%89%E5%8A%B9%E5%8C%96%E3%81%99%E3%82%8B">Azure portal 上で有効化する</a></li>
+<li><a href="#PowerShell-%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E6%9C%89%E5%8A%B9%E5%8C%96%E3%81%99%E3%82%8B">PowerShell コマンドを使用して有効化する</a></li>
+<li><a href="#Azure-CLI-%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E6%9C%89%E5%8A%B9%E5%8C%96%E3%81%99%E3%82%8B">Azure CLI コマンドを使用して有効化する</a></li>
+</ul>
+<p>それぞれの方法について紹介します。</p>
+<h4 id="Azure-portal-上で有効化する"><a href="#Azure-portal-上で有効化する" class="headerlink" title="Azure portal 上で有効化する"></a>Azure portal 上で有効化する</h4><p>Azure portal で仮想マシン、または仮想マシン スケール セットのリソースを開き、[設定] &gt; [拡張機能とアプリケーション] のページから有効化できます。<br>詳細な手順については、以下の弊社公開情報をご確認ください。  </p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/automatic-extension-upgrade?tabs=powershell1,RestAPI2#use-the-azure-portal">Azure の仮想マシンとスケール セットの拡張機能の自動アップグレード | 拡張機能の自動アップグレードを有効にする | Azure portal を使用する</a></p>
+<h4 id="PowerShell-コマンドを使用して有効化する"><a href="#PowerShell-コマンドを使用して有効化する" class="headerlink" title="PowerShell コマンドを使用して有効化する"></a>PowerShell コマンドを使用して有効化する</h4><p>以下のコマンドを実行して有効化することができます。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Set-AzVMExtension `</span><br><span class="line">-Name AzureMonitorWindowsAgent `</span><br><span class="line">-ExtensionType AzureMonitorWindowsAgent `</span><br><span class="line">-Publisher Microsoft.Azure.Monitor `</span><br><span class="line">-ResourceGroupName &lt;resourceGroupName&gt; `</span><br><span class="line">-VMName &lt;vmName&gt; `</span><br><span class="line">-Location &lt;region&gt; `</span><br><span class="line">-HandlerVersion &lt;version&gt; `</span><br><span class="line">-DisableAutoUpgradeMinorVersion `</span><br><span class="line">-EnableAutomaticUpgrade $true</span><br><span class="line"></span><br><span class="line"># Linux の場合</span><br><span class="line">Set-AzVMExtension `</span><br><span class="line">-Name AzureMonitorLinuxAgent `</span><br><span class="line">-ExtensionType AzureMonitorLinuxAgent `</span><br><span class="line">-Publisher Microsoft.Azure.Monitor `</span><br><span class="line">-ResourceGroupName &lt;resourceGroupName&gt; `</span><br><span class="line">-VMName &lt;vmName&gt; `</span><br><span class="line">-Location &lt;region&gt; `</span><br><span class="line">-HandlerVersion &lt;version&gt; `</span><br><span class="line">-DisableAutoUpgradeMinorVersion `</span><br><span class="line">-EnableAutomaticUpgrade $true</span><br></pre></td></tr></table></figure>
+<p>※ &lt;&gt; で囲まれた箇所は環境に合わせて変更してください。  </p>
+<br>
+
+<h4 id="Azure-CLI-コマンドを使用して有効化する"><a href="#Azure-CLI-コマンドを使用して有効化する" class="headerlink" title="Azure CLI コマンドを使用して有効化する"></a>Azure CLI コマンドを使用して有効化する</h4><p>以下のコマンドを実行して有効化することができます。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># Windows の場合</span><br><span class="line">az vm extension set `</span><br><span class="line">--name AzureMonitorWindowsAgent `</span><br><span class="line">--publisher Microsoft.Azure.Monitor `</span><br><span class="line">--ids &lt;vm-resource-id&gt; `</span><br><span class="line">--version &lt;version&gt; `</span><br><span class="line">--no-auto-upgrade-minor-version `</span><br><span class="line">--enable-auto-upgrade true</span><br><span class="line"></span><br><span class="line"># Linux の場合</span><br><span class="line">az vm extension set `</span><br><span class="line">--name AzureMonitorLinuxAgent `</span><br><span class="line">--publisher Microsoft.Azure.Monitor `</span><br><span class="line">--ids &lt;vm-resource-id&gt; `</span><br><span class="line">--version &lt;version&gt; `</span><br><span class="line">--no-auto-upgrade-minor-version `</span><br><span class="line">--enable-auto-upgrade true</span><br></pre></td></tr></table></figure>
+<p>※ &lt;&gt; で囲まれた箇所は環境に合わせて変更してください。<br>※ <code>no-auto-upgrade-minor-version</code> パラメーターについては、後述の <a href="#Q-Set-AzVMExtension-%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AE-EnableAutomaticUpgrade-%E3%81%A8-DisableAutoUpgradeMinorVersion-%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E3%83%BC%E3%81%AE%E9%81%95%E3%81%84%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. Set-AzVMExtension コマンドの EnableAutomaticUpgrade と DisableAutoUpgradeMinorVersion パラメーターの違いについて教えてください。</a> を参照してください。</p>
+<br>
+
+<p>なお、以下弊社公開情報には、上記の方法に加えて ARM テンプレートや REST API を使用した有効化方法についてもご紹介しております。</p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/automatic-extension-upgrade?tabs=cli1,RestAPI2#enable-automatic-extension-upgrade">Azure の仮想マシンとスケール セットの拡張機能の自動アップグレード | 拡張機能の自動アップグレードを有効にする</a></p>
+<br>
+
+<hr>
+<h3 id="Q-Set-AzVMExtension-コマンドの-EnableAutomaticUpgrade-と-DisableAutoUpgradeMinorVersion-パラメーターの違いについて教えてください。"><a href="#Q-Set-AzVMExtension-コマンドの-EnableAutomaticUpgrade-と-DisableAutoUpgradeMinorVersion-パラメーターの違いについて教えてください。" class="headerlink" title="Q. Set-AzVMExtension コマンドの EnableAutomaticUpgrade と DisableAutoUpgradeMinorVersion パラメーターの違いについて教えてください。"></a>Q. Set-AzVMExtension コマンドの EnableAutomaticUpgrade と DisableAutoUpgradeMinorVersion パラメーターの違いについて教えてください。</h3><hr>
+<p><strong>EnableAutomaticUpgrade</strong>  </p>
+<ul>
+<li>EnableAutomaticUpgrade は、拡張機能の自動アップグレード機能を有効化の有無を指定するパラメーターです。</li>
+<li>したがって、拡張機能の自動アップグレード機能を有効化したい場合は、値を $true に設定する必要があります。</li>
+<li>このパラメーターは Azure CLI の <code>az vm extension set</code> コマンドにおける <code>--enable-auto-upgrade</code> と同じはたらきです。</li>
+</ul>
+<p><strong>DisableAutoUpgradeMinorVersion</strong></p>
+<ul>
+<li>このパラメーターは、Set-AzVMExtension が実行される際 (拡張機能をインストールするときや手動アップグレードするとき) に、どのバージョンがインストールされる (どのバージョンにアップグレードされる) かを指定するものです。</li>
+<li><code>-DisableAutoUpgradeMinorVersion:$true</code> または <code>-DisableAutoUpgradeMinorVersion</code> とした場合は、<code>-TypeHandlerVersion</code> に指定したバージョンがインストールされ (<code>-TypeHandlerVersion</code> に指定したバージョンにアップグレードされ) ます。 </li>
+<li><code>-DisableAutoUpgradeMinorVersion:$false</code> とした場合、その時使用できる最新の安定したマイナー バージョンがインストールされ (にアップグレードされ) ます。</li>
+</ul>
+<p>(ご参考)<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/powershell/module/az.compute/set-azvmextension?view=azps-13.4.0">Set-AzVMExtension</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/cli/azure/vm/extension?view=azure-cli-latest#az-vm-extension-set-optional-parameters">az vm extension | az vm extension set | 省略可能のパラメーター</a></p>
+<br>
+
+<hr>
+<h3 id="Q-どのようなタイミングでアップグレードされますか。利用者側で指定できますか。"><a href="#Q-どのようなタイミングでアップグレードされますか。利用者側で指定できますか。" class="headerlink" title="Q. どのようなタイミングでアップグレードされますか。利用者側で指定できますか。"></a>Q. どのようなタイミングでアップグレードされますか。利用者側で指定できますか。</h3><hr>
+<p>残念ながら、利用者様側で自動アップグレードのタイミングを制御することはできません。<br>起動している仮想マシン上で動作するエージェントが、定期的に最新バージョンの値をチェックし、最新のものが存在する場合は、その後自動アップグレードの処理がトリガーされます。</p>
+<br>
+
+<hr>
+<h3 id="Q-最新バージョンがリリースされてすぐにアップグレードされますか。"><a href="#Q-最新バージョンがリリースされてすぐにアップグレードされますか。" class="headerlink" title="Q. 最新バージョンがリリースされてすぐにアップグレードされますか。"></a>Q. 最新バージョンがリリースされてすぐにアップグレードされますか。</h3><hr>
+<p>新しいバージョンがリリースされた後、順次各リージョンにデプロイされ、利用可能となります。<br>ご利用のリージョンで最新バージョンが利用可能になってから、すぐにその最新版への自動アップグレードが実行されるわけではありません。<br>以下弊社公開情報にもある通り、自動アップグレードによるアップグレードが実行されるまで、数週間かかるとご認識ください。  </p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-manage?tabs=azure-portal#update">Azure Monitor エージェントのインストールと管理 | 更新する</a>  </p>
+<br>
+
+<p><img src="/blog/LogAnalytics/AMAAutoupgradeFAQ/updatecycle.png"></p>
+<br>
+
+<hr>
+<h3 id="Q-利用中のリージョンで最新バージョンが利用可能になっていますが、自動アップグレードによるアップグレードがまだ行われていません。すぐにアップグレードしたい場合はどうすればいいですか。"><a href="#Q-利用中のリージョンで最新バージョンが利用可能になっていますが、自動アップグレードによるアップグレードがまだ行われていません。すぐにアップグレードしたい場合はどうすればいいですか。" class="headerlink" title="Q. 利用中のリージョンで最新バージョンが利用可能になっていますが、自動アップグレードによるアップグレードがまだ行われていません。すぐにアップグレードしたい場合はどうすればいいですか。"></a>Q. 利用中のリージョンで最新バージョンが利用可能になっていますが、自動アップグレードによるアップグレードがまだ行われていません。すぐにアップグレードしたい場合はどうすればいいですか。</h3><hr>
+<p>以下の方法で手動でアップグレードすることで任意のタイミングで最新バージョンの利用を開始することが可能です。</p>
+<h4 id="Azure-portal-上で手動アップグレードする"><a href="#Azure-portal-上で手動アップグレードする" class="headerlink" title="Azure portal 上で手動アップグレードする"></a>Azure portal 上で手動アップグレードする</h4><p>リソースの [設定] &gt; [拡張機能とアプリケーション] にて “状態” 列に 「更新プログラムを利用可能」と表記されている場合、その拡張機能のバージョンよりも新しいマイナー バージョンが利用可能であることを意味しています。<br>[拡張機能とアプリケーション] 画面にて、当該拡張機能にチェックを入れ [更新] を押下することで、最新のバージョンにアップグレードできます。</p>
+<br>
+
+<p><img src="/blog/LogAnalytics/AMAAutoupgradeFAQ/azureportal-manualupgrade.png"></p>
+<br>
+
+<h3 id="lt-アップグレード時に関する質問-gt-1"><a href="#lt-アップグレード時に関する質問-gt-1" class="headerlink" title="&lt;アップグレード時に関する質問&gt;"></a>&lt;アップグレード時に関する質問&gt;</h3><hr>
+<h3 id="Q-アップグレード中はログ収集が停止しますか。停止期間中のログはアップグレード後に再送されますか。"><a href="#Q-アップグレード中はログ収集が停止しますか。停止期間中のログはアップグレード後に再送されますか。" class="headerlink" title="Q. アップグレード中はログ収集が停止しますか。停止期間中のログはアップグレード後に再送されますか。"></a>Q. アップグレード中はログ収集が停止しますか。停止期間中のログはアップグレード後に再送されますか。</h3><hr>
+<p>まず、AMA で収集可能なログは、仕組みによって大きく 2 種類に分かれます。  </p>
+<ol>
+<li>一定の間隔で取得して収集するログ : Heartbeat、パフォーマンス データ、Change Tracking データ  </li>
+<li>内部の仕組みでログの更新を検知して収集するログ : イベント ログ、 Syslog、カスタム ログ</li>
+</ol>
+<p>1 のログについては、アップグレードしている間はログ収集できなくなるため、その分のログは欠損してしまいます。<br>2 のログについては、アップグレード後に再度ログの更新を検知することが可能なため、理論上欠損は発生しません。</p>
+<br>
+
+<hr>
+<h3 id="Q-停止している-VM-に対して自動アップグレードは行われますか。"><a href="#Q-停止している-VM-に対して自動アップグレードは行われますか。" class="headerlink" title="Q. 停止している VM に対して自動アップグレードは行われますか。"></a>Q. 停止している VM に対して自動アップグレードは行われますか。</h3><hr>
+<p>仮想マシンが停止している場合は、自動アップグレード機能によるアップグレードは実行されません。</p>
+<br>
+
+<hr>
+<h3 id="Q-アップグレードの際に仮想マシン-OS-は停止・再起動されますか。"><a href="#Q-アップグレードの際に仮想マシン-OS-は停止・再起動されますか。" class="headerlink" title="Q. アップグレードの際に仮想マシン (OS) は停止・再起動されますか。"></a>Q. アップグレードの際に仮想マシン (OS) は停止・再起動されますか。</h3><hr>
+<p>Azure Monitor エージェントのアップグレードの際に、仮想マシンの再起動は起こりません。</p>
+<br>
+
+<hr>
+<h3 id="Q-自動アップグレードが失敗した場合は再実行されますか。"><a href="#Q-自動アップグレードが失敗した場合は再実行されますか。" class="headerlink" title="Q. 自動アップグレードが失敗した場合は再実行されますか。"></a>Q. 自動アップグレードが失敗した場合は再実行されますか。</h3><hr>
+<p>AMAの自動アップグレードが失敗した場合、バージョンアップ前のバージョンが再インストール (ロールバック) されます。<br>ロールバックが成功した場合は、翌日の処理で再度自動アップグレードが施行されます。<br>なお、ロールバックが失敗すると、AMA 自体の機能が停止し、ログ転送機能が停止する可能性が高いですが、ロールバックが失敗した際の挙動と解消方法は状況により異なります。<br>そのため、ロールバックも失敗した場合は、必要に応じて、原因と解消方法の調査のために弊社サポート サービスまでお問い合わせください。</p>
+<br>
+
+<h3 id="lt-その他-gt-1"><a href="#lt-その他-gt-1" class="headerlink" title="&lt;その他&gt;"></a>&lt;その他&gt;</h3><hr>
+<h3 id="Q-アップグレードの成否は確認できますか。"><a href="#Q-アップグレードの成否は確認できますか。" class="headerlink" title="Q. アップグレードの成否は確認できますか。"></a>Q. アップグレードの成否は確認できますか。</h3><hr>
+<p>アクティビティ ログから確認が可能です。<br>具体的には、以下の画像のように、Create or Update Virtual Machine Extension というアクティビティ ログが記録されます。<br>なお、手動で拡張機能をアップロードした場合も同様のログが記録されますため、こちらの点についてご留意ください。</p>
+<br>
+
+<p><img src="/blog/LogAnalytics/AMAAutoupgradeFAQ/upgrade-activitylog.png"></p>
+<br>
+
+<p>また、各マシンで動作している Azure Monitor エージェントのバージョンは、Log Analytics ワークスペースの Heartbeat テーブルの Version 列からもご確認いただけます。<br>そのため、当該エージェントのバージョンがどのタイミングで変更されたかは、Heartbeat ログからもご確認が可能です。<br>以下は確認のためのサンプル クエリおよびクエリ実行結果の例です。</p>
+<p>■ サンプル クエリ</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Heartbeat</span><br><span class="line">| where _ResourceId =~ &quot;&lt;VMResourceId&gt;&quot;</span><br><span class="line">| where Category == &quot;Azure Monitor Agent&quot;</span><br><span class="line">| where TimeGenerated &gt;= ago(100d)</span><br><span class="line">| summarize max(TimeGenerated) by _ResourceId, Category, Version</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>■ サンプル クエリの実行結果の例　　<br><img src="/blog/LogAnalytics/AMAAutoupgradeFAQ/Heartbeat-versions.png"></p>
+<br>
+
+<hr>
+<h3 id="Q-Azure-Monitor-エージェントの各バージョンの情報はどこで確認できますか。"><a href="#Q-Azure-Monitor-エージェントの各バージョンの情報はどこで確認できますか。" class="headerlink" title="Q. Azure Monitor エージェントの各バージョンの情報はどこで確認できますか。"></a>Q. Azure Monitor エージェントの各バージョンの情報はどこで確認できますか。</h3><hr>
+<p>Azure Monitor エージェントのバージョンのリリース情報は、以下弊社公開情報に記載されます。  </p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-extension-versions#version-details">Azure Monitor エージェント拡張機能のバージョン | バージョンの詳細</a>  </p>
+<br>
+
+<p>なお、上記サイトにリリース情報が記録されるタイミングと、新しいバージョンが実際に利用できるようになるタイミングは前後する可能性がございますため、恐れ入りますが、あらかじめご理解・ご了承ください。  </p>
+<br>
+
+<p>補足として、リージョンごとにデプロイされている Azure Monitor エージェント拡張機能のバージョンは、以下の PowerShell コマンドを実行することで確認が可能でございます。</p>
+<br>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Windows</span><br><span class="line">((Get-AzVMExtensionImage -Location &lt;region&gt; -PublisherName &quot;Microsoft.Azure.Monitor&quot; -Type &quot;AzureMonitorWindowsAgent&quot;).Version | Sort-Object -Property &#123; [Version]$_&#125;)</span><br><span class="line"></span><br><span class="line"># Linux</span><br><span class="line">((Get-AzVMExtensionImage -Location &lt;region&gt; -PublisherName &quot;Microsoft.Azure.Monitor&quot; -Type &quot;AzureMonitorLinuxAgent&quot;).Version | Sort-Object -Property &#123; [Version]$_&#125;)</span><br></pre></td></tr></table></figure>
+<p>※ <region> の箇所は、任意のリージョン名にご変更ください (japaneast など)。</p>
+<br>
+<br>
+
+<p>上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。<br>皆さんの疑問点が 1 つでも解消すれば幸いです。</p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Agent/" rel="tag">Azure Monitor Agent</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/AMAAutoupgradeFAQ.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../applicationInsights/upcomingTlsChangesForAppInsights/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Application Insights の TLS に関する変更のご案内</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問集</a>
+          </li>
+        
+          <li>
+            <a href="../../applicationInsights/upcomingTlsChangesForAppInsights/">Application Insights の TLS に関する変更のご案内</a>
+          </li>
+        
+          <li>
+            <a href="../HowToContainerInsights/">Container Insights のご紹介</a>
+          </li>
+        
+          <li>
+            <a href="../../automation/AgentBasedHrwRetired/">エージェント ベースの Hybrid Runbook Worker がご利用いただけなくなります</a>
+          </li>
+        
+          <li>
+            <a href="../../AzureMonitorEssential/MonitorDiagnosticsSettingFAQ/">Azure Monitor の診断設定に関するよくあるご質問</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/AMPLS/" rel="tag">AMPLS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Arc/" rel="tag">Azure Arc</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Diagnostics-extension/" rel="tag">Azure Diagnostics extension</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent/" rel="tag">Azure Monitor Agent</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essential/" rel="tag">Azure Monitor Essential</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" rel="tag">Azure Monitor エージェント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Private-Link/" rel="tag">Azure Private Link</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Container-Insights/" rel="tag">Container Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostic-settings/" rel="tag">Diagnostic settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostics-settings/" rel="tag">Diagnostics settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HowTo/" rel="tag">HowTo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/LAD/" rel="tag">LAD</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Alert/" rel="tag">Log Alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" rel="tag">Log Analytics エージェント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-ID/" rel="tag">Managed ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-Identity/" rel="tag">Managed Identity</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Migration/" rel="tag">Migration</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Run-As-Account/" rel="tag">Run As Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sandbox/" rel="tag">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StartAzureV2VMs/" rel="tag">StartAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StopAzureV2VMs/" rel="tag">StopAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshoot/" rel="tag">Troubleshoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM/" rel="tag">VM</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM-insights/" rel="tag">VM insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WAD/" rel="tag">WAD</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Worker/" rel="tag">Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/howto/" rel="tag">howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/" rel="tag">アクションのミュート</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" rel="tag">アラート処理ルール</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%89-script/" rel="tag">オンボード script</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" rel="tag">クエリ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" rel="tag">コスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%BF%E3%83%BC-API/" rel="tag">データ コレクター API</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%91%E3%83%BC%E3%82%B8/" rel="tag">パージ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" rel="tag">マネージド ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB/" rel="tag">ログ アラート ルール</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88-API/" rel="tag">ログ インジェスト API</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%81%9C%E6%AD%A2/" rel="tag">停止</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%88%86%E6%9E%90%E6%83%85%E5%A0%B1/" rel="tag">分析情報</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" rel="tag">実行アカウント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/" rel="tag">移行</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" rel="tag">自動化</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%B5%B7%E5%8B%95/" rel="tag">起動</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/">How-To</a><span class="tag-list-count">43</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/">Tips</a><span class="tag-list-count">30</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/">Azure Monitor Essentials</a><span class="tag-list-count">15</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/">Azure Monitor</a><span class="tag-list-count">7</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/">FAQ</a><span class="tag-list-count">11</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/">Log Analytics</a><span class="tag-list-count">37</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/">Troubleshooting</a><span class="tag-list-count">4</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">9</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/">チーム紹介</a><span class="tag-list-count">5</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/">Automation</a><span class="tag-list-count">11</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/">移行</a><span class="tag-list-count">2</span><ul></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/05/">2025 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/03/">2025 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/02/">2025 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/01/">2025 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/11/">2024 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/10/">2024 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/09/">2024 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/08/">2024 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/07/">2024 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/05/">2024 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/04/">2024 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/03/">2024 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/01/">2024 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/12/">2023 / 12</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/11/">2023 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/10/">2023 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/09/">2023 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/07/">2023 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/06/">2023 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/03/">2023 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/01/">2023 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/11/">2022 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/10/">2022 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/09/">2022 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/08/">2022 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/AMPLS/" style="font-size: 10px;">AMPLS</a> <a href="../../tags/Application-Insights/" style="font-size: 16.15px;">Application Insights</a> <a href="../../tags/Automation/" style="font-size: 16.92px;">Automation</a> <a href="../../tags/Azure-Arc/" style="font-size: 12.31px;">Azure Arc</a> <a href="../../tags/Azure-Diagnostics-extension/" style="font-size: 10.77px;">Azure Diagnostics extension</a> <a href="../../tags/Azure-Monitor/" style="font-size: 14.62px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Agent/" style="font-size: 15.38px;">Azure Monitor Agent</a> <a href="../../tags/Azure-Monitor-Essential/" style="font-size: 12.31px;">Azure Monitor Essential</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 17.69px;">Azure Monitor Essentials</a> <a href="../../tags/Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" style="font-size: 10px;">Azure Monitor エージェント</a> <a href="../../tags/Azure-Private-Link/" style="font-size: 11.54px;">Azure Private Link</a> <a href="../../tags/Container-Insights/" style="font-size: 10px;">Container Insights</a> <a href="../../tags/Diagnostic-settings/" style="font-size: 10.77px;">Diagnostic settings</a> <a href="../../tags/Diagnostics-settings/" style="font-size: 10px;">Diagnostics settings</a> <a href="../../tags/FAQ/" style="font-size: 16.92px;">FAQ</a> <a href="../../tags/General/" style="font-size: 13.85px;">General</a> <a href="../../tags/How-To/" style="font-size: 20px;">How-To</a> <a href="../../tags/HowTo/" style="font-size: 11.54px;">HowTo</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 10.77px;">Job</a> <a href="../../tags/LAD/" style="font-size: 10.77px;">LAD</a> <a href="../../tags/Log-Alert/" style="font-size: 10px;">Log Alert</a> <a href="../../tags/Log-Analytics/" style="font-size: 19.23px;">Log Analytics</a> <a href="../../tags/Log-Analytics-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" style="font-size: 10px;">Log Analytics エージェント</a> <a href="../../tags/Managed-ID/" style="font-size: 10px;">Managed ID</a> <a href="../../tags/Managed-Identity/" style="font-size: 10px;">Managed Identity</a> <a href="../../tags/MetricAlert/" style="font-size: 10.77px;">MetricAlert</a> <a href="../../tags/Migration/" style="font-size: 10px;">Migration</a> <a href="../../tags/Run-As-Account/" style="font-size: 10px;">Run As Account</a> <a href="../../tags/RunAs-Account/" style="font-size: 12.31px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 13.08px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 18.46px;">Tips</a> <a href="../../tags/Troubleshoot/" style="font-size: 10px;">Troubleshoot</a> <a href="../../tags/Troubleshooting/" style="font-size: 12.31px;">Troubleshooting</a> <a href="../../tags/VM/" style="font-size: 10px;">VM</a> <a href="../../tags/VM-insights/" style="font-size: 10px;">VM insights</a> <a href="../../tags/WAD/" style="font-size: 10.77px;">WAD</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/howto/" style="font-size: 10px;">howto</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/" style="font-size: 10px;">アクションのミュート</a> <a href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" style="font-size: 10px;">アラート処理ルール</a> <a href="../../tags/%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%89-script/" style="font-size: 10px;">オンボード script</a> <a href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" style="font-size: 10px;">クエリ</a> <a href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" style="font-size: 10px;">コスト</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 13.08px;">チーム紹介</a> <a href="../../tags/%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%BF%E3%83%BC-API/" style="font-size: 10px;">データ コレクター API</a> <a href="../../tags/%E3%83%91%E3%83%BC%E3%82%B8/" style="font-size: 10px;">パージ</a> <a href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" style="font-size: 10.77px;">マネージド ID</a> <a href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB/" style="font-size: 10px;">ログ アラート ルール</a> <a href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88-API/" style="font-size: 10px;">ログ インジェスト API</a> <a href="../../tags/%E5%81%9C%E6%AD%A2/" style="font-size: 10px;">停止</a> <a href="../../tags/%E5%88%86%E6%9E%90%E6%83%85%E5%A0%B1/" style="font-size: 10px;">分析情報</a> <a href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" style="font-size: 11.54px;">可用性テスト</a> <a href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" style="font-size: 10px;">実行アカウント</a> <a href="../../tags/%E7%A7%BB%E8%A1%8C/" style="font-size: 10.77px;">移行</a> <a href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" style="font-size: 10px;">自動化</a> <a href="../../tags/%E8%B5%B7%E5%8B%95/" style="font-size: 10px;">起動</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
