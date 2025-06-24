@@ -1,6 +1,6 @@
 ---
 title: "Action required: Ensure the right people can access security advisories in Azure Service Health  について"
-date: 2025-04-10 00:00:00
+date: 2025-06-30 00:00:00
 tags:
   - Azure Monitor Essential
   - Service Health
@@ -19,7 +19,7 @@ tags:
 
 <!-- more -->
 ## 目次
-- [1. 報告された正常性の勧告について](#1.-報告された正常性の勧告について)
+- [1. 報告された正常性の勧告について](#1-報告された正常性の勧告について)
   - [1-1.概要](#1-1-概要)
   - [1-2.内容](#1-2-内容)
   - [1-3.実施いただきたいアクション](#1-3-実施いただきたいアクション)
@@ -27,13 +27,12 @@ tags:
   - [2-1. 「セキュリティ アドバイザリ」 のイベントを閲覧・取得するための権限について](#2-1-「セキュリティ-アドバイザリ」-のイベントを閲覧・取得するための権限について)
   - [2-2. 「セキュリティ アドバイザリ」 のイベントを取得する REST API について](#2-2-「セキュリティ-アドバイザリ」-のイベントを取得する-REST-API-について)
 - [3. Azure Service Health (サービス正常性) の「セキュリティ アドバイザリ」に関する仕様変更に伴う必要なアクション](#3-Azure-Service-Health-サービス正常性-の「セキュリティ-アドバイザリ」に関する仕様変更に伴う必要なアクション)
-  - [3-1. Azure ポータル、または Azure Resource Graph でサービス正常性を閲覧している場合](#3-1-Azure-ポータル、または-Azure-Resource-Graph-でサービス正常性を閲覧している場合)
+  - [3-1. Azure ポータルや Azure Resource Graph でサービス正常性を閲覧している場合](#3-1-Azure-ポータル-や-Azure-Resource-Graph-でサービス正常性を閲覧している場合)
   - [3-2. REST API でサービス正常性のイベントを取得している場合](#3-2-REST-API-でサービス正常性のイベントを取得している場合)
 - [4. よくあるご質問](#4-よくあるご質問)
 
 
 <br>
-
 
 
 ## 1. 報告された正常性の勧告について
@@ -98,7 +97,7 @@ Visit [Microsoft Learn](https://learn.microsoft.com/ja-jp/azure/service-health/s
 
 ## 2. Azure Service Health (サービス正常性) の「セキュリティ アドバイザリ」に関する仕様変更について
 今回の通知は、 [Azure Service Health (サービス正常性)](https://learn.microsoft.com/ja-jp/azure/service-health/overview) の「セキュリティ アドバイザリ」に関する仕様変更を通知しております。
-サービス正常性の中でセキュリティ問題に関するイベントは 「セキュリティ アドバイザリ」 に分類されます。今後 「セキュリティ アドバイザリ」 の情報に取得・閲覧に際し、下記の仕様変更が行われます。
+サービス正常性の中でセキュリティ問題に関するイベントは 「セキュリティ アドバイザリ」 に分類されます。今後 「セキュリティ アドバイザリ」 の情報にアクセスする場合には、下記の事項にご留意いただきますようお願いいたします。
 
 1. 「セキュリティ アドバイザリ」 のイベントを閲覧・取得するための権限について
 2. 「セキュリティ アドバイザリ」 のイベントを取得する REST API について
@@ -107,16 +106,8 @@ Visit [Microsoft Learn](https://learn.microsoft.com/ja-jp/azure/service-health/s
 
 ### 2-1. 「セキュリティ アドバイザリ」 のイベントを閲覧・取得するための権限について
 
-Azure ポータルの [サービス正常性] – [セキュリティ アドバイザリ] を開きますと、
-[セキュリティ アドバイザリの詳細は \[概要\]、\[影響を受けるサービス\]、\[問題の更新\]、\[影響を受けるリソース\] の 4 つのタブに表示されます](https://learn.microsoft.com/ja-jp/azure/service-health/security-advisories-elevated-access?branch=pr-en-us-255499#what-are-security-advisories)。今回の仕様変更に伴い、これらのタブを表示するために必要な権限が変更されます。
-
-- **変更前（現状） :**
-[影響を受けるリソース] 以外のタブは、サブスクリプションの閲覧者ロール以上の権限、もしくはテナント管理者のアクセス権が付与されていればアクセス可能です。機密性の高い [影響を受けるリソース] を確認する場合のみ、下記の [Role Based Access (RBAC) For Security Incident](https://learn.microsoft.com/en-us/azure/service-health/impacted-resources-security#role-based-access-rbac-for-security-incident-resource-impact) に記載の権限 (*) が必要です。
-
-
-- **変更後 :**
-[影響を受けるリソース] 以外のタブを閲覧する場合も、すなわち、今後「セキュリティ アドバイザリ」のイベントを閲覧・取得するには、下記の [Role Based Access (RBAC) For Security Incident](https://learn.microsoft.com/en-us/azure/service-health/impacted-resources-security#role-based-access-rbac-for-security-incident-resource-impact) に記載の権限 (*) が必要となります。
-
+今回の仕様変更に伴い、「セキュリティ アドバイザリ」の機密性の高い情報にアクセスする権限が変更となります。
+Azure ポータルの [サービス正常性] – [[セキュリティ アドバイザリ]](https://learn.microsoft.com/ja-jp/azure/service-health/security-advisories-elevated-access?branch=pr-en-us-255499#what-are-security-advisories) にアクセスして情報を閲覧するには、下記の [Role Based Access (RBAC) For Security Incident](https://learn.microsoft.com/en-us/azure/service-health/impacted-resources-security#role-based-access-rbac-for-security-incident-resource-impact) に記載の権限 (*) が必要となります。
 
 [(*) Role Based Access (RBAC) For Security Incident](https://learn.microsoft.com/en-us/azure/service-health/impacted-resources-security#role-based-access-rbac-for-security-incident-resource-impact)
 ![](./SecurityAdvisoriesElevatedAccess/image01.png)
@@ -125,14 +116,11 @@ Azure ポータルの [サービス正常性] – [セキュリティ アドバ�
 <br>
 
 ### 2-2. 「セキュリティ アドバイザリ」 のイベントを取得する REST API について
-
-- **変更前 :**
-現在は、[Event - Get By Subscription Id And Tracking Id](https://learn.microsoft.com/en-us/rest/api/resourcehealth/event/get-by-subscription-id-and-tracking-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP) や [Event - Get By Tenant Id And Tracking Id](https://learn.microsoft.com/en-us/rest/api/resourcehealth/event/get-by-tenant-id-and-tracking-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP) の REST API を利用して「セキュリティ アドバイザリ」の詳細情報を取得することができます。
+現在は、[Event - Get By Subscription Id And Tracking Id](https://learn.microsoft.com/en-us/rest/api/resourcehealth/event/get-by-subscription-id-and-tracking-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP) や [Event - Get By Tenant Id And Tracking Id](https://learn.microsoft.com/en-us/rest/api/resourcehealth/event/get-by-tenant-id-and-tracking-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP) の REST API を利用して「セキュリティ アドバイザリ」の情報を取得することができます。
 
 
-- **変更後 :**
 今後、上記の API では「セキュリティ アドバイザリ」の機密情報に該当するプロパティは含まれなくなります。
-「セキュリティ アドバイザリ」 のイベントの詳細情報を取得するには、上記 API の代わりに[下記のAPI](https://learn.microsoft.com/en-us/azure/service-health/security-advisories-elevated-access#new-api-endpoint-details) をご利用いただく必要があり、[Role Based Access (RBAC) For Security Incident](https://learn.microsoft.com/en-us/azure/service-health/impacted-resources-security#role-based-access-rbac-for-security-incident-resource-impact) に記載の権限も必要となります。
+このため、今後は下記の [API](https://learn.microsoft.com/en-us/azure/service-health/security-advisories-elevated-access#new-api-endpoint-details) をご利用いただく必要があり、[Role Based Access (RBAC) For Security Incident](https://learn.microsoft.com/en-us/azure/service-health/impacted-resources-security#role-based-access-rbac-for-security-incident-resource-impact) に記載の権限も必要となります。
 ![](./SecurityAdvisoriesElevatedAccess/image02.png)
 
 
@@ -143,21 +131,25 @@ Azure ポータルの [サービス正常性] – [セキュリティ アドバ�
 
 ## 3. Azure Service Health (サービス正常性) の「セキュリティ アドバイザリ」に関する仕様変更に伴う必要なアクション
 上記 2 点の仕様変更に伴って必要なアクションは以下の通りです。
-誠に恐れ入りますが、今回の仕様変更によりお客様環境で影響のあるユーザー様や、REST API のご利用状況、アプリケーションの確認方法については、弊社からご案内できる情報がございません。お客様ご自身でシステムの設計資料や運用方法などを確認していただき、影響を受ける可能性のあるユーザー様やアプリケーションを特定していただく必要がございますので予めご了承ください。
-
+今回の仕様変更によってお客様環境で影響のあるユーザー様や、REST API のご利用状況、アプリケーションの確認方法については、弊社からご案内できる情報がございません。誠に恐れ入りますが、お客様ご自身でシステムの設計資料や運用方法などを確認していただき、影響を受ける可能性のあるユーザー様やアプリケーションを特定していただく必要がございますのでご了承ください。
 <br>
 
-### 3-1. Azure ポータル、または Azure Resource Graph でサービス正常性を閲覧している場合
-[Azure ポータル](https://learn.microsoft.com/ja-jp/azure/service-health/security-advisories-elevated-access?branch=pr-en-us-255499#what-are-security-advisories)、または [Azure Resource Graph](https://learn.microsoft.com/ja-jp/azure/service-health/resource-graph-samples?tabs=azure-cli) でサービス正常性イベントを確認している場合、2025 年 10 月 22 日までに対象のユーザー様に[必要なロール](https://learn.microsoft.com/en-us/azure/service-health/impacted-resources-security#role-based-access-rbac-for-security-incident-resource-impact)を付与してください。
+### 3-1. Azure ポータル や Azure Resource Graph でサービス正常性を閲覧している場合
+[Azure ポータル](https://learn.microsoft.com/ja-jp/azure/service-health/security-advisories-elevated-access?branch=pr-en-us-255499#what-are-security-advisories)や [Azure Resource Graph](https://learn.microsoft.com/ja-jp/azure/service-health/resource-graph-samples?tabs=azure-cli) でサービス正常性イベントを確認している場合、2025 年 10 月 22 日までに対象のユーザー様に[必要なロール](https://learn.microsoft.com/en-us/azure/service-health/impacted-resources-security#role-based-access-rbac-for-security-incident-resource-impact)を付与してください。
 
 <br>
 
 ### 3-2. REST API でサービス正常性のイベントを取得している場合
-今後も　REST API で 「セキュリティ アドバイザリ」 のイベントの詳細情報を確認する場合には、 2025 年 10 月 22 日までに下記事項を実施してください。
+今後も REST API で「セキュリティ アドバイザリ」 の情報を確認する場合には、2025 年 10 月 22 日までに、下記事項を実施してください。
 
-- REST API を実行しているアプリケーションに対して[必要な権限](https://learn.microsoft.com/en-us/azure/service-health/impacted-resources-security#role-based-access-rbac-for-security-incident-resource-impact)を付与すること
+- REST API を実行しているアプリケーションに対して[必要な権限](https://learn.microsoft.com/en-us/azure/service-health/impacted-resources-security#role-based-access-rbac-for-security-incident-resource-impact)の付与をお願いいたします。
 
-- 新 API の [Event - fetch Details By Subscription Id And Tracking Id](https://learn.microsoft.com/en-us/rest/api/resourcehealth/event/fetch-details-by-subscription-id-and-tracking-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP) や [Event - fetch Details By Tenant Id And Tracking Id](https://learn.microsoft.com/en-us/rest/api/resourcehealth/event/fetch-details-by-tenant-id-and-tracking-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP) で「セキュリティ アドバイザリ」 の詳細情報を取得いただくこと
+- 下記の REST API で「セキュリティ アドバイザリ」 の情報を取得するようにアプリケーションの改修をお願いいたします。
+  - [Event - fetch Details By Subscription Id And Tracking Id](https://learn.microsoft.com/en-us/rest/api/resourcehealth/event/fetch-details-by-subscription-id-and-tracking-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP) 
+  - [Event - fetch Details By Tenant Id And Tracking Id](https://learn.microsoft.com/en-us/rest/api/resourcehealth/event/fetch-details-by-tenant-id-and-tracking-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP)
+  - [Security Advisory Impacted Resources - List By Subscription Id And Event Id](https://learn.microsoft.com/en-us/rest/api/resourcehealth/security-advisory-impacted-resources/list-by-subscription-id-and-event-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP)
+  - [Security Advisory Impacted Resources - List By Tenant Id And Event Id](https://learn.microsoft.com/en-us/rest/api/resourcehealth/security-advisory-impacted-resources/list-by-tenant-id-and-event-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP) をご利用ください
+
 
 
 <br>
@@ -168,14 +160,14 @@ Azure ポータルの [サービス正常性] – [セキュリティ アドバ�
 ## 4. よくあるご質問
 
 ### Q. 今回の仕様変更に関する情報が掲載されている公開情報はありますか。
-[セキュリティ アドバイザリを表示するための昇格されたアクセス権](https://learn.microsoft.com/ja-jp/azure/service-health/security-advisories-elevated-access#new-api-endpoint-details) の公開情報をご覧ください。
+[セキュリティ アドバイザリを表示するための昇格されたアクセス権](https://learn.microsoft.com/ja-jp/azure/service-health/security-advisories-elevated-access) の公開情報をご覧ください。
 
 <br>
 
 
 ### Q. 今回の仕様変更に伴って、サービス正常性アラートに影響はありますか。
 今回の仕様変更は、[サービス正常性アラート](https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/)の動作に影響しません。
-一方で、サービス正常性アラートで通知されるメールには、セキュリティ アドバイザリに関するセンシティブな情報が含まれることもございません。このため、セキュリティ アドバイザリに関する通知メールを受信した場合に、センシティブな情報も含んで詳細を確認したい場合は、Azure ポータルのサービス正常性の画面にて直接ご確認いただきますようお願いいたします。
+一方で、サービス正常性アラートで通知されるメールには、セキュリティ アドバイザリに関する機密性の高い情報が含まれることもございません。このため、セキュリティ アドバイザリに関する通知メールを受信した場合に、機密性の高い情報も含んで詳細を確認したい場合は、Azure ポータルのサービス正常性の画面にて直接ご確認いただきますようお願いいたします。
 
 
 <br>
@@ -189,14 +181,8 @@ Azure ポータルの [サービス正常性] – [セキュリティ アドバ�
 <br>
 
 
-### Q. Azure ポータルからセキュリティ アドバイザリの詳細画面を見るための権限が変更されるのは 2025/4/22 と 2025/10/22 のどちらですか。
-権限が変更されるのは「2025/10/22」です。これまでに必要な権限を付与いただきますようお願いいたします。
-
-<br>
-
-
 ### Q. 現時点でユーザーに必要なロールが割り当てられているかを確認する方法を教えてください。
-[Azure portal を使用して Azure でのロールの割り当てを一覧表示する](https://learn.microsoft.com/ja-jp/azure/role-based-access-control/role-assignments-list-portal) の公開情報をご覧いただき、該当の湯ユーザー様に割り当てられているロールをご確認ください。
+[Azure portal を使用して Azure でのロールの割り当てを一覧表示する](https://learn.microsoft.com/ja-jp/azure/role-based-access-control/role-assignments-list-portal) の公開情報をご覧ください。
 
 <br>
 
