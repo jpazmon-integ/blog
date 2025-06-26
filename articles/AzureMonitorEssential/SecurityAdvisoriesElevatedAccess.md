@@ -1,6 +1,6 @@
 ---
 title: "Action required: Ensure the right people can access security advisories in Azure Service Health  について"
-date: 2025-06-30 00:00:00
+date: 2025-06-27 00:00:00
 tags:
   - Azure Monitor Essential
   - Service Health
