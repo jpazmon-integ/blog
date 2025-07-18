@@ -76,8 +76,8 @@ Azure Update Manager の構成は以下構成図をご参考いただければ�
 
 ユーザーにて評価、更新操作を行う場合、 Update Manager から対象マシンに該当する操作を指示します。
 
-ユーザーは、ポータル、PowerShell、CLI、REST API 等を利用して操作を行うことができます。
-PowerShell、CLI、REST API を利用して操作を行う場合の詳細は以下公開情報をご参考いただければ幸いです。
+ユーザーは、ポータル、PowerShell、Azure CLI、REST API 等を利用して操作を行うことができます。
+PowerShell、Azure CLI、REST API を利用して操作を行う場合の詳細は以下公開情報をご参考いただければ幸いです。
 [Azure VM の更新プログラムをプログラムで管理する方法](https://learn.microsoft.com/ja-jp/azure/update-manager/manage-vms-programmatically?tabs=cli%2Crest)
 
 ### 2.対象マシンで評価、更新操作を実行 <a name="2-対象マシンで評価更新操作を実行"></a>
@@ -263,13 +263,14 @@ Automatic VM Guest Patching は、Azure のタイミングによって、[重大
 > Azure のタイミングとは、**VM のピーク外時間帯**となります。
 > VM のピーク外時間帯は、VM がデプロイされているリージョンの時間帯に依存します。
 > 具体的には、Automatic VM Guest Patching が有効になっており、対象 VM が東日本リージョンにデプロイされている場合、東日本リージョンの時間帯 (日本時間) の 10 PM - 4 AM が VM のピーク外時間帯となります。
+> また、VM のピーク外時間帯であっても VM がその時間帯に起動していなければ更新プログラムは適用されません。
 
 お客様にて更新プログラムを適用するタイミングをスケジュールでコントロールされたい場合は、Update Manager のメンテナンス構成をご利用いただく必要がございます。
 
 Automatic VM Guest Patching の詳細については以下公開情報をご参考いただければ幸いです。
 [Azure Virtual Machines とスケール セットのゲストの自動パッチ適用](https://learn.microsoft.com/ja-jp/azure/virtual-machines/automatic-vm-guest-patching)
 
-### Hotpatchig <a name="hotpatchig"></a>
+### Hotpatching <a name="hotpatching"></a>
 
 Hotpatching は、Azure 上の Windows 仮想マシン (VM) に対して、再起動なしで自動的に更新プログラムを適用できる機能です。
 
