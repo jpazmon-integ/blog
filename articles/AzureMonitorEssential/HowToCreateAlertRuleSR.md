@@ -218,6 +218,7 @@ tags:
 Time aggregation が "Count" の場合は、クエリ結果のログ レコード数が閾値を満たすかどうかが評価されます。  
 Time aggregation が "Count" 以外の場合、クエリ結果のうちの特定のカラム内の値が Time aggregation で指定された集計方法で集計され、その値が閾値を満たすかどうか評価されます。こちらの場合は、同箇所に記載のある Metric measure column に評価対象のカラム名が記載されていますため、併せてご確認ください。
 
+<br>
 
 3. 同画面の "クエリ" セクションにある、[結果をログに表示] を押下します。
 ![](./HowToCreateAlertRuleSR/image-log-search-alert-02.png)
