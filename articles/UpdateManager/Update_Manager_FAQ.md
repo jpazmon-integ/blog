@@ -34,8 +34,10 @@ tags:
 ### Q. パッチ オーケストレーションの変更方法を教えてください。
 [Azure Portal 上でパッチ オーケストレーションの設定を変更する方法](https://learn.microsoft.com/ja-jp/azure/update-manager/manage-update-settings?tabs=manage-single-overview%2Cmanage-scale-overview) は、下図のように Azure VM のパッチ オーケストレーションの設定を変更し、保存します。
 <br>
-<Update_Manager_FAQ1.png>
+![](Update_Manager_FAQ/Update_Manager_FAQ1.png)
+
 <br>
+
 [PowerShell 等のコマンドでパッチ オーケストレーションの設定を変更する方法](https://learn.microsoft.com/ja-jp/azure/update-manager/prerequsite-for-schedule-patching?tabs=new-prereq-powershell%2Cauto-portal#enable-scheduled-patching-on-azure-vms) もございます。
 <br>
 <br>
@@ -94,7 +96,10 @@ Windows OS では VM 作成時に指定する[プロパティ osProfile.windowsC
 ・Azure マネージド - 安全なデプロイ (Azure Managed - Safe Deployment)
 
 <br>
-<Update_Manager_FAQ2.png>
+
+![](Update_Manager_FAQ/Update_Manager_FAQ2.png)
+
+<br>
 <br>
 <br>
 <br>
@@ -114,7 +119,7 @@ Azure Update Manager でサポートされていないワークロードにつ�
 ### Q. SQL サーバーの更新プログラムが適用対象になりません。
 SQL サーバーの更新プログラムをインストールいただくためには、Windows OS の設定にて、[Windows の更新時に他の Microsoft 製品の更新プログラムも入手します] 設定を有効にする必要があります。詳細は[こちら](https://learn.microsoft.com/ja-jp/azure/update-manager/configure-wu-agent#enable-updates-for-other-microsoft-products)をご確認ください。
 <br>
-<Update_Manager_FAQ3.png>
+![](Update_Manager_FAQ/Update_Manager_FAQ3.png)
 <br>
 
 <br>
@@ -163,4 +168,5 @@ Linux OS のマシンの場合は、Linux パッケージの配布先のエン�
 最後までお読みいただきありがとうございました！
 
 ※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。
+
 
