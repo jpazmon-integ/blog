@@ -44,13 +44,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/gettingExeTimeOfJobForSpecificPeriodAutomation/</loc>
-    
-    <lastmod>2025-08-15</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/update-AzureRmVmCommandFailesWithVhdCannotBeNull/</loc>
     
     <lastmod>2025-08-15</lastmod>
@@ -66,6 +59,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/general/HowToCreateSR/</loc>
+    
+    <lastmod>2025-08-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/gettingExeTimeOfJobForSpecificPeriodAutomation/</loc>
     
     <lastmod>2025-08-15</lastmod>
     
@@ -93,13 +93,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/HowToCreatePowerShellRunbookSR/</loc>
-    
-    <lastmod>2025-08-15</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/</loc>
     
     <lastmod>2025-08-15</lastmod>
@@ -115,6 +108,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/DifferenceRunAsAccountAndManagedID/</loc>
+    
+    <lastmod>2025-08-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/HowToCreatePowerShellRunbookSR/</loc>
     
     <lastmod>2025-08-15</lastmod>
     
@@ -212,20 +212,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/UpdateManager/Update_Manager_FAQ/</loc>
-    
-    <lastmod>2025-08-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/UpdateManager/Update_Manager_FAQ/README/</loc>
-    
-    <lastmod>2025-08-15</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/UpdateManager/AboutUpdateManager/</loc>
     
     <lastmod>2025-08-15</lastmod>
@@ -261,14 +247,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/SystemLanguageNotEnglishNoPython2Bug/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/TroubleshootingAMALogIngestion/</loc>
     
     <lastmod>2025-08-15</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/TroubleshootingAMALogIngestion/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/SystemLanguageNotEnglishNoPython2Bug/</loc>
     
     <lastmod>2025-08-15</lastmod>
     
@@ -506,6 +492,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/</loc>
+    
+    <lastmod>2025-08-15</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/</loc>
     
     <lastmod>2025-08-15</lastmod>
@@ -514,13 +507,6 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/SecurityAdvisoriesElevatedAccess/</loc>
-    
-    <lastmod>2025-08-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/</loc>
     
     <lastmod>2025-08-15</lastmod>
     
@@ -900,13 +886,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/Azure-Update-Manager/</loc>
-    <lastmod>2025-08-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/tags/Application-Insights/</loc>
     <lastmod>2025-08-15</lastmod>
     <changefreq>daily</changefreq>
@@ -1048,6 +1027,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/tags/%E3%83%91%E3%83%BC%E3%82%B8/</loc>
+    <lastmod>2025-08-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/tags/Azure-Update-Manager/</loc>
     <lastmod>2025-08-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
