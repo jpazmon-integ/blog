@@ -9,7 +9,8 @@ tags:
 
 こんにちは、Azure Monitoring サポート チームの中条です。
 今回は Azure Update Manager に関するよくあるご質問をご紹介します。
-[Update Manager の基本概念、アーキテクチャ、機能、設定手順等](https://jpazmon-integ.github.io/blog/UpdateManager/AboutUpdateManager/)については、別途ブログを投稿しておりますので併せてご覧いただけますと幸いです！
+
+[Azure Update Manager の基本概念、アーキテクチャ、機能、設定手順等](https://jpazmon-integ.github.io/blog/UpdateManager/AboutUpdateManager/)については、別途ブログを投稿しておりますので併せてご覧いただけますと幸いです！
 
 <br>
 
@@ -77,7 +78,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU
  
 
 ### Q. パッチ オーケストレーション設定がグレー アウトしていて変更できません。
-例えば、Windows OS の Azure VM のパッチ オーケストレーション設定は [Windowsの自動更新から手動更新に変更できません。](https://learn.microsoft.com/ja-jp/azure/update-manager/troubleshoot?tabs=azure-machines#unable-to-change-the-patch-orchestration-option-to-manual-updates-from-automatic-updates)
+例えば、Windows OS の Azure VM のパッチ オーケストレーション設定は [Windows 自動更新 (AutomaticByOS) から手動更新 (Manual) に変更できません。](https://learn.microsoft.com/ja-jp/azure/update-manager/troubleshoot?tabs=azure-machines#unable-to-change-the-patch-orchestration-option-to-manual-updates-from-automatic-updates)
 
 Windows OS では VM 作成時に指定する[プロパティ osProfile.windowsConfiguration.enableAutomaticUpdates の値により、指定可能なパッチ オーケストレーション設定が決まります。](https://learn.microsoft.com/ja-jp/azure/virtual-machines/automatic-vm-guest-patching#patch-orchestration-modes)
 
@@ -110,14 +111,14 @@ Azure Update Manager で更新プログラムの適用がサポートされて�
 なお、Windows 10 や Windows 11 などのクライアント OS はサポートされていません。
 Microsoft Intune での更新プログラムの管理をおすすめしております。
 
-Azure Update Manager でその他サポートされていない環境については[こちら](https://learn.microsoft.com/ja-jp/azure/update-manager/unsupported-workloads)をご確認ください。
+その他 Azure Update Manager でサポートされていない環境については[こちら](https://learn.microsoft.com/ja-jp/azure/update-manager/unsupported-workloads)をご確認ください。
 
 <br>
 <br>
 <br>
 
 ### Q. SQL サーバーの更新プログラムが適用対象になりません。
-SQL サーバーの更新プログラムを適用いただくためには、Windows OS の設定にて、[Windows の更新時に他の Microsoft 製品の更新プログラムも入手します] 設定を有効にする必要があります。詳細は[こちら](https://learn.microsoft.com/ja-jp/azure/update-manager/configure-wu-agent#enable-updates-for-other-microsoft-products)をご確認ください。
+Azure Update Manager を利用して SQL サーバーの更新プログラムを適用するためには、Windows OS の設定にて、[Windows の更新時に他の Microsoft 製品の更新プログラムも入手します] 設定を有効にする必要があります。詳細は[こちら](https://learn.microsoft.com/ja-jp/azure/update-manager/configure-wu-agent#enable-updates-for-other-microsoft-products)をご確認ください。
 <br>
 ![](Update_Manager_FAQ/Update_Manager_FAQ3.png)
 <br>
@@ -168,6 +169,7 @@ Linux OS のマシンの場合は、Linux パッケージの配布先のエン�
 最後までお読みいただきありがとうございました！
 
 ※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。
+
 
 
 
