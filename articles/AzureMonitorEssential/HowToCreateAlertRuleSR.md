@@ -88,7 +88,7 @@ tags:
 
 3. [概要] ページ の [編集] を押下し、[条件] タブを選択します。
 この画面では、メトリック アラート ルールの "集計の種類" や "確認する間隔"、"ルックバック期間" を確認できます。
-下記例では "集計の種類" が 平均、 "確認する間隔" と "ルックバック期間" が 5 分と設定されています。従って、このアラートルール では 5 分毎に、直近 5 分間における VmAvailabilityMetric の平均を評価し、0.8 を下回っていた場合に発報します。
+下記例では "集計の種類" が 平均、 "確認する間隔" と "ルックバック期間" が 5 分と設定されています。従って、このアラート ルール では 5 分毎に、直近 5 分間における VmAvailabilityMetric の平均を評価し、0.8 を下回っていた場合に発報します。
 ![](./HowToCreateAlertRuleSR/image-metric-alert-07.png)
 
 > [!NOTE]
@@ -110,8 +110,8 @@ tags:
 
 
 2. 監視対象のリソース、評価された値、アラートの評価期間を確認します。
-[メトリック アラートの詳細] 画面が開きますので、下表の <該当する項目> に表示されている内容をご確認ください。
-このアラート ルールでは、Azure VM の [VmAvailabilityMetric](https://learn.microsoft.com/ja-jp/azure/virtual-machines/monitor-vm-reference#:~:text=VmAvailabilityMetric) (可用性メトリック) を監視しており、 評価期間 5 分以内の平均値が 0.8 を下回った場合に発報します。
+[メトリック アラートの詳細] 画面が開きますので、下表に表示されている内容をご確認ください。
+このアラート ルールでは、Azure VM の [VmAvailabilityMetric](https://learn.microsoft.com/ja-jp/azure/virtual-machines/monitor-vm-reference#:~:text=VmAvailabilityMetric) (可用性メトリック) を監視しており、 評価期間 5 分間の平均値が 0.8 を下回った場合に発報します。
 
 
 | 確認する項目                | 画面上の該当箇所                                                                                                      | 例（下図参照）                                                        |
@@ -159,6 +159,7 @@ tags:
 ### 3-1. 確認するポイント
 [ログ アラート ルール](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#log-alerts)の場合は、アラート ルールが実行された時に検索クエリが閾値を満たしていたかどうかを確認します。
 ログ アラート ルールは、各評価時に、アラート ルールの検索クエリが指定したスコープの範囲で実行され、それにヒットしたログをもとに発報条件を満たすかどうかが評価されます。
+
 そのため、アラート ルールのスコープ、アラートが評価した期間、検索クエリをもとに、主に以下 2 点をご確認いただく必要がございます。
 - 評価時に対象のログが存在して (収集されて) いたか
 - 発報条件 (閾値) を満たしていたか
@@ -299,7 +300,7 @@ Time aggregation が "Count" 以外の場合、クエリ結果のうちの特定
 ![](./HowToCreateAlertRuleSR/image-activity-log-alert-03.png)
 
 2. 発報したリソースと検知されたアクティビティ ログの内容を確認します。
-[アクティビティ ログ アラートの詳細] 画面が開きますので、下表の <画面上の該当箇所> の内容をご確認ください。
+[アクティビティ ログ アラートの詳細] 画面が開きますので、下表に表示されている内容をご確認ください。
 このアクティビティ ログ アラートは **(カテゴリが Administrative) かつ (操作名が Microsoft.Compute/virtualMachines/start/action) かつ (レベルが Informational) かつ (状態= Started)** のときに発報する条件のため、想定どおりアラートが発報したことが分かります。
 
 | 確認する項目                                        | 画面上の該当箇所                        | 例（下図参照）                                                                                                  | 
@@ -322,11 +323,11 @@ Time aggregation が "Count" 以外の場合、クエリ結果のうちの特定
 3. [条件] の項目に表示されている "Azure Monitor でイベントを表示する - アクティビティ ログ" のリンクを押下します。
 ![](./HowToCreateAlertRuleSR/image-activity-log-alert-05.png)
 
-3. アラートの条件に一致するアクティビティ ログが表示されます。
+4. アラートの条件に一致するアクティビティ ログが表示されます。
 ※ 同じ操作名のアクティビティ ログが 3 件ありますが、状態が「開始済み (Started)」のログが該当します。
 ![](./HowToCreateAlertRuleSR/image-activity-log-alert-06.png)
 
-4. [JSON] を選択すると、アクティビティ ログの内容が表示されます。
+5. [JSON] を選択すると、アクティビティ ログの内容が表示されます。
 ![](./HowToCreateAlertRuleSR/image-activity-log-alert-07.png)
 
 > [!NOTE]
@@ -363,12 +364,11 @@ Time aggregation が "Count" 以外の場合、クエリ結果のうちの特定
 ※ [概要] ページ画面上部の [JSON ビュー] を選択した画面です。
 ![](./HowToCreateAlertRuleSR/image-resource-health-01.png)
 
-<br>
-
-
 > [!NOTE]
 > リソース正常性アラートの発報条件の項目と設定値につきましては、[リソース正常性アラートに関するよくあるご質問](https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ResourceHealthAlert/)のブログをご覧ください。
 
+
+<br>
 
 ### 5-2. 閾値を満たして発報したかどうかを確認する
 下記の手順でリソース正常性アラートが検知した内容を確認します。
@@ -377,7 +377,7 @@ Time aggregation が "Count" 以外の場合、クエリ結果のうちの特定
 ![](./HowToCreateAlertRuleSR/image-resource-health-04.png)
 
 2. 発報したリソースと検知されたアクティビティ ログの内容を確認します。
-[リソースの正常性 アラートの詳細] 画面が開きますので、下表の <画面上の該当箇所> の内容をご確認ください。
+[リソースの正常性 アラートの詳細] 画面が開きますので、下表に表示されている内容をご確認ください。
 このリソース正常性アラートは **(イベントの状態が Active) かつ (現在のリソースの状態が Degraded または Unavailable) かつ (以前のリソースの状態が Available) かつ (理由の種類が Platform Initiated または Unknown または User Initiated)** のときに発報する条件のため、想定どおりアラートが発報したことが分かります。
 
 | 確認する項目                | 画面上の該当箇所                                                                                                      | 例（下図参照）                                                        |
@@ -428,7 +428,7 @@ Time aggregation が "Count" 以外の場合、クエリ結果のうちの特定
 
 サービス正常性アラートは、サブスクリプション単位で設定します。
 アラートの発報条件としては Azure サービス、地域、イベントの種類を指定します。サービス正常性のイベントが発生すると、アクティビティ ログにサービス正常性に関するイベントが書き込まれ、指定した条件に一致した場合にアラートが発報します。
-**そのため、アラートの条件を満たして発報し、[サービス正常性アラートで通知された内容についてご不明な点がある場合は、基本的に該当するサービス観点でお問い合わせをご起票くださいますようお願いいたします](https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/#Q-%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%A7%E9%80%9A%E7%9F%A5%E3%81%95%E3%82%8C%E3%81%9F%E5%86%85%E5%AE%B9%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E7%A2%BA%E8%AA%8D%E3%81%97%E3%81%9F%E3%81%84%E3%81%A7%E3%81%99%E3%80%82)**
+**そのため、アラートの条件を満たして発報し、[サービス正常性アラートで通知された内容についてご不明な点がある場合は、基本的に該当するサービス観点でお問い合わせをご起票くださいますようお願いいたします。](https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/#Q-%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%A7%E9%80%9A%E7%9F%A5%E3%81%95%E3%82%8C%E3%81%9F%E5%86%85%E5%AE%B9%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E7%A2%BA%E8%AA%8D%E3%81%97%E3%81%9F%E3%81%84%E3%81%A7%E3%81%99%E3%80%82)**
 
 ![](./HowToCreateAlertRuleSR/image-service-health-02.png)
 
@@ -451,7 +451,7 @@ Time aggregation が "Count" 以外の場合、クエリ結果のうちの特定
 
 1. Azure ポータル > モニター > [アラート] を開き、画面上部の [アラート ルール] を選択します。
 
-2. サービス正常性アラートを選択し、[概要] ページを開きます。赤枠部分が発報条件、青枠部分がスコープ（サブスクリプション）です。[サービス正常性アラートの発報条件として、下記の項目を指定します。](https://learn.microsoft.com/ja-jp/azure/service-health/alerts-activity-log-service-notifications-portal#key-features-of-service-health-alerts)
+2. サービス正常性アラートを選択し、[概要] ページを開きます。赤枠部分が発報条件、青枠部分がスコープ（サブスクリプション）です。[サービス正常性アラートでは、発報条件として下記の項目を指定します。](https://learn.microsoft.com/ja-jp/azure/service-health/alerts-activity-log-service-notifications-portal#key-features-of-service-health-alerts)
 
 - 影響を受けるサブスクリプション
 - 影響を受けるサービス
@@ -490,7 +490,7 @@ Time aggregation が "Count" 以外の場合、クエリ結果のうちの特定
 ![](./HowToCreateAlertRuleSR/image-service-health-04.png)
 
 2. 対象のサブスクリプションやサービス、イベントの種類、追跡番号 (Tracking ID) を確認します。
-[サービスの正常性 アラートの詳細] 画面が開きますので、下表の <画面上の該当箇所> の内容をご確認ください。
+[サービスの正常性 アラートの詳細] 画面が開きますので、下表に表示されている内容をご確認ください。
 このサービス正常性アラートは、影響を受けるサービス、影響を受ける地域、イベントの種類のいずれも「すべて」を選択しているため、アラートの条件を満たして発報したことが分かります。
 
 | 確認する項目                 | 画面上の該当箇所                | 例（下図参照）                                                                                                                 |
