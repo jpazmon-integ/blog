@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+    
+      <title>
+        
+          Azure Monitor のアラート ルールが発報した原因調査に関するお問い合わせを発行いただく前の確認ポイント | 
+              Japan Azure Monitoring Support Blog
+      </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <meta name="description" content="こんにちは、Azure Monitoring サポート チームの北村、徳田です。今回は Azure Monitor のアラート ルールが発報した原因の調査をご依頼いただく際に、事前にご確認いただきたいポイントをご紹介します。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Azure Monitor のアラート ルールが発報した原因調査に関するお問い合わせを発行いただく前の確認ポイント">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの北村、徳田です。今回は Azure Monitor のアラート ルールが発報した原因の調査をご依頼いただく際に、事前にご確認いただきたいポイントをご紹介します。">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-metric-alert-06.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-metric-alert-07.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-metric-alert-01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-metric-alert-02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-metric-alert-03.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-metric-alert-04.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-metric-alert-05.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-log-search-alert-00.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-log-search-alert-01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-log-search-alert-02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-log-search-alert-03.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-log-search-alert-04.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-activity-log-alert-01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-activity-log-alert-02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-activity-log-alert-03.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-activity-log-alert-04.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-activity-log-alert-05.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-activity-log-alert-06.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-activity-log-alert-07.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-resource-health-01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-resource-health-04.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-resource-health-05.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-resource-health-02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-resource-health-03.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-resource-health-06.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-resource-health-07.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-06.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-03.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-03-02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-04.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-05.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-resource-health-02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-10.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-11.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-12.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-08.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-09.png">
+<meta property="article:published_time" content="2025-08-19T15:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-20T00:17:22.688Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="How-To">
+<meta property="article:tag" content="Log Alert">
+<meta property="article:tag" content="Azure Monitor Essential">
+<meta property="article:tag" content="Service Health">
+<meta property="article:tag" content="Resource Health">
+<meta property="article:tag" content="Metric Alert">
+<meta property="article:tag" content="Activity Log Alert">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-metric-alert-06.png">
+        
+          <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog"
+            type="application/atom+xml">
+          
+
+            <link rel="icon" href="../../%20favicon.ico">
+            <link rel="apple-touch-icon" sizes="180x180" href="../../%20apple-touch-icon.png">
+            <link rel="icon" type="image/png" sizes="32x32" href="../../%20favicon-32x32.png">
+            <link rel="icon" type="image/png" sizes="16x16" href="../../%20favicon-16x16.png">
+            <link rel="manifest" href="../../%20site.webmanifest">
+            <link rel="mask-icon" href="../../%20safari-pinned-tab.svg" color="#5bbad5">
+            <meta name="msapplication-TileColor" content="#ffffff">
+            <meta name="theme-color" content="#ffffff">
+            
+              <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+              
+                
+<link rel="stylesheet" href="../../css/style.css">
+
+                  <script type="text/javascript">
+                    !(function (cfg) { function e() { cfg.onInit && cfg.onInit(n) } var x, w, D, t, E, n, C = window, O = document, b = C.location, q = "script", I = "ingestionendpoint", L = "disableExceptionTracking", j = "ai.device."; "instrumentationKey"[x = "toLowerCase"](), w = "crossOrigin", D = "POST", t = "appInsightsSDK", E = cfg.name || "appInsights", (cfg.name || C[t]) && (C[t] = E), n = C[E] || function (g) { var f = !1, m = !1, h = { initialize: !0, queue: [], sv: "8", version: 2, config: g }; function v(e, t) { var n = {}, i = "Browser"; function a(e) { e = "" + e; return 1 === e.length ? "0" + e : e } return n[j + "id"] = i[x](), n[j + "type"] = i, n["ai.operation.name"] = b && b.pathname || "_unknown_", n["ai.internal.sdkVersion"] = "javascript:snippet_" + (h.sv || h.version), { time: (i = new Date).getUTCFullYear() + "-" + a(1 + i.getUTCMonth()) + "-" + a(i.getUTCDate()) + "T" + a(i.getUTCHours()) + ":" + a(i.getUTCMinutes()) + ":" + a(i.getUTCSeconds()) + "." + (i.getUTCMilliseconds() / 1e3).toFixed(3).slice(2, 5) + "Z", iKey: e, name: "Microsoft.ApplicationInsights." + e.replace(/-/g, "") + "." + t, sampleRate: 100, tags: n, data: { baseData: { ver: 2 } }, ver: undefined, seq: "1", aiDataContract: undefined } } var n, i, t, a, y = -1, T = 0, S = ["js.monitor.azure.com", "js.cdn.applicationinsights.io", "js.cdn.monitor.azure.com", "js0.cdn.applicationinsights.io", "js0.cdn.monitor.azure.com", "js2.cdn.applicationinsights.io", "js2.cdn.monitor.azure.com", "az416426.vo.msecnd.net"], o = g.url || cfg.src, r = function () { return s(o, null) }; function s(d, t) { if ((n = navigator) && (~(n = (n.userAgent || "").toLowerCase()).indexOf("msie") || ~n.indexOf("trident/")) && ~d.indexOf("ai.3") && (d = d.replace(/(\/)(ai\.3\.)([^\d]*)$/, function (e, t, n) { return t + "ai.2" + n })), !1 !== cfg.cr) for (var e = 0; e < S.length; e++)if (0 < d.indexOf(S[e])) { y = e; break } var n, i = function (e) { var a, t, n, i, o, r, s, c, u, l; h.queue = [], m || (0 <= y && T + 1 < S.length ? (a = (y + T + 1) % S.length, p(d.replace(/^(.*\/\/)([\w\.]*)(\/.*)$/, function (e, t, n, i) { return t + S[a] + i })), T += 1) : (f = m = !0, s = d, !0 !== cfg.dle && (c = (t = function () { var e, t = {}, n = g.connectionString; if (n) for (var i = n.split(";"), a = 0; a < i.length; a++) { var o = i[a].split("="); 2 === o.length && (t[o[0][x]()] = o[1]) } return t[I] || (e = (n = t.endpointsuffix) ? t.location : null, t[I] = "https://" + (e ? e + "." : "") + "dc." + (n || "services.visualstudio.com")), t }()).instrumentationkey || g.instrumentationKey || "", t = (t = (t = t[I]) && "/" === t.slice(-1) ? t.slice(0, -1) : t) ? t + "/v2/track" : g.endpointUrl, t = g.userOverrideEndpointUrl || t, (n = []).push((i = "SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details)", o = s, u = t, (l = (r = v(c, "Exception")).data).baseType = "ExceptionData", l.baseData.exceptions = [{ typeName: "SDKLoadFailed", message: i.replace(/\./g, "-"), hasFullStack: !1, stack: i + "\nSnippet failed to load [" + o + "] -- Telemetry is disabled\nHelp Link: https://go.microsoft.com/fwlink/?linkid=2128109\nHost: " + (b && b.pathname || "_unknown_") + "\nEndpoint: " + u, parsedStack: [] }], r)), n.push((l = s, i = t, (u = (o = v(c, "Message")).data).baseType = "MessageData", (r = u.baseData).message = 'AI (Internal): 99 message:"' + ("SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details) (" + l + ")").replace(/\"/g, "") + '"', r.properties = { endpoint: i }, o)), s = n, c = t, JSON && ((u = C.fetch) && !cfg.useXhr ? u(c, { method: D, body: JSON.stringify(s), mode: "cors" }) : XMLHttpRequest && ((l = new XMLHttpRequest).open(D, c), l.setRequestHeader("Content-type", "application/json"), l.send(JSON.stringify(s))))))) }, a = function (e, t) { m || setTimeout(function () { !t && h.core || i() }, 500), f = !1 }, p = function (e) { var n = O.createElement(q), e = (n.src = e, t && (n.integrity = t), n.setAttribute("data-ai-name", E), cfg[w]); return !e && "" !== e || "undefined" == n[w] || (n[w] = e), n.onload = a, n.onerror = i, n.onreadystatechange = function (e, t) { "loaded" !== n.readyState && "complete" !== n.readyState || a(0, t) }, cfg.ld && cfg.ld < 0 ? O.getElementsByTagName("head")[0].appendChild(n) : setTimeout(function () { O.getElementsByTagName(q)[0].parentNode.appendChild(n) }, cfg.ld || 0), n }; p(d) } cfg.sri && (n = o.match(/^((http[s]?:\/\/.*\/)\w+(\.\d+){1,5})\.(([\w]+\.){0,2}js)$/)) && 6 === n.length ? (d = "".concat(n[1], ".integrity.json"), i = "@".concat(n[4]), l = window.fetch, t = function (e) { if (!e.ext || !e.ext[i] || !e.ext[i].file) throw Error("Error Loading JSON response"); var t = e.ext[i].integrity || null; s(o = n[2] + e.ext[i].file, t) }, l && !cfg.useXhr ? l(d, { method: "GET", mode: "cors" }).then(function (e) { return e.json()["catch"](function () { return {} }) }).then(t)["catch"](r) : XMLHttpRequest && ((a = new XMLHttpRequest).open("GET", d), a.onreadystatechange = function () { if (a.readyState === XMLHttpRequest.DONE) if (200 === a.status) try { t(JSON.parse(a.responseText)) } catch (e) { r() } else r() }, a.send())) : o && r(); try { h.cookie = O.cookie } catch (k) { } function e(e) { for (; e.length;)!function (t) { h[t] = function () { var e = arguments; f || h.queue.push(function () { h[t].apply(h, e) }) } }(e.pop()) } var c, u, l = "track", d = "TrackPage", p = "TrackEvent", l = (e([l + "Event", l + "PageView", l + "Exception", l + "Trace", l + "DependencyData", l + "Metric", l + "PageViewPerformance", "start" + d, "stop" + d, "start" + p, "stop" + p, "addTelemetryInitializer", "setAuthenticatedUserContext", "clearAuthenticatedUserContext", "flush"]), h.SeverityLevel = { Verbose: 0, Information: 1, Warning: 2, Error: 3, Critical: 4 }, (g.extensionConfig || {}).ApplicationInsightsAnalytics || {}); return !0 !== g[L] && !0 !== l[L] && (e(["_" + (c = "onerror")]), u = C[c], C[c] = function (e, t, n, i, a) { var o = u && u(e, t, n, i, a); return !0 !== o && h["_" + c]({ message: e, url: t, lineNumber: n, columnNumber: i, error: a, evt: C.event }), o }, g.autoExceptionInstrumented = !0), h }(cfg.cfg), (C[E] = n).queue && 0 === n.queue.length ? (n.queue.push(e), n.trackPageView({})) : e(); })({
+                      src: "https://js.monitor.azure.com/scripts/b/ai.3.gbl.min.js",
+                      // name: "appInsights", // Global SDK Instance name defaults to "appInsights" when not supplied
+                      // ld: 0, // Defines the load delay (in ms) before attempting to load the sdk. -1 = block page load and add to head. (default) = 0ms load after timeout,
+                      // useXhr: 1, // Use XHR instead of fetch to report failures (if available),
+                      // dle: true, // Prevent the SDK from reporting load failure log
+                      crossOrigin: "anonymous", // When supplied this will add the provided value as the cross origin attribute on the script tag
+                      // onInit: null, // Once the application insights instance has loaded and initialized this callback function will be called with 1 argument -- the sdk instance (DON'T ADD anything to the sdk.queue -- As they won't get called)
+                      // sri: false, // Custom optional value to specify whether fetching the snippet from integrity file and do integrity check
+                      cfg: { // Application Insights Configuration
+                        connectionString: "InstrumentationKey=3bdbf1fd-6df1-4401-9bc6-1756db37fa5f;IngestionEndpoint=https://japaneast-1.in.applicationinsights.azure.com/;LiveEndpoint=https://japaneast.livediagnostics.monitor.azure.com/;ApplicationId=b3c3cc51-434a-4437-bc36-e5fe3f744127"
+                      }
+                    });
+                  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-AzureMonitorEssential/HowToCreateAlertRuleSR" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Azure Monitor のアラート ルールが発報した原因調査に関するお問い合わせを発行いただく前の確認ポイント
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2025-08-19T15:00:00.000Z" itemprop="datePublished">2025-08-20</time>
+</a>
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+f628de49-d671-5016-89ea-a80047093550%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Monitor+%E3%81%AE%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88+%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%8C%E7%99%BA%E5%A0%B1%E3%81%97%E3%81%9F%E5%8E%9F%E5%9B%A0%E8%AA%BF%E6%9F%BB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B%E3%82%92%E7%99%BA%E8%A1%8C%E3%81%84%E3%81%9F%E3%81%A0%E3%81%8F%E5%89%8D%E3%81%AE%E7%A2%BA%E8%AA%8D%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FHowToCreateAlertRuleSR%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FHowToCreateAlertRuleSR.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FHowToCreateAlertRuleSR.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/" data-id="cmej844i200fb0nltcu0c1tnd" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは、Azure Monitoring サポート チームの北村、徳田です。<br>今回は <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview">Azure Monitor のアラート ルール</a>が発報した原因の調査をご依頼いただく際に、事前にご確認いただきたいポイントをご紹介します。<br><br></p>
+<span id="more"></span>
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li><a href="#1-%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB">1. はじめに</a></li>
+<li><a href="#2-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB">2. メトリック アラート ルール</a><ul>
+<li><a href="#2-1-%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88">2-1. 確認するポイント</a></li>
+<li><a href="#2-2-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E7%99%BA%E5%A0%B1%E6%9D%A1%E4%BB%B6%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">2-2. メトリック アラート ルールの発報条件を確認する</a></li>
+<li><a href="#2-3-%E9%96%BE%E5%80%A4%E3%82%92%E6%BA%80%E3%81%9F%E3%81%97%E3%81%A6%E3%81%84%E3%81%9F%E3%81%8B%E3%81%A9%E3%81%86%E3%81%8B%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95">2-3. 閾値を満たしていたかどうかを確認する方法</a></li>
+<li><a href="#2-4-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%81%AE%E5%80%A4%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%81%A8%E3%81%8D%E3%81%AB%E3%81%94%E7%95%99%E6%84%8F%E3%81%84%E3%81%9F%E3%81%A0%E3%81%8D%E3%81%9F%E3%81%84%E3%81%93%E3%81%A8">2-4. メトリックの値を確認するときにご留意いただきたいこと</a></li>
+</ul>
+</li>
+<li><a href="#3-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB">3. ログ アラート ルール</a><ul>
+<li><a href="#3-1-%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88">3-1. 確認するポイント</a></li>
+<li><a href="#3-2-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E7%99%BA%E5%A0%B1%E6%9D%A1%E4%BB%B6%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">3-2. ログ アラート ルールの発報条件を確認する</a></li>
+<li><a href="#3-3-%E9%96%BE%E5%80%A4%E3%82%92%E6%BA%80%E3%81%9F%E3%81%97%E3%81%A6%E3%81%84%E3%81%9F%E3%81%8B%E3%81%A9%E3%81%86%E3%81%8B%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95">3-3. 閾値を満たしていたかどうかを確認する方法</a></li>
+<li><a href="#3-4-%E3%83%AD%E3%82%B0%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%81%A8%E3%81%8D%E3%81%AB%E3%81%94%E7%95%99%E6%84%8F%E3%81%84%E3%81%9F%E3%81%A0%E3%81%8D%E3%81%9F%E3%81%84%E3%81%93%E3%81%A8">3-4. ログを確認するときにご留意いただきたいこと</a></li>
+</ul>
+</li>
+<li><a href="#4-%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88">4. アクティビティ ログ アラート</a><ul>
+<li><a href="#4-1-%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%AE%E7%99%BA%E5%A0%B1%E6%9D%A1%E4%BB%B6%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">4-1. アクティビティ ログ アラートの発報条件を確認する</a></li>
+<li><a href="#4-2-%E9%96%BE%E5%80%A4%E3%82%92%E6%BA%80%E3%81%9F%E3%81%97%E3%81%A6%E7%99%BA%E5%A0%B1%E3%81%97%E3%81%9F%E3%81%8B%E3%81%A9%E3%81%86%E3%81%8B%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">4-2. 閾値を満たして発報したかどうかを確認する</a></li>
+<li><a href="#4-3-%E8%A9%B2%E5%BD%93%E3%81%AE%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">4-3. 該当のアクティビティ ログを確認する</a></li>
+</ul>
+</li>
+<li><a href="#5-%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88">5. リソース正常性アラート</a><ul>
+<li><a href="#5-1-%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%AE%E7%99%BA%E5%A0%B1%E6%9D%A1%E4%BB%B6%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">5-1. リソース正常性アラートの発報条件を確認する</a></li>
+<li><a href="#5-2-%E9%96%BE%E5%80%A4%E3%82%92%E6%BA%80%E3%81%9F%E3%81%97%E3%81%A6%E7%99%BA%E5%A0%B1%E3%81%97%E3%81%9F%E3%81%8B%E3%81%A9%E3%81%86%E3%81%8B%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">5-2. 閾値を満たして発報したかどうかを確認する</a></li>
+<li><a href="#5-3-%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%81%AE%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">5-3. リソース正常性のアクティビティ ログを確認する</a></li>
+</ul>
+</li>
+<li><a href="#6-%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88">6. サービス正常性アラート</a><ul>
+<li><a href="#6-1-%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%AE%E7%99%BA%E5%A0%B1%E6%9D%A1%E4%BB%B6%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">6-1. サービス正常性アラートの発報条件を確認する</a></li>
+<li><a href="#6-2-%E9%96%BE%E5%80%A4%E3%82%92%E6%BA%80%E3%81%9F%E3%81%97%E3%81%A6%E7%99%BA%E5%A0%B1%E3%81%97%E3%81%9F%E3%81%8B%E3%81%A9%E3%81%86%E3%81%8B%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">6-2. 閾値を満たして発報したかどうかを確認する</a></li>
+<li><a href="#6-3-%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%81%AE%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">6-3. サービス正常性のアクティビティ ログを確認する</a></li>
+<li><a href="#6-4-%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%81%AE%E5%86%85%E5%AE%B9%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">6-4. サービス正常性の内容を確認する</a></li>
+</ul>
+</li>
+<li><a href="#7-%E3%81%9D%E3%81%AE%E4%BB%96">7. その他</a></li>
+</ul>
+<br>
+
+
+<h2 id="1-はじめに"><a href="#1-はじめに" class="headerlink" title="1. はじめに"></a>1. はじめに</h2><p>「Azure Monitor のアラート ルールが発報した原因を調査してほしい」というお問い合わせをよくいただきますが、<br><strong>アラート ルールの閾値を満たして発報したのか</strong>、それとも<strong>閾値を満たしていないにもかかわらず発報されたのか</strong>によって、<br>調査の観点が異なります。</p>
+<table>
+<thead>
+<tr>
+<th>アラート ルールが発報した経緯</th>
+<th>調査観点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>アラート ルールが閾値を満たして発報した場合</td>
+<td>Azure リソース観点</td>
+</tr>
+<tr>
+<td>アラート ルールが閾値を満たしていないものの発報した場合</td>
+<td>アラート ルール観点</td>
+</tr>
+</tbody></table>
+<p><strong>閾値を満たして発報した場合は、監視している Azure リソースに何らかの問題が発生していた可能性があるため、Azure リソース観点での調査が必要です。一方で、閾値を満たしていないにもかかわらず発報した場合は、アラート ルールの動作に問題があった可能性があるため、アラート ルール観点（Azure Monitor 製品観点）で調査を実施する必要があります。</strong></p>
+<p>つまり、アラートが発報した状況によって、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-portal/supportability/how-to-create-azure-support-request#create-a-support-request:~:text=%E5%95%8F%E9%A1%8C%E3%81%AB%E9%96%A2%E9%80%A3%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%BE%E3%81%99%E3%80%82">お問い合わせの起票時に選択いただく製品カテゴリ</a> (監視している Azure リソース or アラート ルール) が異なります。例えば、閾値を満たしている状況であったものの Azure Monitor 製品を選択してお問い合わせを起票された場合、Azure Monitor チームでは内容を確認したうえで、適切なチームを探すところから対応が始まります。逆に、閾値を満たしていないのに Azure リソースを選択された場合も同様です。そのため、<strong>「閾値を満たして発報したかどうか」</strong>を事前にご確認いただくことで、適切な製品・カテゴリを選択してお問い合わせを起票いただけるようになり、弊社での対応もよりスムーズに進みます。</p>
+<p>本記事では、アラート ルールの発報条件を確認する方法や、実際に閾値を満たしていたかどうかを確認する手順についてご紹介します。</p>
+<br>
+<br>
+
+
+
+<h2 id="2-メトリック-アラート-ルール"><a href="#2-メトリック-アラート-ルール" class="headerlink" title="2. メトリック アラート ルール"></a>2. メトリック アラート ルール</h2><h3 id="2-1-確認するポイント"><a href="#2-1-確認するポイント" class="headerlink" title="2-1. 確認するポイント"></a>2-1. 確認するポイント</h3><p><strong><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#metric-alerts">メトリック アラート ルール</a>の場合は、アラート ルールが実行された時にメトリックの値が閾値を満たしていたかどうかを確認します。</strong>メトリック アラート ルールは、Azure プラットフォームから既定で収集される<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/metrics/data-platform-metrics#types-of-metrics">プラットフォーム メトリックやカスタム メトリック</a>を、一定の間隔で監視します。アラート ルールの閾値を満たして発報したかどうかを確認するためには、アラートが評価した期間と、当該期間におけるメトリックの値を確認する必要があります。</p>
+<br>
+
+
+<h3 id="2-2-メトリック-アラート-ルールの発報条件を確認する"><a href="#2-2-メトリック-アラート-ルールの発報条件を確認する" class="headerlink" title="2-2. メトリック アラート ルールの発報条件を確認する"></a>2-2. メトリック アラート ルールの発報条件を確認する</h3><p>メトリック アラート ルールの発報条件は、下記の手順でご確認いただけます。</p>
+<ol>
+<li><p>Azure ポータル &gt; モニター &gt; [アラート] を開き、画面上部の [アラート ルール] を選択します。</p>
+</li>
+<li><p>メトリック アラート ルールを選択し、[概要] ページを開きます。赤枠部分が発報条件、青枠部分がアラートのスコープです。下記の設定の場合は、Azure VM の VmAvailabilityMetric を監視し、0.8 を下回った場合に発報することが分かります。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-metric-alert-06.png"></p>
+</li>
+<li><p>[概要] ページ の [編集] を押下し、[条件] タブを選択します。<br>この画面では、メトリック アラート ルールの “集計の種類” や “確認する間隔”、”ルックバック期間” を確認できます。<br>下記例では “集計の種類” が 平均、 “確認する間隔” と “ルックバック期間” が 5 分と設定されています。従って、このアラート ルール では 5 分毎に、直近 5 分間における VmAvailabilityMetric の平均を評価し、0.8 を下回っていた場合に発報します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-metric-alert-07.png"></p>
+</li>
+</ol>
+<div class="alert is-info"><p class="alert-title">Note</p><p>メトリック アラート ルールの設定項目につきましては、<a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/#Q-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E9%A0%85%E7%9B%AE%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Azure Monitor のアラートに関するよくあるご質問</a>のブログをご覧ください。<a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/#Q-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E9%A0%85%E7%9B%AE%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">また、アラートの [条件] タブでディメンションが設定されている場合には、そのディメンションで集計されたデータが監視されます</a>。ディメンションは、メトリック値に関する追加のデータ (名前と値のペア) です。 メトリックは、個々のリソースごとに記録されますが、ディメンションはメトリックの値をより詳細に説明するための追加情報とお考えください。</p></div>
+<br>
+
+
+
+<h3 id="2-3-閾値を満たしていたかどうかを確認する方法"><a href="#2-3-閾値を満たしていたかどうかを確認する方法" class="headerlink" title="2-3. 閾値を満たしていたかどうかを確認する方法"></a>2-3. 閾値を満たしていたかどうかを確認する方法</h3><p>まずは、アラート ルールが監視している Azure リソースとアラートの評価期間を確認します。<br>次に、メトリック エクスプローラーで評価期間におけるメトリックの値を確認します。</p>
+<ol>
+<li>Azure ポータル &gt; モニター &gt; [アラート] を開き、発報したアラートを選択します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-metric-alert-01.png"></li>
+</ol>
+<ol start="2">
+<li>監視対象のリソース、評価された値、アラートの評価期間を確認します。<br>[メトリック アラートの詳細] 画面が開きますので、下表に表示されている内容をご確認ください。<br>このアラート ルールでは、Azure VM の <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/monitor-vm-reference#:~:text=VmAvailabilityMetric">VmAvailabilityMetric</a> (可用性メトリック) を監視しており、 評価期間 5 分間の平均値が 0.8 を下回った場合に発報します。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>確認する項目</th>
+<th>画面上の該当箇所</th>
+<th>例（下図参照）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>監視対象のリソース</td>
+<td>影響を受けるリソース (赤枠部分)</td>
+<td>Azure VM (win2022-jpe)</td>
+</tr>
+<tr>
+<td>評価された値</td>
+<td>このアラートが発生した理由 (青枠部分)</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>アラートの評価期間</td>
+<td>“追加の詳細” の Evaluation window start time, <br>Evaluation window end time (緑枠部分)</td>
+<td>2025/7/3 16:58 ～ 2025/7/3 17:03</td>
+</tr>
+</tbody></table>
+<p><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-metric-alert-02.png"></p>
+<br>
+
+<ol start="3">
+<li><p>[影響を受けるリソース] のリンクを押下し、左ペインの [監視] &gt; [メトリック] から <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/metrics/analyze-metrics">メトリック エクスプローラー</a>を開きます。</p>
+</li>
+<li><p>[スコープ] に監視している Azure リソースが表示されていることを確認します（赤枠部分）。<br>このアラート ルールは VmAvailabilityMetric の平均を監視しているので、[メトリック] で <strong>VmAvailabilityMetric</strong>、[集計の粒度] は <strong>平均</strong> を選択します（青枠部分）。画面右上の [現地時刻] のボタンを押下し、2. で確認したアラートの評価期間 (2025/7/3 16:58 ～ 17:03 JST) を指定します（緑枠部分）。今回は、評価期間内のメトリックの推移を最小単位 (1 分) で確認したかったため、[時間の粒度] は <strong>1 分</strong> を指定していますが、7/3 16:59 以降はメトリックが 1 を下回っており、アラートの閾値を満たしていたことが分かります。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-metric-alert-03.png"></p>
+</li>
+</ol>
+<div class="alert is-important"><p class="alert-title">重要</p><p>繰り返しとなりますが、<strong>閾値を満たして発報したのか</strong>、<strong>閾値を満たしていないにもかかわらず発報したのか</strong>によって、調査の観点が異なります。上記の例では閾値を満たして発報しているため、発報した原因をお知りになりたい場合は、<strong>アラート ルール観点ではなく、監視しているリソース (Azure VM) 観点で調査が必要となります。</strong> もし、閾値を満たしていなかった状況であった場合には、アラート ルールの動作に問題があった可能性があるため、アラート ルール観点（Azure Monitor 製品観点）で調査する必要がございます。</p></div>
+<br>
+
+
+<h3 id="2-4-メトリックの値を確認するときにご留意いただきたいこと"><a href="#2-4-メトリックの値を確認するときにご留意いただきたいこと" class="headerlink" title="2-4. メトリックの値を確認するときにご留意いただきたいこと"></a>2-4. メトリックの値を確認するときにご留意いただきたいこと</h3><p>メトリック アラート ルールの編集画面の [プレビュー] や、アラートの詳細画面で表示されるグラフは、実際のアラート ルールの評価期間に基づいた集計の粒度で表示されていない場合がございます。アラートの評価期間におけるメトリックの値を確認する際には、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/metrics/analyze-metrics">メトリック エクスプローラー</a>からご確認いただきますようお願いいたします。</p>
+<ul>
+<li><p>メトリック アラート ルールの編集画面<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-metric-alert-04.png"></p>
+</li>
+<li><p>アラートの詳細画面<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-metric-alert-05.png"></p>
+</li>
+</ul>
+<br>
+<br>
+
+
+
+<h2 id="3-ログ-アラート-ルール"><a href="#3-ログ-アラート-ルール" class="headerlink" title="3. ログ アラート ルール"></a>3. ログ アラート ルール</h2><h3 id="3-1-確認するポイント"><a href="#3-1-確認するポイント" class="headerlink" title="3-1. 確認するポイント"></a>3-1. 確認するポイント</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#log-alerts">ログ アラート ルール</a>の場合は、アラート ルールが実行された時に検索クエリが閾値を満たしていたかどうかを確認します。<br>ログ アラート ルールは、各評価時に、アラート ルールの検索クエリが指定したスコープの範囲で実行され、それにヒットしたログをもとに発報条件を満たすかどうかが評価されます。</p>
+<p>そのため、アラート ルールのスコープ、アラートが評価した期間、検索クエリをもとに、主に以下 2 点をご確認いただく必要がございます。</p>
+<ul>
+<li>評価時に対象のログが存在して (収集されて) いたか</li>
+<li>発報条件 (閾値) を満たしていたか</li>
+</ul>
+<br>
+
+
+<h3 id="3-2-ログ-アラート-ルールの発報条件を確認する"><a href="#3-2-ログ-アラート-ルールの発報条件を確認する" class="headerlink" title="3-2. ログ アラート ルールの発報条件を確認する"></a>3-2. ログ アラート ルールの発報条件を確認する</h3><p>ログ アラート ルールの発報条件は、下記の手順でご確認いただけます。</p>
+<ol>
+<li><p>Azure ポータル &gt; モニター &gt; [アラート] を開き、画面上部の [アラート ルール] を選択します。</p>
+</li>
+<li><p>対象のログ アラート ルールを選択し、[概要] ページを開きます。以下画像における赤枠部分が発報条件、青枠部分がアラートのスコープです。下記の設定の場合、評価対象は “リソース グループ A” 配下のリソースから収集されたログとなります。<br>そして、それらのログに対し “クエリ” を実行した結果返ってきたログの行数が 1 より小さい場合に発報するという条件となっています。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-log-search-alert-00.png" alt="アラート ルールのスコープと発報条件"></p>
+</li>
+</ol>
+<p><strong>〇 ログ検索アラート ルールのスコープについて</strong><br>基本的には、アラート ルールに指定したリソースから収集されたログが評価対象となります。<br>リソース グループを指定した場合は、そのリソース グループ配下に存在するリソースから収集されたログが対象となります。</p>
+<p>例外として、Log Analytics ワークスペース、および Application Insights を選択した場合は、(ログ出力元リソースに関わらず) そのワークスペースまたは Application Insights へ収集されたログが評価対象となります。</p>
+<p><strong>〇 ディメンション分割について</strong><br>ログ アラート ルールではディメンション分割を行うことができます。<br>ディメンション分割を設定している場合、ディメンション分割で指定したカラムに含まれる一意な値に基づいて、ログが分割され、分割されたログの集まりごとにアラート ルールの発報条件が適用されます。</p>
+<p>例えば、あるリソース グループをスコープとし、Heartbeat ログを監視しているアラート ルールがあるとします。<br>この場合、評価対象は、そのリソース グループ配下に含まれるマシンから収集された Heartbeat ログすべてです。<br>このアラート ルールで、_ResourceId カラムによるディメンション分割を設定した場合、評価時には Heartbeat ログが _ResourceId カラム内の一意な値にもとづいて分割されます。つまり、Heartbeat ログがマシンごとに分割され、分割されたログの集まりそれぞれに対して、発報条件を満たすかどうかが評価されます。</p>
+<br>
+
+
+<h3 id="3-3-閾値を満たしていたかどうかを確認する方法"><a href="#3-3-閾値を満たしていたかどうかを確認する方法" class="headerlink" title="3-3. 閾値を満たしていたかどうかを確認する方法"></a>3-3. 閾値を満たしていたかどうかを確認する方法</h3><p>まずは、ログ アラート ルールの検索クエリとアラートの評価期間を確認します。<br>次に、Log Analytics ワークスペースで評価期間における検索クエリの結果を確認します。</p>
+<ol>
+<li><p>Azure ポータル &gt; モニター &gt; [アラート] を開き、確認対象のアラートを選択します。</p>
+</li>
+<li><p>発報されたアラートの詳細を確認します。<br>右側に [ログ検索アラートの詳細] が表示されているため、下表に表示されている内容をご確認ください。</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>確認する項目</th>
+<th>画面上の該当箇所</th>
+<th>例（下図参照）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>監視対象のスコープ</td>
+<td>影響を受けるリソース (赤枠部分) ※1</td>
+<td>vm01-ubt22 (仮想マシン)</td>
+</tr>
+<tr>
+<td>評価された値と評価基準</td>
+<td>“このアラートが発生した理由” と<br> “追加の詳細” の Time aggregation と Operator (青枠部分) ※2</td>
+<td>クエリ結果のログ レコード数 (Time aggregation: Count) が 1 で、閾値 1 以上 (GreaterThanOrEqual) であった</td>
+</tr>
+<tr>
+<td>アラートの評価期間</td>
+<td>“追加の詳細” の<br> Evaluation window start time, <br>Evaluation window end time (緑枠部分)</td>
+<td>2025/7/23 11:48 ～ 2025/7/23 11:53</td>
+</tr>
+</tbody></table>
+<p><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-log-search-alert-01.png" alt="ログ検索アラートの詳細画面の例"></p>
+<p>※1<br>アラート ルールで<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#monitor-multiple-instances-of-a-resource-using-dimensions">ディメンション分割</a>を行っている場合、アラート ルールのスコープと、発報したアラートの “影響を受けるリソース” が異なる場合があります。例えば、仮想マシン A を含むリソース グループをアラート ルールのスコープに設定し、_ResourceId でディメンション分割を行っている場合に、仮想マシン A から収集されたログがアラートの発報条件を満たすと、アラートの “影響を受けるリソース” は仮想マシン A となります。</p>
+<p>※2<br>Time aggregation が “Count” の場合は、クエリ結果のログ レコード数が閾値を満たすかどうかが評価されます。<br>Time aggregation が “Count” 以外の場合、クエリ結果のうちの特定のカラム内の値が Time aggregation で指定された集計方法で集計され、その値が閾値を満たすかどうか評価されます。こちらの場合は、同箇所に記載のある Metric measure column に評価対象のカラム名が記載されていますため、併せてご確認ください。</p>
+<br>
+
+<ol start="3">
+<li>同画面の “クエリ” セクションにある、[結果をログに表示] を押下します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-log-search-alert-02.png"></li>
+</ol>
+<p>すると、クエリ実行画面が開き、先ほど確認した “影響を受けるリソース” のスコープ、時間範囲が選択された状態で、検索クエリが実行されます。以下の様に、画面下部に [結果] が表示されるため、こちらをご確認ください。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-log-search-alert-03.png" alt="クエリ実行画面の例"></p>
+<p>なお、アラート ルールに指定した発報条件 (評価基準) により見方が少々異なるため、以下をご確認ください。</p>
+<ul>
+<li><p>“テーブルの行” が評価基準に設定されている場合:<br>手順 2 で確認した Time aggregation が Count の場合を指します。<br>結果に表示されるログ レコードの行数が、指定した閾値を満たしているかどうかをご確認ください。<br>上記の画像は手順 2 で確認した情報 (“このアラートが発報した理由”) と一致しているため、実際にアラート ルールの閾値を満たして発報していたと判断できます。</p>
+</li>
+<li><p>“テーブルの行” 以外が評価基準に設定されている (数値が格納されるカラムが評価基準に設定されている) 場合:<br>手順 2 で確認した Time aggregation が Count “以外” の場合を指します。<br>結果内の、数値が格納されるカラムに示される値が、指定した閾値を満たしているかどうかをご確認ください。<br>こちらの結果に表示されるカラム名は、手順 2 で確認した Metric measure column の名前とは異なります (以下画像の例をご参照ください)。これは、評価時には Metric measure column 内の値が、指定した集計方法で集計された値を算出するためのクエリが追加されているためです。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-log-search-alert-04.png" alt="クエリ実行画面の例 2"></p>
+</li>
+</ul>
+<div class="alert is-important"><p class="alert-title">重要</p><p><strong>閾値を満たして発報したのか</strong>、<strong>閾値を満たしていないにもかかわらず発報したのか</strong>によって、調査の観点が異なります。</p><p>上記の例では閾値を満たして発報していたため、発報した原因すなわち対象のログが出力された原因をお知りになりたい場合は、<strong>アラート ルール観点ではなく、ログ出力元リソース観点で調査が必要となります。</strong> もし、閾値を満たしていなかったにもかかわらず発報していた場合には、アラート ルールの動作に問題があった可能性があるため、アラート ルール観点（Azure Monitor 製品観点）で調査する必要がございます。</p><p></p><p>なお、マシンから収集される Heartbeat ログやパフォーマンス カウンターなどの、一定の間隔で収集されるログで死活監視をしている場合、ログの一時的な収集遅延によって、期待せず (マシンの動作には問題がないにもかかわらず) アラートが発報することがございます。ログ収集遅延の要因は出力元リソース側にある場合と、ログ収集経路 (Azure 基盤側) にある場合がございます。マシンの動作に問題がなくアラートの発報も一時的であった場合は基本的にご静観いただきたく存じますが、もし期待しないアラートが断続的に発報する場合など、発報要因の調査が必要だと判断された場合は、まずはアラート ルールの観点でご起票をいただけますと幸いです (調査の結果、出力元リソース側に問題があった場合は、調査の観点を出力元リソースに変えて調査を進める場合がございます)。</p></div>
+<br>
+
+
+<h3 id="3-4-ログを確認するときにご留意いただきたいこと"><a href="#3-4-ログを確認するときにご留意いただきたいこと" class="headerlink" title="3-4. ログを確認するときにご留意いただきたいこと"></a>3-4. ログを確認するときにご留意いただきたいこと</h3><p>ログ アラート ルールの評価では、指定した時刻範囲内のログ データが対象となります。<br>基本的に評価の時間範囲はアラート ルールの集計の粒度および評価の頻度で決まりますが、ログ アラート ルールではログの取り込み遅延を考慮して各評価の時間範囲が調整されますため、時間範囲については上記手順 2 のように、それぞれのアラート発報履歴の詳細をご確認ください。</p>
+<br>
+<br>
+
+
+
+<h2 id="4-アクティビティ-ログ-アラート"><a href="#4-アクティビティ-ログ-アラート" class="headerlink" title="4. アクティビティ ログ アラート"></a>4. アクティビティ ログ アラート</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#activity-log-alerts">アクティビティ ログ アラート</a>は、指定した発報条件に一致するアクティビティ ログが出力されたかどうかを監視します。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/platform/activity-log-schema#categories">アクティビティ ログ</a>は、サブスクリプション レベルのイベントが記録されます。例えば、リソースが作成された、変更された、削除された、Azure VM が起動された、といったログが出力されます。</p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/data-sources#azure-resources">アクティビティ ログは、操作が実行される Azure リソースのリソース プロバイダーによって提供され、リソース プロバイダー側でアクティビティ ログの出力条件が決定されております。</a> このため、<strong>アラートの条件を満たして発報し、アクティビティ ログが記録された原因の調査をご希望される場合は、監視対象の Azure リソース観点でお問い合わせをご起票ください。</strong></p>
+<p>本記事では、アクティビティ ログ アラートの発報条件と、アクティビティ ログ アラートで検知した内容を確認する手順をご紹介します。もし、アラートの条件を満たしていないにもかかわらず発報したと疑われる場合は、アラート ルールの動作に関する調査が必要となるため、アラート ルール観点 (Azure Monitor 製品) でお問い合わせをご起票ください。</p>
+<br>
+
+
+<h3 id="4-1-アクティビティ-ログ-アラートの発報条件を確認する"><a href="#4-1-アクティビティ-ログ-アラートの発報条件を確認する" class="headerlink" title="4-1. アクティビティ ログ アラートの発報条件を確認する"></a>4-1. アクティビティ ログ アラートの発報条件を確認する</h3><p>まずは、アクティビティ ログ アラートの発報条件を確認します。</p>
+<ol>
+<li><p>Azure ポータル &gt; モニター &gt; [アラート] を開き、画面上部の [アラート ルール] を選択します。</p>
+</li>
+<li><p>アクティビティ ログ アラートを選択し、[概要] ページを開きます。赤枠部分が発報条件、青枠部分がアラートのスコープです。<br>下記の設定の場合は、該当の Azure VM で、下記のアクティビティ ログが出力された場合に発報します。アクティビティ ログ アラートの発報条件の項目につきましては、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-activity-log-alert-rule?tabs=activity-log#:~:text=On%20the%20Conditions,of%20these%20fields%3A">公開情報</a>をご覧ください。</p>
+</li>
+</ol>
+<ul>
+<li>(<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log-schema#categories">カテゴリ</a>が Administrative) かつ (<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/resource-provider-operations">操作名</a>が Microsoft.Compute/virtualMachines/start/action) かつ (<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log-schema#severity-level">レベル</a>が Informational) かつ (状態= Started)</li>
+</ul>
+<p><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-activity-log-alert-01.png"></p>
+<p>※ [概要] ページ画面上部の [JSON ビュー] を選択した画面です。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-activity-log-alert-02.png"></p>
+<br>
+
+
+<h3 id="4-2-閾値を満たして発報したかどうかを確認する"><a href="#4-2-閾値を満たして発報したかどうかを確認する" class="headerlink" title="4-2. 閾値を満たして発報したかどうかを確認する"></a>4-2. 閾値を満たして発報したかどうかを確認する</h3><p>下記の手順でアクティビティ ログ アラートが検知した内容を確認します。</p>
+<ol>
+<li><p>Azure ポータル &gt; モニター &gt; [アラート] を開き、発報したアラートを選択します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-activity-log-alert-03.png"></p>
+</li>
+<li><p>発報したリソースと検知されたアクティビティ ログの内容を確認します。<br>[アクティビティ ログ アラートの詳細] 画面が開きますので、下表に表示されている内容をご確認ください。<br>このアクティビティ ログ アラートは <strong>(カテゴリが Administrative) かつ (操作名が Microsoft.Compute/virtualMachines/start/action) かつ (レベルが Informational) かつ (状態= Started)</strong> のときに発報する条件のため、想定どおりアラートが発報したことが分かります。</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>確認する項目</th>
+<th>画面上の該当箇所</th>
+<th>例（下図参照）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>監視対象のリソース</td>
+<td>影響を受けるリソース (赤枠部分)</td>
+<td>Azure VM (win2022-jpe)</td>
+</tr>
+<tr>
+<td>アクティビティ ログの操作名、<br> カテゴリ、レベル</td>
+<td>このアラートが発生した理由 (青枠部分)</td>
+<td>操作名 : Microsoft.Compute/virtualMachines/start/action<br>カテゴリ : Administrative<br>レベル :  Informational</td>
+</tr>
+<tr>
+<td>アクティビティ ログの状態と<br>ログが出力された日時</td>
+<td>“追加の詳細” の<br> Status, Submission timestamp (緑枠部分)</td>
+<td>状態 : Started<br>ログが出力された日時 : 2025/7/16 14:48</td>
+</tr>
+</tbody></table>
+<p><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-activity-log-alert-04.png"></p>
+<br>
+
+<h3 id="4-3-該当のアクティビティ-ログを確認する"><a href="#4-3-該当のアクティビティ-ログを確認する" class="headerlink" title="4-3. 該当のアクティビティ ログを確認する"></a>4-3. 該当のアクティビティ ログを確認する</h3><p>アクティビティ ログ アラートの条件に一致するログは、下記の手順にてご確認いただくことが可能です。</p>
+<ol>
+<li><p>Azure ポータル &gt; モニター &gt; [アラート] を開き、画面上部の [アラート ルール] を選択します。</p>
+</li>
+<li><p>アクティビティ ログ アラートを選択し、[概要] ページを開きます。</p>
+</li>
+<li><p>[条件] の項目に表示されている “Azure Monitor でイベントを表示する - アクティビティ ログ” のリンクを押下します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-activity-log-alert-05.png"></p>
+</li>
+<li><p>アラートの条件に一致するアクティビティ ログが表示されます。<br>※ 同じ操作名のアクティビティ ログが 3 件ありますが、状態が「開始済み (Started)」のログが該当します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-activity-log-alert-06.png"></p>
+</li>
+<li><p>[JSON] を選択すると、アクティビティ ログの内容が表示されます。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-activity-log-alert-07.png"></p>
+</li>
+</ol>
+<div class="alert is-info"><p class="alert-title">Note</p><p>アクティビティ ログのカテゴリやレベルなどの値は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/platform/activity-log-schema">こちら</a>の公開情報でご確認ください。</p></div>
+<br>
+<br>
+
+
+
+<h2 id="5-リソース正常性アラート"><a href="#5-リソース正常性アラート" class="headerlink" title="5. リソース正常性アラート"></a>5. リソース正常性アラート</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/service-health/resource-health-overview">リソース正常性アラート</a>は、Azure リソースの正常性に変化が生じた際に通知する機能です。<br>リソースの正常性に変化が生じると、リソース プロバイダーによってリソース正常性に関するイベントがアクティビティ ログに書き込まれます。出力されたアクティビティ ログがアラートで指定した条件を満たした場合に発報します。<br>そのため、<strong>アラートの条件を満たして発報し、リソース正常性イベントが発生した原因の調査をご希望の場合は、監視対象の Azure リソース観点でお問い合わせをご起票ください。</strong></p>
+<p>本記事では、リソース正常性アラートの発報条件と、リソース正常性アラートで検知した内容を確認する手順をご紹介します。<br>なお、アラートの条件を満たしていないにもかかわらず発報したと疑われる場合は、アラート ルールの動作に関する調査が必要となるため、アラート ルール観点 (Azure Monitor 製品) でお問い合わせをご起票ください。</p>
+<br>
+
+
+<h3 id="5-1-リソース正常性アラートの発報条件を確認する"><a href="#5-1-リソース正常性アラートの発報条件を確認する" class="headerlink" title="5-1. リソース正常性アラートの発報条件を確認する"></a>5-1. リソース正常性アラートの発報条件を確認する</h3><p>まずは、リソース正常性アラートの発報条件を確認します。</p>
+<ol>
+<li><p>Azure ポータル &gt; モニター &gt; [アラート] を開き、画面上部の [アラート ルール] を選択します。</p>
+</li>
+<li><p>リソース正常性アラートを選択し、[概要] ページを開きます。赤枠部分が発報条件、青枠部分がアラートのスコープです。<br>下記の設定の場合は、指定したリソース グループの Azure VM (microsoft.compute/virtualmachines のリソース) で、下記の条件を満たした場合に発報します。</p>
+</li>
+</ol>
+<ul>
+<li>(イベントの状態が Active) かつ (現在のリソースの状態が Degraded または Unavailable) かつ (以前のリソースの状態が Available) かつ (理由の種類が Platform Initiated または Unknown または User Initiated)</li>
+</ul>
+<p>※ [概要] ページ画面上部の [JSON ビュー] を選択した画面です。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-resource-health-01.png"></p>
+<div class="alert is-info"><p class="alert-title">Note</p><p>リソース正常性アラートの発報条件の項目と設定値につきましては、<a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ResourceHealthAlert/">リソース正常性アラートに関するよくあるご質問</a>のブログをご覧ください。</p></div>
+<br>
+
+<h3 id="5-2-閾値を満たして発報したかどうかを確認する"><a href="#5-2-閾値を満たして発報したかどうかを確認する" class="headerlink" title="5-2. 閾値を満たして発報したかどうかを確認する"></a>5-2. 閾値を満たして発報したかどうかを確認する</h3><p>下記の手順でリソース正常性アラートが検知した内容を確認します。</p>
+<ol>
+<li><p>Azure ポータル &gt; モニター &gt; [アラート] を開き、発報したアラートを選択します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-resource-health-04.png"></p>
+</li>
+<li><p>発報したリソースと検知されたアクティビティ ログの内容を確認します。<br>[リソースの正常性 アラートの詳細] 画面が開きますので、下表に表示されている内容をご確認ください。<br>このリソース正常性アラートは <strong>(イベントの状態が Active) かつ (現在のリソースの状態が Degraded または Unavailable) かつ (以前のリソースの状態が Available) かつ (理由の種類が Platform Initiated または Unknown または User Initiated)</strong> のときに発報する条件のため、想定どおりアラートが発報したことが分かります。</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>確認する項目</th>
+<th>画面上の該当箇所</th>
+<th>例（下図参照）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>監視対象のリソース</td>
+<td>影響を受けるリソース (赤枠部分)</td>
+<td>Azure VM (win2022-jpe)</td>
+</tr>
+<tr>
+<td>リソース正常性の状態、 <br>イベントが発生した理由</td>
+<td>このアラートが発生した理由 (青枠部分)</td>
+<td>リソース正常性の状態 : Available から Unavailable <br>理由の種類 : UserInitiated</td>
+</tr>
+<tr>
+<td>イベントの状態、 <br>イベントが発生した日時</td>
+<td>“追加の詳細” の<br> Status, Event timestamp (緑枠部分)</td>
+<td>イベントの状態 : Active<br>イベントが発生した日時 : 2025/7/14 17:16 JST</td>
+</tr>
+</tbody></table>
+<p><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-resource-health-05.png"></p>
+<br>
+
+
+<h3 id="5-3-リソース正常性のアクティビティ-ログを確認する"><a href="#5-3-リソース正常性のアクティビティ-ログを確認する" class="headerlink" title="5-3. リソース正常性のアクティビティ ログを確認する"></a>5-3. リソース正常性のアクティビティ ログを確認する</h3><p>リソース正常性のアクティビティ ログは、下記の手順にてご確認いただくことが可能です。</p>
+<ol>
+<li><p>Azure ポータル &gt; モニター &gt; [アクティビティ ログ] を開き、[フィルターの追加] を選択します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-resource-health-02.png"></p>
+</li>
+<li><p>フィルタ―の条件として <strong>イベント カテゴリ</strong> を選択し、<strong>リソース正常性</strong> カテゴリを指定します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-resource-health-03.png"></p>
+</li>
+<li><p>[リソースの正常性 アラートの詳細] 画面で確認した Event timestamp (2025/7/14 17:16) のアクティビティ ログを選択します。<br>※ 同じ日時に記録されたアクティビティ ログが 2 件ありますが、状態が「アクティブ (Active)」のログが該当します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-resource-health-06.png"></p>
+</li>
+<li><p>[JSON] を選択すると、アクティビティ ログの内容が表示されます。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-resource-health-07.png"></p>
+</li>
+</ol>
+<div class="alert is-info"><p class="alert-title">Note</p><p>アクティビティ ログのスキーマは、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/platform/activity-log-schema#resource-health-category">こちら</a>の公開情報でご確認ください。</p></div>
+<br>
+<br>
+
+
+
+<h2 id="6-サービス正常性アラート"><a href="#6-サービス正常性アラート" class="headerlink" title="6. サービス正常性アラート"></a>6. サービス正常性アラート</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/service-health/overview">サービス正常性アラート</a>は、お客様環境にてご利用いただいている Azure サービスおよびリージョンを監視対象とし、Azure サービス自体の正常性を監視します。例えば、以下のような情報が通知されます：</p>
+<ul>
+<li>Azure サービスの障害</li>
+<li>計画メンテナンス</li>
+<li>Azure サービスの仕様変更や廃止</li>
+<li>セキュリティ関連の重要情報（可用性に影響する可能性があるもの）</li>
+</ul>
+<p>サービス正常性アラートは、サブスクリプション単位で設定します。<br>アラートの発報条件としては Azure サービス、地域、イベントの種類を指定します。サービス正常性のイベントが発生すると、アクティビティ ログにサービス正常性に関するイベントが書き込まれ、指定した条件に一致した場合にアラートが発報します。<br><strong>そのため、アラートの条件を満たして発報し、<a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/#Q-%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%A7%E9%80%9A%E7%9F%A5%E3%81%95%E3%82%8C%E3%81%9F%E5%86%85%E5%AE%B9%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E7%A2%BA%E8%AA%8D%E3%81%97%E3%81%9F%E3%81%84%E3%81%A7%E3%81%99%E3%80%82">サービス正常性アラートで通知された内容についてご不明な点がある場合は、基本的に該当するサービス観点でお問い合わせをご起票くださいますようお願いいたします。</a></strong></p>
+<p><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-02.png"></p>
+<p>サービス正常性の通知メールの下部には対象となるサービス名が記載されておりますので、記載されたサービスのカテゴリを選択いただき、お問い合わせいただきますようお願いいたします。</p>
+<p>※ 下記例の場合は Azure Monitor 製品に関する通知であることが分かります。<br><img width="750" src="../HowToCreateAlertRuleSR/image-service-health-01.png"></p>
+<p>また、サービス正常性のイベントには Tracking ID (追跡 ID) が付与されておりますので、Tracking ID の情報もご記載ください。<br>もし、アラートの条件を満たしていないにもかかわらず発報したと疑われる場合には、アラート ルールの動作に関する調査が必要となるため、アラート ルール観点 (Azure Monitor 製品) でお問い合わせをご起票ください。<br><img width="600" src="../HowToCreateAlertRuleSR/image-service-health-06.png"></p>
+<br>
+
+
+<h3 id="6-1-サービス正常性アラートの発報条件を確認する"><a href="#6-1-サービス正常性アラートの発報条件を確認する" class="headerlink" title="6-1. サービス正常性アラートの発報条件を確認する"></a>6-1. サービス正常性アラートの発報条件を確認する</h3><p>まずは、サービス正常性アラートの発報条件を確認します。</p>
+<ol>
+<li><p>Azure ポータル &gt; モニター &gt; [アラート] を開き、画面上部の [アラート ルール] を選択します。</p>
+</li>
+<li><p>サービス正常性アラートを選択し、[概要] ページを開きます。赤枠部分が発報条件、青枠部分がスコープ（サブスクリプション）です。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/service-health/alerts-activity-log-service-notifications-portal#key-features-of-service-health-alerts">サービス正常性アラートでは、発報条件として下記の項目を指定します。</a></p>
+</li>
+</ol>
+<ul>
+<li>影響を受けるサブスクリプション</li>
+<li>影響を受けるサービス</li>
+<li>影響を受ける地域</li>
+<li>イベントの種類 (サービスに関する問題、計画メンテナンス、正常性の勧告、セキュリティ アドバイザリ)</li>
+</ul>
+<p>下記の設定では、いずれの項目も「すべて」を選択しているため、指定したサブスクリプションで利用しているサービスの、利用しているリージョンを対象としたサービス正常性イベントが発生すると、アラートが発報します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-03.png"></p>
+<p>例えば、下記のように設定していた場合には、指定したサブスクリプションで利用しているサービスの、下記三つのいずれかのリージョンで、当該サブスクリプションに影響を及ぼす「サービスに関する問題」と「セキュリティ アドバイザリ」が発生した場合にアラートが発報します。</p>
+<ul>
+<li>影響を受けるサービス : すべて</li>
+<li>影響を受けるリージョン : Global, Japan East, Japan West</li>
+<li>イベントの種類 : サービスに関する問題、セキュリティ アドバイザリ</li>
+</ul>
+<p>※ [概要] ページ画面上部の [JSON ビュー] を選択した画面です。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-03-02.png"></p>
+<br>
+
+<div class="alert is-important"><p class="alert-title">重要</p><p><a href="https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/">サービス正常性アラートの “サービス” や “地域” はすべて選択いただくことを推奨しております。</a></p><p><strong>サービス正常性アラートは、ご利用いただいているサービスのご利用いただいているリージョンを対象としたイベントが発生した場合にのみ通知が行われる仕組みです。このため、サブスクリプション上のすべてのサービス、リージョンおよびイベントの種類を選択した場合にも、利用していないリソースに対してアラートは発生しません。</strong></p></div>
+<br>
+
+
+<h3 id="6-2-閾値を満たして発報したかどうかを確認する"><a href="#6-2-閾値を満たして発報したかどうかを確認する" class="headerlink" title="6-2. 閾値を満たして発報したかどうかを確認する"></a>6-2. 閾値を満たして発報したかどうかを確認する</h3><p>下記の手順でサービス正常性アラートが検知した内容を確認します。</p>
+<ol>
+<li><p>Azure ポータル &gt; モニター &gt; [アラート] を開き、発報したアラートを選択します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-04.png"></p>
+</li>
+<li><p>対象のサブスクリプションやサービス、イベントの種類、追跡番号 (Tracking ID) を確認します。<br>[サービスの正常性 アラートの詳細] 画面が開きますので、下表に表示されている内容をご確認ください。<br>このサービス正常性アラートは、影響を受けるサービス、影響を受ける地域、イベントの種類のいずれも「すべて」を選択しているため、アラートの条件を満たして発報したことが分かります。</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>確認する項目</th>
+<th>画面上の該当箇所</th>
+<th>例（下図参照）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>監視対象のサブスクリプション</td>
+<td>影響を受けるリソース (赤枠部分)</td>
+<td>サブスクリプション<br>※ マスキングしています</td>
+</tr>
+<tr>
+<td>サービス正常性の内容</td>
+<td>このアラートが発生した理由（青枠部分）※1</td>
+<td>サービス : SQL Database<br>リージョン : Australia Central など (省略)<br>イベントの種類 : ActionRequired (正常性の勧告)</td>
+</tr>
+<tr>
+<td>サービス正常性の追跡番号</td>
+<td>“追加の詳細” の Tracking ID (緑枠部分) ※2</td>
+<td>DTC7-B_0</td>
+</tr>
+</tbody></table>
+<p><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-05.png"></p>
+<p>※ 1<br>イベントの種類につきましては、Incident が “サービスの問題”、Informational もしくは ActionRequired が “正常性の勧告”、Maintenance が “計画メンテナンス”、Security は “セキュリティ アドバイザリ” です。</p>
+<p>※2<br>サービス正常性に関するお問い合わせをご起票いただく際には、必ず Tracking ID (追跡 ID) をご確認ください。</p>
+<br>
+
+<div class="alert is-info"><p class="alert-title">Note</p><p>サービス正常性のイベントの種類の詳細につきましては、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/service-health/service-health-notifications-properties">こちら</a>の公開情報でご確認ください。</p></div>
+<br>
+
+
+<h3 id="6-3-サービス正常性のアクティビティ-ログを確認する"><a href="#6-3-サービス正常性のアクティビティ-ログを確認する" class="headerlink" title="6-3. サービス正常性のアクティビティ ログを確認する"></a>6-3. サービス正常性のアクティビティ ログを確認する</h3><p>サービス正常性のアクティビティ ログは、下記の手順にてご確認いただくことが可能です。</p>
+<ol>
+<li><p>Azure ポータル &gt; モニター &gt; [アクティビティ ログ] を開き、[フィルターの追加] を選択します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-resource-health-02.png"></p>
+</li>
+<li><p>フィルタ―の条件として <strong>イベント カテゴリ</strong> を選択し、<strong>サービス正常性</strong> カテゴリを指定します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-10.png"></p>
+</li>
+<li><p>サービス正常性が発報した時間帯 (7/3 11:10 頃) のアクティビティ ログを検索し、イベントの種類が「ActionRequired」のログを選択します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-11.png"></p>
+</li>
+<li><p>[JSON] を選択すると、アクティビティ ログの内容が表示されます。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-12.png"></p>
+</li>
+</ol>
+<br>
+
+
+<h3 id="6-4-サービス正常性の内容を確認する"><a href="#6-4-サービス正常性の内容を確認する" class="headerlink" title="6-4. サービス正常性の内容を確認する"></a>6-4. サービス正常性の内容を確認する</h3><p>サービス正常性の内容は、下記の手順でもご確認いただくことが可能です。</p>
+<ol>
+<li><p>Azure ポータル &gt; モニター &gt; [サービスの正常性] を選択します。</p>
+</li>
+<li><p>通知されたイベントの種類を選択します。今回通知されたイベントの種類は ActionRequired でしたので、「正常性の勧告」を選択します。[サービスの正常性 アラートの詳細] 画面で確認した Tracking ID と一致していることを確認し、イベントを選択します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-08.png"></p>
+</li>
+<li><p>サービス正常性の詳細が表示されます。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-09.png"></p>
+</li>
+</ol>
+<br>
+<br>
+
+
+
+<h2 id="7-その他"><a href="#7-その他" class="headerlink" title="7. その他"></a>7. その他</h2><p>最後に、Azure Monitor 以外の監視方法をご利用されている場合の留意事項をご案内します。<br>稀に <strong>Azure Monitor 製品以外の方法で</strong> Azure リソースを監視されているお客様から、検知されたメッセージの意味や発報した原因について調査のご依頼をいただくことがございます。大変恐縮ではございますが、<strong>サードパーティー製の監視製品をご利用されている場合、弊社サポートではその監視の仕組みや発報条件を確認することはできません。</strong></p>
+<p>そのため、お問い合わせをご起票いただく前に、お客様ご自身でご利用中の監視ツールの仕組みや発報条件をご確認いただきますようお願いいたします。調査いただいた結果、Azure リソース側に問題がある可能性があると判断された場合には、調査いただいた内容をもとに、Azure リソース観点でお問い合わせをご起票ください。その際、監視ツールの仕組みや発報条件に関する情報もご共有いただけますと、弊社での調査がよりスムーズに進みますので、何卒よろしくお願いいたします。</p>
+<br>
+
+
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Activity-Log-Alert/" rel="tag">Activity Log Alert</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Essential/" rel="tag">Azure Monitor Essential</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Alert/" rel="tag">Log Alert</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Metric-Alert/" rel="tag">Metric Alert</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Resource-Health/" rel="tag">Resource Health</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Service-Health/" rel="tag">Service Health</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/AzureMonitorEssential/HowToCreateAlertRuleSR.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../UpdateManager/Update_Manager_FAQ/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Azure Update Manager に関するよくあるご質問</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">Azure Monitor のアラート ルールが発報した原因調査に関するお問い合わせを発行いただく前の確認ポイント</a>
+          </li>
+        
+          <li>
+            <a href="../../UpdateManager/Update_Manager_FAQ/">Azure Update Manager に関するよくあるご質問</a>
+          </li>
+        
+          <li>
+            <a href="../../UpdateManager/AboutUpdateManager/">Update Manager について</a>
+          </li>
+        
+          <li>
+            <a href="../SecurityAdvisoriesElevatedAccess/">Action required: Ensure the right people can access security advisories in Azure Service Health  について</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/AMAAutoupgradeFAQ/">Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問集</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/AMPLS/" rel="tag">AMPLS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Activity-Log-Alert/" rel="tag">Activity Log Alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automatic-VM-Guest-Patching/" rel="tag">Automatic VM Guest Patching</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Arc/" rel="tag">Azure Arc</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Diagnostics-extension/" rel="tag">Azure Diagnostics extension</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent/" rel="tag">Azure Monitor Agent</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essential/" rel="tag">Azure Monitor Essential</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" rel="tag">Azure Monitor エージェント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Private-Link/" rel="tag">Azure Private Link</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Update-Manager/" rel="tag">Azure Update Manager</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Container-Insights/" rel="tag">Container Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostic-settings/" rel="tag">Diagnostic settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostics-settings/" rel="tag">Diagnostics settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hotpatch/" rel="tag">Hotpatch</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HowTo/" rel="tag">HowTo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/LAD/" rel="tag">LAD</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Alert/" rel="tag">Log Alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" rel="tag">Log Analytics エージェント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Maintenance-Configuration/" rel="tag">Maintenance Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-ID/" rel="tag">Managed ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-Identity/" rel="tag">Managed Identity</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Metric-Alert/" rel="tag">Metric Alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/MetricAlert/" rel="tag">MetricAlert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Migration/" rel="tag">Migration</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Resource-Health/" rel="tag">Resource Health</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Run-As-Account/" rel="tag">Run As Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Sandbox/" rel="tag">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Security-Advisories/" rel="tag">Security Advisories</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Service-Health/" rel="tag">Service Health</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StartAzureV2VMs/" rel="tag">StartAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/StopAzureV2VMs/" rel="tag">StopAzureV2VMs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshoot/" rel="tag">Troubleshoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM/" rel="tag">VM</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM-insights/" rel="tag">VM insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WAD/" rel="tag">WAD</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Worker/" rel="tag">Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/howto/" rel="tag">howto</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/" rel="tag">アクションのミュート</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" rel="tag">アラート処理ルール</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%89-script/" rel="tag">オンボード script</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" rel="tag">クエリ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" rel="tag">コスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7/" rel="tag">サービス正常性</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3-%E3%82%A2%E3%83%89%E3%83%90%E3%82%A4%E3%82%B6%E3%83%AA/" rel="tag">セキュリティ アドバイザリ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%BF%E3%83%BC-API/" rel="tag">データ コレクター API</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%91%E3%83%83%E3%83%81-%E3%82%AA%E3%83%BC%E3%82%B1%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3/" rel="tag">パッチ オーケストレーション</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%91%E3%83%BC%E3%82%B8/" rel="tag">パージ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" rel="tag">マネージド ID</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%83%B3%E3%82%B9%E6%A7%8B%E6%88%90/" rel="tag">メンテナンス構成</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB/" rel="tag">ログ アラート ルール</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88-API/" rel="tag">ログ インジェスト API</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%81%9C%E6%AD%A2/" rel="tag">停止</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%88%86%E6%9E%90%E6%83%85%E5%A0%B1/" rel="tag">分析情報</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" rel="tag">実行アカウント</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/" rel="tag">移行</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" rel="tag">自動化</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%B5%B7%E5%8B%95/" rel="tag">起動</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/How-To/">How-To</a><span class="tag-list-count">46</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Tips/">Tips</a><span class="tag-list-count">30</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essentials/">Azure Monitor Essentials</a><span class="tag-list-count">15</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor/">Azure Monitor</a><span class="tag-list-count">7</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/">FAQ</a><span class="tag-list-count">12</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/">Log Analytics</a><span class="tag-list-count">37</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/">Troubleshooting</a><span class="tag-list-count">4</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">9</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/">Automation</a><span class="tag-list-count">11</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/">チーム紹介</a><span class="tag-list-count">5</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%A7%BB%E8%A1%8C/">移行</a><span class="tag-list-count">2</span><ul></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/08/">2025 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/07/">2025 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/06/">2025 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/05/">2025 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/03/">2025 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/02/">2025 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/01/">2025 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/11/">2024 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/10/">2024 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/09/">2024 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/08/">2024 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/07/">2024 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/05/">2024 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/04/">2024 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/03/">2024 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/01/">2024 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/12/">2023 / 12</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/11/">2023 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/10/">2023 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/09/">2023 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/07/">2023 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/06/">2023 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/03/">2023 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/01/">2023 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/11/">2022 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/10/">2022 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/09/">2022 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/08/">2022 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/AMPLS/" style="font-size: 10px;">AMPLS</a> <a href="../../tags/Activity-Log-Alert/" style="font-size: 10px;">Activity Log Alert</a> <a href="../../tags/Application-Insights/" style="font-size: 15.71px;">Application Insights</a> <a href="../../tags/Automatic-VM-Guest-Patching/" style="font-size: 10px;">Automatic VM Guest Patching</a> <a href="../../tags/Automation/" style="font-size: 16.43px;">Automation</a> <a href="../../tags/Azure-Arc/" style="font-size: 12.14px;">Azure Arc</a> <a href="../../tags/Azure-Diagnostics-extension/" style="font-size: 10.71px;">Azure Diagnostics extension</a> <a href="../../tags/Azure-Monitor/" style="font-size: 14.29px;">Azure Monitor</a> <a href="../../tags/Azure-Monitor-Agent/" style="font-size: 15px;">Azure Monitor Agent</a> <a href="../../tags/Azure-Monitor-Essential/" style="font-size: 13.57px;">Azure Monitor Essential</a> <a href="../../tags/Azure-Monitor-Essentials/" style="font-size: 17.86px;">Azure Monitor Essentials</a> <a href="../../tags/Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" style="font-size: 10px;">Azure Monitor エージェント</a> <a href="../../tags/Azure-Private-Link/" style="font-size: 11.43px;">Azure Private Link</a> <a href="../../tags/Azure-Update-Manager/" style="font-size: 10.71px;">Azure Update Manager</a> <a href="../../tags/Container-Insights/" style="font-size: 10px;">Container Insights</a> <a href="../../tags/Diagnostic-settings/" style="font-size: 10.71px;">Diagnostic settings</a> <a href="../../tags/Diagnostics-settings/" style="font-size: 10px;">Diagnostics settings</a> <a href="../../tags/FAQ/" style="font-size: 17.14px;">FAQ</a> <a href="../../tags/General/" style="font-size: 13.57px;">General</a> <a href="../../tags/Hotpatch/" style="font-size: 10px;">Hotpatch</a> <a href="../../tags/How-To/" style="font-size: 20px;">How-To</a> <a href="../../tags/HowTo/" style="font-size: 11.43px;">HowTo</a> <a href="../../tags/Howto/" style="font-size: 10px;">Howto</a> <a href="../../tags/Job/" style="font-size: 10.71px;">Job</a> <a href="../../tags/LAD/" style="font-size: 10.71px;">LAD</a> <a href="../../tags/Log-Alert/" style="font-size: 10.71px;">Log Alert</a> <a href="../../tags/Log-Analytics/" style="font-size: 19.29px;">Log Analytics</a> <a href="../../tags/Log-Analytics-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/" style="font-size: 10px;">Log Analytics エージェント</a> <a href="../../tags/Maintenance-Configuration/" style="font-size: 10px;">Maintenance Configuration</a> <a href="../../tags/Managed-ID/" style="font-size: 10px;">Managed ID</a> <a href="../../tags/Managed-Identity/" style="font-size: 10px;">Managed Identity</a> <a href="../../tags/Metric-Alert/" style="font-size: 10px;">Metric Alert</a> <a href="../../tags/MetricAlert/" style="font-size: 10.71px;">MetricAlert</a> <a href="../../tags/Migration/" style="font-size: 10px;">Migration</a> <a href="../../tags/Resource-Health/" style="font-size: 10px;">Resource Health</a> <a href="../../tags/Run-As-Account/" style="font-size: 10px;">Run As Account</a> <a href="../../tags/RunAs-Account/" style="font-size: 12.14px;">RunAs Account</a> <a href="../../tags/Runbook/" style="font-size: 12.86px;">Runbook</a> <a href="../../tags/Sandbox/" style="font-size: 10px;">Sandbox</a> <a href="../../tags/Security-Advisories/" style="font-size: 10px;">Security Advisories</a> <a href="../../tags/Service-Health/" style="font-size: 10.71px;">Service Health</a> <a href="../../tags/StartAzureV2VMs/" style="font-size: 10px;">StartAzureV2VMs</a> <a href="../../tags/StopAzureV2VMs/" style="font-size: 10px;">StopAzureV2VMs</a> <a href="../../tags/Tips/" style="font-size: 18.57px;">Tips</a> <a href="../../tags/Troubleshoot/" style="font-size: 10px;">Troubleshoot</a> <a href="../../tags/Troubleshooting/" style="font-size: 12.14px;">Troubleshooting</a> <a href="../../tags/VM/" style="font-size: 10px;">VM</a> <a href="../../tags/VM-insights/" style="font-size: 10px;">VM insights</a> <a href="../../tags/WAD/" style="font-size: 10.71px;">WAD</a> <a href="../../tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="../../tags/Worker/" style="font-size: 10px;">Worker</a> <a href="../../tags/howto/" style="font-size: 10px;">howto</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/" style="font-size: 10px;">アクションのミュート</a> <a href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" style="font-size: 10px;">アラート処理ルール</a> <a href="../../tags/%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%89-script/" style="font-size: 10px;">オンボード script</a> <a href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" style="font-size: 10px;">クエリ</a> <a href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" style="font-size: 10px;">コスト</a> <a href="../../tags/%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7/" style="font-size: 10px;">サービス正常性</a> <a href="../../tags/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3-%E3%82%A2%E3%83%89%E3%83%90%E3%82%A4%E3%82%B6%E3%83%AA/" style="font-size: 10px;">セキュリティ アドバイザリ</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 12.86px;">チーム紹介</a> <a href="../../tags/%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%BF%E3%83%BC-API/" style="font-size: 10px;">データ コレクター API</a> <a href="../../tags/%E3%83%91%E3%83%83%E3%83%81-%E3%82%AA%E3%83%BC%E3%82%B1%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">パッチ オーケストレーション</a> <a href="../../tags/%E3%83%91%E3%83%BC%E3%82%B8/" style="font-size: 10px;">パージ</a> <a href="../../tags/%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID/" style="font-size: 10.71px;">マネージド ID</a> <a href="../../tags/%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%83%B3%E3%82%B9%E6%A7%8B%E6%88%90/" style="font-size: 10px;">メンテナンス構成</a> <a href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB/" style="font-size: 10px;">ログ アラート ルール</a> <a href="../../tags/%E3%83%AD%E3%82%B0-%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88-API/" style="font-size: 10px;">ログ インジェスト API</a> <a href="../../tags/%E5%81%9C%E6%AD%A2/" style="font-size: 10px;">停止</a> <a href="../../tags/%E5%88%86%E6%9E%90%E6%83%85%E5%A0%B1/" style="font-size: 10px;">分析情報</a> <a href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" style="font-size: 11.43px;">可用性テスト</a> <a href="../../tags/%E5%AE%9F%E8%A1%8C%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/" style="font-size: 10px;">実行アカウント</a> <a href="../../tags/%E7%A7%BB%E8%A1%8C/" style="font-size: 10.71px;">移行</a> <a href="../../tags/%E8%87%AA%E5%8B%95%E5%8C%96/" style="font-size: 10px;">自動化</a> <a href="../../tags/%E8%B5%B7%E5%8B%95/" style="font-size: 10px;">起動</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
