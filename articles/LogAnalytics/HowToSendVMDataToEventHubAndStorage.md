@@ -423,4 +423,4 @@ Azure Monitor エージェントに認証設定が追加されていない場合
 
 ## まとめ
 Azure Monitor Agent (AMA) を使用し、従来の WAD/LAD に代わって VM のデータをEvent Hub や Storage Account に送信する方法についてご紹介しました。  
-本記事が移行を検討される方のお役に立てば幸いです。
+本記事が WAD および LAD から AMA への移行を検討される方のお役に立てば幸いです。
