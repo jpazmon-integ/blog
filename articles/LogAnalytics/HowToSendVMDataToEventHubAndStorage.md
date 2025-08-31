@@ -35,7 +35,7 @@ tags:
 
 Azure Monitor Agent (AMA) を使用することで、仮想マシン (VM) から収集したデータを Event Hub やストレージ アカウントに直接データを送信できます。  
 この機能により、Azure Monitor Logs (Log Analytics ワークスペース) 以外の外部システムにもデータを転送することが可能になります。
-
+<br>
 なお、この機能は従来の Windows Azure Diagnostics (WAD) や Linux Azure Diagnostics (LAD) の後継として提供されています。  
 
 本ブログでは、以下弊社公開情報に記載の内容を含め、当該機能の利用手順およびログが収集できない場合の主なトラブルシューティング方法についてご紹介します。  
@@ -43,7 +43,7 @@ Azure Monitor Agent (AMA) を使用することで、仮想マシン (VM) から
 [仮想マシン クライアント データを Event Hubs と Storage に送信する (プレビュー)](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/send-event-hubs-storage?tabs=windows%2Cwindows-1)
 
 > [!NOTE]
-> WAD からの移行に関しては、[こちらのブログ](https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromAzureDiagnostics/) をご参照ください。  
+> WAD/LAD からの移行に関しては、[こちらのブログ「Retirement notice ： Migrate to Azure Monitor Agent before 31 March 2026 について」](https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromAzureDiagnostics/) をご参照ください。  
 
 ※ 本機能は 2025 年 9 月時点でパブリック プレビュー段階となっております。  
 そのため、今後、手順や機能の詳細が変更される可能性がございます。  
@@ -64,6 +64,8 @@ Azure Monitor Agent (AMA) を使用することで、仮想マシン (VM) から
 AMA が Event Hub やストレージ アカウントにデータを送信するために、VM に割り当てられているマネージド ID に適切なロールを割り当てる必要があります。  
 
 各宛先へのログ収集に必要なロールは以下の通りです。
+
+<br>
 
 | 宛先 | 必要な組み込みロール |
 |--------|-------------|
@@ -102,10 +104,14 @@ DCR で、どのデータをどこに送信するかを定義します。
 > 既存の DCR (Log Analytics ワークスペースや Azure Monitor Metrics に収集するための DCR) と、当該機能を利用するための DCR は分けてご用意ください。
 
 #### ARM テンプレート例
-以下弊社公開情報にて、Windows および Linux 用の ARM テンプレートのサンプルをご紹介しております。
-こちらをもとに、収集したいログの種類および宛先のご要件に合わせて修正してください。
+以下弊社公開情報にて、Windows および Linux 用の ARM テンプレートのサンプルをご紹介しております。  
+こちらをもとに、収集したいログの種類および宛先のご要件に合わせて修正してください。  
+
+<br>
 
 [仮想マシン クライアント データを Event Hubs と Storage に送信する (プレビュー) | データ収集ルールを作成する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/send-event-hubs-storage?tabs=windows%2Cwindows-1#create-a-data-collection-rule)
+
+<br>
 
 **参考**: ARM テンプレートの詳細な記述方法については、以下弊社公開情報も併せてご参照ください。  
 [Microsoft.Insights dataCollectionRules](https://learn.microsoft.com/en-us/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template) 
@@ -124,8 +130,7 @@ VM の AMA インストール状況 (インストール済みか否か) とマ�
 
 #### Azure Monitor エージェントの認証設定
 
-Azure Monitor エージェントに認証情報が設定されている必要があります。
-
+Azure Monitor エージェントに認証情報が設定されている必要があります。  
 現在の設定は、Azure portal でエージェントがインストールされている VM を開き、[概要] > [JSON ビュー] で確認することができます。
 
 (ユーザー割り当てマネージド ID での認証設定が行われている場合の例)
@@ -147,8 +152,7 @@ Get-AzVMExtension `
 (ユーザー割り当てマネージド ID での認証設定が行われている場合の例)
 ![](./HowToSendVMDataToEventHubAndStorage/check-AMAinfo.png)
 
-認証情報が追加されていない場合は、ログ収集元の VM が使用しているマネージド ID の種類に合わせ、認証情報を設定してください。
-
+認証情報が追加されていない場合は、ログ収集元の VM が使用しているマネージド ID の種類に合わせ、認証情報を設定してください。  
 例として、以下の Azure PowerShell コマンドのように SettingString パラメーターを指定し、認証情報を追加することができます。
 
 **システム割り当てマネージド ID を使用する場合**
@@ -166,8 +170,7 @@ Set-AzVMExtension `
 ```
 <br>
 
-※  
-上記コマンドの <アプリケーション ID> の箇所は、以下の方法で確認可能です。
+※ 上記コマンドの <アプリケーション ID> の箇所は、以下の方法で確認可能です。
 
 1. Azure portal で "Entra ID" を検索し、[エンタープライズ アプリケーション] を開きます。
 2. [管理] > [すべてのアプリケーション] を開き、"アプリケーションの種類" を "マネージド ID" でフィルタリングします。
@@ -240,8 +243,7 @@ Set-AzVMExtension `
 
 #### 3-2. AMA 未インストールの場合  
 
-以下の ARM テンプレートをデプロイすることで、DCR と VM の関連付けと、VM への Azure Monitor エージェントのインストールを両方行うことができます。
-
+以下の ARM テンプレートをデプロイすることで、DCR と VM の関連付けと、VM への Azure Monitor エージェントのインストールを両方行うことができます。  
 なお、デプロイの前に、VM にシステム割り当てマネージド ID もしくはユーザー割り当てマネージド ID が割り当てられていることをご確認ください。
 
 **システム割り当てマネージド ID を使用する場合の場合**
@@ -401,20 +403,22 @@ Set-AzVMExtension `
 <--料金や制限事項について-->
 
 ## トラブルシューティング
-当該機能によるログ収集が行われない場合のよくある要因は以下です。
-もしログ収集が行われない場合、まずは以下の状況に当てはまらないかご確認ください。
+当該機能によるログ収集が行われない場合のよくある要因は以下です。  
+もしログ収集が行われない場合、まずは以下の状況に当てはまらないかをご確認ください。
 
-**適切なロールがマネージド ID に付与されていない**
+**適切なロールがマネージド ID に付与されていない**  
 [1. VM のマネージド ID への必要なロールの割り当て](#1-vm-のマネージド-id-への必要なロールの割り当て) に記載の通り、VM のマネージド ID に、宛先に応じたロールを付与する必要があります。  
 付与されているかどうかは、宛先リソースを Azure portal で開き、[アクセス制御 (IAM)] より、[ロールの割り当て] タブで確認することが可能です。
 
 (ストレージ アカウントのロールの割り当て一覧の例)
 ![](./HowToSendVMDataToEventHubAndStorage/list-roleassignment.png)
 
-必要なロールがマネージド ID に割り当てられていなかった場合は、[1. VM のマネージド ID への必要なロールの割り当て](#1-vm-のマネージド-id-への必要なロールの割り当て) を参照の上、ロールの割り当てを行ってください。
+必要なロールがマネージド ID に割り当てられていなかった場合は、[1. VM のマネージド ID への必要なロールの割り当て](#1-vm-のマネージド-id-への必要なロールの割り当て) を参照の上、ロールの割り当てを行ってください。  
 
-**Azure Monitor エージェントに認証設定が行われていない**
-Azure Monitor エージェントに認証設定が追加されていない場合、ログを送信することができません。
+<br>
+
+**Azure Monitor エージェントに認証設定が行われていない**  
+Azure Monitor エージェントに認証設定が追加されていない場合、ログを送信することができません。  
 [Azure Monitor エージェントの認証設定](#azure-monitor-エージェントの認証設定) を参照の上、認証設定されているかの確認、およびされていない場合は設定の追加を実施してください。
 
 ## まとめ
