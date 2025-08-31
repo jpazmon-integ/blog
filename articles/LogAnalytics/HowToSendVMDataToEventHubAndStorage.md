@@ -126,7 +126,16 @@ VM の AMA インストール状況 (インストール済みか否か) とマ�
 
 Azure Monitor エージェントに認証情報が設定されている必要があります。
 
-現在の設定は、以下のコマンドで確認が可能です。
+現在の設定は、Azure portal でエージェントがインストールされている VM を開き、[概要] > [JSON ビュー] で確認することができます。
+
+(ユーザー割り当てマネージド ID での認証設定が行われている場合の例)
+![](./HowToSendVMDataToEventHubAndStorage/check-AMAinfo-portal-uai.png)
+
+(認証設定が追加されていない場合の例)
+![](./HowToSendVMDataToEventHubAndStorage/check-AMAinfo-portal-nosettings.png)
+
+
+また、以下のコマンドでも確認が可能です。
 
 ```
 Get-AzVMExtension `
