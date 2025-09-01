@@ -87,6 +87,8 @@ AMA が Event Hub やストレージ アカウントにデータを送信する�
 
 ![](./HowToSendVMDataToEventHubAndStorage/roleassignment-selectmanagedid.png)
 
+※ 上記の通り、マネージド ID ごとにロールを付与する必要があるため、多数台の VM で当該機能を利用される場合は、ユーザー割り当てマネージド ID のご利用が効果的です。
+
 <br>
 
 1-6.  
@@ -155,6 +157,21 @@ Get-AzVMExtension `
 認証情報が追加されていない場合は、ログ収集元の VM が使用しているマネージド ID の種類に合わせ、認証情報を設定してください。  
 例として、以下の Azure PowerShell コマンドのように SettingString パラメーターを指定し、認証情報を追加することができます。
 
+**ユーザー割り当てマネージド ID を使用する場合**
+
+```
+Set-AzVMExtension `
+-Name AzureMonitorWindowsAgent `
+-ExtensionType AzureMonitorWindowsAgent `
+-Publisher Microsoft.Azure.Monitor `
+-ResourceGroupName <resource-group-name> `
+-VMName <virtual-machine-name> `
+-Location <location> `
+-TypeHandlerVersion <version-number> `
+-EnableAutomaticUpgrade $true
+-SettingString '{"authentication": {"managedIdentity": {"identifier-name": "mi_res_id", "identifier-value": "<ユーザー割り当てマネージド ID のリソース ID>"}}}'
+```
+
 **システム割り当てマネージド ID を使用する場合**
 ```
 Set-AzVMExtension `
@@ -180,21 +197,6 @@ Set-AzVMExtension `
 4. "アプリケーション ID" に表示されている値をご確認ください。
 ![](./HowToSendVMDataToEventHubAndStorage/view-applicaionid.png)
 
-
-**ユーザー割り当てマネージド ID を使用する場合**
-
-```
-Set-AzVMExtension `
--Name AzureMonitorWindowsAgent `
--ExtensionType AzureMonitorWindowsAgent `
--Publisher Microsoft.Azure.Monitor `
--ResourceGroupName <resource-group-name> `
--VMName <virtual-machine-name> `
--Location <location> `
--TypeHandlerVersion <version-number> `
--EnableAutomaticUpgrade $true
--SettingString '{"authentication": {"managedIdentity": {"identifier-name": "mi_res_id", "identifier-value": "<ユーザー割り当てマネージド ID のリソース ID>"}}}'
-```
 
 <br>
 
@@ -244,85 +246,9 @@ Set-AzVMExtension `
 #### 3-2. AMA 未インストールの場合  
 
 以下の ARM テンプレートをデプロイすることで、DCR と VM の関連付けと、VM への Azure Monitor エージェントのインストールを両方行うことができます。  
-なお、デプロイの前に、VM にシステム割り当てマネージド ID もしくはユーザー割り当てマネージド ID が割り当てられていることをご確認ください。
+なお、デプロイの前に、VM にユーザー割り当てマネージド ID もしくはシステム割り当てマネージド ID が割り当てられていることをご確認ください。
 
-**システム割り当てマネージド ID を使用する場合の場合**
-
-```json
-{
-"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-"contentVersion": "1.0.0.0",
-"parameters": {
-    "vmName": {
-    "defaultValue": "[concat(resourceGroup().name, 'vm')]",
-    "type": "String"
-    },
-    "location": {
-    "type": "string",
-    "defaultValue": "[resourceGroup().location]",
-    "metadata": {
-        "description": "Location for all resources."
-    }
-    },
-    "dataCollectionRulesName": {
-    "defaultValue": "[concat(resourceGroup().name, 'DCR')]",
-    "type": "String",
-    "metadata": {
-        "description": "Data Collection Rule Name"
-    }
-    },
-    "dcraName": {
-    "type": "string",
-    "defaultValue": "[concat(uniquestring(resourceGroup().id), 'DCRLink')]",
-    "metadata": {
-        "description": "Name of the association."
-    }
-    },
-    "applicationId": {
-    "type": "string",
-    "metadata": {
-        "description": "System Assigned Managed Identity"
-    }
-    }
-},
-"resources": [
-    {
-    "type": "Microsoft.Compute/virtualMachines/providers/dataCollectionRuleAssociations",
-    "name": "[concat(parameters('vmName'),'/microsoft.insights/', parameters('dcraName'))]",
-    "apiVersion": "2021-04-01",
-    "properties": {
-        "description": "Association of data collection rule. Deleting this association will break the data collection for this virtual machine.",
-        "dataCollectionRuleId": "[resourceID('Microsoft.Insights/dataCollectionRules',parameters('dataCollectionRulesName'))]"
-    }
-    },
-    {
-    "type": "Microsoft.Compute/virtualMachines/extensions",
-    "name": "[concat(parameters('vmName'), '/AMAExtension')]",
-    "apiVersion": "2020-06-01",
-    "location": "[parameters('location')]",
-    "dependsOn": [
-        "[resourceId('Microsoft.Compute/virtualMachines/providers/dataCollectionRuleAssociations', parameters('vmName'), 'Microsoft.Insights', parameters('dcraName'))]"
-    ],
-    "properties": {
-        "publisher": "Microsoft.Azure.Monitor",
-        "type": "AzureMonitorWindowsAgent",
-        "typeHandlerVersion": "1.0",
-        "autoUpgradeMinorVersion": true,
-        "settings": {
-        "authentication": {
-            "managedIdentity": {
-            "identifier-name": "client_id",
-            "identifier-value": "parameters('applicationId')"
-            }
-        }
-        }
-    }
-    }
-]
-}
-```
-
-**ユーザー割り当てマネージド ID の場合**
+**ユーザー割り当てマネージド ID を使用する場合**
 
 ```json
 {
@@ -389,6 +315,82 @@ Set-AzVMExtension `
             "managedIdentity": {
             "identifier-name": "mi_res_id",
             "identifier-value": "[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/',parameters('identityName'))]"
+            }
+        }
+        }
+    }
+    }
+]
+}
+```
+
+**システム割り当てマネージド ID を使用する場合**
+
+```json
+{
+"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+"contentVersion": "1.0.0.0",
+"parameters": {
+    "vmName": {
+    "defaultValue": "[concat(resourceGroup().name, 'vm')]",
+    "type": "String"
+    },
+    "location": {
+    "type": "string",
+    "defaultValue": "[resourceGroup().location]",
+    "metadata": {
+        "description": "Location for all resources."
+    }
+    },
+    "dataCollectionRulesName": {
+    "defaultValue": "[concat(resourceGroup().name, 'DCR')]",
+    "type": "String",
+    "metadata": {
+        "description": "Data Collection Rule Name"
+    }
+    },
+    "dcraName": {
+    "type": "string",
+    "defaultValue": "[concat(uniquestring(resourceGroup().id), 'DCRLink')]",
+    "metadata": {
+        "description": "Name of the association."
+    }
+    },
+    "applicationId": {
+    "type": "string",
+    "metadata": {
+        "description": "System Assigned Managed Identity"
+    }
+    }
+},
+"resources": [
+    {
+    "type": "Microsoft.Compute/virtualMachines/providers/dataCollectionRuleAssociations",
+    "name": "[concat(parameters('vmName'),'/microsoft.insights/', parameters('dcraName'))]",
+    "apiVersion": "2021-04-01",
+    "properties": {
+        "description": "Association of data collection rule. Deleting this association will break the data collection for this virtual machine.",
+        "dataCollectionRuleId": "[resourceID('Microsoft.Insights/dataCollectionRules',parameters('dataCollectionRulesName'))]"
+    }
+    },
+    {
+    "type": "Microsoft.Compute/virtualMachines/extensions",
+    "name": "[concat(parameters('vmName'), '/AMAExtension')]",
+    "apiVersion": "2020-06-01",
+    "location": "[parameters('location')]",
+    "dependsOn": [
+        "[resourceId('Microsoft.Compute/virtualMachines/providers/dataCollectionRuleAssociations', parameters('vmName'), 'Microsoft.Insights', parameters('dcraName'))]"
+    ],
+    "properties": {
+        "publisher": "Microsoft.Azure.Monitor",
+        "type": "AzureMonitorWindowsAgent",
+        "typeHandlerVersion": "1.0",
+        "autoUpgradeMinorVersion": true,
+        "settings": {
+        "authentication": {
+            "managedIdentity": {
+            "identifier-name": "client_id",
+            "identifier-value": "parameters('applicationId')"
             }
         }
         }
