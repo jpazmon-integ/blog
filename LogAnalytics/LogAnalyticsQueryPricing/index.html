@@ -6,28 +6,25 @@
     
       <title>
         
-          Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問集 | 
+          Log Analytics のクエリの実行コストについて | 
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは、Azure Monitoring チームの徳田です。本ブログでは、Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問に対する回答をご紹介いたします。弊社公開情報としては以下のページにてご紹介しておりますため、こちらも併せてご参照ください。Azure の仮想マシンとスケール セットの拡張機能の自動アップグレード">
+      <meta name="description" content="こんにちは、Azure Monitoring サポート チームの六浦です。 今回は Log Analytics でクエリを実行する際のコストについてご説明します。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問集">
-<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/index.html">
+<meta property="og:title" content="Log Analytics のクエリの実行コストについて">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPricing/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは、Azure Monitoring チームの徳田です。本ブログでは、Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問に対する回答をご紹介いたします。弊社公開情報としては以下のページにてご紹介しておりますため、こちらも併せてご参照ください。Azure の仮想マシンとスケール セットの拡張機能の自動アップグレード">
+<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの六浦です。 今回は Log Analytics でクエリを実行する際のコストについてご説明します。">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/updatecycle.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/azureportal-manualupgrade.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/upgrade-activitylog.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/Heartbeat-versions.png">
-<meta property="article:published_time" content="2025-05-07T03:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-03T05:47:40.576Z">
+<meta property="article:published_time" content="2025-09-02T15:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-03T05:47:40.719Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="How-To">
-<meta property="article:tag" content="Azure Monitor Agent">
+<meta property="article:tag" content="Log Analytics">
+<meta property="article:tag" content="クエリ">
+<meta property="article:tag" content="コスト">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/updatecycle.png">
         
           <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog"
             type="application/atom+xml">
@@ -104,7 +101,7 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-LogAnalytics/AMAAutoupgradeFAQ" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-LogAnalytics/LogAnalyticsQueryPricing" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -113,7 +110,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問集
+      Log Analytics のクエリの実行コストについて
     </h1>
   
 
@@ -121,169 +118,103 @@
       <div class="article-share">
         Last Update: 
         <a href="" class="article-date-single">
-  <time datetime="2025-05-07T03:00:00.000Z" itemprop="datePublished">2025-05-07</time>
+  <time datetime="2025-09-02T15:00:00.000Z" itemprop="datePublished">2025-09-03</time>
 </a>
         
         
-        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+d864202e-fdd7-57d4-9bea-bc062e809a54%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Monitor+%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%AE%E8%87%AA%E5%8B%95%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E6%A9%9F%E8%83%BD%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E3%81%94%E8%B3%AA%E5%95%8F%E9%9B%86%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FAMAAutoupgradeFAQ%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FAMAAutoupgradeFAQ.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FAMAAutoupgradeFAQ.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+1375e78d-e8fd-508f-9ee9-ff6a9268aab3%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BLog+Analytics+%E3%81%AE%E3%82%AF%E3%82%A8%E3%83%AA%E3%81%AE%E5%AE%9F%E8%A1%8C%E3%82%B3%E3%82%B9%E3%83%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FLogAnalyticsQueryPricing%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FLogAnalyticsQueryPricing.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FLogAnalyticsQueryPricing.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/" data-id="cmf3k2su900cm0npf6vtb5sqx" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPricing/" data-id="cmf3k2sre001z0npf5l8g1hlt" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは、Azure Monitoring チームの徳田です。<br>本ブログでは、Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問に対する回答をご紹介いたします。<br>弊社公開情報としては以下のページにてご紹介しておりますため、こちらも併せてご参照ください。<br><br><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/automatic-extension-upgrade?tabs=RestAPI1,RestAPI2">Azure の仮想マシンとスケール セットの拡張機能の自動アップグレード</a></p>
+        <p>こんにちは、Azure Monitoring サポート チームの六浦です。</p>
+<p>今回は Log Analytics でクエリを実行する際のコストについてご説明します。</p>
 <span id="more"></span>
 
-<br>
-
-<!-- more -->
-<h2 id="Q-amp-A-タイトル"><a href="#Q-amp-A-タイトル" class="headerlink" title="Q &amp; A タイトル"></a>Q &amp; A タイトル</h2><h3 id="lt-自動アップグレード有効化に関する質問-gt"><a href="#lt-自動アップグレード有効化に関する質問-gt" class="headerlink" title="&lt;自動アップグレード有効化に関する質問&gt;"></a>&lt;自動アップグレード有効化に関する質問&gt;</h3><ul>
-<li><a href="#Q-%E8%87%AA%E5%8B%95%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%82%92%E6%9C%89%E5%8A%B9%E5%8C%96%E3%81%99%E3%82%8B%E6%89%8B%E9%A0%86%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. 自動アップグレードを有効化する手順を教えてください。</a></li>
-<li><a href="#Q-Set-AzVMExtension-%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AE-EnableAutomaticUpgrade-%E3%81%A8-DisableAutoUpgradeMinorVersion-%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E3%83%BC%E3%81%AE%E9%81%95%E3%81%84%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. Set-AzVMExtension コマンドの EnableAutomaticUpgrade と DisableAutoUpgradeMinorVersion パラメーターの違いについて教えてください。</a></li>
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li><a href="#1-%E3%82%AF%E3%82%A8%E3%83%AA%E5%AE%9F%E8%A1%8C%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88%E3%81%AB%E9%96%A2%E3%82%8F%E3%82%8B%E8%A8%AD%E5%AE%9A%E3%81%AE%E7%A2%BA%E8%AA%8D">1. クエリ実行のコストに関わる設定の確認</a></li>
+<li><a href="#2-Analytics-%E3%81%AE%E3%83%AA%E3%83%86%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%B3%E6%9C%9F%E9%96%93%E3%81%AE%E3%83%AD%E3%82%B0%E3%81%AB%E5%AF%BE%E3%81%97%E3%81%A6%E3%82%AF%E3%82%A8%E3%83%AA%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88">2. Analytics のリテンション期間のログに対してクエリを実行する場合</a><ul>
+<li><a href="#2-1-Analytics-%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB-%E3%83%97%E3%83%A9%E3%83%B3%E3%81%AE%E5%A0%B4%E5%90%88">2-1. Analytics テーブル プランの場合</a></li>
+<li><a href="#2-2-%E5%9F%BA%E6%9C%AC-Basic-%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB-%E3%83%97%E3%83%A9%E3%83%B3%E3%81%A8%E8%A3%9C%E5%8A%A9-Auxiliary-%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB-%E3%83%97%E3%83%A9%E3%83%B3%E3%81%AE%E5%A0%B4%E5%90%88">2-2. 基本 (Basic) テーブル プランと補助 (Auxiliary) テーブル プランの場合</a></li>
 </ul>
-<h3 id="lt-自動アップグレードの実行に関する質問-gt"><a href="#lt-自動アップグレードの実行に関する質問-gt" class="headerlink" title="&lt;自動アップグレードの実行に関する質問&gt;"></a>&lt;自動アップグレードの実行に関する質問&gt;</h3><ul>
-<li><a href="#Q-%E3%81%A9%E3%81%AE%E3%82%88%E3%81%86%E3%81%AA%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%A7%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%81%95%E3%82%8C%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82%E5%88%A9%E7%94%A8%E8%80%85%E5%81%B4%E3%81%A7%E6%8C%87%E5%AE%9A%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. どのようなタイミングでアップグレードされますか。利用者側で指定できますか。</a></li>
-<li><a href="#Q-%E6%9C%80%E6%96%B0%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%8C%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%81%95%E3%82%8C%E3%81%A6%E3%81%99%E3%81%90%E3%81%AB%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%81%95%E3%82%8C%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. 最新バージョンがリリースされてすぐにアップグレードされますか。</a></li>
-<li><a href="#Q-%E5%88%A9%E7%94%A8%E4%B8%AD%E3%81%AE%E3%83%AA%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%A7%E6%9C%80%E6%96%B0%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%8C%E5%88%A9%E7%94%A8%E5%8F%AF%E8%83%BD%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%81%8C%E3%80%81%E8%87%AA%E5%8B%95%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%81%AB%E3%82%88%E3%82%8B%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%81%8C%E3%81%BE%E3%81%A0%E8%A1%8C%E3%82%8F%E3%82%8C%E3%81%A6%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82%E3%81%99%E3%81%90%E3%81%AB%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%81%97%E3%81%9F%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AF%E3%81%A9%E3%81%86%E3%81%99%E3%82%8C%E3%81%B0%E3%81%84%E3%81%84%E3%81%A7%E3%81%99%E3%81%8B%E3%80%82">Q. 利用中のリージョンで最新バージョンが利用可能になっていますが、自動アップグレードによるアップグレードがまだ行われていません。すぐにアップグレードしたい場合はどうすればいいですか。</a></li>
+</li>
+<li><a href="#3-%E9%95%B7%E6%9C%9F%E4%BF%9D%E6%8C%81-%E3%82%A2%E3%83%BC%E3%82%AB%E3%82%A4%E3%83%96-%E6%9C%9F%E9%96%93%E3%81%AE%E3%83%AD%E3%82%B0%E3%81%AB%E5%AF%BE%E3%81%97%E3%81%A6%E3%82%AF%E3%82%A8%E3%83%AA%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88">3. 長期保持 (アーカイブ) 期間のログに対してクエリを実行する場合</a><ul>
+<li><a href="#3-1-%E6%A4%9C%E7%B4%A2%E3%82%B8%E3%83%A7%E3%83%96%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88">3-1. 検索ジョブのコスト</a></li>
+<li><a href="#3-2-%E5%BE%A9%E5%85%83%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88">3-2. 復元のコスト</a></li>
 </ul>
-<h3 id="lt-アップグレード時に関する質問-gt"><a href="#lt-アップグレード時に関する質問-gt" class="headerlink" title="&lt;アップグレード時に関する質問&gt;"></a>&lt;アップグレード時に関する質問&gt;</h3><ul>
-<li><a href="#Q-%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E4%B8%AD%E3%81%AF%E3%83%AD%E3%82%B0%E5%8F%8E%E9%9B%86%E3%81%8C%E5%81%9C%E6%AD%A2%E3%81%97%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82%E5%81%9C%E6%AD%A2%E6%9C%9F%E9%96%93%E4%B8%AD%E3%81%AE%E3%83%AD%E3%82%B0%E3%81%AF%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E5%BE%8C%E3%81%AB%E5%86%8D%E9%80%81%E3%81%95%E3%82%8C%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. アップグレード中はログ収集が停止しますか。停止期間中のログはアップグレード後に再送されますか。</a></li>
-<li><a href="#Q-%E5%81%9C%E6%AD%A2%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B-VM-%E3%81%AB%E5%AF%BE%E3%81%97%E3%81%A6%E8%87%AA%E5%8B%95%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%81%AF%E8%A1%8C%E3%82%8F%E3%82%8C%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. 停止している VM に対して自動アップグレードは行われますか。</a></li>
-<li><a href="#Q-%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%81%AE%E9%9A%9B%E3%81%AB%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3-OS-%E3%81%AF%E5%81%9C%E6%AD%A2%E3%83%BB%E5%86%8D%E8%B5%B7%E5%8B%95%E3%81%95%E3%82%8C%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. アップグレードの際に仮想マシン (OS) は停止・再起動されますか。</a></li>
-<li><a href="#Q-%E8%87%AA%E5%8B%95%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%81%8C%E5%A4%B1%E6%95%97%E3%81%97%E3%81%9F%E5%A0%B4%E5%90%88%E3%81%AF%E5%86%8D%E5%AE%9F%E8%A1%8C%E3%81%95%E3%82%8C%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. 自動アップグレードが失敗した場合は再実行されますか。</a></li>
-</ul>
-<h3 id="lt-その他-gt"><a href="#lt-その他-gt" class="headerlink" title="&lt;その他&gt;"></a>&lt;その他&gt;</h3><ul>
-<li><a href="#Q-%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%81%AE%E6%88%90%E5%90%A6%E3%81%AF%E7%A2%BA%E8%AA%8D%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. アップグレードの成否は確認できますか。</a></li>
-<li><a href="#Q-Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%AE%E5%90%84%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%AE%E6%83%85%E5%A0%B1%E3%81%AF%E3%81%A9%E3%81%93%E3%81%A7%E7%A2%BA%E8%AA%8D%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. Azure Monitor エージェントの各バージョンの情報はどこで確認できますか。</a></li>
+</li>
+<li><a href="#4-%E3%81%BE%E3%81%A8%E3%82%81">4. まとめ</a></li>
 </ul>
 <br>
 
-<h3 id="lt-自動アップグレード有効化に関する質問-gt-1"><a href="#lt-自動アップグレード有効化に関する質問-gt-1" class="headerlink" title="&lt;自動アップグレード有効化に関する質問&gt;"></a>&lt;自動アップグレード有効化に関する質問&gt;</h3><hr>
-<h3 id="Q-自動アップグレードを有効化する手順を教えてください。"><a href="#Q-自動アップグレードを有効化する手順を教えてください。" class="headerlink" title="Q. 自動アップグレードを有効化する手順を教えてください。"></a>Q. 自動アップグレードを有効化する手順を教えてください。</h3><hr>
-<p>自動アップグレードを有効化する方法には、主に以下の様なものがあります。</p>
+<h2 id="1-クエリ実行のコストに関わる設定の確認"><a href="#1-クエリ実行のコストに関わる設定の確認" class="headerlink" title="1. クエリ実行のコストに関わる設定の確認"></a>1. クエリ実行のコストに関わる設定の確認</h2><p>Azure ポータルの Log Analytics ワークスペースの [設定] &gt; [テーブル] より、クエリを実行するテーブルの以下の設定を確認します。</p>
+<table>
+<thead>
+<tr>
+<th>設定</th>
+<th>設定可能な値</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>プラン</td>
+<td>Analytics、基本、補助 のいずれかです。</td>
+</tr>
+<tr>
+<td>Analytics のリテンション期間</td>
+<td>最大 2 年まで設定できます。</td>
+</tr>
+<tr>
+<td>保有期間の合計</td>
+<td>最大 12 年まで設定できます。</td>
+</tr>
+</tbody></table>
+<p>これらの設定によって、クエリ実行時のコストが決まります。</p>
+<br>
+
+<h2 id="2-Analytics-のリテンション期間のログに対してクエリを実行する場合"><a href="#2-Analytics-のリテンション期間のログに対してクエリを実行する場合" class="headerlink" title="2. Analytics のリテンション期間のログに対してクエリを実行する場合"></a>2. Analytics のリテンション期間のログに対してクエリを実行する場合</h2><p><a href="#1-%E3%82%AF%E3%82%A8%E3%83%AA%E5%AE%9F%E8%A1%8C%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88%E3%81%AB%E9%96%A2%E3%82%8F%E3%82%8B%E8%A8%AD%E5%AE%9A%E3%81%AE%E7%A2%BA%E8%AA%8D">1. クエリ実行のコストに関わる設定の確認</a> の [プラン] によってクエリの実行コストは異なります。</p>
+<br>
+
+<h3 id="2-1-Analytics-テーブル-プランの場合"><a href="#2-1-Analytics-テーブル-プランの場合" class="headerlink" title="2-1. Analytics テーブル プランの場合"></a>2-1. Analytics テーブル プランの場合</h3><p><strong>無料</strong>でクエリを実行できます。<br>Analytics テーブル プランはデフォルトのテーブル プランのため、多くのテーブルに該当します。</p>
+<br>
+
+<h3 id="2-2-基本-Basic-テーブル-プランと補助-Auxiliary-テーブル-プランの場合"><a href="#2-2-基本-Basic-テーブル-プランと補助-Auxiliary-テーブル-プランの場合" class="headerlink" title="2-2. 基本 (Basic) テーブル プランと補助 (Auxiliary) テーブル プランの場合"></a>2-2. 基本 (Basic) テーブル プランと補助 (Auxiliary) テーブル プランの場合</h3><p>クエリ実行時にスキャンしたデータ量に応じたコストが発生します。<br>料金は<a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">価格についての公開情報</a>の [クエリ] からご確認ください。</p>
+<p>例えば、2 GB のデータに対してクエリを実行した際のコストは以下の式で算出できます。<br><code>$0.00725 * 2 GB = $0.0145</code><br>※ 計算には東日本リージョンの従量課金制の USD 価格を利用しています</p>
+<p>なお、基本および補助テーブルのログに対して実行できるクエリには制限があります。<br>制限については、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/basic-logs-query?tabs=portal-1">こちら</a>をご確認ください。</p>
+<div class="alert is-info"><p class="alert-title">Note</p><p>Basic テーブル プランは一部のテーブルで利用できます。対象のテーブルは<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/basic-logs-azure-tables">こちら</a>を確認ください。</p><p>Auxiliary テーブル プランは DCR ベースのカスタム テーブルのみで利用できます。</p><p>テーブル プランの詳細については<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-platform-logs#table-plans">こちら</a>の公開情報もご確認ください。</p></div>
+<br>
+
+<h2 id="3-長期保持-アーカイブ-期間のログに対してクエリを実行する場合"><a href="#3-長期保持-アーカイブ-期間のログに対してクエリを実行する場合" class="headerlink" title="3. 長期保持 (アーカイブ) 期間のログに対してクエリを実行する場合"></a>3. 長期保持 (アーカイブ) 期間のログに対してクエリを実行する場合</h2><p>長期保持期間は、<a href="#1-%E3%82%AF%E3%82%A8%E3%83%AA%E5%AE%9F%E8%A1%8C%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88%E3%81%AB%E9%96%A2%E3%82%8F%E3%82%8B%E8%A8%AD%E5%AE%9A%E3%81%AE%E7%A2%BA%E8%AA%8D">1. クエリ実行のコストに関わる設定の確認</a>の [保有期間の合計] から [Analytics のリテンション期間] を引いた期間です。<br>長期保持期間のログに対するクエリ実行には、テーブル プランに関わらず、<a href="(https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/search-jobs?tabs=portal-1,portal-2)">検索ジョブ</a>の実行、または<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/restore?tabs=api-1">ログの復元</a>のコストがかかります。<br>なお、検索ジョブで作成される結果テーブルのログと復元されたログは、Analytics テーブル プランのログのため、クエリ実行による追加のコストは発生しません。</p>
+<div class="alert is-info"><p class="alert-title">Note</p><p>現在 Auxiliary テーブル プランは復元をサポートしません。Auxiliary テーブルから長期保持されているデータを取得するには、検索ジョブをご利用ください。</p></div>
+<br>
+
+<h3 id="3-1-検索ジョブのコスト"><a href="#3-1-検索ジョブのコスト" class="headerlink" title="3-1. 検索ジョブのコスト"></a>3-1. 検索ジョブのコスト</h3><p>検索ジョブは、「スキャンされたデータのコスト」と「検索結果の取り込みのコスト」が発生します。<br>「スキャンされたデータのコスト」は、<a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">価格についての公開情報</a>の [ジョブの検索] の価格です。<br>「検索結果の取り込みのコスト」は<a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">価格についての公開情報</a> の [インジェスト] の Analytics ログの価格です。</p>
+<p>例えば、1000 GB のログを検索ジョブでスキャンして、100 GB の結果を得た際のコストは以下のように計算できます。<br><code>$0.00725 * 1000 GB + $3.34 * 100 GB = $341.25</code></p>
+<p>※ 計算には東日本リージョンの従量課金制の USD 価格を利用しています。</p>
+<br>
+
+<h3 id="3-2-復元のコスト"><a href="#3-2-復元のコスト" class="headerlink" title="3-2. 復元のコスト"></a>3-2. 復元のコスト</h3><p>復元のコストは、<a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">価格についての公開情報</a>の [復元] をご確認ください。</p>
+<p>復元のコストの計算には 2 つの注意点があります。</p>
 <ul>
-<li><a href="#Azure-portal-%E4%B8%8A%E3%81%A7%E6%9C%89%E5%8A%B9%E5%8C%96%E3%81%99%E3%82%8B">Azure portal 上で有効化する</a></li>
-<li><a href="#PowerShell-%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E6%9C%89%E5%8A%B9%E5%8C%96%E3%81%99%E3%82%8B">PowerShell コマンドを使用して有効化する</a></li>
-<li><a href="#Azure-CLI-%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E6%9C%89%E5%8A%B9%E5%8C%96%E3%81%99%E3%82%8B">Azure CLI コマンドを使用して有効化する</a></li>
+<li>復元したデータを 12 時間未満保持した際、12 時間に保持したとして計算します。</li>
+<li>2 TB 未満のデータを復元した際、データ量は 2 TB に切り上げて計算します。</li>
 </ul>
-<p>それぞれの方法について紹介します。</p>
-<h4 id="Azure-portal-上で有効化する"><a href="#Azure-portal-上で有効化する" class="headerlink" title="Azure portal 上で有効化する"></a>Azure portal 上で有効化する</h4><p>Azure portal で仮想マシン、または仮想マシン スケール セットのリソースを開き、[設定] &gt; [拡張機能とアプリケーション] のページから有効化できます。<br>詳細な手順については、以下の弊社公開情報をご確認ください。  </p>
-<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/automatic-extension-upgrade?tabs=powershell1,RestAPI2#use-the-azure-portal">Azure の仮想マシンとスケール セットの拡張機能の自動アップグレード | 拡張機能の自動アップグレードを有効にする | Azure portal を使用する</a></p>
-<h4 id="PowerShell-コマンドを使用して有効化する"><a href="#PowerShell-コマンドを使用して有効化する" class="headerlink" title="PowerShell コマンドを使用して有効化する"></a>PowerShell コマンドを使用して有効化する</h4><p>以下のコマンドを実行して有効化することができます。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Set-AzVMExtension `</span><br><span class="line">-Name AzureMonitorWindowsAgent `</span><br><span class="line">-ExtensionType AzureMonitorWindowsAgent `</span><br><span class="line">-Publisher Microsoft.Azure.Monitor `</span><br><span class="line">-ResourceGroupName &lt;resourceGroupName&gt; `</span><br><span class="line">-VMName &lt;vmName&gt; `</span><br><span class="line">-Location &lt;region&gt; `</span><br><span class="line">-HandlerVersion &lt;version&gt; `</span><br><span class="line">-DisableAutoUpgradeMinorVersion `</span><br><span class="line">-EnableAutomaticUpgrade $true</span><br><span class="line"></span><br><span class="line"># Linux の場合</span><br><span class="line">Set-AzVMExtension `</span><br><span class="line">-Name AzureMonitorLinuxAgent `</span><br><span class="line">-ExtensionType AzureMonitorLinuxAgent `</span><br><span class="line">-Publisher Microsoft.Azure.Monitor `</span><br><span class="line">-ResourceGroupName &lt;resourceGroupName&gt; `</span><br><span class="line">-VMName &lt;vmName&gt; `</span><br><span class="line">-Location &lt;region&gt; `</span><br><span class="line">-HandlerVersion &lt;version&gt; `</span><br><span class="line">-DisableAutoUpgradeMinorVersion `</span><br><span class="line">-EnableAutomaticUpgrade $true</span><br></pre></td></tr></table></figure>
-<p>※ &lt;&gt; で囲まれた箇所は環境に合わせて変更してください。  </p>
-<br>
-
-<h4 id="Azure-CLI-コマンドを使用して有効化する"><a href="#Azure-CLI-コマンドを使用して有効化する" class="headerlink" title="Azure CLI コマンドを使用して有効化する"></a>Azure CLI コマンドを使用して有効化する</h4><p>以下のコマンドを実行して有効化することができます。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># Windows の場合</span><br><span class="line">az vm extension set `</span><br><span class="line">--name AzureMonitorWindowsAgent `</span><br><span class="line">--publisher Microsoft.Azure.Monitor `</span><br><span class="line">--ids &lt;vm-resource-id&gt; `</span><br><span class="line">--version &lt;version&gt; `</span><br><span class="line">--no-auto-upgrade-minor-version `</span><br><span class="line">--enable-auto-upgrade true</span><br><span class="line"></span><br><span class="line"># Linux の場合</span><br><span class="line">az vm extension set `</span><br><span class="line">--name AzureMonitorLinuxAgent `</span><br><span class="line">--publisher Microsoft.Azure.Monitor `</span><br><span class="line">--ids &lt;vm-resource-id&gt; `</span><br><span class="line">--version &lt;version&gt; `</span><br><span class="line">--no-auto-upgrade-minor-version `</span><br><span class="line">--enable-auto-upgrade true</span><br></pre></td></tr></table></figure>
-<p>※ &lt;&gt; で囲まれた箇所は環境に合わせて変更してください。<br>※ <code>no-auto-upgrade-minor-version</code> パラメーターについては、後述の <a href="#Q-Set-AzVMExtension-%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AE-EnableAutomaticUpgrade-%E3%81%A8-DisableAutoUpgradeMinorVersion-%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E3%83%BC%E3%81%AE%E9%81%95%E3%81%84%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. Set-AzVMExtension コマンドの EnableAutomaticUpgrade と DisableAutoUpgradeMinorVersion パラメーターの違いについて教えてください。</a> を参照してください。</p>
-<br>
-
-<p>なお、以下弊社公開情報には、上記の方法に加えて ARM テンプレートや REST API を使用した有効化方法についてもご紹介しております。</p>
-<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/automatic-extension-upgrade?tabs=cli1,RestAPI2#enable-automatic-extension-upgrade">Azure の仮想マシンとスケール セットの拡張機能の自動アップグレード | 拡張機能の自動アップグレードを有効にする</a></p>
-<br>
-
-<hr>
-<h3 id="Q-Set-AzVMExtension-コマンドの-EnableAutomaticUpgrade-と-DisableAutoUpgradeMinorVersion-パラメーターの違いについて教えてください。"><a href="#Q-Set-AzVMExtension-コマンドの-EnableAutomaticUpgrade-と-DisableAutoUpgradeMinorVersion-パラメーターの違いについて教えてください。" class="headerlink" title="Q. Set-AzVMExtension コマンドの EnableAutomaticUpgrade と DisableAutoUpgradeMinorVersion パラメーターの違いについて教えてください。"></a>Q. Set-AzVMExtension コマンドの EnableAutomaticUpgrade と DisableAutoUpgradeMinorVersion パラメーターの違いについて教えてください。</h3><hr>
-<p><strong>EnableAutomaticUpgrade</strong>  </p>
+<p>つまり、復元には少なくとも 2 TB (2000 GB) を 12 時間保持する下記のコストが発生します。<br><code> $0.145 * 2000 GB * 12/24 (日) = $145</code></p>
+<p>他にもいくつか例をご紹介します。</p>
 <ul>
-<li>EnableAutomaticUpgrade は、拡張機能の自動アップグレード機能を有効化の有無を指定するパラメーターです。</li>
-<li>したがって、拡張機能の自動アップグレード機能を有効化したい場合は、値を $true に設定する必要があります。</li>
-<li>このパラメーターは Azure CLI の <code>az vm extension set</code> コマンドにおける <code>--enable-auto-upgrade</code> と同じはたらきです。</li>
+<li><p>1 TB のデータを 1 日保持した場合<br><code> $0.145 * 2000 GB * 1 (日) = $290</code><br>1 TB は 2 TB に切り上げられます。</p>
+</li>
+<li><p>2 TB のデータを 13 時間保持した場合<br><code> $0.145 * 2000 GB * 13/24 (日) = $157.09</code><br>復元したデータを保持する期間は時間単位で課金されます。</p>
+</li>
+<li><p>3 TB のデータを 2 日間保持した場合<br><code> $0.145 * 3000 GB * 2 (日) = $870</code></p>
+</li>
 </ul>
-<p><strong>DisableAutoUpgradeMinorVersion</strong></p>
-<ul>
-<li>このパラメーターは、Set-AzVMExtension が実行される際 (拡張機能をインストールするときや手動アップグレードするとき) に、どのバージョンがインストールされる (どのバージョンにアップグレードされる) かを指定するものです。</li>
-<li><code>-DisableAutoUpgradeMinorVersion:$true</code> または <code>-DisableAutoUpgradeMinorVersion</code> とした場合は、<code>-TypeHandlerVersion</code> に指定したバージョンがインストールされ (<code>-TypeHandlerVersion</code> に指定したバージョンにアップグレードされ) ます。 </li>
-<li><code>-DisableAutoUpgradeMinorVersion:$false</code> とした場合、その時使用できる最新の安定したマイナー バージョンがインストールされ (にアップグレードされ) ます。</li>
-</ul>
-<p>(ご参考)<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/powershell/module/az.compute/set-azvmextension?view=azps-13.4.0">Set-AzVMExtension</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/cli/azure/vm/extension?view=azure-cli-latest#az-vm-extension-set-optional-parameters">az vm extension | az vm extension set | 省略可能のパラメーター</a></p>
+<p>※ 計算には東日本リージョンの従量課金制の USD 価格を利用しています</p>
 <br>
 
-<hr>
-<h3 id="Q-どのようなタイミングでアップグレードされますか。利用者側で指定できますか。"><a href="#Q-どのようなタイミングでアップグレードされますか。利用者側で指定できますか。" class="headerlink" title="Q. どのようなタイミングでアップグレードされますか。利用者側で指定できますか。"></a>Q. どのようなタイミングでアップグレードされますか。利用者側で指定できますか。</h3><hr>
-<p>残念ながら、利用者様側で自動アップグレードのタイミングを制御することはできません。<br>起動している仮想マシン上で動作するエージェントが、定期的に最新バージョンの値をチェックし、最新のものが存在する場合は、その後自動アップグレードの処理がトリガーされます。</p>
-<br>
-
-<hr>
-<h3 id="Q-最新バージョンがリリースされてすぐにアップグレードされますか。"><a href="#Q-最新バージョンがリリースされてすぐにアップグレードされますか。" class="headerlink" title="Q. 最新バージョンがリリースされてすぐにアップグレードされますか。"></a>Q. 最新バージョンがリリースされてすぐにアップグレードされますか。</h3><hr>
-<p>新しいバージョンがリリースされた後、順次各リージョンにデプロイされ、利用可能となります。<br>ご利用のリージョンで最新バージョンが利用可能になってから、すぐにその最新版への自動アップグレードが実行されるわけではありません。<br>以下弊社公開情報にもある通り、自動アップグレードによるアップグレードが実行されるまで、数週間かかるとご認識ください。  </p>
-<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-manage?tabs=azure-portal#update">Azure Monitor エージェントのインストールと管理 | 更新する</a>  </p>
-<br>
-
-<p><img src="/blog/LogAnalytics/AMAAutoupgradeFAQ/updatecycle.png"></p>
-<br>
-
-<hr>
-<h3 id="Q-利用中のリージョンで最新バージョンが利用可能になっていますが、自動アップグレードによるアップグレードがまだ行われていません。すぐにアップグレードしたい場合はどうすればいいですか。"><a href="#Q-利用中のリージョンで最新バージョンが利用可能になっていますが、自動アップグレードによるアップグレードがまだ行われていません。すぐにアップグレードしたい場合はどうすればいいですか。" class="headerlink" title="Q. 利用中のリージョンで最新バージョンが利用可能になっていますが、自動アップグレードによるアップグレードがまだ行われていません。すぐにアップグレードしたい場合はどうすればいいですか。"></a>Q. 利用中のリージョンで最新バージョンが利用可能になっていますが、自動アップグレードによるアップグレードがまだ行われていません。すぐにアップグレードしたい場合はどうすればいいですか。</h3><hr>
-<p>以下の方法で手動でアップグレードすることで任意のタイミングで最新バージョンの利用を開始することが可能です。</p>
-<h4 id="Azure-portal-上で手動アップグレードする"><a href="#Azure-portal-上で手動アップグレードする" class="headerlink" title="Azure portal 上で手動アップグレードする"></a>Azure portal 上で手動アップグレードする</h4><p>リソースの [設定] &gt; [拡張機能とアプリケーション] にて “状態” 列に 「更新プログラムを利用可能」と表記されている場合、その拡張機能のバージョンよりも新しいマイナー バージョンが利用可能であることを意味しています。<br>[拡張機能とアプリケーション] 画面にて、当該拡張機能にチェックを入れ [更新] を押下することで、最新のバージョンにアップグレードできます。</p>
-<br>
-
-<p><img src="/blog/LogAnalytics/AMAAutoupgradeFAQ/azureportal-manualupgrade.png"></p>
-<br>
-
-<h3 id="lt-アップグレード時に関する質問-gt-1"><a href="#lt-アップグレード時に関する質問-gt-1" class="headerlink" title="&lt;アップグレード時に関する質問&gt;"></a>&lt;アップグレード時に関する質問&gt;</h3><hr>
-<h3 id="Q-アップグレード中はログ収集が停止しますか。停止期間中のログはアップグレード後に再送されますか。"><a href="#Q-アップグレード中はログ収集が停止しますか。停止期間中のログはアップグレード後に再送されますか。" class="headerlink" title="Q. アップグレード中はログ収集が停止しますか。停止期間中のログはアップグレード後に再送されますか。"></a>Q. アップグレード中はログ収集が停止しますか。停止期間中のログはアップグレード後に再送されますか。</h3><hr>
-<p>まず、AMA で収集可能なログは、仕組みによって大きく 2 種類に分かれます。  </p>
-<ol>
-<li>一定の間隔で取得して収集するログ : Heartbeat、パフォーマンス データ、Change Tracking データ  </li>
-<li>内部の仕組みでログの更新を検知して収集するログ : イベント ログ、 Syslog、カスタム ログ</li>
-</ol>
-<p>1 のログについては、アップグレードしている間はログ収集できなくなるため、その分のログは欠損してしまいます。<br>2 のログについては、アップグレード後に再度ログの更新を検知することが可能なため、理論上欠損は発生しません。</p>
-<br>
-
-<hr>
-<h3 id="Q-停止している-VM-に対して自動アップグレードは行われますか。"><a href="#Q-停止している-VM-に対して自動アップグレードは行われますか。" class="headerlink" title="Q. 停止している VM に対して自動アップグレードは行われますか。"></a>Q. 停止している VM に対して自動アップグレードは行われますか。</h3><hr>
-<p>仮想マシンが停止している場合は、自動アップグレード機能によるアップグレードは実行されません。</p>
-<br>
-
-<hr>
-<h3 id="Q-アップグレードの際に仮想マシン-OS-は停止・再起動されますか。"><a href="#Q-アップグレードの際に仮想マシン-OS-は停止・再起動されますか。" class="headerlink" title="Q. アップグレードの際に仮想マシン (OS) は停止・再起動されますか。"></a>Q. アップグレードの際に仮想マシン (OS) は停止・再起動されますか。</h3><hr>
-<p>Azure Monitor エージェントのアップグレードの際に、仮想マシンの再起動は起こりません。</p>
-<br>
-
-<hr>
-<h3 id="Q-自動アップグレードが失敗した場合は再実行されますか。"><a href="#Q-自動アップグレードが失敗した場合は再実行されますか。" class="headerlink" title="Q. 自動アップグレードが失敗した場合は再実行されますか。"></a>Q. 自動アップグレードが失敗した場合は再実行されますか。</h3><hr>
-<p>AMAの自動アップグレードが失敗した場合、バージョンアップ前のバージョンが再インストール (ロールバック) されます。<br>ロールバックが成功した場合は、翌日の処理で再度自動アップグレードが施行されます。<br>なお、ロールバックが失敗すると、AMA 自体の機能が停止し、ログ転送機能が停止する可能性が高いですが、ロールバックが失敗した際の挙動と解消方法は状況により異なります。<br>そのため、ロールバックも失敗した場合は、必要に応じて、原因と解消方法の調査のために弊社サポート サービスまでお問い合わせください。</p>
-<br>
-
-<h3 id="lt-その他-gt-1"><a href="#lt-その他-gt-1" class="headerlink" title="&lt;その他&gt;"></a>&lt;その他&gt;</h3><hr>
-<h3 id="Q-アップグレードの成否は確認できますか。"><a href="#Q-アップグレードの成否は確認できますか。" class="headerlink" title="Q. アップグレードの成否は確認できますか。"></a>Q. アップグレードの成否は確認できますか。</h3><hr>
-<p>アクティビティ ログから確認が可能です。<br>具体的には、以下の画像のように、Create or Update Virtual Machine Extension というアクティビティ ログが記録されます。<br>なお、手動で拡張機能をアップロードした場合も同様のログが記録されますため、こちらの点についてご留意ください。</p>
-<br>
-
-<p><img src="/blog/LogAnalytics/AMAAutoupgradeFAQ/upgrade-activitylog.png"></p>
-<br>
-
-<p>また、各マシンで動作している Azure Monitor エージェントのバージョンは、Log Analytics ワークスペースの Heartbeat テーブルの Version 列からもご確認いただけます。<br>そのため、当該エージェントのバージョンがどのタイミングで変更されたかは、Heartbeat ログからもご確認が可能です。<br>以下は確認のためのサンプル クエリおよびクエリ実行結果の例です。</p>
-<p>■ サンプル クエリ</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Heartbeat</span><br><span class="line">| where _ResourceId =~ &quot;&lt;VMResourceId&gt;&quot;</span><br><span class="line">| where Category == &quot;Azure Monitor Agent&quot;</span><br><span class="line">| where TimeGenerated &gt;= ago(100d)</span><br><span class="line">| summarize max(TimeGenerated) by _ResourceId, Category, Version</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>■ サンプル クエリの実行結果の例　　<br><img src="/blog/LogAnalytics/AMAAutoupgradeFAQ/Heartbeat-versions.png"></p>
-<br>
-
-<hr>
-<h3 id="Q-Azure-Monitor-エージェントの各バージョンの情報はどこで確認できますか。"><a href="#Q-Azure-Monitor-エージェントの各バージョンの情報はどこで確認できますか。" class="headerlink" title="Q. Azure Monitor エージェントの各バージョンの情報はどこで確認できますか。"></a>Q. Azure Monitor エージェントの各バージョンの情報はどこで確認できますか。</h3><hr>
-<p>Azure Monitor エージェントのバージョンのリリース情報は、以下弊社公開情報に記載されます。  </p>
-<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-extension-versions#version-details">Azure Monitor エージェント拡張機能のバージョン | バージョンの詳細</a>  </p>
-<br>
-
-<p>なお、上記サイトにリリース情報が記録されるタイミングと、新しいバージョンが実際に利用できるようになるタイミングは前後する可能性がございますため、恐れ入りますが、あらかじめご理解・ご了承ください。  </p>
-<br>
-
-<p>補足として、リージョンごとにデプロイされている Azure Monitor エージェント拡張機能のバージョンは、以下の PowerShell コマンドを実行することで確認が可能でございます。</p>
-<br>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Windows</span><br><span class="line">((Get-AzVMExtensionImage -Location &lt;region&gt; -PublisherName &quot;Microsoft.Azure.Monitor&quot; -Type &quot;AzureMonitorWindowsAgent&quot;).Version | Sort-Object -Property &#123; [Version]$_&#125;)</span><br><span class="line"></span><br><span class="line"># Linux</span><br><span class="line">((Get-AzVMExtensionImage -Location &lt;region&gt; -PublisherName &quot;Microsoft.Azure.Monitor&quot; -Type &quot;AzureMonitorLinuxAgent&quot;).Version | Sort-Object -Property &#123; [Version]$_&#125;)</span><br></pre></td></tr></table></figure>
-<p>※ <region> の箇所は、任意のリージョン名にご変更ください (japaneast など)。</p>
-<br>
-<br>
-
-<p>上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。<br>皆さんの疑問点が 1 つでも解消すれば幸いです。</p>
+<h2 id="4-まとめ"><a href="#4-まとめ" class="headerlink" title="4. まとめ"></a>4. まとめ</h2><p>本記事では、クエリ実行時のコストについてご案内いたしましたが、いかがでしたでしょうか。<br>Log Analytics ワークスペースのその他のコストについてはこれらの公開情報にてご案内しておりますので、合わせてご覧ください。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/cost-logs">Azure Monitor ログのコストの計算とオプション</a><br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToManageLogAnalyticsBilling/">Log Analytics ワークスペースのコスト増加の原因を分析しコスト削減を検討する</a></p>
+<p>最後までお読みいただきありがとうございました！</p>
 
       
       
@@ -297,10 +228,10 @@
     <footer class="article-footer">
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Agent/" rel="tag">Azure Monitor Agent</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" rel="tag">クエリ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E3%82%B3%E3%82%B9%E3%83%88/" rel="tag">コスト</a></li></ul>
 
         
-        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/AMAAutoupgradeFAQ.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/LogAnalytics/LogAnalyticsQueryPricing.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
         
     </footer>
   </div>
@@ -308,19 +239,10 @@
     
 <nav id="article-nav">
   
-    <a href="../../AzureMonitorEssential/SecurityAdvisoriesElevatedAccess/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">次の記事</strong>
-      <div class="article-nav-title">
-        
-          Action required: Ensure the right people can access security advisories in Azure Service Health  について
-        
-      </div>
-    </a>
   
-  
-    <a href="../../applicationInsights/upcomingTlsChangesForAppInsights/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../../AzureMonitorEssential/HowToCreateAlertRuleSR/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前の記事</strong>
-      <div class="article-nav-title">Application Insights の TLS に関する変更のご案内</div>
+      <div class="article-nav-title">Azure Monitor のアラート ルールが発報した原因調査に関するお問い合わせを発行いただく前の確認ポイント</div>
     </a>
   
 </nav>
@@ -339,7 +261,7 @@
       <ul>
         
           <li>
-            <a href="../LogAnalyticsQueryPricing/">Log Analytics のクエリの実行コストについて</a>
+            <a href="">Log Analytics のクエリの実行コストについて</a>
           </li>
         
           <li>
