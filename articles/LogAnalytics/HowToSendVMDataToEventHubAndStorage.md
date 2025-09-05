@@ -77,7 +77,7 @@ AMA が Event Hub やストレージ アカウントにデータを送信する�
 <br>
 1-4. [メンバー] タブに移動し、"アクセスの割り当て先" に "マネージド ID" を選択し、その下の [メンバーの追加] を押下します。
 <br>
-1-5. 右ペインに "マネージド ID の選択" が表示されるため、ここで、ログ収集対象の VM (に割り当てられているマネージド ID) を選択し、[選択] を押下します。
+1-5. 右ペインに "マネージド ID の選択" が表示されるため、ここで、ログ収集対象の VM に割り当てられているマネージド ID を選択し、[選択] を押下します。
 
 ![](./HowToSendVMDataToEventHubAndStorage/roleassignment-selectmanagedid.png)
 
@@ -151,34 +151,43 @@ Get-AzVMExtension `
 認証情報が追加されていない場合は、ログ収集元の VM が使用しているマネージド ID の種類に合わせ、認証情報を設定してください。  
 例として、以下の Azure PowerShell コマンドのように SettingString パラメーターを指定し、認証情報を追加することができます。
 
-**ユーザー割り当てマネージド ID を使用する場合**
+**ユーザー割り当てマネージド ID を使用する場合 (Windows)**
 
 ```
 Set-AzVMExtension `
 -Name AzureMonitorWindowsAgent `
 -ExtensionType AzureMonitorWindowsAgent `
 -Publisher Microsoft.Azure.Monitor `
--ResourceGroupName <resource-group-name> `
--VMName <virtual-machine-name> `
--Location <location> `
--TypeHandlerVersion <version-number> `
--EnableAutomaticUpgrade $true
+-ResourceGroupName <リソース グループ名> `
+-VMName <VM 名> `
+-Location <リージョン名> `
+-TypeHandlerVersion <バージョン> `
+-EnableAutomaticUpgrade $true `
 -SettingString '{"authentication": {"managedIdentity": {"identifier-name": "mi_res_id", "identifier-value": "<ユーザー割り当てマネージド ID のリソース ID>"}}}'
 ```
 
-**システム割り当てマネージド ID を使用する場合**
+**システム割り当てマネージド ID を使用する場合 (Windows)**
 ```
 Set-AzVMExtension `
 -Name AzureMonitorWindowsAgent `
 -ExtensionType AzureMonitorWindowsAgent `
 -Publisher Microsoft.Azure.Monitor `
--ResourceGroupName <resource-group-name> `
--VMName <virtual-machine-name> `
--Location <location> `
--TypeHandlerVersion <version-number> `
--EnableAutomaticUpgrade $true
+-ResourceGroupName <リソース グループ名> `
+-VMName <VM 名> `
+-Location <リージョン名> `
+-TypeHandlerVersion <バージョン> `
+-EnableAutomaticUpgrade $true `
 -SettingString '{"authentication": {"managedIdentity": {"identifier-name": "client_id", "identifier-value": "<アプリケーション ID>"}}}'
 ```
+
+<br>
+
+※ Linux の場合は、`-Name AzureMonitorLinuxAgent`, `-ExtensionType AzureMonitorLinuxAgent` とご変更ください。
+※ 上記コマンドの <ユーザー割り当てマネージド ID のリソース ID> は、Azure portal で対象のユーザー割り当てマネージド ID を開き、[概要] ページ右上の [JSON ビュー] の "リソース ID" よりご確認いただけます。  
+こちらの点については以下弊社公開情報も併せてご参照ください。
+- サブスクリプション ID とリソース ID の確認について  
+https://jpaztech.github.io/blog/information/Subscription-ID-verification/
+
 <br>
 
 ※ 上記コマンドの <アプリケーション ID> の箇所は、以下の方法で確認可能です。
@@ -243,7 +252,7 @@ Azure Monitor エージェントの認証情報の設定が完了したら、以
 以下サンプルのような ARM テンプレートをデプロイすることで、DCR と VM の関連付けと、VM への Azure Monitor エージェントのインストールを両方行うことができます。  
 サンプルのテンプレートとなるため、内容についてはご要件に合わせて適宜変更ください。
 
-**ユーザー割り当てマネージド ID を使用する場合**
+**ユーザー割り当てマネージド ID を使用する場合**  
 **- Windows の場合**
 ```json
 {
@@ -394,7 +403,7 @@ Azure Monitor エージェントの認証情報の設定が完了したら、以
 }
 ```
 
-**システム割り当てマネージド ID を使用する場合**
+**システム割り当てマネージド ID を使用する場合**  
 **- Windows の場合**
 ```json
 {
