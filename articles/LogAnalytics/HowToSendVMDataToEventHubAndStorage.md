@@ -3,10 +3,7 @@ title: AMA を使用して VM のデータを Event Hub とストレージ ア�
 date: 2025-08-26 00:00:00
 tags:
   - Azure Monitor Agent
-  - Event Hub
-  - Storage Account
   - Data Collection Rules
-  - Virtual Machine
 ---
 
 こんにちは、Azure Monitoring チームの徳田です。  
@@ -18,18 +15,15 @@ tags:
 - [概要](#概要)
 - [前提条件](#前提条件)
 - [手順](#手順)
-  - [1. VM のマネージド ID への必要なロールの割り当て](#1-vm-のマネージド-id-への必要なロールの割り当て)
+  - [1. VM のマネージド ID への必要なロールの割り当て](#1-VM-のマネージド-ID-への必要なロールの割り当て)
     - [必要なロールの確認](#必要なロールの確認)
     - [ロールの割り当て手順](#ロールの割り当て手順)
-  - [2. Data Collection Rules (DCR) の作成](#2-data-collection-rules-dcr-の作成)
-    - [ARM テンプレート例](#arm-テンプレート例)
-  - [3. VM と DCR の関連付け](#3-vm-と-dcr-の関連付け)
-    - [3-1. AMA インストール済みの場合](#3-1-ama-インストール済みの場合)
-    - [3-2. AMA 未インストールの場合](#3-2-ama-未インストールの場合)
-- [注意事項](#注意事項)
+  - [2. データ収集ルール (DCR) の作成](#2-データ収集ルール-DCR-の作成)
+  - [3. VM と DCR の関連付け](#3-VM-と-DCR-の関連付け)
+    - [3-a. AMA インストール済みの場合](#3-a-AMA-インストール済みの場合)
+    - [3-b. AMA 未インストールの場合](#3-b-AMA-未インストールの場合)
 - [トラブルシューティング](#トラブルシューティング)
 - [まとめ](#まとめ)
-- [参考資料](#参考資料)
 
 ## 概要
 
@@ -97,7 +91,7 @@ AMA が Event Hub やストレージ アカウントにデータを送信する�
 <br>
 <br>
 
-### 2. Data Collection Rules (DCR) の作成
+### 2. データ収集ルール (DCR) の作成
 
 DCR で、どのデータをどこに送信するかを定義します。  
 2025 年 9 月段階では、当該機能を使用するための DCR は ARM テンプレートからのみ作成可能です。
@@ -105,9 +99,8 @@ DCR で、どのデータをどこに送信するかを定義します。
 > [!IMPORTANT]
 > 既存の DCR (Log Analytics ワークスペースや Azure Monitor Metrics に収集するための DCR) と、当該機能を利用するための DCR は分けてご用意ください。
 
-#### ARM テンプレート例
 以下弊社公開情報にて、Windows および Linux 用の ARM テンプレートのサンプルをご紹介しております。  
-こちらをもとに、収集したいログの種類および宛先のご要件に合わせて修正してください。  
+こちらをもとに、収集したいログの種類および宛先のご要件に合わせて修正し、ARM テンプレートをデプロイしてください。  
 
 <br>
 
@@ -126,14 +119,15 @@ DCR で、どのデータをどこに送信するかを定義します。
 作成した DCR と VM を関連付けます。  
 VM の AMA インストール状況 (インストール済みか否か) とマネージド ID の種類に応じて必要な手順をご紹介します。
 
-#### 3-1. AMA インストール済みの場合
-以下の ARM テンプレートをデプロイすることで関連付けを行うことができます。
-
+#### 3-a. AMA インストール済みの場合
+以下の順番で進めてください。
+- Azure Monitor エージェントの認証設定
+- データ収集ルール (DCR) と VM の関連付けのデプロイ
 
 #### Azure Monitor エージェントの認証設定
 
-Azure Monitor エージェントに認証情報が設定されている必要があります。  
-現在の設定は、Azure portal でエージェントがインストールされている VM を開き、[概要] > [JSON ビュー] で確認することができます。
+はじめに、Azure Monitor エージェントに認証情報が設定されている必要があります。  
+現在の設定状況は、Azure portal でエージェントがインストールされている VM を開き、[概要] > [JSON ビュー] で確認することができます。
 
 (ユーザー割り当てマネージド ID での認証設定が行われている場合の例)
 ![](./HowToSendVMDataToEventHubAndStorage/check-AMAinfo-portal-uai.png)
@@ -202,7 +196,8 @@ Set-AzVMExtension `
 
 #### データ収集ルール (DCR) と VM の関連付けのデプロイ
 
-以下のサンプルの ARM テンプレートを参照し、DCR と VM の関連付けをデプロイしてください。
+Azure Monitor エージェントの認証情報の設定が完了したら、以下のサンプルの ARM テンプレートを参照し、DCR と VM の関連付けをデプロイしてください。
+サンプルのテンプレートとなるため、内容についてはご要件に合わせて適宜変更ください。
 
 **サンプル ARM テンプレート**
 ```json
@@ -243,13 +238,13 @@ Set-AzVMExtension `
 }
 ```
 
-#### 3-2. AMA 未インストールの場合  
+#### 3-b. AMA 未インストールの場合  
 
-以下の ARM テンプレートをデプロイすることで、DCR と VM の関連付けと、VM への Azure Monitor エージェントのインストールを両方行うことができます。  
-なお、デプロイの前に、VM にユーザー割り当てマネージド ID もしくはシステム割り当てマネージド ID が割り当てられていることをご確認ください。
+以下サンプルのような ARM テンプレートをデプロイすることで、DCR と VM の関連付けと、VM への Azure Monitor エージェントのインストールを両方行うことができます。  
+サンプルのテンプレートとなるため、内容についてはご要件に合わせて適宜変更ください。
 
 **ユーザー割り当てマネージド ID を使用する場合**
-
+**- Windows の場合**
 ```json
 {
 "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -299,7 +294,7 @@ Set-AzVMExtension `
     },
     {
     "type": "Microsoft.Compute/virtualMachines/extensions",
-    "name": "[concat(parameters('vmName'), '/AMAExtension')]",
+    "name": "[concat(parameters('vmName'), '/AzureMonitorWindowsAgent')]",
     "apiVersion": "2020-06-01",
     "location": "[parameters('location')]",
     "dependsOn": [
@@ -324,8 +319,83 @@ Set-AzVMExtension `
 }
 ```
 
-**システム割り当てマネージド ID を使用する場合**
+**- Linux の場合**
+```json
+{
+"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+"contentVersion": "1.0.0.0",
+"parameters": {
+    "vmName": {
+    "defaultValue": "[concat(resourceGroup().name, 'vm')]",
+    "type": "String"
+    },
+    "location": {
+    "type": "string",
+    "defaultValue": "[resourceGroup().location]",
+    "metadata": {
+        "description": "Location for all resources."
+    }
+    },
+    "dataCollectionRulesName": {
+    "defaultValue": "[concat(resourceGroup().name, 'DCR')]",
+    "type": "String",
+    "metadata": {
+        "description": "Data Collection Rule Name"
+    }
+    },
+    "dcraName": {
+    "type": "string",
+    "defaultValue": "[concat(uniquestring(resourceGroup().id), 'DCRLink')]",
+    "metadata": {
+        "description": "Name of the association."
+    }
+    },
+    "identityName": {
+    "type": "string",
+    "metadata": {
+        "description": "Name of User-assigned Managed Identity"
+    }
+    }
+},
+"resources": [
+    {
+    "type": "Microsoft.Compute/virtualMachines/providers/dataCollectionRuleAssociations",
+    "name": "[concat(parameters('vmName'),'/microsoft.insights/', parameters('dcraName'))]",
+    "apiVersion": "2021-04-01",
+    "properties": {
+        "description": "Association of data collection rule. Deleting this association will break the data collection for this virtual machine.",
+        "dataCollectionRuleId": "[resourceID('Microsoft.Insights/dataCollectionRules',parameters('dataCollectionRulesName'))]"
+    }
+    },
+    {
+    "type": "Microsoft.Compute/virtualMachines/extensions",
+    "name": "[concat(parameters('vmName'), '/AzureMonitorLinuxAgent')]",
+    "apiVersion": "2020-06-01",
+    "location": "[parameters('location')]",
+    "dependsOn": [
+        "[resourceId('Microsoft.Compute/virtualMachines/providers/dataCollectionRuleAssociations', parameters('vmName'), 'Microsoft.Insights', parameters('dcraName'))]"
+    ],
+    "properties": {
+        "publisher": "Microsoft.Azure.Monitor",
+        "type": "AzureMonitorLinuxAgent",
+        "typeHandlerVersion": "1.0",
+        "autoUpgradeMinorVersion": true,
+        "settings": {
+        "authentication": {
+            "managedIdentity": {
+            "identifier-name": "mi_res_id",
+            "identifier-value": "[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/',parameters('identityName'))]"
+            }
+        }
+        }
+    }
+    }
+]
+}
+```
 
+**システム割り当てマネージド ID を使用する場合**
+**- Windows の場合**
 ```json
 {
 "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -375,7 +445,7 @@ Set-AzVMExtension `
     },
     {
     "type": "Microsoft.Compute/virtualMachines/extensions",
-    "name": "[concat(parameters('vmName'), '/AMAExtension')]",
+    "name": "[concat(parameters('vmName'), '/AzureMonitorWindowsAgent')]",
     "apiVersion": "2020-06-01",
     "location": "[parameters('location')]",
     "dependsOn": [
@@ -400,28 +470,104 @@ Set-AzVMExtension `
 }
 ```
 
-## 注意事項
-
-<--料金や制限事項について-->
+**- Linux の場合**
+```json
+{
+"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+"contentVersion": "1.0.0.0",
+"parameters": {
+    "vmName": {
+    "defaultValue": "[concat(resourceGroup().name, 'vm')]",
+    "type": "String"
+    },
+    "location": {
+    "type": "string",
+    "defaultValue": "[resourceGroup().location]",
+    "metadata": {
+        "description": "Location for all resources."
+    }
+    },
+    "dataCollectionRulesName": {
+    "defaultValue": "[concat(resourceGroup().name, 'DCR')]",
+    "type": "String",
+    "metadata": {
+        "description": "Data Collection Rule Name"
+    }
+    },
+    "dcraName": {
+    "type": "string",
+    "defaultValue": "[concat(uniquestring(resourceGroup().id), 'DCRLink')]",
+    "metadata": {
+        "description": "Name of the association."
+    }
+    },
+    "applicationId": {
+    "type": "string",
+    "metadata": {
+        "description": "System Assigned Managed Identity"
+    }
+    }
+},
+"resources": [
+    {
+    "type": "Microsoft.Compute/virtualMachines/providers/dataCollectionRuleAssociations",
+    "name": "[concat(parameters('vmName'),'/microsoft.insights/', parameters('dcraName'))]",
+    "apiVersion": "2021-04-01",
+    "properties": {
+        "description": "Association of data collection rule. Deleting this association will break the data collection for this virtual machine.",
+        "dataCollectionRuleId": "[resourceID('Microsoft.Insights/dataCollectionRules',parameters('dataCollectionRulesName'))]"
+    }
+    },
+    {
+    "type": "Microsoft.Compute/virtualMachines/extensions",
+    "name": "[concat(parameters('vmName'), '/AzureMonitorLinuxAgent')]",
+    "apiVersion": "2020-06-01",
+    "location": "[parameters('location')]",
+    "dependsOn": [
+        "[resourceId('Microsoft.Compute/virtualMachines/providers/dataCollectionRuleAssociations', parameters('vmName'), 'Microsoft.Insights', parameters('dcraName'))]"
+    ],
+    "properties": {
+        "publisher": "Microsoft.Azure.Monitor",
+        "type": "AzureMonitorLinuxAgent",
+        "typeHandlerVersion": "1.0",
+        "autoUpgradeMinorVersion": true,
+        "settings": {
+        "authentication": {
+            "managedIdentity": {
+            "identifier-name": "client_id",
+            "identifier-value": "parameters('applicationId')"
+            }
+        }
+        }
+    }
+    }
+]
+}
+```
 
 ## トラブルシューティング
 当該機能によるログ収集が行われない場合のよくある要因は以下です。  
 もしログ収集が行われない場合、まずは以下の状況に当てはまらないかをご確認ください。
 
 **適切なロールがマネージド ID に付与されていない**  
-[1. VM のマネージド ID への必要なロールの割り当て](#1-vm-のマネージド-id-への必要なロールの割り当て) に記載の通り、VM のマネージド ID に、宛先に応じたロールを付与する必要があります。  
+[1. VM のマネージド ID への必要なロールの割り当て](#1-VM-のマネージド-ID-への必要なロールの割り当て) に記載の通り、VM のマネージド ID に、宛先に応じたロールを付与する必要があります。  
 付与されているかどうかは、宛先リソースを Azure portal で開き、[アクセス制御 (IAM)] より、[ロールの割り当て] タブで確認することが可能です。
 
 (ストレージ アカウントのロールの割り当て一覧の例)
 ![](./HowToSendVMDataToEventHubAndStorage/list-roleassignment.png)
 
-必要なロールがマネージド ID に割り当てられていなかった場合は、[1. VM のマネージド ID への必要なロールの割り当て](#1-vm-のマネージド-id-への必要なロールの割り当て) を参照の上、ロールの割り当てを行ってください。  
+必要なロールがマネージド ID に割り当てられていなかった場合は、[1. VM のマネージド ID への必要なロールの割り当て](#1-VM-のマネージド-ID-への必要なロールの割り当て) を参照の上、ロールの割り当てを行ってください。  
 
 <br>
 
 **Azure Monitor エージェントに認証設定が行われていない**  
 Azure Monitor エージェントに認証設定が追加されていない場合、ログを送信することができません。  
 [Azure Monitor エージェントの認証設定](#azure-monitor-エージェントの認証設定) を参照の上、認証設定されているかの確認、およびされていない場合は設定の追加を実施してください。
+
+**ログの収集が開始していない/ログが出力されていない**
+必要な手順の実施が完了してから、実際にエージェントから各種宛先にログが収集されるまでに多少の時差が生じます。
+念のため、手順から 30 分 ~ 1 時間ほどお待ちいただいた上でログの収集状況をご確認ください。
+また、カスタム ログや Windows イベント ログなど、定期的に出力されないログについては、出力元で収集対象のログが出力されているかをご確認ください。
 
 ## まとめ
 Azure Monitor Agent (AMA) を使用し、従来の WAD/LAD に代わって VM のデータをEvent Hub や Storage Account に送信する方法についてご紹介しました。  
