@@ -182,13 +182,10 @@ Set-AzVMExtension `
 
 <br>
 
-※ Linux の場合は、`-Name AzureMonitorLinuxAgent`, `-ExtensionType AzureMonitorLinuxAgent` とご変更ください。
+※ Linux の場合は、`-Name AzureMonitorLinuxAgent`, `-ExtensionType AzureMonitorLinuxAgent` とご変更ください。  
 ※ 上記コマンドの <ユーザー割り当てマネージド ID のリソース ID> は、Azure portal で対象のユーザー割り当てマネージド ID を開き、[概要] ページ右上の [JSON ビュー] の "リソース ID" よりご確認いただけます。  
 こちらの点については以下弊社公開情報も併せてご参照ください。
-- サブスクリプション ID とリソース ID の確認について  
-https://jpaztech.github.io/blog/information/Subscription-ID-verification/
-
-<br>
+[サブスクリプション ID とリソース ID の確認について](https://jpaztech.github.io/blog/information/Subscription-ID-verification/)
 
 ※ 上記コマンドの <アプリケーション ID> の箇所は、以下の方法で確認可能です。
 
@@ -246,6 +243,8 @@ Azure Monitor エージェントの認証情報の設定が完了したら、以
 ]
 }
 ```
+
+<br>
 
 #### 3-b. AMA 未インストールの場合  
 
@@ -573,10 +572,12 @@ Azure Monitor エージェントの認証情報の設定が完了したら、以
 Azure Monitor エージェントに認証設定が追加されていない場合、ログを送信することができません。  
 [Azure Monitor エージェントの認証設定](#azure-monitor-エージェントの認証設定) を参照の上、認証設定されているかの確認、およびされていない場合は設定の追加を実施してください。
 
-**ログの収集が開始していない/ログが出力されていない**
+**ログの収集が開始していない/ログが出力されていない**  
 必要な手順の実施が完了してから、実際にエージェントから各種宛先にログが収集されるまでに多少の時差が生じます。
 念のため、手順から 30 分 ~ 1 時間ほどお待ちいただいた上でログの収集状況をご確認ください。
 また、カスタム ログや Windows イベント ログなど、定期的に出力されないログについては、出力元で収集対象のログが出力されているかをご確認ください。
+
+<br>
 
 ## まとめ
 Azure Monitor Agent (AMA) を使用し、従来の WAD/LAD に代わって VM のデータをEvent Hub や Storage Account に送信する方法についてご紹介しました。  
