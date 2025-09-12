@@ -170,14 +170,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutDifferentTypesOfAi/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutPrivateAvailabilityTest/</loc>
     
     <lastmod>2025-09-12</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutPrivateAvailabilityTest/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutDifferentTypesOfAi/</loc>
     
     <lastmod>2025-09-12</lastmod>
     
@@ -254,14 +254,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/TroubleshootingAMALogIngestion/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/SystemLanguageNotEnglishNoPython2Bug/</loc>
     
     <lastmod>2025-09-12</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/SystemLanguageNotEnglishNoPython2Bug/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/TroubleshootingAMALogIngestion/</loc>
     
     <lastmod>2025-09-12</lastmod>
     
@@ -436,14 +436,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/DataCollectionEndpoint/</loc>
     
     <lastmod>2025-09-12</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/DataCollectionEndpoint/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/</loc>
     
     <lastmod>2025-09-12</lastmod>
     
@@ -464,14 +464,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AccessControlMode/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/ActivityLogsInsights/</loc>
     
     <lastmod>2025-09-12</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/ActivityLogsInsights/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AccessControlMode/</loc>
     
     <lastmod>2025-09-12</lastmod>
     
@@ -563,6 +563,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogAlert_NewEmailTemplate_2024/</loc>
+    
+    <lastmod>2025-09-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogAlert_ManagedId/</loc>
     
     <lastmod>2025-09-12</lastmod>
     
