@@ -1,6 +1,6 @@
 ---
 title: ログ検索アラートのマネージド ID について
-date: 2025-09-10 16:00:00
+date: 2025-09-12 16:00:00
 tags:
   - How-To
   - Azure Monitor Essentials
@@ -207,3 +207,4 @@ https://learn.microsoft.com/ja-jp/azure/governance/resource-graph/alerts-query-q
 
 
 最後までお読みいただきありがとうございました。
+
