@@ -1,6 +1,6 @@
 ---
 title: AMA を使用して VM のデータを Event Hub とストレージ アカウントに送信する方法
-date: 2025-08-26 00:00:00
+date: 2025-09-12 00:00:00
 tags:
   - Azure Monitor Agent
   - Data Collection Rules
@@ -10,6 +10,8 @@ tags:
 本記事では、Azure Monitor Agent (AMA) を使用することで、仮想マシン (VM) から収集したデータを Event Hub やストレージ アカウントに直接データを送信する方法についてご紹介します。
 
 [仮想マシン クライアント データを Event Hubs と Storage に送信する (プレビュー)](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/send-event-hubs-storage?tabs=windows%2Cwindows-1)
+
+<!-- more -->
 
 ## 目次
 - [概要](#概要)
