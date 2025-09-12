@@ -142,7 +142,7 @@ VM の AMA インストール状況 (インストール済みか否か) とマ�
 Get-AzVMExtension `
 -ResourceGroupName <リソース グループ名> `
 -VMName <VM 名> `
--Name "<拡張機能名>" # AzureMonitorWindowsAgent や AzureMonitorWindowsAgent
+-Name "<拡張機能名>" # AzureMonitorWindowsAgent や AzureMonitorLinuxAgent
 ```
 
 (ユーザー割り当てマネージド ID での認証設定が行われている場合の例)
