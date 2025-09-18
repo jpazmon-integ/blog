@@ -234,6 +234,10 @@ insights-logs-{log category name}/resourceId=/SUBSCRIPTIONS/{subscription ID}/RE
 <img width="650" src="../MonitorDiagnosticsSettingFAQ/image07.png">
 
 
+> [!IMPORTANT]
+> リソースによっては resourceid や resourceId のように、大文字・小文字の表記が異なる場合がございます。[Azure Storage ライフサイクル管理](https://learn.microsoft.com/ja-jp/azure/azure-monitor/platform/migrate-to-azure-storage-lifecycle-policy?tabs=portal) のルールで設定する Blob prefix は[大文字・小文字を区別します](https://learn.microsoft.com/ja-jp/azure/storage/blobs/storage-blob-faq#blob---------------------blob---------------)。ライフサイクル管理を使用する場合に、フィルターとして当該データの格納先のパスを指定する場合は、実際の BLOB のパスをご確認の上指定いただきますようお願いいたします。
+
+
 <br>
 
 
