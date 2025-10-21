@@ -10,12 +10,12 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは、Azure Monitoring サポート チームの北村です。今回は Azure Monitor のアラートに関するよくあるご質問をご紹介します。リソース正常性アラートやサービス正常性アラートについては、別途ブログを投稿しておりますので併せてご覧いただけますと幸いです！">
+      <meta name="description" content="[更新履歴]  2025&#x2F;01&#x2F;29 : ブログ公開 2025&#x2F;10&#x2F;21 : アラートの重複と検知漏れに関する情報を追記  こんにちは、Azure Monitoring サポート チームの北村です。今回は Azure Monitor のアラートに関するよくあるご質問をご紹介します。リソース正常性アラートやサービス正常性アラートについては、別途ブログを投稿しておりますので併せてご覧いただけますと幸">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Azure Monitor のアラートに関するよくあるご質問">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの北村です。今回は Azure Monitor のアラートに関するよくあるご質問をご紹介します。リソース正常性アラートやサービス正常性アラートについては、別途ブログを投稿しておりますので併せてご覧いただけますと幸いです！">
+<meta property="og:description" content="[更新履歴]  2025&#x2F;01&#x2F;29 : ブログ公開 2025&#x2F;10&#x2F;21 : アラートの重複と検知漏れに関する情報を追記  こんにちは、Azure Monitoring サポート チームの北村です。今回は Azure Monitor のアラートに関するよくあるご質問をご紹介します。リソース正常性アラートやサービス正常性アラートについては、別途ブログを投稿しておりますので併せてご覧いただけますと幸">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image04.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image05.png">
@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image13.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image20.png">
 <meta property="article:published_time" content="2025-01-28T15:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-19T07:56:54.350Z">
+<meta property="article:modified_time" content="2025-10-21T07:47:36.317Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="How-To">
 <meta property="article:tag" content="Azure Monitor Essentials">
@@ -145,17 +145,23 @@
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+32f328b8-12cf-5a80-a754-c9868b6b656d%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Monitor+%E3%81%AE%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E3%81%94%E8%B3%AA%E5%95%8F%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FMonitorAlertFAQ%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FMonitorAlertFAQ.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FMonitorAlertFAQ.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/" data-id="cmfqjqm7k00fv0nmuev6la2vy" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/" data-id="cmh09hwxw00fv0no63gpdasr9" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回は Azure Monitor のアラートに関するよくあるご質問をご紹介します。<br><a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ResourceHealthAlert/">リソース正常性アラート</a>や<a href="https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/">サービス正常性アラート</a>については、別途ブログを投稿しておりますので併せてご覧いただけますと幸いです！</p>
+        <p>[更新履歴]</p>
+<ul>
+<li>2025/01/29 : ブログ公開</li>
+<li>2025/10/21 : アラートの重複と検知漏れに関する情報を追記</li>
+</ul>
+<p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回は Azure Monitor のアラートに関するよくあるご質問をご紹介します。<br><a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ResourceHealthAlert/">リソース正常性アラート</a>や<a href="https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/">サービス正常性アラート</a>については、別途ブログを投稿しておりますので併せてご覧いただけますと幸いです！</p>
 <br>
 
 <span id="more"></span>
 <h4 id="lt-メトリック-アラート-ルール-gt"><a href="#lt-メトリック-アラート-ルール-gt" class="headerlink" title="&lt;メトリック アラート ルール&gt;"></a>&lt;メトリック アラート ルール&gt;</h4><ul>
 <li><a href="#Q-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E9%A0%85%E7%9B%AE%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. メトリック アラート ルールの設定項目を教えてください。</a></li>
+<li><a href="#Q-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%81%AB%E3%81%A6-%5B%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E9%96%93%E9%9A%94%5D-%E3%81%A8-%5B%E3%83%AB%E3%83%83%E3%82%AF%E3%83%90%E3%83%83%E3%82%AF%E6%9C%9F%E9%96%93%5D-%E3%81%AF%E3%81%A9%E3%81%AE%E3%82%88%E3%81%86%E3%81%AB%E9%81%B8%E3%81%B6%E3%81%AE%E3%81%8C%E8%89%AF%E3%81%84%E3%81%A7%E3%81%99%E3%81%8B%EF%BC%9F">Q. メトリック アラート ルールの設定にて [確認する間隔] と [ルックバック期間] はどのように選ぶのが良いですか？</a></li>
 <li><a href="#Q-%E9%9D%99%E7%9A%84%E3%81%97%E3%81%8D%E3%81%84%E5%80%A4%E3%81%AE%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%A7%E3%80%812-%E5%9B%9E%E9%80%A3%E7%B6%9A%E3%81%A7%E3%81%97%E3%81%8D%E3%81%84%E5%80%A4%E3%82%92%E6%BA%80%E3%81%9F%E3%81%97%E3%81%9F%E6%99%82%E3%81%AB%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%82%92%E7%99%BA%E5%A0%B1%E3%81%95%E3%81%9B%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. 静的しきい値のメトリック アラート ルールで、2 回連続でしきい値を満たした時にアラートを発報させることはできますか。</a></li>
 <li><a href="#Q-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%8C%E5%AE%9F%E8%A1%8C%E3%81%95%E3%82%8C%E3%82%8B%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. メトリック アラート ルールが実行されるタイミングを指定することはできますか。</a></li>
 <li><a href="#Q-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%A7%E6%99%82%E9%96%93%E5%B8%AF%E3%81%AB%E3%82%88%E3%81%A3%E3%81%A6%E6%9D%A1%E4%BB%B6%E3%82%92%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. メトリック アラート ルールで時間帯によって条件を変更することはできますか。</a></li>
@@ -168,6 +174,7 @@
 
 <h4 id="lt-ログ-アラート-ルール-gt"><a href="#lt-ログ-アラート-ルール-gt" class="headerlink" title="&lt;ログ アラート ルール&gt;"></a>&lt;ログ アラート ルール&gt;</h4><ul>
 <li><a href="#Q-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E9%A0%85%E7%9B%AE%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Q. ログ アラート ルールの設定項目を教えてください。</a></li>
+<li><a href="#Q.-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%81%AB%E3%81%A6-%5B%E8%A9%95%E4%BE%A1%E3%81%AE%E9%A0%BB%E5%BA%A6%5D-%E3%81%A8-%5B%E9%9B%86%E8%A8%88%E3%81%AE%E7%B2%92%E5%BA%A6%5D-%E3%81%AF%E3%81%A9%E3%81%AE%E3%82%88%E3%81%86%E3%81%AB%E9%81%B8%E3%81%B6%E3%81%AE%E3%81%8C%E8%89%AF%E3%81%84%E3%81%A7%E3%81%99%E3%81%8B%EF%BC%9F">Q. ログ アラート ルールの設定にて [評価の頻度] と [集計の粒度] はどのように選ぶのが良いですか？</a></li>
 <li><a href="#Q-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%8C%E5%AE%9F%E8%A1%8C%E3%81%95%E3%82%8C%E3%82%8B%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. ログ アラート ルールが実行されるタイミングを指定することはできますか。</a></li>
 <li><a href="#Q-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E3%83%87%E3%82%A3%E3%83%A1%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%B3%E5%80%A4%E3%81%AE%E3%83%89%E3%83%AD%E3%83%83%E3%83%97-%E3%83%80%E3%82%A6%E3%83%B3%E3%81%AB%E5%80%A4%E3%81%8C%E8%A1%A8%E7%A4%BA%E3%81%95%E3%82%8C%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82">Q  ログ アラート ルールのディメンション値のドロップダウンに値が表示されません。</a></li>
 <li><a href="#Q-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%A7%E3%83%87%E3%82%A3%E3%83%A1%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%97%E3%80%81%E5%90%84%E3%83%87%E3%82%A3%E3%83%A1%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%AD%E3%82%B0%E3%81%8C-0-%E4%BB%B6%E3%81%AE%E3%81%A8%E3%81%8D%E3%81%AB%E7%99%BA%E5%A0%B1%E3%81%99%E3%82%8B%E3%83%AB%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E6%88%90%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82%E7%89%B9%E5%AE%9A%E3%81%AE%E3%83%87%E3%82%A3%E3%83%A1%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E5%90%AB%E3%82%80%E3%83%AD%E3%82%B0%E3%81%AE%E5%87%BA%E5%8A%9B%E3%82%92%E5%81%9C%E6%AD%A2%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%E3%81%8C%E3%80%81%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%8C%E7%99%BA%E5%A0%B1%E3%81%97%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82">Q. ログ アラート ルールでディメンションを設定し、各ディメンションのログが 0 件のときに発報するルールを作成しました。特定のディメンションを含むログの出力を停止しましたが、アラートが発報しません。</a></li>
@@ -307,7 +314,11 @@
 <br>
 <br>
 
-
+<h3 id="Q-メトリック-アラート-ルールの設定にて-確認する間隔-と-ルックバック期間-はどのように選ぶのが良いですか？"><a href="#Q-メトリック-アラート-ルールの設定にて-確認する間隔-と-ルックバック期間-はどのように選ぶのが良いですか？" class="headerlink" title="Q. メトリック アラート ルールの設定にて [確認する間隔] と [ルックバック期間] はどのように選ぶのが良いですか？"></a>Q. メトリック アラート ルールの設定にて [確認する間隔] と [ルックバック期間] はどのように選ぶのが良いですか？</h3><p>[確認する間隔] と [ルックバック期間] を設定する際の注意点について説明します。</p>
+<p>“確認する間隔 == ルックバック期間” の設定の場合、メトリックが評価可能になるまでの遅延による影響を受ける可能性が高くなります。</p>
+<p>アラート ルールを設定する際には、監視の目的に応じて以下のように設定することをご検討ください。</p>
+<p>【漏れを防ぎたい (重複して検知を容認する) 】確認する間隔 &lt; ルックバック期間</p>
+<p>【重複検知を防ぎたい (検知漏れを容認する) 】 確認する間隔 == ルックバック期間<br><br><br><br></p>
 <h3 id="Q-静的しきい値のメトリック-アラート-ルールで、2-回連続でしきい値を満たした時にアラートを発報させることはできますか。"><a href="#Q-静的しきい値のメトリック-アラート-ルールで、2-回連続でしきい値を満たした時にアラートを発報させることはできますか。" class="headerlink" title="Q. 静的しきい値のメトリック アラート ルールで、2 回連続でしきい値を満たした時にアラートを発報させることはできますか。"></a>Q. 静的しきい値のメトリック アラート ルールで、2 回連続でしきい値を満たした時にアラートを発報させることはできますか。</h3><p>メトリック アラートでは「特定の条件を満たした状態が N 回継続したときに通知する」という設定ではできません。</p>
 <p>一方で、監視対象のメトリックが<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/metrics-index">プラットフォーム メトリック</a>であり、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings#metrics">Azure Monitor の診断設定</a>でメトリックを Log Analytics ワークスペースに転送できる場合には、ログ アラート ルールにてご要件を満たす設定が実現できる可能性があります。</p>
 <p>ログ アラート ルールの場合は [違反の数] を利用することで、特定の条件を満たした状態が N 回継続したときに通知することが可能です。大まかな設定手順は以下の通りです。</p>
@@ -454,7 +465,11 @@
 
 
 
-
+<h3 id="Q-ログ-アラート-ルールの設定にて-評価の頻度-と-集計の粒度-はどのように選ぶのが良いですか？"><a href="#Q-ログ-アラート-ルールの設定にて-評価の頻度-と-集計の粒度-はどのように選ぶのが良いですか？" class="headerlink" title="Q. ログ アラート ルールの設定にて [評価の頻度] と [集計の粒度] はどのように選ぶのが良いですか？"></a>Q. ログ アラート ルールの設定にて [評価の頻度] と [集計の粒度] はどのように選ぶのが良いですか？</h3><p>[評価の頻度] と [集計の粒度] を設定する際の注意点について説明します。<br>Log Analytics ワークスペースに収集されるデータは、収集遅延や待機時間が発生いたします。<br>このログ取り込みにかかる<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-ingestion-time#average-latency">平均待機時間は一般的には 20 秒から 3 分です</a>が、システムの負荷状況などによりさらに遅延が発生する可能性があります。</p>
+<p>“評価の頻度 == 集計の粒度” の設定ですと、ログの取り込みにかかる時間や収集遅延による影響を受ける可能性がより高くなります。</p>
+<p>アラート ルールを設定する際には、監視の目的に応じて以下のように設定することをご検討ください。</p>
+<p>【漏れを防ぎたい (重複して検知を容認する) 】 評価の頻度 &lt; 集計の粒度</p>
+<p>【重複検知を防ぎたい (検知漏れを容認する) 】 評価の頻度 == 集計の粒度<br><br><br><br></p>
 <h3 id="Q-ログ-アラート-ルールが実行されるタイミングを指定することはできますか。"><a href="#Q-ログ-アラート-ルールが実行されるタイミングを指定することはできますか。" class="headerlink" title="Q. ログ アラート ルールが実行されるタイミングを指定することはできますか。"></a>Q. ログ アラート ルールが実行されるタイミングを指定することはできますか。</h3><p>Azure Monitor のアラート ルールでは、アラートが実行されるタイミングを指定することはできません。<br>アラート ルールが作成された時点から指定された &quot;評価の頻度&quot; のタイミングでアラート ルールが実行されるとご認識ください。</p>
 <br>
 <br>
