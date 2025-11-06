@@ -38,9 +38,11 @@ root_tag_generator:
   
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://jpazmon-integ.github.io/blog/
+# url: https://jpazmon-integ.github.io/blog/
+url: https://minoguc.github.io/blog_monitor/
 github:
-  url: https://github.com/jpazmon-integ/blog/
+  #url: https://github.com/jpazmon-integ/blog/
+  url: https://github.com/minoguc/blog_monitor/
   posts_dir: articles
   show_additional_info: true
 
@@ -53,7 +55,8 @@ skip_render:
 ## Docs: https://hexo.io/doc  s/deployment.html
 deploy:
   type: git
-  repo: git@github.com:jpazmon-integ/blog.git
+  #repo: git@github.com:jpazmon-integ/blog.git
+  repo: git@github.com:minoguc/blog_monitor.git
   branch: gh-pages
   message: "Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }} [skip ci]"
 
