@@ -43,6 +43,7 @@ github:
   url: https://github.com/jpazmon-integ/blog/
   posts_dir: articles
   show_additional_info: true
+  icon_mode: false
 
 skip_render:
   - '_data/*.png'
