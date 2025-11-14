@@ -581,7 +581,7 @@ body {
 .article-share {
   color: #999;
   border-bottom: 1px solid #ddd;
-  height: 20px;
+  height: auto;
   margin: 0 20px 0;
 }
 .article-share a {

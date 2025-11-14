@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image13.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image20.png">
 <meta property="article:published_time" content="2025-01-28T15:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-11T02:09:47.431Z">
+<meta property="article:modified_time" content="2025-11-14T02:15:57.820Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="How-To">
 <meta property="article:tag" content="Azure Monitor Essentials">
@@ -143,10 +143,11 @@
   <time datetime="2025-01-28T15:00:00.000Z" itemprop="datePublished">2025-01-29</time>
 </a>
         
-          / Last update: <a id="update-time" class="article-date-single"></a>
-/ Contributors: <ul style="display: inline-block; list-style:none" id="contributors" class="github-contributors"> </ul>
+            
+                <!-- Published / Last update -->
+/ Last update: <a id="update-time" class="article-date-single"></a><br>
+Contributors: <ul style="display: inline-block; list-style:none" id="contributors" class="github-contributors"> </ul>
 
-<style>.github-contributors .contributor-avatar img { width:1.2em; height:1.2em; border-radius:50%; vertical-align:top; }</style>
 <script type="text/javascript">
   const sourceUrl = "https://github.com/jpazmon-integ/blog/blob/master/articles/AzureMonitorEssential/MonitorAlertFAQ.md";
   const urlParts = sourceUrl.split("/");
@@ -154,51 +155,48 @@
   const repo = urlParts[4];
   const filePath = urlParts.slice(7).join("/");
   const apiUrl = `https://api.github.com/repos/${user}/${repo}/commits?path=${filePath}`;
+
   function formatDate(date) {
     let year = date.getFullYear();
     let month = date.getMonth() + 1;
     let day = date.getDate();
-
-    if (month < 10) {
-      month = '0' + month;
-    }
-    if (day < 10) {
-      day = '0' + day;
-    }
-
-    return year + '-' + month + '-' + day;
+    if (month < 10) month = '0' + month;
+    if (day < 10) day = '0' + day;
+    return `${year}-${month}-${day}`;
   }
 
   $.getJSON(apiUrl, function (data) {
+    if (!data || data.length === 0) return;
     const commit = data[0];
     const updateDate = new Date(commit.commit.author.date);
     const localDate = formatDate(updateDate);
     const contributors = new Map();
 
     data.reverse().forEach(function (commit) {
-      if (commit.author == null) {
-        return;
-      } else {
+      if (commit.author) {
         const name = commit.author.login;
         const url = commit.author.html_url;
-        const avatar = commit.author.avatar_url;
-        contributors.set(name, { name, url, avatar });
+        contributors.set(name, { name, url });
       }
     });
 
     $("#update-time").text(localDate);
-    $("#update-time").href = commit.html_url;
-    Array.from(contributors, ([_, value]) => value).reverse().forEach(function (contributor) {
-      $("#contributors").append(`<li class="contributor-avatar"><a target="_blank" rel="noopener" href="https://github.com/${contributor.name}" title="${contributor.name}"><img src="${contributor.avatar}" alt="${contributor.name}"/></a></li>`);
-    });
+
+    const contributorLinks = Array.from(contributors.values())
+      .reverse()
+      .map(c => `<a href="${c.url}" target="_blank" style="color: inherit; text-decoration: none;">${c.name}</a>`)
+      .join(", ");
+
+    $("#contributors").html(contributorLinks);
   });
 </script>
+            
         
         
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+32f328b8-12cf-5a80-a754-c9868b6b656d%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Monitor+%E3%81%AE%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E3%81%94%E8%B3%AA%E5%95%8F%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FMonitorAlertFAQ%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FMonitorAlertFAQ.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FMonitorAlertFAQ.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/" data-id="cmhtxod1000fv0nl54eq69ev7" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/" data-id="cmhy87w8800fv0nnq4m5c6hca" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
