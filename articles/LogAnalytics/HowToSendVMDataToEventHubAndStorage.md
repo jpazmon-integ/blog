@@ -1,5 +1,5 @@
 ---
-title: 【廃止】AMA を使用して VM のデータを Event Hub とストレージ アカウントに送信する方法
+title: 【非推奨】AMA を使用して VM のデータを Event Hub とストレージ アカウントに送信する方法
 date: 2025-09-12 00:00:00
 tags:
   - Azure Monitor Agent
@@ -8,11 +8,12 @@ tags:
 
 [更新履歴]
 - 2025/9/12 ブログ公開
-- 2025/11/25 機能廃止に関する追記
+- 2025/11/25 代替機能に関する追記
 
 >[!IMPORTANT]
->本機能はGAされずに廃止されることが決定いたしました。（2025/11/25）
->今後はこの機能は使用しないでいただきますようお願いいたします。
+>今後は本機能ではなく、代替機能のご利用を推奨しております。
+>コスト削減を目的にストレージ アカウントへの直接的なデータ送信をご検討される場合、代わりに、[Log Analytics ワークスペースの補助プラン](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/create-custom-table-auxiliary) の活用をご検討ください。
+>また、Event Hub への直接的なデータ送信については、[VM ウォッチを用いたEvent Hub へのデータ送信](https://learn.microsoft.com/ja-jp/azure/virtual-machines/configure-eventhub-vm-watch?tabs=managedidentity-1%2Clinux-1) をご検討ください。
 
 こんにちは、Azure Monitoring チームの徳田です。  
 本記事では、Azure Monitor Agent (AMA) を使用することで、仮想マシン (VM) から収集したデータを Event Hub やストレージ アカウントに直接データを送信する方法についてご紹介します。
