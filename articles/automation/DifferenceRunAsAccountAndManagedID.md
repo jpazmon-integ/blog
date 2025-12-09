@@ -14,7 +14,7 @@ tags:
 
 ## 目次
 - [目次](#目次)
-- [実行アカウントについて](#実行アカウントについて)
+- [実行アカウントについて (2023 年 9 月 30 日に廃止)](#実行アカウントについて-2023-年-9-月-30-日に廃止)
   - [参考情報](#参考情報)
 - [マネージド ID について](#マネージド-id-について)
   - [参考情報](#参考情報-1)
@@ -22,8 +22,8 @@ tags:
 - [実行アカウントとマネージド ID の相違点](#実行アカウントとマネージド-id-の相違点)
 - [まとめ](#まとめ)
 
-## 実行アカウントについて
-実行アカウントは、Automation アカウントに利用される Azure AD のサービス プリンシパルです。
+## 実行アカウントについて (2023 年 9 月 30 日に廃止)
+実行アカウントは、Automation アカウントに利用される Microsoft Entra ID (旧 Azure AD) のサービス プリンシパルです。
 通常、以下のコマンドで実行アカウントを使って Azure へ認証するように Runbook を構成できます。
 
 ```
@@ -35,13 +35,12 @@ Connect-AzAccount -ServicePrincipal -Tenant $Conn.TenantID -ApplicationId $Conn.
 ```
 
 ### 参考情報
-[Azure Automation アカウントの認証の概要 - 実行アカウント| Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/automation/automation-security-overview#run-as-account)
-[Azure Automation の実行アカウントを管理する | Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/automation/manage-runas-account)
+[既存の実行アカウントからマネージド ID に移行する](https://learn.microsoft.com/ja-jp/azure/automation/migrate-run-as-accounts-managed-identity?tabs=sa-managed-identity)
 
 
 ## マネージド ID について
-マネージド ID は、Azure Active Directory (Azure AD) 認証をサポートするリソースに接続するときに使用する ID をアプリケーションに提供します。
-アプリケーションは、マネージド ID を使用して Azure AD トークンを取得できます。
+マネージド ID は、Microsoft Entra ID (旧 Azure AD) 認証をサポートするリソースに接続するときに使用する ID をアプリケーションに提供します。
+アプリケーションは、マネージド ID を使用して Microsoft Entra ID トークン (旧 Azure AD トークン) を取得できます。
 マネージド ID にはシステム割り当てマネージド ID とユーザー割り当てマネージド ID があります。
 
 以下のコマンドでシステム割り当てマネージド ID を使って Azure へ認証するように Runbook を構成します。
@@ -81,7 +80,7 @@ $AzureContext = Set-AzContext -SubscriptionName $AzureContext.Subscription -Defa
 ## 実行アカウントとマネージド ID の共通点
 - Azure へ認証する役割を果たします。
 - Runbook に上述の認証用コマンドを記載する必要があります。
-- Azure Active Directory にアプリケーションとして登録されています。
+- Microsoft Entra ID (旧 Azure AD) にアプリケーションとして登録されています。
 
 
 ## 実行アカウントとマネージド ID の相違点
