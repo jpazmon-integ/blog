@@ -10,7 +10,7 @@ tags:
 [更新履歴]
 - 2019/04/03 ブログ公開
 - 2021/05/24 最新情報に更新
-- 2025/12/16 廃止について追記
+- 2025/12/18 非推奨について追記
 
 >[!IMPORTANT]
 >AzureRM PowerShell モジュールは、[2024 年 2 月 29 日の時点で正式に非推奨](https://learn.microsoft.com/ja-jp/powershell/azure/azurerm-retirement-overview?view=azps-15.1.0)になりました。 
