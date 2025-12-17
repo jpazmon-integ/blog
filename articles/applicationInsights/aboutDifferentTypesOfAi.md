@@ -12,7 +12,7 @@ tags:
 -2025/12/16 クラシック版廃止について追記
 
 こんにちは、Azure Monitoring & Integration サポート チームの北山です。  
-今回の記事では、Application Insights リソースのクラシック版とワークスペース版との違いについて説明します。
+今回の記事では、Application Insights リソースのクラシック版とワークスペース版との違いについて説明します。  
 なお、クラシック版は [2024 年 2 月 29 日の時点で非推奨](https://azure.microsoft.com/ja-jp/updates?id=we-re-retiring-classic-application-insights-on-29-february-2024#:~:text=We're%20retiring%20Classic%20Application%20Insights%20on%2029%20February%202024&text=Because%20the%20workspace%2Dbased%20Application,Event%20Hub%20via%20Diagnostic%20Settings) となっております。
 
 ## 目次
