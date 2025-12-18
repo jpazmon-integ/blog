@@ -15,9 +15,9 @@ Azure Automation においては昨年価格体系が変更されました
 
 - 以前の価格料金
   - Free - 月あたり 500 分の無料時間が付与され、超過した場合はジョブが実行されなくなります。
-  - Basic - 従量課金として、0.23円 / 分 で課金が発生します。
+  - Basic - 従量課金として、$0.002 / 分 で課金が発生します。
 - 変更後の価格体系
-  - 無償の500分のジョブ実行時間が付与され、超過した分に関しましては、0.23円 / 分 で課金が発生します。
+  - 無償の500分のジョブ実行時間が付与され、超過した分に関しましては、$0.002 / 分 で課金が発生します（実際の価格は、購入日によって異なる場合があります）。
 
 ## 参照情報
 
@@ -35,34 +35,26 @@ Azure Automation においては昨年価格体系が変更されました
 日別にジョブ実行時間が取得できるため、特定の日時のみジョブの実行時間がとても長い際などには、トラブルシューティングにも便利ですので是非ご利用ください。
 
 ### スクリプトの実行環境要件
-Windows 10またはWindows Server 2016でコンピュータを実行している場合は、すでにPowerShell 5以降がインストールされているため、この手順は必要ありません。
+Windows 11またはWindows Server 2022/2025でコンピュータを実行している場合は、すでにPowerShell 5以降がインストールされているため、実行環境の準備は必要ありません。
 
-今回の場合、PowerShell のバージョンは 3.0 とのことですので、PowerShellを含むWindows Management Framework（WMF）の最新バージョンに更新する必要がございます。
-
-- WMFの最新バージョンを入手するには、次のURLにアクセスしてください。
-  - https://www.microsoft.com/en-us/download/details.aspx?id=54616
-- WMFとパッケージ管理へのリンクを含むPowerShell Galleryの使用に関する詳細は、下記を参照してください。
-  - https://www.powershellgallery.com/
-
-
-## Azure RM モジュールのインストール
-AzureからPowerShell経由で情報を照会できるようにするには、Azure Resource Management（AzureRM）モジュールをインストールする必要があります。
+## Az PowerShell モジュールのインストール
+AzureからPowerShell経由で情報を照会できるようにするには、Az PowerShell モジュールをインストールする必要があります。
 
 先に進む前に、お使いのコンピュータがパッケージ管理の要件を満たしていることを確認してください。
 
-AzureRMモジュールをインストールするには、以下の手順に従います。
+Az PowerShell モジュールをインストールするには、以下の手順に従います。
 
 1. [管理者として実行]オプションを使用してPowerShellセッションを開きます。
-1. Install-Module -Name AzureRM -Force -Verboseと入力し、Enterキーを押します。
+1. Install-Module -Name Az -Repository PSGallery -Forceと入力し、Enterキーを押します。
 1. インストールが完了するまで待ち、PowerShellのプロンプトに戻ります。
-1. モジュールがインストールされたことを確認するために、Get-Module -Name AzureRM -ListAvailableと入力し、Enterキーを押します。
+1. モジュールがインストールされたことを確認するために、Get-Module -Name Az* -ListAvailableと入力し、Enterキーを押します。
 
 ### 実行スクリプト
 PowerShell ISE を起動し、以下のスクリプトを貼り付け、期間を指定して実行します。  
 ※ブロックが複数にわかれておりますが、すべて一つのスクリプトに記載してください。
 
 ```ps1
-Add-AzureRMAccount | Write-Verbose
+Connect-AzAccount
 #ジョブの実行時間を保存するディレクトリを記載します。
 $CSVFile = "c:\temp\automation.csv"
 #ジョブの実行時間を取得する期間の開始日時を指定します
@@ -72,9 +64,9 @@ $EndTime = "12/08/2017"
 
 #ジョブの実行時間を取得するサブスクリプションID を記載します
 $SubscriptionID = 'Subscription ID'
-Set-AzureRmContext -SubscriptionId $SubscriptionID | Write-Verbose
+Set-AzContext -SubscriptionId $SubscriptionID
 
-$UsageInfo = Get-UsageAggregates -ReportedStartTime $StartTime -ReportedEndTime $EndTime -AggregationGranularity Daily -ShowDetails $true
+$UsageInfo = Get-AzUsageAggregate -ReportedStartTime $StartTime -ReportedEndTime $EndTime -AggregationGranularity Daily -ShowDetails $true
 
  Do { 
     $UsageInfo.UsageAggregations.Properties | Where-Object {($_.MeterCategory -eq 'Automation') -and ($_.MeterName -eq 'Basic Runtime')} | `
@@ -122,5 +114,5 @@ PS C:\> Add-Type -AssemblyName System.Web
 
 
 ”Quantity” 欄にて分単位でジョブの実行時間が表示されるのが確認できます。  
-この結果では 9 月で約67分のジョブ実行時間なので無償の範囲内ですね。  
+この結果では 11 月で約67分のジョブ実行時間なので無償の範囲内ですね。  
 月別に出力して、管理することで、変遷を確認するなど運用にお役に立てていただければ幸いです。

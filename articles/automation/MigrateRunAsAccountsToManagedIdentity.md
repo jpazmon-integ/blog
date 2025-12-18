@@ -1,5 +1,5 @@
 ---
-title: 実行アカウントからマネージド ID へ移行する方法及び FAQ
+title: 【廃止】 実行アカウントからマネージド ID へ移行する方法及び FAQ
 date: 2022-10-14 00:00:00
 tags:
   - Automation
@@ -12,6 +12,12 @@ tags:
   - 実行アカウント
   - マネージド ID
 ---
+
+[更新履歴]  
+- 2022/10/14 : ブログ公開
+- 2025/12/18 : 廃止について追記済み
+  Azure Automation 実行アカウント (クラシック実行アカウントを含む) は 2023 年 9 月 30 日に廃止されました。
+  詳細は [既存の実行アカウントからマネージド ID に移行する](https://learn.microsoft.com/ja-jp/azure/automation/migrate-run-as-accounts-managed-identity?tabs=run-as-account)  をご参考いただければ幸いです。
 
 こんにちは！Azure Monitoring サポート チームの趙です。 
 今回は、実行アカウントからマネージド ID へ移行する方法及び FAQ をご案内させていただきます。
