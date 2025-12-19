@@ -1,5 +1,5 @@
 ---
-title: Application Insights クラシック版とワークスペース版との違いについて
+title: Application Insights クラシック版 (廃止) とワークスペース版との違いについて
 date: 2021-07-20 00:00:00
 tags:
   - Application Insights
@@ -7,8 +7,13 @@ tags:
   - FAQ
 ---
 
+[更新履歴]  
+-2021/07/20 ブログ公開  
+-2025/12/16 クラシック版廃止について追記  
+
 こんにちは、Azure Monitoring & Integration サポート チームの北山です。  
-今回の記事では、Application Insights リソースのクラシック版とワークスペース版との違いについて説明します。
+今回の記事では、Application Insights リソースのクラシック版とワークスペース版との違いについて説明します。  
+なお、クラシック版は [2024 年 2 月 29 日の時点で廃止](https://azure.microsoft.com/ja-jp/updates?id=we-re-retiring-classic-application-insights-on-29-february-2024#:~:text=We're%20retiring%20Classic%20Application%20Insights%20on%2029%20February%202024&text=Because%20the%20workspace%2Dbased%20Application,Event%20Hub%20via%20Diagnostic%20Settings) となっております。
 
 ## 目次
 
@@ -133,13 +138,11 @@ Azure potal にて、当該 Application Insights リソース ページへ移動
 
 下図のように Log Analytics ワークスペースのリンクが存在する場合は、ワークスペース版 Application Insights リソースです。
 
-![](https://user-images.githubusercontent.com/25476639/126263222-b890c59b-b672-4ff1-9c1e-4e25e1820c4a.png)
-
+![](./aboutDifferentTypesOfAi/workspaceAI.png)
 
 下図のようにワークスペースのリンクがない場合は、クラシック版 Application Insights リソースです。
 
-![](https://user-images.githubusercontent.com/25476639/126263264-379cafa3-9ea1-49f5-8e4c-efdf20812b45.png)
-
+![](./aboutDifferentTypesOfAi/classicAI.png)
 
 大量に Application Insights リソースが存在して Azure potal から確認するのが大変な場合は、下記のような PowerShell スクリプトを実行いただく事でまとめて確認することが可能です。
 
