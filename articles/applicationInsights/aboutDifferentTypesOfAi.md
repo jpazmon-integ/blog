@@ -138,11 +138,11 @@ Azure potal にて、当該 Application Insights リソース ページへ移動
 
 下図のように Log Analytics ワークスペースのリンクが存在する場合は、ワークスペース版 Application Insights リソースです。
 
-![](workspaceAI.png)
+![](./aboutDifferentTypesOfAi/workspaceAI.png)
 
 下図のようにワークスペースのリンクがない場合は、クラシック版 Application Insights リソースです。
 
-![](classicAI.png)
+![](./aboutDifferentTypesOfAi/classicAI.png)
 
 大量に Application Insights リソースが存在して Azure potal から確認するのが大変な場合は、下記のような PowerShell スクリプトを実行いただく事でまとめて確認することが可能です。
 
