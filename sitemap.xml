@@ -16,13 +16,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/general/IntroduceOurBlog/</loc>
-    
-    <lastmod>2025-12-19</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/general/JoinUs/</loc>
     
     <lastmod>2025-12-19</lastmod>
@@ -31,6 +24,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/</loc>
+    
+    <lastmod>2025-12-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/general/IntroduceOurBlog/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
@@ -93,13 +93,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/</loc>
-    
-    <lastmod>2025-12-19</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/Automation-Update-AutomationRunAsCredential/</loc>
     
     <lastmod>2025-12-19</lastmod>
@@ -115,6 +108,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/HowToCreatePowerShellRunbookSR/</loc>
+    
+    <lastmod>2025-12-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
@@ -443,14 +443,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/DataCollectionEndpoint/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/DataCollectionEndpoint/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
@@ -471,14 +471,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/ActivityLogsInsights/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AccessControlMode/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AccessControlMode/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/ActivityLogsInsights/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
@@ -569,14 +569,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogAlert_ManagedId/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogAlert_NewEmailTemplate_2024/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogAlert_NewEmailTemplate_2024/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogAlert_ManagedId/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
