@@ -16,13 +16,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/general/JoinUs/</loc>
-    
-    <lastmod>2025-12-19</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/</loc>
     
     <lastmod>2025-12-19</lastmod>
@@ -37,21 +30,14 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/general/JoinUs/</loc>
+    
+    <lastmod>2025-12-19</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/general/HowWeWorkRemotely/</loc>
-    
-    <lastmod>2025-12-19</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/update-AzureRmVmCommandFailesWithVhdCannotBeNull/</loc>
-    
-    <lastmod>2025-12-19</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/general/AboutMonandIntg/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
@@ -66,6 +52,20 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/gettingExeTimeOfJobForSpecificPeriodAutomation/</loc>
+    
+    <lastmod>2025-12-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/update-AzureRmVmCommandFailesWithVhdCannotBeNull/</loc>
+    
+    <lastmod>2025-12-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/general/AboutMonandIntg/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
@@ -93,13 +93,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/Automation-Update-AutomationRunAsCredential/</loc>
-    
-    <lastmod>2025-12-19</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/DifferenceRunAsAccountAndManagedID/</loc>
     
     <lastmod>2025-12-19</lastmod>
@@ -121,6 +114,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/Automation-Update-AutomationRunAsCredential/</loc>
+    
+    <lastmod>2025-12-19</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/AgentBasedHrwRetired/</loc>
     
     <lastmod>2025-12-19</lastmod>
@@ -128,14 +128,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/wrongSlotNameAfterSwapping/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/wrongSlotNameAfterSwapping/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
@@ -170,14 +170,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutDifferentTypesOfAi/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutPrivateAvailabilityTest/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutPrivateAvailabilityTest/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutDifferentTypesOfAi/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
@@ -198,14 +198,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
@@ -443,14 +443,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/DataCollectionEndpoint/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/DataCollectionEndpoint/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
@@ -471,14 +471,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AccessControlMode/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/ActivityLogsInsights/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/ActivityLogsInsights/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AccessControlMode/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
@@ -520,14 +520,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
@@ -569,14 +569,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogAlert_NewEmailTemplate_2024/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogAlert_ManagedId/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogAlert_ManagedId/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogAlert_NewEmailTemplate_2024/</loc>
     
     <lastmod>2025-12-19</lastmod>
     
