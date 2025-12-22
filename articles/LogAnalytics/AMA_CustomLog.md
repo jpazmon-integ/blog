@@ -28,13 +28,18 @@ Azure Monitor エージェントを用いたカスタム ログ収集手順
 データ収集エンドポイント (DCE) を作成する
 --
 
+
+※ カスタム ログ収集において、DCE は必須ではなくなりました。DCE が無くてもカスタム ログ収集は可能です。
+ファイアウォールなどで宛先の通信制限をする場合や、AMPLS を用いる場合は引き続き必要となります。
+
+
 - Azure Monitor のデータ収集エンドポイント
 https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-collection-endpoint-overview?tabs=portal#create-data-collection-endpoint
 
 
-1. [モニター] を開き、[データ収集エンドポイント] より [作成] を選択します。
+1. [モニター] を開き、[データ収集エンドポイント] より [作成] を選択します。キーワード "DCE" で検索することも可能です。
 
-![](./AMA_CustomLog/AMACustomlog_01.png)
+![](./AMA_CustomLog/AMACustomlog_01_202512.png)
 
 2. データ収集エンドポイント (DCE) を任意の名前、リソース グループを指定して作成します。
 
@@ -103,16 +108,16 @@ Invoke-AzRestMethod -Path "/subscriptions/{subscription}/resourcegroups/{resourc
 DCR を設定する
 --
 
-1. [モニター] を開き、[データ収集ルール] より新規にデータ収集ルール (DCR) を作成します。
+1. [モニター] を開き、[データ収集ルール] より新規にデータ収集ルール (DCR) を作成します。キーワード "DCR" で検索することも可能です。
 
 2. [基本] タブで、エンドポイント ID (DCE) を含めて、全ての項目を設定します。
-![](./AMA_CustomLog/AMACustomlog_16.png)
+![](./AMA_CustomLog/AMACustomlog_16_202512.png)
 
 3. [リソース] タブを開き、[+リソースの追加] より、カスタム ログを収集したい VM を選び、[適用] を選択します。
-![](./AMA_CustomLog/AMACustomlog_18.png)
+![](./AMA_CustomLog/AMACustomlog_18_202512.png)
 
 4. [収集と配信] タブを開き、[+データ ソースの追加]をクリックします。
-![](./AMA_CustomLog/AMACustomlog_17.png)
+![](./AMA_CustomLog/AMACustomlog_17_202512.png)
 
 5. [データ ソースの種類] にて [カスタム テキスト ログ] を選択します。
 [ファイル パターン] にて収集先のログファイル パスを指定します。
@@ -126,7 +131,7 @@ DCR を設定する
 ```
 source| extend TimeGenerated = now()| parse RawData with * "Computer="HostName "| " *| parse RawData with * "Log="Log"
 ```
-![](./AMA_CustomLog/AMACustomlog_08.png)
+![](./AMA_CustomLog/AMACustomlog_08_202512.png)
 ※ TransformKql の書き方については、以下公開情報をご参考ください。
 https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-collection-transformations-structure
 
