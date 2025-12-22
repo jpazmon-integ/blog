@@ -1,10 +1,16 @@
 ---
-title: Automation アカウントの実行アカウントを作成するスクリプトにてエラーが発生して失敗する
+title: 【廃止】Automation アカウントの実行アカウントを作成するスクリプトにてエラーが発生して失敗する
 date: 2022-6-30 17:10:00
 tags:
   - Automation
   - RunAs Account
 ---
+
+[更新履歴]
+- 2022/6/30 ブログ公開
+- 2025/12/17 廃止について追記済み
+  Azure Automation 実行アカウント (クラシック実行アカウントを含む) は 2023 年 9 月 30 日に廃止されました。
+  詳細は [既存の実行アカウントからマネージド ID に移行する](https://learn.microsoft.com/ja-jp/azure/automation/migrate-run-as-accounts-managed-identity?tabs=run-as-account)  をご参考いただければ幸いです。
 
 こんにちは、Azure Monitor サポートの三輪です。
 今回は Automation アカウントに対して実行アカウントを作成するスクリプト "Create-RunAsAccount.ps1" にて、エラーが発生する問題についてご案内させていただきます。
