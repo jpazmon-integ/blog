@@ -51,9 +51,11 @@ tags:
 
 ## 8以外の計算の詳細
 
-### LAのリージョン1つにつき3つのIPアドレスを消費
+以下ドキュメントに概要が記載されています。
 
-[Log Analytics エンドポイント](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-configure#log-analytics-endpoints)
+[エンドポイントの DNS 設定を確認する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-configure#privatelink-monitor-azure-com)
+
+### LAのリージョン1つにつき3つのIPアドレスを消費
 
 以下の 3 個のエンドポイントはワークスペース毎に作られますが、リージョンごとに同じ IP が割り当てられます。
 
@@ -62,12 +64,11 @@ tags:
 3. <ワークスペース ID>.privatelink-agentsvc-azure-automation-net
 
 以下の様に同じリージョンのエンドポイントは同じ IP に割り当てられます。
+
 <img width="1314" height="374" alt="image" src="https://github.com/user-attachments/assets/0e736def-83fe-4381-aed4-727a8cfaa91c" />
 
 
 ### データ収集エンドポイント1つにつき3つのIPアドレスを消費
-
-[Privatelink-monitor-azure-com](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-configure#privatelink-monitor-azure-com)
 
 以下のエンドポイントにそれぞれ IP アドレス割り当てられます。
 
@@ -79,12 +80,6 @@ tags:
 
 ### ApplicationInsightsのインジェストエンドポイントとライブメトリックエンドポイントのIPアドレスを消費
 
-[エンドポイントの DNS 設定を確認する]([https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-configure#privatelink-monitor-azure-com](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-configure#review-endpoints-dns-settings))
-<img width="710" height="269" alt="image" src="https://github.com/user-attachments/assets/12ab0dec-b89c-42e5-930f-a3ccc6773897" />
-
-
-
-
 以下のエンドポイントにそれぞれ IP アドレス割り当てられます。
 
 1. <リージョン>-<ID>.in.ai.monitor.azure.com
@@ -93,7 +88,7 @@ tags:
 基本的に Application Insights 1 リージョンに対して 2 つの IP アドレスが消費される認識で問題ありませんが、
 1 つのリージョンに対して 2 つのインジェスト エンドポイントが定義されるケースもあります。
 
-そのため同じリージョンの Application Insights が既に追加されていた場合でも 1つ の IP アドレスが追加される場合があります。
+つまり、同じリージョンの Application Insights が既に追加されていた場合でも 1つ の IP アドレスが追加されたり、されない場合があります。
 
 例: `japaneast-0, japaneast-1`
 
@@ -103,7 +98,7 @@ tags:
 
 ### Q. どの程度のIPレンジが必要になりますか？
 
-A. お客様が将来的に AMPLS へ紐づけるリソースの数やそれらのリージョンによって必要数は変わります。
+A. お客様が将来的に AMPLS へ紐づけるリソースの数やそれらのリージョンによって必要な IP レンジは異なります。
 
 追加される IP に対して、割り当て可能な IP レンジが不足した場合には、サブネットの再作成や VNET の再作成が必要になるケースもあります。
 
