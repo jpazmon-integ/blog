@@ -10,12 +10,12 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは！Azure Monitoring サポート チームの趙です。今回は、VM を起動・停止する方法をご案内させていただきます。">
+      <meta name="description" content="[更新履歴]  2022&#x2F;10&#x2F;14 ブログ公開 2025&#x2F;12&#x2F;23 無効となっていたリンクを更新  こんにちは！Azure Monitoring サポート チームの趙です。今回は、VM を起動・停止する方法をご案内させていただきます。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Azure Automation で VM を起動・停止する方法">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/automation/HowtoStartOrStopVMsbyAutomation/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは！Azure Monitoring サポート チームの趙です。今回は、VM を起動・停止する方法をご案内させていただきます。">
+<meta property="og:description" content="[更新履歴]  2022&#x2F;10&#x2F;14 ブログ公開 2025&#x2F;12&#x2F;23 無効となっていたリンクを更新  こんにちは！Azure Monitoring サポート チームの趙です。今回は、VM を起動・停止する方法をご案内させていただきます。">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/automation/HowtoStartOrStopVMsbyAutomation/HowtoStartOrStopVMsbyAutomation_graphicalrunbook.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/automation/HowtoStartOrStopVMsbyAutomation/HowtoStartOrStopVMsbyAutomation_graphicalrunbook2.png">
@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/automation/HowtoStartOrStopVMsbyAutomation/HowtoStartOrStopVMsbyAutomation_module.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/automation/HowtoStartOrStopVMsbyAutomation/HowtoStartOrStopVMsbyAutomation_schedule.png">
 <meta property="article:published_time" content="2022-10-13T15:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-23T02:13:57.248Z">
+<meta property="article:modified_time" content="2025-12-23T04:39:01.297Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Automation">
 <meta property="article:tag" content="RunAs Account">
@@ -184,48 +184,53 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+f26375f7-29db-5447-b20a-80b2667a1779%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Automation+%E3%81%A7+VM+%E3%82%92%E8%B5%B7%E5%8B%95%E3%83%BB%E5%81%9C%E6%AD%A2%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2Fautomation%2FHowtoStartOrStopVMsbyAutomation%2F%29%0A*+Content+Source%3A+%5Barticles%2Fautomation%2FHowtoStartOrStopVMsbyAutomation.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2Fautomation%2FHowtoStartOrStopVMsbyAutomation.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/automation/HowtoStartOrStopVMsbyAutomation/" data-id="cmjhybhxq00d90noz89q8arqh" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/automation/HowtoStartOrStopVMsbyAutomation/" data-id="cmji3i28g00d90npe5ahagoc5" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは！Azure Monitoring サポート チームの趙です。<br>今回は、VM を起動・停止する方法をご案内させていただきます。</p>
+        <p>[更新履歴]</p>
+<ul>
+<li>2022/10/14 ブログ公開</li>
+<li>2025/12/23 無効となっていたリンクを更新</li>
+</ul>
+<p>こんにちは！Azure Monitoring サポート チームの趙です。<br>今回は、VM を起動・停止する方法をご案内させていただきます。</p>
 <span id="more"></span>
 
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
 <li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
-<li><a href="#vm-%E8%B5%B7%E5%8B%95%E5%81%9C%E6%AD%A2%E5%87%A6%E7%90%86%E3%82%92%E7%90%86%E8%A7%A3%E3%81%97%E3%81%BE%E3%81%97%E3%82%87%E3%81%86">VM 起動・停止処理を理解しましょう</a></li>
-<li><a href="#%E3%81%AA%E3%81%9C-azure-automation-%E3%82%92%E4%BD%BF%E3%81%86%E3%81%8B">なぜ Azure Automation を使うか</a></li>
-<li><a href="#vm-%E3%82%92%E8%B5%B7%E5%8B%95%E5%81%9C%E6%AD%A2%E3%81%99%E3%82%8B%E3%82%BD%E3%83%AA%E3%83%A5%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3">VM を起動・停止するソリューション</a><ul>
-<li><a href="#1startstop-vms-during-off-hours-%E3%82%BD%E3%83%AA%E3%83%A5%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3-v1-%E9%9D%9E%E6%8E%A8%E5%A5%A8">1.Start/Stop VMs during off-hours ソリューション (v1) (非推奨)</a></li>
-<li><a href="#2startstop-vms-v2-%E6%8E%A8%E5%A5%A8">2.Start/Stop VMs v2 (推奨)</a></li>
-<li><a href="#3start-azure-v2-vms--stop-azure-v2-vms-%E9%9D%9E%E6%8E%A8%E5%A5%A8">3.Start Azure V2 VMs / Stop Azure V2 VMs (非推奨)</a></li>
+<li><a href="#VM-%E8%B5%B7%E5%8B%95%E3%83%BB%E5%81%9C%E6%AD%A2%E5%87%A6%E7%90%86%E3%82%92%E7%90%86%E8%A7%A3%E3%81%97%E3%81%BE%E3%81%97%E3%82%87%E3%81%86">VM 起動・停止処理を理解しましょう</a></li>
+<li><a href="#%E3%81%AA%E3%81%9C-Azure-Automation-%E3%82%92%E4%BD%BF%E3%81%86%E3%81%8B">なぜ Azure Automation を使うか</a></li>
+<li><a href="#VM-%E3%82%92%E8%B5%B7%E5%8B%95%E3%83%BB%E5%81%9C%E6%AD%A2%E3%81%99%E3%82%8B%E3%82%BD%E3%83%AA%E3%83%A5%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3">VM を起動・停止するソリューション</a><ul>
+<li><a href="#1-Start-Stop-VMs-during-off-hours-%E3%82%BD%E3%83%AA%E3%83%A5%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3-v1-%E9%9D%9E%E6%8E%A8%E5%A5%A8">1.Start/Stop VMs during off-hours ソリューション (v1) (非推奨)</a></li>
+<li><a href="#2-Start-Stop-VMs-v2-%E6%8E%A8%E5%A5%A8">2.Start/Stop VMs v2 (推奨)</a></li>
+<li><a href="#3-Start-Azure-V2-VMs-Stop-Azure-V2-VMs-%E9%9D%9E%E6%8E%A8%E5%A5%A8">3.Start Azure V2 VMs / Stop Azure V2 VMs (非推奨)</a></li>
 </ul>
 </li>
-<li><a href="#vm-%E3%82%92%E8%B5%B7%E5%8B%95%E5%81%9C%E6%AD%A2%E3%81%99%E3%82%8B-runbook-%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">VM を起動・停止する Runbook サンプル</a><ul>
+<li><a href="#VM-%E3%82%92%E8%B5%B7%E5%8B%95%E3%83%BB%E5%81%9C%E6%AD%A2%E3%81%99%E3%82%8B-Runbook-%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">VM を起動・停止する Runbook サンプル</a><ul>
 <li><a href="#%E5%85%8D%E8%B2%AC%E4%BA%8B%E9%A0%85">免責事項</a></li>
-<li><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB-runbook--%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E5%89%B2%E3%82%8A%E5%BD%93%E3%81%A6%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97vm-%E3%82%92%E8%B5%B7%E5%8B%95%E5%81%9C%E6%AD%A2%E3%81%99%E3%82%8B-runbook">サンプル Runbook : システム割り当てマネージド ID を利用し、VM を起動・停止する Runbook</a></li>
-<li><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB-runbook-%E3%81%AE%E8%A7%A3%E8%AA%AC">サンプル Runbook の解説</a><ul>
-<li><a href="#azure-%E3%81%B8%E8%AA%8D%E8%A8%BC%E3%81%99%E3%82%8B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89">Azure へ認証するコマンド</a></li>
-<li><a href="#vm-%E3%82%92%E8%B5%B7%E5%8B%95%E3%81%99%E3%82%8B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89">VM を起動するコマンド</a></li>
-<li><a href="#vm-%E3%82%92%E5%81%9C%E6%AD%A2%E3%81%99%E3%82%8B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89">VM を停止するコマンド</a></li>
+<li><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB-Runbook-%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E5%89%B2%E3%82%8A%E5%BD%93%E3%81%A6%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID-%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%80%81VM-%E3%82%92%E8%B5%B7%E5%8B%95%E3%83%BB%E5%81%9C%E6%AD%A2%E3%81%99%E3%82%8B-Runbook">サンプル Runbook : システム割り当てマネージド ID を利用し、VM を起動・停止する Runbook</a></li>
+<li><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB-Runbook-%E3%81%AE%E8%A7%A3%E8%AA%AC">サンプル Runbook の解説</a><ul>
+<li>[Azure へ認証するコマンド]</li>
+<li>[VM を起動するコマンド]</li>
+<li>[VM を停止するコマンド]</li>
 </ul>
 </li>
-<li><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB-runbook-%E3%81%AE%E5%88%A9%E7%94%A8%E6%96%B9%E6%B3%95">サンプル Runbook の利用方法</a><ul>
-<li><a href="#1automation-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B">1.Automation アカウントを作成する</a></li>
-<li><a href="#2automation-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E5%89%B2%E3%82%8A%E5%BD%93%E3%81%A6%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E3%82%92%E6%A7%8B%E6%88%90%E3%81%99%E3%82%8B">2.Automation アカウントにシステム割り当てマネージド ID を構成する</a></li>
-<li><a href="#3%E5%BF%85%E8%A6%81%E3%81%AA%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%82%92%E3%82%A4%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%88%E3%81%99%E3%82%8B">3.必要なモジュールをインポートする</a></li>
-<li><a href="#4%E5%AF%BE%E8%B1%A1-runbook-%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B">4.対象 Runbook を作成する</a></li>
-<li><a href="#5%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B">5.スケジュールを設定する</a></li>
-<li><a href="#6%E5%8B%95%E4%BD%9C%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">6.動作確認する</a><ul>
-<li><a href="#runbook-%E6%89%8B%E5%8B%95%E5%AE%9F%E8%A1%8C%E3%81%A7%E3%81%AE%E5%8B%95%E4%BD%9C%E7%A2%BA%E8%AA%8D">Runbook 手動実行での動作確認</a></li>
-<li><a href="#%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%AE%E5%8B%95%E4%BD%9C%E7%A2%BA%E8%AA%8D">スケジュールの動作確認</a></li>
+<li><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB-Runbook-%E3%81%AE%E5%88%A9%E7%94%A8%E6%96%B9%E6%B3%95">サンプル Runbook の利用方法</a><ul>
+<li>[1.Automation アカウントを作成する]</li>
+<li>[2.Automation アカウントにシステム割り当てマネージド ID を構成する]</li>
+<li>[3.必要なモジュールをインポートする]</li>
+<li>[4.対象 Runbook を作成する]</li>
+<li>[5.スケジュールを設定する]</li>
+<li>[6.動作確認する]<ul>
+<li>[Runbook 手動実行での動作確認]</li>
+<li>[スケジュールの動作確認]</li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#%E3%83%88%E3%83%A9%E3%83%96%E3%83%AB%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0">トラブルシューティング</a><ul>
-<li><a href="#%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E3%81%AB%E3%83%AD%E3%83%BC%E3%83%AB%E3%81%8C%E5%89%B2%E3%82%8A%E5%BD%93%E3%81%A6%E3%82%89%E3%82%8C%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3">マネージド ID にロールが割り当てられていないパターン</a></li>
+<li><a href="#%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID-%E3%81%AB%E3%83%AD%E3%83%BC%E3%83%AB%E3%81%8C%E5%89%B2%E3%82%8A%E5%BD%93%E3%81%A6%E3%82%89%E3%82%8C%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3">マネージド ID にロールが割り当てられていないパターン</a></li>
 <li><a href="#%E5%BF%85%E8%A6%81%E3%81%AA%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%8C%E3%82%A4%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3">必要なモジュールがインポートされていないパターン</a></li>
 </ul>
 </li>
@@ -239,7 +244,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>Runbook は、簡単に申しますと、Azure 上で実行できるスクリプトです。<br>Runbook の詳細は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/automation/automation-runbook-execution">Azure Automation での Runbook の実行</a> と<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-JP/azure/automation/automation-runbook-types">Azure Automation の Runbook の種類</a>をご参考いただければ幸いです。</p>
 <h2 id="なぜ-Azure-Automation-を使うか"><a href="#なぜ-Azure-Automation-を使うか" class="headerlink" title="なぜ Azure Automation を使うか"></a>なぜ Azure Automation を使うか</h2><p>Automation は、スクリプトを定期的に実行できるサービスです。</p>
 <p>VM 起動・停止を毎日、ポータルから [開始] ボタン、[停止] ボタンを押して、管理することは現実的に難しいと思います。<br>Azure Automation をご利用いただくことで、VM の起動・停止処理をスケジュールで起動・停止する (自動化する) ことが可能です。Azure Automation では、スケジュールという機能があり、スケジュールに設定した時間に Runbook (スクリプト) を実行できます。</p>
-<h2 id="VM-を起動・停止するソリューション"><a href="#VM-を起動・停止するソリューション" class="headerlink" title="VM を起動・停止するソリューション"></a>VM を起動・停止するソリューション</h2><h3 id="1-Start-Stop-VMs-during-off-hours-ソリューション-v1-非推奨"><a href="#1-Start-Stop-VMs-during-off-hours-ソリューション-v1-非推奨" class="headerlink" title="1.Start/Stop VMs during off-hours ソリューション (v1) (非推奨)"></a>1.Start/Stop VMs during off-hours ソリューション (v1) (非推奨)</h3><p>Azure Automation では、以前は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/automation/automation-solution-vm-management">Start/Stop VMs during off-hours ソリューション (v1)</a> を提供しておりましたが、現時点では、非推奨の機能です。<br>なお、認証手段としては、実行アカウントが利用されていたソリューションです。 </p>
+<h2 id="VM-を起動・停止するソリューション"><a href="#VM-を起動・停止するソリューション" class="headerlink" title="VM を起動・停止するソリューション"></a>VM を起動・停止するソリューション</h2><h3 id="1-Start-Stop-VMs-during-off-hours-ソリューション-v1-非推奨"><a href="#1-Start-Stop-VMs-during-off-hours-ソリューション-v1-非推奨" class="headerlink" title="1.Start/Stop VMs during off-hours ソリューション (v1) (非推奨)"></a>1.Start/Stop VMs during off-hours ソリューション (v1) (非推奨)</h3><p>Azure Automation では、以前は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/automation/whats-new#startstop-vms-during-off-hours-v1">Start/Stop VMs during off-hours ソリューション (v1)</a> を提供しておりましたが、現時点では、非推奨の機能です。<br>なお、認証手段としては、実行アカウントが利用されていたソリューションです。 </p>
 <p>また、Start/Stop VMs during off-hours ソリューション (v1) は、非推奨のソリューションであるため、現時点では Start/Stop VMs during off-hours ソリューション (v1) をデプロイすることはできません。<br>Start/Stop VMs during off-hours ソリューション (v1) をご検討いただいた方は、後述する Start/Stop VMs v2 のご利用をご検討いただければ幸いです。</p>
 <h3 id="2-Start-Stop-VMs-v2-推奨"><a href="#2-Start-Stop-VMs-v2-推奨" class="headerlink" title="2.Start/Stop VMs v2 (推奨)"></a>2.Start/Stop VMs v2 (推奨)</h3><p>Start/Stop VMs during off-hours ソリューション (v1) とは別の <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-functions/start-stop-vms/overview">Start/Stop VMs v2</a> というソリューションがございます。<br>Start/Stop VMs v2 ソリューションは、現在、一般公開 (GA) されている機能であり、弊社にて推奨する VM 起動・停止ソリューションです。</p>
 <div class="alert is-warning"><p class="alert-title">警告</p><p>Start/Stop VMs v2 ソリューションでは、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-JP/azure/automation/overview">Azure Automation</a> は利用されません。</p><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-JP/azure/azure-functions/functions-overview">Azure Functions</a> 及び <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-JP/azure/logic-apps/logic-apps-overview">Logic Apps</a>が利用されます。 </p></div>
@@ -301,7 +306,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </ul>
 <p><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB-runbook--%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E5%89%B2%E3%82%8A%E5%BD%93%E3%81%A6%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97vm-%E3%82%92%E8%B5%B7%E5%8B%95%E5%81%9C%E6%AD%A2%E3%81%99%E3%82%8B-runbook">上記サンプル</a> のスクリプトを貼り付けます。<br>[保存] と [公開] を押します。[はい] を押します。</p>
 <h4 id="5-スケジュールを設定する"><a href="#5-スケジュールを設定する" class="headerlink" title="5.スケジュールを設定する"></a>5.スケジュールを設定する</h4><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/automation/shared-resources/schedules">Azure Automation のスケジュールを管理する</a> を参考に、スケジュールを作成し、スケジュールを Runbook にリンクします。</p>
-<div class="alert is-warning"><p class="alert-title">警告</p><p><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB-runbook--%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E5%89%B2%E3%82%8A%E5%BD%93%E3%81%A6%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97vm-%E3%82%92%E8%B5%B7%E5%8B%95%E5%81%9C%E6%AD%A2%E3%81%99%E3%82%8B-runbook">上記サンプル</a> は、１つの VM のみ指定できます。</p><p>そのため、VM の数分、スケジュールを作成し、Runbook へリンクする必要がございます。</p><p>Runbook は 1 つだけで問題ございません。</p><p>複数の VM を指定されたい場合は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-functions/start-stop-vms/overview">Start/Stop VMs v2</a> ソリューション (Azure Functions 及び Logic Apps の機能) のご利用をご検討いただければ幸いです。</p></div>
+<div class="alert is-warning"><p class="alert-title">警告</p><p><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB-Runbook-%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E5%89%B2%E3%82%8A%E5%BD%93%E3%81%A6%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID-%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%80%81VM-%E3%82%92%E8%B5%B7%E5%8B%95%E3%83%BB%E5%81%9C%E6%AD%A2%E3%81%99%E3%82%8B-Runbook">上記サンプル</a> は、１つの VM のみ指定できます。</p><p>そのため、VM の数分、スケジュールを作成し、Runbook へリンクする必要がございます。</p><p>Runbook は 1 つだけで問題ございません。</p><p>複数の VM を指定されたい場合は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-functions/start-stop-vms/overview">Start/Stop VMs v2</a> ソリューション (Azure Functions 及び Logic Apps の機能) のご利用をご検討いただければ幸いです。</p></div>
 <p>今回のサンプルの場合、以下３つのパラメーターで構成されています。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">param</span>(</span><br><span class="line">[<span class="type">Parameter</span>(<span class="type">Mandatory</span>=<span class="variable">$true</span>,<span class="type">HelpMessage</span>=<span class="string">&quot;Enter the value for Action. Values can be either start or stop&quot;</span>)][<span class="built_in">String</span>]<span class="variable">$Action</span> = <span class="variable">$</span>(<span class="keyword">throw</span> <span class="string">&quot;Value for Action is missing&quot;</span>),</span><br><span class="line">[<span class="type">Parameter</span>(<span class="type">Mandatory</span>=<span class="variable">$true</span>,<span class="type">HelpMessage</span>=<span class="string">&quot;Enter the value for VMName.&quot;</span>)][<span class="built_in">String</span>]<span class="variable">$VMName</span> = <span class="variable">$</span>(<span class="keyword">throw</span> <span class="string">&quot;Value for VMName is missing&quot;</span>),</span><br><span class="line">[<span class="type">Parameter</span>(<span class="type">Mandatory</span>=<span class="variable">$true</span>,<span class="type">HelpMessage</span>=<span class="string">&quot;Enter the ResourceGroupName.&quot;</span>)][<span class="built_in">String</span>]<span class="variable">$ResourceGroupName</span> = <span class="variable">$</span>(<span class="keyword">throw</span> <span class="string">&quot;Value for ResourceGroupName is missing&quot;</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
@@ -318,11 +323,11 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <h5 id="スケジュールの動作確認"><a href="#スケジュールの動作確認" class="headerlink" title="スケジュールの動作確認"></a>スケジュールの動作確認</h5><p>スケジュールで設定された時間に Runbook が実行されるかどうかを確認します。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Azure ポータル] - [Automation アカウント] - [ジョブ] - [ジョブ一覧に対象 Runbook のジョブが表示されるかを確認]</span><br></pre></td></tr></table></figure>
 
-<h3 id="トラブルシューティング"><a href="#トラブルシューティング" class="headerlink" title="トラブルシューティング"></a>トラブルシューティング</h3><h4 id="マネージド-ID-にロールが割り当てられていないパターン"><a href="#マネージド-ID-にロールが割り当てられていないパターン" class="headerlink" title="マネージド ID にロールが割り当てられていないパターン"></a>マネージド ID にロールが割り当てられていないパターン</h4><p>例えば、以下のようなエラー メッセージが表示され、VM が起動・停止していない場合は、<br>マネージド ID に必要なロールが割り当てられているかをご確認いただければ幸いです。</p>
+<h2 id="トラブルシューティング"><a href="#トラブルシューティング" class="headerlink" title="トラブルシューティング"></a>トラブルシューティング</h2><h3 id="マネージド-ID-にロールが割り当てられていないパターン"><a href="#マネージド-ID-にロールが割り当てられていないパターン" class="headerlink" title="マネージド ID にロールが割り当てられていないパターン"></a>マネージド ID にロールが割り当てられていないパターン</h3><p>例えば、以下のようなエラー メッセージが表示され、VM が起動・停止していない場合は、<br>マネージド ID に必要なロールが割り当てられているかをご確認いただければ幸いです。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Error Message] Cannot validate argument on parameter &#x27;Subscription&#x27;. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again. </span><br></pre></td></tr></table></figure>
 
 <p>本サンプルでは、システム割り当てマネージド ID を利用し、Azure へ認証し、VM を起動・停止します。<br>上記エラーは、システム割り当てマネージド ID が、Azure へ認証できていないことを意味します。<br>システム割り当てマネージド ID が、Azure へ認証するには、権限があるロールを有している必要がございます。<br>ロールが割り当てられているかをご確認ください。</p>
-<h4 id="必要なモジュールがインポートされていないパターン"><a href="#必要なモジュールがインポートされていないパターン" class="headerlink" title="必要なモジュールがインポートされていないパターン"></a>必要なモジュールがインポートされていないパターン</h4><p>例えば、以下のようなエラー メッセージが表示され、VM が起動・停止していない場合は、<br>対象 Runbook のコマンドのモジュールがインポートされていないことを意味します。</p>
+<h3 id="必要なモジュールがインポートされていないパターン"><a href="#必要なモジュールがインポートされていないパターン" class="headerlink" title="必要なモジュールがインポートされていないパターン"></a>必要なモジュールがインポートされていないパターン</h3><p>例えば、以下のようなエラー メッセージが表示され、VM が起動・停止していない場合は、<br>対象 Runbook のコマンドのモジュールがインポートされていないことを意味します。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The term &#x27;&lt;コマンド名&gt;&quot; is not recognized as a name of cmdlet...</span><br></pre></td></tr></table></figure>
 <p>Automation アカウントにモジュールがインポートされているかご確認いただき、<br>ない場合は、必要な PowerShell モジュールを適宜インポートしていただけますと幸いです。</p>
 <p>以上です。</p>
