@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://github.com/user-attachments/assets/0e736def-83fe-4381-aed4-727a8cfaa91c">
 <meta property="og:image" content="https://github.com/user-attachments/assets/6bb136f8-20e3-4f43-b69e-d7c4b5847ff9">
 <meta property="article:published_time" content="2025-12-21T15:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-23T04:39:00.905Z">
+<meta property="article:modified_time" content="2025-12-23T06:12:13.670Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Azure Monitor Private Link Scopes">
 <meta property="article:tag" content="Data Collection Endpoint">
@@ -179,7 +179,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+b3d15a61-1ab0-568e-8332-94191d4c1709%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAMPLS+%E3%81%A7%E5%BF%85%E8%A6%81%E3%81%AA+IP+%E3%82%A2%E3%83%89%E3%83%AC%E3%82%B9%E3%81%AE%E5%80%8B%E6%95%B0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAMPLS%2Fampls-ip-ranges%2F%29%0A*+Content+Source%3A+%5Barticles%2FAMPLS%2Fampls-ip-ranges.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAMPLS%2Fampls-ip-ranges.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/AMPLS/ampls-ip-ranges/" data-id="cmji3i23x00000npeemh607tl" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/AMPLS/ampls-ip-ranges/" data-id="cmji6tx4q00000no2370h9toy" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -227,14 +227,14 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>以下の様に同じリージョンのエンドポイントは同じ IP に割り当てられます。</p>
 <img width="1314" height="374" alt="image" src="https://github.com/user-attachments/assets/0e736def-83fe-4381-aed4-727a8cfaa91c" />
 
-<h3 id="データ収集エンドポイント"><a href="#データ収集エンドポイント" class="headerlink" title="データ収集エンドポイント"></a>データ収集エンドポイント</h3><p>データ収集エンドポイントは AMPLS へ追加された データ収集エンドポイント 1つにつき3つのIPアドレスを消費します。</p>
+<h3 id="データ収集エンドポイント"><a href="#データ収集エンドポイント" class="headerlink" title="データ収集エンドポイント"></a>データ収集エンドポイント</h3><p>データ収集エンドポイント(DCE) は AMPLS へ追加された データ収集エンドポイント 1つにつき3つのIPアドレスを消費します。</p>
 <p>以下のエンドポイントにそれぞれ IP アドレスが割り当てられます。</p>
 <ol>
 <li>&lt;unique-dce-identifier&gt;.&lt;regionname&gt;.handler.control</li>
 <li>&lt;unique-dce-identifier&gt;.&lt;regionname&gt;.ingest</li>
 <li>&lt;unique-dce-identifier&gt;.&lt;regionname&gt;.metrics.ingest</li>
 </ol>
-<p>ワークスペースとは異なり、同じリージョンの DCE を AMPLS に 2 つ以上を追加した場合、 IP はそれぞれ追加されます。</p>
+<p>ワークスペースとは異なり、同じリージョンの DCE を AMPLS に 2 つ以上を追加した場合でも、 IP はそれぞれ追加されます。<br>例えば2つの DCE を追加した時、同じリージョンか異なるリージョンかに関わらず、IP は 6 つ追加されます。</p>
 <h3 id="Application-Insights"><a href="#Application-Insights" class="headerlink" title="Application Insights"></a>Application Insights</h3><p>Application Insights は AMPLS へ追加された Application Insights のインジェストエンドポイントとライブメトリックエンドポイントのIPアドレスを消費します。</p>
 <p>以下のエンドポイントにそれぞれ IP アドレスが割り当てられます。</p>
 <ol>
@@ -249,7 +249,8 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <li>例1: InstrumentationKey=<em><strong>;IngestionEndpoint=https://<code>japaneast-0</code>.in.applicationinsights.azure.com/;LiveEndpoint=https://<code>japaneast</code>.livediagnostics.monitor.azure.com/;ApplicationId=</strong></em></li>
 <li>例2: InstrumentationKey=<em><strong>;IngestionEndpoint=https://<code>japaneast-1</code>.in.applicationinsights.azure.com/;LiveEndpoint=https://<code>japaneast</code>.livediagnostics.monitor.azure.com/;ApplicationId=</strong></em></li>
 </ul>
-<p>接続文字列は Application Insights &gt; 概要 より確認いただけます。<br><img width="1220" height="599" alt="image" src="https://github.com/user-attachments/assets/6bb136f8-20e3-4f43-b69e-d7c4b5847ff9" /></p>
+<p>接続文字列および &lt;ID&gt; 部は Application Insights リソース作成時に自動的に決められます。</p>
+<p>Application Insights &gt; 概要 より確認いただけます。<br><img width="1220" height="599" alt="image" src="https://github.com/user-attachments/assets/6bb136f8-20e3-4f43-b69e-d7c4b5847ff9" /></p>
 <p>そのため、Application Insights では接続文字列内のエンドポイントを確認ください。</p>
 <h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><h3 id="Q-どの程度のIPレンジが必要になりますか？"><a href="#Q-どの程度のIPレンジが必要になりますか？" class="headerlink" title="Q. どの程度のIPレンジが必要になりますか？"></a>Q. どの程度のIPレンジが必要になりますか？</h3><p>A. お客様が将来的に AMPLS へ紐づけるリソースの数やそれらのリージョンによって必要な IP レンジは異なります。</p>
 <p>追加される IP に対して、割り当て可能な IP レンジが不足した場合には、サブネットの再作成や VNET の再作成が必要になるケースもあります。</p>
