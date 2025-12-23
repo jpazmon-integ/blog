@@ -116,7 +116,7 @@ Perf
 | sort by TimeGenerated
 ```
 4. 以下画像のようにログが表示されれば、ログが収集できています。
-![](./HowToCollectCustomPerfCounter/law-checklog_2512.png)
+![](./HowToCollectCustomPerfCounter/law-checklog_2512.png) 　
 
 ## まとめ
 本ブログではパフォーマンス カウンターおよびカスタム パフォーマンス カウンターの収集設定方法についてご紹介しました。
