@@ -101,8 +101,8 @@ Application Insights は AMPLS へ追加された Application Insights のイン
 
 この2つの Application Insights を AMPLS へ追加した場合、3つの IP が追加されます。
 
-例1: InstrumentationKey=***;IngestionEndpoint=https://`japaneast-0`.in.applicationinsights.azure.com/;LiveEndpoint=https://`japaneast`.livediagnostics.monitor.azure.com/;ApplicationId=***
-例2: InstrumentationKey=***;IngestionEndpoint=https://`japaneast-1`.in.applicationinsights.azure.com/;LiveEndpoint=https://`japaneast`.livediagnostics.monitor.azure.com/;ApplicationId=***
+- 例1: InstrumentationKey=***;IngestionEndpoint=https://`japaneast-0`.in.applicationinsights.azure.com/;LiveEndpoint=https://`japaneast`.livediagnostics.monitor.azure.com/;ApplicationId=***
+- 例2: InstrumentationKey=***;IngestionEndpoint=https://`japaneast-1`.in.applicationinsights.azure.com/;LiveEndpoint=https://`japaneast`.livediagnostics.monitor.azure.com/;ApplicationId=***
 
 接続文字列は Application Insights > 概要 より確認いただけます。
 <img width="1220" height="599" alt="image" src="https://github.com/user-attachments/assets/6bb136f8-20e3-4f43-b69e-d7c4b5847ff9" />
