@@ -22,10 +22,11 @@ tags:
 
 - [目次](#目次)
 - [計算方法について](#計算方法について)
-- [8以外の計算の詳細](#8以外の計算の詳細)
-  - [LAのリージョン1つにつき3つのIPアドレスを消費](#LAのリージョン1つにつき3つのIPアドレスを消費)
-  - [データ収集エンドポイント1つにつき3つのIPアドレスを消費](#データ収集エンドポイント1つにつき3つのIPアドレスを消費)
-  - [ApplicationInsightsのインジェストエンドポイントとライブメトリックエンドポイントのIPアドレスを消費](#ApplicationInsightsのインジェストエンドポイントとライブメトリックエンドポイントのIPアドレスを消費)
+- [8以外の各リソース追加によって追加される IP](#8以外の各リソース追加によって追加される-IP)
+  - [Log Analytics](#Log-Analytics)
+  - [データ収集エンドポイント](#データ収集エンドポイント)
+  - [Application Insights](#Application-Insights)
+- [Q&A](#Q&A)
 
 ## 計算方法について
 
@@ -50,13 +51,15 @@ tags:
 
 次の項目ではより詳細に、追加される FQDN と IP をご紹介します。
 
-## 8以外の計算の詳細
+## 8以外の各リソース追加によって追加される IP
 
 以下ドキュメントに概要が記載されています。
 
 [エンドポイントの DNS 設定を確認する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-configure#privatelink-monitor-azure-com)
 
-### LAのリージョン1つにつき3つのIPアドレスを消費
+### Log Analytics
+
+Log Analytics は AMPLS へ追加された Log Analytics のリージョン1つにつき3つのIPアドレスを消費します。
 
 以下の 3 個のエンドポイントはワークスペース毎に作られますが、リージョンごとに同じ IP が割り当てられます。
 
@@ -68,20 +71,23 @@ tags:
 
 <img width="1314" height="374" alt="image" src="https://github.com/user-attachments/assets/0e736def-83fe-4381-aed4-727a8cfaa91c" />
 
+### データ収集エンドポイント
 
-### データ収集エンドポイント1つにつき3つのIPアドレスを消費
+データ収集エンドポイントは AMPLS へ追加された データ収集エンドポイント 1つにつき3つのIPアドレスを消費します。
 
-以下のエンドポイントにそれぞれ IP アドレス割り当てられます。
+以下のエンドポイントにそれぞれ IP アドレスが割り当てられます。
 
 1. <unique-dce-identifier>.<regionname>.handler.control
 2. <unique-dce-identifier>.<regionname>.ingest
 3. <unique-dce-identifier>.<regionname>.metrics.ingest
 
-ワークスペースとは異なり、同じリージョンの DCE を AMPLS に 2 つ追加しても IP はそれぞれ追加されます。
+ワークスペースとは異なり、同じリージョンの DCE を AMPLS に 2 つ以上を追加した場合、 IP はそれぞれ追加され、6 つの IP が追加されます。
 
-### ApplicationInsightsのインジェストエンドポイントとライブメトリックエンドポイントのIPアドレスを消費
+### Application Insights
 
-以下のエンドポイントにそれぞれ IP アドレス割り当てられます。
+Application Insights は AMPLS へ追加された Application Insights のインジェストエンドポイントとライブメトリックエンドポイントのIPアドレスを消費します。
+
+以下のエンドポイントにそれぞれ IP アドレスが割り当てられます。
 
 1. <リージョン>-<ID>.in.ai.monitor.azure.com
 2. <リージョン>.livediagnostics.monitor.azure.com
@@ -91,7 +97,14 @@ tags:
 
 つまり、同じリージョンの Application Insights が既に追加されていた場合でも 1つ の IP アドレスが追加されたり、されない場合があります。
 
-例: `japaneast-0, japaneast-1`
+具体的に以下の様に、同じリージョンであっても <ID> 部分が異なる場合があります。
+この２つの Application Insights を AMPLS へ追加した場合、3つの IP が追加されます。
+
+例1: InstrumentationKey=***;IngestionEndpoint=https://`japaneast-0`.in.applicationinsights.azure.com/;LiveEndpoint=https://`japaneast`.livediagnostics.monitor.azure.com/;ApplicationId=***`
+例2: InstrumentationKey=***;IngestionEndpoint=https://`japaneast-1`.in.applicationinsights.azure.com/;LiveEndpoint=https://`japaneast`.livediagnostics.monitor.azure.com/;ApplicationId=***`
+
+接続文字列は Application Insights > 概要 より確認いただけます。
+<img width="1220" height="599" alt="image" src="https://github.com/user-attachments/assets/6bb136f8-20e3-4f43-b69e-d7c4b5847ff9" />
 
 そのため、Application Insights では接続文字列内のエンドポイントを確認ください。
 
