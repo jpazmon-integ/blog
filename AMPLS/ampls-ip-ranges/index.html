@@ -10,16 +10,17 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="[更新履歴]-2025&#x2F;12&#x2F;22 ブログ公開    こんにちは、Azure Monitoring &amp; Integration サポート チームの佐々木です。 今回の記事では、Azure Monitor Private Link Scope 利用の際に必要になる IP レンジについてご説明します。 目次 目次 計算方法について 8以外の計算の詳細 LAのリージョン1つにつき3つのIPアドレ">
+      <meta name="description" content="[更新履歴]-2025&#x2F;12&#x2F;22 ブログ公開-2025&#x2F;12&#x2F;23 目次と各項目の修正  こんにちは、Azure Monitoring &amp; Integration サポート チームの佐々木です。 今回の記事では、Azure Monitor Private Link Scope 利用の際に必要になる IP レンジについてご説明します。 目次 目次 計算方法について 8以外の各リソース追加に">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AMPLS で必要な IP アドレスの個数について">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/AMPLS/ampls-ip-ranges/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="[更新履歴]-2025&#x2F;12&#x2F;22 ブログ公開    こんにちは、Azure Monitoring &amp; Integration サポート チームの佐々木です。 今回の記事では、Azure Monitor Private Link Scope 利用の際に必要になる IP レンジについてご説明します。 目次 目次 計算方法について 8以外の計算の詳細 LAのリージョン1つにつき3つのIPアドレ">
+<meta property="og:description" content="[更新履歴]-2025&#x2F;12&#x2F;22 ブログ公開-2025&#x2F;12&#x2F;23 目次と各項目の修正  こんにちは、Azure Monitoring &amp; Integration サポート チームの佐々木です。 今回の記事では、Azure Monitor Private Link Scope 利用の際に必要になる IP レンジについてご説明します。 目次 目次 計算方法について 8以外の各リソース追加に">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://github.com/user-attachments/assets/0e736def-83fe-4381-aed4-727a8cfaa91c">
+<meta property="og:image" content="https://github.com/user-attachments/assets/6bb136f8-20e3-4f43-b69e-d7c4b5847ff9">
 <meta property="article:published_time" content="2025-12-21T15:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-22T07:48:19.961Z">
+<meta property="article:modified_time" content="2025-12-23T02:13:56.853Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Azure Monitor Private Link Scopes">
 <meta property="article:tag" content="Data Collection Endpoint">
@@ -178,24 +179,25 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+b3d15a61-1ab0-568e-8332-94191d4c1709%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAMPLS+%E3%81%A7%E5%BF%85%E8%A6%81%E3%81%AA+IP+%E3%82%A2%E3%83%89%E3%83%AC%E3%82%B9%E3%81%AE%E5%80%8B%E6%95%B0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAMPLS%2Fampls-ip-ranges%2F%29%0A*+Content+Source%3A+%5Barticles%2FAMPLS%2Fampls-ip-ranges.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAMPLS%2Fampls-ip-ranges.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/AMPLS/ampls-ip-ranges/" data-id="cmjguto8700000npd5xf8hbax" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/AMPLS/ampls-ip-ranges/" data-id="cmjhybhtc00000noz3vsd737c" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>[更新履歴]<br>-2025/12/22 ブログ公開  </p>
+        <p>[更新履歴]<br>-2025/12/22 ブログ公開<br>-2025/12/23 目次と各項目の修正</p>
 <hr>
 <p>こんにちは、Azure Monitoring &amp; Integration サポート チームの佐々木です。</p>
 <p>今回の記事では、Azure Monitor Private Link Scope 利用の際に必要になる IP レンジについてご説明します。</p>
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
 <li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
 <li><a href="#%E8%A8%88%E7%AE%97%E6%96%B9%E6%B3%95%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">計算方法について</a></li>
-<li><a href="#8%E4%BB%A5%E5%A4%96%E3%81%AE%E8%A8%88%E7%AE%97%E3%81%AE%E8%A9%B3%E7%B4%B0">8以外の計算の詳細</a><ul>
-<li><a href="#LA%E3%81%AE%E3%83%AA%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B31%E3%81%A4%E3%81%AB%E3%81%A4%E3%81%8D3%E3%81%A4%E3%81%AEIP%E3%82%A2%E3%83%89%E3%83%AC%E3%82%B9%E3%82%92%E6%B6%88%E8%B2%BB">LAのリージョン1つにつき3つのIPアドレスを消費</a></li>
-<li><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86%E3%82%A8%E3%83%B3%E3%83%89%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%881%E3%81%A4%E3%81%AB%E3%81%A4%E3%81%8D3%E3%81%A4%E3%81%AEIP%E3%82%A2%E3%83%89%E3%83%AC%E3%82%B9%E3%82%92%E6%B6%88%E8%B2%BB">データ収集エンドポイント1つにつき3つのIPアドレスを消費</a></li>
-<li><a href="#ApplicationInsights%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88%E3%82%A8%E3%83%B3%E3%83%89%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E3%81%A8%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%82%A8%E3%83%B3%E3%83%89%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E3%81%AEIP%E3%82%A2%E3%83%89%E3%83%AC%E3%82%B9%E3%82%92%E6%B6%88%E8%B2%BB">ApplicationInsightsのインジェストエンドポイントとライブメトリックエンドポイントのIPアドレスを消費</a></li>
+<li><a href="#8%E4%BB%A5%E5%A4%96%E3%81%AE%E5%90%84%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E8%BF%BD%E5%8A%A0%E3%81%AB%E3%82%88%E3%81%A3%E3%81%A6%E8%BF%BD%E5%8A%A0%E3%81%95%E3%82%8C%E3%82%8B-IP">8以外の各リソース追加によって追加される IP</a><ul>
+<li><a href="#Log-Analytics">Log Analytics</a></li>
+<li><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86%E3%82%A8%E3%83%B3%E3%83%89%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88">データ収集エンドポイント</a></li>
+<li><a href="#Application-Insights">Application Insights</a></li>
 </ul>
 </li>
+<li><a href="#Q&A">Q&amp;A</a></li>
 </ul>
 <h2 id="計算方法について"><a href="#計算方法について" class="headerlink" title="計算方法について"></a>計算方法について</h2><p>下記の計算式で算出できます。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8 + Application Insights の接続文字列に定義されたエンドポイント数 + データ収集エンドポイント*3 + Log Analytics ワークスペースのリージョン数*3</span><br></pre></td></tr></table></figure>
@@ -213,9 +215,10 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </ol>
 <p>例えば、AMPLS に 1 つの LA を接続する場合は 最低 11 個の IP アドレスが必要です。</p>
 <p>次の項目ではより詳細に、追加される FQDN と IP をご紹介します。</p>
-<h2 id="8以外の計算の詳細"><a href="#8以外の計算の詳細" class="headerlink" title="8以外の計算の詳細"></a>8以外の計算の詳細</h2><p>以下ドキュメントに概要が記載されています。</p>
+<h2 id="8以外の各リソース追加によって追加される-IP"><a href="#8以外の各リソース追加によって追加される-IP" class="headerlink" title="8以外の各リソース追加によって追加される IP"></a>8以外の各リソース追加によって追加される IP</h2><p>以下ドキュメントに概要が記載されています。</p>
 <p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-configure#privatelink-monitor-azure-com">エンドポイントの DNS 設定を確認する</a></p>
-<h3 id="LAのリージョン1つにつき3つのIPアドレスを消費"><a href="#LAのリージョン1つにつき3つのIPアドレスを消費" class="headerlink" title="LAのリージョン1つにつき3つのIPアドレスを消費"></a>LAのリージョン1つにつき3つのIPアドレスを消費</h3><p>以下の 3 個のエンドポイントはワークスペース毎に作られますが、リージョンごとに同じ IP が割り当てられます。</p>
+<h3 id="Log-Analytics"><a href="#Log-Analytics" class="headerlink" title="Log Analytics"></a>Log Analytics</h3><p>Log Analytics は AMPLS へ追加された Log Analytics のリージョン1つにつき3つのIPアドレスを消費します。</p>
+<p>以下の 3 個のエンドポイントはワークスペース毎に作られますが、リージョンごとに同じ IP が割り当てられます。</p>
 <ol>
 <li>&lt;ワークスペース ID&gt;.privatelink-oms-opinsights-azure-com</li>
 <li>&lt;ワークスペース ID&gt;.privatelink-ods-opinsights-azure-com</li>
@@ -224,22 +227,29 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>以下の様に同じリージョンのエンドポイントは同じ IP に割り当てられます。</p>
 <img width="1314" height="374" alt="image" src="https://github.com/user-attachments/assets/0e736def-83fe-4381-aed4-727a8cfaa91c" />
 
-
-<h3 id="データ収集エンドポイント1つにつき3つのIPアドレスを消費"><a href="#データ収集エンドポイント1つにつき3つのIPアドレスを消費" class="headerlink" title="データ収集エンドポイント1つにつき3つのIPアドレスを消費"></a>データ収集エンドポイント1つにつき3つのIPアドレスを消費</h3><p>以下のエンドポイントにそれぞれ IP アドレス割り当てられます。</p>
+<h3 id="データ収集エンドポイント"><a href="#データ収集エンドポイント" class="headerlink" title="データ収集エンドポイント"></a>データ収集エンドポイント</h3><p>データ収集エンドポイントは AMPLS へ追加された データ収集エンドポイント 1つにつき3つのIPアドレスを消費します。</p>
+<p>以下のエンドポイントにそれぞれ IP アドレスが割り当てられます。</p>
 <ol>
-<li><unique-dce-identifier>.<regionname>.handler.control</li>
-<li><unique-dce-identifier>.<regionname>.ingest</li>
-<li><unique-dce-identifier>.<regionname>.metrics.ingest</li>
+<li>&lt;unique-dce-identifier&gt;.&lt;regionname&gt;.handler.control</li>
+<li>&lt;unique-dce-identifier&gt;.&lt;regionname&gt;.ingest</li>
+<li>&lt;unique-dce-identifier&gt;.&lt;regionname&gt;.metrics.ingest</li>
 </ol>
-<p>ワークスペースとは異なり、同じリージョンの DCE を AMPLS に 2 つ追加しても IP はそれぞれ追加されます。</p>
-<h3 id="ApplicationInsightsのインジェストエンドポイントとライブメトリックエンドポイントのIPアドレスを消費"><a href="#ApplicationInsightsのインジェストエンドポイントとライブメトリックエンドポイントのIPアドレスを消費" class="headerlink" title="ApplicationInsightsのインジェストエンドポイントとライブメトリックエンドポイントのIPアドレスを消費"></a>ApplicationInsightsのインジェストエンドポイントとライブメトリックエンドポイントのIPアドレスを消費</h3><p>以下のエンドポイントにそれぞれ IP アドレス割り当てられます。</p>
+<p>ワークスペースとは異なり、同じリージョンの DCE を AMPLS に 2 つ以上を追加した場合、 IP はそれぞれ追加されます。</p>
+<h3 id="Application-Insights"><a href="#Application-Insights" class="headerlink" title="Application Insights"></a>Application Insights</h3><p>Application Insights は AMPLS へ追加された Application Insights のインジェストエンドポイントとライブメトリックエンドポイントのIPアドレスを消費します。</p>
+<p>以下のエンドポイントにそれぞれ IP アドレスが割り当てられます。</p>
 <ol>
-<li>&lt;リージョン&gt;-<ID>.in.ai.monitor.azure.com</li>
+<li>&lt;リージョン&gt;-&lt;ID&gt;.in.ai.monitor.azure.com</li>
 <li>&lt;リージョン&gt;.livediagnostics.monitor.azure.com</li>
 </ol>
 <p>基本的に Application Insights 1 リージョンに対して 2 つの IP アドレスが消費される認識で問題ありませんが、<br>1 つのリージョンに対して 2 つのインジェスト エンドポイントが定義されるケースもあります。</p>
 <p>つまり、同じリージョンの Application Insights が既に追加されていた場合でも 1つ の IP アドレスが追加されたり、されない場合があります。</p>
-<p>例: <code>japaneast-0, japaneast-1</code></p>
+<p>具体的に以下の様に、同じリージョンであっても &lt;ID&gt; 部分が異なる場合があります。</p>
+<p>この2つの Application Insights を AMPLS へ追加した場合、3つの IP が追加されます。</p>
+<ul>
+<li>例1: InstrumentationKey=<em><strong>;IngestionEndpoint=https://<code>japaneast-0</code>.in.applicationinsights.azure.com/;LiveEndpoint=https://<code>japaneast</code>.livediagnostics.monitor.azure.com/;ApplicationId=</strong></em></li>
+<li>例2: InstrumentationKey=<em><strong>;IngestionEndpoint=https://<code>japaneast-1</code>.in.applicationinsights.azure.com/;LiveEndpoint=https://<code>japaneast</code>.livediagnostics.monitor.azure.com/;ApplicationId=</strong></em></li>
+</ul>
+<p>接続文字列は Application Insights &gt; 概要 より確認いただけます。<br><img width="1220" height="599" alt="image" src="https://github.com/user-attachments/assets/6bb136f8-20e3-4f43-b69e-d7c4b5847ff9" /></p>
 <p>そのため、Application Insights では接続文字列内のエンドポイントを確認ください。</p>
 <h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><h3 id="Q-どの程度のIPレンジが必要になりますか？"><a href="#Q-どの程度のIPレンジが必要になりますか？" class="headerlink" title="Q. どの程度のIPレンジが必要になりますか？"></a>Q. どの程度のIPレンジが必要になりますか？</h3><p>A. お客様が将来的に AMPLS へ紐づけるリソースの数やそれらのリージョンによって必要な IP レンジは異なります。</p>
 <p>追加される IP に対して、割り当て可能な IP レンジが不足した場合には、サブネットの再作成や VNET の再作成が必要になるケースもあります。</p>
