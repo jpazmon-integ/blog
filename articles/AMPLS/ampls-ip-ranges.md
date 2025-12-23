@@ -78,9 +78,9 @@ Log Analytics は AMPLS へ追加された Log Analytics のリージョン1つ�
 
 以下のエンドポイントにそれぞれ IP アドレスが割り当てられます。
 
-1. <unique-dce-identifier>.<regionname>.handler.control
-2. <unique-dce-identifier>.<regionname>.ingest
-3. <unique-dce-identifier>.<regionname>.metrics.ingest
+1. \<unique-dce-identifier>.\<regionname>.handler.control
+2. \<unique-dce-identifier>.\<regionname>.ingest
+3. \<unique-dce-identifier>.\<regionname>.metrics.ingest
 
 ワークスペースとは異なり、同じリージョンの DCE を AMPLS に 2 つ以上を追加した場合、 IP はそれぞれ追加されます。
 
@@ -90,7 +90,7 @@ Application Insights は AMPLS へ追加された Application Insights のイン
 
 以下のエンドポイントにそれぞれ IP アドレスが割り当てられます。
 
-1. <リージョン>-<ID>.in.ai.monitor.azure.com
+1. <リージョン>-\<ID>.in.ai.monitor.azure.com
 2. <リージョン>.livediagnostics.monitor.azure.com
 
 基本的に Application Insights 1 リージョンに対して 2 つの IP アドレスが消費される認識で問題ありませんが、
@@ -98,7 +98,7 @@ Application Insights は AMPLS へ追加された Application Insights のイン
 
 つまり、同じリージョンの Application Insights が既に追加されていた場合でも 1つ の IP アドレスが追加されたり、されない場合があります。
 
-具体的に以下の様に、同じリージョンであっても <ID> 部分が異なる場合があります。
+具体的に以下の様に、同じリージョンであっても \<ID> 部分が異なる場合があります。
 
 この2つの Application Insights を AMPLS へ追加した場合、3つの IP が追加されます。
 
