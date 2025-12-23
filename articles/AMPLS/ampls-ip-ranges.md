@@ -74,7 +74,7 @@ Log Analytics は AMPLS へ追加された Log Analytics のリージョン1つ�
 
 ### データ収集エンドポイント
 
-データ収集エンドポイントは AMPLS へ追加された データ収集エンドポイント 1つにつき3つのIPアドレスを消費します。
+データ収集エンドポイント(DCE) は AMPLS へ追加された データ収集エンドポイント 1つにつき3つのIPアドレスを消費します。
 
 以下のエンドポイントにそれぞれ IP アドレスが割り当てられます。
 
@@ -82,7 +82,8 @@ Log Analytics は AMPLS へ追加された Log Analytics のリージョン1つ�
 2. \<unique-dce-identifier>.\<regionname>.ingest
 3. \<unique-dce-identifier>.\<regionname>.metrics.ingest
 
-ワークスペースとは異なり、同じリージョンの DCE を AMPLS に 2 つ以上を追加した場合、 IP はそれぞれ追加されます。
+ワークスペースとは異なり、同じリージョンの DCE を AMPLS に 2 つ以上を追加した場合でも、 IP はそれぞれ追加されます。
+例えば2つの DCE を追加した時、同じリージョンか異なるリージョンかに関わらず、IP は 6 つ追加されます。
 
 ### Application Insights
 
@@ -105,7 +106,9 @@ Application Insights は AMPLS へ追加された Application Insights のイン
 - 例1: InstrumentationKey=***;IngestionEndpoint=https://`japaneast-0`.in.applicationinsights.azure.com/;LiveEndpoint=https://`japaneast`.livediagnostics.monitor.azure.com/;ApplicationId=***
 - 例2: InstrumentationKey=***;IngestionEndpoint=https://`japaneast-1`.in.applicationinsights.azure.com/;LiveEndpoint=https://`japaneast`.livediagnostics.monitor.azure.com/;ApplicationId=***
 
-接続文字列は Application Insights > 概要 より確認いただけます。
+接続文字列および \<ID> 部は Application Insights リソース作成時に自動的に決められます。
+
+Application Insights > 概要 より確認いただけます。
 <img width="1220" height="599" alt="image" src="https://github.com/user-attachments/assets/6bb136f8-20e3-4f43-b69e-d7c4b5847ff9" />
 
 そのため、Application Insights では接続文字列内のエンドポイントを確認ください。
