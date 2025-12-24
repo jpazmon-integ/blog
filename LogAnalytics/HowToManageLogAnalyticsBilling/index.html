@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToManageLogAnalyticsBilling/docs-syslog.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToManageLogAnalyticsBilling/dataretention-cost.png">
 <meta property="article:published_time" content="2024-09-17T15:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-24T00:58:30.408Z">
+<meta property="article:modified_time" content="2025-12-24T03:02:07.191Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Log Analytics">
 <meta property="article:tag" content="How-To">
@@ -177,7 +177,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+e840004a-6f32-5ac8-96ca-1201e3d0ef5f%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BLog+Analytics+%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88%E5%A2%97%E5%8A%A0%E3%81%AE%E5%8E%9F%E5%9B%A0%E3%82%92%E5%88%86%E6%9E%90%E3%81%97%E3%82%B3%E3%82%B9%E3%83%88%E5%89%8A%E6%B8%9B%E3%82%92%E6%A4%9C%E8%A8%8E%E3%81%99%E3%82%8B%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FHowToManageLogAnalyticsBilling%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FHowToManageLogAnalyticsBilling.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FHowToManageLogAnalyticsBilling.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToManageLogAnalyticsBilling/" data-id="cmjjb2btj00cq0nrr8vgz9d7b" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToManageLogAnalyticsBilling/" data-id="cmjjfhbci00cq0nk0c3gt65em" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -222,13 +222,13 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <li>データの保有量と保有期間  </li>
 <li>Log Analytics ワークスペースが存在するリージョン  </li>
 </ul>
-<p>このうち、コスト増加の原因となりうるのは、データのインジェスト量およびデータの保有量と保有期間です。<br>したがって、コスト増加の主な原因を分析するためには、以下の情報を得る必要があります。</p>
+<p>このうち、コスト増加の原因となりうるのは、データのインジェスト量およびデータの保有量と保有期間です。<br>したがって、コスト増加の主な原因を分析するためには、以下の情報を得る必要があります。<br>それぞれの確認方法については後述いたします。</p>
 <ul>
 <li>データのインジェスト量の推移</li>
 <li>データの保有量の推移</li>
 <li>データの保有期間</li>
 </ul>
-<p>それぞれの確認方法について、ご説明します。</p>
+<p>※ 期待せずコストが増加した場合、上記以外にも要因がある場合がございます。一例として、ログの復元を行った場合の復元コストが挙げられます。<br>復元のコストはその課金体系上、少量のデータ、短期間の復元であっても予期せず高額になることがあるため、ご注意ください。<br>具体的な課金体系およびコストの計算方法については以下弊社公開情報、ブログを参照ください。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/restore?tabs=api-1#pricing-model">Azure Monitor でログを復元する | 価格モデル</a><br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPricing/#3-2-%E5%BE%A9%E5%85%83%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88">Log Analytics のクエリの実行コストについて | 3-2. 復元のコスト</a></p>
 <h3 id="1-1-データのインジェスト量の推移を確認する"><a href="#1-1-データのインジェスト量の推移を確認する" class="headerlink" title="1-1. データのインジェスト量の推移を確認する"></a>1-1. データのインジェスト量の推移を確認する</h3><p>Log Analytics ワークスペースごとのデータのインジェスト量の推移を確認する方法は、主に以下 2 つです。</p>
 <ul>
 <li>[使用量と推定コスト] から確認する方法</li>
