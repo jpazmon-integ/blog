@@ -7,6 +7,10 @@ tags:
   - Azure Private Link
 ---
 
+[更新履歴]
+- 2024/3/30 ブログ公開
+- 2025/12/24 最新情報に更新
+
 <!-- more -->
 こんにちは、Azure Monitoring チームの 佐藤 です。
 
