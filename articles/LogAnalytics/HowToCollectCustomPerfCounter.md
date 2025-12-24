@@ -6,6 +6,10 @@ tags:
  - Log Analytics
 ---
 
+[更新履歴]  
+- 2025/12/23 スクリーンショットの更新
+- 2024/8/19 ブログ公開 
+
 こんにちは、Azure Monitoring チームの徳田です。
 
 本ブログでは、以下の公開情報に記載されています、Azure Monitor エージェントを使用してカスタムのパフォーマンス カウンターを収集するためのデータ収集ルールの作成方法についてご説明します。
@@ -38,28 +42,28 @@ Linux OS のマシンについては、収集可能なパフォーマンス カ�
 * データ収集元となる Windows OS の仮想マシン (以下 VM)
 * データ収集先となる Log Analytics ワークスペース
 
-### パフォーマンス カウンター名を取得する
+### 収集したいパフォーマンス カウンター名の取得
 データ収集ルールのカスタム パフォーマンス カウンターに含まれないパフォーマンス カウンターを取得したい場合、以下の手順に沿って任意のパフォーマンス カウンター名を取得します。  
 
 1. VM のスタート画面で "パフォーマンス モニター" または "Performance Monitor" を検索し、開きます。
 
 2. 左ペインで Monitoring Tools > Performance Monitor (モニター ツール > パフォーマンス モニター) を押下します。ウィンドウ中央に折れ線グラフが表示されます。  
-![alt text](./HowToCollectCustomPerfCounter/performancemonitor-screen1.png)
+![](./HowToCollectCustomPerfCounter/performancemonitor-screen1.png)
 
 3. 上部 [+] ボタンを押下し、確認したいパフォーマンス カウンターを押下します。この際、"選択したオブジェクトのインスタンス (I)" に複数の値が表示されている場合は任意のインスタンスも押下します。  
 [追加] を押下し、[OK] を押下します。  
 
 例 : パフォーマンス カウンターにインスタンスがない場合
-![alt text](./HowToCollectCustomPerfCounter/performancemonitor-screen2.png)  
+![](./HowToCollectCustomPerfCounter/performancemonitor-screen2.png)  
 
 例 : パフォーマンス カウンターにインスタンスがある場合
-![alt text](./HowToCollectCustomPerfCounter/performancemonitor-screen3.png)
+![](./HowToCollectCustomPerfCounter/performancemonitor-screen3.png)
 
 
 4. 折れ線グラフの下に、選択したパフォーマンス カウンターの一覧が表示されます。  
 オブジェクト、インスタンス、カウンター列を参照し、以下のルールに従ってパフォーマンス カウンター名を手元にメモします。  
 
-![alt text](./HowToCollectCustomPerfCounter/performancemonitor-screen4.png)
+![](./HowToCollectCustomPerfCounter/performancemonitor-screen4.png)
 
 インスタンスがない場合 : `\<オブジェクト>\<カウンター>`  
     例 : `\System\File Read Bytes/sec`  
@@ -71,7 +75,7 @@ Linux OS のマシンについては、収集可能なパフォーマンス カ�
 > カウンター名にアンパサンド (`&`) が含まれている場合は、`&` を `&amp;` に置き換えてください。  
 > 例 : カウンター列の値が `Free & Zero Page List Bytes` の場合、パフォーマンス カウンター名は `\Memory\Free &amp; Zero Page List Bytes` となります。
 
-### データ収集ルールを作成する
+### データ収集ルールの作成
 1. Azure potral にログインします。
 2. "deta collection rules" を選択します。
 3. [作成] を押下し、"基本" タブの各値を入力します。  
@@ -81,13 +85,13 @@ Linux OS のマシンについては、収集可能なパフォーマンス カ�
     その下にパフォーマンス カウンターの一覧が表示されます。
 5. [カスタム] を押下し、収集したいパフォーマンス カウンターのチェックボックスにチェックを入れます。   
     (2024 年 7 月時点では、デフォルトですべてのカスタム パフォーマンス カウンターのチェックボックスにチェックが入っています。そのため、収集不要なカウンター場合は、そちらのチェックを外していただく必要があります。) 
-    ![alt text](./HowToCollectCustomPerfCounter/dcr-addcustomperf.png)  
+    ![](./HowToCollectCustomPerfCounter/dcr-addcustomperf.png)  
     表示されているパフォーマンス カウンター以外のものを収集したい場合は、[収集したいパフォーマンス カウンター名の取得](#収集したいパフォーマンス-カウンター名の取得) で取得したパフォーマンス カウンター名を入力し、"追加" を押下した後、チェック ボックスにチェックを入れます。
-    ![alt text](./HowToCollectCustomPerfCounter/dcr-addcustomperf2.png)
+    ![](./HowToCollectCustomPerfCounter/dcr-addcustomperf2.png)
 
 6. [次へ : ターゲット >] を押下し、[+ ターゲットの追加] を押下します。  
     "ターゲットの種類" で [Azure Monitor Logs] を選択し、収集先となる Log Analytics ワークスペースを選択し、[データ ソースの追加] を押下します。  
-    ![alt text](./HowToCollectCustomPerfCounter/dcr-addtargets.png)
+    ![](./HowToCollectCustomPerfCounter/dcr-addtargets.png)
 
 7. "確認と作成" タブにて [作成] を押下し、完了です。
 
@@ -112,7 +116,7 @@ Perf
 | sort by TimeGenerated
 ```
 4. 以下画像のようにログが表示されれば、ログが収集できています。
-![alt text](./HowToCollectCustomPerfCounter/law-checklog.png)
+![](./HowToCollectCustomPerfCounter/law-checklog_2512.png) 　
 
 ## まとめ
 本ブログではパフォーマンス カウンターおよびカスタム パフォーマンス カウンターの収集設定方法についてご紹介しました。
