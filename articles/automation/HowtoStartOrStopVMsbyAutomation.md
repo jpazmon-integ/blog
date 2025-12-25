@@ -11,6 +11,10 @@ tags:
   - 自動化
 ---
 
+[更新履歴]
+- 2022/10/14 ブログ公開
+- 2025/12/23 無効となっていたリンクを更新
+
 こんにちは！Azure Monitoring サポート チームの趙です。 
 今回は、VM を起動・停止する方法をご案内させていただきます。
 
@@ -18,30 +22,30 @@ tags:
 
 ## 目次
 - [目次](#目次)
-- [VM 起動・停止処理を理解しましょう](#vm-起動停止処理を理解しましょう)
-- [なぜ Azure Automation を使うか](#なぜ-azure-automation-を使うか)
-- [VM を起動・停止するソリューション](#vm-を起動停止するソリューション)
-  - [1.Start/Stop VMs during off-hours ソリューション (v1) (非推奨)](#1startstop-vms-during-off-hours-ソリューション-v1-非推奨)
-  - [2.Start/Stop VMs v2 (推奨)](#2startstop-vms-v2-推奨)
-  - [3.Start Azure V2 VMs / Stop Azure V2 VMs (非推奨)](#3start-azure-v2-vms--stop-azure-v2-vms-非推奨)
-- [VM を起動・停止する Runbook サンプル](#vm-を起動停止する-runbook-サンプル)
+- [VM 起動・停止処理を理解しましょう](#VM-起動・停止処理を理解しましょう)
+- [なぜ Azure Automation を使うか](#なぜ-Azure-Automation-を使うか)
+- [VM を起動・停止するソリューション](#VM-を起動・停止するソリューション)
+  - [1.Start/Stop VMs during off-hours ソリューション (v1) (非推奨)](#1-Start-Stop-VMs-during-off-hours-ソリューション-v1-非推奨)
+  - [2.Start/Stop VMs v2 (推奨)](#2-Start-Stop-VMs-v2-推奨)
+  - [3.Start Azure V2 VMs / Stop Azure V2 VMs (非推奨)](#3-Start-Azure-V2-VMs-Stop-Azure-V2-VMs-非推奨)
+- [VM を起動・停止する Runbook サンプル](#VM-を起動・停止する-Runbook-サンプル)
   - [免責事項](#免責事項)
-  - [サンプル Runbook : システム割り当てマネージド ID を利用し、VM を起動・停止する Runbook](#サンプル-runbook--システム割り当てマネージド-id-を利用しvm-を起動停止する-runbook)
-  - [サンプル Runbook の解説](#サンプル-runbook-の解説)
-    - [Azure へ認証するコマンド](#azure-へ認証するコマンド)
-    - [VM を起動するコマンド](#vm-を起動するコマンド)
-    - [VM を停止するコマンド](#vm-を停止するコマンド)
-  - [サンプル Runbook の利用方法](#サンプル-runbook-の利用方法)
-    - [1.Automation アカウントを作成する](#1automation-アカウントを作成する)
-    - [2.Automation アカウントにシステム割り当てマネージド ID を構成する](#2automation-アカウントにシステム割り当てマネージド-id-を構成する)
-    - [3.必要なモジュールをインポートする](#3必要なモジュールをインポートする)
-    - [4.対象 Runbook を作成する](#4対象-runbook-を作成する)
-    - [5.スケジュールを設定する](#5スケジュールを設定する)
-    - [6.動作確認する](#6動作確認する)
-      - [Runbook 手動実行での動作確認](#runbook-手動実行での動作確認)
-      - [スケジュールの動作確認](#スケジュールの動作確認)
+  - [サンプル Runbook : システム割り当てマネージド ID を利用し、VM を起動・停止する Runbook](#サンプル-Runbook-システム割り当てマネージド-ID-を利用し、VM-を起動・停止する-Runbook)
+  - [サンプル Runbook の解説](#サンプル-Runbook-の解説)
+    - [Azure へ認証するコマンド]
+    - [VM を起動するコマンド]
+    - [VM を停止するコマンド]
+  - [サンプル Runbook の利用方法](#サンプル-Runbook-の利用方法)
+    - [1.Automation アカウントを作成する]
+    - [2.Automation アカウントにシステム割り当てマネージド ID を構成する]
+    - [3.必要なモジュールをインポートする]
+    - [4.対象 Runbook を作成する]
+    - [5.スケジュールを設定する]
+    - [6.動作確認する]
+      - [Runbook 手動実行での動作確認]
+      - [スケジュールの動作確認]
   - [トラブルシューティング](#トラブルシューティング)
-    - [マネージド ID にロールが割り当てられていないパターン](#マネージド-id-にロールが割り当てられていないパターン)
+    - [マネージド ID にロールが割り当てられていないパターン](#マネージド-ID-にロールが割り当てられていないパターン)
     - [必要なモジュールがインポートされていないパターン](#必要なモジュールがインポートされていないパターン)
 
 ## VM 起動・停止処理を理解しましょう
@@ -69,7 +73,7 @@ Azure Automation をご利用いただくことで、VM の起動・停止処理
 
 ### 1.Start/Stop VMs during off-hours ソリューション (v1) (非推奨)
 
-Azure Automation では、以前は、[Start/Stop VMs during off-hours ソリューション (v1)](https://learn.microsoft.com/ja-jp/azure/automation/automation-solution-vm-management) を提供しておりましたが、現時点では、非推奨の機能です。
+Azure Automation では、以前は、[Start/Stop VMs during off-hours ソリューション (v1)](https://learn.microsoft.com/ja-jp/azure/automation/whats-new#startstop-vms-during-off-hours-v1) を提供しておりましたが、現時点では、非推奨の機能です。
 なお、認証手段としては、実行アカウントが利用されていたソリューションです。 
 
 また、Start/Stop VMs during off-hours ソリューション (v1) は、非推奨のソリューションであるため、現時点では Start/Stop VMs during off-hours ソリューション (v1) をデプロイすることはできません。 
@@ -338,7 +342,7 @@ Runbook にて、それぞれのコマンドを実行するには Automation ア
 [Azure Automation のスケジュールを管理する](https://learn.microsoft.com/ja-jp/azure/automation/shared-resources/schedules) を参考に、スケジュールを作成し、スケジュールを Runbook にリンクします。
 
 >[!WARNING]
->[上記サンプル](#サンプル-runbook--システム割り当てマネージド-id-を利用しvm-を起動停止する-runbook) は、１つの VM のみ指定できます。
+>[上記サンプル](#サンプル-Runbook-システム割り当てマネージド-ID-を利用し、VM-を起動・停止する-Runbook) は、１つの VM のみ指定できます。
 そのため、VM の数分、スケジュールを作成し、Runbook へリンクする必要がございます。
 Runbook は 1 つだけで問題ございません。
 >複数の VM を指定されたい場合は、[Start/Stop VMs v2](https://learn.microsoft.com/ja-jp/azure/azure-functions/start-stop-vms/overview) ソリューション (Azure Functions 及び Logic Apps の機能) のご利用をご検討いただければ幸いです。
@@ -382,9 +386,9 @@ param(
 [Azure ポータル] - [Automation アカウント] - [ジョブ] - [ジョブ一覧に対象 Runbook のジョブが表示されるかを確認]
 ```
 
-### トラブルシューティング
+## トラブルシューティング
 
-#### マネージド ID にロールが割り当てられていないパターン
+### マネージド ID にロールが割り当てられていないパターン
 例えば、以下のようなエラー メッセージが表示され、VM が起動・停止していない場合は、
 マネージド ID に必要なロールが割り当てられているかをご確認いただければ幸いです。
 
@@ -397,7 +401,7 @@ param(
 システム割り当てマネージド ID が、Azure へ認証するには、権限があるロールを有している必要がございます。
 ロールが割り当てられているかをご確認ください。
 
-#### 必要なモジュールがインポートされていないパターン
+### 必要なモジュールがインポートされていないパターン
 例えば、以下のようなエラー メッセージが表示され、VM が起動・停止していない場合は、
 対象 Runbook のコマンドのモジュールがインポートされていないことを意味します。
 ```
