@@ -10,12 +10,12 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは、Azure Monitoring チームの 佐藤 です。 今回は、Azure Private Link  を使った Azure Arc および Azure Monitor を構成した際の DNS 構成や設定画面を実際に検証環境を構成してご紹介いたします。当ページの内容は以下 2 稿 の内容を踏まえて記載しております。ご一読いただき当ページの内容を参照いただけますと幸いです。   Az">
+      <meta name="description" content="[更新履歴]  2024&#x2F;4&#x2F;7 ブログ公開 2025&#x2F;12&#x2F;26 最新情報に更新">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Azure Private Link  を使った Azure Arc + Azure Monitor">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_AMPLS/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは、Azure Monitoring チームの 佐藤 です。 今回は、Azure Private Link  を使った Azure Arc および Azure Monitor を構成した際の DNS 構成や設定画面を実際に検証環境を構成してご紹介いたします。当ページの内容は以下 2 稿 の内容を踏まえて記載しております。ご一読いただき当ページの内容を参照いただけますと幸いです。   Az">
+<meta property="og:description" content="[更新履歴]  2024&#x2F;4&#x2F;7 ブログ公開 2025&#x2F;12&#x2F;26 最新情報に更新">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_AMPLS/01.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_AMPLS/02.png">
@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_AMPLS/08.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_AMPLS/09.png">
 <meta property="article:published_time" content="2024-04-07T12:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-24T06:56:44.328Z">
+<meta property="article:modified_time" content="2025-12-26T02:43:19.766Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Azure Arc">
 <meta property="article:tag" content="HowTo">
@@ -185,12 +185,17 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+3934bf4a-3bd4-5fb7-b5a2-89da1de5ca51%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Private+Link++%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F+Azure+Arc+%2B+Azure+Monitor%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FArc%2FArc_AAMPLS_AMPLS%2F%29%0A*+Content+Source%3A+%5Barticles%2FArc%2FArc_AAMPLS_AMPLS.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FArc%2FArc_AAMPLS_AMPLS.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_AMPLS/" data-id="cmjjnv19k00010nqi23260116" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_AMPLS/" data-id="cmjm9ou9700010npidewq7hvg" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <span id="more"></span>
+        <p>[更新履歴]</p>
+<ul>
+<li>2024/4/7 ブログ公開</li>
+<li>2025/12/26 最新情報に更新</li>
+</ul>
+<span id="more"></span>
 <p>こんにちは、Azure Monitoring チームの 佐藤 です。</p>
 <p>今回は、Azure Private Link  を使った Azure Arc および Azure Monitor を構成した際の DNS 構成や設定画面を実際に検証環境を構成してご紹介いたします。<br>当ページの内容は以下 2 稿 の内容を踏まえて記載しております。ご一読いただき当ページの内容を参照いただけますと幸いです。</p>
 <ul>

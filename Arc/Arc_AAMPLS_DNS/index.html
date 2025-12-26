@@ -10,12 +10,12 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは、Azure Monitoring チームの 佐藤 です。 今回は、Azure Private Link  を使った Azure Arc への接続時におけるDNS 構成例やオンボードする際の通信シーケンスを実際に検証環境を構成してご紹介いたします。当ページの内容は Azure Private Link  を使った Azure Arc への接続 - NW 構成編 の内容を踏まえて記載して">
+      <meta name="description" content="[更新履歴]  2024&#x2F;3&#x2F;30 ブログ公開 2025&#x2F;12&#x2F;24 最新情報に更新">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Azure Private Link  を使った Azure Arc への接続 - DNS 構成">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_DNS/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは、Azure Monitoring チームの 佐藤 です。 今回は、Azure Private Link  を使った Azure Arc への接続時におけるDNS 構成例やオンボードする際の通信シーケンスを実際に検証環境を構成してご紹介いたします。当ページの内容は Azure Private Link  を使った Azure Arc への接続 - NW 構成編 の内容を踏まえて記載して">
+<meta property="og:description" content="[更新履歴]  2024&#x2F;3&#x2F;30 ブログ公開 2025&#x2F;12&#x2F;24 最新情報に更新">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_DNS/01.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_DNS/02.png">
@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_DNS/12.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_DNS/13.png">
 <meta property="article:published_time" content="2024-03-30T13:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-24T06:56:44.338Z">
+<meta property="article:modified_time" content="2025-12-26T02:43:19.787Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Azure Arc">
 <meta property="article:tag" content="HowTo">
@@ -188,12 +188,17 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+dab2a2c6-ce70-5830-8efe-48998c82fd57%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Private+Link++%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F+Azure+Arc+%E3%81%B8%E3%81%AE%E6%8E%A5%E7%B6%9A+-+DNS+%E6%A7%8B%E6%88%90%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FArc%2FArc_AAMPLS_DNS%2F%29%0A*+Content+Source%3A+%5Barticles%2FArc%2FArc_AAMPLS_DNS.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FArc%2FArc_AAMPLS_DNS.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_DNS/" data-id="cmjjnv19n00030nqi9e7vf14s" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_DNS/" data-id="cmjm9ou9b00030npi54ph0lgf" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <span id="more"></span>
+        <p>[更新履歴]</p>
+<ul>
+<li>2024/3/30 ブログ公開</li>
+<li>2025/12/24 最新情報に更新</li>
+</ul>
+<span id="more"></span>
 <p>こんにちは、Azure Monitoring チームの 佐藤 です。</p>
 <p>今回は、Azure Private Link  を使った Azure Arc への接続時におけるDNS 構成例やオンボードする際の通信シーケンスを実際に検証環境を構成してご紹介いたします。<br>当ページの内容は <a href="https://jpazmon-integ.github.io/blog/Arc/Arc_AAMPLS_NW/">Azure Private Link  を使った Azure Arc への接続 - NW 構成編</a> の内容を踏まえて記載しております。ご一読いただき当ページの内容を参照いただけますと幸いです。</p>
 <p>ご説明にあたって、当方の検証環境は以下の通りです。<br>上部は <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/private-link-security">当ページ</a> から抜粋した図であり、下部が検証環境のサーバーやエンドポイントの情報を添えた内容となります。</p>
@@ -208,7 +213,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <li>単一サーバーのシナリオ</li>
 </ul>
 <h3 id="Azure-統合プライベート-DNS-ゾーンを使用した-DNS-構成"><a href="#Azure-統合プライベート-DNS-ゾーンを使用した-DNS-構成" class="headerlink" title="Azure 統合プライベート DNS ゾーンを使用した DNS 構成"></a>Azure 統合プライベート DNS ゾーンを使用した DNS 構成</h3><p>プライベート エンドポイント作成時に [プライベート DNS ゾーンと統合する] を ”はい”と設定するとプライベート DNS ゾーンがデプロイ時に生成されます。<br>このプライベート DNS ゾーンに FQDN から IP アドレスに変換する情報が記載されておりますが、この情報を参照する仕組みとなります。</p>
-<p>詳細はこちらのページ <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/private-link/private-endpoint-dns-integration#on-premises-workloads-using-a-dns-forwarder">DNS フォワーダーを使用してオンプレミスのワークロード</a>  をご参照ください。</p>
+<p>詳細はこちらのページ <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/private-link/private-endpoint-dns-integration#on-premises-workloads-using-a-dns-forwarder">オンプレミス DNS フォワーダーを使用した Azure プライベート リゾルバー</a>  をご参照ください。</p>
 <p>■図 3. プライベート エンドポイント作成時の画面<br><img src="/blog/Arc/Arc_AAMPLS_DNS/03.png"></p>
 <h3 id="DNS-サーバーの手動構成"><a href="#DNS-サーバーの手動構成" class="headerlink" title="DNS サーバーの手動構成"></a>DNS サーバーの手動構成</h3><p>オンプレにあるマシンが参照する DNS サーバーの A レコードとして登録する仕組みです。<br>今回の検証ではこちらの仕組みを採用し、 DNS サーバー （IP アドレス 10.11.1.5） に下図 4 のようにレコードを登録します。<br>また Azure Arc へオンボードさせるマシンの DNS 参照先のアドレスを当サーバー（IP アドレス 10.11.1.5）に設定します。</p>
 <p>■図 4. プライベート エンドポイントの [DNS の構成] 画面<br>下図は his.arc.azure.com ゾーンを示しております。<br><img src="/blog/Arc/Arc_AAMPLS_DNS/04.png"></p>
@@ -217,8 +222,8 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>Arc にオンボードさせるマシンはコンピューター名が ”AAPLS001vm” となり、 IP アドレスは <code>10.11.1.4</code> となります。 DNS サーバーの IP アドレスは <code>10.11.1.5</code> となります。<br>■図 6. コンピューター  ”AAPLS001vm” のネットワーク構成<br><img src="/blog/Arc/Arc_AAMPLS_DNS/06.png"></p>
 <p>また <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/private-link-security#troubleshooting">トラブルシューティング</a> に記載されている nslookup の結果は以下の通りとなり、DNS サーバーの設定したレコードとおりプライベート IP アドレスが返ってきます。<br>■図 7. 特定エンドポイントへの nslookup の結果<br><img src="/blog/Arc/Arc_AAMPLS_DNS/07.png"></p>
 <h3 id="オンボード処理時のネットワークキャプチャ結果"><a href="#オンボード処理時のネットワークキャプチャ結果" class="headerlink" title="オンボード処理時のネットワークキャプチャ結果"></a>オンボード処理時のネットワークキャプチャ結果</h3><p>最後にコンピューター  ”AAPLS001vm” を Azure Arc へオンボードさせる際にネットワークキャプチャを採取して、どのような通信シーケンスになるか確認してみます。</p>
-<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/private-link-security#connect-to-an-azure-arc-enabled-servers">Azure Arc 対応サーバーに接続する</a> の手順でダウンロードしたスクリプト <code>OnboardingScript.ps1</code> を実行します。</p>
-<p>まず下図は  Azure Connected Machine エージェント （以後、Arc エージェントと呼称します）をダウンロードする際の DNS 通信と <code>download.microsoft.com</code>との通信時のキャプチャとなります。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/network-requirements?tabs=azure-cloud#urls">通信要件</a> に記載されている FQDN <code>aka.ms</code> と <code>download.microsoft.com</code> の IP アドレスが解決（図8）され、ダウンロード処理の通信（図9）が確認できます。</p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/private-link-security#connect-to-an-azure-arc-enabled-server">Azure Arc 対応サーバーに接続する</a> の手順でダウンロードしたスクリプト <code>OnboardingScript.ps1</code> を実行します。</p>
+<p>まず下図は  Azure Connected Machine エージェント （以後、Arc エージェントと呼称します）をダウンロードする際の DNS 通信と <code>download.microsoft.com</code>との通信時のキャプチャとなります。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/network-requirements?tabs=azure-cloud#urls">通信要件</a> に記載されている FQDN <code>download.microsoft.com</code> の IP アドレスが解決（図8）され、ダウンロード処理の通信（図9）が確認できます。</p>
 <p>■図 8. Arc エージェントをダウンロードする際の DNS 通信のキャプチャ<br><img src="/blog/Arc/Arc_AAMPLS_DNS/08.png"></p>
 <p>■図 9. <code>download.microsoft.com</code>との通信時のキャプチャ<br><img src="/blog/Arc/Arc_AAMPLS_DNS/09.png"></p>
 <p>続けてインストールされた Arc エージェントにより Azure Arc へオンボードする際の通信についてです。<br>実際にはスクリプト <code>OnboardingScript.ps1</code> に記載している下記スクリプト（サブスクリプション ID など一部リソース情報をマスキングしております）の処理によりオンボードします。</p>
