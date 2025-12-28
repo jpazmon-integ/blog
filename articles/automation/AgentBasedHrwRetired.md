@@ -6,6 +6,10 @@ tags:
   - Tips
 ---
 
+[更新履歴]
+- 2025/2/20 ブログ公開
+- 2025/12/26 最新情報に更新
+
 こんにちは、Azure Monitoring サポート チームの北山です。  
 今回の記事では、Azure Automation のエージェント ベースの Hybrid Runbook Worker 廃止について記載します。
 [Retirement: All Azure Automation jobs running on Agent-based Hybrid Worker will be stopped from 1 April 2025](https://azure.microsoft.com/ja-jp/updates/?id=477734)
@@ -46,10 +50,8 @@ Log Analytics エージェントに依存していないため、Log Analytics �
 Log Analytics エージェントの後継版である Azure Monitor エージェントのインストールも不要です。
 
 # 概要
-エージェント ベースの Hybrid Runbook Worker に関しましては、2024 年の 8 月にすでにサポートが終了しております。  
-サポートは終了していましたが、引き続きエージェント ベースの Hybrid Runbook Worker がご利用いただけておりました。  
-
-しかし、下記の更新情報に記載がございますとおり **2025 年 4 月 1 日からはエージェント ベースの Hybrid Runbook Worker がご利用できなくなります。**
+エージェント ベースの Hybrid Runbook Worker に関しましては、2024 年の 8 月にすでにサポートが終了し、
+下記の更新情報に記載がございますとおり **2025 年 4 月 1 日からはエージェント ベースの Hybrid Runbook Worker がご利用できなくなりました。**
 
 [Retirement: All Azure Automation jobs running on Agent-based Hybrid Worker will be stopped from 1 April 2025](https://azure.microsoft.com/ja-jp/updates/?id=477734)
 
