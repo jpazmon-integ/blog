@@ -9,6 +9,8 @@ tags:
 
 2022/03/25 : 旧 UI と現 UI での対応表/図について、詳細設定オプションを考慮する内容に更新いたしました。  
 2022/07/01 : ロジック アプリから Log Analytics API を実行する記事について追記しました。
+2025/12/29 : 
+
 - - - -
 こんにちは！Azure Monitoring & Integration サポート チームの花房です。  
 「アラート通知メールを日本語にしたい」、「最近ログ アラート ルール作成画面が変わった？」 というお問い合わせを最近よくいただきます。
@@ -34,23 +36,23 @@ Azure Monitor のアラート機能では、メトリックやログをトリガ
 
 <Logic Apps の参考サイト>
 -- 概要 - Azure Logic Apps とは
-https://docs.microsoft.com/ja-jp/azure/logic-apps/logic-apps-overview
+https://learn.microsoft.com/ja-jp/azure/logic-apps/logic-apps-overview
 Logic App とは、ロジック アプリ デザイナーでフロー チャートを用いて作成したワークフローを自動実行するソリューションです。
 Logic App では、条件分岐などを実装することができ、ワークフローの実行状況に応じて実行する処理を分岐することが可能です。
 
 メールの通知内容をカスタマイズする際の詳細な手順につきましては、下記弊社公開情報をご覧ください。
--- Azure Monitor アラートによって複雑なアクションをトリガーする方法
-https://docs.microsoft.com/ja-jp/azure/azure-monitor/platform/action-groups-logic-app
+-- Logic Apps を使用してアラート通知をカスタマイズする
+https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-logic-apps?tabs=send-email
 ※ アラート ルールの種類により設定手順は異なります。
 &nbsp;&nbsp;&nbsp;アクティビティ ログ アラートの手順を進めていただき、手順 4 のペイロードは以下公開情報に記載のあるサンプル ペイロードをご使用ください。
-&nbsp;&nbsp;&nbsp;-- ログ アラート ルールの webhook アクション
-&nbsp;&nbsp;&nbsp;https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-log-webhook#sample-payloads
+&nbsp;&nbsp;&nbsp;-- Webhook アクションを使用したログ検索アラートのサンプル ペイロード
+&nbsp;&nbsp;&nbsp;https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-log-webhook#sample-payloads
 
-※ 上記ドキュメント内の、
-&nbsp;&nbsp;&nbsp;Teams へのメッセージ送信である箇所 「7. Microsoft Teams コネクタを検索して選択します。 [Microsoft Teams – メッセージの投稿] アクションを選択します。」 を、以下のアクションに置き換えていただくことで、お客様にて件名等のメールの内容をカスタマイズ可能です。  
-&nbsp;&nbsp;&nbsp;-- Microsoft 365 Outlook
-&nbsp;&nbsp;&nbsp;https://docs.microsoft.com/en-us/connectors/office365/#send-an-email-[deprecated]
-&nbsp;&nbsp;&nbsp;※ 「Send an email [DEPRECATED]」 をご参照ください。
+※ 上記 "Logic Apps を使用してアラート通知をカスタマイズする" ドキュメント内の、
+&nbsp;&nbsp;&nbsp;"アクションを設定する" で、以下のアクションを追加いただくことで、お客様にて件名等のメールの内容をカスタマイズ可能です。  
+&nbsp;&nbsp;&nbsp;-- メールを送信する (V2)
+&nbsp;&nbsp;&nbsp;https://learn.microsoft.com/ja-jp/connectors/office365/#%E3%83%A1%E3%83%BC%E3%83%AB%E3%82%92%E9%80%81%E4%BF%A1%E3%81%99%E3%82%8B-(v2)
+&nbsp;&nbsp;&nbsp;※ 「メールを送信する (V2)」 をご参照ください。
 
 また、弊社 Integration Support Blog にロジック アプリからログ アラート発報時に出力されたデータに含まれている Log Analytics API を実行する方法に関する記事が投稿されております。  
 カスタマイズされたメールをロジック アプリから通知する方法をご検討の場合、下記の記事をご参考いただけますと幸いです。  
@@ -95,14 +97,14 @@ https://docs.microsoft.com/ja-jp/azure/azure-monitor/platform/action-groups-logi
 
 以下の弊社サイトの 「(バージョン 2018-04-16 以前) 」 と記載されたテンプレートは旧 API バージョンの ARM テンプレートになります。
 -- Azure Monitor のログ アラート ルール用の Resource Manager テンプレートのサンプル
-https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/resource-manager-alerts-log
+https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/resource-manager-alerts-log?tabs=bicep
 
 こちらの ARM テンプレートにて以前の API を指定することで通知されるメール タイトルをカスタマイズしてアラート ルールを作成することが可能です。
 
 <参考サイト>
 このリリースによる仕様変更は、以下の弊社サイトもご参照ください。
--- Azure Monitor を使用してログ アラートを作成、表示、管理する
-https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-log#create-a-log-alert-rule-in-the-azure-portal
+-- ログ検索アラート ルールの作成エクスペリエンスの変更
+https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-manage-alerts-previous-version#changes-to-the-log-search-alert-rule-creation-experience
 ![](./AboutCustomizingAlertNotificationEmail/image04.png)
 
 【概要】
