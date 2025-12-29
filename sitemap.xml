@@ -16,6 +16,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/general/JoinUs/</loc>
+    
+    <lastmod>2025-12-29</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/</loc>
     
     <lastmod>2025-12-29</lastmod>
@@ -24,13 +31,6 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/general/IntroduceOurBlog/</loc>
-    
-    <lastmod>2025-12-29</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/general/JoinUs/</loc>
     
     <lastmod>2025-12-29</lastmod>
     
@@ -93,20 +93,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/Automation-Update-AutomationRunAsCredential/</loc>
-    
-    <lastmod>2025-12-29</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/DifferenceRunAsAccountAndManagedID/</loc>
-    
-    <lastmod>2025-12-29</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/HowToCreatePowerShellRunbookSR/</loc>
     
     <lastmod>2025-12-29</lastmod>
@@ -115,6 +101,20 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/</loc>
+    
+    <lastmod>2025-12-29</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/Automation-Update-AutomationRunAsCredential/</loc>
+    
+    <lastmod>2025-12-29</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/DifferenceRunAsAccountAndManagedID/</loc>
     
     <lastmod>2025-12-29</lastmod>
     
@@ -191,13 +191,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutAvailabilityTest/</loc>
-    
-    <lastmod>2025-12-29</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/</loc>
     
     <lastmod>2025-12-29</lastmod>
@@ -206,6 +199,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/</loc>
+    
+    <lastmod>2025-12-29</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/aboutAvailabilityTest/</loc>
     
     <lastmod>2025-12-29</lastmod>
     
@@ -527,14 +527,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/SecurityAdvisoriesElevatedAccess/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/</loc>
     
     <lastmod>2025-12-29</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/SecurityAdvisoriesElevatedAccess/</loc>
     
     <lastmod>2025-12-29</lastmod>
     
