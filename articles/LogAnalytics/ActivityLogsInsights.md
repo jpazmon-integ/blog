@@ -1,14 +1,23 @@
 ---
-title: アクティビティ ログの分析情報（プレビュー）
+title: アクティビティ ログの分析情報
 date: 2022-05-23 00:00:00
 tags:
   - Log Analytics
 ---
 
+[更新履歴]
+- 2022/05/23 ブログ公開
+- 2025/12/29 最新の情報であることを確認済み
+
 こんにちは、Azure Monitoring チームの 北村 です。
 
 本記事は、2022 年 4 月 24 日に Azure Monitor Blog で公開された [Activity Logs Insights (Preview)](https://techcommunity.microsoft.com/t5/azure-observability-blog/activity-logs-insights-preview/ba-p/3291892) を翻訳したものになります。
 プレビューとして提供されているアクティビティ ログの分析情報に関する記事をお届けいたします。
+
+> [!IMPORTANT] 
+> 2025/12/29 時点では、本機能はプレビューから正式リリースに移行しております。
+> アクティビティ ログ の詳細につきましては、以下のドキュメントをご参照ください。
+> https://learn.microsoft.com/ja-jp/azure/azure-monitor/platform/activity-log?tabs=log-analytics
 
 ==========================================================================================
 
