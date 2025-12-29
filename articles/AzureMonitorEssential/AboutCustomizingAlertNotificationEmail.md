@@ -9,7 +9,7 @@ tags:
 
 2022/03/25 : 旧 UI と現 UI での対応表/図について、詳細設定オプションを考慮する内容に更新いたしました。  
 2022/07/01 : ロジック アプリから Log Analytics API を実行する記事について追記しました。
-2025/12/29 : 
+2025/12/29 : リンクを更新しました。
 
 - - - -
 こんにちは！Azure Monitoring & Integration サポート チームの花房です。  
@@ -19,9 +19,9 @@ tags:
 <!-- more -->
 
 ## 目次
-- アラート通知メールはカスタマイズできない
-- 新しい API バージョン (API バージョン 2021-08-01) のログ アラート ルール作成画面
-- まとめ
+- [アラート通知メールはカスタマイズできない](#アラート通知メールはカスタマイズできない)
+- [新しい API バージョン (API バージョン 2021-08-01) のログ アラート ルール作成画面](#新しい-API-バージョン-API-バージョン-2021-08-01-のログ-アラート-ルール作成画面)
+- [まとめ]#まとめ
 
 ## アラート通知メールはカスタマイズできない
 Azure Monitor のアラート機能では、メトリックやログをトリガーにアラート通知メールを発報することができます。
@@ -105,7 +105,7 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/resource-manager-al
 このリリースによる仕様変更は、以下の弊社サイトもご参照ください。
 -- ログ検索アラート ルールの作成エクスペリエンスの変更
 https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-manage-alerts-previous-version#changes-to-the-log-search-alert-rule-creation-experience
-![](./AboutCustomizingAlertNotificationEmail/image04.png)
+![](./AboutCustomizingAlertNotificationEmail/image04-251229.png)
 
 【概要】
 この記事では、新しいログ アラート ルールの変更についてご案内しており、概要としては以下となります。
