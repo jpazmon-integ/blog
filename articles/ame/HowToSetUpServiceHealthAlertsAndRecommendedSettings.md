@@ -26,13 +26,13 @@ tags:
 
 サービス正常性アラートにて検知できるイベントの詳細は、下記弊社公開情報をご覧ください。  
 -- Service Health の概要    
-https://learn.microsoft.com/ja-jp/azure/service-health/service-health-portal-update#service-health-events
+https://learn.microsoft.com/ja-jp/azure/service-health/service-health-portal-update#service-health-events 
 ※ [Service Health のイベント] をご覧ください。
 
 ## サービス正常性アラートの設定手順
 サービス正常性アラートを設定する方法については以下公開情報をご参照ください。
 
--- Azure portal で Service Health アラートを作成する 
+-- Azure portal で Service Health アラートを作成する  
 https://learn.microsoft.com/ja-jp/azure/service-health/alerts-activity-log-service-notifications-portal#alert-and-new-action-group-using-azure-portal
 
 ## サービス正常性アラートの推奨設定
