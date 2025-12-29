@@ -9,7 +9,7 @@ tags:
 
 [更新履歴]
 - 2021/09/30 ブログ公開
-- 2025/12/24 最新情報に更新
+- 2025/12/29 最新情報に更新
 
 こんにちは！ Azure Monitoring & Integration チームでサマー インターンシップをしている、中条 夢佳 (チュウジョウ ユメカ) です。
 「Azure Monitor で VM の監視ができるのか、よし、じゃあ実際にメトリック アラートを設定してみよう！ ・・・あれ? なんか思っていた動作と違うような?」
@@ -18,7 +18,7 @@ tags:
 
 ## 目次
 - [メトリック アラートが発報されるタイミング](#メトリック-アラートが発報されるタイミング)
-- [ルックバック期間と確認する間隔って何?](#ルックバック期間と確認する間隔って何)
+- [“ルックバック期間” と “確認する間隔” って何?](#“ルックバック期間”-と-“確認する間隔”-って何)
 - [まとめ](#まとめ)
 
 
@@ -29,8 +29,8 @@ tags:
 
 なお、 既定ではステートフルと設定されていますが、これをステートレスに変更することも可能です。こちらの設定方法については、下記の弊社公開情報をご覧ください。
 
-> Azure Monitor のメトリック警告に関する問題のトラブルシューティング - 条件が満たされるたびにメトリック警告が発生するようにする
-> https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-troubleshoot-metric#make-metric-alerts-occur-every-time-my-condition-is-met
+> Azure Monitor のメトリック警告に関する問題のトラブルシューティング - 条件が満たされるたびにメトリック アラートがトリガーされるわけではありません
+> https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-troubleshoot-metric#the-metric-alert-isnt-triggered-every-time-the-condition-is-met
 
 
 ## "ルックバック期間" と "確認する間隔" って何?
@@ -45,14 +45,14 @@ tags:
 アラートの動作としては、1 度でも直近 5 分間における CPU 使用率の最大値が 70% 以上になった場合に、アラート (Fired / Triggered 等) を発報します。引き続き、1 分おきに評価を続け、3 回連続で直近 5 分間における CPU 使用率の最大値が 70% を下回った場合に、アラート (Resolved) を発報します。  
 
 下記に示すのがアラートの動作の例です。  
-![](./HowMetricAlertisFired/image02.png)
+![](./HowMetricAlertisFired/image02-251226.png)
 
 0:06 時点で CPU 使用率の最大値が 70% を超えたため、0:06 にアラート (Fired) が発報されます。次に 0:10 時点で CPU 使用率の最大値は 70% を下回りましたが、この時点ではアラートは発報しません。その後も評価を続け、3 回連続で直近 5 分間の CPU 使用率の最大値が 70% を下回った 0:16 時点で、アラート (Resolved) を発報します。
 	
 メトリック アラートの詳細につきましては、下記の弊社公開情報をご覧ください。  
 
-> Azure Monitor でのメトリック アラートの機能 
-> https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-metric-overview
+> 適切な種類のアラート ルールを選択する - メトリック アラート 
+> https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#metric-alerts
 
 
 ## まとめ
