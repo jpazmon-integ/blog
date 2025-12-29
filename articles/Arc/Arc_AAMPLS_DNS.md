@@ -7,6 +7,10 @@ tags:
   - Azure Private Link
 ---
 
+[更新履歴]
+- 2024/3/30 ブログ公開
+- 2025/12/24 最新情報に更新
+
 <!-- more -->
 こんにちは、Azure Monitoring チームの 佐藤 です。
 
@@ -41,7 +45,7 @@ tags:
 プライベート エンドポイント作成時に [プライベート DNS ゾーンと統合する] を ”はい”と設定するとプライベート DNS ゾーンがデプロイ時に生成されます。
 このプライベート DNS ゾーンに FQDN から IP アドレスに変換する情報が記載されておりますが、この情報を参照する仕組みとなります。
 
-詳細はこちらのページ [DNS フォワーダーを使用してオンプレミスのワークロード](https://learn.microsoft.com/ja-jp/azure/private-link/private-endpoint-dns-integration#on-premises-workloads-using-a-dns-forwarder)  をご参照ください。
+詳細はこちらのページ [オンプレミス DNS フォワーダーを使用した Azure プライベート リゾルバー](https://learn.microsoft.com/ja-jp/azure/private-link/private-endpoint-dns-integration#on-premises-workloads-using-a-dns-forwarder)  をご参照ください。
 
 ■図 3. プライベート エンドポイント作成時の画面
 ![](Arc_AAMPLS_DNS/03.png)
@@ -80,10 +84,10 @@ Arc にオンボードさせるマシンはコンピューター名が ”AAPLS0
 ### オンボード処理時のネットワークキャプチャ結果
 最後にコンピューター  ”AAPLS001vm” を Azure Arc へオンボードさせる際にネットワークキャプチャを採取して、どのような通信シーケンスになるか確認してみます。
 
-[Azure Arc 対応サーバーに接続する](https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/private-link-security#connect-to-an-azure-arc-enabled-servers) の手順でダウンロードしたスクリプト `OnboardingScript.ps1` を実行します。
+[Azure Arc 対応サーバーに接続する](https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/private-link-security#connect-to-an-azure-arc-enabled-server) の手順でダウンロードしたスクリプト `OnboardingScript.ps1` を実行します。
 
 まず下図は  Azure Connected Machine エージェント （以後、Arc エージェントと呼称します）をダウンロードする際の DNS 通信と `download.microsoft.com`との通信時のキャプチャとなります。
-[通信要件](https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/network-requirements?tabs=azure-cloud#urls) に記載されている FQDN `aka.ms` と `download.microsoft.com` の IP アドレスが解決（図8）され、ダウンロード処理の通信（図9）が確認できます。
+[通信要件](https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/network-requirements?tabs=azure-cloud#urls) に記載されている FQDN `download.microsoft.com` の IP アドレスが解決（図8）され、ダウンロード処理の通信（図9）が確認できます。
 
 ■図 8. Arc エージェントをダウンロードする際の DNS 通信のキャプチャ
 ![](Arc_AAMPLS_DNS/08.png)
