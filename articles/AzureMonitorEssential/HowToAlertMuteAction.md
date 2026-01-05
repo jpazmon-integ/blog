@@ -9,6 +9,11 @@ tags:
   - アクションのミュート
 ---
 
+[更新履歴]
+- 2023/10/30 ブログ公開
+- 2025/12/29 現時点の UI の画像に差し替え
+
+
 こんにちは、Azure Monitoring サポート チームの北村です。
 今回は、ログ アラート ルールにおけるアクションのミュート機能をご紹介します！
 
@@ -25,7 +30,7 @@ tags:
 Azure Monitor には、アラート ルールの閾値を満たす度に発報する [***ステートレス アラート***](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateless-alerts) と、アラート ルールの閾値を満たしたときに一度だけ発報し、アラートが解決したとみなされた時に解決を通知する [***ステートフル アラート***](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts) があります。ステートレス アラートでは、アラート ルールの閾値を満たす度に発報しますので、通常はアラートが発報する度にアクション グループが実行されます。しかし、この "アクションのミュート" 機能を利用しますと、アラートが発報してから一定期間はアクション グループが実行されないため、アラートが通知されません。
 
 (*) ログ アラート ルールの編集画面の [詳細] タブ > [詳細設定オプション] です。
-![](./HowToAlertMuteAction/image01.png)
+![](./HowToAlertMuteAction/image01_202512.png)
 
 <br>
 

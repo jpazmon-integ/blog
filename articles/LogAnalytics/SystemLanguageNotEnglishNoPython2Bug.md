@@ -1,11 +1,20 @@
 ---
-title: システム言語が日本語の Linux マシンにて発生する Log Analytics エージェントの不具合について
+title: 【廃止】システム言語が日本語の Linux マシンにて発生する Log Analytics エージェントの不具合について
 date: 2022-02-28 00:00:00
 tags:
   - Log Analytics
   - FAQ
   - Troubleshooting
 ---
+
+[更新履歴]
+- 2022/02/28 ブログ公開
+- 2025/12/29 廃止について追記済み
+
+> [!WARNING]
+> Log Analytics エージェントは、2024 年 8 月 31 日に廃止されました。 
+> Log Analytics エージェントをご利用のお客様は Azure Monitor エージェントへの移行をお願いいたします。
+> https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration
 
 こんにちは。Azure Monitoring & Integration チームの Austin です。
 
