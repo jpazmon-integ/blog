@@ -41,7 +41,7 @@ tags:
 
 [Application Insights 可用性テスト - Azure Monitor | Microsoft Learn](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability?tabs=standard)
 
-これは 2021年7月頃に追加された機能であり、同時に以前から存在していた可用性テストは、クラシック テスト と呼ばれる様になりました。
+これは 2021 年 7 月頃に追加された機能であり、同時に以前から存在していた可用性テストは、クラシック テスト と呼ばれる様になりました。
 
 パブリック DNS レコードが存在し、ファイアウォールなどを使用してパブリックからのアクセスを制限した環境に対しては、サービス タグまたはテストの送信元のサーバーの IP アドレスを許可してテストを行うことができます。
 
@@ -58,7 +58,7 @@ tags:
 ### 標準テスト の機能
 ![](./aboutAvailabilityTest/3.png)
 
-※ 2025/12/26 現在、可用性テストは Application Insights の [調査] - [有効] より表示いただけます。
+※ 2026/1/5 現在、可用性テストは Application Insights の [調査] - [有効] より表示いただけます。
 ![](./aboutAvailabilityTest/4.png)
 
 クラシック テストの機能と比較し、***追加されている機能***がございます。
