@@ -144,7 +144,7 @@
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/AccessControlMode/" data-id="cmk0ngecf001a0nljg5in2vlf" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/AccessControlMode/" data-id="cmk0wtmmy00180nldh2m974ko" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li></ul>
@@ -184,9 +184,17 @@
     <!-- post caption -->
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回は、Azure PowerShell で Log Analytics ワークスペースのログを取得する方法をご紹介します。</p>
+        <p>[更新履歴]</p>
+<ul>
+<li>2023/09/01 ブログ公開</li>
+<li>2026/01/05 最新情報への更新</li>
+</ul>
+<p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回は、Azure PowerShell で Log Analytics ワークスペースのログを取得する方法をご紹介します。</p>
 <p>Azure ポータルで表示されるログ クエリの検索結果の上限は 30,000 件です。<br>この上限値の引き上げをご要望いただくお問い合わせをいただくことがありますが、残念ながら引き上げることはできません。<br>そのため、Azure ポータル からクエリを実行する必要がある場合は、時間範囲等で条件を指定いただき、検索結果を絞っていただくようご案内しております。</p>
 <p>一方で Azure PowerShell からクエリを実行する場合、最大 500,000 行まで取得することが可能です。<br>そのため、今回は Azure PowerShell からクエリを実行する方法等をご紹介します！</p>
+<blockquote>
+<p>[!IMPORTANT]<br>2026/01/05 時点では、Azure ポータルで表示されるログ クエリの検索結果の上限は 500,000 件です。<br>そのため、本記事では項目 <a href="#3-Azure-PowerShell-%E3%81%A7%E4%B8%8A%E9%99%90%E3%81%AB%E8%A7%A6%E3%82%8C%E3%81%AA%E3%81%84%E3%82%88%E3%81%86%E3%81%AB%E5%B7%A5%E5%A4%AB%E3%81%97%E3%81%A6%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95">3. Azure PowerShell で上限に触れないように工夫して実行する方法</a> をご参照の上、レコード数や容量などの上限に触れないデータ取得方法をご参考にしてください。<br>上限の詳細は以下のドキュメントをご参照ください。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/service-limits#azure-portal">https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/service-limits#azure-portal</a></p>
+</blockquote>
 <br>
         
           <p class="article-more-link">
@@ -197,7 +205,7 @@
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/" data-id="cmk0ngecz002m0nljfsvv8jrp" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/" data-id="cmk0wtmnh002j0nlddke5g09u" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E3%82%AF%E3%82%A8%E3%83%AA/" rel="tag">クエリ</a></li></ul>
@@ -255,7 +263,7 @@ Azure Service Health を通じた最初の通知の時間に誤りがあり、20
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/general/mdsFalseAlerts/" data-id="cmk0ngefz00df0nljexttcnq9" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/general/mdsFalseAlerts/" data-id="cmk0wtmqa00dh0nldgyff0csr" class="article-share-link">共有</a-->
       
       
     </footer>
@@ -304,7 +312,7 @@ Azure Service Health を通じた最初の通知の時間に誤りがあり、20
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AlertProcessingRule/" data-id="cmk0ngebv00080nljasxxcje4" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AlertProcessingRule/" data-id="cmk0wtmmg00080nld4xid993u" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB/" rel="tag">アラート処理ルール</a></li></ul>
@@ -362,7 +370,7 @@ Azure Service Health を通じた最初の通知の時間に誤りがあり、20
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/general/HowToCreateSR/" data-id="cmk0ngefz00dd0nlj5u2a63b4" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/general/HowToCreateSR/" data-id="cmk0wtmq900de0nlde0lk8jhi" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
@@ -416,7 +424,7 @@ Azure Service Health を通じた最初の通知の時間に誤りがあり、20
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/" data-id="cmk0ngefw00d30nlja9zs0g4u" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/" data-id="cmk0wtmq600d40nldefi69yja" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88/" rel="tag">可用性テスト</a></li></ul>
@@ -467,7 +475,7 @@ Azure Service Health を通じた最初の通知の時間に誤りがあり、20
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/" data-id="cmk0ngec9000y0nlj4jibbf6b" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/" data-id="cmk0wtmmt000y0nld6cl2e5hv" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
@@ -518,7 +526,7 @@ Azure Monitor エージェントを使用してテキスト ログを収集す�
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CustomLog/" data-id="cmk0ngece00180nlj31ok2bc2" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CustomLog/" data-id="cmk0wtmmx00150nld1wat7r09" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Agent/" rel="tag">Azure Monitor Agent</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li></ul>
@@ -569,7 +577,7 @@ Azure Monitor エージェントを使用してテキスト ログを収集す�
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ResourceHealthAlert/" data-id="cmk0ngec6000s0nlj8zmi9c4h" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ResourceHealthAlert/" data-id="cmk0wtmmr000s0nlddkc16ftl" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
@@ -619,7 +627,7 @@ Azure Monitor エージェントを使用してテキスト ログを収集す�
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowLogAlertZeroRecordFired/" data-id="cmk0ngebx000b0nljbgkp4uj3" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowLogAlertZeroRecordFired/" data-id="cmk0wtmmi000b0nld4n2j00w2" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor/" rel="tag">Azure Monitor</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Alert/" rel="tag">Log Alert</a></li></ul>

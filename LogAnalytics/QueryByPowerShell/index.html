@@ -10,12 +10,12 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは、Azure Monitoring サポート チームの北村です。今回は、Azure PowerShell で Log Analytics ワークスペースのログを取得する方法をご紹介します。 Azure ポータルで表示されるログ クエリの検索結果の上限は 30,000 件です。この上限値の引き上げをご要望いただくお問い合わせをいただくことがありますが、残念ながら引き上げることはできません。">
+      <meta name="description" content="[更新履歴]  2023&#x2F;09&#x2F;01 ブログ公開 2026&#x2F;01&#x2F;05 最新情報への更新  こんにちは、Azure Monitoring サポート チームの北村です。今回は、Azure PowerShell で Log Analytics ワークスペースのログを取得する方法をご紹介します。 Azure ポータルで表示されるログ クエリの検索結果の上限は 30,000 件です。この上限値の引き上げを">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Azure PowerShell で 3 万件以上のログを取得する方法">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの北村です。今回は、Azure PowerShell で Log Analytics ワークスペースのログを取得する方法をご紹介します。 Azure ポータルで表示されるログ クエリの検索結果の上限は 30,000 件です。この上限値の引き上げをご要望いただくお問い合わせをいただくことがありますが、残念ながら引き上げることはできません。">
+<meta property="og:description" content="[更新履歴]  2023&#x2F;09&#x2F;01 ブログ公開 2026&#x2F;01&#x2F;05 最新情報への更新  こんにちは、Azure Monitoring サポート チームの北村です。今回は、Azure PowerShell で Log Analytics ワークスペースのログを取得する方法をご紹介します。 Azure ポータルで表示されるログ クエリの検索結果の上限は 30,000 件です。この上限値の引き上げを">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/image02.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/image01.png">
@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/image05.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/image06.png">
 <meta property="article:published_time" content="2023-08-31T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-05T04:17:27.401Z">
+<meta property="article:modified_time" content="2026-01-05T08:39:40.599Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Log Analytics">
 <meta property="article:tag" content="How-To">
@@ -182,21 +182,27 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+c08a4943-3ee0-5177-91cd-905158cb65cb%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+PowerShell+%E3%81%A7+3+%E4%B8%87%E4%BB%B6%E4%BB%A5%E4%B8%8A%E3%81%AE%E3%83%AD%E3%82%B0%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FQueryByPowerShell%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FQueryByPowerShell.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FQueryByPowerShell.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/" data-id="cmk0ngecz002m0nljfsvv8jrp" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/" data-id="cmk0wtmnh002j0nlddke5g09u" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回は、Azure PowerShell で Log Analytics ワークスペースのログを取得する方法をご紹介します。</p>
+        <p>[更新履歴]</p>
+<ul>
+<li>2023/09/01 ブログ公開</li>
+<li>2026/01/05 最新情報への更新</li>
+</ul>
+<p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回は、Azure PowerShell で Log Analytics ワークスペースのログを取得する方法をご紹介します。</p>
 <p>Azure ポータルで表示されるログ クエリの検索結果の上限は 30,000 件です。<br>この上限値の引き上げをご要望いただくお問い合わせをいただくことがありますが、残念ながら引き上げることはできません。<br>そのため、Azure ポータル からクエリを実行する必要がある場合は、時間範囲等で条件を指定いただき、検索結果を絞っていただくようご案内しております。</p>
 <p>一方で Azure PowerShell からクエリを実行する場合、最大 500,000 行まで取得することが可能です。<br>そのため、今回は Azure PowerShell からクエリを実行する方法等をご紹介します！</p>
+<div class="alert is-important"><p class="alert-title">重要</p><p>2026/01/05 時点では、Azure ポータルで表示されるログ クエリの検索結果の上限は 500,000 件です。</p><p>そのため、本記事では項目 <a href="#3-Azure-PowerShell-%E3%81%A7%E4%B8%8A%E9%99%90%E3%81%AB%E8%A7%A6%E3%82%8C%E3%81%AA%E3%81%84%E3%82%88%E3%81%86%E3%81%AB%E5%B7%A5%E5%A4%AB%E3%81%97%E3%81%A6%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95">3. Azure PowerShell で上限に触れないように工夫して実行する方法</a> をご参照の上、レコード数や容量などの上限に触れないデータ取得方法をご参考にしてください。</p><p>上限の詳細は以下のドキュメントをご参照ください。</p><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/service-limits#azure-portal">https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/service-limits#azure-portal</a></p></div>
 <br>
 
 <span id="more"></span>
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
 <li><a href="#1-Azure-%E3%83%9D%E3%83%BC%E3%82%BF%E3%83%AB%E3%81%8B%E3%82%89%E3%82%AF%E3%82%A8%E3%83%AA%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%9F%E3%81%A8%E3%81%8D%E3%81%AE%E4%B8%8A%E9%99%90">1. Azure ポータルからクエリを実行したときの上限</a></li>
 <li><a href="#2-Azure-PowerShell-%E3%81%8B%E3%82%89%E3%82%AF%E3%82%A8%E3%83%AA%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95">2. Azure PowerShell からクエリを実行する方法</a></li>
-<li><a href="#3-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E6%89%8B%E9%A0%86">3. Azure PowerShell によるクエリ実行の制限に触れないように工夫して実行する方法</a></li>
+<li><a href="#3-Azure-PowerShell-%E3%81%A7%E4%B8%8A%E9%99%90%E3%81%AB%E8%A7%A6%E3%82%8C%E3%81%AA%E3%81%84%E3%82%88%E3%81%86%E3%81%AB%E5%B7%A5%E5%A4%AB%E3%81%97%E3%81%A6%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95">3. Azure PowerShell によるクエリ実行の制限に触れないように工夫して実行する方法</a></li>
 <li><a href="#%E5%8F%82%E8%80%83%E6%83%85%E5%A0%B1">参考情報</a></li>
 </ul>
 <br>
