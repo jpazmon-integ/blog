@@ -7,6 +7,10 @@ tags:
   - Azure Update Manager
 ---
 
+[更新履歴]
+- 2025/8/18 ブログ公開
+- 2026/1/5 最新情報に更新
+
 こんにちは、Azure Monitoring サポート チームの中条です。
 今回は Azure Update Manager に関するよくあるご質問をご紹介します。
 
@@ -18,13 +22,14 @@ tags:
 <!-- more -->
 ## 目次
 
-- [Q. パッチ オーケストレーションの変更方法を教えてください。](#Q.-パッチ-オーケストレーションの変更方法を教えてください。)
-- [Q. Azure Update Manager でスケジュールで更新プログラムの適用を実施したいのに、Windows Update にて自動で更新プログラムが適用されました。](#Q.-Azure-Update-Manager-でスケジュールで更新プログラムの適用を実施したいのに、Windows-Update-にて自動で更新プログラムが適用されました。)
-- [Q. パッチ オーケストレーション設定がグレー アウトしていて変更できません。](#Q.-パッチ-オーケストレーション設定がグレー-アウトしていて変更できません。)
-- [Q. WSUS サポート終了に伴い、Azure Update Manager で更新プログラムを適用したいです。](#Q.-WSUS-サポート終了に伴い、Azure-Update-Manager-で更新プログラムを適用したいです。)
-- [Q. SQL サーバーの更新プログラムが適用対象になりません。](#Q.-SQL-サーバーの更新プログラムが適用対象になりません。)
-- [Q. Azure Update Manager で適用する更新プログラムを事前にダウンロードしておいて、後からインストールできますか。](#Q.-Azure-Update-Manager-で適用する更新プログラムを事前にダウンロードしておいて、後からインストールできますか。)
-- [Q. Azure Update Manager のネットワーク要件を教えてください。](#Q.-Azure-Update-Manager-のネットワーク要件を教えてください。)
+- [目次](#目次)
+  - [Q. パッチ オーケストレーションの変更方法を教えてください。](#q-パッチ-オーケストレーションの変更方法を教えてください)
+  - [Q. Azure Update Manager でスケジュールで更新プログラムの適用を実施したいのに、Windows Update にて自動で更新プログラムが適用されました。](#q-azure-update-manager-でスケジュールで更新プログラムの適用を実施したいのに-windows-update-にて自動で更新プログラムが適用されました)
+  - [Q. パッチ オーケストレーション設定がグレー アウトしていて変更できません。](#q-パッチ-オーケストレーション設定がグレー-アウトしていて変更できません)
+  - [Q. WSUS サポート終了に伴い、Azure Update Manager で更新プログラムを適用したいです。](#q-wsus-サポート終了に伴い-azure-update-manager-で更新プログラムを適用したいです)
+  - [Q. SQL サーバーの更新プログラムが適用対象になりません。](#q-sql-サーバーの更新プログラムが適用対象になりません)
+  - [Q. Azure Update Manager で適用する更新プログラムを事前にダウンロードしておいて、後からインストールできますか。](#q-azure-update-manager-で適用する更新プログラムを事前にダウンロードしておいて-後からインストールできますか)
+  - [Q. Azure Update Manager のネットワーク要件を教えてください。](#q-azure-update-manager-のネットワーク要件を教えてください)
 
 <br>
 <br>
@@ -37,9 +42,6 @@ tags:
 <br>
 ![](Update_Manager_FAQ/Update_Manager_FAQ1.png)
 
-<br>
-
-[PowerShell 等のコマンドでパッチ オーケストレーションの設定を変更する方法](https://learn.microsoft.com/ja-jp/azure/update-manager/prerequsite-for-schedule-patching?tabs=new-prereq-powershell%2Cauto-portal#enable-scheduled-patching-on-azure-vms)もございます。
 <br>
 <br>
 <br>
@@ -78,7 +80,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU
  
 
 ### Q. パッチ オーケストレーション設定がグレー アウトしていて変更できません。
-例えば、Windows OS の Azure VM のパッチ オーケストレーション設定は [Windows 自動更新 (AutomaticByOS) から手動更新 (Manual) に変更できません。](https://learn.microsoft.com/ja-jp/azure/update-manager/troubleshoot?tabs=azure-machines#unable-to-change-the-patch-orchestration-option-to-manual-updates-from-automatic-updates)
+例えば、Windows OS の Azure VM のパッチ オーケストレーション設定は [Windows 自動更新 (AutomaticByOS) から手動更新 (Manual) に変更できません。](https://learn.microsoft.com/ja-jp/azure/update-manager/troubleshoot?tabs=azure-machines#you-cant-change-patch-orchestration-from-automatic-to-manual)
 
 Windows OS では VM 作成時に指定する[プロパティ osProfile.windowsConfiguration.enableAutomaticUpdates の値により、指定可能なパッチ オーケストレーション設定が決まります。](https://learn.microsoft.com/ja-jp/azure/virtual-machines/automatic-vm-guest-patching#patch-orchestration-modes)
 
@@ -118,7 +120,7 @@ Microsoft Intune での更新プログラムの管理をおすすめしており
 <br>
 
 ### Q. SQL サーバーの更新プログラムが適用対象になりません。
-Azure Update Manager を利用して SQL サーバーの更新プログラムを適用するためには、Windows OS の設定にて、[Windows の更新時に他の Microsoft 製品の更新プログラムも入手します] 設定を有効にする必要があります。詳細は[こちら](https://learn.microsoft.com/ja-jp/azure/update-manager/configure-wu-agent#enable-updates-for-other-microsoft-products)をご確認ください。
+Azure Update Manager を利用して SQL サーバーの更新プログラムを適用するためには、Windows OS の設定にて、[その他の Microsoft 製品の更新プログラムを受け取る] 設定を有効にする必要があります。詳細は[こちら](https://learn.microsoft.com/ja-jp/azure/update-manager/configure-wu-agent#how-to-enable-microsoft-update)をご確認ください。
 <br>
 ![](Update_Manager_FAQ/Update_Manager_FAQ3.png)
 <br>
@@ -128,7 +130,7 @@ Azure Update Manager を利用して SQL サーバーの更新プログラムを
 <br>
 
 ### Q. Azure Update Manager で適用する更新プログラムを事前にダウンロードしておいて、後からインストールできますか。
-[Azure Update Manager では更新プログラムの事前ダウンロードはサポートされていません。](https://learn.microsoft.com/ja-jp/azure/update-manager/configure-wu-agent#pre-download-updates)
+[Azure Update Manager では更新プログラムの事前ダウンロードはサポートされていません。](https://learn.microsoft.com/ja-jp/azure/update-manager/configure-wu-agent#not-supported)
 
 
 <br>
