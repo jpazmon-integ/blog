@@ -7,6 +7,10 @@ tags:
   - Tips
 ---
 
+[更新履歴]
+- 2022/5/18 ブログ公開
+- 2025/12/26 最新情報に更新
+
 こんにちは、Azure Monitoring サポート チームの六浦です。
 
 今回は、以下のようなパブリックからのアクセスを許可していない環境に対して Application Insights の可用性テストを行う方法をご案内いたします。
@@ -22,21 +26,21 @@ tags:
 - [まとめ](#まとめ)
 
 ## パブリックからのアクセスを許可していない環境への可用性テスト①
-パブリック DNS レコードが存在し、ファイアウォールなどを使用してパブリックからのアクセスを制限した環境に対しては、サービス タグまたはテストの送信元のサーバーの IP アドレスを許可してテストを行うことができます。
+パブリック DNS レコードが存在し、ファイアウォールなどを使用してパブリックからのアクセスを制限した環境に対しては、サービス タグを許可してテストを行うことができます。
 
 可用性テストの送信元のサーバーの IP アドレスはサービス タグ "ApplicationInsightsAvailability" にて定義しております。このサービス タグをネットワーク セキュリティ グループなどで受信の許可を設定して、可用性テストを実施できます。
 ![](./aboutPrivateAvailabilityTest/1.png)
 
 
+なお、可用性テスト サービスは共有 IP アドレスを使用しております。
+可用性テストの接続元 IP アドレスは以下公開情報よりダウンロード可能な JSON ファイルの[ApplicationInsightsAvailability] の項目に記載しております。
 
-または、リクエストを送信するテストの場所ごとの IP アドレスに対して受信の許可を設定し、テストを行うことも可能でございます。
-テストの場所ごとの IP アドレスは以下の弊社公開情報にて提供しております。
-[場所ごとにグループ化されたアドレス (Azure パブリック クラウド)](https://docs.microsoft.com/ja-jp/azure/azure-monitor/app/ip-addresses#addresses-grouped-by-location-azure-public-cloud)
+[Azure IP Ranges and Service Tags – Public Cloud](https://www.microsoft.com/en-us/download/details.aspx?id=56519)
 
-
+但し、IP アドレスの一覧は不定期に変更される見込みですので、基本的にはサービス タグをご利用いただければと存じます。
 
 [参考情報]
-[プライベート可用性テスト - Azure Monitor Application Insights - Azure Monitor | Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/azure-monitor/app/availability-private-test)
+[Application Insights 可用性テスト - Azure Monitor | Microsoft Learn # ファイアウォールの内側でのテスト](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability?tabs=track#testing-behind-a-firewall)
 
 
 
@@ -51,7 +55,7 @@ tags:
     > 仮想ネットワーク内で可用性テストを行う場合は、Azure Functions をテスト対象のサーバーと同じ仮想ネットワークに対して VNET 統合を設定する必要がございます。
     > Azure Functions で VNET 統合を利用するには、従量課金の代わりに Premium プランを使用します。
     > また、仮想ネットワークを使用して Azure Functions からストレージ アカウントへアクセスする場合は、以下の弊社公開情報を参考に、Azure Functions とストレージ アカウントを構成ください。
-    > [仮想ネットワークで Azure Functions を構成する方法](https://docs.microsoft.com/ja-jp/azure/azure-functions/configure-networking-how-to#restrict-your-storage-account-to-a-virtual-network)
+    > [仮想ネットワークで Azure Functions を構成する方法](https://learn.microsoft.com/ja-jp/azure/azure-functions/configure-networking-how-to#restrict-your-storage-account-to-a-virtual-network)
 
 2. タイマー トリガー関数を作成します。
    以下の弊サポート チーム ブログにて、可用性テストを行うためのソース コードの実装例を提供しております。  
@@ -64,8 +68,11 @@ tags:
    Azure Functions で作成した可用性テストは、[CUSTOM] と表示されます。
 ![](./aboutPrivateAvailabilityTest/4.png)
 
+※ 2025/12/26 現在、可用性テストは Application Insights の [調査] - [有効] より表示いただけます。
+![](../aboutAvailabilityTest/4.png)
+
 [参考情報]  
-[Azure Functions を使用してカスタム可用性テストを作成して実行する - Azure Monitor | Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/azure-monitor/app/availability-azure-functions)  
+[pplication Insights 可用性テスト - Azure Monitor | Microsoft Learn # 可用性テストを作成する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability?tabs=track#create-an-availability-test)  
 [Azure Functions を利用したプライベート可用性テストについて](https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/)
 
 ## まとめ
