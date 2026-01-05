@@ -10,17 +10,17 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは、Azure Monitoring サポート チームの趙です。Azure Update Manager は、Azure 上の仮想マシン (VM) や Azure Arc 対応マシンに対して、OS 更新プログラムの適用を自動化・管理できるサービスです。本記事では、Update Manager の基本概念、アーキテクチャ、機能、設定手順等を解説します。最後に補足としてパッチ オーケストレーシ">
+      <meta name="description" content="[更新履歴]  2025&#x2F;7&#x2F;18 ブログ公開 2025&#x2F;12&#x2F;26 最新情報に更新  こんにちは、Azure Monitoring サポート チームの趙です。Azure Update Manager は、Azure 上の仮想マシン (VM) や Azure Arc 対応マシンに対して、OS 更新プログラムの適用を自動化・管理できるサービスです。本記事では、Update Manager の基本概念">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Update Manager について">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/UpdateManager/AboutUpdateManager/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの趙です。Azure Update Manager は、Azure 上の仮想マシン (VM) や Azure Arc 対応マシンに対して、OS 更新プログラムの適用を自動化・管理できるサービスです。本記事では、Update Manager の基本概念、アーキテクチャ、機能、設定手順等を解説します。最後に補足としてパッチ オーケストレーシ">
+<meta property="og:description" content="[更新履歴]  2025&#x2F;7&#x2F;18 ブログ公開 2025&#x2F;12&#x2F;26 最新情報に更新  こんにちは、Azure Monitoring サポート チームの趙です。Azure Update Manager は、Azure 上の仮想マシン (VM) や Azure Arc 対応マシンに対して、OS 更新プログラムの適用を自動化・管理できるサービスです。本記事では、Update Manager の基本概念">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/UpdateManager/AboutUpdateManager/UpdateManager-AzureVMandArc.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/UpdateManager/AboutUpdateManager/UpdateManager-Operation.png">
 <meta property="article:published_time" content="2025-07-17T15:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-29T07:30:03.870Z">
+<meta property="article:modified_time" content="2026-01-05T01:19:33.056Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Azure Update Manager">
 <meta property="article:tag" content="Maintenance Configuration">
@@ -180,12 +180,17 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+5ff56520-1491-54c3-a1f7-aff2bfbe2c9c%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BUpdate+Manager+%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FUpdateManager%2FAboutUpdateManager%2F%29%0A*+Content+Source%3A+%5Barticles%2FUpdateManager%2FAboutUpdateManager.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FUpdateManager%2FAboutUpdateManager.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/UpdateManager/AboutUpdateManager/" data-id="cmjqu93ro00d20nlherrccqdp" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/UpdateManager/AboutUpdateManager/" data-id="cmk0h3lvr00d20no4dnqs2znx" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは、Azure Monitoring サポート チームの趙です。<br>Azure Update Manager は、Azure 上の仮想マシン (VM) や Azure Arc 対応マシンに対して、OS 更新プログラムの適用を自動化・管理できるサービスです。<br>本記事では、Update Manager の基本概念、アーキテクチャ、機能、設定手順等を解説します。<br>最後に補足としてパッチ オーケストレーション モードについてもご紹介いたします。</p>
+        <p>[更新履歴]</p>
+<ul>
+<li>2025/7/18 ブログ公開</li>
+<li>2025/12/26 最新情報に更新</li>
+</ul>
+<p>こんにちは、Azure Monitoring サポート チームの趙です。<br>Azure Update Manager は、Azure 上の仮想マシン (VM) や Azure Arc 対応マシンに対して、OS 更新プログラムの適用を自動化・管理できるサービスです。<br>本記事では、Update Manager の基本概念、アーキテクチャ、機能、設定手順等を解説します。<br>最後に補足としてパッチ オーケストレーション モードについてもご紹介いたします。</p>
 <span id="more"></span>
 
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次 "></a>目次 <a name="目次"></a></h2><ul>
@@ -281,9 +286,9 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>パッチ オーケストレーション モードの詳細については、以下公開情報もご参考いただければ幸いです。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/update-manager/manage-update-settings?tabs=manage-single-overview,manage-scale-overview#configure-settings-on-a-single-vm">1 つの VM で設定を構成する</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/automatic-vm-guest-patching#patch-orchestration-modes">パッチ オーケストレーションのモード</a></p>
 <p>以下それぞれのパッチ オーケストレーション モードについて説明させていただきます。</p>
 <h4 id="カスタマー-マネージド-スケジュール-Customer-Managed-Schedule"><a href="#カスタマー-マネージド-スケジュール-Customer-Managed-Schedule" class="headerlink" title="カスタマー マネージド スケジュール (Customer Managed Schedule) "></a>カスタマー マネージド スケジュール (Customer Managed Schedule) <a name="カスタマー-マネージド-スケジュール-(customer-managed-schedule)"></a></h4><p>Update Manager でメンテナンス構成 (スケジュールによる更新プログラムの適用) をご利用いただくためには、<br>パッチ オーケストレーションを “カスタマー マネージド スケジュール (Customer Managed Schedule)” に設定いただく必要があります。</p>
-<p>公開情報 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/automatic-vm-guest-patching#patch-orchestration-modes">パッチ オーケストレーションのモード</a> 上では、AutomaticByPlatform (Azure-orchestrated) に該当します。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/update-manager/prerequsite-for-schedule-patching?tabs=new-prereq-portal,auto-portal#enable-scheduled-patching-on-azure-vms">ByPassPlatformSafetyChecksOnUserSchedule プロパティが “True” </a>である場合、 “カスタマー マネージド スケジュール (Customer Managed Schedule)” に該当します。</p>
+<p>公開情報 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/automatic-vm-guest-patching#patch-orchestration-modes">パッチ オーケストレーションのモード</a> 上では、AutomaticByPlatform (Azure-orchestrated) に該当します。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/update-manager/manage-dynamic-scoping?tabs=avms,vm#add-a-dynamic-scope">ByPassPlatformSafetyChecksOnUserSchedule プロパティが “True” </a>である場合、 “カスタマー マネージド スケジュール (Customer Managed Schedule)” に該当します。</p>
 <h4 id="Azure-マネージド-安全なデプロイ-Azure-Managed-Safe-Deployment"><a href="#Azure-マネージド-安全なデプロイ-Azure-Managed-Safe-Deployment" class="headerlink" title="Azure マネージド - 安全なデプロイ (Azure Managed - Safe Deployment) "></a>Azure マネージド - 安全なデプロイ (Azure Managed - Safe Deployment) <a name="azure-マネージド---安全なデプロイ-(azure-managed---safe-deployment)"></a></h4><p>Automatic VM Guest Patching で利用されるパッチ オーケストレーション モードです。<br>Azure の任意のタイミングで Critical および Security の更新プログラムが適用されます。</p>
-<p>公開情報 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/automatic-vm-guest-patching#patch-orchestration-modes">パッチ オーケストレーションのモード</a> 上では、AutomaticByPlatform (Azure-orchestrated) に該当します。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/update-manager/prerequsite-for-schedule-patching?tabs=new-prereq-portal,auto-portal#enable-automatic-guest-vm-patching-on-azure-vms">ByPassPlatformSafetyChecksOnUserSchedule プロパティが “False” </a>である場合、 “Azure マネージド - 安全なデプロイ (Azure Managed - Safe Deployment)” に該当します。</p>
+<p>公開情報 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/automatic-vm-guest-patching#patch-orchestration-modes">パッチ オーケストレーションのモード</a> 上では、AutomaticByPlatform (Azure-orchestrated) に該当します。<br>ByPassPlatformSafetyChecksOnUserSchedule プロパティが “False” である場合、 “Azure マネージド - 安全なデプロイ (Azure Managed - Safe Deployment)” に該当します。</p>
 <div class="alert is-success"><p class="alert-title">ヒント</p><p>カスタマー マネージド スケジュール (Customer Managed Schedule) と Azure マネージド - 安全なデプロイ (Azure Managed - Safe Deployment) の違いは、<strong>Update Manager のメンテナンス構成を利用するか利用しないか</strong>の違いです。カスタマー マネージド スケジュール (Customer Managed Schedule) では Update Manager のメンテナンス構成を利用して、ユーザーが更新プログラムの適用スケジュール (ユーザーのタイミング) を設定します。一方、Azure マネージド - 安全なデプロイ (Azure Managed - Safe Deployment) では、Azure が自動的に (Azure のタイミング) 更新プログラムを適用します。</p></div>
 <h4 id="Windows-自動更新-AutomaticByOS"><a href="#Windows-自動更新-AutomaticByOS" class="headerlink" title="Windows 自動更新 (AutomaticByOS) "></a>Windows 自動更新 (AutomaticByOS) <a name="windows-自動更新-(automaticbyos)"></a></h4><p>Windows のみ該当するパッチ オーケストレーション モードです。<br>Windows 自動更新 (AutomaticByOS) の場合、マシンの OS 上の Windows Update 自動更新が有効になります。</p>
 <h4 id="手動更新-Manual"><a href="#手動更新-Manual" class="headerlink" title="手動更新 (Manual) "></a>手動更新 (Manual) <a name="手動更新-(manual)"></a></h4><p>Windows のみ該当するパッチ オーケストレーション モードです。<br>手動更新 (Manual) の場合、マシンの OS 上の Windows Update 自動更新が無効になります。</p>
@@ -298,7 +303,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <div class="alert is-success"><p class="alert-title">ヒント</p><p>Hotpatching で適用される更新プログラム (KB) は <a target="_blank" rel="noopener" href="https://support.microsoft.com/en-us/topic/release-notes-for-hotpatch-in-azure-automanage-for-windows-server-2022-4e234525-5bd5-4171-9886-b475dabe0ce8">Release notes for Hotpatch in Azure Automanage for Windows Server 2022</a>、あるいは、<a target="_blank" rel="noopener" href="https://support.microsoft.com/en-us/topic/release-notes-for-hotpatch-on-windows-server-2025-datacenter-azure-edition-c548437e-8c7a-4e27-99f4-e8746f97f8fa">Release notes for Hotpatch on Windows Server 2025 Datacenter Azure Edition</a> をご参考いただければ幸いです。</p></div>
 <p>Hotpatching は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/windows-server/get-started/hotpatch?toc=/azure/virtual-machines/toc.json#azure-and-azure-local-virtual-machines">一部の Windows Server エディションでのみご利用</a>いただけます。</p>
 <p>Hotpatching は Hotpatch Calendar のスケジュールに従い、適用されます。<br>そのため、お客様にて更新プログラムを適用するタイミングをスケジュールでコントロールされたい場合は、Update Manager のメンテナンス構成をご利用いただく必要がございます。</p>
-<p>Hotpatch のスケジュールの詳細については以下公開情報をご参考いただければ幸いです。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/windows-server/get-started/hotpatch?toc=/azure/virtual-machines/toc.json#how-hotpatch-works">How Hotpatch works</a><br><a target="_blank" rel="noopener" href="https://support.microsoft.com/en-us/topic/release-notes-for-hotpatch-in-azure-automanage-for-windows-server-2022-4e234525-5bd5-4171-9886-b475dabe0ce8">Release notes for Hotpatch in Azure Automanage for Windows Server 2022</a></p>
+<p>Hotpatch のスケジュールの詳細については以下公開情報をご参考いただければ幸いです。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/windows-server/get-started/hotpatch?toc=/azure/virtual-machines/toc.json#how-hotpatch-works">ホットパッチのしくみ</a><br><a target="_blank" rel="noopener" href="https://support.microsoft.com/en-us/topic/release-notes-for-hotpatch-in-azure-automanage-for-windows-server-2022-4e234525-5bd5-4171-9886-b475dabe0ce8">Release notes for Hotpatch in Azure Automanage for Windows Server 2022</a></p>
 <p>本日のご紹介は以上となります。上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。<br>最後までお読みいただきありがとうございました。</p>
 
       
@@ -416,7 +421,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2025 Japan Azure Monitoring Support Team<br>
+      &copy; 2026 Japan Azure Monitoring Support Team<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
