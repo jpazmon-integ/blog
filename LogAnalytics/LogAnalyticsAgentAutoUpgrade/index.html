@@ -6,20 +6,20 @@
     
       <title>
         
-          Log Analytics 仮想マシン拡張機能のバージョン アップ方法について | 
+          【廃止】Log Analytics 仮想マシン拡張機能のバージョン アップ方法について | 
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは、Azure Monitoring チームの 胡 です。 Log Analytics 仮想マシン拡張機能を利用してログの収集を行っている方がたくさんいらっしゃると思います。より良いログ収集の体験ができるよう、弊社としましては常に最新バージョンの拡張機能を利用するよう、お客様にお願いしております。この度、 Azure 仮想マシンで対応している拡張機能について、自動アップグレードの仕組みに大">
+      <meta name="description" content="[更新履歴]  2022&#x2F;7&#x2F;1 ブログ公開 2025&#x2F;12&#x2F;26 代替機能に関する追記   [!IMPORTANT]Log Analytics エージェントは 2024 年 8 月 31 日に廃止されております。引き続き Log Analytics ワークスペースへのデータ送信を行うためには、後継の Azure Monitor エージェント をご利用ください。移行については、Log Analyt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Log Analytics 仮想マシン拡張機能のバージョン アップ方法について">
+<meta property="og:title" content="【廃止】Log Analytics 仮想マシン拡張機能のバージョン アップ方法について">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは、Azure Monitoring チームの 胡 です。 Log Analytics 仮想マシン拡張機能を利用してログの収集を行っている方がたくさんいらっしゃると思います。より良いログ収集の体験ができるよう、弊社としましては常に最新バージョンの拡張機能を利用するよう、お客様にお願いしております。この度、 Azure 仮想マシンで対応している拡張機能について、自動アップグレードの仕組みに大">
+<meta property="og:description" content="[更新履歴]  2022&#x2F;7&#x2F;1 ブログ公開 2025&#x2F;12&#x2F;26 代替機能に関する追記   [!IMPORTANT]Log Analytics エージェントは 2024 年 8 月 31 日に廃止されております。引き続き Log Analytics ワークスペースへのデータ送信を行うためには、後継の Azure Monitor エージェント をご利用ください。移行については、Log Analyt">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/image01.png">
 <meta property="article:published_time" content="2022-06-30T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-05T02:59:50.939Z">
+<meta property="article:modified_time" content="2026-01-05T03:04:12.217Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Log Analytics">
 <meta name="twitter:card" content="summary">
@@ -110,7 +110,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Log Analytics 仮想マシン拡張機能のバージョン アップ方法について
+      【廃止】Log Analytics 仮想マシン拡張機能のバージョン アップ方法について
     </h1>
   
 
@@ -172,14 +172,20 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         
         
-        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+f4aab0d7-0a48-5bc3-81cd-4abacb1145e7%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BLog+Analytics+%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD%E3%81%AE%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3+%E3%82%A2%E3%83%83%E3%83%97%E6%96%B9%E6%B3%95%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FLogAnalyticsAgentAutoUpgrade%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FLogAnalyticsAgentAutoUpgrade.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FLogAnalyticsAgentAutoUpgrade.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+f4aab0d7-0a48-5bc3-81cd-4abacb1145e7%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%80%90%E5%BB%83%E6%AD%A2%E3%80%91Log+Analytics+%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD%E3%81%AE%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3+%E3%82%A2%E3%83%83%E3%83%97%E6%96%B9%E6%B3%95%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FLogAnalyticsAgentAutoUpgrade%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FLogAnalyticsAgentAutoUpgrade.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FLogAnalyticsAgentAutoUpgrade.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/" data-id="cmk0kolzk00210nqcg3aq8oth" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsAgentAutoUpgrade/" data-id="cmk0ku61k001z0nph8y8u1596" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは、Azure Monitoring チームの 胡 です。</p>
+        <p>[更新履歴]</p>
+<ul>
+<li>2022/7/1 ブログ公開</li>
+<li>2025/12/26 代替機能に関する追記</li>
+</ul>
+<div class="alert is-important"><p class="alert-title">重要</p><p>Log Analytics エージェントは 2024 年 8 月 31 日に廃止されております。</p><p>引き続き Log Analytics ワークスペースへのデータ送信を行うためには、後継の <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-overview">Azure Monitor エージェント</a> をご利用ください。</p><p>移行については、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration">Log Analytics エージェントから Azure Monitor エージェントへの移行</a> をご参照ください。</p><p>移行に関する FAQ については、<a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromLA/">Log Analytics エージェントから Azure Monitor エージェントへの移行に関するよくあるご質問集</a> にまとめております。</p></div>
+<p>こんにちは、Azure Monitoring チームの 胡 です。</p>
 <p>Log Analytics 仮想マシン拡張機能を利用してログの収集を行っている方がたくさんいらっしゃると思います。<br>より良いログ収集の体験ができるよう、弊社としましては常に最新バージョンの拡張機能を利用するよう、お客様にお願いしております。<br>この度、 Azure 仮想マシンで対応している拡張機能について、自動アップグレードの仕組みに大きな変更がございましたため、<br>Log Analytics 仮想マシン拡張機能のバージョン アップ方法について、ご案内させていただきます。</p>
 <span id="more"></span>
 
