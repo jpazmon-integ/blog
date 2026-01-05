@@ -10,16 +10,16 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは。Azure Monitoring チームでサマー インターンをしております、徳田です !  本記事は Improbing the tools for monitoring Log Analytics workspace health を元にしております。今回は Log Analytics ワークスペースのリソース正常性を示す指標に関する更新についてご紹介します。">
+      <meta name="description" content="[更新履歴]  2022&#x2F;9&#x2F;20 ブログ公開 2025&#x2F;12&#x2F;26 最新情報に更新  こんにちは。Azure Monitoring チームでサマー インターンをしております、徳田です !  本記事は Improbing the tools for monitoring Log Analytics workspace health を元にしております。今回は Log Analytics ワークスペ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Log Analytics ワークスペースの正常性を示す指標の更新について">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/UpdateLAHealth/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは。Azure Monitoring チームでサマー インターンをしております、徳田です !  本記事は Improbing the tools for monitoring Log Analytics workspace health を元にしております。今回は Log Analytics ワークスペースのリソース正常性を示す指標に関する更新についてご紹介します。">
+<meta property="og:description" content="[更新履歴]  2022&#x2F;9&#x2F;20 ブログ公開 2025&#x2F;12&#x2F;26 最新情報に更新  こんにちは。Azure Monitoring チームでサマー インターンをしております、徳田です !  本記事は Improbing the tools for monitoring Log Analytics workspace health を元にしております。今回は Log Analytics ワークスペ">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/UpdateLAHealth/warning_status.png">
 <meta property="article:published_time" content="2022-09-19T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-05T03:04:12.305Z">
+<meta property="article:modified_time" content="2026-01-05T03:07:47.799Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Log Analytics">
 <meta property="article:tag" content="Azure Monitor">
@@ -175,12 +175,17 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+e0cd22fc-0e9c-5e4c-a054-9ddf109d15d5%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BLog+Analytics+%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AE%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%92%E7%A4%BA%E3%81%99%E6%8C%87%E6%A8%99%E3%81%AE%E6%9B%B4%E6%96%B0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FUpdateLAHealth%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FUpdateLAHealth.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FUpdateLAHealth.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/UpdateLAHealth/" data-id="cmk0ku61v002r0nphh2h7akb2" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/UpdateLAHealth/" data-id="cmk0kyswb002r0npd3axx4jav" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは。Azure Monitoring チームでサマー インターンをしております、徳田です ! </p>
+        <p>[更新履歴]</p>
+<ul>
+<li>2022/9/20 ブログ公開</li>
+<li>2025/12/26 最新情報に更新</li>
+</ul>
+<p>こんにちは。Azure Monitoring チームでサマー インターンをしております、徳田です ! </p>
 <p>本記事は <a target="_blank" rel="noopener" href="https://techcommunity.microsoft.com/t5/azure-observability-blog/improving-the-tools-for-monitoring-log-analytics-workspace/ba-p/3566634">Improbing the tools for monitoring Log Analytics workspace health</a> を元にしております。<br>今回は Log Analytics ワークスペースのリソース正常性を示す指標に関する更新についてご紹介します。</p>
 <span id="more"></span>
 
@@ -193,32 +198,32 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <li>まとめ</li>
 </ul>
 <p>今回の更新の背景として、Log Analytics ワークスペースの正常性の重要な ２ つの指標として、<strong>インジェスト時間</strong>と <em><strong>Query succession percentage</strong></em> (クエリ成功率) を定義しました。</p>
-<h2 id="インジェスト時間とは"><a href="#インジェスト時間とは" class="headerlink" title="インジェスト時間とは"></a>インジェスト時間とは</h2><p>インジェスト時間は、ログ データが生成されてからクエリ検索が可能になるまでにかかる時間を示しています。<a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/data-ingestion-time">こちらの記事</a>にて、インジェスト時間に影響する様々な要因をご確認いただけます。</p>
+<h2 id="インジェスト時間とは"><a href="#インジェスト時間とは" class="headerlink" title="インジェスト時間とは"></a>インジェスト時間とは</h2><p>インジェスト時間は、ログ データが生成されてからクエリ検索が可能になるまでにかかる時間を示しています。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-ingestion-time">こちらの記事</a>にて、インジェスト時間に影響する様々な要因をご確認いただけます。</p>
 <h2 id="Query-succession-percentage-とは"><a href="#Query-succession-percentage-とは" class="headerlink" title="Query succession percentage とは"></a><em>Query succession percentage</em> とは</h2><p><em>Query succession percentage</em> (以降、クエリ成功率) は、HTTP ステータス コードが 500 番台 “以外” のエラーが返却されるクエリの数を反映しています。この数値には Azure ログ アラートや Sentinel によって実行されるクエリは含まれません。この指標は近くリソース正常性にて確認できるようになる予定です。</p>
-<h2 id="今回の-Log-Analytics-ワークスペースの正常性に関する更新の概要"><a href="#今回の-Log-Analytics-ワークスペースの正常性に関する更新の概要" class="headerlink" title="今回の Log Analytics ワークスペースの正常性に関する更新の概要"></a>今回の Log Analytics ワークスペースの正常性に関する更新の概要</h2><p>現在この 1 年でリリースされた機能と併せた、上記 2 つの指標の強化が進められています。<br>具体的には、<a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/reference/tables/operation">Operation</a> テーブルが改善されました。このテーブルではユーザーがログ解析に関する問題や Log Analytics の制限に関する情報、そのたデータに関する一般的な問題を確認することができます。さらに、これらのログに基づいて<a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/daily-cap#alert-when-daily-cap-is-reached">アラートを作成</a>し、データ損失の可能性を知ることができます。</p>
-<p>この <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/reference/tables/operation">Operation</a> テーブル内のデータに基づいて、ワークスペースの正常性の指標が作成されています。Log Analytics ワークスペースの [概要] 内 [操作上の問題] 項目から、そのワークスペースの状態の概要を確認することができます。<br><img src="/blog/LogAnalytics/UpdateLAHealth/warning_status.png" alt="Azure ポータルで確認できるリソース正常性の例"></p>
-<p>Log Analytics ワークスペースの [監視] 項目の 1 つ、<a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/log-analytics-workspace-insights-overview">分析情報</a>からワークスペースの使用量、パフォーマンス、エージェント、クエリ、変更ログなどを確認することができます。これによりワークスペースの正常性を、パフォーマンスやインジェスト量の急増 / 急減、インジェストの待機時間、クエリ パフォーマンスの観点などから、包括的に監視することができます。</p>
+<h2 id="今回の-Log-Analytics-ワークスペースの正常性に関する更新の概要"><a href="#今回の-Log-Analytics-ワークスペースの正常性に関する更新の概要" class="headerlink" title="今回の Log Analytics ワークスペースの正常性に関する更新の概要"></a>今回の Log Analytics ワークスペースの正常性に関する更新の概要</h2><p>現在この 1 年でリリースされた機能と併せた、上記 2 つの指標の強化が進められています。<br>具体的には、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/tables/operation">Operation</a> テーブルが改善されました。このテーブルではユーザーがログ解析に関する問題や Log Analytics の制限に関する情報、そのたデータに関する一般的な問題を確認することができます。さらに、これらのログに基づいて<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/daily-cap#alert-when-daily-cap-is-reached">アラートを作成</a>し、データ損失の可能性を知ることができます。</p>
+<p>この <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/tables/operation">Operation</a> テーブル内のデータに基づいて、ワークスペースの正常性の指標が作成されています。Log Analytics ワークスペースの [概要] 内 [操作上の問題] 項目から、そのワークスペースの状態の概要を確認することができます。<br><img src="/blog/LogAnalytics/UpdateLAHealth/warning_status.png" alt="Azure ポータルで確認できるリソース正常性の例"></p>
+<p>Log Analytics ワークスペースの [監視] 項目の 1 つ、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/log-analytics-workspace-insights-overview">分析情報</a>からワークスペースの使用量、パフォーマンス、エージェント、クエリ、変更ログなどを確認することができます。これによりワークスペースの正常性を、パフォーマンスやインジェスト量の急増 / 急減、インジェストの待機時間、クエリ パフォーマンスの観点などから、包括的に監視することができます。</p>
 <h2 id="Log-Analytics-ワークスペースの正常性の確認方法"><a href="#Log-Analytics-ワークスペースの正常性の確認方法" class="headerlink" title="Log Analytics ワークスペースの正常性の確認方法"></a>Log Analytics ワークスペースの正常性の確認方法</h2><p>Log Analytics ワークスペースのリソース正常性は Azure ポータル上の複数の場所で確認することができます。</p>
 <h3 id="確認方法-1"><a href="#確認方法-1" class="headerlink" title="確認方法 1"></a>確認方法 1</h3><ol>
-<li>Azure ポータルで “モニター” と検索し、サービス一覧の中から [モニター] を開いてください。</li>
-<li>[サービス正常性] &gt; [Resource Health] 項目の [リソース正常性] を選択してください。</li>
+<li>Azure ポータルで “監視” と検索し、サービス一覧の中から [監視] を開いてください。</li>
+<li>[サービス正常性] &gt; [リソース正常性] 項目の [リソース正常性] を選択してください。</li>
 <li>[リソースの種類] ドロップダウンから “Log Analytics” を選択・設定してください。左のカラムに各ワークスペースの状態を示すアイコンが表示されます。</li>
 <li>より詳細な情報を確認するには、任意のワークスペースをクリックしてください。正常性の履歴が確認できます。</li>
 </ol>
 <h3 id="確認方法-2"><a href="#確認方法-2" class="headerlink" title="確認方法 2"></a>確認方法 2</h3><ol>
 <li>Azure ポータルで任意の Log Analytics ワークスペースを選択してください。</li>
-<li>[サポート + トラブルシューティング] 項目の [リソース正常性] を選択すると状態が確認できます。確認方法 1 の詳細情報と同様の内容が確認できます。</li>
+<li>[ヘルプ] 項目の [リソース正常性] を選択すると状態が確認できます。確認方法 1 の詳細情報と同様の内容が確認できます。</li>
 </ol>
 <h3 id="確認方法-3"><a href="#確認方法-3" class="headerlink" title="確認方法 3"></a>確認方法 3</h3><ol>
 <li>Azure ポータルで任意の Log Analytics ワークスペースを選択してください。</li>
 <li>[監視] 項目の [分析情報] をクリックし、 [正常性] タブを選択してください。可用性の状態や概要が時系列で確認できます。</li>
 </ol>
-<h2 id="Log-Analytics-ワークスペースの正常性の状態定義"><a href="#Log-Analytics-ワークスペースの正常性の状態定義" class="headerlink" title="Log Analytics ワークスペースの正常性の状態定義"></a>Log Analytics ワークスペースの正常性の状態定義</h2><p>今回リリースされた<a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/service-health/resource-health-overview">リソースの正常性</a>の状態はインジェストの待ち時間を反映しており、以下の 3 つの状態で定義されます。</p>
+<h2 id="Log-Analytics-ワークスペースの正常性の状態定義"><a href="#Log-Analytics-ワークスペースの正常性の状態定義" class="headerlink" title="Log Analytics ワークスペースの正常性の状態定義"></a>Log Analytics ワークスペースの正常性の状態定義</h2><p>今回リリースされた<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/service-health/resource-health-overview">リソースの正常性</a>の状態はインジェストの待ち時間を反映しており、以下の 3 つの状態で定義されます。</p>
 <p><strong>Available</strong> - 特定の時間範囲においてインジェストの待ち時間の問題が検知されなかった状態。</p>
 <p><strong>Degraded</strong> - 推定 1 時間以上のインジェストの待ち時間が 15 分以上続いた状態。この問題は現在緩和に向けた修正が進められています。</p>
 <p><strong>Unknown</strong> - そのワークスペースの正常性の状態を特定することができない状態。もしくは過去 24 時間以上そのワークペースからデータがインジェストされていない状態。</p>
 <h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>今回の更新により、インジェスト時間が反映された Log Analytics ワークスペースのリソース正常性が確認できるようになりました。<br>今後、リソースの正常性にはクエリ成功率の急減が反映される予定です。</p>
-<p>また、<a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-new-alert-rule?tabs=metric">こちらの記事</a>で紹介されている手順にしたがって、ワークスペースのリソース正常性の情報に基づいたアラートを作成することが推奨されています。</p>
+<p>また、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/log-analytics-workspace-health#view-log-analytics-workspace-health-and-set-up-health-status-alerts">こちらの記事</a>で紹介されている手順にしたがって、ワークスペースのリソース正常性の情報に基づいたアラートを作成することが推奨されています。</p>
 
       
       
