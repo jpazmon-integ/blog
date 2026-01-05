@@ -141,7 +141,7 @@ Azure Automationhttps://doc...
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/general/AboutMonandIntg/" data-id="cmk0k8sxo00470nqmcso2a2bu" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/general/AboutMonandIntg/" data-id="cmk0kb0wn00470nov9gh0enro" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li></ul>
@@ -196,7 +196,7 @@ Azure Automationhttps://doc...
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/" data-id="cmk0k8sx600330nqm0g082rp1" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/" data-id="cmk0kb0w500330nov04agd2g6" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Essentials/" rel="tag">Azure Monitor Essentials</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/How-To/" rel="tag">How-To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
@@ -264,7 +264,7 @@ Q 3 どうやってクラシッ...
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/aboutDifferentTypesOfAi/" data-id="cmk0k8sxb003b0nqm14mr952r" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/aboutDifferentTypesOfAi/" data-id="cmk0kb0w9003b0novf5wc6v2p" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
@@ -314,7 +314,7 @@ Q 3 どうやってクラシッ...
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/" data-id="cmk0k8sxk003x0nqm7pmz1bld" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/" data-id="cmk0kb0wk003x0novfhtefech" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/RunAs-Account/" rel="tag">RunAs Account</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Tips/" rel="tag">Tips</a></li></ul>
@@ -375,7 +375,7 @@ Q 3 どうやってクラシッ...
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/general/IntroduceOurBlog/" data-id="cmk0k8sxp004b0nqm75gy7gi4" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/general/IntroduceOurBlog/" data-id="cmk0kb0wo004b0novbo7n6w5l" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/General/" rel="tag">General</a></li></ul>
@@ -415,11 +415,16 @@ Q 3 どうやってクラシッ...
     <!-- post caption -->
     <div class="article-entry" itemprop="articleBody">
       
-        こんにちは、Azure サポート チームの世古です。今回は Azure Automation で Webhook を実行する際に記録されるエラー ”(404) 見つかりません” の原因および対処方法についてご案内させていただきます。
+        [更新履歴]
+
+2019/4/3 ブログ公開
+2025/12/26 最新情報に更新
+
+こんにちは、Azure サポート チームの世古です。今回は Azure Automation で Webhook を実行する際に記録されるエラー ”(404) 見つかりません” の原因および対処方法についてご案内させていただきます。
 記録されるエラーについては以下の通りです。
 1ERROR [TID:*] [] System.Net.WebException: リモート サーバーがエラーを返しました: (404) 見つかりません
 上記内容にあります通り、Runbook を実行しようとしたが実行する URL が見つからない為、404 のエラーを記録して、Runbook の実行に失敗します。
-対処方法についてURL が見つからない要因としては、一般的に Webhook 作成時に指定した URL の有効期限が影響している可能性がございます。その為、まずは同様のエラーで失敗する場合には Webho...
+対処方法についてURL が見つからない要因としては、一般的に Webhook 作成時に指定した URL の有効期限が影...
         <p class="article-readmore">
           <a href="../../automation/404ErrorOccurrWhenRunningWebhook/">Read more</a>
         </p>
@@ -427,7 +432,7 @@ Q 3 どうやってクラシッ...
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/" data-id="cmk0k8sxg003k0nqmde8eal1o" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/" data-id="cmk0kb0wf003k0nov2qec8hrw" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Webhook/" rel="tag">Webhook</a></li></ul>
@@ -482,7 +487,7 @@ Q 3 どうやってクラシッ...
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/automation/update-AzureRmVmCommandFailesWithVhdCannotBeNull/" data-id="cmk0k8sxm00440nqm0ro70s7i" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/automation/update-AzureRmVmCommandFailesWithVhdCannotBeNull/" data-id="cmk0kb0wm00440novc4zh3wsn" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li></ul>
@@ -545,7 +550,7 @@ https://azure.microsoft.com/ja-jp/pricing/details/automation/...
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/automation/gettingExeTimeOfJobForSpecificPeriodAutomation/" data-id="cmk0k8sxm00420nqmgdct4c5h" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/automation/gettingExeTimeOfJobForSpecificPeriodAutomation/" data-id="cmk0kb0wl00420nov8vgfgc7s" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Howto/" rel="tag">Howto</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Job/" rel="tag">Job</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li></ul>
