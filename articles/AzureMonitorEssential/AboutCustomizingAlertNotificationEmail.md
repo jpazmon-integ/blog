@@ -9,7 +9,8 @@ tags:
 
 2022/03/25 : 旧 UI と現 UI での対応表/図について、詳細設定オプションを考慮する内容に更新いたしました。  
 2022/07/01 : ロジック アプリから Log Analytics API を実行する記事について追記しました。
-2026/01/05 : リンクを更新しました。
+2026/01/05 : ドキュメントのリンクを更新しました。
+             ログ検索アラートの電子メールの件名をカスタマイズする (プレビュー) 機能について、追記しました。
 
 - - - -
 こんにちは！Azure Monitoring & Integration サポート チームの花房です。  
@@ -23,7 +24,6 @@ tags:
 - [新しい API バージョン (API バージョン 2021-08-01) のログ アラート ルール作成画面](#新しい-API-バージョン-API-バージョン-2021-08-01-のログ-アラート-ルール作成画面)
   - [■ 相違点 ■](#■-相違点-■)
   - [■ 代替案 ■](#■-代替案-■)
-- [ログ アラート V2 における件名カスタマイズ機能（プレビュー）](#ログ-アラート-V2-における件名カスタマイズ機能（プレビュー）)
 - [まとめ](#まとめ)
 
 ## アラート通知メールはカスタマイズできない
@@ -49,17 +49,15 @@ Logic App では、条件分岐などを実装することができ、ワーク�
 > Logic Apps を使用してアラート通知をカスタマイズする
 > https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-logic-apps?tabs=send-email
 
-ペイロードは以下公開情報に記載のあるサンプル ペイロードをご使用ください。
+ペイロードは、アクション グループの共通アラートスキーマの設定に応じて以下公開情報に記載のあるサンプル ペイロードをご使用ください。
+なお上記 (Logic Apps を用いたアラート通知のカスタマイズの公開情報)[https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-logic-apps?tabs=send-email] は、共通アラートスキーマを利用する前提の手順となっております。
+アクション グループの「共通アラート スキーマを有効にします」の設定によって利用されるアラートのスキーマが異なりますため、
+事前に該当するスキーマを確認いただく必要がございます。
 
-> Webhook アクションを使用したログ検索アラートのサンプル ペイロード
-> https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-log-webhook#sample-payloads
-
-※ 上記 "Logic Apps を使用してアラート通知をカスタマイズする" ドキュメント内の、
-&nbsp;&nbsp;&nbsp;"アクションを設定する" では、以下のアクションを追加いただくことで、お客様にて件名等のメールの内容をカスタマイズ可能です。  
-
-> メールを送信する (V2)
-> https://learn.microsoft.com/ja-jp/connectors/office365/#%E3%83%A1%E3%83%BC%E3%83%AB%E3%82%92%E9%80%81%E4%BF%A1%E3%81%99%E3%82%8B-(v2)
-> ※ 「メールを送信する (V2)」 をご参照ください。
+> 共通アラート スキーマ 
+> https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-common-schema
+> 非共通アラート スキーマ定義
+> https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-non-common-schema-definitions
 
 また、弊社 Integration Support Blog にロジック アプリからログ アラート発報時に出力されたデータに含まれている Log Analytics API を実行する方法に関する記事が投稿されております。  
 カスタマイズされたメールをロジック アプリから通知する方法をご検討の場合、下記の記事をご参考いただけますと幸いです。  
