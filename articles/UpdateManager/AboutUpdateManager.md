@@ -10,6 +10,10 @@ tags:
   - パッチ オーケストレーション
 ---
 
+[更新履歴]
+- 2025/7/18 ブログ公開
+- 2025/12/26 最新情報に更新
+
 こんにちは、Azure Monitoring サポート チームの趙です。
 Azure Update Manager は、Azure 上の仮想マシン (VM) や Azure Arc 対応マシンに対して、OS 更新プログラムの適用を自動化・管理できるサービスです。
 本記事では、Update Manager の基本概念、アーキテクチャ、機能、設定手順等を解説します。
@@ -218,7 +222,7 @@ Update Manager でメンテナンス構成 (スケジュールによる更新プ
 パッチ オーケストレーションを "カスタマー マネージド スケジュール (Customer Managed Schedule)" に設定いただく必要があります。
 
 公開情報 [パッチ オーケストレーションのモード](https://learn.microsoft.com/ja-jp/azure/virtual-machines/automatic-vm-guest-patching#patch-orchestration-modes) 上では、AutomaticByPlatform (Azure-orchestrated) に該当します。
-[ByPassPlatformSafetyChecksOnUserSchedule プロパティが "True" ](https://learn.microsoft.com/ja-jp/azure/update-manager/prerequsite-for-schedule-patching?tabs=new-prereq-portal%2Cauto-portal#enable-scheduled-patching-on-azure-vms)である場合、 "カスタマー マネージド スケジュール (Customer Managed Schedule)" に該当します。
+[ByPassPlatformSafetyChecksOnUserSchedule プロパティが "True" ](https://learn.microsoft.com/ja-jp/azure/update-manager/manage-dynamic-scoping?tabs=avms%2Cvm#add-a-dynamic-scope)である場合、 "カスタマー マネージド スケジュール (Customer Managed Schedule)" に該当します。
 
 
 #### Azure マネージド - 安全なデプロイ (Azure Managed - Safe Deployment) <a name="azure-マネージド---安全なデプロイ-(azure-managed---safe-deployment)"></a>
@@ -227,7 +231,7 @@ Automatic VM Guest Patching で利用されるパッチ オーケストレーシ
 Azure の任意のタイミングで Critical および Security の更新プログラムが適用されます。
 
 公開情報 [パッチ オーケストレーションのモード](https://learn.microsoft.com/ja-jp/azure/virtual-machines/automatic-vm-guest-patching#patch-orchestration-modes) 上では、AutomaticByPlatform (Azure-orchestrated) に該当します。
-[ByPassPlatformSafetyChecksOnUserSchedule プロパティが "False" ](https://learn.microsoft.com/ja-jp/azure/update-manager/prerequsite-for-schedule-patching?tabs=new-prereq-portal%2Cauto-portal#enable-automatic-guest-vm-patching-on-azure-vms)である場合、 "Azure マネージド - 安全なデプロイ (Azure Managed - Safe Deployment)" に該当します。
+ByPassPlatformSafetyChecksOnUserSchedule プロパティが "False" である場合、 "Azure マネージド - 安全なデプロイ (Azure Managed - Safe Deployment)" に該当します。
 
 > [!TIP]
 > カスタマー マネージド スケジュール (Customer Managed Schedule) と Azure マネージド - 安全なデプロイ (Azure Managed - Safe Deployment) の違いは、**Update Manager のメンテナンス構成を利用するか利用しないか**の違いです。カスタマー マネージド スケジュール (Customer Managed Schedule) では Update Manager のメンテナンス構成を利用して、ユーザーが更新プログラムの適用スケジュール (ユーザーのタイミング) を設定します。一方、Azure マネージド - 安全なデプロイ (Azure Managed - Safe Deployment) では、Azure が自動的に (Azure のタイミング) 更新プログラムを適用します。
@@ -283,7 +287,7 @@ Hotpatching は Hotpatch Calendar のスケジュールに従い、適用され�
 そのため、お客様にて更新プログラムを適用するタイミングをスケジュールでコントロールされたい場合は、Update Manager のメンテナンス構成をご利用いただく必要がございます。
 
 Hotpatch のスケジュールの詳細については以下公開情報をご参考いただければ幸いです。
-[How Hotpatch works](https://learn.microsoft.com/ja-jp/windows-server/get-started/hotpatch?toc=%2Fazure%2Fvirtual-machines%2Ftoc.json#how-hotpatch-works)
+[ホットパッチのしくみ](https://learn.microsoft.com/ja-jp/windows-server/get-started/hotpatch?toc=%2Fazure%2Fvirtual-machines%2Ftoc.json#how-hotpatch-works)
 [Release notes for Hotpatch in Azure Automanage for Windows Server 2022](https://support.microsoft.com/en-us/topic/release-notes-for-hotpatch-in-azure-automanage-for-windows-server-2022-4e234525-5bd5-4171-9886-b475dabe0ce8)
 
 本日のご紹介は以上となります。上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。
