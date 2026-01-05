@@ -23,7 +23,7 @@ Azure ポータルで表示されるログ クエリの検索結果の上限は 
 そのため、今回は Azure PowerShell からクエリを実行する方法等をご紹介します！
 
 > [!IMPORTANT] 
-> 2025/01/05 時点では、Azure ポータルで表示されるログ クエリの検索結果の上限は 500,000 件です。
+> 2026/01/05 時点では、Azure ポータルで表示されるログ クエリの検索結果の上限は 500,000 件です。
 > そのため、本記事では項目 [3. Azure PowerShell で上限に触れないように工夫して実行する方法](#3-Azure-PowerShell-で上限に触れないように工夫して実行する方法) をご参照の上、レコード数や容量などの上限に触れないデータ取得方法をご参考にしてください。
 > 上限の詳細は以下のドキュメントをご参照ください。
 > https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/service-limits#azure-portal
