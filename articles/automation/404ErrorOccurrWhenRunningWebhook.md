@@ -7,6 +7,10 @@ tags:
   - Webhook
 ---
 
+[更新履歴]
+- 2019/4/3 ブログ公開
+- 2025/12/26 最新情報に更新
+  
 こんにちは、Azure サポート チームの世古です。  
 今回は Azure Automation で Webhook を実行する際に記録されるエラー ”(404) 見つかりません” の原因および対処方法についてご案内させていただきます。
 
@@ -34,4 +38,4 @@ URL が見つからない要因としては、一般的に Webhook 作成時に�
 # 参考 有効期限の指定について
 Webhook で URL を指定して実行するのは簡単で便利ですが、URL の有効期限についてはセキュリティ面の観点でも非常に大事な項目となります。  
 例えば、外部トークンの URL が外部に漏れた場合には、誰でも Runbook が実行出来るようになるためです。  
-詳細は[公開情報](https://docs.microsoft.com/ja-jp/azure/automation/automation-webhooks)を確認いただければと存じますが、ただ長期の期間を指定するのではなく、適切な有効期限を指定する事を推奨しております。
+詳細は[公開情報](https://learn.microsoft.com/ja-jp/azure/automation/automation-webhooks?tabs=portal)を確認いただければと存じますが、ただ長期の期間を指定するのではなく、適切な有効期限を指定する事を推奨しております。
