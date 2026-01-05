@@ -1,9 +1,19 @@
 ---
-title: Log Analytics 仮想マシン拡張機能のバージョン アップ方法について
+title: 【廃止】Log Analytics 仮想マシン拡張機能のバージョン アップ方法について
 date: 2022-07-01 00:00:00
 tags:
   - Log Analytics
 ---
+
+[更新履歴]
+- 2022/7/1 ブログ公開
+- 2025/12/26 代替機能に関する追記
+
+>[!IMPORTANT]
+>Log Analytics エージェントは 2024 年 8 月 31 日に廃止されております。
+>引き続き Log Analytics ワークスペースへのデータ送信を行うためには、後継の [Azure Monitor エージェント](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-overview) をご利用ください。
+>移行については、[Log Analytics エージェントから Azure Monitor エージェントへの移行](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration) をご参照ください。
+>移行に関する FAQ については、[Log Analytics エージェントから Azure Monitor エージェントへの移行に関するよくあるご質問集](https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromLA/) にまとめております。
 
 こんにちは、Azure Monitoring チームの 胡 です。
 
