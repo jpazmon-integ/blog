@@ -16,13 +16,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/general/JoinUs/</loc>
-    
-    <lastmod>2026-01-06</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/general/OurTeamAtmosphere/</loc>
     
     <lastmod>2026-01-06</lastmod>
@@ -37,14 +30,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/general/HowWeWorkRemotely/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/general/JoinUs/</loc>
     
     <lastmod>2026-01-06</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/gettingExeTimeOfJobForSpecificPeriodAutomation/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/general/HowWeWorkRemotely/</loc>
     
     <lastmod>2026-01-06</lastmod>
     
@@ -72,6 +65,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/gettingExeTimeOfJobForSpecificPeriodAutomation/</loc>
+    
+    <lastmod>2026-01-06</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/ThePipelineWasNotRunBecauseAPipelineIsAlreadyRunningError/</loc>
     
     <lastmod>2026-01-06</lastmod>
@@ -87,13 +87,6 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/HowtoStartOrStopVMsbyAutomation/</loc>
-    
-    <lastmod>2026-01-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/HowToCreatePowerShellRunbookSR/</loc>
     
     <lastmod>2026-01-06</lastmod>
     
@@ -121,7 +114,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/automation/HowToCreatePowerShellRunbookSR/</loc>
     
     <lastmod>2026-01-06</lastmod>
     
@@ -136,6 +129,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/applicationInsights/wrongSlotNameAfterSwapping/</loc>
+    
+    <lastmod>2026-01-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/</loc>
     
     <lastmod>2026-01-06</lastmod>
     
@@ -233,13 +233,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/UpdateLAHealth/</loc>
-    
-    <lastmod>2026-01-06</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/</loc>
     
     <lastmod>2026-01-06</lastmod>
@@ -248,6 +241,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/Unexpected_Heartbeat_logalert/</loc>
+    
+    <lastmod>2026-01-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/UpdateLAHealth/</loc>
     
     <lastmod>2026-01-06</lastmod>
     
@@ -324,14 +324,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPricing/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsResultsUpgrade/</loc>
     
     <lastmod>2026-01-06</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsResultsUpgrade/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPricing/</loc>
     
     <lastmod>2026-01-06</lastmod>
     
@@ -485,13 +485,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CustomLog/</loc>
-    
-    <lastmod>2026-01-06</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AMALinux_Perf/</loc>
     
     <lastmod>2026-01-06</lastmod>
@@ -500,6 +493,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CMA_FW/</loc>
+    
+    <lastmod>2026-01-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CustomLog/</loc>
     
     <lastmod>2026-01-06</lastmod>
     
