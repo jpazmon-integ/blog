@@ -7,6 +7,10 @@ tags:
   - Tips
 ---
 
+[更新履歴]
+- 2022/11/6 ブログ公開
+- 2025/12/26 最新情報に更新
+
 こんにちは、Azure Monitoring サポート チームの佐々木です。
 
 今回は、Application Insights に用意されている以下の可用性テスト２種類について特徴と使い分けをご案内させていただきます。
@@ -20,54 +24,43 @@ tags:
 
 ## 目次
 - [目次](#目次)
-- [クラシック テスト](#クラシックテスト)
+- [はじめに](#はじめに)
 - [標準テスト](#標準テスト)
-- [クラシック テストの今後について](#クラシックテストの今後について)
+  - [標準テスト の機能](#標準テスト-の機能)
+- [クラシックテスト](#クラシックテスト)
+  - [クラシック テスト の機能](#クラシック-テスト-の機能)
+- [クラシックテストの今後について](#クラシックテストの今後について)
 - [閉じられたネットワークへの可用性テストについて](#閉じられたネットワークへの可用性テストについて)
 - [可用性テストのテスト方法について](#可用性テストのテスト方法について)
 - [まとめ](#まとめ)
 
 ## はじめに
 
+## 標準テスト
+標準テスト とは、以下ドキュメントにて案内されている機能を示します。
 
-## クラシックテスト
-クラシック テストとは、以下ドキュメントにて案内されている機能を示します。
+[Application Insights 可用性テスト - Azure Monitor | Microsoft Learn](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability?tabs=standard)
 
-[URL ping テストを使用して可用性を監視する - Azure Monitor | Microsoft Learn](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/monitor-web-app-availability)
+これは 2021 年 7 月頃に追加された機能であり、同時に以前から存在していた可用性テストは、クラシック テスト と呼ばれる様になりました。
 
 パブリック DNS レコードが存在し、ファイアウォールなどを使用してパブリックからのアクセスを制限した環境に対しては、サービス タグまたはテストの送信元のサーバーの IP アドレスを許可してテストを行うことができます。
 
 可用性テストの送信元のサーバーの IP アドレスはサービス タグ "ApplicationInsightsAvailability" にて定義しております。このサービス タグをネットワーク セキュリティ グループなどで受信の許可を設定して、可用性テストを実施できます。
 ![](../aboutPrivateAvailabilityTest/1.png)
 
-または、リクエストを送信するテストの場所ごとの IP アドレスに対して受信の許可を設定し、テストを行うことも可能でございます。
-テストの場所ごとの IP アドレスは以下の弊社公開情報にて提供しております。
-[場所ごとにグループ化されたアドレス (Azure パブリック クラウド)](https://docs.microsoft.com/ja-jp/azure/azure-monitor/app/ip-addresses#addresses-grouped-by-location-azure-public-cloud)
+なお、可用性テスト サービスは共有 IP アドレスを使用しております。
+可用性テストの接続元 IP アドレスは以下公開情報よりダウンロード可能な JSON ファイルの[ApplicationInsightsAvailability] の項目に記載しております。
 
-### クラシック テスト の機能
-![](./aboutAvailabilityTest/2.png)
+[Azure IP Ranges and Service Tags – Public Cloud](https://www.microsoft.com/en-us/download/details.aspx?id=56519)
 
-- ICMP ではなく、HTTP リクエストを利用し、エンドポイントが応答するかどうかを検証します。
-- CSSの取得先など、Web ページが依存する Web ページの可用性解析(従属要求の解析)
-- 最大3回までのリクエストが失敗した際の再試行
-- リクエスト元ロケーションの指定
-- 成功時の条件指定
-  - 応答ステータス
-  - タイムアウト秒数
-  - レスポンスボディの一致(コンテンツの一致) ※日本語非対応
-
-[参考情報]
-[URL ping テストを使用して可用性を監視する - Azure Monitor | Microsoft Learn](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/monitor-web-app-availability)
-
-## 標準テスト
-標準テスト とは、以下ドキュメントにて案内されている機能を示します。
-
-![可用性の標準テスト - Azure Monitor Application Insights - Azure Monitor | Microsoft Learn](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability-standard-tests)
-
-これは 2021年7月頃に追加された機能であり、同時に以前から存在していた可用性テストは、クラシック テスト と呼ばれる様になりました。
+但し、IP アドレスの一覧は不定期に変更される見込みですので、基本的にはサービス タグをご利用いただければと存じます。
 
 ### 標準テスト の機能
 ![](./aboutAvailabilityTest/3.png)
+
+※ 2026/1/5 現在、可用性テストは Application Insights の [調査] - [有効] より表示いただけます。
+![](./aboutAvailabilityTest/4.png)
+
 クラシック テストの機能と比較し、***追加されている機能***がございます。
 そのため、クラシック テストよりも多くのシチュエーションに対応する事が可能です。
 
@@ -89,9 +82,33 @@ tags:
     - ***大文字、小文字の区別オプション***
     - ***部分一致オプション***
 
+## クラシックテスト
+クラシック テストとは、以下ドキュメントにて案内されている機能を示します。
+
+[URL ping テストを使用して可用性を監視する - Azure Monitor | Microsoft Learn](https://learn.microsoft.com/ja-jp/previous-versions/azure/azure-monitor/app/monitor-web-app-availability)
+
+### クラシック テスト の機能
+![](./aboutAvailabilityTest/2.png)
+
+- ICMP ではなく、HTTP リクエストを利用し、エンドポイントが応答するかどうかを検証します。
+- CSSの取得先など、Web ページが依存する Web ページの可用性解析(従属要求の解析)
+- 最大3回までのリクエストが失敗した際の再試行
+- リクエスト元ロケーションの指定
+- 成功時の条件指定
+  - 応答ステータス
+  - タイムアウト秒数
+  - レスポンスボディの一致(コンテンツの一致) ※日本語非対応
+
+[参考情報]
+[URL ping テストを使用して可用性を監視する - Azure Monitor | Microsoft Learn](https://learn.microsoft.com/ja-jp/previous-versions/azure/azure-monitor/app/monitor-web-app-availability)
+
 ## クラシックテストの今後について
-現時点(2022/11/6)では、クラシック テストの廃止予定はなく、引き続きご利用いただく事が可能ですが、
-追加された機能と、それにより対応可能なシチュエーションが多数増えておりますため、新しく作成いただく場合には標準テストをご利用いただく事を推奨します。
+クラシック テストは 2026 年 9 月 30 日に廃止予定であり、クラシック テストはリソースから削除されます。
+そのため、クラシック テストをご利用の場合、2026 年 9 月 30 日よりも前に標準テストへの切り替えをお願いいたします。
+
+クラシック テスト (URL Ping テスト) を標準テストに移行する手順については、以下の公開情報に記載しております。
+
+[Application Insights 可用性テスト - Azure Monitor | Microsoft Learn - 従来の URL ping テストを標準テストに移行する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability?tabs=track#migrate-classic-url-ping-tests-to-standard-tests)
 
 ## 閉じられたネットワークへの可用性テストについて
 インターネットに公開されている必要のある、クラシック テスト や 標準テストでは対応する事ができません。
