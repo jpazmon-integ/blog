@@ -6,6 +6,10 @@ tags:
   - Tips
 ---
 
+[更新履歴]
+- 2025/3/31 ブログ公開
+- 2025/12/26 最新情報に更新
+
 こんにちは、Azure Monitoring サポート チームの北山です。  
 今回の記事では、Application Insights の TLS 変更に関するご案内 (Tracking ID : TT8T-TR0) について記載します。
 
@@ -175,8 +179,8 @@ Azure portal にアクセスして、Web アプリケーションをデプロイ
 "問題の診断と解決" ページにて、"Collect Network Trace" を選びます。
 
 ![](./upcomingTlsChangesForAppInsights/pict4.png)
-> こちらは Windows 版 App Service のみです。  
-> Linux 版の場合は手動にて採取いただく必要がございます。  
+> こちらは Windows 版 の 専用コンピューティング (Basic, Standard, Premium) および Isolated の App Service プランのみです。  
+> Linux 版や共有コンピューティングの App Service プランをご利用の場合は手動にて採取いただく必要がございます。  
 > 詳細は下記の公開情報をご参照ください。  
 > [仮想ネットワークを Azure App Service に統合する際のトラブルシューティング](https://learn.microsoft.com/ja-jp/troubleshoot/azure/app-service/troubleshoot-vnet-integration-apps)
 
