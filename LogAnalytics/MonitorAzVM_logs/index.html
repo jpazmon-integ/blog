@@ -10,12 +10,12 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは、Azure Monitoring チームの増塩、徳田です。 今回は、Log Analytics を使って Azure VM の監視をする方法を紹介します。VM を作成しただけではゲスト OS 上のログやメトリックなどは収集されませんが、Log Analytics の機能と組み合わせることでゲスト OS の情報が収集できるようになります。本記事では、Log Analytics を使って情">
+      <meta name="description" content="[更新履歴]  2022&#x2F;09&#x2F;22 ブログ公開 2026&#x2F;01&#x2F;06 最新情報への更新  こんにちは、Azure Monitoring チームの増塩、徳田です。 今回は、Log Analytics を使って Azure VM の監視をする方法を紹介します。VM を作成しただけではゲスト OS 上のログやメトリックなどは収集されませんが、Log Analytics の機能と組み合わせることでゲスト">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Azure VM の監視について">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは、Azure Monitoring チームの増塩、徳田です。 今回は、Log Analytics を使って Azure VM の監視をする方法を紹介します。VM を作成しただけではゲスト OS 上のログやメトリックなどは収集されませんが、Log Analytics の機能と組み合わせることでゲスト OS の情報が収集できるようになります。本記事では、Log Analytics を使って情">
+<meta property="og:description" content="[更新履歴]  2022&#x2F;09&#x2F;22 ブログ公開 2026&#x2F;01&#x2F;06 最新情報への更新  こんにちは、Azure Monitoring チームの増塩、徳田です。 今回は、Log Analytics を使って Azure VM の監視をする方法を紹介します。VM を作成しただけではゲスト OS 上のログやメトリックなどは収集されませんが、Log Analytics の機能と組み合わせることでゲスト">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/vmMetricScreen.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/getGuestMetric.png">
@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/vmFilteringQuery.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/createAlertScreen.png">
 <meta property="article:published_time" content="2022-09-21T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-06T03:54:41.067Z">
+<meta property="article:modified_time" content="2026-01-06T05:00:44.957Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Log Analytics">
 <meta property="article:tag" content="How-To">
@@ -182,12 +182,17 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+483ff69d-7f89-5fa3-86e6-790b939a27d6%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+VM+%E3%81%AE%E7%9B%A3%E8%A6%96%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FMonitorAzVM_logs%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FMonitorAzVM_logs.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FMonitorAzVM_logs.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/" data-id="cmk222yre002a0nmeevpvf6l4" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/" data-id="cmk24fxbi002a0npce8o26fvw" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは、Azure Monitoring チームの増塩、徳田です。</p>
+        <p>[更新履歴]</p>
+<ul>
+<li>2022/09/22 ブログ公開</li>
+<li>2026/01/06 最新情報への更新</li>
+</ul>
+<p>こんにちは、Azure Monitoring チームの増塩、徳田です。</p>
 <p>今回は、Log Analytics を使って Azure VM の監視をする方法を紹介します。<br>VM を作成しただけではゲスト OS 上のログやメトリックなどは収集されませんが、Log Analytics の機能と組み合わせることでゲスト OS の情報が収集できるようになります。<br>本記事では、Log Analytics を使って情報を収集する方法と、利用例についてご紹介します。</p>
 <span id="more"></span>
 
@@ -205,7 +210,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <h2 id="2-ゲスト-メトリックについて"><a href="#2-ゲスト-メトリックについて" class="headerlink" title="2. ゲスト メトリックについて"></a>2. ゲスト メトリックについて</h2><h3 id="概要、ホスト-メトリックとの違い"><a href="#概要、ホスト-メトリックとの違い" class="headerlink" title="概要、ホスト メトリックとの違い"></a>概要、ホスト メトリックとの違い</h3><p>ゲスト OS からメトリックを取得するので “System Up Time” といったゲスト OS で管理しているメトリックも取得できます。</p>
 <p><img src="/blog/LogAnalytics/MonitorAzVM_logs/getGuestMetric.png" alt="ゲスト メトリックの選択"></p>
 <p>これらのメトリックは、ゲスト OS にインストールした Azure Monitor エージェントにより収集され、Azure Monitor に送信されます。</p>
-<h3 id="監視方法"><a href="#監視方法" class="headerlink" title="監視方法"></a>監視方法</h3><p>ゲスト メトリックを収集するには、まず初めにデータ収集ルールを作成します。<br>データ収集ルールの作成方法は<a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-rule-azure-monitor-agent?tabs=portal">こちらのページの <strong>[データ収集ルールと関連付けを作成する]</strong> チャプター</a>に記載されていますので、ここでは設定のポイントを説明します。</p>
+<h3 id="監視方法"><a href="#監視方法" class="headerlink" title="監視方法"></a>監視方法</h3><p>ゲスト メトリックを収集するには、まず初めにデータ収集ルールを作成します。<br>データ収集ルールの作成方法は<a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-rule-azure-monitor-agent?tabs=portal">こちらのページの <strong>[データ収集ルールを作成する]</strong> チャプター</a>に記載されていますので、ここでは設定のポイントを説明します。</p>
 <p><strong>[収集と配信]</strong> タブの、 <strong>[データ ソースの追加]</strong> 画面では、以下のように <strong>“パフォーマンス カウンター”</strong> を選択します。<br>収集するメトリックをカスタマイズしない場合は、 <strong>[パフォーマンス カウンターを構成する]</strong> で <strong>“基本”</strong> を選択します。</p>
 <p><img src="/blog/LogAnalytics/MonitorAzVM_logs/addDataSource.png" alt="データ ソースの設定方法"></p>
 <p>収集するカウンターの設定が終了したら、 <strong>[次へ: ターゲット &gt;]</strong> をクリックすると、 <strong>[ターゲット]</strong> が表示されます。<br>このタブで、以下のように <strong>“Azure Monitor Metrics (preview)”</strong> が <strong>[ターゲットの種類]</strong> に設定されていることを確認してください。</p>
@@ -217,8 +222,9 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <h3 id="エージェントの種類紹介"><a href="#エージェントの種類紹介" class="headerlink" title="エージェントの種類紹介"></a>エージェントの種類紹介</h3><p>現在 Azure 仮想マシンの監視のために提供されているエージェントとして <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/agents-overview">Azure Monitor エージェント</a>、 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/log-analytics-agent">Log Analytics エージェント</a>、 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview">Azure Diagnostics 拡張機能</a>の 3 種類が存在します。今回は仮想マシンの監視の観点から、それぞれのエージェントの概要を説明します。<br>なお、それぞれのエージェント間にはサポートされる OS や環境、収集できるデータの種類の観点で差異があります。これに関しての詳細は<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/metrics-supported#microsoftcomputevirtualmachines">こちら</a>からご確認ください。</p>
 <h4 id="Azure-Monitor-エージェント-AMA"><a href="#Azure-Monitor-エージェント-AMA" class="headerlink" title="Azure Monitor エージェント (AMA)"></a>Azure Monitor エージェント (AMA)</h4><p>Azure Monitor エージェントは、現在提供されているエージェントのうち最も新しく、他 2 種のレガシ監視エージェントを置き換えることができます。 Azure Monitor エージェントによって Azure とハイブリッド仮想マシンのゲスト OS の監視データが Azure Monitor へと配信されます。<br>Azure Monitor エージェントは <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/extensions/overview">Azure VM 拡張機能</a>として実装されます。</p>
 <h4 id="Log-Analytics-エージェント-MMA"><a href="#Log-Analytics-エージェント-MMA" class="headerlink" title="Log Analytics エージェント (MMA)"></a>Log Analytics エージェント (MMA)</h4><p>Log Analytics エージェントは Microsoft Monitoring Agent(MMA) とも呼ばれるレガシ エージェントの 1 種です。<br>主に Azure 仮想マシンまたはハイブリッド マシンからログとパフォーマンス データを収集します。<br>Azure Monitor エージェントとの主な違いとして、 Azure Monitor メトリックへのデータが送信できないこと、エージェントごとに監視方法を設定することが困難であること、が挙げられます。</p>
-<p>(注意) 従来の Log Analytics エージェントは<strong>廃止予定</strong>で、 <strong>2024 年 8 月 31 日</strong>を過ぎるとサポート対象外になります。</p>
+<div class="alert is-warning"><p class="alert-title">警告</p><p>Log Analytics エージェントは、2024 年 8 月 31 日に廃止されました。</p><p>Log Analytics エージェントをご利用のお客様は Azure Monitor エージェントへの移行をお願いいたします。</p><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration">https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration</a></p></div>
 <h4 id="Azure-Diagnostics-拡張機能-WAD-LAD"><a href="#Azure-Diagnostics-拡張機能-WAD-LAD" class="headerlink" title="Azure Diagnostics 拡張機能 (WAD/LAD)"></a>Azure Diagnostics 拡張機能 (WAD/LAD)</h4><p>Azure Diagnostics 拡張機能も前述の Log Analytics エージェントと同様、レガシ エージェントの 1 種です。<br>Windows 用の Windows Azure diagnostics extension (WAD) と、Linux 用の Linux Azure diagnostics extension (LAD) があります。<br>Azure Diagnostics 拡張機能は Azure の仮想マシンに対してのみ適用でき、Azure Storage (Windows、Linux) や Azure Monitor メトリック (Windows のみ) にデータを送信します。 </p>
+<div class="alert is-warning"><p class="alert-title">警告</p><p>Azure Diagnostics 拡張機能は 、2026 年 3 月 31 日に非推奨になります。 この日付を過ぎると、Microsoft は Azure Diagnostics 拡張機能のサポートを提供しなくなります。</p><p>継続的なサポートと新機能へのアクセスを確保するには、移行ガイダンスに従って、Linux (LAD) および Windows (WAD) 用の Azure Diagnostics 拡張機能から代替ソリューションに 移行する必要があります。</p><p>詳細は以下のドキュメントをご参照ください。</p><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview">https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview</a></p></div>
 <h3 id="死活監視"><a href="#死活監視" class="headerlink" title="死活監視"></a>死活監視</h3><p>先に紹介したエージェントによって収集された仮想マシンのデータを利用することで、仮想マシンの死活監視を行うことができます。<br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM/">こちらの記事</a>では Azure Monitor エージェントや Log Analytics エージェントによって Log Analytics ワークスペースに収集される Hearbeat を使用した主要な死活監視方法が紹介されています。</p>
 <h3 id="ログ監視"><a href="#ログ監視" class="headerlink" title="ログ監視"></a>ログ監視</h3><p>Azure Monitor メトリックでは特定の数値データのみを格納できる一方で、Azure Monitor ログにはテキスト ログを含む様々なデータ型を格納することができます。このような Azure Monitor ログ データに対してログ クエリを使用することで、より複雑な分析を行うことができます。</p>
 <p>以下でログ監視のための Azure Monitor の主要機能について紹介します。</p>
@@ -254,7 +260,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </tr>
 <tr>
 <td>ログ アラート</td>
-<td>プレビューでサポート</td>
+<td>正式にサポート (2024 年 5 月より)</td>
 <td><strong>ステートレス</strong>動作</td>
 </tr>
 </tbody></table>
