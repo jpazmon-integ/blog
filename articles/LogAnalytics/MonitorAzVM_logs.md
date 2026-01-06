@@ -6,6 +6,10 @@ tags:
   - How-To
 ---
 
+[更新履歴]
+- 2022/09/22 ブログ公開
+- 2026/01/06 最新情報への更新
+
 こんにちは、Azure Monitoring チームの増塩、徳田です。
 
 今回は、Log Analytics を使って Azure VM の監視をする方法を紹介します。
@@ -47,7 +51,7 @@ Azure ポータルでは VM の **[メトリック]** 画面で、 **[メトリ�
 
 ### 監視方法
 ゲスト メトリックを収集するには、まず初めにデータ収集ルールを作成します。
-データ収集ルールの作成方法は[こちらのページの **[データ収集ルールと関連付けを作成する]** チャプター](https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-rule-azure-monitor-agent?tabs=portal)に記載されていますので、ここでは設定のポイントを説明します。
+データ収集ルールの作成方法は[こちらのページの **[データ収集ルールを作成する]** チャプター](https://docs.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-rule-azure-monitor-agent?tabs=portal)に記載されていますので、ここでは設定のポイントを説明します。
 
 **[収集と配信]** タブの、 **[データ ソースの追加]** 画面では、以下のように **"パフォーマンス カウンター"** を選択します。
 収集するメトリックをカスタマイズしない場合は、 **[パフォーマンス カウンターを構成する]** で **"基本"** を選択します。
@@ -87,13 +91,22 @@ Log Analytics エージェントは Microsoft Monitoring Agent(MMA) とも呼ば
 主に Azure 仮想マシンまたはハイブリッド マシンからログとパフォーマンス データを収集します。 
 Azure Monitor エージェントとの主な違いとして、 Azure Monitor メトリックへのデータが送信できないこと、エージェントごとに監視方法を設定することが困難であること、が挙げられます。
 
-(注意) 従来の Log Analytics エージェントは**廃止予定**で、 **2024 年 8 月 31 日**を過ぎるとサポート対象外になります。
+> [!WARNING]
+> Log Analytics エージェントは、2024 年 8 月 31 日に廃止されました。 
+> Log Analytics エージェントをご利用のお客様は Azure Monitor エージェントへの移行をお願いいたします。
+> https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration
 
 
 #### Azure Diagnostics 拡張機能 (WAD/LAD)
 Azure Diagnostics 拡張機能も前述の Log Analytics エージェントと同様、レガシ エージェントの 1 種です。
 Windows 用の Windows Azure diagnostics extension (WAD) と、Linux 用の Linux Azure diagnostics extension (LAD) があります。
 Azure Diagnostics 拡張機能は Azure の仮想マシンに対してのみ適用でき、Azure Storage (Windows、Linux) や Azure Monitor メトリック (Windows のみ) にデータを送信します。 
+
+> [!WARNING]
+> Azure Diagnostics 拡張機能は 、2026 年 3 月 31 日に非推奨になります。 この日付を過ぎると、Microsoft は Azure Diagnostics 拡張機能のサポートを提供しなくなります。
+> 継続的なサポートと新機能へのアクセスを確保するには、移行ガイダンスに従って、Linux (LAD) および Windows (WAD) 用の Azure Diagnostics 拡張機能から代替ソリューションに 移行する必要があります。
+> 詳細は以下のドキュメントをご参照ください。
+> https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview
 
 
 ### 死活監視 
@@ -139,7 +152,7 @@ Azure Monitor ログ データに基づいてアラート ルールを作成し�
 ||ステートフルのサポート|デフォルトの設定|
 |----|----|----|
 |メトリック アラート|正式にサポート|**ステートフル**動作|
-|ログ アラート|プレビューでサポート|**ステートレス**動作|
+|ログ アラート|正式にサポート|**ステートレス**動作|
 
 (詳細は[こちら](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#alerts-and-state)の [アラートと状態] をご参照ください。)
 
