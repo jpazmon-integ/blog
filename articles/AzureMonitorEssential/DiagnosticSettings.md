@@ -48,6 +48,7 @@ tags:
 > Azure リソース ログ
 > https://learn.microsoft.com/ja-jp/azure/azure-monitor/platform/resource-logs?tabs=log-analytics
 
+<br>
 
 ## 診断設定によるプラットフォーム メトリックやログの一部欠損
 冒頭でも申し上げましたとおり、診断設定によるエクスポートでは、制約上、プラットフォーム メトリックやログの一部欠損は発生する可能性がございます。
