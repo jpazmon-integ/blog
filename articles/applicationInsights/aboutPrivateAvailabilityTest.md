@@ -68,7 +68,7 @@ tags:
    Azure Functions で作成した可用性テストは、[CUSTOM] と表示されます。
 ![](./aboutPrivateAvailabilityTest/4.png)
 
-※ 2026/1/7 現在、可用性テストは Application Insights の [調査] - [有効] より表示いただけます。
+※ 2026/1/5 現在、可用性テストは Application Insights の [調査] - [有効] より表示いただけます。
 ![](../aboutAvailabilityTest/4.png)
 
 [参考情報]  
@@ -80,6 +80,7 @@ tags:
 
 本記事が少しでもお役に立ちましたら幸いです。
 最後までお読みいただきありがとうございました！
+
 
 
 
