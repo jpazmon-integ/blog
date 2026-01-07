@@ -10,12 +10,12 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは、Azure Monitoring チームの徳田です。 Azure Monitor エージェントを使用したログ収集を行っている場合、Log Analytics ワークスペースには、Heartbeat と呼ばれるログが 1 分毎に収集されます。この Heartbeat はマシンの死活監視にも使用されることがありますが、何らかの理由でこの Heartbeat が収集されないことがあります。H">
+      <meta name="description" content="[更新履歴]  2024&#x2F;11&#x2F;08 ブログ公開 2026&#x2F;1&#x2F;7 最新情報であることを確認済み  こんにちは、Azure Monitoring チームの徳田です。 Azure Monitor エージェントを使用したログ収集を行っている場合、Log Analytics ワークスペースには、Heartbeat と呼ばれるログが 1 分毎に収集されます。この Heartbeat はマシンの死活監視にも">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Azure Monitor エージェントを使用したログ収集が行われない場合のトラブルシューティングについて">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/TroubleshootingAMALogIngestion/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは、Azure Monitoring チームの徳田です。 Azure Monitor エージェントを使用したログ収集を行っている場合、Log Analytics ワークスペースには、Heartbeat と呼ばれるログが 1 分毎に収集されます。この Heartbeat はマシンの死活監視にも使用されることがありますが、何らかの理由でこの Heartbeat が収集されないことがあります。H">
+<meta property="og:description" content="[更新履歴]  2024&#x2F;11&#x2F;08 ブログ公開 2026&#x2F;1&#x2F;7 最新情報であることを確認済み  こんにちは、Azure Monitoring チームの徳田です。 Azure Monitor エージェントを使用したログ収集を行っている場合、Log Analytics ワークスペースには、Heartbeat と呼ばれるログが 1 分毎に収集されます。この Heartbeat はマシンの死活監視にも">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/TroubleshootingAMALogIngestion/setazvmextension-error.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/TroubleshootingAMALogIngestion/dce-logingest.png">
@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/TroubleshootingAMALogIngestion/newsr-select-resource.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/TroubleshootingAMALogIngestion/newsr-additionalinfo.png">
 <meta property="article:published_time" content="2024-11-08T05:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-07T06:23:58.908Z">
+<meta property="article:modified_time" content="2026-01-07T06:41:46.125Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Log Analytics">
 <meta property="article:tag" content="Tips">
@@ -189,24 +189,54 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+0bf6f8f4-ccee-50ed-ad87-9f76bffb0b6e%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Monitor+%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%9F%E3%83%AD%E3%82%B0%E5%8F%8E%E9%9B%86%E3%81%8C%E8%A1%8C%E3%82%8F%E3%82%8C%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AE%E3%83%88%E3%83%A9%E3%83%96%E3%83%AB%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FTroubleshootingAMALogIngestion%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FTroubleshootingAMALogIngestion.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FTroubleshootingAMALogIngestion.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/TroubleshootingAMALogIngestion/" data-id="cmk3mutaj00cz0no6d3jb3w2j" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/TroubleshootingAMALogIngestion/" data-id="cmk3nhoml00cz0mnu0avu2s5t" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは、Azure Monitoring チームの徳田です。</p>
+        <p>[更新履歴]</p>
+<ul>
+<li>2024/11/08 ブログ公開</li>
+<li>2026/1/7 最新情報であることを確認済み</li>
+</ul>
+<p>こんにちは、Azure Monitoring チームの徳田です。</p>
 <p>Azure Monitor エージェントを使用したログ収集を行っている場合、Log Analytics ワークスペースには、Heartbeat と呼ばれるログが 1 分毎に収集されます。<br>この Heartbeat はマシンの死活監視にも使用されることがありますが、何らかの理由でこの Heartbeat が収集されないことがあります。<br>Heartbeat が収集できていない場合は、ログ収集設定以前もところで問題が発生していることも多く、その場合は、Heartbeat 以外のログ収集も停止してしまいます。</p>
 <p>今回は、Heartbeat をはじめとしたログが収集されないときの、はじめのトラブルシューティング方法をご紹介します。</p>
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
 <li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
 <li><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB">はじめに</a></li>
 <li><a href="#%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E5%AF%BE%E8%B1%A1-os-%E3%81%AE%E7%A2%BA%E8%AA%8D">サポート対象 OS の確認</a></li>
-<li><a href="#%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%AE%E8%B5%B7%E5%8B%95%E7%8A%B6%E6%85%8B%E3%81%AE%E7%A2%BA%E8%AA%8D">マシンの起動状態の確認</a></li>
-<li><a href="#azure-monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%AE%E7%8A%B6%E6%85%8B%E3%81%AE%E7%A2%BA%E8%AA%8D">Azure Monitor エージェントの状態の確認</a></li>
-<li><a href="#%E9%80%9A%E4%BF%A1%E8%A6%81%E4%BB%B6%E3%81%AE%E7%A2%BA%E8%AA%8D">通信要件の確認</a></li>
-<li><a href="#%E9%80%9A%E4%BF%A1%E8%A6%81%E4%BB%B6%E3%81%AE%E7%A2%BA%E8%AA%8D-ampls-%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E5%A0%B4%E5%90%88">通信要件の確認 (AMPLS を使用している場合)</a></li>
-<li><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%81%AE%E7%A2%BA%E8%AA%8D">データ収集ルールの設定の確認</a></li>
-<li><a href="#%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%81%AE%E7%A2%BA%E8%AA%8D">マネージド ID の設定の確認</a></li>
+<li><a href="#%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%AE%E8%B5%B7%E5%8B%95%E7%8A%B6%E6%85%8B%E3%81%AE%E7%A2%BA%E8%AA%8D">マシンの起動状態の確認</a><ul>
+<li><a href="#%E7%A2%BA%E8%AA%8D%E6%96%B9%E6%B3%95">確認方法</a></li>
+<li><a href="#%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%8C%E8%B5%B7%E5%8B%95%E3%81%97%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E3%81%A8%E3%81%8D%E3%81%AE%E5%AF%BE%E5%87%A6%E6%96%B9%E6%B3%95">マシンが起動していないときの対処方法</a></li>
+</ul>
+</li>
+<li><a href="#azure-monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%AE%E7%8A%B6%E6%85%8B%E3%81%AE%E7%A2%BA%E8%AA%8D">Azure Monitor エージェントの状態の確認</a><ul>
+<li><a href="#%E7%A2%BA%E8%AA%8D%E6%96%B9%E6%B3%95-1">確認方法</a></li>
+<li><a href="#azure-monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%8C%E6%AD%A3%E5%B8%B8%E3%81%AB%E7%A8%BC%E5%83%8D%E3%81%97%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AE%E5%AF%BE%E5%87%A6%E6%96%B9%E6%B3%95">Azure Monitor エージェントが正常に稼働していない場合の対処方法</a></li>
+</ul>
+</li>
+<li><a href="#%E9%80%9A%E4%BF%A1%E8%A6%81%E4%BB%B6%E3%81%AE%E7%A2%BA%E8%AA%8D">通信要件の確認</a><ul>
+<li><a href="#%E7%A2%BA%E8%AA%8D%E6%96%B9%E6%B3%95-2">確認方法</a></li>
+<li><a href="#%E3%82%A8%E3%83%B3%E3%83%89%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E3%81%B8%E6%8E%A5%E7%B6%9A%E3%81%A7%E3%81%8D%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AE%E5%AF%BE%E5%87%A6%E6%96%B9%E6%B3%95">エンドポイントへ接続できていない場合の対処方法</a></li>
+</ul>
+</li>
+<li><a href="#%E9%80%9A%E4%BF%A1%E8%A6%81%E4%BB%B6%E3%81%AE%E7%A2%BA%E8%AA%8D-ampls-%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E5%A0%B4%E5%90%88">通信要件の確認 (AMPLS を使用している場合)</a><ul>
+<li><a href="#%E5%8E%9F%E5%9B%A0-a-ampls-%E3%81%AB%E5%AF%BE%E3%81%97%E3%81%A6log-analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%82%84%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86%E3%82%A8%E3%83%B3%E3%83%89%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E3%81%8C%E8%BF%BD%E5%8A%A0%E5%87%BA%E6%9D%A5%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84">原因 A: AMPLS に対して、Log Analytics ワークスペースやデータ収集エンドポイントが追加出来ていない</a></li>
+<li><a href="#%E5%8E%9F%E5%9B%A0-b-ampls-%E3%81%AE%E3%83%97%E3%83%A9%E3%82%A4%E3%83%99%E3%83%BC%E3%83%88-%E3%82%A8%E3%83%B3%E3%83%89%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E3%81%AB%E7%B4%90%E3%81%A5%E3%81%8F%E3%83%97%E3%83%A9%E3%82%A4%E3%83%99%E3%83%BC%E3%83%88-dns-%E3%82%BE%E3%83%BC%E3%83%B3%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%81%8C%E3%81%8A%E3%81%8B%E3%81%97%E3%81%84">原因 B: AMPLS のプライベート エンドポイントに紐づくプライベート DNS ゾーンの設定がおかしい</a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%81%AE%E7%A2%BA%E8%AA%8D">データ収集ルールの設定の確認</a><ul>
+<li><a href="#%E7%A2%BA%E8%AA%8D%E6%96%B9%E6%B3%95-3">確認方法</a></li>
+<li><a href="#%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%A8%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86%E3%83%AB%E3%83%BC%E3%83%AB%E3%82%92%E9%96%A2%E9%80%A3%E4%BB%98%E3%81%84%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88%E3%81%AE%E5%AF%BE%E5%87%A6%E6%96%B9%E6%B3%95">マシンとデータ収集ルールを関連付いていない場合の対処方法</a></li>
+<li><a href="#%E3%83%AD%E3%82%B0%E9%80%81%E4%BF%A1%E5%85%88%E3%81%A8%E3%81%AA%E3%82%8B-log-analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%82%92%E8%A8%AD%E5%AE%9A%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95">ログ送信先となる Log Analytics ワークスペースを設定/変更する方法</a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%81%AE%E7%A2%BA%E8%AA%8D">マネージド ID の設定の確認</a><ul>
+<li><a href="#%E7%A2%BA%E8%AA%8D%E6%96%B9%E6%B3%95-4">確認方法</a></li>
+<li><a href="#%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E3%81%8C%E5%89%B2%E3%82%8A%E5%BD%93%E3%81%A6%E3%82%89%E3%82%8C%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E3%81%A8%E3%81%8D%E3%81%AE%E5%AF%BE%E5%87%A6%E6%96%B9%E6%B3%95">マネージド ID が割り当てられていないときの対処方法</a></li>
+</ul>
+</li>
 <li><a href="#%E3%83%88%E3%83%A9%E3%83%96%E3%83%AB%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%82%92%E3%81%97%E3%81%A6%E3%82%82%E5%95%8F%E9%A1%8C%E3%81%8C%E8%A7%A3%E6%B1%BA%E3%81%97%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88">トラブルシューティングをしても問題が解決しない場合</a></li>
 <li><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB">おわりに</a></li>
 </ul>
@@ -353,10 +383,9 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </li>
 <li><p>“問題が発生しているのはどのサブスクリプションですか?” で、該当するサブスクリプションを選択し。[Next] を押下します。  </p>
 </li>
-<li><p>“What issue are you having?” で以下のように選択し、[Next] を押下します。  </p>
+<li><p>“次のいずれかの問題が発生していますか?” で以下のように選択し、[Next] を押下します。  </p>
 <ul>
-<li>“Problem type”: “I created a DCR but the data is not in the Log Analytics Workspace”  </li>
-<li>“Problem subtype”: No Heartbeat events in Log Analytics Workcspace  </li>
+<li>DCR を作成しましたが、データが Log Analytics ワークスペースにありません<br>Log Analytics ワークスペースにハートビート イベントがない</li>
 </ul>
 <p>手順 3 - 5 が完了すると、以下のような状態になります。  </p>
 <p><img src="/blog/LogAnalytics/TroubleshootingAMALogIngestion/sr-currentselection.png"> </p>
