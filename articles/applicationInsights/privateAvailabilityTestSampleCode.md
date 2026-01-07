@@ -83,8 +83,6 @@ Visual Studio Code を使って関数を作成するための前提条件など�
 
 ![](./privateAvailabilityTestSampleCode/2024-05-20_03.png)
 
-最新のバージョンは[こちら](https://www.nuget.org/packages/Microsoft.Azure.WebJobs.Logging.ApplicationInsights)をご確認ください。
-
 その後、Timer Triger のクラスに下記のようにコードを修正します。  
 ※ 検証環境では TimerTrigger1 というクラス名で動かしています。
 
