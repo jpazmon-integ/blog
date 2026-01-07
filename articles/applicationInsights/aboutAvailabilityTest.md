@@ -58,7 +58,7 @@ tags:
 ### 標準テスト の機能
 ![](./aboutAvailabilityTest/3.png)
 
-※ 2026/1/7 現在、可用性テストは Application Insights の [調査] - [有効] より表示いただけます。
+※ 2026/1/5 現在、可用性テストは Application Insights の [調査] - [有効] より表示いただけます。
 ![](./aboutAvailabilityTest/4.png)
 
 クラシック テストの機能と比較し、***追加されている機能***がございます。
