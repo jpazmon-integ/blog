@@ -10,12 +10,12 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは、Azure Monitoring サポート チームの北山です。 Application Insights には可用性テストの機能があります。可用性テストの機能をご利用いただく事で、監視対象の Web サイトに対して自動的にリクエストを送信することが可能です。監視対象の Web サイトからのレスポンスをチェックし、期待したレスポンスが返却されない場合にアラートを通知する事が可能です。 A">
+      <meta name="description" content="[更新履歴]  2023&#x2F;6&#x2F;8 ブログ公開 2026&#x2F;1&#x2F;7 最新情報に更新  こんにちは、Azure Monitoring サポート チームの北山です。 Application Insights には可用性テストの機能があります。可用性テストの機能をご利用いただく事で、監視対象の Web サイトに対して自動的にリクエストを送信することが可能です。監視対象の Web サイトからのレスポンスをチェ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Azure Functions を利用したプライベート可用性テストについて">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの北山です。 Application Insights には可用性テストの機能があります。可用性テストの機能をご利用いただく事で、監視対象の Web サイトに対して自動的にリクエストを送信することが可能です。監視対象の Web サイトからのレスポンスをチェックし、期待したレスポンスが返却されない場合にアラートを通知する事が可能です。 A">
+<meta property="og:description" content="[更新履歴]  2023&#x2F;6&#x2F;8 ブログ公開 2026&#x2F;1&#x2F;7 最新情報に更新  こんにちは、Azure Monitoring サポート チームの北山です。 Application Insights には可用性テストの機能があります。可用性テストの機能をご利用いただく事で、監視対象の Web サイトに対して自動的にリクエストを送信することが可能です。監視対象の Web サイトからのレスポンスをチェ">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/2024-05-20_05.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/2024-05-20_01.png">
@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/function5.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/function6.png">
 <meta property="article:published_time" content="2023-06-07T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-07T06:41:46.161Z">
+<meta property="article:modified_time" content="2026-01-07T08:24:28.226Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Application Insights">
 <meta property="article:tag" content="Tips">
@@ -192,12 +192,17 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+b9a4398e-484c-5d11-b250-b9bcfe2cb60b%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Functions+%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%81%9F%E3%83%97%E3%83%A9%E3%82%A4%E3%83%99%E3%83%BC%E3%83%88%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FapplicationInsights%2FprivateAvailabilityTestSampleCode%2F%29%0A*+Content+Source%3A+%5Barticles%2FapplicationInsights%2FprivateAvailabilityTestSampleCode.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FapplicationInsights%2FprivateAvailabilityTestSampleCode.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/" data-id="cmk3nhomn00d40mnu9p5zcpfw" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/" data-id="cmk3r5s5500d40nmfdg1j24g6" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは、Azure Monitoring サポート チームの北山です。</p>
+        <p>[更新履歴]</p>
+<ul>
+<li>2023/6/8 ブログ公開</li>
+<li>2026/1/7 最新情報に更新</li>
+</ul>
+<p>こんにちは、Azure Monitoring サポート チームの北山です。</p>
 <p>Application Insights には可用性テストの機能があります。<br>可用性テストの機能をご利用いただく事で、監視対象の Web サイトに対して自動的にリクエストを送信することが可能です。<br>監視対象の Web サイトからのレスポンスをチェックし、期待したレスポンスが返却されない場合にアラートを通知する事が可能です。</p>
 <p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability-overview">Application Insights 可用性テスト</a></p>
 <p>Application Insights のサービスから監視対象の Web サイトに対して定期的にリクエストを送信するため、監視対象の Web サイトはパブリックからの通信を許可いただく必要がございます。<br>しかし、お客様の環境によってはパブリックからの通信を許可していない可能性がございます。<br>この場合は、標準の可用性テストがご利用いただけません。</p>
@@ -206,7 +211,15 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
 <li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
-<li><a href="#azure-functions-%E3%82%92%E7%94%A8%E3%81%84%E3%81%9F%E3%83%97%E3%83%A9%E3%82%A4%E3%83%99%E3%83%BC%E3%83%88%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88%E6%A7%8B%E7%AF%89%E3%81%AE%E6%89%8B%E9%A0%86">Azure Functions を用いたプライベート可用性テスト構築の手順</a></li>
+<li><a href="#azure-functions-%E3%82%92%E7%94%A8%E3%81%84%E3%81%9F%E3%83%97%E3%83%A9%E3%82%A4%E3%83%99%E3%83%BC%E3%83%88%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%86%E3%82%B9%E3%83%88%E6%A7%8B%E7%AF%89%E3%81%AE%E6%89%8B%E9%A0%86">Azure Functions を用いたプライベート可用性テスト構築の手順</a><ul>
+<li><a href="#1-vnet-%E7%B5%B1%E5%90%88%E3%82%92%E5%AE%9F%E6%96%BD%E3%81%97%E3%81%9F-azure-functions-%E3%82%92%E7%94%A8%E6%84%8F%E3%81%97%E3%81%BE%E3%81%99">1. VNET 統合を実施した Azure Functions を用意します。</a></li>
+<li><a href="#2-azure-functions-%E3%81%AB%E3%83%86%E3%82%B9%E3%83%88-%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF%E3%82%92%E5%AE%9F%E8%A3%85%E3%81%97%E3%81%BE%E3%81%99">2. Azure Functions にテスト ロジックを実装します。</a><ul>
+<li><a href="#visual-studio-code-%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E4%BD%9C%E6%88%90">Visual Studio Code を使って作成</a></li>
+<li><a href="#azure-portal-%E3%81%8B%E3%82%89%E4%BD%9C%E6%88%90">Azure Portal から作成</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85">注意事項</a></li>
 <li><a href="#%E3%81%BE%E3%81%A8%E3%82%81">まとめ</a></li>
 <li><a href="#%E9%96%A2%E9%80%A3%E3%81%99%E3%82%8B%E8%A8%98%E4%BA%8B">関連する記事</a></li>
@@ -218,16 +231,16 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </ul>
 <p>上記公開情報をご参考に、ランタイムが .NET の Azure Functions リソースをご準備くださいませ。  </p>
 <blockquote>
-<p>弊社検証環境では、Windows OS の .NET 6.0 にて確認いたしました。</p>
+<p>弊社検証環境では、Windows OS の .NET 6 ～ .NET 10 にて確認いたしました。</p>
 </blockquote>
 <h3 id="2-Azure-Functions-にテスト-ロジックを実装します。"><a href="#2-Azure-Functions-にテスト-ロジックを実装します。" class="headerlink" title="2. Azure Functions にテスト ロジックを実装します。"></a>2. Azure Functions にテスト ロジックを実装します。</h3><h4 id="Visual-Studio-Code-を使って作成"><a href="#Visual-Studio-Code-を使って作成" class="headerlink" title="Visual Studio Code を使って作成"></a>Visual Studio Code を使って作成</h4><p>下記の公開情報をもとに、Azure Functions にデプロイする関数を作成します。<br>Visual Studio Code を使って関数を作成するための前提条件などは、下記の公開情報をご一読ください。</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-functions/functions-develop-vs-code?tabs=node-v4,python-v2,isolated-process&pivots=programming-language-csharp">Visual Studio Code を使用して Azure Functions を開発する</a></li>
 </ul>
-<p>上記公開情報に従って、HTTP Triger の関数を作成します。<br>※ ここでは、C# (.NET 8 Isolated) のランタイムを選択しております。</p>
+<p>上記公開情報に従って、Timer Triger の関数を作成します。<br>※ ここでは、C# (.NET 8 Isolated) のランタイムを選択しております。</p>
 <p><img src="/blog/applicationInsights/privateAvailabilityTestSampleCode/2024-05-20_05.png"><br><img src="/blog/applicationInsights/privateAvailabilityTestSampleCode/2024-05-20_01.png"><br><img src="/blog/applicationInsights/privateAvailabilityTestSampleCode/2024-05-20_06.png"><br><img src="/blog/applicationInsights/privateAvailabilityTestSampleCode/2024-05-20_07.png"><br><img src="/blog/applicationInsights/privateAvailabilityTestSampleCode/2024-05-20_08.png"><br><img src="/blog/applicationInsights/privateAvailabilityTestSampleCode/2024-05-20_09.png"><br><img src="/blog/applicationInsights/privateAvailabilityTestSampleCode/2024-05-20_10.png"><br><img src="/blog/applicationInsights/privateAvailabilityTestSampleCode/2024-05-20_11.png"></p>
-<p>プロジェクト ファイルに、下記のコードを追加して Application Insights SDK を導入します。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">&quot;Microsoft.Azure.WebJobs.Logging.ApplicationInsights&quot;</span> <span class="attr">Version</span>=<span class="string">&quot;3.0.35&quot;</span> /&gt;</span> <span class="comment">&lt;!-- Ensure you’re using the latest version --&gt;</span> </span><br></pre></td></tr></table></figure>
+<p>プロジェクト ファイルに、下記のコードを追加して Application Insights SDK の<a target="_blank" rel="noopener" href="https://www.nuget.org/packages/Microsoft.Azure.WebJobs.Logging.ApplicationInsights#versions-body-tab">最新バージョン</a>を導入します。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">&quot;Microsoft.Azure.WebJobs.Logging.ApplicationInsights&quot;</span> <span class="attr">Version</span>=<span class="string">&quot;3.0.44&quot;</span> /&gt;</span> <span class="comment">&lt;!-- Ensure you’re using the latest version --&gt;</span> </span><br></pre></td></tr></table></figure>
 <p><img src="/blog/applicationInsights/privateAvailabilityTestSampleCode/2024-05-20_02.png"></p>
 <blockquote>
 <p>注意 : C# の Functions に Application Insights SDK を導入する場合は、標準の Application Insights SDK ではなく必ず “Microsoft.Azure.WebJobs.Logging.ApplicationInsights” をインストールしてください。</p>
@@ -236,7 +249,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-functions/functions-dotnet-class-library?tabs=v4,cmd#log-custom-telemetry-in-c-functions">Azure Functions を使用する C# クラス ライブラリ関数を開発する - カスタム テレメトリをログに記録する</a></li>
 </ul>
 <p><img src="/blog/applicationInsights/privateAvailabilityTestSampleCode/2024-05-20_03.png"></p>
-<p>その後、HTTP Triger のクラスに下記のようにコードを修正します。<br>※ 検証環境では TimerTrigger1 というクラス名で動かしています。</p>
+<p>その後、Timer Triger のクラスに下記のようにコードを修正します。<br>※ 検証環境では TimerTrigger1 というクラス名で動かしています。</p>
 <p>using 宣言は下記のとおりです。</p>
 <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Microsoft.Azure.Functions.Worker;</span><br><span class="line"><span class="keyword">using</span> Microsoft.Extensions.Logging;</span><br><span class="line"><span class="keyword">using</span> Microsoft.ApplicationInsights;</span><br><span class="line"><span class="keyword">using</span> Microsoft.ApplicationInsights.DataContracts;</span><br><span class="line"><span class="keyword">using</span> Microsoft.ApplicationInsights.Extensibility;</span><br><span class="line"><span class="keyword">using</span> System.Diagnostics;</span><br></pre></td></tr></table></figure>
 
