@@ -9,7 +9,7 @@ tags:
 
 [更新履歴]
 - 2022/5/18 ブログ公開
-- 2025/12/26 最新情報に更新
+- 2025/1/7 最新情報に更新
 
 こんにちは、Azure Monitoring サポート チームの六浦です。
 
@@ -68,7 +68,7 @@ tags:
    Azure Functions で作成した可用性テストは、[CUSTOM] と表示されます。
 ![](./aboutPrivateAvailabilityTest/4.png)
 
-※ 2026/1/5 現在、可用性テストは Application Insights の [調査] - [有効] より表示いただけます。
+※ 2026/1/7 現在、可用性テストは Application Insights の [調査] - [有効] より表示いただけます。
 ![](../aboutAvailabilityTest/4.png)
 
 [参考情報]  
@@ -80,5 +80,6 @@ tags:
 
 本記事が少しでもお役に立ちましたら幸いです。
 最後までお読みいただきありがとうございました！
+
 
 
