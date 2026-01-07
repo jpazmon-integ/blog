@@ -93,6 +93,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/</loc>
+    
+    <lastmod>2026-01-07</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/Automation-Update-AutomationRunAsCredential/</loc>
     
     <lastmod>2026-01-07</lastmod>
@@ -114,13 +121,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/</loc>
-    
-    <lastmod>2026-01-07</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/AgentBasedHrwRetired/</loc>
     
     <lastmod>2026-01-07</lastmod>
@@ -128,14 +128,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/wrongSlotNameAfterSwapping/</loc>
     
     <lastmod>2026-01-07</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/applicationInsights/wrongSlotNameAfterSwapping/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/automation/404ErrorOccurrWhenRunningWebhook/</loc>
     
     <lastmod>2026-01-07</lastmod>
     
@@ -520,6 +520,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/</loc>
+    
+    <lastmod>2026-01-07</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/</loc>
     
     <lastmod>2026-01-07</lastmod>
@@ -528,13 +535,6 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/SecurityAdvisoriesElevatedAccess/</loc>
-    
-    <lastmod>2026-01-07</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/</loc>
     
     <lastmod>2026-01-07</lastmod>
     
