@@ -59,9 +59,9 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-tex
 ### 前提
 今回は、以下の様なテキスト ファイルを取得することを想定します。
 ```
-2022-12-31T01:00:00.1234567Z | Computer=TestVM01 | Log=Service stop
-2022-12-31T01:01:00.1234567Z | Computer=TestVM01 | Log=Service start
-2022-12-31T01:02:00.1234567Z | Computer=TestVM01 | Log=Service stop
+2022-12-31T01:00:00.1234567Z | Log=Service stop
+2022-12-31T01:01:00.1234567Z | Log=Service start
+2022-12-31T01:02:00.1234567Z | Log=Service stop
 ```
 
 ### 手順
@@ -73,22 +73,22 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-tex
         "schema": {
                "name": "{TableName}_CL",
                "columns": [
-        {
+                       {
                                 "name": "TimeGenerated",
                                 "type": "DateTime"
-                        }, 
+                       }, 
                        {
                                 "name": "RawData",
                                 "type": "String"
                        },
                        {
-                                "name": "HostName",
+                                "name": "Computer",
                                 "type": "String"
                        },
-                      {
+                       {
                                 "name": "Log",
                                 "type": "String"
-                     }
+                       }
               ]
         }
     }
@@ -107,6 +107,9 @@ Invoke-AzRestMethod -Path "/subscriptions/{subscription}/resourcegroups/{resourc
 ※3 後述する TransformKql のデータの変換機能を利用することで、カスタム ログを RawData 以外のカラムに格納することが可能です。
 
 ※4 データの変換機能を利用する場合は、必要に応じて他のカラムを作成してください。
+
+※5 Computer、FilePath カラムについては自動で値が収集されます。詳しくは以下公開情報をご参考ください。
+https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/data-collection-log-text?tabs=portal#log-analytics-workspace-table
 
 DCR を設定する
 --
@@ -130,9 +133,9 @@ DCR を設定する
 ```
 
 6. [テーブル名] にはさきほど作成したテーブル名 (_CL 含む) を指定します。
-[Transform] には、以下のクエリを設定してデータを整形します。
+[Transform] には、以下のクエリを設定してデータを整形します。こちらの例は "Log=" に続く情報を Log カラムに収集しております。
 ```
-source| extend TimeGenerated = now()| parse RawData with * "Computer="HostName "| " *| parse RawData with * "Log="Log"
+source| extend TimeGenerated = now() | parse RawData with * "Log=" Log 
 ```
 ![](./AMA_CustomLog/AMACustomlog_08_202512.png)
 ※ TransformKql の書き方については、以下公開情報をご参考ください。
@@ -146,20 +149,19 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-collection
 
 この後、指定したパスへテキスト ログを出力していくと、ログが取得されます。
 
-![](./AMA_CustomLog/AMACustomlog_12.png)
+![](./AMA_CustomLog/AMACustomlog_12_202512.png)
 
 なお、今回のサンプルでは、TimeGenerated 列はログがエージェントによって収集されたタイミングとなります。
 テキスト ログ内の RawData 内の日時を、Log Analytics ワークスペース上の TimeGenerated 列としたいたい場合は、Transform のクエリを以下の様に指定し、ログから時刻を取得し、日付形式に変換の上、TimeGenerated 列として定義します。
 ```
 source
 | extend TimeGenerated = todatetime(substring(RawData,0,28))
-| parse RawData with * "Computer="HostName "| " *
 | parse RawData with * "Log="Log"
 ```
 
 これにより、TimeGenerated 列の値が RawData 内の日時をもとに設定されます。
 
-![](./AMA_CustomLog/AMACustomlog_13.png)
+![](./AMA_CustomLog/AMACustomlog_13_202512.png)
 
 
 - substring()
@@ -227,6 +229,6 @@ B. Azure Monitor エージェントを再インストールする
 本手順をテストされる場合、以下のコマンドにて簡単に検証が可能です。
 
 ```
-echo "`date '+%Y-%m-%dT%H:%M:%S.%7N'` | Computer=`hostname` | Log=Service stop" >> /var/log/test.log
-echo "`date '+%Y-%m-%dT%H:%M:%S.%7N'` | Computer=`hostname` | Log=Service start" >> /var/log/test.log
+echo "`date '+%Y-%m-%dT%H:%M:%S.%7N'` | Log=Service stop" >> /var/log/test.log
+echo "`date '+%Y-%m-%dT%H:%M:%S.%7N'` | Log=Service start" >> /var/log/test.log
 ```
