@@ -11,6 +11,7 @@ tags:
 [更新履歴]
 - 2024/01/06 : ブログ公開
 - 2025/05/07 : Delete Data API の情報を追記
+- 2025/1/7 : 最新情報であることを確認済み
 
 
 こんにちは、Azure Monitoring サポート チームの北村です。
@@ -22,22 +23,23 @@ Log Analytics ワークスペースでは指定した[保持期間](https://lear
 
 <!-- more -->
 ## 目次
-- [1. Log Analytics ワークスペースのログを削除する方法は 2 つある](#1-Log-Analytics-ワークスペースのログを削除する方法は-2-つある)
-  - [1-1. Purge API](#1-1-Purge-API)
-  - [1-2. Delete Data API](#1-2-Delete-Data-API)
-- [2. Delete Data API と Purge API の使い分けについて](#2-Delete-Data-API-と-Purge-API-の使い分けについて)
-- [3. Delete Data API について](#3-Delete-Data-API-について)
-  - [3-1. Delete Data API の主な留意点](#3-1-Delete-Data-API-の主な留意点)
-  - [3-2. Delete Data API の実行例](#3-2-Delete-Data-API-の実行例)
-    - [3-2-1. Delete Data API でログを削除する](#3-2-1-Delete-Data-API-でログを削除する)
-    - [3-2-2. Delete Data API による削除ステータスを確認する](#3-2-2-Delete-Data-API-による削除ステータスを確認する)
-    - [3-2-3. Delete Data API によってログが削除されたかどうかを確認する](#3-2-3-Delete-Data-API-によってログが削除されたかどうかを確認する)
-- [4. Purge API について](#4-Purge-API-について)
-  - [4-1. Purge API の主な留意点](#4-1-Purge-API-の主な留意点)
-  - [4-2. Purge API の実行例](#4-2-Purge-API-の実行例)
-    - [4-2-1. Purge API でログをパージする](#4-2-1-Purge-API-でログをパージする)
-    - [4-2-2. Get Purge Status API でパージの受付状態を確認する](#4-2-2-Get-Purge-Status-API-でパージの受付状態を確認する)
-    - [4-2-3. Purge API によってログがパージされたかどうかを確認する](#4-2-3-Purge-API-によってログがパージされたかどうかを確認する)
+- [目次](#目次)
+- [1. Log Analytics ワークスペースのログを削除する方法は 2 つある](#1-log-analytics-ワークスペースのログを削除する方法は-2-つある)
+  - [1-1. Purge API](#1-1-purge-api)
+  - [1-2. Delete Data API](#1-2-delete-data-api)
+- [2. Delete Data API と Purge API の使い分けについて](#2-delete-data-api-と-purge-api-の使い分けについて)
+- [3. Delete Data API について](#3-delete-data-api-について)
+  - [3-1. Delete Data API の主な留意点](#3-1-delete-data-api-の主な留意点)
+  - [3-2. Delete Data API の実行例](#3-2-delete-data-api-の実行例)
+    - [3-2-1. Delete Data API でログを削除する](#3-2-1-delete-data-api-でログを削除する)
+    - [3-2-2. Delete Data API による削除ステータスを確認する](#3-2-2-delete-data-api-による削除ステータスを確認する)
+    - [3-2-3. Delete Data API によってログが削除されたかどうかを確認する](#3-2-3-delete-data-api-によってログが削除されたかどうかを確認する)
+- [4. Purge API について](#4-purge-api-について)
+  - [4-1. Purge API の主な留意点](#4-1-purge-api-の主な留意点)
+  - [4-2. Purge API の実行例](#4-2-purge-api-の実行例)
+    - [4-2-1. Purge API でログをパージする](#4-2-1-purge-api-でログをパージする)
+    - [4-2-2. Get Purge Status API でパージの受付状態を確認する](#4-2-2-get-purge-status-api-でパージの受付状態を確認する)
+    - [4-2-3. Purge API によってログがパージされたかどうかを確認する](#4-2-3-purge-api-によってログがパージされたかどうかを確認する)
 
 
 <br>
