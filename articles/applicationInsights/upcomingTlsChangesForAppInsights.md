@@ -8,7 +8,7 @@ tags:
 
 [更新履歴]
 - 2025/3/31 ブログ公開
-- 2025/12/26 最新情報に更新
+- 2026/1/7 最新情報に更新
 
 こんにちは、Azure Monitoring サポート チームの北山です。  
 今回の記事では、Application Insights の TLS 変更に関するご案内 (Tracking ID : TT8T-TR0) について記載します。
