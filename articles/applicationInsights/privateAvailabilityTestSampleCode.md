@@ -7,6 +7,10 @@ tags:
   - Tips
 ---
 
+[更新履歴]
+- 2023/6/8 ブログ公開
+- 2026/1/7 最新情報に更新
+
 こんにちは、Azure Monitoring サポート チームの北山です。
 
 Application Insights には可用性テストの機能があります。
@@ -26,6 +30,10 @@ Application Insights のサービスから監視対象の Web サイトに対し
 ## 目次
 - [目次](#目次)
 - [Azure Functions を用いたプライベート可用性テスト構築の手順](#azure-functions-を用いたプライベート可用性テスト構築の手順)
+  - [1. VNET 統合を実施した Azure Functions を用意します。](#1-vnet-統合を実施した-azure-functions-を用意します)
+  - [2. Azure Functions にテスト ロジックを実装します。](#2-azure-functions-にテスト-ロジックを実装します)
+    - [Visual Studio Code を使って作成](#visual-studio-code-を使って作成)
+    - [Azure Portal から作成](#azure-portal-から作成)
 - [注意事項](#注意事項)
 - [まとめ](#まとめ)
 - [関連する記事](#関連する記事)
@@ -43,7 +51,7 @@ Azure Functions の VNET 統合の方法につきましては、下記の公開�
 - [Azure Functions のネットワーク オプション # 仮想ネットワークの統合](https://learn.microsoft.com/ja-jp/azure/azure-functions/functions-networking-options?tabs=azure-portal#virtual-network-integration)
 
 上記公開情報をご参考に、ランタイムが .NET の Azure Functions リソースをご準備くださいませ。  
-> 弊社検証環境では、Windows OS の .NET 6.0 にて確認いたしました。
+> 弊社検証環境では、Windows OS の .NET 6 ～ .NET 10 にて確認いたしました。
 
 ### 2. Azure Functions にテスト ロジックを実装します。
 #### Visual Studio Code を使って作成
@@ -51,7 +59,7 @@ Azure Functions の VNET 統合の方法につきましては、下記の公開�
 Visual Studio Code を使って関数を作成するための前提条件などは、下記の公開情報をご一読ください。
 - [Visual Studio Code を使用して Azure Functions を開発する](https://learn.microsoft.com/ja-jp/azure/azure-functions/functions-develop-vs-code?tabs=node-v4%2Cpython-v2%2Cisolated-process&pivots=programming-language-csharp)
 
-上記公開情報に従って、HTTP Triger の関数を作成します。  
+上記公開情報に従って、Timer Triger の関数を作成します。  
 ※ ここでは、C# (.NET 8 Isolated) のランタイムを選択しております。
 
 ![](./privateAvailabilityTestSampleCode/2024-05-20_05.png)
@@ -64,9 +72,9 @@ Visual Studio Code を使って関数を作成するための前提条件など�
 ![](./privateAvailabilityTestSampleCode/2024-05-20_11.png)
 
 
-プロジェクト ファイルに、下記のコードを追加して Application Insights SDK を導入します。
+プロジェクト ファイルに、下記のコードを追加して Application Insights SDK の[最新バージョン](https://www.nuget.org/packages/Microsoft.Azure.WebJobs.Logging.ApplicationInsights#versions-body-tab)を導入します。
 ```xml
-    <PackageReference Include="Microsoft.Azure.WebJobs.Logging.ApplicationInsights" Version="3.0.35" /> <!-- Ensure you’re using the latest version --> 
+    <PackageReference Include="Microsoft.Azure.WebJobs.Logging.ApplicationInsights" Version="3.0.44" /> <!-- Ensure you’re using the latest version --> 
 ```
 ![](./privateAvailabilityTestSampleCode/2024-05-20_02.png)
 
@@ -75,8 +83,7 @@ Visual Studio Code を使って関数を作成するための前提条件など�
 
 ![](./privateAvailabilityTestSampleCode/2024-05-20_03.png)
 
-
-その後、HTTP Triger のクラスに下記のようにコードを修正します。  
+その後、Timer Triger のクラスに下記のようにコードを修正します。  
 ※ 検証環境では TimerTrigger1 というクラス名で動かしています。
 
 using 宣言は下記のとおりです。
