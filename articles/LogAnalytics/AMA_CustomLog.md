@@ -230,5 +230,5 @@ B. Azure Monitor エージェントを再インストールする
 
 ```
 echo "`date '+%Y-%m-%dT%H:%M:%S.%7N'` | Log=Service stop" >> /var/log/test.log
-echo "`date '+%Y-%m-%dT%H:%M:%S.%7N'` | Log=Service start" >> /var/log/test.log
+echo "`date '+%Y-%m-%dT%H:%M:%S.%7N'` | Log=Service start" >> /var/log/test.log 　
 ```
