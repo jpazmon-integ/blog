@@ -1,5 +1,5 @@
 ---
-title: Azure Monitor エージェントを使用した Azure Monitor VM insights の有効化 (プレビュー)
+title: Azure Monitor エージェントを使用した Azure Monitor VM insights の有効化 
 date: 2022-10-20 00:00:00
 tags:
  - How-To
@@ -19,7 +19,7 @@ Azure Monitor エージェントを使用した Azuer Monitor VM Insights につ
 
 
 > [!IMPORTANT] 
-> 本記事は翻訳のため元記事の情報に基づいた情報を記載しておりますが、2023 年 8 月に Azure Monitor VM insights 機能はプレビューではなく GA となりました。
+> 本記事は翻訳のため元記事の情報に基づいた情報となりますが、2023 年 8 月に Azure Monitor VM insights 機能はプレビューではなく GA となりました。
 > 詳細は以下の Azure Update をご参照ください。
 > https://azure.microsoft.com/en-us/updates?id=generally-available-azure-monitor-vm-insights-using-azure-monitor-agent
 
