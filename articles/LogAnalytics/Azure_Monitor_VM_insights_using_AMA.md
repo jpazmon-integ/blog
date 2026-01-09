@@ -6,12 +6,22 @@ tags:
  - Log Analytics
 ---
 
+
+[更新履歴]
+- 2022/10/20 ブログ公開
+- 2026/01/09 最新情報への更新
+
 こんにちは！Azure Monitoring チームの秋田です。
 
 本記事は、2022 年 8 月 4 日に米国の Azure Moniotr Blog で公開された、[Announcing preview: Enable Azure Monitor VM insights using Azure Monitor agent](https://techcommunity.microsoft.com/t5/azure-observability-blog/announcing-preview-enable-azure-monitor-vm-insights-using-azure/ba-p/3589423) を翻訳したものになります。
 Azure Monitor エージェントを使用した Azuer Monitor VM Insights について、既存の VM insights と比べてどういうところが変わるのか、設定方法などに関して最新情報をお届けします。
 <!-- more -->
 
+
+> [!IMPORTANT] 
+> 本記事は翻訳のため元記事の情報に基づいた情報を記載しておりますが、2023 年 8 月に Azure Monitor VM insights 機能はプレビューではなく GA となりました。
+> 詳細は以下の Azure Update をご参照ください。
+> https://azure.microsoft.com/en-us/updates?id=generally-available-azure-monitor-vm-insights-using-azure-monitor-agent
 
 
 ## 目次
