@@ -5,6 +5,9 @@ tags:
   - Application Insights
   - コスト
 ---
+[更新履歴]  
+- 2022/05/11 ブログ公開  
+- 2026/01/05 クラシック版廃止について追記  
 
 こんにちは、Azure Monitoring サポート チームの六浦です。
 
@@ -60,7 +63,11 @@ Application Insights の課金について詳しくは、以下の弊社公開�
 
 
 ## 現在の料金を見積もる方法
-### クラシック版
+### クラシック版 (廃止)
+>[!IMPORTANT] 
+>クラシック版は [2024 年 2 月 29 日の時点で廃止](https://azure.microsoft.com/ja-jp/updates?id=we-re-retiring-classic-application-insights-on-29-february-2024#:~:text=We're%20retiring%20Classic%20Application%20Insights%20on%2029%20February%202024&text=Because%20the%20workspace%2Dbased%20Application,Event%20Hub%20via%20Diagnostic%20Settings) となっております。
+>見積もり方法については、後述のワークスペース版の記載をご確認ください。
+
 Application Insights の [構成] > [使用とコストの見積もり] から現在の料金の見積もりをご確認いただけます。
 
 #### ログ データのインジェストに対するコスト
@@ -140,11 +147,11 @@ $response.value `
 弊社公開情報にて、コストの確認に使用するクエリの例を紹介しております。
 クラシック版の Application Insights の場合は、こちらの弊社公開情報をご参照ください。
 クエリは Application Insights で実行します。
-[Applicationインサイトデータ](https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/analyze-usage#application-insights-data)
+[Applicationインサイトデータ](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/analyze-usage#application-insights-data)
 
 ワークスペース版の Application Insights の場合は、こちらの弊社公開情報をご参照ください。
 以下の弊社公開情報のクエリは Application Insights が接続している Log Analytics ワークスペースで実行します。
-[ワークスペースベースのリソースのデータボリュームの傾向](https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/analyze-usage#data-volume-trends-for-workspace-based-resources)
+[ワークスペースベースのリソースのデータボリュームの傾向](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/analyze-usage#data-volume-trends-for-workspace-based-resources)
 
 
 ## まとめ
