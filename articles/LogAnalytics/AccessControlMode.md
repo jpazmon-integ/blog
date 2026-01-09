@@ -6,6 +6,11 @@ tags:
   - Log Analytics
 ---
 
+
+[更新履歴]
+- 2023/09/04 ブログ公開
+- 2026/01/09 最新情報への更新
+
 こんにちは、Azure Monitoring サポート チームの秋田です。
 本ブログでは、以下の公開情報に記載されています Log Analytics ワークスペースのアクセス制御モードについて、具体例を用いて違いをご説明します。
 
@@ -33,12 +38,12 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/manage-access?tabs=po
 ## ワークスペース コンテキスト
 ワークスペース コンテキストで Log Analytics ワークスペースにアクセスするとは、
 Log Analytics ワークスペースの [ログ] メニューよりログを確認することを指します。
-![](./AccessControlMode/image01.png)
+![](./AccessControlMode/image01_2601.png)
 
 ## リソース コンテキスト
 リソース コンテキストで Log Analytics ワークスペースにアクセスするとは、
 リソース (例. 仮想マシン) の画面左側メニューにある [ログ] メニューより Log Analytics ワークスペースにアクセスしてログを確認することを指します。
-![](./AccessControlMode/image02.png)
+![](./AccessControlMode/image02_2601.png)
 
 //参考情報
 - アクセス モード
