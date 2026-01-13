@@ -1,5 +1,5 @@
 ---
-title: App Service でスロットをスワップした後に、cloud_RoleName に正しいスロット名を記録するための対処方法
+title: App Service でスロットをスワップした後に、cloud_RoleName にスワップ後の環境の値を記録するための対処方法
 date: 2023-12-27 00:00:00
 tags: Application Insights
 ---
@@ -9,7 +9,7 @@ tags: Application Insights
 - 2026/1/13 最新情報に更新
 
 こんにちは、Azure Monitoring サポート チームの北山です。 
-App Service に対してデプロイ スロットをスワップした後に、Application Insights の cloud_RoleName に正しいホスト名を記録するための対処方法についてご案内いたします。
+App Service に対してデプロイ スロットをスワップした後に、Application Insights の cloud_RoleName にスワップ後の環境の値を記録するための対処方法についてご案内いたします。
 
 # 目次
 - [目次](#目次)
@@ -30,12 +30,12 @@ App Service に対してデプロイ スロットのスワップを実行する�
 
 ![Alt text](./wrongSlotNameAfterSwapping/image.png)
 
-Application Insights の cloud_RoleName は App Service 側の環境変数を参照し、正しいサイト名およびスロット名を取得しております。
+Application Insights の cloud_RoleName は App Service 側の環境変数を参照し、サイト名およびスロット名を取得しております。
 
-しかしながら、App Service において、スワップ後にこれらの環境変数が正しく同期されない動作となっており、
-その結果、Application Insights の cloud_RoleName にも正しい値が記録されません。
+しかしながら、App Service において、スワップ後にこれらの環境変数がスワップ後の環境の値に同期されない動作となっており、
+その結果、Application Insights の cloud_RoleName にもスワップ後の環境の値が記録されません。
 
-したがって、スワップ後も cloud_RoleName に正しい値が記録されるようにするためには、後述の対処をご検討ください。
+したがって、スワップ後も cloud_RoleName にスワップ後の環境の値が記録されるようにするためには、後述の対処をご検討ください。
 
 # 対処方法
 App Service の運用スロット側の [設定] > [構成] の [アプリケーション設定] から、以下のアプリケーション設定を追加します。
