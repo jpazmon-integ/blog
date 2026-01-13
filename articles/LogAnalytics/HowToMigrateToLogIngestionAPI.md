@@ -8,6 +8,10 @@ tags:
   - Tips
 ---
 
+[更新履歴]
+- 2023/11/29 ブログ公開
+- 2026/01/13 最新の情報であることを確認済み
+
 こんにちは、Azure Monitoring サポート チームの北村です。
 今回の記事では、サービス正常性にて通知された「Retirement notice: Transition to DCR-based custom log ingestion by 14 September 2026」についてご説明します。
 
