@@ -10,17 +10,17 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは！Azure Monitoring チームの加治屋です。この記事では、Log Analytics エージェントから Azure Monitor エージェントへの移行のために使用できるツールについてご紹介いたします。 ※DCR Config Generator の更新に伴い、ツールの利用方法が変更されております。当記事は、DCR Config Generator バージョン 1.0.0 を">
+      <meta name="description" content="[更新履歴]    2023&#x2F;12&#x2F;24 ブログ公開   2026&#x2F;01&#x2F;19 廃止情報について追記    [!IMPORTANT] Log Analytics エージェント（MMA&#x2F;OMS）は 2024 年 8 月 31 日をもって完全に廃止されました。本記事で紹介している DCR Config Generator は、廃止済みエージェントから Azure Monitor エージェント (AMA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DCR Config Generator の使用方法">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは！Azure Monitoring チームの加治屋です。この記事では、Log Analytics エージェントから Azure Monitor エージェントへの移行のために使用できるツールについてご紹介いたします。 ※DCR Config Generator の更新に伴い、ツールの利用方法が変更されております。当記事は、DCR Config Generator バージョン 1.0.0 を">
+<meta property="og:description" content="[更新履歴]    2023&#x2F;12&#x2F;24 ブログ公開   2026&#x2F;01&#x2F;19 廃止情報について追記    [!IMPORTANT] Log Analytics エージェント（MMA&#x2F;OMS）は 2024 年 8 月 31 日をもって完全に廃止されました。本記事で紹介している DCR Config Generator は、廃止済みエージェントから Azure Monitor エージェント (AMA">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/4-3.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/4-4.png">
 <meta property="article:published_time" content="2023-12-23T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-19T07:58:59.504Z">
+<meta property="article:modified_time" content="2026-01-19T08:06:32.936Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Log Analytics">
 <meta property="article:tag" content="How-To">
@@ -177,12 +177,18 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+1fe77f35-6c97-52c2-9320-41db4fcb1c05%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BDCR+Config+Generator+%E3%81%AE%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FDCRConfigGenerator%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FDCRConfigGenerator.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FDCRConfigGenerator.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/" data-id="cmkkvj94z001h0nrwgdom2mmc" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/" data-id="cmkkvsxw3001h0noze4d6168l" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは！Azure Monitoring チームの加治屋です。<br>この記事では、Log Analytics エージェントから Azure Monitor エージェントへの移行のために使用できるツールについてご紹介いたします。</p>
+        <p>[更新履歴]  </p>
+<ul>
+<li>2023/12/24 ブログ公開  </li>
+<li>2026/01/19 廃止情報について追記 </li>
+</ul>
+<div class="alert is-important"><p class="alert-title">重要</p><p> Log Analytics エージェント（MMA/OMS）は 2024 年 8 月 31 日をもって完全に廃止されました。</p><p>本記事で紹介している DCR Config Generator は、廃止済みエージェントから Azure Monitor エージェント (AMA) への移行を支援するためのツールです。</p><p>新規構成や運用では AMA をご利用ください。</p></div>
+<p>こんにちは！Azure Monitoring チームの加治屋です。<br>この記事では、Log Analytics エージェントから Azure Monitor エージェントへの移行のために使用できるツールについてご紹介いたします。</p>
 <p>※<br>DCR Config Generator の更新に伴い、ツールの利用方法が変更されております。<br>当記事は、DCR Config Generator バージョン 1.0.0 を前提として記載しております。</p>
 <span id="more"></span>
 
@@ -240,7 +246,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <h4 id="手順-4-II-3"><a href="#手順-4-II-3" class="headerlink" title="手順 4-II-3"></a>手順 4-II-3</h4><p>DCR とリソースの紐づけを行います。<br>※ 紐づけたいマシンの電源は、あらかじめ ON にしておく必要がございます。<br><img src="/blog/LogAnalytics/DCRConfigGenerator/4-4.png" alt="DCRとリソースの紐づけ"></p>
 <p>手順は以上です。<br>もし、スクリプトの動作がおかしい、使用方法がよくわからない、などございましたら、ご遠慮なく弊社サポート チームへお問い合わせください。</p>
 <h2 id="参考情報"><a href="#参考情報" class="headerlink" title="参考情報"></a>参考情報</h2><ul>
-<li>DCR Config Generator のインストールと使用<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration-tools#installing-and-using-dcr-config-generator">https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration-tools#installing-and-using-dcr-config-generator</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-US/azure/azure-monitor/agents/azure-monitor-agent-migration-tools#installing-and-using-dcr-config-generator">https://learn.microsoft.com/en-US/azure/azure-monitor/agents/azure-monitor-agent-migration-tools#installing-and-using-dcr-config-generator</a></li>
+<li>移行に関してはこちら<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration">Log Analytics エージェントから Azure Monitor エージェントへの移行</a></li>
 </ul>
 
       

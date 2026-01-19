@@ -44,13 +44,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/gettingExeTimeOfJobForSpecificPeriodAutomation/</loc>
-    
-    <lastmod>2026-01-19</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/update-AzureRmVmCommandFailesWithVhdCannotBeNull/</loc>
     
     <lastmod>2026-01-19</lastmod>
@@ -66,6 +59,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/general/HowToCreateSR/</loc>
+    
+    <lastmod>2026-01-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/gettingExeTimeOfJobForSpecificPeriodAutomation/</loc>
     
     <lastmod>2026-01-19</lastmod>
     
@@ -93,6 +93,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/Automation-Update-AutomationRunAsCredential/</loc>
+    
+    <lastmod>2026-01-19</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/DifferenceRunAsAccountAndManagedID/</loc>
     
     <lastmod>2026-01-19</lastmod>
@@ -108,13 +115,6 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/</loc>
-    
-    <lastmod>2026-01-19</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/Automation-Update-AutomationRunAsCredential/</loc>
     
     <lastmod>2026-01-19</lastmod>
     
@@ -240,14 +240,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/Unexpected_Heartbeat_logalert/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/UpdateLAHealth/</loc>
     
     <lastmod>2026-01-19</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/UpdateLAHealth/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/Unexpected_Heartbeat_logalert/</loc>
     
     <lastmod>2026-01-19</lastmod>
     
@@ -324,14 +324,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPricing/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsResultsUpgrade/</loc>
     
     <lastmod>2026-01-19</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsResultsUpgrade/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPricing/</loc>
     
     <lastmod>2026-01-19</lastmod>
     
@@ -506,13 +506,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/</loc>
-    
-    <lastmod>2026-01-19</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/</loc>
     
     <lastmod>2026-01-19</lastmod>
@@ -520,7 +513,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/</loc>
     
     <lastmod>2026-01-19</lastmod>
     
@@ -528,6 +521,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/</loc>
+    
+    <lastmod>2026-01-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/</loc>
     
     <lastmod>2026-01-19</lastmod>
     
