@@ -9,7 +9,7 @@ tags:
 
 [更新履歴]
 - 2024/01/06 ブログ公開
-- 2026/01/08 最新情報への更新
+- 2026/01/09 最新情報への更新
 
 こんにちは、Azure Monitoring サポート チームの北村です。
 皆さまは [Log Analytics ワークスペースのデータ エクスポート](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal) という機能をご存知でしょうか。
