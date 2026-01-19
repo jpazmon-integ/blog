@@ -10,12 +10,12 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは、Azure Monitoring サポート チームの六浦です。 今回は Application Insights のログに関する料金についてご案内いたします。">
+      <meta name="description" content="[更新履歴]    2022&#x2F;05&#x2F;11 ブログ公開   2026&#x2F;01&#x2F;09 クラシック版廃止について追記    こんにちは、Azure Monitoring サポート チームの六浦です。 今回は Application Insights のログに関する料金についてご案内いたします。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Application Insights のログの料金について">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの六浦です。 今回は Application Insights のログに関する料金についてご案内いたします。">
+<meta property="og:description" content="[更新履歴]    2022&#x2F;05&#x2F;11 ブログ公開   2026&#x2F;01&#x2F;09 クラシック版廃止について追記    こんにちは、Azure Monitoring サポート チームの六浦です。 今回は Application Insights のログに関する料金についてご案内いたします。">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/1.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/2.png">
@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/6.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/7.png">
 <meta property="article:published_time" content="2022-05-10T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-13T08:15:04.841Z">
+<meta property="article:modified_time" content="2026-01-19T00:57:37.484Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Application Insights">
 <meta property="article:tag" content="コスト">
@@ -181,12 +181,17 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+8ff94fc7-9ab1-537b-abde-9513b26f1fdc%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BApplication+Insights+%E3%81%AE%E3%83%AD%E3%82%B0%E3%81%AE%E6%96%99%E9%87%91%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FapplicationInsights%2FaboutCostOfAi%2F%29%0A*+Content+Source%3A+%5Barticles%2FapplicationInsights%2FaboutCostOfAi.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FapplicationInsights%2FaboutCostOfAi.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/" data-id="cmkcbgsm700380npd296f1cgp" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/aboutCostOfAi/" data-id="cmkkghcqx00380nqfb48affga" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは、Azure Monitoring サポート チームの六浦です。</p>
+        <p>[更新履歴]  </p>
+<ul>
+<li>2022/05/11 ブログ公開  </li>
+<li>2026/01/09 クラシック版廃止について追記  </li>
+</ul>
+<p>こんにちは、Azure Monitoring サポート チームの六浦です。</p>
 <p>今回は Application Insights のログに関する料金についてご案内いたします。</p>
 <span id="more"></span>
 
@@ -223,7 +228,8 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>たとえば、データを 365 日間保持する設定で、毎月 11 GB ずつデータを取り込んだ場合、<br>1 年分のデータがたまった状態になると、以下の図のようにおよそ 9 ヶ月分のデータに対して課金が発生いたします。<br><img src="/blog/applicationInsights/aboutCostOfAi/1.png"></p>
 <h3 id="ログ-データのインジェストに対するコスト"><a href="#ログ-データのインジェストに対するコスト" class="headerlink" title="ログ データのインジェストに対するコスト"></a>ログ データのインジェストに対するコスト</h3><p>従量課金制の価格レベルをご使用の場合は、1 か月あたり課金アカウントごとに 5 GB まで無料でございます。<br>以下のように毎月 5 GB を超えたデータに、料金が発生いたします。<br><img src="/blog/applicationInsights/aboutCostOfAi/2.png"></p>
 <p>Application Insights の課金について詳しくは、以下の弊社公開情報からご確認いただけます。<br><a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">価格 - Azure Monitor | Microsoft Azure</a></p>
-<h2 id="現在の料金を見積もる方法"><a href="#現在の料金を見積もる方法" class="headerlink" title="現在の料金を見積もる方法"></a>現在の料金を見積もる方法</h2><h3 id="クラシック版"><a href="#クラシック版" class="headerlink" title="クラシック版"></a>クラシック版</h3><p>Application Insights の [構成] &gt; [使用とコストの見積もり] から現在の料金の見積もりをご確認いただけます。</p>
+<h2 id="現在の料金を見積もる方法"><a href="#現在の料金を見積もる方法" class="headerlink" title="現在の料金を見積もる方法"></a>現在の料金を見積もる方法</h2><h3 id="クラシック版-廃止"><a href="#クラシック版-廃止" class="headerlink" title="クラシック版 (廃止)"></a>クラシック版 (廃止)</h3><div class="alert is-important"><p class="alert-title">重要</p><p>クラシック版は <a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/updates?id=we-re-retiring-classic-application-insights-on-29-february-2024#:~:text=We're%20retiring%20Classic%20Application%20Insights%20on%2029%20February%202024&text=Because%20the%20workspace%2Dbased%20Application,Event%20Hub%20via%20Diagnostic%20Settings">2024 年 2 月 29 日の時点で廃止</a> となっております。</p><p>見積もり方法については、後述のワークスペース版の記載をご確認ください。</p></div>
+<p>Application Insights の [構成] &gt; [使用とコストの見積もり] から現在の料金の見積もりをご確認いただけます。</p>
 <h4 id="ログ-データのインジェストに対するコスト-1"><a href="#ログ-データのインジェストに対するコスト-1" class="headerlink" title="ログ データのインジェストに対するコスト"></a>ログ データのインジェストに対するコスト</h4><p>データのインジェストは以下の表から確認できます。<br>ここで表示されるデータ インジェスト量は 5 GB の無料枠は考慮されておりませんので、ご注意くださいませ。<br><img src="/blog/applicationInsights/aboutCostOfAi/3.png"></p>
 <h4 id="ログ-データの保持に対するコスト-1"><a href="#ログ-データの保持に対するコスト-1" class="headerlink" title="ログ データの保持に対するコスト"></a>ログ データの保持に対するコスト</h4><p>保有期間を確認して、Application Insights のログ データにコストが発生しているか確認できます。<br>データ保有期間は、[データ保有期間] を選択して、画面右側に表示されるメニューから確認いただけます。<br>保有期間が 90 日以内に設定されていれば、データの保持の料金は発生しません。<br><img src="/blog/applicationInsights/aboutCostOfAi/4.png"></p>
 <h3 id="ワークスペース版"><a href="#ワークスペース版" class="headerlink" title="ワークスペース版"></a>ワークスペース版</h3><p>ワークスペース版の Application Insights は Log Analytics ワークスペースにログ データを保持しているため、Log Analytics ワークスペースにてデータ保有期間とデータのインジェストの料金を確認します。</p>
@@ -243,8 +249,8 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 
 <h2 id="クエリを用いてコストを確認"><a href="#クエリを用いてコストを確認" class="headerlink" title="クエリを用いてコストを確認"></a>クエリを用いてコストを確認</h2><p>課金の対象となるログ データのサイズは _BilledSize 列で定義されます。<br>そのため、_BilledSize 列を使用することで、現在取り込まれている課金の対象のログのサイズを確認することができます。</p>
-<p>弊社公開情報にて、コストの確認に使用するクエリの例を紹介しております。<br>クラシック版の Application Insights の場合は、こちらの弊社公開情報をご参照ください。<br>クエリは Application Insights で実行します。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/analyze-usage#application-insights-data">Applicationインサイトデータ</a></p>
-<p>ワークスペース版の Application Insights の場合は、こちらの弊社公開情報をご参照ください。<br>以下の弊社公開情報のクエリは Application Insights が接続している Log Analytics ワークスペースで実行します。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/logs/analyze-usage#data-volume-trends-for-workspace-based-resources">ワークスペースベースのリソースのデータボリュームの傾向</a></p>
+<p>弊社公開情報にて、コストの確認に使用するクエリの例を紹介しております。<br>クラシック版の Application Insights の場合は、こちらの弊社公開情報をご参照ください。<br>クエリは Application Insights で実行します。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/analyze-usage#application-insights-data">Applicationインサイトデータ</a></p>
+<p>ワークスペース版の Application Insights の場合は、こちらの弊社公開情報をご参照ください。<br>以下の弊社公開情報のクエリは Application Insights が接続している Log Analytics ワークスペースで実行します。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/analyze-usage#data-volume-trends-for-workspace-based-resources">ワークスペースベースのリソースのデータボリュームの傾向</a></p>
 <h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>本記事では、以下についてご案内いたしましたが、ご理解いただけましたでしょうか。</p>
 <ul>
 <li>Application Insights のログの料金</li>
