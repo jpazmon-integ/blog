@@ -206,6 +206,5 @@ DCR とリソースの紐づけを行います。
 
 
 ## 参考情報
-- DCR Config Generator のインストールと使用
-https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration-tools#installing-and-using-dcr-config-generator
-https://learn.microsoft.com/en-US/azure/azure-monitor/agents/azure-monitor-agent-migration-tools#installing-and-using-dcr-config-generator
+- 移行に関してはこちら
+[Log Analytics エージェントから Azure Monitor エージェントへの移行](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration)
