@@ -8,6 +8,10 @@ tags:
  - Container Insights
 ---
 
+[更新履歴]
+- 2025/03/26 ブログ公開
+- 2026/01/13 最新情報への更新
+
 こんにちは！Azure Monitoring チームの加治屋です。
 この記事では、Container Insights に関する説明、導入のための前提条件、導入方法をご紹介いたします。
 
@@ -17,13 +21,13 @@ tags:
 AKS クラスターをはじめとした コンテナー環境へデプロイすることで、コンテナー環境で収集された情報を ログとして Log Analytics ワークスペースに収集する、Azure Monitor の製品です。
 Log Analytics ワークスペースへ収集した情報は通常の VM などから収集したログと同じように、KQL を使用して、情報の分析やログ アラート ルールの処理を行うことができます。
 
-Kubernetes 監視用の Azure Monitor の機能
-https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-overview 
+Azure Monitor での Kubernetes の監視
+https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-overview
 
 この機能をデプロイすると、コンテナー環境へ Azure Monitor エージェント Pod がデプロイされます。
 
-Kubernetes 監視用の Azure Monitor の機能 - エージェント
-https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-overview#agent 
+Azure Monitor での Kubernetes の監視 - コンテナー レベル
+https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-overview#container-levels
 
 
 ## Container Insights を有効化する上での前提条件
@@ -35,8 +39,11 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insig
 ・ Azure Arc 対応 Kubernetes クラスター (※)
 ※ ディストリビューションによっては対応していないものもございます。サポートしているディストリビューションにつきましては、以下の弊社公開情報をご確認ください。
 
-Kubernetes 監視用の Azure Monitor の機能 - サポートされている構成
-https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-overview#supported-configurations
+Arc 対応 Kubernetes クラスターの監視を有効にする - サポートされているクラスター
+https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable-arc?tabs=cli#supported-clusters
+
+Azure Arc 対応 Kubernetes システム要件 - クラスターの要件
+https://learn.microsoft.com/ja-jp/azure/azure-arc/kubernetes/system-requirements#cluster-requirements
 
 ### ネットワーク要件
 Container Insights には以下のネットワーク要件がございます。
@@ -55,8 +62,8 @@ global.handler.control.monitor.azure.com:443
 
 詳細な要件につきましては、以下の弊社公開情報をご確認いただけますと幸いです。
 
-Azure Kubernetes Service (AKS) クラスターのアウトバウンド ネットワークと FQDN の規則 - Azure Monitor - マネージド Prometheus と Container insights
-https://learn.microsoft.com/ja-jp/azure/aks/outbound-rules-control-egress#azure-monitor---managed-prometheus-and-container-insights
+Kubernetes クラスターを監視するためのネットワーク ファイアウォールの要件
+https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-firewall
 
 
 ### その他前提条件
@@ -67,8 +74,8 @@ Container Insights 有効化の際は、以下の前提条件をご確認くだ�
 ※ マネージド ID 認証は、ARO (Azure Red Hat OpenShift) または Windows ノードを使用する Azure Arc 対応 Kubernetes クラスターではサポートされていません。 
   上記環境にて Container Insights をご利用される場合は、レガシー認証を使用して Container Insights の有効化を実施ください。
 
-Kubernetes クラスターの監視を有効にする - コンテナー分析情報を有効にする - 前提条件
-https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#prerequisites-4
+AKS クラスターの監視を有効にする - Prometheus メトリックとコンテナー ログを有効にする - 前提条件
+https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#prerequisites-1
 
 ## Container Insights の有効化 (デプロイ) 方法
 有効化方法として、いくつか方法がございます。
@@ -86,8 +93,8 @@ I. AKS リソースの作成時に Container Insights も一緒に有効化す�
 コストの事前設定の部分は、ログの収集頻度やログの収集対象を設定する箇所でございます。
 具体的な設定につきましては、以下の弊社公開情報にも記載がございますので、ご参照ください。
 
-Container insights でログ収集を構成する - DCR を使用してデータ収集を構成する - Azure portal を使用して DCR を構成する
-https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-data-collection-configure?tabs=portal#configure-dcr-with-azure-portal
+AKS クラスターの監視を有効にする - Prometheus メトリックとコンテナー ログを有効にする - 構成オプション
+https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=portal#configuration-options
 
 II. AKS リソース作成後に Azure CLI を使用して有効化する方法
 以下のコマンドを実行します。
@@ -106,7 +113,7 @@ az k8s-extension create --name azuremonitor-containers --cluster-name "<Azure Ar
 ```
 
 その他のクラスターで有効化を行う方法につきましては、以下の弊社公開情報にコマンドのサンプルがございますので、ご参照ください。
-Kubernetes クラスターの監視を有効にする - コンテナー分析情報を有効にする
+AKS クラスターの監視を有効にする
 https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-container-insights
 
 III. AKS リソース作成後に Azure ポータルを使用して有効化する方法
@@ -118,8 +125,8 @@ AKS リソースより [分析情報] もしくは [監視] をご選択いた�
 ![Azure ポータルからの有効化時の設定変更](./HowToContainerInsights/03.png)
 
 コストの事前設定に関する具体的な設定につきましては、以下の弊社公開情報にも記載がございますので、ご参照ください。
-Container insights でログ収集を構成する - DCR を使用してデータ収集を構成する - Azure portal を使用して DCR を構成する
-https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-data-collection-configure?tabs=portal#configure-dcr-with-azure-portal
+AKS クラスターの監視を有効にする - Prometheus メトリックとコンテナー ログを有効にする - 構成オプション
+https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=portal#configuration-options
 
 なお、この有効化方法は、マネージド ID による認証が使用できないクラスター (Azure Arc 対応 Redhat OpenShift クラスターなど) ではご利用いただけません。
 
@@ -146,15 +153,15 @@ az k8s-extension delete --name azuremonitor-containers --cluster-type connectedC
 無効化を行いますと、Container Insights を使用する機能 (ログ収集機能) がご利用いただけなくなりますので、ご留意ください。
 また、無効化を行った場合でも、Container Insights の作成時に同時に作成した Log Analytics ワークスペースやアラート等は削除されませんので、もしこれらのリソースも不要である場合は、個別に削除ください。
 
-Kubernetes クラスターの監視を有効にする - コンテナー分析情報を有効にする - 拡張機能のインスタンスを削除する
-https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-container-insights
+Kubernetes クラスターの監視を無効にする - ログ収集を無効にしてエージェントを削除する
+https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-disable#disable-log-collection-and-remove-agent
 
 
 もし、Container Insights のデプロイ方法にてお困りごとがございましたら、遠慮なく弊社サポートまでお問い合わせください。
 
 ## 参考情報
-- Kubernetes 監視用の Azure Monitor の機能
-https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-overview
+- Azure Monitor での Kubernetes の監視
+https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-overview
 
 
 
