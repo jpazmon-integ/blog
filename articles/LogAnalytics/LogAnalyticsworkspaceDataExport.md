@@ -9,7 +9,7 @@ tags:
 
 [更新履歴]
 - 2024/01/06 ブログ公開
-- 2026/01/09 最新情報への更新
+- 2026/01/08 最新情報への更新
 
 こんにちは、Azure Monitoring サポート チームの北村です。
 皆さまは [Log Analytics ワークスペースのデータ エクスポート](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal) という機能をご存知でしょうか。
@@ -35,7 +35,7 @@ tags:
 
 ### Q1. データ エクスポート機能は全てのテーブルでサポートされていますか。
 いいえ、全てのテーブルでサポートしておりません。
-サポート対象のテーブルは、[こちら](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#supported-tables)の弊社公開情報でご確認ください。
+サポート対象のテーブルは、[こちら](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#unsupported-tables)の弊社公開情報でご確認ください。
 
 <br>
 
@@ -60,7 +60,7 @@ tags:
 
 ***1. エクスポート ルールで指定したテーブルがサポートされていない***
 対象のテーブルがデータ エクスポート機能でサポートされていない可能性がございます。
-まずは、指定したテーブルが[サポート対象のテーブル](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#supported-tables)かどうかをご確認ください。
+まずは、指定したテーブルが[サポート対象のテーブル](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#unsupported-tables)かどうかをご確認ください。
 
 
 ***2. ストレージ アカウントのネットワーク設定で "信頼された Microsoft サービス" が許可されていない***
