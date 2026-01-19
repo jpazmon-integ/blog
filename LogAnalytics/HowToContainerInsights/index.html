@@ -10,19 +10,19 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは！Azure Monitoring チームの加治屋です。この記事では、Container Insights に関する説明、導入のための前提条件、導入方法をご紹介いたします。">
+      <meta name="description" content="[更新履歴]  2025&#x2F;03&#x2F;26 ブログ公開 2026&#x2F;01&#x2F;13 最新情報への更新  こんにちは！Azure Monitoring チームの加治屋です。この記事では、Container Insights に関する説明、導入のための前提条件、導入方法をご紹介いたします。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Container Insights のご紹介">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToContainerInsights/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは！Azure Monitoring チームの加治屋です。この記事では、Container Insights に関する説明、導入のための前提条件、導入方法をご紹介いたします。">
+<meta property="og:description" content="[更新履歴]  2025&#x2F;03&#x2F;26 ブログ公開 2026&#x2F;01&#x2F;13 最新情報への更新  こんにちは！Azure Monitoring チームの加治屋です。この記事では、Container Insights に関する説明、導入のための前提条件、導入方法をご紹介いたします。">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToContainerInsights/01.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToContainerInsights/02.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToContainerInsights/03.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToContainerInsights/04.png">
 <meta property="article:published_time" content="2025-03-25T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-19T06:54:06.190Z">
+<meta property="article:modified_time" content="2026-01-19T07:27:29.647Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Log Analytics">
 <meta property="article:tag" content="How-To">
@@ -179,34 +179,40 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+14fbc79b-df63-55f2-8537-608184962848%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BContainer+Insights+%E3%81%AE%E3%81%94%E7%B4%B9%E4%BB%8B%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FHowToContainerInsights%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FHowToContainerInsights.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FHowToContainerInsights.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToContainerInsights/" data-id="cmkkt7r0o001v0npdawn5hil9" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToContainerInsights/" data-id="cmkkuephm001t0nmmgermak9v" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは！Azure Monitoring チームの加治屋です。<br>この記事では、Container Insights に関する説明、導入のための前提条件、導入方法をご紹介いたします。</p>
+        <p>[更新履歴]</p>
+<ul>
+<li>2025/03/26 ブログ公開</li>
+<li>2026/01/13 最新情報への更新</li>
+</ul>
+<p>こんにちは！Azure Monitoring チームの加治屋です。<br>この記事では、Container Insights に関する説明、導入のための前提条件、導入方法をご紹介いたします。</p>
 <span id="more"></span>
 
 <h2 id="Container-Insights-とは？"><a href="#Container-Insights-とは？" class="headerlink" title="Container Insights とは？"></a>Container Insights とは？</h2><p>AKS クラスターをはじめとした コンテナー環境へデプロイすることで、コンテナー環境で収集された情報を ログとして Log Analytics ワークスペースに収集する、Azure Monitor の製品です。<br>Log Analytics ワークスペースへ収集した情報は通常の VM などから収集したログと同じように、KQL を使用して、情報の分析やログ アラート ルールの処理を行うことができます。</p>
-<p>Kubernetes 監視用の Azure Monitor の機能<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-overview">https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-overview</a> </p>
+<p>Azure Monitor での Kubernetes の監視<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-overview">https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-overview</a></p>
 <p>この機能をデプロイすると、コンテナー環境へ Azure Monitor エージェント Pod がデプロイされます。</p>
-<p>Kubernetes 監視用の Azure Monitor の機能 - エージェント<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-overview#agent">https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-overview#agent</a> </p>
+<p>Azure Monitor での Kubernetes の監視 - コンテナー レベル<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-overview#container-levels">https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-overview#container-levels</a></p>
 <h2 id="Container-Insights-を有効化する上での前提条件"><a href="#Container-Insights-を有効化する上での前提条件" class="headerlink" title="Container Insights を有効化する上での前提条件"></a>Container Insights を有効化する上での前提条件</h2><p>以下の前提条件がございます。</p>
 <h3 id="サポートされているクラスター"><a href="#サポートされているクラスター" class="headerlink" title="サポートされているクラスター"></a>サポートされているクラスター</h3><p>・ Azure Kubernetes クラスター<br>・ Azure Arc 対応 Kubernetes クラスター (※)<br>※ ディストリビューションによっては対応していないものもございます。サポートしているディストリビューションにつきましては、以下の弊社公開情報をご確認ください。</p>
-<p>Kubernetes 監視用の Azure Monitor の機能 - サポートされている構成<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-overview#supported-configurations">https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-overview#supported-configurations</a></p>
+<p>Arc 対応 Kubernetes クラスターの監視を有効にする - サポートされているクラスター<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable-arc?tabs=cli#supported-clusters">https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable-arc?tabs=cli#supported-clusters</a></p>
+<p>Azure Arc 対応 Kubernetes システム要件 - クラスターの要件<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-arc/kubernetes/system-requirements#cluster-requirements">https://learn.microsoft.com/ja-jp/azure/azure-arc/kubernetes/system-requirements#cluster-requirements</a></p>
 <h3 id="ネットワーク要件"><a href="#ネットワーク要件" class="headerlink" title="ネットワーク要件"></a>ネットワーク要件</h3><p>Container Insights には以下のネットワーク要件がございます。<br>Container Insights を有効化いただく前に以下の宛先に接続できるか、ご確認をお願いいたします。</p>
 <p>*.ods.opinsights.azure.com:443<br>*.oms.opinsights.azure.com:443<br>dc.services.visualstudio.com:443<br>*.monitoring.azure.com:443<br>login.microsoftonline.com:443<br>global.handler.control.monitor.azure.com:443<br>*.ingest.monitor.azure.com:443<br>*.metrics.ingest.monitor.azure.com:443<br><cluster-region-name>.handler.control.monitor.azure.com:443</p>
 <p>詳細な要件につきましては、以下の弊社公開情報をご確認いただけますと幸いです。</p>
-<p>Azure Kubernetes Service (AKS) クラスターのアウトバウンド ネットワークと FQDN の規則 - Azure Monitor - マネージド Prometheus と Container insights<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/aks/outbound-rules-control-egress#azure-monitor---managed-prometheus-and-container-insights">https://learn.microsoft.com/ja-jp/azure/aks/outbound-rules-control-egress#azure-monitor---managed-prometheus-and-container-insights</a></p>
+<p>Kubernetes クラスターを監視するためのネットワーク ファイアウォールの要件<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-firewall">https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-firewall</a></p>
 <h3 id="その他前提条件"><a href="#その他前提条件" class="headerlink" title="その他前提条件"></a>その他前提条件</h3><p>Container Insights 有効化の際は、以下の前提条件をご確認ください。<br>・Azure CLI バージョン 2.49.0 以降では、CLI によるオンボーディングを実行すると、既定でマネージド ID 認証を使用する Container Insights が有効化されます。<br>・Azure k8s-extension バージョンが 1.3.7 以降であること。k8s-extension バージョン 1.43.0 以降では、既定でマネージド ID 認証が使用されます。</p>
 <p>※ マネージド ID 認証は、ARO (Azure Red Hat OpenShift) または Windows ノードを使用する Azure Arc 対応 Kubernetes クラスターではサポートされていません。<br>  上記環境にて Container Insights をご利用される場合は、レガシー認証を使用して Container Insights の有効化を実施ください。</p>
-<p>Kubernetes クラスターの監視を有効にする - コンテナー分析情報を有効にする - 前提条件<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#prerequisites-4">https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#prerequisites-4</a></p>
+<p>AKS クラスターの監視を有効にする - Prometheus メトリックとコンテナー ログを有効にする - 前提条件<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#prerequisites-1">https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#prerequisites-1</a></p>
 <h2 id="Container-Insights-の有効化-デプロイ-方法"><a href="#Container-Insights-の有効化-デプロイ-方法" class="headerlink" title="Container Insights の有効化 (デプロイ) 方法"></a>Container Insights の有効化 (デプロイ) 方法</h2><p>有効化方法として、いくつか方法がございます。<br>代表的な手順をご紹介いたします。<br>なお、以下の有効化手順につきましては、Azure Kubernetes Service (AKS) リソースでご利用されることを前提として記載しております。</p>
 <p>I. AKS リソースの作成時に Container Insights も一緒に有効化する方法</p>
 <p>以下の画面にて有効化を行うことが可能です。<br>[コンテナー ログを有効にする] にチェックを入れていただき、ログを送信する先の Log Analytics ワークスペースを指定します。<br>指定しない場合は、規定の Log Analytics ワークスペース (DefaultWorkspace- からはじまる Log Analytics ワークスペース) が新規作成、もしくは自動的に指定されます。</p>
 <p><img src="/blog/LogAnalytics/HowToContainerInsights/01.png" alt="リソース作成時に有効化"></p>
 <p>コストの事前設定の部分は、ログの収集頻度やログの収集対象を設定する箇所でございます。<br>具体的な設定につきましては、以下の弊社公開情報にも記載がございますので、ご参照ください。</p>
-<p>Container insights でログ収集を構成する - DCR を使用してデータ収集を構成する - Azure portal を使用して DCR を構成する<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-data-collection-configure?tabs=portal#configure-dcr-with-azure-portal">https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-data-collection-configure?tabs=portal#configure-dcr-with-azure-portal</a></p>
+<p>AKS クラスターの監視を有効にする - Prometheus メトリックとコンテナー ログを有効にする - 構成オプション<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=portal#configuration-options">https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=portal#configuration-options</a></p>
 <p>II. AKS リソース作成後に Azure CLI を使用して有効化する方法<br>以下のコマンドを実行します。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">az aks enable-addons --addon monitoring --name &quot;&lt;AKS クラスター名&gt;&quot; --resource-group &quot;&lt;リソース グループ名&gt;&quot; --workspace-resource-id &quot;&lt;Log Analytics ワークスペースのリソース ID&gt;&quot;</span><br></pre></td></tr></table></figure>
 
@@ -216,11 +222,11 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>ARO (Azure Red Hat OpenShift) または Windows ノードを使用する Azure Arc 対応 Kubernetes クラスターに対しては、以下のコマンドにてレガシー認証を利用した Container Insights を有効化します。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">az k8s-extension create --name azuremonitor-containers --cluster-name &quot;&lt;Azure Arc 対応クラスター名&gt;&quot; --resource-group &quot;&lt;リソース グループ名&gt;&quot; --cluster-type connectedClusters --extension-type Microsoft.AzureMonitor.Containers ---configuration-settings logAnalyticsWorkspaceResourceID=&quot;&lt;Log Analytics ワークスペースのリソース ID&gt;&quot; amalogs.useAADAuth=false</span><br></pre></td></tr></table></figure>
 
-<p>その他のクラスターで有効化を行う方法につきましては、以下の弊社公開情報にコマンドのサンプルがございますので、ご参照ください。<br>Kubernetes クラスターの監視を有効にする - コンテナー分析情報を有効にする<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-container-insights">https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-container-insights</a></p>
+<p>その他のクラスターで有効化を行う方法につきましては、以下の弊社公開情報にコマンドのサンプルがございますので、ご参照ください。<br>AKS クラスターの監視を有効にする<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-container-insights">https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-container-insights</a></p>
 <p>III. AKS リソース作成後に Azure ポータルを使用して有効化する方法</p>
 <p>AKS リソースより [分析情報] もしくは [監視] をご選択いただき、[モニターの設定] より有効化いただけます。<br><img src="/blog/LogAnalytics/HowToContainerInsights/02.png" alt="Azure ポータルからの有効化"></p>
 <p>ログ送信先の Log Analytics ワークスペースの変更したいなど、設定変更を行いたい場合は、画面下部の [詳細設定] より設定を変更いただけます。<br><img src="/blog/LogAnalytics/HowToContainerInsights/03.png" alt="Azure ポータルからの有効化時の設定変更"></p>
-<p>コストの事前設定に関する具体的な設定につきましては、以下の弊社公開情報にも記載がございますので、ご参照ください。<br>Container insights でログ収集を構成する - DCR を使用してデータ収集を構成する - Azure portal を使用して DCR を構成する<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-data-collection-configure?tabs=portal#configure-dcr-with-azure-portal">https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-data-collection-configure?tabs=portal#configure-dcr-with-azure-portal</a></p>
+<p>コストの事前設定に関する具体的な設定につきましては、以下の弊社公開情報にも記載がございますので、ご参照ください。<br>AKS クラスターの監視を有効にする - Prometheus メトリックとコンテナー ログを有効にする - 構成オプション<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=portal#configuration-options">https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=portal#configuration-options</a></p>
 <p>なお、この有効化方法は、マネージド ID による認証が使用できないクラスター (Azure Arc 対応 Redhat OpenShift クラスターなど) ではご利用いただけません。</p>
 <h3 id="有効化の確認方法"><a href="#有効化の確認方法" class="headerlink" title="有効化の確認方法"></a>有効化の確認方法</h3><p>Contianer Insights は、Azure Monitor にて使用されているエージェント (Azure Monitor エージェント) の仕組みを使用し、ログを Log Analytics ワークスペースへ送信いたします。<br>そのため、Container Insights を有効化いたしますと、ログの送信先 log Analytics ワークスペースに対して Heartbeat ログが 1 分間隔で送信されます。<br>Container Insights の有効化が正常に行われたかご確認いただければと存じます。</p>
 <p><img src="/blog/LogAnalytics/HowToContainerInsights/04.png" alt="Container Insights の有効化確認"></p>
@@ -229,10 +235,10 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">az k8s-extension delete --name azuremonitor-containers --cluster-type connectedClusters --cluster-name &lt;クラスター名&gt; --resource-group &lt;リソース グループ名&gt;</span><br></pre></td></tr></table></figure>
 
 <p>無効化を行いますと、Container Insights を使用する機能 (ログ収集機能) がご利用いただけなくなりますので、ご留意ください。<br>また、無効化を行った場合でも、Container Insights の作成時に同時に作成した Log Analytics ワークスペースやアラート等は削除されませんので、もしこれらのリソースも不要である場合は、個別に削除ください。</p>
-<p>Kubernetes クラスターの監視を有効にする - コンテナー分析情報を有効にする - 拡張機能のインスタンスを削除する<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-container-insights">https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-container-insights</a></p>
+<p>Kubernetes クラスターの監視を無効にする - ログ収集を無効にしてエージェントを削除する<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-disable#disable-log-collection-and-remove-agent">https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-disable#disable-log-collection-and-remove-agent</a></p>
 <p>もし、Container Insights のデプロイ方法にてお困りごとがございましたら、遠慮なく弊社サポートまでお問い合わせください。</p>
 <h2 id="参考情報"><a href="#参考情報" class="headerlink" title="参考情報"></a>参考情報</h2><ul>
-<li>Kubernetes 監視用の Azure Monitor の機能<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-overview">https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-overview</a></li>
+<li>Azure Monitor での Kubernetes の監視<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-overview">https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-overview</a></li>
 </ul>
 
       
