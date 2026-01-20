@@ -6,6 +6,10 @@ tags:
   - How-To
 ---
 
+[更新履歴]
+-2022/08/17 ブログ公開
+-2026/01/20 最新の情報であることを確認
+
 こんにちは、Azure Monitoring チームの 北村 です。
 
 本記事は、2022 年 4 月 4 日に米国の Azure Monitor Blog で公開された [Log Analytics results upgrade](https://techcommunity.microsoft.com/t5/azure-observability-blog/log-analytics-results-upgrade/ba-p/3257229) を翻訳したものになります。Log Analytics ワークスペース上でログを検索する際に使用する機能について、大きなアップデートがありましたので、
