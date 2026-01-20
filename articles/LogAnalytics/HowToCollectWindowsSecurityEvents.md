@@ -6,6 +6,11 @@ tags:
   - Tips
   - Log Analytics
 ---
+
+[更新履歴]
+- 2022/04/04 ブログ公開
+- 2026/01/07 最新情報への更新
+
 こんにちは！ Azure Monitoring & Integration サポート チームの北村です。
 
 今回は Log Analytics ワークスペースにセキュリティ イベント ログを収集する方法をご案内いたします。
@@ -26,6 +31,10 @@ Azure Monitor エージェント または Log Analytics エージェントを�
 冒頭でも申し上げたとおり、エージェントによって収集方法が異なります (下表参照)。
 ![](./HowToCollectWindowsSecurityEvents/image01.png)
 
+> [!WARNING]
+> Log Analytics エージェントは、2024 年 8 月 31 日に廃止されました。 
+> Log Analytics エージェントをご利用のお客様は Azure Monitor エージェントへの移行をお願いいたします。
+> https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration
 
 ### Log Analytics エージェントによるログ収集
 Log Analytics エージェントは、他の Windows イベント ログとは異なり、
@@ -49,9 +58,8 @@ Azure Monitor エージェントでは、他の Windows イベント ログと�
 ![](./HowToCollectWindowsSecurityEvents/image03.png)
 
 <参考>
--- 新しい Azure Monitor エージェントを使用して Windows セキュリティ イベントを収集する方法はありますか?
-https://docs.microsoft.com/ja-jp/azure/azure-monitor/faq#----azure-monitor-------------windows--------------------------
-
+-- Azure Monitor を使用して仮想マシンから Windows イベントを収集する - Windows イベント データ ソースを構成する
+https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/data-collection-windows-events#configure-windows-event-data-source
 
 ## Log Analytics エージェントによるセキュリティ イベント ログ収集の設定
 ここでは、Microsoft Sentinel を使用した Log Analytics エージェントによる セキュリティ イベント ログの収集手順をご紹介します。
