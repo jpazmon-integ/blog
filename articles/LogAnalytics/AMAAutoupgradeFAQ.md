@@ -6,6 +6,10 @@ tags:
  - Azure Monitor Agent
 ---
 
+[更新履歴]
+-2025/05/07 ブログ公開
+-2026/01/21 画像の更新
+
 こんにちは、Azure Monitoring チームの徳田です。  
 本ブログでは、Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問に対する回答をご紹介いたします。  
 弊社公開情報としては以下のページにてご紹介しておりますため、こちらも併せてご参照ください。
@@ -161,7 +165,7 @@ az vm extension set `
 
 <br>
 
-![](./AMAAutoupgradeFAQ/updatecycle.png)
+![](./AMAAutoupgradeFAQ/updatecycle_2601.png)
 
 <br>
 
@@ -176,7 +180,7 @@ az vm extension set `
 
 <br>
 
-![](./AMAAutoupgradeFAQ/azureportal-manualupgrade.png)
+![](./AMAAutoupgradeFAQ/azureportal-manualupgrade_2601.png)
 
 
 <br>
@@ -281,7 +285,7 @@ Azure Monitor エージェントのバージョンのリリース情報は、以
 # Linux
 ((Get-AzVMExtensionImage -Location <region> -PublisherName "Microsoft.Azure.Monitor" -Type "AzureMonitorLinuxAgent").Version | Sort-Object -Property { [Version]$_})
 ```
-※ <region> の箇所は、任意のリージョン名にご変更ください (japaneast など)。
+※ `<region>` の箇所は、任意のリージョン名にご変更ください (japaneast など)。
 
 <br>
 <br>
