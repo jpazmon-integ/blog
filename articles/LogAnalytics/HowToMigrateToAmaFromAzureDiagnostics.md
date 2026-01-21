@@ -8,6 +8,10 @@ tags:
   - How-To
 ---
 
+[更新履歴]
+-2024/10/31 ブログ公開
+-2026/01/21 最新の情報であることを確認
+
 こんにちは、Azure Monitoring サポート チームの佐藤、北村です。
 今回の記事では、サービス正常性にて通知された「Retirement notice: Migrate to Azure Monitor Agent before 31 March 2026 」についてご説明します。
 
