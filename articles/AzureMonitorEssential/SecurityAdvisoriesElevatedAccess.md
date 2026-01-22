@@ -4,10 +4,7 @@ date: 2025-06-27 00:00:00
 tags:
   - Azure Monitor Essential
   - Service Health
-  - サービス正常性
-  - Security Advisories
-  - セキュリティ アドバイザリ
-  - How-To
+  - Information
 ---
 
 こんにちは、Azure Monitoring サポート チームの北村です。

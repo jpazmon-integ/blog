@@ -7,6 +7,10 @@ tags:
   - オンボード script
 ---
 
+[更新履歴]
+- 2024/05/30 ブログ公開
+- 2026/01/07 最新情報への更新
+
 <!-- more -->
 こんにちは、Azure Monitoring チームの 佐藤 です。
 当ページでは、Azure Arc のオンボードスクリプトの留意点について説明します。
@@ -18,7 +22,7 @@ Azure Arc にオンボードできる OS やソフトウェアには幾つか種
 - Update Management でサーバーを追加する
 
 まず基本のオンボードの流れは以下の当社公開ページに記載しております。
-[クイックスタート: Azure Arc 対応サーバーにハイブリッド マシンを接続する](https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/learn/quick-enable-hybrid-vm)
+[クイックスタート: マシンを Arc 対応サーバーに接続する (Windows または Linux インストール スクリプト)](https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/learn/quick-enable-hybrid-vm)
 
 上記ページに記載のように Azure ポータル上で作成いただいたスクリプトをオンボードさせたいマシン上で実行する運びとなります。
 
@@ -56,7 +60,7 @@ Azure ポータル画面でスクリプト作成の条件を設定いただい�
 
 ### step 2：プロキシ設定
 以下ページの手順に従いプロキシ環境向けの設定を行います。
-[プロキシ設定の更新または削除](https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/manage-agent?tabs=windows#update-or-remove-proxy-settings) 
+[プロキシ設定を更新または削除する](https://learn.microsoft.com/ja-jp/azure/azure-arc/servers/manage-agent?tabs=windows#update-or-remove-proxy-settings) 
 
 ここでプロキシ設定について 2 種類の説明がありますので、ここでも解説いたします。
 上記公開ページに記載の通り、エージェントが Arc 関連の通信をする際にプロキシ向けに通信させる方法は以下２つ、両方の設定がされている場合は前者が採用される仕様となっております。
