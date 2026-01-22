@@ -7,6 +7,14 @@ tags:
  - Log Analytics
  - Azure Monitor Agent
 ---
+[更新履歴]  
+- 2023/12/24 ブログ公開  
+- 2026/01/19 廃止情報について追記 
+
+>[!IMPORTANT] Log Analytics エージェント（MMA/OMS）は 2024 年 8 月 31 日をもって完全に廃止されました。
+>本記事で紹介している DCR Config Generator は、廃止済みエージェントから Azure Monitor エージェント (AMA) への移行を支援するためのツールです。
+>新規構成や運用では AMA をご利用ください。
+
 
 こんにちは！Azure Monitoring チームの加治屋です。
 この記事では、Log Analytics エージェントから Azure Monitor エージェントへの移行のために使用できるツールについてご紹介いたします。
@@ -198,6 +206,5 @@ DCR とリソースの紐づけを行います。
 
 
 ## 参考情報
-- DCR Config Generator のインストールと使用
-https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration-tools#installing-and-using-dcr-config-generator
-https://learn.microsoft.com/en-US/azure/azure-monitor/agents/azure-monitor-agent-migration-tools#installing-and-using-dcr-config-generator
+- 移行に関してはこちら
+[Log Analytics エージェントから Azure Monitor エージェントへの移行](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration)

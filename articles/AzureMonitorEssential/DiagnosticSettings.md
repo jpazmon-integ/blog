@@ -6,6 +6,11 @@ tags:
   - Diagnostic settings
 ---
 
+[更新履歴]
+- 2022/09/28 : ブログ公開  
+- 2025/01/06 : 最新の情報であることを確認済み
+- - - -
+
 こんにちは！ Azure Monitoring チームの堀です。
 
 最近、お客様から "診断設定でプラットフォーム メトリックを Azure ストレージにエクスポートした際に、一部のプラットフォーム メトリックが欠損している" というお問い合わせをいただきました。
@@ -13,19 +18,17 @@ tags:
 結論から申し上げますと、診断設定によるプラットフォーム メトリックやリソース ログのエクスポートは、100 % のデータ エクスポートを保証しておりません。
 システムの制約上、一部のデータの欠損は発生する可能性がございますので、本ブログ記事にてご紹介いたします。
 
-<br>
-
 <!-- more -->
 ## 目次
-- 診断設定とは
-- 診断設定によるプラットフォーム メトリックやログの一部欠損
+- [診断設定とは](#診断設定とは)
+- [診断設定によるプラットフォーム メトリックやログの一部欠損](#診断設定によるプラットフォーム-メトリックやログの一部欠損)
 
 <br>
 
 ## 診断設定とは
 まず、Azure Monitor の診断設定について簡単にご説明いたします。
 診断設定を構成しますと、Azure リソースのプラットフォーム メトリックや、リソース ログを Azure Storage アカウントや Azure Event Hubs 等に送信することができます。
-詳細は下記弊社公開情報をご覧ください。
+詳細は <参考> の下記弊社公開情報をご覧ください。
 
 **プラットフォーム メトリック**
 監視対象のリソースから一定の間隔で自動で収集される数値データです。
@@ -36,17 +39,16 @@ tags:
 既定では収集されません。
 
 <参考>
-Azure Monitor の診断設定
-https://learn.microsoft.com/ja-JP/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal
+> Azure Monitor の診断設定
+> https://learn.microsoft.com/ja-JP/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal
 
-Azure Monitor のサポートされるメトリック
-https://learn.microsoft.com/ja-JP/azure/azure-monitor/essentials/metrics-supported
+> Azure Monitor のサポートされるメトリック
+> https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/metrics-index
 
-Azure リソース ログ
-https://learn.microsoft.com/ja-JP/azure/azure-monitor/essentials/resource-logs
+> Azure リソース ログ
+> https://learn.microsoft.com/ja-jp/azure/azure-monitor/platform/resource-logs?tabs=log-analytics
 
 <br>
-
 
 ## 診断設定によるプラットフォーム メトリックやログの一部欠損
 冒頭でも申し上げましたとおり、診断設定によるエクスポートでは、制約上、プラットフォーム メトリックやログの一部欠損は発生する可能性がございます。

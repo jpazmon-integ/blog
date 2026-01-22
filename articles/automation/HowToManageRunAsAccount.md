@@ -1,5 +1,5 @@
 ---
-title: Azure Automation の実行アカウントの管理方法の tips と FAQ
+title: 【廃止】 Azure Automation の実行アカウントの管理方法の tips と FAQ
 date: 2021-6-25 12:00:00
 tags:
   - Automation
@@ -8,13 +8,20 @@ tags:
   - FAQ
 ---
 
+[更新履歴]  
+- 2021/06/25 : ブログ公開
+- 2026/01/09 : 廃止について追記済み
+  Azure Automation 実行アカウント (クラシック実行アカウントを含む) は 2023 年 9 月 30 日に廃止されました。
+  詳細は [既存の実行アカウントからマネージド ID に移行する](https://learn.microsoft.com/ja-jp/azure/automation/migrate-run-as-accounts-managed-identity?tabs=run-as-account)  をご参考いただければ幸いです。
+
+
 こんにちは、Azure Monitoring & Integration サポート チームの伊東です。
 本日は、Azure Automation の実行アカウントについて、サポート チームによくお問い合わせいただく質問を例に挙げ、実行アカウントをどのように管理していくのか tips をご紹介していきます。
 
 <!-- more -->
 
 ## 目次
-- Azure Automation の実行アカウントとは
+- Azure Automation の実行アカウントとは (2023 年 9 月 30 日に廃止)
 - FAQ
     - Q1: 実行アカウントを作成するためにどのような権限が必要ですか？
     - Q2: 実行アカウントの有効期限が切れました。どのような影響がありますか？どう対処すれば良いですか？
@@ -23,7 +30,7 @@ tags:
     - Q5: 実行アカウントの有効期限が切れる前に通知を行いたいです。
 - References
 
-## Azure Automation の実行アカウントとは
+## Azure Automation の実行アカウントとは (2023 年 9 月 30 日に廃止)
 Azure Automation を利用する多くのユーザー様は、Azure への認証に実行アカウントを利用しています。
 以下のスクリプトでは、実行アカウントを呼び出してAzure にログインし、Get-AzVM で Azure VM の情報を取得しています。
 既定では、Azure サブスクリプションの共同作成者ロールが実行アカウントに割り当てられているため、VM の起動停止など、Azure リソースの操作を行うことが可能です。

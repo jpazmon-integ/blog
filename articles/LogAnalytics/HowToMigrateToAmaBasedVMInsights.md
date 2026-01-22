@@ -10,6 +10,11 @@ tags:
   - Tips
 ---
 
+[更新履歴]
+- 2023/11/06 ブログ公開
+- 2024/07/22 最新情報への更新
+- 2026/01/06 最新情報への更新
+
 こんにちは、Azure Monitoring サポート チームの北村です。
 今回の記事では、サービス正常性にて通知された「Migrate to Azure Monitor agent–based VM insights by 31 August 2024 」についてご説明します。
 
@@ -58,6 +63,8 @@ To ensure that you’re using a supported version of VM insights, [migrate](http
 ## 2. 移行対象のマシンを確認する方法と移行手順
 Log Analytics エージェント ベースの VM insights は 2024 年 8 月末にてサポート終了を予定しております。そのため、Log Analytics エージェント ベースの VM insights をご利用されている場合は、Azure Monitor エージェント ベースの VM insights への移行をお願いしております。
 [VM insights](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/vminsights-overview) は Azure VM や Azure Arc 対応サーバーなどの仮想マシンの監視を行う機能の一つです。仮想マシンのパフォーマンスや実行中のプロセス等のデータを収集します。VM insights では、Azure Monitor エージェントもしくは Log Analytics エージェントと、Dependency エージェントを仮想マシンにインストールし、ログを収集します。しかし、[2024 年 8 月末で Log Analytics エージェントが廃止される](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/log-analytics-agent)ため、Azure Monitor エージェント ベースで VM insights をご利用いただく必要がございます。
+移行手順の詳細は以下のドキュメントをご参照ください。
+https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/vminsights-migrate-agent
 
 <br>
 
@@ -213,14 +220,14 @@ Azure Monitor エージェントの前提条件は下記弊社公開情報にま
 Azure Monitor エージェントの概要
 https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/agents-overview
 
-Azure Monitor エージェントを管理する
+Azure Monitor エージェントのインストールと管理
 https://learn.microsoft.com/ja-JP/azure/azure-monitor/agents/azure-monitor-agent-manage?tabs=azure-portal#prerequisites
 
-Azure Monitor エージェントのネットワーク設定を定義する
+Azure Monitor エージェントのネットワーク構成
 https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-data-collection-endpoint?tabs=PowerShellWindows
 
-Azure Monitor エージェントを使用して仮想マシンからイベントとパフォーマンス カウンターを収集する
+Azure Monitor を使用して仮想マシン クライアントからデータを収集する
 https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-rule-azure-monitor-agent?tabs=portal
 
-Azure Monitor エージェントを使用して Syslog イベントを収集する
+Azure Monitor を使用して仮想マシン クライアントから Syslog イベントを収集する
 https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-syslog
