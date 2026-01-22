@@ -3,9 +3,11 @@ title: <Windows 版> Azure Monitor エージェントを利用した性能監視
 date: 2024-10-02 00:00:00
 tags:
   - Log Analytics
-  - Azure Monitor Essentials
-  - Azure Monitor Agent
-  - How-To
+  - Azure Monitor Essential
+  - Azure Monitor Agent - Windows
+  - Alerts, Action Groups
+  - Log search alert
+  - HowTo
 ---
 
 こんにちは、Azure Monitoring サポート チームの北村です。
