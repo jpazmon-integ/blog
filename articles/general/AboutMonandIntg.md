@@ -3,7 +3,7 @@ title: <第 1 弾> Azure Monitoring & Integration チームについて
 date: 2021-08-18 00:00:00
 tags:
   - General
-  - チーム紹介
+  - Others
 ---
 
 こんにちは！Azure Monitoring & Integration チームの猪股です。  

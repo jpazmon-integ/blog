@@ -2,6 +2,8 @@
 title: 7/7 に発生した障害 XMGF-5Z0 について
 date: 2023-07-10 00:00:00
 tags:
+  - Azure Monitor All
+  - Outage
 ---
 
 [更新履歴]  
