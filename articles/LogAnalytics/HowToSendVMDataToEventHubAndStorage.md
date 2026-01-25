@@ -2,8 +2,10 @@
 title: 【非推奨】AMA を使用して VM のデータを Event Hub とストレージ アカウントに送信する方法
 date: 2025-09-12 00:00:00
 tags:
+  - Log Analytics
   - Azure Monitor Agent
-  - Data Collection Rules
+  - Data Collection Rule, Data Collection Endpoint
+  - HowTo
 ---
 
 [更新履歴]
