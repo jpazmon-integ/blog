@@ -7,6 +7,14 @@ tags:
   - Tips
 ---
 
+[更新履歴]
+- 2022/10/25 ブログ公開
+- 2026/1/26 最新情報に更新
+
+>[!IMPORTANT]
+>本記事でご紹介している診断設定のデータ保持期間の設定は 2025 年 9 月 30 日をもって廃止済みとなります。
+>今後はストレージ アカウント側の[ライフサイクル管理ポリシー](https://learn.microsoft.com/ja-jp/azure/storage/blobs/lifecycle-management-policy-configure?tabs=azure-portal)の機能をご利用ください。
+
 こんにちは、Azure Monitoring & Integration サポート チームの北山です。  
 今回の記事では、サービス正常性にて通知された「Action required: Migrate to Azure Storage lifecycle management from diagnostic settings storage retention」について説明します。
 
@@ -18,12 +26,15 @@ tags:
   - [内容](#内容)
   - [実施いただきたいアクション](#実施いただきたいアクション)
 - [抄訳](#抄訳)
-  - [2V_C-980 の概要](#2v_c-980-の概要)
+  - [2V\_C-980 の概要](#2v_c-980-の概要)
   - [廃止されるとどうなるか](#廃止されるとどうなるか)
   - [影響を受けるお客様](#影響を受けるお客様)
   - [お客様に必要なアクションについて](#お客様に必要なアクションについて)
 - [診断設定側のデータ保持機能を利用している診断設定を特定する方法について](#診断設定側のデータ保持機能を利用している診断設定を特定する方法について)
   - [サンプル スクリプト](#サンプル-スクリプト)
+    - [注意点](#注意点)
+    - [サンプル](#サンプル)
+    - [その他](#その他)
 
 ## 報告された正常性の勧告について
 ### 概要
@@ -49,7 +60,7 @@ Azure Storage lifecycle management provides all the same functionality, plus it 
 - Apply rules to containers or specific subsets of blobs.
 
 ### 実施いただきたいアクション
-To continue applying retention to logs sent to storage accounts via diagnostic settings, [migrate](https://docs.microsoft.com/azure/azure-monitor/essentials/migrate-to-azure-storage-lifecycle-policy) to Azure Storage lifecycle management by 30 September 2025.
+To continue applying retention to logs sent to storage accounts via diagnostic settings, [migrate](https://learn.microsoft.com/ja-jp/azure/azure-monitor/platform/migrate-to-azure-storage-lifecycle-policy) to Azure Storage lifecycle management by 30 September 2025.
 
 
 ## 抄訳
