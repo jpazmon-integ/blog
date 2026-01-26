@@ -10,29 +10,28 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは、Azure Monitoring チームの佐々木です。今回はリソース変更を検知するアラートが作成できる様になりましたので、その設定方法やサンプルクエリを紹介させていただきます。">
+      <meta name="description" content="[更新履歴]    2023&#x2F;11&#x2F;09 ブログ公開   2026&#x2F;01&#x2F;19 クエリ一部修正   こんにちは、Azure Monitoring チームの佐々木です。今回はリソース変更を検知するアラートが作成できる様になりましたので、その設定方法やサンプルクエリを紹介させていただきます。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="リソース変更を検知するアラートを作成する">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは、Azure Monitoring チームの佐々木です。今回はリソース変更を検知するアラートが作成できる様になりましたので、その設定方法やサンプルクエリを紹介させていただきます。">
+<meta property="og:description" content="[更新履歴]    2023&#x2F;11&#x2F;09 ブログ公開   2026&#x2F;01&#x2F;19 クエリ一部修正   こんにちは、Azure Monitoring チームの佐々木です。今回はリソース変更を検知するアラートが作成できる様になりましたので、その設定方法やサンプルクエリを紹介させていただきます。">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://github.com/jpazmon-integ/blog/assets/20591351/b2bf9d45-e674-42c3-8ff0-a379a279f883">
-<meta property="og:image" content="https://github.com/jpazmon-integ/blog/assets/20591351/44446061-6026-496f-b58c-7f655829dd20">
-<meta property="og:image" content="https://github.com/jpazmon-integ/blog/assets/20591351/b3a8b68b-f4d0-4552-af19-b9c166344a4b">
-<meta property="og:image" content="https://github.com/jpazmon-integ/blog/assets/20591351/4aa04086-1b30-41de-a27a-5900ff31072b">
-<meta property="og:image" content="https://github.com/jpazmon-integ/blog/assets/20591351/fd33236a-3074-4f31-8e13-e21800c8a68b">
-<meta property="og:image" content="https://github.com/jpazmon-integ/blog/assets/20591351/2e593167-0352-4583-922e-c4a804d8072b">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/image.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/create_alertrule01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/create_alertrule02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/create_alertrule03.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/create_alertrule04.png">
 <meta property="og:image" content="https://github.com/jpazmon-integ/blog/assets/20591351/2dfafd2e-4c55-4846-a03c-bb1449cd4535">
-<meta property="og:image" content="https://github.com/jpazmon-integ/blog/assets/20591351/74417dc5-47ea-4a65-90e5-df115fdd445e">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/create_alertrule05.png">
 <meta property="article:published_time" content="2023-11-08T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-26T04:48:21.332Z">
+<meta property="article:modified_time" content="2026-01-26T04:59:18.132Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="How-To">
 <meta property="article:tag" content="Tips">
 <meta property="article:tag" content="Azure Monitor Essentials">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/jpazmon-integ/blog/assets/20591351/b2bf9d45-e674-42c3-8ff0-a379a279f883">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/image.png">
         
           <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog"
             type="application/atom+xml">
@@ -183,12 +182,17 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+588cc296-b782-58e1-80a9-782e57042df2%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E5%A4%89%E6%9B%B4%E3%82%92%E6%A4%9C%E7%9F%A5%E3%81%99%E3%82%8B%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2Fame%2FHowToResourceChangeAlert%2F%29%0A*+Content+Source%3A+%5Barticles%2Fame%2FHowToResourceChangeAlert.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2Fame%2FHowToResourceChangeAlert.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/" data-id="cmkuot1eq00310nm94cnybwql" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/" data-id="cmkup73oc00310npramub3uce" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは、Azure Monitoring チームの佐々木です。<br>今回はリソース変更を検知するアラートが作成できる様になりましたので、その設定方法やサンプルクエリを紹介させていただきます。</p>
+        <p>[更新履歴]  </p>
+<ul>
+<li>2023/11/09 ブログ公開  </li>
+<li>2026/01/19 クエリ一部修正 </li>
+</ul>
+<p>こんにちは、Azure Monitoring チームの佐々木です。<br>今回はリソース変更を検知するアラートが作成できる様になりましたので、その設定方法やサンプルクエリを紹介させていただきます。</p>
 <span id="more"></span>
 
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
@@ -211,7 +215,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <li>changeTypeがUpdate  -&gt; 更新されたという事になります。</li>
 <li>changes -&gt; 変更があったプロパティと新しい値(newValue)、過去の値(previousValue)が入ります。</li>
 </ul>
-<p>※このテーブルの保持期間は14日で変更できないため、長期的な保管は行われません。</p>
+<p>※このテーブルの保持期間は 14 日です。保持期間の変更はできないため、長期的にデータを保管することはできません。</p>
 <p>これを踏まえ、以下の properties 列のサンプルでは、microsoft.network/networkinterfaces リソースに MAC アドレスのプロパティが追加された事がわかります。</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;targetResourceType&quot;</span>: <span class="string">&quot;microsoft.network/networkinterfaces&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;targetResourceId&quot;</span>: <span class="string">&quot;/subscriptions/***/resourceGroups/1627/providers/Microsoft.Network/networkInterfaces/1627vm837&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;changeAttributes&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;previousResourceSnapshotId&quot;</span>: <span class="string">&quot;08585022745207585807_a9667ff8-fb74-82a5-ffd1-419287f1063f_3620098351_1699332364&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;newResourceSnapshotId&quot;</span>: <span class="string">&quot;08585022744595915807_7aa3a796-054b-ebe0-df8e-673414ebfde7_82482185_1699332425&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;correlationId&quot;</span>: <span class="string">&quot;43c5d84a-c3bb-47c7-bdc5-7ecf69209fc2&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;changesCount&quot;</span>: <span class="number">3</span>,</span><br><span class="line">        <span class="attr">&quot;timestamp&quot;</span>: <span class="string">&quot;2023-11-07T04:47:05.8860000Z&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;changedByType&quot;</span>: <span class="string">&quot;User&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;clientType&quot;</span>: <span class="string">&quot;Azure Portal&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;operation&quot;</span>: <span class="string">&quot;Microsoft.Network/networkInterfaces/write&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;changedBy&quot;</span>: <span class="string">&quot;***@microsoft.com&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;changeType&quot;</span>: <span class="string">&quot;Update&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;changes&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;properties.virtualMachine.id&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;propertyChangeType&quot;</span>: <span class="string">&quot;Insert&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;changeCategory&quot;</span>: <span class="string">&quot;User&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;previousValue&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">&quot;newValue&quot;</span>: <span class="string">&quot;/subscriptions/***/resourceGroups/1627/providers/Microsoft.Compute/virtualMachines/1627vm&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;properties.primary&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;propertyChangeType&quot;</span>: <span class="string">&quot;Insert&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;changeCategory&quot;</span>: <span class="string">&quot;User&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;previousValue&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">&quot;newValue&quot;</span>: <span class="string">&quot;True&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;properties.macAddress&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;propertyChangeType&quot;</span>: <span class="string">&quot;Insert&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;changeCategory&quot;</span>: <span class="string">&quot;User&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;previousValue&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">&quot;newValue&quot;</span>: <span class="string">&quot;60-45-BD-66-0D-B8&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -220,27 +224,22 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <ul>
 <li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/governance/resource-graph/how-to/get-resource-changes?tabs=azure-cli">https://learn.microsoft.com/ja-jp/azure/governance/resource-graph/how-to/get-resource-changes?tabs=azure-cli</a></li>
 </ul>
-<h2 id="サンプルクエリ"><a href="#サンプルクエリ" class="headerlink" title="サンプルクエリ"></a>サンプルクエリ</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">arg(&quot;&quot;).resourcechanges</span><br><span class="line">| extend timestamp = todatetime(properties[&quot;changeAttributes&quot;][&quot;timestamp&quot;])</span><br><span class="line">| extend changes = properties[&quot;changes&quot;]</span><br><span class="line">| extend ResourceId = tostring(properties[&quot;targetResourceId&quot;])</span><br><span class="line">| extend CorrelationId = tostring(properties[&quot;changeAttributes&quot;][&quot;correlationId&quot;]) // AzureActivity (アクティビティログ) と結合可能</span><br><span class="line">| where timestamp &gt;= ago(5min) // arg(&quot;&quot;) で検索するテーブルにはアラートルールの粒度や期間指定が機能しないため、クエリで期間を指定します。</span><br></pre></td></tr></table></figure>
+<h2 id="サンプル-クエリ"><a href="#サンプル-クエリ" class="headerlink" title="サンプル クエリ"></a>サンプル クエリ</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">arg(&quot;&quot;).resourcechanges</span><br><span class="line">| extend timestamp = todatetime(properties[&quot;changeAttributes&quot;][&quot;timestamp&quot;])</span><br><span class="line">| extend changes = properties[&quot;changes&quot;]</span><br><span class="line">| extend ResourceId = tostring(properties[&quot;targetResourceId&quot;])</span><br><span class="line">| extend CorrelationId = tostring(properties[&quot;changeAttributes&quot;][&quot;correlationId&quot;]) // AzureActivity (アクティビティログ) と結合可能</span><br><span class="line">| where timestamp &gt;= ago(5m) and timestamp &lt;= now() // arg(&quot;&quot;) で検索するテーブルにはアラートルールの粒度や期間指定が機能しないため、クエリで期間を指定します。</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://github.com/jpazmon-integ/blog/assets/20591351/b2bf9d45-e674-42c3-8ff0-a379a279f883" alt="image"></p>
+<p><img src="/blog/ame/HowToResourceChangeAlert/image.png"></p>
 <h2 id="設定手順"><a href="#設定手順" class="headerlink" title="設定手順"></a>設定手順</h2><p>以下に、変更履歴を検知するアラートルールの作成方法を記載させていただきます。</p>
 <p>この操作を行うアカウントでは、サブスクリプションスコープ の 閲覧者権限 と 閲覧者 ロールが必要になります。</p>
 <p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles#reader">閲覧者</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles#role-based-access-control-administrator-preview">ロールベースのアクセス制御管理者</a></p>
 <ol>
 <li>Azureポータルにログインし、何れかの Log Analytics &gt; ログ ブレードを開きます。</li>
-<li>例えばサンプルのクエリを指定し、一度検索します。</li>
+<li>例として上記サンプル クエリを指定し、[実行] をクリックすると、クエリが実行されクエリ結果が出力されます。</li>
+<li>クエリ結果が出力された状態で、画面右上の [・・・] - [新しいアラート ルール] を選択することでアラートルールの作成画面へ移動します。</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">arg(&quot;&quot;).resourcechanges</span><br><span class="line">| extend timestamp = todatetime(properties[&quot;changeAttributes&quot;][&quot;timestamp&quot;])</span><br><span class="line">| extend changes = properties[&quot;changes&quot;]</span><br><span class="line">| extend ResourceId = tostring(properties[&quot;targetResourceId&quot;])</span><br><span class="line">| extend CorrelationId = tostring(properties[&quot;changeAttributes&quot;][&quot;correlationId&quot;]) // AzureActivity (アクティビティログ) と結合可能</span><br><span class="line">| where timestamp &gt;= ago(5min) // arg(&quot;&quot;) で検索するテーブルにはアラートルールの粒度や期間指定が機能しないため、クエリで期間を指定します。</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://github.com/jpazmon-integ/blog/assets/20591351/44446061-6026-496f-b58c-7f655829dd20" alt="image"></p>
-<ol start="3">
-<li>“新しいアラート ルール” より アラートルールの作成画面へ移動します。</li>
-</ol>
-<p><img src="https://github.com/jpazmon-integ/blog/assets/20591351/b3a8b68b-f4d0-4552-af19-b9c166344a4b" alt="image"></p>
+<p><img src="/blog/ame/HowToResourceChangeAlert/create_alertrule01.png"></p>
 <ol start="4">
 <li>条件 セクションでは例えば以下の設定値とします。</li>
 </ol>
-<p><img src="https://github.com/jpazmon-integ/blog/assets/20591351/4aa04086-1b30-41de-a27a-5900ff31072b" alt="image"></p>
+<p><img src="/blog/ame/HowToResourceChangeAlert/create_alertrule02.png"></p>
 <ul>
 <li>測定<ul>
 <li>メジャー: テーブルの行</li>
@@ -263,26 +262,26 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <ol start="5">
 <li><p>アクション セクションでは必要に応じてアクショングループを指定します。</p>
 </li>
-<li><p>詳細 セクションにて、 System assigned managed Identity を指定し、作成します。</p>
+<li><p>詳細 セクションの [ID] 部分にて、 “システム割り当てマネージド ID” (System assigned managed Identity) を指定し、作成します。</p>
 </li>
 </ol>
-<p>ARG へのクエリにはサブスクリプションスコープの閲覧者ロールが必要ですが、Default を選択した場合、アラートルールは ARG を閲覧できず検知されません。</p>
-<p><img src="https://github.com/jpazmon-integ/blog/assets/20591351/fd33236a-3074-4f31-8e13-e21800c8a68b" alt="image"></p>
+<p>ARG へのクエリにはサブスクリプションスコープの閲覧者ロールが必要ですが、当該設定にて “既定” (Default) を選択した場合、アラートルールは ARG を閲覧できず検知されません。</p>
+<p><img src="/blog/ame/HowToResourceChangeAlert/create_alertrule03.png"></p>
 <ol start="7">
-<li>アラートルールの マネージドID の権限設定</li>
+<li>アラートルールの マネージド ID の権限設定</li>
 </ol>
 <p>モニター &gt; アラート &gt; アラート ルール &gt; ID (プレビュー) を確認します。<br>この時、もしもシステム割り当て済 が オフ となっている場合にはオンにします。</p>
-<p><img src="https://github.com/jpazmon-integ/blog/assets/20591351/2e593167-0352-4583-922e-c4a804d8072b" alt="image"></p>
+<p><img src="/blog/ame/HowToResourceChangeAlert/create_alertrule04.png"></p>
 <p>Azure ロールの割り当て へ進み、サブスクリプションスコープの閲覧者権限を付与します。</p>
 <p>以上で設定は完了です。</p>
-<h3 id="より複雑なサンプルクエリ"><a href="#より複雑なサンプルクエリ" class="headerlink" title="より複雑なサンプルクエリ"></a>より複雑なサンプルクエリ</h3><h4 id="操作者を確認したい"><a href="#操作者を確認したい" class="headerlink" title="操作者を確認したい"></a>操作者を確認したい</h4><p>操作者はアクティビティログの Caller プロパティに記載されています。</p>
+<h3 id="より複雑なサンプル-クエリ"><a href="#より複雑なサンプル-クエリ" class="headerlink" title="より複雑なサンプル クエリ"></a>より複雑なサンプル クエリ</h3><h4 id="操作者を確認したい"><a href="#操作者を確認したい" class="headerlink" title="操作者を確認したい"></a>操作者を確認したい</h4><p>操作者はアクティビティログの Caller プロパティに記載されています。</p>
 <p>診断設定で アクティビティログ を Log Analytics に送ると、AzureActivity テーブル上にアクティビティログが記録されますが、</p>
 <p>AzureActivity テーブルは resourcechanges テーブルと CorrelationId が同じになるため、結合可能です。</p>
 <p>そのため、以下のクエリで結合し、検索する事ができます。このクエリをアラートルールで指定し、検知する事も可能です。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">arg(&quot;&quot;).resourcechanges</span><br><span class="line">| extend timestamp = todatetime(properties[&quot;changeAttributes&quot;][&quot;timestamp&quot;])</span><br><span class="line">| extend changes = properties[&quot;changes&quot;]</span><br><span class="line">| extend ResourceId = tostring(properties[&quot;targetResourceId&quot;])</span><br><span class="line">| extend CorrelationId = tostring(properties[&quot;changeAttributes&quot;][&quot;correlationId&quot;]) // AzureActivity (アクティビティログ) と結合可能</span><br><span class="line">| where timestamp &gt;= ago(14d) // arg(&quot;&quot;) で検索するテーブルにはアラートルールの粒度や期間指定が機能しないため、クエリで期間を指定します。</span><br><span class="line">| join kind=leftouter (</span><br><span class="line">  AzureActivity // Administrative を送る診断設定が必要です。</span><br><span class="line">  | where CategoryValue =~ &quot;Administrative&quot;</span><br><span class="line">  | where ActivityStatusValue =~ &quot;Start&quot; // 一度の操作 でStart,Success 等複数のログが出るため、Start のログのみ対象とします。</span><br><span class="line">)</span><br><span class="line">on CorrelationId </span><br><span class="line">| order by TimeGenerated</span><br></pre></td></tr></table></figure>
 
 <h2 id="Q＆A"><a href="#Q＆A" class="headerlink" title="Q＆A"></a>Q＆A</h2><h3 id="アラートが発生しない"><a href="#アラートが発生しない" class="headerlink" title="アラートが発生しない"></a>アラートが発生しない</h3><h4 id="マネージドID-へ-サブスクリプションスコープの-read-権限は付与されていますか？"><a href="#マネージドID-へ-サブスクリプションスコープの-read-権限は付与されていますか？" class="headerlink" title="マネージドID へ サブスクリプションスコープの read 権限は付与されていますか？"></a>マネージドID へ サブスクリプションスコープの read 権限は付与されていますか？</h4><p>マネージドID へ Azure Resource Graph のログを確認するために必要なロールが割り当てられているかご確認ください。</p>
-<p><img src="https://github.com/jpazmon-integ/blog/assets/20591351/2dfafd2e-4c55-4846-a03c-bb1449cd4535" alt="image"><br><img src="https://github.com/jpazmon-integ/blog/assets/20591351/74417dc5-47ea-4a65-90e5-df115fdd445e" alt="image"></p>
+<p><img src="https://github.com/jpazmon-integ/blog/assets/20591351/2dfafd2e-4c55-4846-a03c-bb1449cd4535"><br><img src="/blog/ame/HowToResourceChangeAlert/create_alertrule05.png"></p>
 <p>Azure Resource Graph のログを表示するために、サブスクリプションスコープの read 権限が必要となります。</p>
 <p>そのため、例えば マネージドID へ サブスクリプションスコープ の閲覧者権限が付与されていない場合には、アラートルールは Azure Resource Graph のログが確認できず、アラートは発生しません。</p>
 
