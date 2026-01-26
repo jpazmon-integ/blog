@@ -10,19 +10,19 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは、Azure Monitoring &amp; Integration サポート チームの北山です。今回の記事では、サービス正常性にて通知された「Action required: Migrate to Azure Storage lifecycle management from diagnostic settings storage retention」について説明します。">
+      <meta name="description" content="[更新履歴]  2022&#x2F;10&#x2F;25 ブログ公開 2026&#x2F;1&#x2F;26 最新情報に更新   [!IMPORTANT]本記事でご紹介している診断設定のデータ保持期間の設定は 2025 年 9 月 30 日をもって廃止済みとなります。今後はストレージ アカウント側のライフサイクル管理ポリシーの機能をご利用ください。  こんにちは、Azure Monitoring &amp; Integration サポ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Migrate to Azure Storage lifecycle management from diagnostic settings storage retention について">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは、Azure Monitoring &amp; Integration サポート チームの北山です。今回の記事では、サービス正常性にて通知された「Action required: Migrate to Azure Storage lifecycle management from diagnostic settings storage retention」について説明します。">
+<meta property="og:description" content="[更新履歴]  2022&#x2F;10&#x2F;25 ブログ公開 2026&#x2F;1&#x2F;26 最新情報に更新   [!IMPORTANT]本記事でご紹介している診断設定のデータ保持期間の設定は 2025 年 9 月 30 日をもって廃止済みとなります。今後はストレージ アカウント側のライフサイクル管理ポリシーの機能をご利用ください。  こんにちは、Azure Monitoring &amp; Integration サポ">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/capt1.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/capt2.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/capt3.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/capt4.png">
 <meta property="article:published_time" content="2022-10-25T05:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-26T04:59:17.902Z">
+<meta property="article:modified_time" content="2026-01-26T05:24:21.722Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Tips">
 <meta property="article:tag" content="Azure Monitor">
@@ -179,12 +179,18 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+32dc8064-ee3e-5e50-ba12-57acd65a4083%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BMigrate+to+Azure+Storage+lifecycle+management+from+diagnostic+settings+storage+retention+%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FdiagSettings_storageRetention_willBeRetired%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FdiagSettings_storageRetention_willBeRetired.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FdiagSettings_storageRetention_willBeRetired.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/" data-id="cmkup73ni000z0npr4r07er1l" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/diagSettings_storageRetention_willBeRetired/" data-id="cmkuq3cj7000z0nmsbbcmb92i" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは、Azure Monitoring &amp; Integration サポート チームの北山です。<br>今回の記事では、サービス正常性にて通知された「Action required: Migrate to Azure Storage lifecycle management from diagnostic settings storage retention」について説明します。</p>
+        <p>[更新履歴]</p>
+<ul>
+<li>2022/10/25 ブログ公開</li>
+<li>2026/1/26 最新情報に更新</li>
+</ul>
+<div class="alert is-important"><p class="alert-title">重要</p><p>本記事でご紹介している診断設定のデータ保持期間の設定は 2025 年 9 月 30 日をもって廃止済みとなります。</p><p>今後はストレージ アカウント側の<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/storage/blobs/lifecycle-management-policy-configure?tabs=azure-portal">ライフサイクル管理ポリシー</a>の機能をご利用ください。</p></div>
+<p>こんにちは、Azure Monitoring &amp; Integration サポート チームの北山です。<br>今回の記事では、サービス正常性にて通知された「Action required: Migrate to Azure Storage lifecycle management from diagnostic settings storage retention」について説明します。</p>
 <span id="more"></span>
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
 <li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
@@ -202,7 +208,12 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </ul>
 </li>
 <li><a href="#%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E5%81%B4%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E4%BF%9D%E6%8C%81%E6%A9%9F%E8%83%BD%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%82%92%E7%89%B9%E5%AE%9A%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">診断設定側のデータ保持機能を利用している診断設定を特定する方法について</a><ul>
-<li><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB-%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88">サンプル スクリプト</a></li>
+<li><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB-%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88">サンプル スクリプト</a><ul>
+<li><a href="#%E6%B3%A8%E6%84%8F%E7%82%B9">注意点</a></li>
+<li><a href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB">サンプル</a></li>
+<li><a href="#%E3%81%9D%E3%81%AE%E4%BB%96">その他</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -237,7 +248,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <li>Define up to 100 separate rules.</li>
 <li>Apply rules to containers or specific subsets of blobs.</li>
 </ul>
-<h3 id="実施いただきたいアクション"><a href="#実施いただきたいアクション" class="headerlink" title="実施いただきたいアクション"></a>実施いただきたいアクション</h3><p>To continue applying retention to logs sent to storage accounts via diagnostic settings, <a target="_blank" rel="noopener" href="https://docs.microsoft.com/azure/azure-monitor/essentials/migrate-to-azure-storage-lifecycle-policy">migrate</a> to Azure Storage lifecycle management by 30 September 2025.</p>
+<h3 id="実施いただきたいアクション"><a href="#実施いただきたいアクション" class="headerlink" title="実施いただきたいアクション"></a>実施いただきたいアクション</h3><p>To continue applying retention to logs sent to storage accounts via diagnostic settings, <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/platform/migrate-to-azure-storage-lifecycle-policy">migrate</a> to Azure Storage lifecycle management by 30 September 2025.</p>
 <h2 id="抄訳"><a href="#抄訳" class="headerlink" title="抄訳"></a>抄訳</h2><h3 id="2V-C-980-の概要"><a href="#2V-C-980-の概要" class="headerlink" title="2V_C-980 の概要"></a>2V_C-980 の概要</h3><p>Azure リソースのリソース ログやメトリックを Log Analytics ワークスペースやストレージ アカウント、Event Hubs に出力する場合に診断設定をご構築いただく必要があります。  </p>
 <div class="alert is-info"><p class="alert-title">Note</p><p>診断設定については<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal">こちら</a>の公開情報をご確認ください。</p></div>
 <p>リソース ログやメトリックをストレージ アカウントへ出力する場合、下図のように診断設定側にデータの保持期間を指定することが可能です。  </p>
