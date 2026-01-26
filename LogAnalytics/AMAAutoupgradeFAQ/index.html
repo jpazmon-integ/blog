@@ -10,24 +10,24 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは、Azure Monitoring チームの徳田です。本ブログでは、Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問に対する回答をご紹介いたします。弊社公開情報としては以下のページにてご紹介しておりますため、こちらも併せてご参照ください。Azure の仮想マシンとスケール セットの拡張機能の自動アップグレード">
+      <meta name="description" content="[更新履歴]-2025&#x2F;05&#x2F;07 ブログ公開-2026&#x2F;01&#x2F;21 画像の更新 こんにちは、Azure Monitoring チームの徳田です。本ブログでは、Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問に対する回答をご紹介いたします。弊社公開情報としては以下のページにてご紹介しておりますため、こちらも併せてご参照ください。Azure の仮想マシンとスケー">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問集">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは、Azure Monitoring チームの徳田です。本ブログでは、Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問に対する回答をご紹介いたします。弊社公開情報としては以下のページにてご紹介しておりますため、こちらも併せてご参照ください。Azure の仮想マシンとスケール セットの拡張機能の自動アップグレード">
+<meta property="og:description" content="[更新履歴]-2025&#x2F;05&#x2F;07 ブログ公開-2026&#x2F;01&#x2F;21 画像の更新 こんにちは、Azure Monitoring チームの徳田です。本ブログでは、Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問に対する回答をご紹介いたします。弊社公開情報としては以下のページにてご紹介しておりますため、こちらも併せてご参照ください。Azure の仮想マシンとスケー">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/updatecycle.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/azureportal-manualupgrade.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/updatecycle_2601.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/azureportal-manualupgrade_2601.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/upgrade-activitylog.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/Heartbeat-versions.png">
 <meta property="article:published_time" content="2025-05-07T03:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-25T08:12:12.836Z">
+<meta property="article:modified_time" content="2026-01-26T04:48:21.102Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="How-To">
 <meta property="article:tag" content="Azure Monitor Agent">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/updatecycle.png">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/updatecycle_2601.png">
         
           <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog"
             type="application/atom+xml">
@@ -178,12 +178,13 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+d864202e-fdd7-57d4-9bea-bc062e809a54%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Monitor+%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%AE%E8%87%AA%E5%8B%95%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E6%A9%9F%E8%83%BD%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E3%81%94%E8%B3%AA%E5%95%8F%E9%9B%86%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FAMAAutoupgradeFAQ%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FAMAAutoupgradeFAQ.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FAMAAutoupgradeFAQ.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/" data-id="cmktgncxe00ck0nli5xw61sbj" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/" data-id="cmkuot1h200ck0nm94vsd45hf" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは、Azure Monitoring チームの徳田です。<br>本ブログでは、Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問に対する回答をご紹介いたします。<br>弊社公開情報としては以下のページにてご紹介しておりますため、こちらも併せてご参照ください。<br><br><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/automatic-extension-upgrade?tabs=RestAPI1,RestAPI2">Azure の仮想マシンとスケール セットの拡張機能の自動アップグレード</a></p>
+        <p>[更新履歴]<br>-2025/05/07 ブログ公開<br>-2026/01/21 画像の更新</p>
+<p>こんにちは、Azure Monitoring チームの徳田です。<br>本ブログでは、Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問に対する回答をご紹介いたします。<br>弊社公開情報としては以下のページにてご紹介しておりますため、こちらも併せてご参照ください。<br><br><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/automatic-extension-upgrade?tabs=RestAPI1,RestAPI2">Azure の仮想マシンとスケール セットの拡張機能の自動アップグレード</a></p>
 <span id="more"></span>
 
 <br>
@@ -263,7 +264,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-manage?tabs=azure-portal#update">Azure Monitor エージェントのインストールと管理 | 更新する</a>  </p>
 <br>
 
-<p><img src="/blog/LogAnalytics/AMAAutoupgradeFAQ/updatecycle.png"></p>
+<p><img src="/blog/LogAnalytics/AMAAutoupgradeFAQ/updatecycle_2601.png"></p>
 <br>
 
 <hr>
@@ -272,7 +273,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <h4 id="Azure-portal-上で手動アップグレードする"><a href="#Azure-portal-上で手動アップグレードする" class="headerlink" title="Azure portal 上で手動アップグレードする"></a>Azure portal 上で手動アップグレードする</h4><p>リソースの [設定] &gt; [拡張機能とアプリケーション] にて “状態” 列に 「更新プログラムを利用可能」と表記されている場合、その拡張機能のバージョンよりも新しいマイナー バージョンが利用可能であることを意味しています。<br>[拡張機能とアプリケーション] 画面にて、当該拡張機能にチェックを入れ [更新] を押下することで、最新のバージョンにアップグレードできます。</p>
 <br>
 
-<p><img src="/blog/LogAnalytics/AMAAutoupgradeFAQ/azureportal-manualupgrade.png"></p>
+<p><img src="/blog/LogAnalytics/AMAAutoupgradeFAQ/azureportal-manualupgrade_2601.png"></p>
 <br>
 
 <h3 id="lt-アップグレード時に関する質問-gt-1"><a href="#lt-アップグレード時に関する質問-gt-1" class="headerlink" title="&lt;アップグレード時に関する質問&gt;"></a>&lt;アップグレード時に関する質問&gt;</h3><hr>
@@ -330,7 +331,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <br>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Windows</span><br><span class="line">((Get-AzVMExtensionImage -Location &lt;region&gt; -PublisherName &quot;Microsoft.Azure.Monitor&quot; -Type &quot;AzureMonitorWindowsAgent&quot;).Version | Sort-Object -Property &#123; [Version]$_&#125;)</span><br><span class="line"></span><br><span class="line"># Linux</span><br><span class="line">((Get-AzVMExtensionImage -Location &lt;region&gt; -PublisherName &quot;Microsoft.Azure.Monitor&quot; -Type &quot;AzureMonitorLinuxAgent&quot;).Version | Sort-Object -Property &#123; [Version]$_&#125;)</span><br></pre></td></tr></table></figure>
-<p>※ <region> の箇所は、任意のリージョン名にご変更ください (japaneast など)。</p>
+<p>※ <code>&lt;region&gt;</code> の箇所は、任意のリージョン名にご変更ください (japaneast など)。</p>
 <br>
 <br>
 
