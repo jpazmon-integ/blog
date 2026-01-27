@@ -7,6 +7,22 @@ tags:
   - Log Analytics
 ---
 
+
+[更新履歴]
+-2022/05/23 ブログ公開
+-2026/01/27 Log Analytics エージェント廃止について追記。
+
+==========================================================================================
+※ 本ブログでご紹介しております Log Analytics エージェントを使用した Heartbeat 監視については、2024 年 8 月 31 日に廃止となりました。以下のブログを参考に Azure Monitor エージェントでの監視の構成、移行をご検討下さい。
+
+Azure Monitor エージェントにより収集される Heartbeat ログを使用した死活監視方法
+https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM_AMA/
+
+Log Analytics エージェントから Azure Monitor エージェントへの移行に関するよくあるご質問集
+https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromLA/
+
+==========================================================================================
+
 こんにちは！ Azure Monitoring サポート チームの北村です。
 今回は死活監視のクエリをご案内します。死活監視クエリは監視要件に応じて設定されているかと思いますが、
 今回はお問い合わせの多い死活監視クエリを 3 つご紹介いたします。
@@ -23,7 +39,7 @@ tags:
 
 ## Heartbeat を使用した死活監視を行うために
 死活監視のクエリをご紹介する前に、Azure VM における死活監視設定の基本的な流れを簡単にご説明します。
-※ Log Analytics エージェントは 2024 年 8 月 31 日に廃止が予定されておりますのでご留意ください。
+※ Log Analytics エージェントは 2024 年 8 月 31 日に廃止となりましたのでご留意ください。
 
 1. Log Analytics ワークスペースの作成
 2. Log Analytics エージェントの接続
