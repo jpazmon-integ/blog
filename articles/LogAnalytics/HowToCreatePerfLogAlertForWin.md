@@ -8,6 +8,11 @@ tags:
   - How-To
 ---
 
+[更新履歴]
+-2024/10/02 ブログ公開
+-2026/01/27 スクリーンショットなどの最新化
+
+
 こんにちは、Azure Monitoring サポート チームの北村です。
 Windows マシンにおける Azure Monitor エージェントを利用した性能監視（CPU、メモリ、ディスク） の設定手順の一例をご紹介します。
 
@@ -308,9 +313,9 @@ Azure ポータルからデータ収集ルールをマシンに紐づけた際�
 
 **2. CPU 使用率を確認するクエリを実行します。**
 [ログ] から Perf &#124; where ObjectName == \'Processor Information\' and CounterName == \'% Processor Time\' を入力します。
-[実行] をクリックし、[+ 新しいアラート ルール] をクリックします。
+[実行] をクリックし、画面右上の「・・・」メニューから[+ 新しいアラート ルール] をクリックします。
 ※ ログの収集が開始されるまでに時間がかかる場合がございます。予めご留意ください。
-![](./HowToCreatePerfLogAlertForWin/image17.png)
+![](./HowToCreatePerfLogAlertForWin/image17_2601.png)
 
 **3. ログ アラート ルールの条件を指定します。** 
 5-1. のとおり値を指定します。
@@ -318,7 +323,7 @@ Azure ポータルからデータ収集ルールをマシンに紐づけた際�
 
 **4. アラートが発報した際に通知する方法を指定します。** 
 Azure Monitor のアラート機能では、[アクション グループ](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups) というリソースでアラートを通知する方法を定義します。新規で作成する場合は [+ アクション グループの作成]、既存のグループを指定する場合は [+ アクション グループの選択] をクリックします。
-![](./HowToCreatePerfLogAlertForWin/image19.png)
+![](./HowToCreatePerfLogAlertForWin/image19_2601.png)
 
 例えば、アラートをメールで通知する場合には、[通知のタイプ] で "電子メール/SMS メッセージ/プッシュ/音声" を選択し、通知するメール アドレスを指定します。アクション グループの概要や設定手順の詳細は、[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups#create-an-action-group-in-the-azure-portal)をご覧ください。
 ![](./HowToCreatePerfLogAlertForWin/image20.png)
@@ -326,10 +331,10 @@ Azure Monitor のアラート機能では、[アクション グループ](https
 **5. アラート ルールの名前、アラートの重大度等を設定します。**
 [アラート ルールの詳細] では、重大度、アラート ルール名、アラート ルールの説明を設定します。
 [詳細設定オプション] は既定の状態 (作成時に有効化のみチェックが入っている状態) とします。また、今回は Log Analytics ワークスペースのログを対象にクエリを実行するため、[Identity](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details) でマネージド ID を有効化する必要はございません。
-![](./HowToCreatePerfLogAlertForWin/image22.png)
+![](./HowToCreatePerfLogAlertForWin/image22_2601.png)
 
 > [!NOTE]
-> [詳細設定オプション](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details)の [アラートを自動的に解決する] と [アクションのミュート] につきましては、[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts)や[弊社サポート ブログ](https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction) をご確認ください。
+> [詳細設定オプション](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details)の [アラートを自動的に解決する] と [アクションのミュート] につきましては、[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts)や[弊社サポート ブログ](https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction) をご確認ください。
 
 
 6. 最後に設定した内容を確認し、[作成] をクリックします。手順は以上です。
@@ -381,9 +386,9 @@ Azure Monitor のアラート機能では、[アクション グループ](https
 
 **2. メモリ使用率を確認するクエリを実行します。**
 [ログ] から Perf &#124; where ObjectName == \'Memory\' and CounterName == \'% Committed Bytes In Use\'を入力します。
-[実行] をクリックし、[+ 新しいアラート ルール] をクリックします。
+[実行] をクリックし、画面右上の「・・・」メニューから[+ 新しいアラート ルール] をクリックします。
 ※ ログの収集が開始されるまでに時間がかかる場合がございます。予めご留意ください。
-![](./HowToCreatePerfLogAlertForWin/image23.png)
+![](./HowToCreatePerfLogAlertForWin/image23_2601.png)
 
 
 **3. ログ アラート ルールの条件を指定します。** 
@@ -401,11 +406,11 @@ Azure Monitor のアラート機能では、[アクション グループ](https
 **5. アラート ルールの名前、アラートの重大度等を設定します。**
 [アラート ルールの詳細] では、重大度、アラート ルール名、アラート ルールの説明を設定します。
 [詳細設定オプション] は既定の状態 (作成時に有効化のみチェックが入っている状態) とします。また、今回は Log Analytics ワークスペースのログを対象にクエリを実行するため、[Identity](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details) でマネージド ID を有効化する必要はございません。
-![](./HowToCreatePerfLogAlertForWin/image22.png)
+![](./HowToCreatePerfLogAlertForWin/image22_2601.png)
 
 
 > [!NOTE]
-> [詳細設定オプション](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details)の [アラートを自動的に解決する] と [アクションのミュート] につきましては、[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts)や[弊社サポート ブログ](https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction) をご確認ください。
+> [詳細設定オプション](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details)の [アラートを自動的に解決する] と [アクションのミュート] につきましては、[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts)や[弊社サポート ブログ](https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction) をご確認ください。
 
 
 6. 最後に設定した内容を確認し、[作成] をクリックします。手順は以上です。
@@ -460,9 +465,9 @@ Azure Monitor のアラート機能では、[アクション グループ](https
 
 **2. ディスク空き容量率を確認するクエリを実行します。**
 [ログ] から Perf &#124; where ObjectName == \'LogicalDisk\' and CounterName == \'% Free Space\'を入力します。
-[実行] をクリックし、[+ 新しいアラート ルール] をクリックします。
+[実行] をクリックし、画面右上の「・・・」メニューから[+ 新しいアラート ルール] をクリックします。
 ※ ログの収集が開始されるまでに時間がかかる場合がございます。予めご留意ください。
-![](./HowToCreatePerfLogAlertForWin/image25.png)
+![](./HowToCreatePerfLogAlertForWin/image25_2601.png)
 
 
 **3. ログ アラート ルールの条件を指定します。** 
@@ -480,11 +485,11 @@ Azure Monitor のアラート機能では、[アクション グループ](https
 **5. アラート ルールの名前、アラートの重大度等を設定します。**
 [アラート ルールの詳細] では、重大度、アラート ルール名、アラート ルールの説明を設定します。
 [詳細設定オプション] は既定の状態 (作成時に有効化のみチェックが入っている状態) とします。また、今回は Log Analytics ワークスペースのログを対象にクエリを実行するため、[Identity](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details) でマネージド ID を有効化する必要はございません。
-![](./HowToCreatePerfLogAlertForWin/image22.png)
+![](./HowToCreatePerfLogAlertForWin/image22_2601.png)
 
 
 > [!NOTE]
-> [詳細設定オプション](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details)の [アラートを自動的に解決する] と [アクションのミュート] につきましては、[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts)や[弊社サポート ブログ](https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction) をご確認ください。
+> [詳細設定オプション](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details)の [アラートを自動的に解決する] と [アクションのミュート] につきましては、[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts)や[弊社サポート ブログ](https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction) をご確認ください。
 
 6. 最後に設定した内容を確認し、[作成] をクリックします。手順は以上です。
 -----------------
