@@ -8,6 +8,10 @@ tags:
   - How-To
 ---
 
+[更新履歴]
+- 2025/02/14 ブログ公開
+- 2026/01/28 最新情報への更新
+
 こんにちは、Azure Monitoring サポート チームの北村、佐藤です。
 Azure Monitor エージェントを使用した死活監視方法について本ブログで紹介します。
 本ブログは、以下の過去の記事 (Log Analytics エージェントを使用した死活監視) を Azure Monitor エージェント版に更新したものとなります。
@@ -72,9 +76,9 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/quick-create-workspac
 ### 2. データ収集ルールの作成とデータ収集ルールへの関連付け
 1 で作成した Log Analytics ワークスペースにログを収集するよう、データ収集ルールを構成します。
 
--- Collect data with Azure Monitor Agent
+-- Collect data from virtual machine client with Azure Monitor
 https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-data-collection
-(["データ ソース"](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-data-collection#data-sources) 項目にて、各データ ソースをクリックすることでデータ ソースごとの設定方法の公開情報に遷移します。)
+(["データ ソース"](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/data-collection?tabs=current#add-data-sources) 項目にて、各データ ソースをクリックすることでデータ ソースごとの設定方法の公開情報に遷移します。)
 
 データ収集ルールにマシンを関連づけると Azure Monitor エージェントがインストールされます。
 (すでにインストール済みの場合には、マシン上に Azure Monitor エージェントが存在することが確認されたのち、インストールがスキップされます。)
@@ -143,7 +147,7 @@ Heartbeat
 上記クエリは、直近 5 分以内の Heartbeat を返しますので、当該クエリの実行結果が 0 件の場合は直近 5 分間 Heartbeat が収集されていないことを意味します。そのため、演算子は 「等しい」、しきい値は 「0」 としています。
 
 - 評価の頻度 (黄色枠線部分)
-アラートの検索クエリが実行される間隔です。この例では、5 分ごとにクエリが実行されます。
+アラートの検索クエリが実行される間隔です。この例では、10 分ごとにクエリが実行されます。
 
 - 評価期間 (黒枠線部分)
 クエリの対象とするデータの時間範囲です。基本的には [集計の粒度] と同じ時間範囲になります。
