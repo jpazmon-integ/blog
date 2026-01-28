@@ -210,7 +210,7 @@ Network Watcher の接続モニターを利用している環境において、�
 
 
 - ***Update Management***
-[Update Management](https://learn.microsoft.com/ja-jp/azure/automation/update-management/overview) では Log Analytics エージェントを利用しているため、継続して仮想マシン等の更新プログムの管理を行いたい場合は Log Analytics エージェントに依存しない [Azure Update Manager](https://learn.microsoft.com/ja-jp/azure/update-manager/overview?tabs=azure-vms) への移行が必要です。Azure Update Management の対象になっている仮想マシンは、Log Analytics ワークスペースに対して以下のクエリを実行することで確認可能です (検索範囲の時間はマシンの起動状況を加味して適宜ご設定ください)。Azure Update Management から Azure Update Manager への移行手順の詳細につきましては、[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/update-manager/guidance-migration-automation-update-management-azure-update-manager) をご参照ください。
+[Update Management](https://azure.microsoft.com/ja-jp/updates?id=updatemanagement-retired-31august2024) では Log Analytics エージェントを利用しているため、継続して仮想マシン等の更新プログムの管理を行いたい場合は Log Analytics エージェントに依存しない [Azure Update Manager](https://learn.microsoft.com/ja-jp/azure/update-manager/overview?tabs=azure-vms) への移行が必要です。Azure Update Management の対象になっている仮想マシンは、Log Analytics ワークスペースに対して以下のクエリを実行することで確認可能です (検索範囲の時間はマシンの起動状況を加味して適宜ご設定ください)。
 ```
 Heartbeat
 | where Solutions contains "updates"
