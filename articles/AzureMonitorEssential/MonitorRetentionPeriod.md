@@ -7,6 +7,10 @@ tags:
   - How-To
 ---
 
+[更新履歴]
+- 2024/5/14 ブログ公開
+- 2026/1/28 最新情報に更新
+
 こんにちは、Azure Monitoring チームの北村です。
 今回は、Azure Monitor に関するデータの保持期間を紹介します。
 今回ご紹介する内容は、それぞれの公開情報に掲載されておりますが、一つのページに集約されておりません。
@@ -15,11 +19,17 @@ tags:
 
 <!-- more -->
 ## 目次
-- [1. Azure Monitor のログとメトリック、アクティビティ ログ](#1-Azure-Monitor-のログとメトリック、アクティビティ-ログ)
+- [目次](#目次)
+- [1. Azure Monitor のログとメトリック、アクティビティ ログ](#1-azure-monitor-のログとメトリックアクティビティ-ログ)
   - [1-1. メトリック](#1-1-メトリック)
+      - [プラットフォーム メトリック](#プラットフォーム-メトリック)
+      - [クラシック ゲスト OS メトリック](#クラシック-ゲスト-os-メトリック)
+      - [ゲスト OS メトリック](#ゲスト-os-メトリック)
+      - [Application Insights ログ ベースのメトリック](#application-insights-ログ-ベースのメトリック)
+      - [Prometheus メトリック](#prometheus-メトリック)
   - [1-2. ログ](#1-2-ログ)
   - [1-3. アクティビティ ログ](#1-3-アクティビティ-ログ)
-- [2. Azure Monitor のアラートの履歴](#2-Azure-Monitor-のアラートの履歴)
+- [2. Azure Monitor のアラートの履歴](#2-azure-monitor-のアラートの履歴)
   - [2-1. 各種アラートの履歴](#2-1-各種アラートの履歴)
   - [2-2. サービス正常性](#2-2-サービス正常性)
   - [2-3. リソース正常性](#2-3-リソース正常性)
@@ -58,6 +68,10 @@ tags:
 [クラシック ゲスト OS メトリック](https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics) は、Azure VM に [Azure Diagnostics 拡張機能](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview)をインストールすることで収集されます。
 このメトリックは、メトリック エクスプローラーで少なくとも ***14 日間*** 表示することが可能です。
 ![](./MonitorRetentionPeriod/image08.png)
+
+>[!IMPORTANT]
+>[Azure Diagnostics 拡張機能](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview)は 2026 年 3 月 31 日をもってサポートを終了予定となります。
+>詳細については、[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview#migration-guidance)および[弊社ブログ記事](https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromAzureDiagnostics/)をご確認ください。
 
 <br>
 
