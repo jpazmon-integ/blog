@@ -10,18 +10,18 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは、Azure Monitoring サポート チームの北村です。今回のブログでは Azure VM の診断設定と、それ以外のリソースにおける診断設定の違いをご説明します。皆さんは、Azure Monitor には “診断設定” という名前の機能が 2 つ存在することをご存知ですか？どちらの機能もログやメトリックを収集しますが、実は全く別の機能です。しかし、同じ名前の機能のため、この 2">
+      <meta name="description" content="[更新履歴]    2023&#x2F;12&#x2F;14 ブログ公開 2026&#x2F;1&#x2F;28 最新情報に更新   [!IMPORTANT]本記事で紹介している 2. Azure VM の診断設定 の機能は 2026 年 3 月 31 日をもってサポートを終了予定となります。詳細については、弊社公開情報および弊社ブログ記事をご確認ください。  こんにちは、Azure Monitoring サポート チームの北村です。今">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Azure VM の診断設定とそれ以外のリソースにおける診断設定について">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToDiagnosticsSettings/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの北村です。今回のブログでは Azure VM の診断設定と、それ以外のリソースにおける診断設定の違いをご説明します。皆さんは、Azure Monitor には “診断設定” という名前の機能が 2 つ存在することをご存知ですか？どちらの機能もログやメトリックを収集しますが、実は全く別の機能です。しかし、同じ名前の機能のため、この 2">
+<meta property="og:description" content="[更新履歴]    2023&#x2F;12&#x2F;14 ブログ公開 2026&#x2F;1&#x2F;28 最新情報に更新   [!IMPORTANT]本記事で紹介している 2. Azure VM の診断設定 の機能は 2026 年 3 月 31 日をもってサポートを終了予定となります。詳細については、弊社公開情報および弊社ブログ記事をご確認ください。  こんにちは、Azure Monitoring サポート チームの北村です。今">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToDiagnosticsSettings/image01.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToDiagnosticsSettings/image02.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToDiagnosticsSettings/image03.png">
 <meta property="article:published_time" content="2023-12-13T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-28T02:12:21.515Z">
+<meta property="article:modified_time" content="2026-01-28T06:02:11.610Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="How-To">
 <meta property="article:tag" content="Azure Monitor Essentials">
@@ -181,20 +181,27 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+a3b5d7aa-f94c-55dd-916b-3b83f3cc9b1e%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+VM+%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%81%A8%E3%81%9D%E3%82%8C%E4%BB%A5%E5%A4%96%E3%81%AE%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FHowToDiagnosticsSettings%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FHowToDiagnosticsSettings.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FHowToDiagnosticsSettings.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToDiagnosticsSettings/" data-id="cmkxe44bw000g0noe410c3e9n" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToDiagnosticsSettings/" data-id="cmkxmbp07000g0nqx0j4fg1s2" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回のブログでは Azure VM の診断設定と、それ以外のリソースにおける診断設定の違いをご説明します。<br>皆さんは、Azure Monitor には “診断設定” という名前の機能が 2 つ存在することをご存知ですか？<br>どちらの機能もログやメトリックを収集しますが、実は全く別の機能です。しかし、同じ名前の機能のため、この 2 つの違いについてのお問い合わせが多く寄せられます。そこで、今回はこの 2 つの機能の違いに焦点をあてて機能の概要をご説明します！</p>
+        <p>[更新履歴]  </p>
+<ul>
+<li>2023/12/14 ブログ公開</li>
+<li>2026/1/28 最新情報に更新</li>
+</ul>
+<div class="alert is-important"><p class="alert-title">重要</p><p>本記事で紹介している <a href="#2-Azure-VM-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A">2. Azure VM の診断設定</a> の機能は 2026 年 3 月 31 日をもってサポートを終了予定となります。</p><p>詳細については、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview#migration-guidance">弊社公開情報</a>および<a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromAzureDiagnostics/">弊社ブログ記事</a>をご確認ください。</p></div>
+<p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回のブログでは Azure VM の診断設定と、それ以外のリソースにおける診断設定の違いをご説明します。<br>皆さんは、Azure Monitor には “診断設定” という名前の機能が 2 つ存在することをご存知ですか？<br>どちらの機能もログやメトリックを収集しますが、実は全く別の機能です。しかし、同じ名前の機能のため、この 2 つの違いについてのお問い合わせが多く寄せられます。そこで、今回はこの 2 つの機能の違いに焦点をあてて機能の概要をご説明します！</p>
 <br>
 
 <span id="more"></span>
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
 <li><a href="#1-%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%81%A8%E3%81%84%E3%81%86%E5%90%8D%E5%89%8D%E3%81%AE%E6%A9%9F%E8%83%BD%E3%81%AF-2-%E3%81%A4%E3%81%82%E3%82%8B">1. 診断設定という名前の機能は 2 つある</a></li>
-<li><a href="#2-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%A1%E3%83%BC%E3%83%AB%E3%81%AE%E7%99%BB%E9%8C%B2%E8%A7%A3%E9%99%A4%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E3%81%94%E8%B3%AA%E5%95%8F">2. Azure VM の診断設定</a></li>
-<li><a href="#3-Azure-Monitor-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A">3. Azure Monitor の診断設定</a></li>
-<li><a href="#4-Azure-VM-%E3%81%AE%E3%83%97%E3%83%A9%E3%83%83%E3%83%88-%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%82%92%E5%8F%8E%E9%9B%86%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95">4. Azure VM のプラット フォーム メトリックを収集する方法</a></li>
+<li><a href="#2-azure-vm-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A">2. Azure VM の診断設定</a></li>
+<li><a href="#3-azure-monitor-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A">3. Azure Monitor の診断設定</a></li>
+<li><a href="#4-azure-vm-%E3%81%AE%E3%83%97%E3%83%A9%E3%83%83%E3%83%88-%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%82%92%E5%8F%8E%E9%9B%86%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95">4. Azure VM のプラット フォーム メトリックを収集する方法</a></li>
 </ul>
 <br>
 
