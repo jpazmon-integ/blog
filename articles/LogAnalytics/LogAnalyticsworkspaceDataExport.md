@@ -7,10 +7,6 @@ tags:
   - Log Analytics
 ---
 
-[更新履歴]
-- 2024/01/06 ブログ公開
-- 2026/01/09 最新情報への更新
-
 こんにちは、Azure Monitoring サポート チームの北村です。
 皆さまは [Log Analytics ワークスペースのデータ エクスポート](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal) という機能をご存知でしょうか。
 この機能では Log Analytics ワークスペースに収集されたログをストレージ アカウントやイベント ハブにエクスポートすることができます。今回はこのデータ エクスポート機能でよくお問い合わせをいただくご質問を紹介いたします。
@@ -35,7 +31,7 @@ tags:
 
 ### Q1. データ エクスポート機能は全てのテーブルでサポートされていますか。
 いいえ、全てのテーブルでサポートしておりません。
-サポート対象のテーブルは、[こちら](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#unsupported-tables)の弊社公開情報でご確認ください。
+サポート対象のテーブルは、[こちら](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#supported-tables)の弊社公開情報でご確認ください。
 
 <br>
 
@@ -60,15 +56,15 @@ tags:
 
 ***1. エクスポート ルールで指定したテーブルがサポートされていない***
 対象のテーブルがデータ エクスポート機能でサポートされていない可能性がございます。
-まずは、指定したテーブルが[サポート対象のテーブル](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#unsupported-tables)かどうかをご確認ください。
+まずは、指定したテーブルが[サポート対象のテーブル](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#supported-tables)かどうかをご確認ください。
 
 
 ***2. ストレージ アカウントのネットワーク設定で "信頼された Microsoft サービス" が許可されていない***
 ストレージ アカウントのネットワーク設定により、ログがエクスポートされていない可能性がございます。
 宛先のストレージ アカウントが選択したネットワークからのアクセスを許可する構成である場合、
-[[Allow trusted Microsoft services to access this resource] が有効](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#allow-trusted-microsoft-services)になっているかどうかをご確認ください。完全に外部からのアクセスを無効にすると、Azure Monitor サービスからの通信が遮断され、ログをエクスポートすることができません。また、選択したネットワークからのアクセスを許可する構成の場合、Azure Monitor サービスからの通信を許可するために [Allow trusted Microsoft services to access this resource] を有効にしていただく必要がございます。
+[[信頼されたサービスの一覧にある Azure サービスがこのストレージ アカウントにアクセスすることを許可します。] が有効](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#allow-trusted-microsoft-services)になっているかどうかをご確認ください。完全に外部からのアクセスを無効にすると、Azure Monitor サービスからの通信が遮断され、ログをエクスポートすることができません。また、選択したネットワークからのアクセスを許可する構成の場合、Azure Monitor サービスからの通信を許可するために [信頼されたサービスの一覧にある Azure サービスがこのストレージ アカウントにアクセスすることを許可します。] を有効にしていただく必要がございます。
 ![](./LogAnalyticsworkspaceDataExport/image05.png)
-![](./LogAnalyticsworkspaceDataExport/image06.png)
+
 
 
 ***3. ストレージ アカウントのリージョンが Log Analytics ワークスペースと同じージョンでない***
