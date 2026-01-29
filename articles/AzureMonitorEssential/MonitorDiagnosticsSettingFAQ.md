@@ -2,9 +2,9 @@
 title: Azure Monitor の診断設定に関するよくあるご質問
 date: 2025-02-20 00:00:00
 tags:
-  - How-To
+  - Azure Monitor Essential
+  - Diagnostics Settings
   - FAQ
-  - Azure Monitor Essentials
 ---
 
 こんにちは、Azure Monitoring サポート チームの北村です。

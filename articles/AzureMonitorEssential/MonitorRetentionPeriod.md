@@ -2,9 +2,10 @@
 title: Azure Monitor の各種データの保持期間について
 date: 2024-05-14 00:00:00
 tags:
-  - Log Analytics
   - Azure Monitor Essential
-  - How-To
+  - Activity Logs
+  - Metrics
+  - HowTo
 ---
 
 [更新履歴]
