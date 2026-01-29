@@ -2,8 +2,9 @@
 title: Azure Monitor Agent for Linux で取得可能なパフォーマンス カウンターの一覧
 date: 2024-01-18 00:00:00
 tags:
-  - Azure Monitor Agent
   - Log Analytics
+  - Azure Monitor Agent - Linux
+  - HowTo
 ---
 
 [更新履歴]  
