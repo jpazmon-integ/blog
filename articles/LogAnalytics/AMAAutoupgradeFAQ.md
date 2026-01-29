@@ -2,8 +2,9 @@
 title: Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問集
 date: 2025-05-07 12:00:00
 tags:
- - How-To
+ - Log Analytics
  - Azure Monitor Agent
+ - HowTo
 ---
 
 [更新履歴]
