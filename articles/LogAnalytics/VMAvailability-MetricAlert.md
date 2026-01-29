@@ -7,6 +7,10 @@ tags:
   - How-To
 ---
 
+[更新履歴]
+- 2024/8/30 ブログ公開
+- 2026/1/28 最新情報であることを確認済み
+
 こんにちは、Azure Monitoring チームの北村です。
 今回は Azure VM のホストが出力するメトリック ‘VM Availability Metric (Preview)’ を利用したメトリック アラートの設定方法をご紹介します。
 
@@ -14,9 +18,11 @@ tags:
 
 <!-- more -->
 ## 目次
+- [目次](#目次)
 - [1. はじめに](#1-はじめに)
-- [2. 可用性メトリック ‘VM Availability Metric (Preview)’ とは](#2-可用性メトリック-‘VM-Availability-Metric-Preview-’-とは)
-- [3. 可用性メトリック ‘VM Availability Metric (Preview)’ のメトリック アラート設定手順](#3-可用性メトリック-‘VM-Availability-Metric-Preview-’-のメトリック-アラート設定手順)
+- [2. 可用性メトリック ‘VM Availability Metric (Preview)’ とは](#2-可用性メトリック-vm-availability-metric-preview-とは)
+- [3. 可用性メトリック ‘VM Availability Metric (Preview)’ のメトリック アラート設定手順](#3-可用性メトリック-vm-availability-metric-preview-のメトリック-アラート設定手順)
+- [ルックバック期間 : 5 分](#ルックバック期間--5-分)
 
 <br>
 

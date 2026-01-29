@@ -3,8 +3,8 @@ title: Azure Functions を利用したプライベート可用性テストにつ
 date: 2023-06-08 00:00:00
 tags:
   - Application Insights
-  - 可用性テスト
-  - Tips
+  - Availability Tests
+  - HowTo
 ---
 
 [更新履歴]

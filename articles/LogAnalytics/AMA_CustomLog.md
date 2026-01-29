@@ -4,6 +4,7 @@ date: 2023-03-22 10:00:00
 tags:
   - Azure Monitor Agent
   - Log Analytics
+  - HowTo
 ---
 
 こんにちは、Azure Monitor サポートの三輪です。

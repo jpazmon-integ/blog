@@ -3,9 +3,9 @@ title: Azure Automation にて特定期間のジョブの実行時間を取得�
 date: 2019-4-3 02:15:00
 tags:
   - Automation
-  - Howto
   - Runbook
-  - Job
+  - Cost
+  - HowTo
 ---
 
 こんにちは Azure サポート チームの村田です。  

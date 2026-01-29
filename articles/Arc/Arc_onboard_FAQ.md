@@ -3,8 +3,8 @@ title: Azure Arc のオンボードスクリプトの留意点
 date: 2024-05-30 21:00:00
 tags:
   - Azure Arc
-  - howto
-  - オンボード script
+  - Arc-enabled servers
+  - HowTo
 ---
 
 [更新履歴]

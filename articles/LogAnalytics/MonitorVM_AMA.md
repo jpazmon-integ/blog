@@ -3,9 +3,11 @@ title: Azure Monitor エージェントにより収集される Heartbeat ログ
 date: 2025-02-14 00:00:00
 tags:
   - Log Analytics
-  - Azure Monitor Essentials
+  - Azure Monitor Essential
   - Azure Monitor Agent
-  - How-To
+  - Alerts, Action Groups
+  - Log search alert
+  - HowTo
 ---
 
 こんにちは、Azure Monitoring サポート チームの北村、佐藤です。
