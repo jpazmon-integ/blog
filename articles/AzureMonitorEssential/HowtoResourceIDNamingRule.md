@@ -2,9 +2,12 @@
 title: Azure Monitor のリソースにおける、日本語 でリソース名を設定することによる影響
 date: 2024-04-13 00:00:00
 tags:
-  - How-To
-  - Tips
-  - Azure Monitor Essentials
+  - Log Analytics
+  - Azure Monitor Essential
+  - Azure Monitor Agent
+  - Alerts, Action Groups
+  - Diagnostics Settings
+  - Troubleshooting
 ---
 
 [更新履歴]
