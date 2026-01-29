@@ -10,12 +10,12 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは！ Azure Monitoring チームの佐々木 大輔(ササキ ダイスケ)です。ログを対象としたアラート ルールのログが0件の検知を行う際の注意点および、“クエリの時間の範囲のオーバーライド” オプションについてご紹介させていただきます。">
+      <meta name="description" content="[更新履歴]  2022&#x2F;11&#x2F;13 ブログ公開 2026&#x2F;1&#x2F;29 最新情報に更新  こんにちは！ Azure Monitoring チームの佐々木 大輔(ササキ ダイスケ)です。ログを対象としたアラート ルールのログが0件の検知を行う際の注意点および、“クエリの時間の範囲のオーバーライド” オプションについてご紹介させていただきます。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ログ アラート ルールの 0 件検知とクエリの時間の範囲のオーバーライドについて">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowLogAlertZeroRecordFired/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは！ Azure Monitoring チームの佐々木 大輔(ササキ ダイスケ)です。ログを対象としたアラート ルールのログが0件の検知を行う際の注意点および、“クエリの時間の範囲のオーバーライド” オプションについてご紹介させていただきます。">
+<meta property="og:description" content="[更新履歴]  2022&#x2F;11&#x2F;13 ブログ公開 2026&#x2F;1&#x2F;29 最新情報に更新  こんにちは！ Azure Monitoring チームの佐々木 大輔(ササキ ダイスケ)です。ログを対象としたアラート ルールのログが0件の検知を行う際の注意点および、“クエリの時間の範囲のオーバーライド” オプションについてご紹介させていただきます。">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowLogAlertZeroRecordFired/2.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowLogAlertZeroRecordFired/3.png">
@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowLogAlertZeroRecordFired/7.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowLogAlertZeroRecordFired/6.png">
 <meta property="article:published_time" content="2022-11-12T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-29T02:32:40.511Z">
+<meta property="article:modified_time" content="2026-01-29T08:13:50.313Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Azure Monitor">
 <meta property="article:tag" content="FAQ">
@@ -182,35 +182,45 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+ad83c184-1610-5ae0-8561-669c25aa6755%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%83%AD%E3%82%B0+%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88+%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE+0+%E4%BB%B6%E6%A4%9C%E7%9F%A5%E3%81%A8%E3%82%AF%E3%82%A8%E3%83%AA%E3%81%AE%E6%99%82%E9%96%93%E3%81%AE%E7%AF%84%E5%9B%B2%E3%81%AE%E3%82%AA%E3%83%BC%E3%83%90%E3%83%BC%E3%83%A9%E3%82%A4%E3%83%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FHowLogAlertZeroRecordFired%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FHowLogAlertZeroRecordFired.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FHowLogAlertZeroRecordFired.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowLogAlertZeroRecordFired/" data-id="cmkyua3bq000b0nlt7mfr6yq7" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowLogAlertZeroRecordFired/" data-id="cmkz6guaz000b0no68zzb3noz" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは！ Azure Monitoring チームの佐々木 大輔(ササキ ダイスケ)です。<br>ログを対象としたアラート ルールのログが0件の検知を行う際の注意点および、<br>“クエリの時間の範囲のオーバーライド” オプションについてご紹介させていただきます。</p>
+        <p>[更新履歴]</p>
+<ul>
+<li>2022/11/13 ブログ公開</li>
+<li>2026/1/29 最新情報に更新</li>
+</ul>
+<p>こんにちは！ Azure Monitoring チームの佐々木 大輔(ササキ ダイスケ)です。<br>ログを対象としたアラート ルールのログが0件の検知を行う際の注意点および、<br>“クエリの時間の範囲のオーバーライド” オプションについてご紹介させていただきます。</p>
 <span id="more"></span>
 
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
-<li><a href="#%E6%9C%AC%E8%A8%98%E4%BA%8B%E3%81%AE%E5%AF%BE%E8%B1%A1%E3%81%A8%E3%81%AA%E3%82%8B%E3%83%AD%E3%82%B0%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AF2021-08-01%E3%81%A7%E3%81%99">本記事の対象となるログアラートルールは 2021-08-01 です</a><ul>
-<li><a href="#AzurePortal%E3%81%AEUI%E3%81%8B%E3%82%89%E5%88%A4%E6%96%AD%E3%81%99%E3%82%8B">Azure Portal の UI から判断する</a></li>
-<li><a href="#AzureResourceGraphExplorer%E3%81%A7%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E6%83%85%E5%A0%B1%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">Azure Resource Graph Explorer でリソース情報を確認する</a></li>
+<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
+<li><a href="#%E6%9C%AC%E8%A8%98%E4%BA%8B%E3%81%AE%E5%AF%BE%E8%B1%A1%E3%81%A8%E3%81%AA%E3%82%8B%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AF-2021-08-01-%E4%BB%A5%E9%99%8D%E3%81%A7%E3%81%99">本記事の対象となるログ アラート ルールは 2021-08-01 以降です</a><ul>
+<li><a href="#azure-portal-%E3%81%AE-ui-%E3%81%8B%E3%82%89%E5%88%A4%E6%96%AD%E3%81%99%E3%82%8B">Azure Portal の UI から判断する</a><ul>
+<li><a href="#api-%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3-2021-08-01-%E4%BB%A5%E9%99%8D%E3%81%AE%E5%A0%B4%E5%90%88">API バージョン 2021-08-01 以降の場合</a></li>
+<li><a href="#%E4%BB%A5%E5%89%8D%E3%81%AE-api-%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3-2018-04-16-%E3%81%AE%E5%A0%B4%E5%90%88">以前の API バージョン (2018-04-16) の場合</a></li>
 </ul>
 </li>
-<li><a href="#%E3%83%AD%E3%82%B0%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AB%E3%82%88%E3%81%A3%E3%81%A6%E5%AE%9F%E9%9A%9B%E3%81%AB%E5%AE%9F%E8%A1%8C%E3%81%95%E3%82%8C%E3%82%8B%E3%82%AF%E3%82%A8%E3%83%AA">ログアラートルールによって実際に実行されるクエリ</a><ul>
-<li><a href="#%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%83%AB%E3%83%BC%E3%83%AB%E4%B8%8A%E3%81%AB%E3%81%A6%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%9F%E3%82%AF%E3%82%A8%E3%83%AA">アラートルール上にて指定したクエリ</a></li>
-<li><a href="#%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B31">パターン1</a></li>
-<li><a href="#%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B32">パターン2</a></li>
+<li><a href="#azure-resource-graph-explorer%E3%81%A7%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E6%83%85%E5%A0%B1%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">Azure Resource Graph Explorerでリソース情報を確認する</a></li>
 </ul>
 </li>
-<li><a href="#%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B31%E3%81%A7%E3%81%AF%E3%83%AD%E3%82%B0%E3%81%AE0%E4%BB%B6%E3%82%92%E6%A4%9C%E7%9F%A5%E3%81%A7%E3%81%8D%E3%81%A6%E3%80%81%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B32%E3%81%A7%E3%81%AF%E3%83%AD%E3%82%B0%E3%81%AE0%E4%BB%B6%E3%81%8C%E6%A4%9C%E7%9F%A5%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E3%80%81%E3%81%9D%E3%81%AE%E7%90%86%E7%94%B1">パターン1ではログの0件を検知できて、パターン2ではログの0件が検知できない、その理由</a></li>
+<li><a href="#%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AB%E3%82%88%E3%81%A3%E3%81%A6%E5%AE%9F%E9%9A%9B%E3%81%AB%E5%AE%9F%E8%A1%8C%E3%81%95%E3%82%8C%E3%82%8B%E3%82%AF%E3%82%A8%E3%83%AA">ログ アラート ルールによって実際に実行されるクエリ</a><ul>
+<li><a href="#%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E4%B8%8A%E3%81%AB%E3%81%A6%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%9F%E3%82%AF%E3%82%A8%E3%83%AA">アラート ルール上にて指定したクエリ</a></li>
+<li><a href="#%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3-1">パターン 1</a></li>
+<li><a href="#%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3-2">パターン 2</a></li>
+<li><a href="#%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3-1-%E3%81%A7%E3%81%AF%E3%83%AD%E3%82%B0%E3%81%AE-0-%E4%BB%B6%E3%82%92%E6%A4%9C%E7%9F%A5%E3%81%A7%E3%81%8D%E3%81%A6%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3-2-%E3%81%A7%E3%81%AF%E3%83%AD%E3%82%B0%E3%81%AE-0-%E4%BB%B6%E3%81%8C%E6%A4%9C%E7%9F%A5%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E3%81%9D%E3%81%AE%E7%90%86%E7%94%B1">パターン 1 ではログの 0 件を検知できて、パターン 2 ではログの 0 件が検知できない、その理由</a></li>
 <li><a href="#%E3%82%AF%E3%82%A8%E3%83%AA%E3%81%AE%E6%9C%9F%E9%96%93%E3%81%AE%E7%AF%84%E5%9B%B2%E3%81%AE%E3%82%AA%E3%83%BC%E3%83%90%E3%83%BC%E3%83%A9%E3%82%A4%E3%83%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">クエリの期間の範囲のオーバーライドについて</a></li>
+</ul>
+</li>
 <li><a href="#%E3%81%BE%E3%81%A8%E3%82%81">まとめ</a></li>
 </ul>
-<h2 id="本記事の対象となるログアラートルールは2021-08-01です"><a href="#本記事の対象となるログアラートルールは2021-08-01です" class="headerlink" title="本記事の対象となるログアラートルールは2021-08-01です"></a>本記事の対象となるログアラートルールは2021-08-01です</h2><p>ログアラートルールでは現在、主に apiversion:2021-08-01 および 2018-04-16 が存在しています。<br>本記事では apiversion:2021-08-01 のログアラートルールについて解説しています。<br>お使いのログアラートルールが 2021-08-01 なのかどうかは、以下手順で確認ください。</p>
-<h3 id="AzurePortalのUIから判断する"><a href="#AzurePortalのUIから判断する" class="headerlink" title="AzurePortalのUIから判断する"></a>AzurePortalのUIから判断する</h3><h4 id="apiversion-2021-08-01-の場合"><a href="#apiversion-2021-08-01-の場合" class="headerlink" title="apiversion 2021-08-01 の場合"></a>apiversion 2021-08-01 の場合</h4><p><img src="/blog/AzureMonitorEssential/HowLogAlertZeroRecordFired/2.png"></p>
-<h4 id="apiversion-2018-04-16-の場合"><a href="#apiversion-2018-04-16-の場合" class="headerlink" title="apiversion 2018-04-16 の場合"></a>apiversion 2018-04-16 の場合</h4><p><img src="/blog/AzureMonitorEssential/HowLogAlertZeroRecordFired/3.png"></p>
-<p>※この確認方法はログ アラート ルールの 編集画面のみの変更によって適切ではなくなる可能性があり、基本的には Azure Resource Graph Explorer より確認いただく事を推奨します。</p>
-<h3 id="AzureResourceGraphExplorerでリソース情報を確認する"><a href="#AzureResourceGraphExplorerでリソース情報を確認する" class="headerlink" title="AzureResourceGraphExplorerでリソース情報を確認する"></a>AzureResourceGraphExplorerでリソース情報を確認する</h3><ol>
+<h2 id="本記事の対象となるログ-アラート-ルールは-2021-08-01-以降です"><a href="#本記事の対象となるログ-アラート-ルールは-2021-08-01-以降です" class="headerlink" title="本記事の対象となるログ アラート ルールは 2021-08-01 以降です"></a>本記事の対象となるログ アラート ルールは 2021-08-01 以降です</h2><p>ログアラートルールは API バージョン 2021-08-01 以降とそれよりも前のバージョンとで、UI および動作が大きく変更されております。<br>本記事では API バージョン 2021-08-01 以降のログ アラート ルールについて解説しています。<br>お使いのログ アラート ルールが 2021-08-01 以降かどうかは、以下手順で確認ください。</p>
+<h3 id="Azure-Portal-の-UI-から判断する"><a href="#Azure-Portal-の-UI-から判断する" class="headerlink" title="Azure Portal の UI から判断する"></a>Azure Portal の UI から判断する</h3><h4 id="API-バージョン-2021-08-01-以降の場合"><a href="#API-バージョン-2021-08-01-以降の場合" class="headerlink" title="API バージョン 2021-08-01 以降の場合"></a>API バージョン 2021-08-01 以降の場合</h4><p><img src="/blog/AzureMonitorEssential/HowLogAlertZeroRecordFired/2.png"></p>
+<h4 id="以前の-API-バージョン-2018-04-16-の場合"><a href="#以前の-API-バージョン-2018-04-16-の場合" class="headerlink" title="以前の API バージョン (2018-04-16) の場合"></a>以前の API バージョン (2018-04-16) の場合</h4><p><img src="/blog/AzureMonitorEssential/HowLogAlertZeroRecordFired/3.png"></p>
+<p>※この確認方法は今後のログ アラート ルールの編集画面の変更によって適切ではなくなる可能性があり、基本的には 以下の通り、Azure Resource Graph Explorer より確認いただく事を推奨します。</p>
+<h3 id="Azure-Resource-Graph-Explorerでリソース情報を確認する"><a href="#Azure-Resource-Graph-Explorerでリソース情報を確認する" class="headerlink" title="Azure Resource Graph Explorerでリソース情報を確認する"></a>Azure Resource Graph Explorerでリソース情報を確認する</h3><ol>
 <li>Azure Portal より Resource Graph エクスプローラー を開きます。</li>
 </ol>
 <p><img src="/blog/AzureMonitorEssential/HowLogAlertZeroRecordFired/1.png"></p>
@@ -220,11 +230,11 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">resources</span><br><span class="line">| where type contains &quot;scheduledqueryrules&quot;</span><br><span class="line">| where name contains &quot;アラートルール名&quot;</span><br><span class="line">| extend apiversion = tostring(parse_json(properties)[&quot;createdWithApiVersion&quot;])</span><br></pre></td></tr></table></figure>
 
 <p><img src="/blog/AzureMonitorEssential/HowLogAlertZeroRecordFired/4.png"></p>
-<h2 id="ログアラートルールによって実際に実行されるクエリ"><a href="#ログアラートルールによって実際に実行されるクエリ" class="headerlink" title="ログアラートルールによって実際に実行されるクエリ"></a>ログアラートルールによって実際に実行されるクエリ</h2><p>ログ アラート ルールでは、お客様が指定したクエリはそのまま利用されず、指定された期間やその他設定項目を適用したクエリが実行されています。<br>最終的に実際に実行されるクエリによって0件の検知を行うか否かが確定するためこのクエリを意識する事が重要となります。</p>
-<h3 id="アラートルール上にて指定したクエリ"><a href="#アラートルール上にて指定したクエリ" class="headerlink" title="アラートルール上にて指定したクエリ"></a>アラートルール上にて指定したクエリ</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Heartbeat</span><br></pre></td></tr></table></figure>
+<h2 id="ログ-アラート-ルールによって実際に実行されるクエリ"><a href="#ログ-アラート-ルールによって実際に実行されるクエリ" class="headerlink" title="ログ アラート ルールによって実際に実行されるクエリ"></a>ログ アラート ルールによって実際に実行されるクエリ</h2><p>ログ アラート ルールでは、お客様が指定したクエリはそのまま利用されず、指定された期間やその他設定項目を適用したクエリが実行されています。<br>最終的に実際に実行されるクエリによって0件の検知を行うか否かが確定するためこのクエリを意識する事が重要となります。</p>
+<h3 id="アラート-ルール上にて指定したクエリ"><a href="#アラート-ルール上にて指定したクエリ" class="headerlink" title="アラート ルール上にて指定したクエリ"></a>アラート ルール上にて指定したクエリ</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Heartbeat</span><br></pre></td></tr></table></figure>
 
 <p><img src="/blog/AzureMonitorEssential/HowLogAlertZeroRecordFired/5.png"></p>
-<h3 id="パターン1"><a href="#パターン1" class="headerlink" title="パターン1"></a>パターン1</h3><ul>
+<h3 id="パターン-1"><a href="#パターン-1" class="headerlink" title="パターン 1"></a>パターン 1</h3><ul>
 <li><p>設定値</p>
 <ul>
 <li>メジャー: テーブルの行</li>
@@ -242,7 +252,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </li>
 </ul>
 <p><img src="/blog/AzureMonitorEssential/HowLogAlertZeroRecordFired/7.png"></p>
-<h3 id="パターン2"><a href="#パターン2" class="headerlink" title="パターン2"></a>パターン2</h3><ul>
+<h3 id="パターン-2"><a href="#パターン-2" class="headerlink" title="パターン 2"></a>パターン 2</h3><ul>
 <li><p>設定値</p>
 <ul>
 <li>メジャー: テーブルの行</li>
@@ -261,7 +271,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </li>
 </ul>
 <p><img src="/blog/AzureMonitorEssential/HowLogAlertZeroRecordFired/6.png"></p>
-<h3 id="パターン1ではログの0件を検知できて、パターン2ではログの0件が検知できない、その理由"><a href="#パターン1ではログの0件を検知できて、パターン2ではログの0件が検知できない、その理由" class="headerlink" title="パターン1ではログの0件を検知できて、パターン2ではログの0件が検知できない、その理由"></a>パターン1ではログの0件を検知できて、パターン2ではログの0件が検知できない、その理由</h3><p>0 件の検知を行う場合には、<a href="#%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B31">パターン1</a> の様に実際に実行されたクエリの検索結果が全く無い状況になる必要があります。<br>そのため、クエリのオーバーライド 2日を指定しますと、検索結果に 10/24 のデータが存在しており、直近5分のログが無い場合でも 0件での検知はできません。<br>このほかに、ディメンション(Computer)を増やした場合にも検索結果は <a href="#%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B32">パターン2</a> の様に検索結果が存在する可能性があり、その場合も  WIN-1FCE0JPJ64V の 0 件の検知はできません。</p>
+<h3 id="パターン-1-ではログの-0-件を検知できて、パターン-2-ではログの-0-件が検知できない、その理由"><a href="#パターン-1-ではログの-0-件を検知できて、パターン-2-ではログの-0-件が検知できない、その理由" class="headerlink" title="パターン 1 ではログの 0 件を検知できて、パターン 2 ではログの 0 件が検知できない、その理由"></a>パターン 1 ではログの 0 件を検知できて、パターン 2 ではログの 0 件が検知できない、その理由</h3><p>0 件の検知を行う場合には、<a href="#%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B31">パターン1</a> の様に実際に実行されたクエリの検索結果が全く無い状況になる必要があります。<br>そのため、クエリのオーバーライド 2日を指定しますと、検索結果に 10/24 のデータが存在しており、直近5分のログが無い場合でも 0件での検知はできません。<br>このほかに、ディメンション(Computer)を増やした場合にも検索結果は <a href="#%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B32">パターン2</a> の様に検索結果が存在する可能性があり、その場合も  WIN-1FCE0JPJ64V の 0 件の検知はできません。</p>
 <h3 id="クエリの期間の範囲のオーバーライドについて"><a href="#クエリの期間の範囲のオーバーライドについて" class="headerlink" title="クエリの期間の範囲のオーバーライドについて"></a>クエリの期間の範囲のオーバーライドについて</h3><p>クエリの期間の範囲のオーバーライド オプションは、クエリによって期間が指定されている場合でも、このオプションで二日を指定すると、その期間が2日に書き換えられます。<br>このオプションを利用する事のメリットに関するご質問をいただく事がありますが、<br>これは全ての期間のログを検索してしまうなどの高負荷・長時間かかるクエリ実行を避ける等、Azure 側の負荷抑制の意味合いが強く、ユーザーへのメリットをもたらす事は多くありません。</p>
 <h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>以下の 3 点についてご理解いただけたでしょうか。</p>
 <ul>
