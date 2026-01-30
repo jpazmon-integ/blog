@@ -7,24 +7,29 @@ tags:
   - How-To
 ---
 
+[更新履歴]  
+- 2024/7/3 ブログ公開
+- 2026/1/30 最新情報に更新
+
 こんにちは、Azure Monitoring チームの北村です。
 今回は、Azure Monitor による Azure VM の死活監視の考え方についてご紹介したいと思います。
 
 <!-- more -->
 ## 目次
+- [目次](#目次)
 - [1. はじめに](#1-はじめに)
 - [2. 各レイヤーの監視方法](#2-各レイヤーの監視方法)
-- [3. VM ホストの監視](#3-VM-ホストの監視)
-  - [3-1. メトリック ‘VM Availability Metric (Preview)’ を監視する方法](#3-1-メトリック-‘VM-Availability-Metric-Preview-’-を監視する方法)
+- [3. VM ホストの監視](#3-vm-ホストの監視)
+  - [3-1. メトリック 'VM Availability Metric (Preview)' を監視する方法](#3-1-メトリック-vm-availability-metric-preview-を監視する方法)
   - [3-2. リソース正常性を監視する方法](#3-2-リソース正常性を監視する方法)
-- [4. VM ゲストの監視](#4-VM-ゲストの監視)
-  - [4-1. Heartbeat を利用したログ アラート](#4-1-Heartbeat-を利用したログ-アラート)
-  - [4-2. Heartbeat を利用したログのメトリック アラート](#4-2-Heartbeat-を利用したログのメトリック-アラート)
-- [5. VM 上で稼働している機能の監視](#5-VM-上で稼働している機能の監視)
-- [6. Heartbeat の収集遅延に影響されない監視方法](#6-Heartbeat-の収集遅延に影響されない監視方法)
+- [4. VM ゲストの監視](#4-vm-ゲストの監視)
+  - [4-1. Heartbeat を利用したログ アラート](#4-1-heartbeat-を利用したログ-アラート)
+  - [4-2. Heartbeat を利用したログのメトリック アラート](#4-2-heartbeat-を利用したログのメトリック-アラート)
+- [5. VM 上で稼働している機能の監視](#5-vm-上で稼働している機能の監視)
+- [6. Heartbeat の収集遅延に影響されない監視方法](#6-heartbeat-の収集遅延に影響されない監視方法)
   - [6-1. アラートの評価期間を長めに設定する](#6-1-アラートの評価期間を長めに設定する)
   - [6-2. アラートのしきい値を緩和する](#6-2-アラートのしきい値を緩和する)
-  - [6-3. Heartbeat を利用したアラートではなく、VM Availability Metric (Preview) やリソース正常性で監視する](#6-3-Heartbeat-を利用したアラートではなく、VM-Availability-Metric-Preview-やリソース正常性で監視する)
+  - [6-3. Heartbeat を利用したアラートではなく、VM Availability Metric (Preview) やリソース正常性で監視する](#6-3-heartbeat-を利用したアラートではなくvm-availability-metric-preview-やリソース正常性で監視する)
 
 <br>
 
@@ -47,7 +52,7 @@ Heartbeat を利用した監視だけではなく、他の監視方法も併用�
 各レイヤーの監視方法の特性と内容をご確認いただき、お客様のご要件に合った監視方法や、監視の冗長化をご検討いただけますと幸いです。
 
 > [!IMPORTANT]
-> Log Analytics エージェントは 2024 年 8 月に廃止されるため、Azure Monitor エージェントへの移行をお願いしております。詳細は [弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration) や [弊社サポート ブログ](https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromLA/) をご覧ください。
+> Log Analytics エージェントは 2024 年 8 月に廃止済みでございます。今後は Azure Monitor エージェントをご利用ください。詳細は [弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration) や [弊社サポート ブログ](https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromLA/) をご覧ください。
 
 
 <br>
