@@ -3,9 +3,9 @@ title: Azure Private Link  を使った Azure Arc + Azure Monitor
 date: 2024-04-07 21:00:00
 tags:
   - Azure Arc
+  - Arc-enabled servers
   - HowTo
-  - Azure Private Link
-  - AMPLS
+  - Azure Monitor Private Link Scope
 ---
 
 [更新履歴]
