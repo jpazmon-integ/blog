@@ -2,8 +2,11 @@
 title: Azure Monitor 製品に関するお問い合わせを発行いただく際のポイント
 date: 2023-06-15 00:00:00
 tags:
-  - How-To
-  - Tips
+  - Azure Monitor All
+  - Azure Monitor Agent
+  - Alerts, Action Groups
+  - Diagnostics Settings
+  - Troubleshooting
 ---
 
 こんにちは、Azure Monitoring サポート チームの北村です。
