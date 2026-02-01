@@ -2,9 +2,9 @@
 title: Azure Update Manager に関するよくあるご質問
 date: 2025-08-18 16:00:00
 tags:
-  - How-To
-  - FAQ
+  - Automation
   - Azure Update Manager
+  - FAQ
 ---
 
 [更新履歴]
