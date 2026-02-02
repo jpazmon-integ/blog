@@ -2,11 +2,11 @@
 title: Log Analytics エージェントから Azure Monitor エージェントへの移行に関するよくあるご質問集
 date: 2024-04-19
 tags:
-  - How-To
+  - Retirement
   - FAQ
+  - AMA migration
+  - Azure Monitor Agent
   - Log Analytics
-  - Azure Monitor
-  - 移行
 ---
 
 [更新履歴]
