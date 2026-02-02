@@ -398,7 +398,7 @@ Azure Monitor のアラート機能では、[アクション グループ](https
 
 **4. アラートが発報した際に通知する方法を指定します。** 
 Azure Monitor のアラート機能では、[アクション グループ](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups) というリソースでアラートを通知する方法を定義します。新規で作成する場合は [+ アクション グループの作成]、既存のグループを指定する場合は [+ アクション グループの選択] をクリックします。
-![](./HowToCreatePerfLogAlertForWin/image19.png)
+![](./HowToCreatePerfLogAlertForWin/image19_2601.png)
 
 例えば、アラートをメールで通知する場合には、[通知のタイプ] で "電子メール/SMS メッセージ/プッシュ/音声" を選択し、通知するメール アドレスを指定します。アクション グループの概要や設定手順の詳細は、[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups#create-an-action-group-in-the-azure-portal)をご覧ください。
 ![](./HowToCreatePerfLogAlertForWin/image20.png)
@@ -477,7 +477,7 @@ Azure Monitor のアラート機能では、[アクション グループ](https
 
 **4. アラートが発報した際に通知する方法を指定します。** 
 Azure Monitor のアラート機能では、[アクション グループ](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups) というリソースでアラートを通知する方法を定義します。新規で作成する場合は [+ アクション グループの作成]、既存のグループを指定する場合は [+ アクション グループの選択] をクリックします。
-![](./HowToCreatePerfLogAlertForWin/image19.png)
+![](./HowToCreatePerfLogAlertForWin/image19_2601.png)
 
 例えば、アラートをメールで通知する場合には、[通知のタイプ] で "電子メール/SMS メッセージ/プッシュ/音声" を選択し、通知するメール アドレスを指定します。アクション グループの概要や設定手順の詳細は、[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups#create-an-action-group-in-the-azure-portal)をご覧ください。
 ![](./HowToCreatePerfLogAlertForWin/image20.png)
