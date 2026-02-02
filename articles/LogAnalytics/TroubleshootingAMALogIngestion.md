@@ -2,8 +2,9 @@
 title: Azure Monitor エージェントを使用したログ収集が行われない場合のトラブルシューティングについて
 date: 2024-11-08 14:00:00
 tags:
- - Tips
  - Log Analytics
+ - Azure Monitor Agent
+ - Troubleshooting
 ---
 
 [更新履歴]

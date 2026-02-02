@@ -2,9 +2,9 @@
 title: Azure Monitor のアラートに関するよくあるご質問
 date: 2025-01-29 00:00:00
 tags:
-  - How-To
+  - Azure Monitor Essential
+  - Alerts, Action Groups
   - FAQ
-  - Azure Monitor Essentials
 ---
 [更新履歴]
 - 2025/01/29 : ブログ公開

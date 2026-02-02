@@ -2,10 +2,9 @@
 title: Azure PowerShell で 3 万件以上のログを取得する方法
 date: 2023-09-01 00:00:00
 tags:
-  - How-To
-  - Tips
+  - HowTo
   - Log Analytics
-  - クエリ
+  - Query
 ---
 
 [更新履歴]

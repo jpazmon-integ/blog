@@ -3,7 +3,7 @@ title: Application Insights にテレメトリが保存されなかった場合�
 date: 2024-03-01 00:00:00
 tags:
   - Application Insights
-  - Tips
+  - Troubleshooting
 ---
 
 こんにちは、Azure Monitoring サポート チームの北山です。

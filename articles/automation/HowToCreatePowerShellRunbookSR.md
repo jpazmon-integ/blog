@@ -4,8 +4,7 @@ date: 2024-05-21 00:00:00
 tags:
   - Automation
   - Runbook
-  - How-To
-  - Tips
+  - Create a Support Request
 ---
 
 [更新履歴]

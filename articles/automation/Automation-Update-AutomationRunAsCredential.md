@@ -3,7 +3,7 @@ title: 【廃止】Automation アカウントの実行アカウントを作成�
 date: 2022-6-30 17:10:00
 tags:
   - Automation
-  - RunAs Account
+  - Troubleshooting
 ---
 
 [更新履歴]

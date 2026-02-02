@@ -1,7 +1,9 @@
 ---
 title: App Service でスロットをスワップした後に、cloud_RoleName にスワップ後の環境の値を記録するための対処方法
 date: 2023-12-27 00:00:00
-tags: Application Insights
+tags: 
+ - Application Insights
+ - Troubleshooting
 ---
 
 [更新履歴]  

@@ -10,6 +10,14 @@ tags:
   - LAD
 ---
 
+[更新履歴]  
+- 2023/12/14 ブログ公開
+- 2026/1/28 最新情報に更新
+
+>[!IMPORTANT]
+>本記事で紹介している [2. Azure VM の診断設定](#2-Azure-VM-の診断設定) の機能は 2026 年 3 月 31 日をもってサポートを終了予定となります。
+>詳細については、[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview#migration-guidance)および[弊社ブログ記事](https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromAzureDiagnostics/)をご確認ください。
+
 こんにちは、Azure Monitoring サポート チームの北村です。
 今回のブログでは Azure VM の診断設定と、それ以外のリソースにおける診断設定の違いをご説明します。
 皆さんは、Azure Monitor には "診断設定" という名前の機能が 2 つ存在することをご存知ですか？
@@ -19,10 +27,11 @@ tags:
 
 <!-- more -->
 ## 目次
+- [目次](#目次)
 - [1. 診断設定という名前の機能は 2 つある](#1-診断設定という名前の機能は-2-つある)
-- [2. Azure VM の診断設定](#2-アラート-メールの登録解除に関するよくあるご質問)
-- [3. Azure Monitor の診断設定](#3-Azure-Monitor-の診断設定)
-- [4. Azure VM のプラット フォーム メトリックを収集する方法](#4-Azure-VM-のプラット-フォーム-メトリックを収集する方法)
+- [2. Azure VM の診断設定](#2-azure-vm-の診断設定)
+- [3. Azure Monitor の診断設定](#3-azure-monitor-の診断設定)
+- [4. Azure VM のプラット フォーム メトリックを収集する方法](#4-azure-vm-のプラット-フォーム-メトリックを収集する方法)
 
 <br>
 

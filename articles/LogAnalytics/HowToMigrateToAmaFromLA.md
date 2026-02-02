@@ -10,19 +10,23 @@ tags:
 ---
 
 [更新履歴]
-- 2024/04/30 FAQ 追加
 - 2022/10/18 ブログ公開
+- 2024/04/30 FAQ 追加
+- 2026/01/27 廃止について追記
 
 
 こんにちは、Azure Monitoring サポート チームの北村です。
-Log Analytics エージェントが 2024 年 8 月に廃止することに伴い、Azure Monitor エージェントへの移行に関するお問い合わせをよくいただいております。そこで、本記事では Azure Monitor エージェントへの移行に関するよくあるご質問を Q & A 形式でおまとめいたしました。これから Azure Monitor エージェントへ移行される方、Azure Monitor エージェントの導入をご検討されている方の一助となれば幸いです。
+Log Analytics エージェント廃止に伴い、本記事では Azure Monitor エージェントへの移行に関するよくあるご質問を Q & A 形式でおまとめいたしました。
+
+>[!IMPORTANT] Log Analytics エージェント（MMA/OMS）は 2024 年 8 月 31 日をもって完全に廃止されました。
+>移行が完了していない場合は、本記事とあわせ [Log Analytics エージェントから Azure Monitor エージェントへの移行](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration) もご参照ください。
 
 <br>
 
 <!-- more -->
 
 ## Q & A タイトル
-- [Q1. Log Analytics エージェントは 2024 年 8 月に廃止されますが、Log Analytics ワークスペースも廃止されますか。](#Q1-Log-Analytics-エージェントは-2024-年-8-月に廃止されますが、Log-Analytics-ワークスペースも廃止されますか。)
+- [Q1. Log Analytics エージェントは 2024 年 8 月に廃止されますが、Log Analytics ワークスペースも廃止されますか。](#Q1-Log-Analytics-エージェントは-2024-年-8-月に廃止されましたが、Log-Analytics-ワークスペースも廃止されますか。)
 - [Q2. Azure Monitor エージェントへ移行した後も、既存のアラート ルールを利用することはできますか。](#Q2-Azure-Monitor-エージェントへ移行した後も、既存のアラート-ルールを利用することはできますか。)
 - [Q3. 同一のマシン上で Log Analytics エージェントと Azure Monitor エージェントを稼働させることは可能ですか。](#Q3-同一のマシン上で-Log-Analytics-エージェントと-Azure-Monitor-エージェントを稼働させることは可能ですか。)
 - [Q4. Azure Monitor エージェントでは、Log Analytics エージェントと同等の機能が提供されていますか。](#Q4-Azure-Monitor-エージェントでは、Log-Analytics-エージェントと同等の機能が提供されていますか。)
@@ -42,7 +46,7 @@ Log Analytics エージェントが 2024 年 8 月に廃止することに伴い
 
 
 
-### Q1. Log Analytics エージェントは 2024 年 8 月に廃止されますが、Log Analytics ワークスペースも廃止されますか。
+### Q1. Log Analytics エージェントは 2024 年 8 月に廃止されましたが、Log Analytics ワークスペースも廃止されますか。
 いいえ、Log Analytics エージェントは廃止されますが、Log Analytics ワークスペースは廃止されません。
 
 <br>
@@ -171,7 +175,7 @@ Log Analytics エージェントのカスタム ログでは、 Computer 列に�
 ### Q3. 同一のマシン上で Log Analytics エージェントと Azure Monitor エージェントを稼働させることは可能ですか。
 はい、可能です。
 ただし、データが重複して収集される可能性もございますので、その点ご留意ください。
-詳細は [Log Analytics エージェントから Azure Monitor エージェントへの移行](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration#migration-plan-considerations) の [移行ガイダンス] をご覧ください。
+詳細は [Log Analytics エージェントから Azure Monitor エージェントへの移行](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration) をご覧ください。
 
 <br>
 
@@ -179,13 +183,13 @@ Log Analytics エージェントのカスタム ログでは、 Computer 列に�
 
 ### Q4. Azure Monitor エージェントでは、Log Analytics エージェントと同等の機能が提供されていますか。
 いいえ、現時点では Log Analytics エージェントの全ての機能を Azure Monitor エージェントで提供しておりません。
-最終的には、Azure Monitor エージェントは Log Analytics エージェント、Azure Diagnostics 拡張機能、および Telegraf エージェントの機能を提供する予定でございます。Azure Monitor エージェントと Log Analytics エージェントにおける機能の違いにつきましては、[Azure Monitor エージェントの概要](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/agents-overview#compare-to-legacy-agents) の [レガシ エージェントとの比較] をご覧ください。
+最終的には、Azure Monitor エージェントは Log Analytics エージェント、Azure Diagnostics 拡張機能、および Telegraf エージェントの機能を提供する予定でございます。Azure Monitor エージェントと Log Analytics エージェントにおける機能の違いにつきましては、[サポートされているサービスと機能](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-overview#supported-services-and-features) の表をご覧ください。
 
 また、Log Analytics エージェントを利用した他製品のソリューションをご利用いただいている場合も、該当するソリューション観点で移行いただく必要がございます。移行方法の詳細は[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration#migrate-additional-services-and-features)をご確認いただけますと幸いです。なお、いくつかのサービスにつきましては、以下にご留意いただきたい点をお纏めしておりますので、こちらも併せてご確認いただけますと幸いです。
 
 
 - ***VM insights***
-Log Analytics エージェントの廃止に伴い、Log Analytics エージェント ベースの [VM insights](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/vminsights-overview) は 2024 年 8 月末にてサポート終了を予定しております。そのため、Log Analytics エージェント ベースの VM insights をご利用されている場合は、Azure Monitor エージェント ベースの VM insights への移行が必要です。詳細につきましては、[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/vminsights-enable-portal) や[弊社サポート ブログ](https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/) をご覧ください。
+Log Analytics エージェントの廃止に伴い、Log Analytics エージェント ベースの [VM insights](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/vminsights-overview) は 2024 年 8 月末にてサポート終了しております。そのため、Log Analytics エージェント ベースの VM insights をご利用されている場合は、Azure Monitor エージェント ベースの VM insights への移行が必要です。詳細につきましては、[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/vminsights-enable-portal) や[弊社サポート ブログ](https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/) をご覧ください。
 
 
 - ***Microsoft Sentinel***
@@ -198,7 +202,7 @@ Azure Automation の [Change Tracking とイベントリ機能](https://learn.mi
 
 - ***Network Watcher***
 Network Watcher の接続モニターを利用している環境において、オンプレミスのサーバーを監視のソースとしている場合は、Log Analytics エージェントを利用している可能性があります。Network Watcher の接続モニターで Log Analytics エージェントを利用しているかについては、[接続モニターのテスト グループ](https://learn.microsoft.com/ja-jp/azure/network-watcher/connection-monitor-create-using-portal#create-test-groups-in-a-connection-monitor)から、ソース/ターゲットにおいて、Azure 以外のエンドポイントでかつ、型が [ARC endpoints] を指定していれば、Log Analytics エージェントを利用していると判断できます。
-もし NetworkWatcher でオンプレミス マシンを Log Analytics エージェントで監視している場合、まずは [Azure Connected Machine エージェント](https://learn.microsoft.com/ja-jp/azure/network-watcher/connection-monitor-connected-machine-agent?tabs=WindowsScript)を使用して Azure のリソースとしてください (これは Network Watcher に限らず、非 Azure マシンに Azure Monitor エージェントを使用する場合は必要な作業となります)。Azure Connected Machine エージェントを使用して Azure のリソースとして頂いた後、[Azure Monitor エージェントと Network Watcher 拡張機能のインストールをしていただく必要があります](https://learn.microsoft.com/ja-jp/azure/network-watcher/azure-monitor-agent-with-connection-monitor#install-monitoring-agents-for-azure-and-non-azure-resources)。Azure Connected Machine エージェントをインストールすることで、Azure Arc サーバーとして Azure 上で認識され、通常の Azure VM に拡張機能をインストールするのと同じ要領で Azure Monitor エージェントおよび Network Watcher エージェントのインストールすることが可能となります。Azure Arc 対応サーバーでの Azure Monitor エージェントのインストール手順等につきましては、[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/network-watcher/connection-monitor-install-azure-monitor-agent?tabs=PowerShellWindowsArc%2CCLIWindowsArc) をご参照ください。
+もし NetworkWatcher でオンプレミス マシンを Log Analytics エージェントで監視している場合、まずは [Azure Connected Machine エージェント](https://learn.microsoft.com/ja-jp/azure/network-watcher/connection-monitor-connected-machine-agent?tabs=WindowsScript)を使用して Azure のリソースとしてください (これは Network Watcher に限らず、非 Azure マシンに Azure Monitor エージェントを使用する場合は必要な作業となります)。Azure Connected Machine エージェントを使用して Azure のリソースとして頂いた後、[Azure Monitor エージェントと Network Watcher 拡張機能のインストールをしていただく必要があります](https://learn.microsoft.com/ja-jp/azure/network-watcher/azure-monitor-agent-with-connection-monitor#install-monitoring-agents-for-azure-and-non-azure-resources)。Azure Connected Machine エージェントをインストールすることで、Azure Arc サーバーとして Azure 上で認識され、通常の Azure VM に拡張機能をインストールするのと同じ要領で Azure Monitor エージェントおよび Network Watcher エージェントのインストールすることが可能となります。Azure Arc 対応サーバーでの Azure Monitor エージェントのインストール手順等につきましては、[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/network-watcher/connection-monitor-install-azure-monitor-agent?tabs=linux) をご参照ください。
 
 
 - ***Microsoft Defender for Cloud***
@@ -206,7 +210,7 @@ Network Watcher の接続モニターを利用している環境において、�
 
 
 - ***Update Management***
-[Update Management](https://learn.microsoft.com/ja-jp/azure/automation/update-management/overview) では Log Analytics エージェントを利用しているため、継続して仮想マシン等の更新プログムの管理を行いたい場合は Log Analytics エージェントに依存しない [Azure Update Manager](https://learn.microsoft.com/ja-jp/azure/update-manager/overview?tabs=azure-vms) への移行が必要です。Azure Update Management の対象になっている仮想マシンは、Log Analytics ワークスペースに対して以下のクエリを実行することで確認可能です (検索範囲の時間はマシンの起動状況を加味して適宜ご設定ください)。Azure Update Management から Azure Update Manager への移行手順の詳細につきましては、[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/update-manager/guidance-migration-automation-update-management-azure-update-manager) をご参照ください。
+[Update Management](https://azure.microsoft.com/ja-jp/updates?id=updatemanagement-retired-31august2024) では Log Analytics エージェントを利用しているため、継続して仮想マシン等の更新プログムの管理を行いたい場合は Log Analytics エージェントに依存しない [Azure Update Manager](https://learn.microsoft.com/ja-jp/azure/update-manager/overview?tabs=azure-vms) への移行が必要です。Azure Update Management の対象になっている仮想マシンは、Log Analytics ワークスペースに対して以下のクエリを実行することで確認可能です (検索範囲の時間はマシンの起動状況を加味して適宜ご設定ください)。
 ```
 Heartbeat
 | where Solutions contains "updates"
@@ -228,7 +232,7 @@ HDInsight リソースにおいて、下記画像の赤枠部分の設定 「HDI
 <br>
 
 ### Q5. Log Analytics エージェントを利用した他製品のソリューションを利用しているかどうかを確認する方法を教えてください。
-Log Analytics エージェントから Azure Monitor エージェントへ移行いただく際に、移行すべきサービスを検出および移行方法の提案や進行状況の追跡を行う [AMA Migration Helper](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration-tools#using-ama-migration-helper) というツールがございます。AMA Migration Helper は、[モニター] > [ブック] > [パブリック テンプレート] > [Azure Monitor の要点] > [AMA Migration Helper] よりご利用いただけます。各ソリューションの移行に関する詳細は[こちら](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration#migrate-additional-services-and-features)の公開情報にまとまっておりますので、ご確認いただけますと幸いです。
+Log Analytics エージェントから Azure Monitor エージェントへ移行いただく際に、移行すべきサービスを検出および移行方法の提案や進行状況の追跡を行う [AMA Migration Helper](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration-helper-workbook) というツールがございます。AMA Migration Helper は、[モニター] > [ブック] > [パブリック テンプレート] > [Azure Monitor の要点] > [AMA Migration Helper] よりご利用いただけます。各ソリューションの移行に関する詳細は[こちら](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration#migrate-additional-services-and-features)の公開情報にまとまっておりますので、ご確認いただけますと幸いです。
 AMA Migration Helper を利用して他製品のソリューションのご利用状況を確認する手順は以下のとおりです。
 
 1. すべてのサービスより、[モニター] を選択し、画面左側の [ブック] より、[パブリック テンプレート] タブを選択します。一覧より [AMA Migration Helper] を選択します。
@@ -244,8 +248,8 @@ AMA Migration Helper を利用して他製品のソリューションのご利�
 
 
 ### Q6. Azure Montior エージェントを利用する上での前提条件とサポートしている OS を教えてください。
-Azure Montior エージェントをご利用する上での前提条件は [Azure Monitor エージェントを管理する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-manage?tabs=ARMAgentPowerShell%2CPowerShellWindows%2CPowerShellWindowsArc%2CCLIWindows%2CCLIWindowsArc#prerequisites) の [前提条件] をご覧ください。
-また、当該エージェントがサポートしている OS は [Azure Monitor エージェントの概要](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/agents-overview#supported-operating-systems) の [サポートされるオペレーティング システム] の表に記載されている OS かつ、対象列に "✓" と記載されているものでございます。
+Azure Montior エージェントをご利用する上での前提条件は [Azure Monitor エージェントのインストールと管理](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-manage?tabs=ARMAgentPowerShell%2CPowerShellWindows%2CPowerShellWindowsArc%2CCLIWindows%2CCLIWindowsArc#prerequisites) の [前提条件] をご覧ください。
+また、当該エージェントがサポートしている OS は [Azure Monitor エージェントでサポートされるオペレーティング システムと環境](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-supported-operating-systems) の表に記載されている OS かつ、対象列に "✓" と記載されているものでございます。
 
 
 <br>
@@ -270,7 +274,7 @@ DCE をご利用いただく場合は、下記 URL に対して TCP 443 ポー�
 - &lt;unique-dce-identifier&gt;.&lt;regionname&gt;.handler.control.monitor.azure.com
 - &lt;unique-dce-identifier&gt;.&lt;regionname&gt;.ingest.monitor.azure.com
 
-DCE に関する通信要件につきましては、[データ収集エンドポイントのコンポーネント](https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-collection-endpoint-overview?tabs=portal#components-of-a-data-collection-endpoint) をご確認ください。
+DCE に関する通信要件につきましては、[データ収集エンドポイントのコンポーネント](https://learn.microsoft.com/ja-jp/azure/azure-monitor/data-collection/data-collection-endpoint-overview?tabs=portal#components-of-a-dce) をご確認ください。
 
 
 <br>
@@ -278,7 +282,7 @@ DCE に関する通信要件につきましては、[データ収集エンドポ
 
 
 ### Q8. 閉じたネットワーク環境でコンピューターから Log Analytics ワークスペースへログを送信したいです。Azure Monitor エージェントでこのような事が実現可能ですか。
-はい、Log Analytics エージェントと同様に、[Azure Monitor Private Link Scope (AMPLS)](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-security) をご利用いただくことで実現可能です。AMPLS 環境下で Azure Monitor エージェントを用いてログを Log Analytics ワークスペースへ送信するためには、別途データ収集エンドポイント (DCE) のご構築が必要となります。AMPLS を用いたログの収集方法につきましては、[Azure Monitor エージェントのネットワークの分離を有効にする](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-data-collection-endpoint?tabs=PowerShellWindows#enable-network-isolation-for-the-azure-monitor-agent) の公開情報をご参考ください。
+はい、Log Analytics エージェントと同様に、[Azure Monitor Private Link Scope (AMPLS)](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-security) をご利用いただくことで実現可能です。AMPLS 環境下で Azure Monitor エージェントを用いてログを Log Analytics ワークスペースへ送信するためには、別途データ収集エンドポイント (DCE) のご構築が必要となります。AMPLS を用いたログの収集方法につきましては、[Azure Private Link を使用して Azure Monitor エージェントのネットワークの分離を有効にする](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-private-link) の公開情報をご参考ください。
 
 <br>
 
@@ -335,7 +339,7 @@ properties.type が OmsAgentForLinux の場合は、Linux 用の Log Analytics �
 ***3. Log Analytics エージェントのアンインストール***
 
 この例では、Azure Monitor エージェントを導入してから Log Analytics エージェントをアンインストールしています。
-この場合は、エージェントが共存する時間帯が発生いたしますので、ログが重複して収集される可能性がございます。エージェントが共存すること自体は基本的に問題ありませんが、Log Analytics エージェントと Azure Monitor エージェントのログ収集設定に同一内容が含まれている場合 (例えば、どちらも CPU 情報を取得するよう設定している)、重複してログが収集され、コスト面に影響を与える可能性、設定されているアラートの誤発報につながる可能性がございますのでご注意ください。Azure Monitor エージェントを導入されましたら、必要に応じてログが適切に収集されているかどうかをご確認ください。移行手順につきましては、[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration#migration-testing) にも掲載しておりますので、あわせてご覧ください。
+この場合は、エージェントが共存する時間帯が発生いたしますので、ログが重複して収集される可能性がございます。エージェントが共存すること自体は基本的に問題ありませんが、Log Analytics エージェントと Azure Monitor エージェントのログ収集設定に同一内容が含まれている場合 (例えば、どちらも CPU 情報を取得するよう設定している)、重複してログが収集され、コスト面に影響を与える可能性、設定されているアラートの誤発報につながる可能性がございますのでご注意ください。Azure Monitor エージェントを導入されましたら、必要に応じてログが適切に収集されているかどうかをご確認ください。移行手順につきましては、[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration) にも掲載しておりますので、あわせてご覧ください。
 ※ Log Analytics エージェントをアンインストールしてから Azure Monitor エージェントを導入していただいても構いません。
 
 <br>
@@ -347,16 +351,17 @@ properties.type が OmsAgentForLinux の場合は、Linux 用の Log Analytics �
 
 
 ***2. データ収集ルールを作成し、仮想マシンを紐づけることで Azure Monitor エージェントをインストールする***
-DCR Config Generator をご利用いただくことで、Log Analytics ワークスペースから Log Analytics エージェント構成を解析し、対応するデータ収集ルール (DCR) を自動的に生成/デプロイすることが可能でございます。DCR Config Generator の概要や利用手順につきましては、[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration-tools#installing-and-using-dcr-config-generator) や[弊社サポートブログ](https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/) に掲載しておりますので、ご確認いただきますようお願いいたします。
+DCR Config Generator をご利用いただくことで、Log Analytics ワークスペースから Log Analytics エージェント構成を解析し、対応するデータ収集ルール (DCR) を自動的に生成/デプロイすることが可能でございます。DCR Config Generator の概要や利用手順につきましては、[弊社公開情報](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration-data-collection-rule-generator) や[弊社サポートブログ](https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/) に掲載しておりますので、ご確認いただきますようお願いいたします。
 
 また、DCR Config Generator を使用せず手動でデータ収集ルールを作成いただくことも可能でございます。
 以下の公開情報にデータ収集ルールの作成手順を掲載しておりますので、データ収集ルールの作成および VM の紐づけ方法をご確認ください。お客様ご自身にて収集をされたいログ データの種類に合う公開情報をご参照いただけますと幸いです。
 なお、Azure Monitor エージェントがインストールされるためには、マシンが実行中である必要がございますのでご注意ください。
 
-- [イベント ログやパフォーマンス カウンターを収集する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-rule-azure-monitor-agent?tabs=portal)
-- [IIS ログを収集する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-iis)
-- [テキスト ログを収集する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-text-log?tabs=portal)
-- [Syslog を収集する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-syslog)
+- [イベント ログを収集する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/data-collection-windows-events)
+- [パフォーマンス ログを収集する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/data-collection-performance?tabs=linux)
+- [IIS ログを収集する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/data-collection-iis)
+- [テキスト ログを収集する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/data-collection-log-text)
+- [Syslog を収集する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/data-collection-syslog)
 
 
 ***3. Log Analytics エージェントのアンインストール***
@@ -392,7 +397,7 @@ foreach($VM in $VMs){
 <br>
 
 > [!WARNING]
-> 上記手順は、Log Analytics エージェント以外のエージェント (Dependency エージェント) や他製品で Log Analytics エージェントを使用していない場合の手順でございます。Microsoft Defender for Cloud や Microsoft Sentinel 等、他製品で Log Analytics エージェントを利用されている場合は、移行前に [Azure Monitor エージェントでサポートされているサービスと機能](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/agents-overview#supported-services-and-features) で対象製品が Azure Monitor エージェントに対応していることをご確認ください。また、Dependency エージェントをご利用されている場合は、[VM insights の有効化の概要](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/vminsights-enable-overview) や、[Azure portal で VM insights を有効にする](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/vminsights-enable-portal) をご確認いただき、移行を実施してください。
+> 上記手順は、Log Analytics エージェント以外のエージェント (Dependency エージェント) や他製品で Log Analytics エージェントを使用していない場合の手順でございます。Microsoft Defender for Cloud や Microsoft Sentinel 等、他製品で Log Analytics エージェントを利用されている場合は、移行前に [Azure Monitor エージェントでサポートされているサービスと機能](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/agents-overview#supported-services-and-features) で対象製品が Azure Monitor エージェントに対応していることをご確認ください。また、Dependency エージェントをご利用されている場合は、[VM insights の有効化の概要](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/vminsights-enable?tabs=portal) や、[Azure portal で VM insights を有効にする](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/vminsights-enable?tabs=portal) をご確認いただき、移行を実施してください。
 
 <br>
 

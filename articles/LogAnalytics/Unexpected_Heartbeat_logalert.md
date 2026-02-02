@@ -6,6 +6,10 @@ tags:
   - Log Analytics
 ---
 
+[更新履歴]
+- 2024/09/05 ブログ公開
+- 2025/12/23 最新の情報であることを確認済み
+
 こんにちは、Azure Monitoring チームの佐藤です！<br>
 今回は、Heartbeat ログ アラート ルールが発報したが、マシンは稼働しているという状況、
 特に Heartbeat ログの遅延により期待しないアラートが発報した場合の調査方法についてご紹介いたします。<br>
@@ -89,31 +93,14 @@ AgentLatency : 18 分 2 秒
 
 エージェントで問題が発生しているかどうかは、以下の手順でエージェントのログを取得いただくことでご確認いただけます。
 ### Windows OS の場合
-1. 問題が発生した Windows サーバーへ管理者権限にてログインします。<br>
-2. PowerShell ウインドウを管理者権限にて開きます。<br>
-3. 以下のコマンドを実行します。<br>
-cd "C:\Packages\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent\1.X.X.X\Troubleshooter"<br>
-(X にはバージョン番号が入ります。環境に応じて変更下さい。)<br>
-    .\AgentTroubleshooter.exe --ama -v<br>
-4. ログ採取が行われますのでそのまま待機します。<br>
-5. "C:\Packages\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent\1.X.X.X\Troubleshooter" フォルダ内 AgentTroubleshooterOutput.zip ファイルが作成されます。<br>
-こちらが Azure Monitor エージェントのログでございます。<br>
+以下をご参照ください。
+ - Windows オペレーティング システム (OS) の Azure Monitor エージェント トラブルシューティング ツールの使用方法
+https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/troubleshooter-ama-windows?tabs=WindowsPowerShell
 
 ### Linux OS の場合
-対象の Linux OS 上で作業を実施してください。
-以下のコマンドを任意のディレクトリ上で実行します。
-<br>
-$ mkdir ama_tst<br>
-$ cd ama_tst<br>
-$ wget https://github.com/Azure/azure-linux-extensions/raw/master/AzureMonitorAgent/ama_tst/ama_tst.tgz<br>
-$ tar -xzvf ama_tst.tgz<br>
-$ sudo sh ama_troubleshooter.sh<br>
-"Please select an option:" と表示されますので、"L" を入力し、エンターキーを押します。<br>
-"Output Directory:" と表示されますので、"." を入力し、エンターキーを押します。<br>
-<br>
-シェルが終了しますと、"amalogs" から始まるディレクトリ、またはファイルがカレントディレクトリに出力されます。<br>
-こちらが Azure Monitor エージェントのログでございます。<br>
-<br>
+以下をご参照ください。
+ - Linux オペレーティング システム (OS) の Azure Monitor エージェント トラブルシューティング ツールの使用方法
+https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/troubleshooter-ama-linux?tabs=redhat%2CGenerateLogs
 
 事象発生直後のほうが、ログに残存している情報が多いため、
 弊社サポート窓口にお問い合わせいただく場合でも事象発生後なるべくお早めにログを取得いただくことをお勧めいたします。<br>

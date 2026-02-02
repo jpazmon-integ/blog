@@ -3,8 +3,8 @@ title: Application Insights クラシック版 (廃止) とワークスペース
 date: 2021-07-20 00:00:00
 tags:
   - Application Insights
-  - Tips
-  - FAQ
+  - HowTo
+  - Retirement
 ---
 
 [更新履歴]  

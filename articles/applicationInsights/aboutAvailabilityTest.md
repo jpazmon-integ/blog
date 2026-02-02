@@ -3,8 +3,8 @@ title: Application Insights 可用性テスト の クラシック と 標準 �
 date: 2022-11-6 00:00:00
 tags:
   - Application Insights
-  - 可用性テスト
-  - Tips
+  - Availability Tests
+  - HowTo
 ---
 
 [更新履歴]

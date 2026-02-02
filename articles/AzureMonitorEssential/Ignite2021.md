@@ -2,7 +2,11 @@
 title: Azure Monitor 新着情報 @ Ignite 2021
 date: 2021-11-30 00:00:00
 tags:
-  - [Azure Monitor]
+  - Azure Monitor All
+  - Application Insights
+  - Container Insights
+  - Alerts, Action Groups
+  - Information
 ---
 こんにちは、Azure Monitoring & Integration チームの 鄭 です。
 

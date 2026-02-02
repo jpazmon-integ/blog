@@ -3,8 +3,6 @@ title: 【廃止】 Azure Automation の実行アカウントの管理方法の 
 date: 2021-6-25 12:00:00
 tags:
   - Automation
-  - RunAs Account
-  - Tips
   - FAQ
 ---
 
