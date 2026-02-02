@@ -2,9 +2,12 @@
 title: Azure VM における死活監視の考え方
 date: 2024-07-03 00:00:00
 tags:
-  - Log Analytics
   - Azure Monitor Essential
-  - How-To
+  - Alerts, Action Groups
+  - Log search alert
+  - Metric alert
+  - Resource Health alert
+  - HowTo
 ---
 
 [更新履歴]  

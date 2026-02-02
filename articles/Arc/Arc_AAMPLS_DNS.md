@@ -3,8 +3,8 @@ title: Azure Private Link  を使った Azure Arc への接続 - DNS 構成
 date: 2024-03-30 22:00:00
 tags:
   - Azure Arc
+  - Arc-enabled servers
   - HowTo
-  - Azure Private Link
 ---
 
 [更新履歴]

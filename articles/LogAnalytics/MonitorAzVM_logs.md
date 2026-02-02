@@ -2,8 +2,13 @@
 title: Azure VM の監視について
 date: 2022-09-22 00:00:00
 tags:
+  - Azure Monitor Essential
   - Log Analytics
-  - How-To
+  - Metrics
+  - Azure Monitor Agent
+  - Alerts, Action Groups
+  - Log search alert
+  - HowTo
 ---
 
 [更新履歴]
