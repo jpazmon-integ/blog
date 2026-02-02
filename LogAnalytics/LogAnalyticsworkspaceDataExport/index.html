@@ -10,21 +10,20 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="[更新履歴]  2024&#x2F;01&#x2F;06 ブログ公開 2026&#x2F;01&#x2F;09 最新情報への更新  こんにちは、Azure Monitoring サポート チームの北村です。皆さまは Log Analytics ワークスペースのデータ エクスポート という機能をご存知でしょうか。この機能では Log Analytics ワークスペースに収集されたログをストレージ アカウントやイベント ハブにエクスポートす">
+      <meta name="description" content="こんにちは、Azure Monitoring サポート チームの北村です。皆さまは Log Analytics ワークスペースのデータ エクスポート という機能をご存知でしょうか。この機能では Log Analytics ワークスペースに収集されたログをストレージ アカウントやイベント ハブにエクスポートすることができます。今回はこのデータ エクスポート機能でよくお問い合わせをいただくご質問を紹介">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Log Analytics ワークスペースのデータ エクスポートに関するよくあるご質問">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="[更新履歴]  2024&#x2F;01&#x2F;06 ブログ公開 2026&#x2F;01&#x2F;09 最新情報への更新  こんにちは、Azure Monitoring サポート チームの北村です。皆さまは Log Analytics ワークスペースのデータ エクスポート という機能をご存知でしょうか。この機能では Log Analytics ワークスペースに収集されたログをストレージ アカウントやイベント ハブにエクスポートす">
+<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの北村です。皆さまは Log Analytics ワークスペースのデータ エクスポート という機能をご存知でしょうか。この機能では Log Analytics ワークスペースに収集されたログをストレージ アカウントやイベント ハブにエクスポートすることができます。今回はこのデータ エクスポート機能でよくお問い合わせをいただくご質問を紹介">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/image01.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/image05.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/image06.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/image02.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/image03.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/image04.png">
 <meta property="article:published_time" content="2024-01-05T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-02-02T00:12:55.750Z">
+<meta property="article:modified_time" content="2026-02-02T04:52:40.443Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Log Analytics">
 <meta property="article:tag" content="How-To">
@@ -181,17 +180,12 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+9bed6a7b-d1db-57b0-af5a-802fd8852f99%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BLog+Analytics+%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF+%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E3%81%94%E8%B3%AA%E5%95%8F%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FLogAnalyticsworkspaceDataExport%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FLogAnalyticsworkspaceDataExport.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FLogAnalyticsworkspaceDataExport.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/" data-id="cml4f1s8d002a0nqu8kwy250h" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/" data-id="cml4p1jk900280nprfn6m25l8" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>[更新履歴]</p>
-<ul>
-<li>2024/01/06 ブログ公開</li>
-<li>2026/01/09 最新情報への更新</li>
-</ul>
-<p>こんにちは、Azure Monitoring サポート チームの北村です。<br>皆さまは <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal">Log Analytics ワークスペースのデータ エクスポート</a> という機能をご存知でしょうか。<br>この機能では Log Analytics ワークスペースに収集されたログをストレージ アカウントやイベント ハブにエクスポートすることができます。今回はこのデータ エクスポート機能でよくお問い合わせをいただくご質問を紹介いたします。</p>
+        <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>皆さまは <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal">Log Analytics ワークスペースのデータ エクスポート</a> という機能をご存知でしょうか。<br>この機能では Log Analytics ワークスペースに収集されたログをストレージ アカウントやイベント ハブにエクスポートすることができます。今回はこのデータ エクスポート機能でよくお問い合わせをいただくご質問を紹介いたします。</p>
 <br>
 
 <span id="more"></span>
@@ -210,7 +204,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <br>
 
 
-<h3 id="Q1-データ-エクスポート機能は全てのテーブルでサポートされていますか。"><a href="#Q1-データ-エクスポート機能は全てのテーブルでサポートされていますか。" class="headerlink" title="Q1. データ エクスポート機能は全てのテーブルでサポートされていますか。"></a>Q1. データ エクスポート機能は全てのテーブルでサポートされていますか。</h3><p>いいえ、全てのテーブルでサポートしておりません。<br>サポート対象のテーブルは、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#unsupported-tables">こちら</a>の弊社公開情報でご確認ください。</p>
+<h3 id="Q1-データ-エクスポート機能は全てのテーブルでサポートされていますか。"><a href="#Q1-データ-エクスポート機能は全てのテーブルでサポートされていますか。" class="headerlink" title="Q1. データ エクスポート機能は全てのテーブルでサポートされていますか。"></a>Q1. データ エクスポート機能は全てのテーブルでサポートされていますか。</h3><p>いいえ、全てのテーブルでサポートしておりません。<br>サポート対象のテーブルは、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#supported-tables">こちら</a>の弊社公開情報でご確認ください。</p>
 <br>
 
 
@@ -223,8 +217,8 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 
 <h3 id="Q4-ログがストレージ-アカウントに転送されていません。考えられる原因を教えてください。"><a href="#Q4-ログがストレージ-アカウントに転送されていません。考えられる原因を教えてください。" class="headerlink" title="Q4. ログがストレージ アカウントに転送されていません。考えられる原因を教えてください。"></a>Q4. ログがストレージ アカウントに転送されていません。考えられる原因を教えてください。</h3><p>考えられる原因は以下のとおりです。弊社公開情報の <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#limitations">制限事項</a>と <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#storage-account">ストレージ アカウント</a> の項目も併せてご確認ください。<br>以下に該当しない場合で指定した宛先にログがエクスポートされない場合は弊社サポート窓口までお問い合わせください。</p>
-<p><em><strong>1. エクスポート ルールで指定したテーブルがサポートされていない</strong></em><br>対象のテーブルがデータ エクスポート機能でサポートされていない可能性がございます。<br>まずは、指定したテーブルが<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#unsupported-tables">サポート対象のテーブル</a>かどうかをご確認ください。</p>
-<p><em><strong>2. ストレージ アカウントのネットワーク設定で “信頼された Microsoft サービス” が許可されていない</strong></em><br>ストレージ アカウントのネットワーク設定により、ログがエクスポートされていない可能性がございます。<br>宛先のストレージ アカウントが選択したネットワークからのアクセスを許可する構成である場合、<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#allow-trusted-microsoft-services">[Allow trusted Microsoft services to access this resource] が有効</a>になっているかどうかをご確認ください。完全に外部からのアクセスを無効にすると、Azure Monitor サービスからの通信が遮断され、ログをエクスポートすることができません。また、選択したネットワークからのアクセスを許可する構成の場合、Azure Monitor サービスからの通信を許可するために [Allow trusted Microsoft services to access this resource] を有効にしていただく必要がございます。<br><img src="/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/image05.png"><br><img src="/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/image06.png"></p>
+<p><em><strong>1. エクスポート ルールで指定したテーブルがサポートされていない</strong></em><br>対象のテーブルがデータ エクスポート機能でサポートされていない可能性がございます。<br>まずは、指定したテーブルが<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#supported-tables">サポート対象のテーブル</a>かどうかをご確認ください。</p>
+<p><em><strong>2. ストレージ アカウントのネットワーク設定で “信頼された Microsoft サービス” が許可されていない</strong></em><br>ストレージ アカウントのネットワーク設定により、ログがエクスポートされていない可能性がございます。<br>宛先のストレージ アカウントが選択したネットワークからのアクセスを許可する構成である場合、<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#allow-trusted-microsoft-services">[信頼されたサービスの一覧にある Azure サービスがこのストレージ アカウントにアクセスすることを許可します。] が有効</a>になっているかどうかをご確認ください。完全に外部からのアクセスを無効にすると、Azure Monitor サービスからの通信が遮断され、ログをエクスポートすることができません。また、選択したネットワークからのアクセスを許可する構成の場合、Azure Monitor サービスからの通信を許可するために [信頼されたサービスの一覧にある Azure サービスがこのストレージ アカウントにアクセスすることを許可します。] を有効にしていただく必要がございます。<br><img src="/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/image05.png"></p>
 <p><em><strong>3. ストレージ アカウントのリージョンが Log Analytics ワークスペースと同じージョンでない</strong></em><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#limitations">宛先のストレージ アカウントのリージョンは、Log Analytics ワークスペースと同じリージョンである必要がございます</a>。対象のストレージ アカウントと Log Analytics ワークスペースのリージョンをご確認下さいますようお願いいたします。</p>
 <p><em><strong>4. ストレージ アカウントの種類が Standard ではない</strong></em><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#limitations">データ エクスポート機能では、Premium のストレージ アカウントはサポートされていません。</a><br>宛先のストレージ アカウントの種類が Standard であることをご確認ください。</p>
 <p><em><strong>5. エクスポート ルールの作成後に Log Analytics ワークスペースにログが収集されていない</strong></em><br>データ エクスポート機能は Log Analytics ワークスペースに “データが取り込まれた時” に宛先へデータを転送する機能です。<br>エクスポート ルールの作成後に Log Analytics ワークスペースにログが収集されていない場合は、宛先のストレージ アカウントにはログが取り込まれません。Log Analytics ワークスペース上でクエリを実行いただき、エクスポート ルールの作成後に対象のログが Log Analytics ワークスペースに収集されているかどうかをご確認ください。</p>

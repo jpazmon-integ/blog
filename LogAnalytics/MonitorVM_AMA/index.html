@@ -10,12 +10,12 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは、Azure Monitoring サポート チームの北村、佐藤です。Azure Monitor エージェントを使用した死活監視方法について本ブログで紹介します。本ブログは、以下の過去の記事 (Log Analytics エージェントを使用した死活監視) を Azure Monitor エージェント版に更新したものとなります。https:&#x2F;&#x2F;jpazmon-integ.github.io">
+      <meta name="description" content="[更新履歴]  2025&#x2F;02&#x2F;14 ブログ公開 2026&#x2F;01&#x2F;28 最新情報への更新  こんにちは、Azure Monitoring サポート チームの北村、佐藤です。Azure Monitor エージェントを使用した死活監視方法について本ブログで紹介します。本ブログは、以下の過去の記事 (Log Analytics エージェントを使用した死活監視) を Azure Monitor エージェン">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Azure Monitor エージェントにより収集される Heartbeat ログを使用した死活監視方法">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM_AMA/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの北村、佐藤です。Azure Monitor エージェントを使用した死活監視方法について本ブログで紹介します。本ブログは、以下の過去の記事 (Log Analytics エージェントを使用した死活監視) を Azure Monitor エージェント版に更新したものとなります。https:&#x2F;&#x2F;jpazmon-integ.github.io">
+<meta property="og:description" content="[更新履歴]  2025&#x2F;02&#x2F;14 ブログ公開 2026&#x2F;01&#x2F;28 最新情報への更新  こんにちは、Azure Monitoring サポート チームの北村、佐藤です。Azure Monitor エージェントを使用した死活監視方法について本ブログで紹介します。本ブログは、以下の過去の記事 (Log Analytics エージェントを使用した死活監視) を Azure Monitor エージェン">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM_AMA/sample_dummypath.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM_AMA/result_example1.png">
@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM_AMA/setting_example3.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM_AMA/result_latency.png">
 <meta property="article:published_time" content="2025-02-13T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-02-02T00:12:55.776Z">
+<meta property="article:modified_time" content="2026-02-02T04:52:40.469Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Log Analytics">
 <meta property="article:tag" content="HowTo">
@@ -185,12 +185,17 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+4b780b68-b869-555a-8fdf-7c8d0b0e386b%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Monitor+%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%AB%E3%82%88%E3%82%8A%E5%8F%8E%E9%9B%86%E3%81%95%E3%82%8C%E3%82%8B+Heartbeat+%E3%83%AD%E3%82%B0%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%9F%E6%AD%BB%E6%B4%BB%E7%9B%A3%E8%A6%96%E6%96%B9%E6%B3%95%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FMonitorVM_AMA%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FMonitorVM_AMA.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FMonitorVM_AMA.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM_AMA/" data-id="cml4f1s8f002h0nqu8cbwa8uy" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM_AMA/" data-id="cml4p1jkc002g0npr8d6qabdt" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは、Azure Monitoring サポート チームの北村、佐藤です。<br>Azure Monitor エージェントを使用した死活監視方法について本ブログで紹介します。<br>本ブログは、以下の過去の記事 (Log Analytics エージェントを使用した死活監視) を Azure Monitor エージェント版に更新したものとなります。<br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM/">https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM/</a></p>
+        <p>[更新履歴]</p>
+<ul>
+<li>2025/02/14 ブログ公開</li>
+<li>2026/01/28 最新情報への更新</li>
+</ul>
+<p>こんにちは、Azure Monitoring サポート チームの北村、佐藤です。<br>Azure Monitor エージェントを使用した死活監視方法について本ブログで紹介します。<br>本ブログは、以下の過去の記事 (Log Analytics エージェントを使用した死活監視) を Azure Monitor エージェント版に更新したものとなります。<br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM/">https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM/</a></p>
 <br>
 
 
@@ -235,7 +240,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 
 <h3 id="2-データ収集ルールの作成とデータ収集ルールへの関連付け"><a href="#2-データ収集ルールの作成とデータ収集ルールへの関連付け" class="headerlink" title="2. データ収集ルールの作成とデータ収集ルールへの関連付け"></a>2. データ収集ルールの作成とデータ収集ルールへの関連付け</h3><p>1 で作成した Log Analytics ワークスペースにログを収集するよう、データ収集ルールを構成します。</p>
-<p>– Collect data with Azure Monitor Agent<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-data-collection">https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-data-collection</a><br>(<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-data-collection#data-sources">“データ ソース”</a> 項目にて、各データ ソースをクリックすることでデータ ソースごとの設定方法の公開情報に遷移します。)</p>
+<p>– Collect data from virtual machine client with Azure Monitor<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-data-collection">https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-data-collection</a><br>(<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/data-collection?tabs=current#add-data-sources">“データ ソース”</a> 項目にて、各データ ソースをクリックすることでデータ ソースごとの設定方法の公開情報に遷移します。)</p>
 <p>データ収集ルールにマシンを関連づけると Azure Monitor エージェントがインストールされます。<br>(すでにインストール済みの場合には、マシン上に Azure Monitor エージェントが存在することが確認されたのち、インストールがスキップされます。)</p>
 <br>
 
@@ -267,7 +272,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </li>
 <li><p>演算子としきい値 (黄色ハイライト部分)<br>上記クエリは、直近 5 分以内の Heartbeat を返しますので、当該クエリの実行結果が 0 件の場合は直近 5 分間 Heartbeat が収集されていないことを意味します。そのため、演算子は 「等しい」、しきい値は 「0」 としています。</p>
 </li>
-<li><p>評価の頻度 (黄色枠線部分)<br>アラートの検索クエリが実行される間隔です。この例では、5 分ごとにクエリが実行されます。</p>
+<li><p>評価の頻度 (黄色枠線部分)<br>アラートの検索クエリが実行される間隔です。この例では、10 分ごとにクエリが実行されます。</p>
 </li>
 <li><p>評価期間 (黒枠線部分)<br>クエリの対象とするデータの時間範囲です。基本的には [集計の粒度] と同じ時間範囲になります。</p>
 </li>
