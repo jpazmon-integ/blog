@@ -2,12 +2,11 @@
 title: Azure VM の診断設定とそれ以外のリソースにおける診断設定について
 date: 2023-12-14 00:00:00
 tags:
-  - How-To
-  - Azure Monitor Essentials
-  - Diagnostics settings
-  - Azure Diagnostics extension
-  - WAD
-  - LAD
+  - HowTo
+  - Azure Monitor Essential
+  - Diagnostics Settings
+  - Azure Diagnostics Extension
+  - Log Analytics
 ---
 
 [更新履歴]  
