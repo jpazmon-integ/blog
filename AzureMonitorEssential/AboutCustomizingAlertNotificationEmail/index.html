@@ -10,25 +10,27 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="2022&#x2F;03&#x2F;25 : 旧 UI と現 UI での対応表&#x2F;図について、詳細設定オプションを考慮する内容に更新いたしました。2022&#x2F;07&#x2F;01 : ロジック アプリから Log Analytics API を実行する記事について追記しました。  こんにちは！Azure Monitoring &amp; Integration サポート チームの花房です。「アラート通知メールを日本語にしたい」、「">
+      <meta name="description" content="2022&#x2F;03&#x2F;25 : 旧 UI と現 UI での対応表&#x2F;図について、詳細設定オプションを考慮する内容に更新いたしました。2022&#x2F;07&#x2F;01 : ロジック アプリから Log Analytics API を実行する記事について追記しました。2026&#x2F;01&#x2F;22 : ドキュメントのリンクおよびログ アラート ルールの電子メールの件名をカスタマイズする (プレビュー) 機能について追記しました。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="アラート通知メールのカスタマイズについて">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="2022&#x2F;03&#x2F;25 : 旧 UI と現 UI での対応表&#x2F;図について、詳細設定オプションを考慮する内容に更新いたしました。2022&#x2F;07&#x2F;01 : ロジック アプリから Log Analytics API を実行する記事について追記しました。  こんにちは！Azure Monitoring &amp; Integration サポート チームの花房です。「アラート通知メールを日本語にしたい」、「">
+<meta property="og:description" content="2022&#x2F;03&#x2F;25 : 旧 UI と現 UI での対応表&#x2F;図について、詳細設定オプションを考慮する内容に更新いたしました。2022&#x2F;07&#x2F;01 : ロジック アプリから Log Analytics API を実行する記事について追記しました。2026&#x2F;01&#x2F;22 : ドキュメントのリンクおよびログ アラート ルールの電子メールの件名をカスタマイズする (プレビュー) 機能について追記しました。">
 <meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image06.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image01.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image02.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image03.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image04.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image04-251229.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image05.png">
 <meta property="article:published_time" content="2022-03-24T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-02-02T08:18:03.878Z">
+<meta property="article:modified_time" content="2026-02-03T06:48:07.620Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="How-To">
 <meta property="article:tag" content="Tips">
 <meta property="article:tag" content="Azure Monitor Essentials">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image01.png">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image06.png">
         
           <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog"
             type="application/atom+xml">
@@ -179,45 +181,98 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+72cbd4e0-1427-5d45-b463-a1301bd1a260%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E9%80%9A%E7%9F%A5%E3%83%A1%E3%83%BC%E3%83%AB%E3%81%AE%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%9E%E3%82%A4%E3%82%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FAboutCustomizingAlertNotificationEmail%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FAboutCustomizingAlertNotificationEmail.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FAboutCustomizingAlertNotificationEmail.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/" data-id="cml4wdpi700070nk10eop4sru" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/" data-id="cml68lw6c00070nog9ky37m5k" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>2022/03/25 : 旧 UI と現 UI での対応表/図について、詳細設定オプションを考慮する内容に更新いたしました。<br>2022/07/01 : ロジック アプリから Log Analytics API を実行する記事について追記しました。</p>
+        <p>2022/03/25 : 旧 UI と現 UI での対応表/図について、詳細設定オプションを考慮する内容に更新いたしました。<br>2022/07/01 : ロジック アプリから Log Analytics API を実行する記事について追記しました。<br>2026/01/22 : ドキュメントのリンクおよびログ アラート ルールの電子メールの件名をカスタマイズする (プレビュー) 機能について追記しました。</p>
 <hr>
 <p>こんにちは！Azure Monitoring &amp; Integration サポート チームの花房です。<br>「アラート通知メールを日本語にしたい」、「最近ログ アラート ルール作成画面が変わった？」 というお問い合わせを最近よくいただきます。<br>今回はアラート通知メールのカスタマイズに関連した以下の点についてご案内いたします。</p>
 <span id="more"></span>
 
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
-<li>アラート通知メールはカスタマイズできない</li>
-<li>新しい API バージョン (API バージョン 2021-08-01) のログ アラート ルール作成画面</li>
-<li>まとめ</li>
+<li><a href="#%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E9%80%9A%E7%9F%A5%E3%83%A1%E3%83%BC%E3%83%AB%E3%81%AF%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%9E%E3%82%A4%E3%82%BA%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84">アラート通知メールはカスタマイズできない</a><ul>
+<li><a href="#Logic-Apps-%E3%81%AE%E5%8F%82%E8%80%83%E3%82%B5%E3%82%A4%E3%83%88">Logic Apps の参考サイト</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%B0%E3%81%97%E3%81%84-API-%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3-API-%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3-2021-08-01-%E3%81%AE%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E4%BD%9C%E6%88%90%E7%94%BB%E9%9D%A2">新しい API バージョン (API バージョン 2021-08-01) のログ アラート ルール作成画面</a><ul>
+<li><a href="#%E2%96%A0-%E7%9B%B8%E9%81%95%E7%82%B9-%E2%96%A0">■ 相違点 ■</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E3%82%B5%E3%82%A4%E3%83%88">参考サイト</a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E9%9B%BB%E5%AD%90%E3%83%A1%E3%83%BC%E3%83%AB%E3%81%AE%E4%BB%B6%E5%90%8D%E3%82%92%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%9E%E3%82%A4%E3%82%BA%E3%81%99%E3%82%8B%E4%BB%A3%E6%9B%BF%E6%A1%88">ログ アラート ルールの電子メールの件名をカスタマイズする代替案</a><ul>
+<li><a href="#%E2%96%A0-%E4%BB%A3%E6%9B%BF%E6%A1%88-%E2%96%A0">■ 代替案 ■</a></li>
+</ul>
+</li>
+<li><a href="#%E3%81%BE%E3%81%A8%E3%82%81">まとめ</a></li>
 </ul>
 <h2 id="アラート通知メールはカスタマイズできない"><a href="#アラート通知メールはカスタマイズできない" class="headerlink" title="アラート通知メールはカスタマイズできない"></a>アラート通知メールはカスタマイズできない</h2><p>Azure Monitor のアラート機能では、メトリックやログをトリガーにアラート通知メールを発報することができます。</p>
-<p>このアラート通知メールは基本的にカスタマイズすることはできません。<br>このため、「日本語の通知メールにする」 や 「メールのフォーマットをカスタマイズする」、「メールのタイトルを任意の値にする」 ということはできません。</p>
-<p>ただ、どうしてもカスタマイズしたメールを送る必要がある場合には、Logic Apps や Azure Function 等を用いてお客様側でアラート通知を実装するという代替案もございます。<br>お客様のご利用目的に合わせて実装することで、適切な通知方法や通知内容を構成することが可能です。<br>一方で、お客様にてスクリプトなどの作り込みが必要となるため、既定で用意されているメール通知と比較して実装に要する工数が増大する点はご留意ください。<br>今回はこの代替案の詳細は割愛いたしますが、一例として以下の &lt;Logic Apps の参考サイト&gt; をご参照いただき、詳しくお知りになりたい点はお気軽に私たちサポートにお問い合わせください！</p>
-<p>&lt;Logic Apps の参考サイト&gt;<br>– 概要 - Azure Logic Apps とは<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/logic-apps/logic-apps-overview">https://docs.microsoft.com/ja-jp/azure/logic-apps/logic-apps-overview</a><br>Logic App とは、ロジック アプリ デザイナーでフロー チャートを用いて作成したワークフローを自動実行するソリューションです。<br>Logic App では、条件分岐などを実装することができ、ワークフローの実行状況に応じて実行する処理を分岐することが可能です。</p>
-<p>メールの通知内容をカスタマイズする際の詳細な手順につきましては、下記弊社公開情報をご覧ください。<br>– Azure Monitor アラートによって複雑なアクションをトリガーする方法<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/platform/action-groups-logic-app">https://docs.microsoft.com/ja-jp/azure/azure-monitor/platform/action-groups-logic-app</a><br>※ アラート ルールの種類により設定手順は異なります。<br>&nbsp;&nbsp;&nbsp;アクティビティ ログ アラートの手順を進めていただき、手順 4 のペイロードは以下公開情報に記載のあるサンプル ペイロードをご使用ください。<br>&nbsp;&nbsp;&nbsp;– ログ アラート ルールの webhook アクション<br>&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-log-webhook#sample-payloads">https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-log-webhook#sample-payloads</a></p>
-<p>※ 上記ドキュメント内の、<br>&nbsp;&nbsp;&nbsp;Teams へのメッセージ送信である箇所 「7. Microsoft Teams コネクタを検索して選択します。 [Microsoft Teams – メッセージの投稿] アクションを選択します。」 を、以下のアクションに置き換えていただくことで、お客様にて件名等のメールの内容をカスタマイズ可能です。<br>&nbsp;&nbsp;&nbsp;– Microsoft 365 Outlook<br>&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/connectors/office365/#send-an-email-[deprecated]">https://docs.microsoft.com/en-us/connectors/office365/#send-an-email-[deprecated]</a><br>&nbsp;&nbsp;&nbsp;※ 「Send an email [DEPRECATED]」 をご参照ください。</p>
-<p>また、弊社 Integration Support Blog にロジック アプリからログ アラート発報時に出力されたデータに含まれている Log Analytics API を実行する方法に関する記事が投稿されております。<br>カスタマイズされたメールをロジック アプリから通知する方法をご検討の場合、下記の記事をご参考いただけますと幸いです。<br>&nbsp;&nbsp;&nbsp;– ログ アラート ルールの発報時に出力されたデータからクエリの検索結果を取得する<br>&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://jpazinteg.github.io/blog/LogicApps/Integration-logAlertRule/">https://jpazinteg.github.io/blog/LogicApps/Integration-logAlertRule/</a></p>
-<h2 id="新しい-API-バージョン-API-バージョン-2021-08-01-のログ-アラート-ルール作成画面"><a href="#新しい-API-バージョン-API-バージョン-2021-08-01-のログ-アラート-ルール作成画面" class="headerlink" title="新しい API バージョン (API バージョン 2021-08-01) のログ アラート ルール作成画面"></a>新しい API バージョン (API バージョン 2021-08-01) のログ アラート ルール作成画面</h2><p>ここまでお読みいただいて 「ログ アラート ルールであれば、メールのタイトルは任意の値にできるのでは？」 と思われた方もいるかもしれません。<br>はい、以前の API (バージョン 2018-04-16 以前) であれば、ログ アラート ルールのタイトルのカスタマイズが可能でした。<br>ただ、2021 年 12 月下旬より新しい API (バージョン 2021-08-01) の UI のリリースが開始され、現在の Azure ポータルはアラート ルール作成における動作の一部に変更がなされています。<br>このリリースにより、現在はタイトルを含めアラート通知メールのカスタマイズはできなくなりました。<br>※ 詳細は、後述の &lt;参考サイト&gt; もご参照ください。<br>なお、以前の UI で作成されたアラート ルールは、今後も以前の UI で表示されます。</p>
-<h4 id="■-相違点-■"><a href="#■-相違点-■" class="headerlink" title="■ 相違点 ■"></a>■ 相違点 ■</h4><p>このリリースによる変更でお問い合わせいただくことが多い相違点 2 点について、以下にご案内します。</p>
+<p>基本的にはこのアラート通知メールはカスタマイズすることができません。 (2026年1月現在)<br>このため、「日本語の通知メールにする」 や 「メールのフォーマットをカスタマイズする」、「メールのタイトルを任意の値にする」 ということはできません。</p>
+<p>ただ、どうしてもカスタマイズしたメールを送る必要がある場合には、<strong>Logic Apps</strong> や <strong>Azure Function</strong> 等を用いてお客様側でアラート通知を実装するという代替案もございます。<br>お客様のご利用目的に合わせて実装することで、適切な通知方法や通知内容を構成することが可能です。<br>一方で、お客様にてスクリプトなどの作り込みが必要となるため、既定で用意されているメール通知と比較して実装に要する工数が増大する点はご留意ください。<br>今回はこの代替案の詳細は割愛いたしますが、一例として以下の <a href="#Logic-Apps-%E3%81%AE%E5%8F%82%E8%80%83%E3%82%B5%E3%82%A4%E3%83%88">Logic Apps の参考サイト</a> をご参照いただき、詳しくお知りになりたい点はお気軽に私たちサポートにお問い合わせください！</p>
+<h3 id="Logic-Apps-の参考サイト"><a href="#Logic-Apps-の参考サイト" class="headerlink" title="Logic Apps の参考サイト"></a>Logic Apps の参考サイト</h3><p>Logic App とは、ロジック アプリ デザイナーでフロー チャートを用いて作成したワークフローを自動実行するソリューションです。<br>Logic App では、条件分岐などを実装することができ、ワークフローの実行状況に応じて実行する処理を分岐することが可能です。</p>
+<blockquote>
+<p>概要 - Azure Logic Apps とは<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/logic-apps/logic-apps-overview">https://learn.microsoft.com/ja-jp/azure/logic-apps/logic-apps-overview</a></p>
+</blockquote>
+<p>Logic Apps でメールの通知内容をカスタマイズする際の詳細な手順につきましては、下記弊社公開情報をご覧ください。<br>カスタマイズ時に入力いただくペイロードは、以下公開情報に記載のあるサンプルをご使用いただけます。</p>
+<blockquote>
+<p>Logic Apps を使用してアラート通知をカスタマイズする<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-logic-apps?tabs=send-email">https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-logic-apps?tabs=send-email</a></p>
+</blockquote>
+<p>なお公開情報 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-logic-apps?tabs=send-email">Logic Apps を使用してアラート通知をカスタマイズする</a> の手順は共通アラートスキーマを利用する前提となっておりますが、下記のアクショングループの設定・編集画面にて確認可能な「共通アラート スキーマを有効にします」の設定によって、利用されるアラートのスキーマが異なりますため事前に「共通アラート スキーマを有効にします」の設定をご確認いただく必要がございます。</p>
+<p>&lt; アクショングループの設定・編集画面 &gt;<br><img src="/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image06.png"></p>
+<blockquote>
+<p>Azure Monitor でアクション グループを作成および管理する<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups</a></p>
+<p>共通アラート スキーマ<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-common-schema">https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-common-schema</a></p>
+<p>非共通アラート スキーマ定義<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-non-common-schema-definitions">https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-non-common-schema-definitions</a></p>
+</blockquote>
+<p>また、弊社 Integration Support Blog に Logic Apps からログ アラート発報時に出力されたデータに含まれている Log Analytics API を実行する方法に関する記事が投稿されております。<br>カスタマイズされたメールを Logic Apps から通知する方法をご検討の場合、下記の記事をご参考いただけますと幸いです。  </p>
+<blockquote>
+<p>ログ アラート ルールの発報時に出力されたデータからクエリの検索結果を取得する<br><a target="_blank" rel="noopener" href="https://jpazinteg.github.io/blog/LogicApps/Integration-logAlertRule/">https://jpazinteg.github.io/blog/LogicApps/Integration-logAlertRule/</a></p>
+</blockquote>
+<h2 id="新しい-API-バージョン-API-バージョン-2021-08-01-のログ-アラート-ルール作成画面"><a href="#新しい-API-バージョン-API-バージョン-2021-08-01-のログ-アラート-ルール作成画面" class="headerlink" title="新しい API バージョン (API バージョン 2021-08-01) のログ アラート ルール作成画面"></a>新しい API バージョン (API バージョン 2021-08-01) のログ アラート ルール作成画面</h2><p>ここまでお読みいただいて 「ログ アラート ルールであれば、メールのタイトルは任意の値にできるのでは？」 と思われた方もいるかもしれません。<br>はい、<strong>以前の API (バージョン 2018-04-16 以前)</strong> であれば、ログ アラート ルールのタイトルのカスタマイズが可能でした。<br>しかし、2021 年 12 月下旬より <strong>新しい API (バージョン 2021-08-01)</strong> の UI のリリースが開始され、現在の Azure ポータルはアラート ルール作成における動作の一部に変更がなされています。</p>
+<p>※ 動作変更の詳細は後述の <a href="#%E5%8F%82%E8%80%83%E3%82%B5%E3%82%A4%E3%83%88">&lt;参考サイト&gt;</a> もご参照ください。<br>※ なお、以前の UI で作成されたアラート ルールは、今後も以前の UI で表示されます。</p>
+<h3 id="■-相違点-■"><a href="#■-相違点-■" class="headerlink" title="■ 相違点 ■"></a>■ 相違点 ■</h3><p>このリリースによる変更でお問い合わせいただくことが多い相違点 2 点について、以下にご案内します。</p>
 <p><strong>相違点 1. [アクションのカスタマイズ] は使用できない</strong><br>以前は可能だった [メールの件名] 、および [Webhook 用のカスタム Json ペイロード] の項目は使用できなくなりました。<br>具体的には以下の項目となります。<br><img src="/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image01.png"></p>
 <p><strong>相違点 2. [シグナル ロジックの構成] の項目が変更された</strong><br>アラート ルールの条件で指定する、[シグナル ロジックの構成] の項目が変更されました。<br>ただ、項目は変更されましたが、以前と同じ条件の設定をすることは可能です。<br>新旧で対応している項目については、以下となります。</p>
 <p>&lt;対応表 / 図&gt;<br><img src="/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image02.png"><br><img src="/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image03.png"><br>例えば、旧 UI で [基準 : 結果の数] と選択していたら、新 UI では [メジャー : テーブルの行] / [集計の種類 : カウント] と設定すると同じ意味の構成になります。</p>
-<p>※ 旧 UI [期間 (分単位)] について ※<br>-1. [クエリの時間の範囲のオーバーライド] が明示的に指定されている場合、この値が [期間 (分単位)] に相当します。<br>-2. [クエリの時間の範囲のオーバーライド] が明示的に指定されていない場合、[評価期間] が [期間 (分単位)] に相当します。<br>-3. [クエリの時間の範囲のオーバーライド] 及び [評価期間] が指定されていない場合、[評価の粒度] が [期間 (分単位)] に相当します。</p>
-<h4 id="■-代替案-■"><a href="#■-代替案-■" class="headerlink" title="■ 代替案 ■"></a>■ 代替案 ■</h4><p>前述の通り、新しいアラート ルール作成画面から以前と同様のアラート メールを設定することはできません。<br>ただ、旧 API バージョンの ARM テンプレートや REST APIを使用してアラートをデプロイすることで、以前と同様のカスタマイズをすることが可能です。</p>
-<p>以下の弊社サイトの 「(バージョン 2018-04-16 以前) 」 と記載されたテンプレートは旧 API バージョンの ARM テンプレートになります。<br>– Azure Monitor のログ アラート ルール用の Resource Manager テンプレートのサンプル<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/resource-manager-alerts-log">https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/resource-manager-alerts-log</a></p>
+<p>※ 旧 UI [期間 (分単位)] について ※</p>
+<ol>
+<li>[クエリの時間の範囲のオーバーライド] が明示的に指定されている場合、この値が [期間 (分単位)] に相当します。</li>
+<li>[クエリの時間の範囲のオーバーライド] が明示的に指定されていない場合、[評価期間] が [期間 (分単位)] に相当します。</li>
+<li>[クエリの時間の範囲のオーバーライド] 及び [評価期間] が指定されていない場合、[評価の粒度] が [期間 (分単位)] に相当します。</li>
+</ol>
+<h3 id="参考サイト"><a href="#参考サイト" class="headerlink" title="参考サイト"></a>参考サイト</h3><p>2021 年 12 月下旬の新しい API (バージョン 2021-08-01) の UI のリリースによる Azure ポータルの仕様変更につきましては、以下の弊社サイトもご参照ください。</p>
+<blockquote>
+<p>ログ検索アラート ルールの作成エクスペリエンスの変更<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-manage-alerts-previous-version#changes-to-the-log-search-alert-rule-creation-experience">https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-manage-alerts-previous-version#changes-to-the-log-search-alert-rule-creation-experience</a></p>
+</blockquote>
+<p><img src="/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image04-251229.png"></p>
+<br>
+
+<h2 id="ログ-アラート-ルールの電子メールの件名をカスタマイズする代替案"><a href="#ログ-アラート-ルールの電子メールの件名をカスタマイズする代替案" class="headerlink" title="ログ アラート ルールの電子メールの件名をカスタマイズする代替案"></a>ログ アラート ルールの電子メールの件名をカスタマイズする代替案</h2><p>前述の通り、新しいアラート ルール作成画面では以前と同様のアラート メールを設定することはできませんが<br>メールのタイトルのみ、代替案を使用することでカスタマイズすることができますのでその方法をご紹介いたします。</p>
+<h3 id="■-代替案-■"><a href="#■-代替案-■" class="headerlink" title="■ 代替案 ■"></a>■ 代替案 ■</h3><p><strong>代替案 1. 旧 API バージョンの ARM テンプレートや REST APIの使用</strong><br>旧 API バージョンの ARM テンプレートや REST APIを使用してアラートをデプロイすることで、以前と同様のカスタマイズをすることが可能です。<br>以下の弊社サイトの 「(バージョン 2018-04-16 以前) 」 と記載されたテンプレートは旧 API バージョンの ARM テンプレートになります。</p>
+<blockquote>
+<p>Azure Monitor のログ アラート ルール用の Resource Manager テンプレートのサンプル<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/resource-manager-alerts-log?tabs=bicep">https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/resource-manager-alerts-log?tabs=bicep</a></p>
+</blockquote>
 <p>こちらの ARM テンプレートにて以前の API を指定することで通知されるメール タイトルをカスタマイズしてアラート ルールを作成することが可能です。</p>
-<p>&lt;参考サイト&gt;<br>このリリースによる仕様変更は、以下の弊社サイトもご参照ください。<br>– Azure Monitor を使用してログ アラートを作成、表示、管理する<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-log#create-a-log-alert-rule-in-the-azure-portal">https://docs.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-log#create-a-log-alert-rule-in-the-azure-portal</a><br><img src="/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image04.png"></p>
-<p>【概要】<br>この記事では、新しいログ アラート ルールの変更についてご案内しており、概要としては以下となります。<br>・ 検索結果は、トリガーされたアラートとそれに関連する通知には含まれません。アラートには、ログの検索結果へのリンクが含まれています。<br>・ 新しいアラート ルール ウィザードには、トリガーされたアラートの電子メールをカスタマイズしたり、カスタム JSON ペイロードを含めたりするオプションは含まれていません。<br>・ 新しいアラート ルール ウィザードは現在 1 分の頻度をサポートしていません。1 分間のアラート頻度はまもなくサポートされます。</p>
+<p><strong>代替案 2. ログ アラート ルールの電子メールの件名をカスタマイズする (プレビュー) の使用</strong><br>2026 年 1 月現在、新しいアラート ルールにおいても通知メールの件名をカスタマイズできる機能がプレビューとして提供されています。<br>この機能を利用することで、ログ アラート ルールのメールの件名は、静的テキスト、アラート ペイロードから抽出された動的な値またはその両方の組み合わせでオーバーライドできます。</p>
+<blockquote>
+<p>ログ検索アラートの電子メールの件名をカスタマイズする (プレビュー)<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-customize-email-subject-how-to">https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-customize-email-subject-how-to</a></p>
+</blockquote>
+<p><img src="/blog/AzureMonitorEssential/AboutCustomizingAlertNotificationEmail/image05.png"></p>
+<div class="alert is-info"><p class="alert-title">Note</p><p>本機能は 2026 年 1 月時点でパブリック プレビュー段階となっております。</p><p>そのため、今後、手順や機能の詳細が変更される可能性がございます。</p><p>また、ごくまれに GA できずそのまま廃止される可能性もあること、予めご留意いただきますようお願いいたします。</p></div>
 <h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>本記事では、以下についてご案内いたしましたが、ご理解いただけましたでしょうか。</p>
 <ul>
-<li>アラート通知メールをカスタマイズすることはできない<br>  – 代替案は、Logic Apps や Azure Functions 等を用いてアラート通知を実装する</li>
-<li>2021 年 12 月から新しい API  (バージョン 2021-08-01)  のアラート ルール作成画面のリリースが開始された<br>  – 代替案は、旧 API バージョンの ARM テンプレートや REST APIを使用してアラートをデプロイ</li>
+<li>アラート通知メールをカスタマイズすることはできない<ul>
+<li>代替案は  Logic Apps や Azure Functions 等を用いたアラート通知の実装</li>
 </ul>
-<p>以上、アラート通知メールのカスタマイズについてご案内いたしました。</p>
+</li>
+<li>2021 年 12 月から新しい API  (バージョン 2021-08-01)  のアラート ルール作成画面のリリースが開始された</li>
+<li>ログ アラート ルールの電子メールの件名をカスタマイズすることは可能<ul>
+<li>代替案 1 は、旧 API バージョンの ARM テンプレートや REST APIを使用してアラートをデプロイ</li>
+<li>代替案 2 は、 ログ アラート ルールの電子メールの件名をカスタマイズする (プレビュー) の利用</li>
+</ul>
+</li>
+</ul>
 <p>本記事が少しでもお役に立ちましたら幸いです。<br>最後までお読みいただき、ありがとうございました！</p>
 
       
