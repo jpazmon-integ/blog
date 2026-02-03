@@ -3,7 +3,10 @@ title: CMA/AMA とエンドポイントの通信経路上に Azure Firewall が�
 date: 2025-01-05 21:00:00
 tags:
   - Log Analytics
-  - Troubleshoot
+  - Azure Arc
+  - Azure Monitor Agent
+  - Arc-enabled servers
+  - HowTo
 ---
 
 [更新履歴]

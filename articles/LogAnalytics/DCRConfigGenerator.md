@@ -1,11 +1,10 @@
-
 ---
 title: DCR Config Generator の使用方法
 date: 2023-12-24 00:00:00
 tags:
- - How-To
+ - HowTo
  - Log Analytics
- - Azure Monitor Agent
+ - AMA migration
 ---
 [更新履歴]  
 - 2023/12/24 ブログ公開  
