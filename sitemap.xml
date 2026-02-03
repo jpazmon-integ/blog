@@ -233,13 +233,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/UpdateLAHealth/</loc>
-    
-    <lastmod>2026-02-03</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/</loc>
     
     <lastmod>2026-02-03</lastmod>
@@ -254,7 +247,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/SystemLanguageNotEnglishNoPython2Bug/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/UpdateLAHealth/</loc>
     
     <lastmod>2026-02-03</lastmod>
     
@@ -262,6 +255,13 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/TroubleshootingAMALogIngestion/</loc>
+    
+    <lastmod>2026-02-03</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/SystemLanguageNotEnglishNoPython2Bug/</loc>
     
     <lastmod>2026-02-03</lastmod>
     
@@ -527,14 +527,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/SecurityAdvisoriesElevatedAccess/</loc>
     
     <lastmod>2026-02-03</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/SecurityAdvisoriesElevatedAccess/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/</loc>
     
     <lastmod>2026-02-03</lastmod>
     
@@ -837,35 +837,21 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/Diagnostics-settings/</loc>
-    <lastmod>2026-02-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/Azure-Diagnostics-extension/</loc>
-    <lastmod>2026-02-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/WAD/</loc>
-    <lastmod>2026-02-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/LAD/</loc>
-    <lastmod>2026-02-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/tags/Azure-Monitor-Essential/</loc>
+    <lastmod>2026-02-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/tags/Diagnostics-Settings/</loc>
+    <lastmod>2026-02-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/tags/Azure-Diagnostics-Extension/</loc>
     <lastmod>2026-02-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -880,13 +866,6 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/tags/Alerts-Action-Groups/</loc>
-    <lastmod>2026-02-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/Diagnostics-Settings/</loc>
     <lastmod>2026-02-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -949,14 +928,35 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/Troubleshoot/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/tags/VM-Insights/</loc>
     <lastmod>2026-02-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/VM-Insights/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/tags/AMA-migration/</loc>
+    <lastmod>2026-02-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/tags/Azure-Diagnostics-extension/</loc>
+    <lastmod>2026-02-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/tags/LAD/</loc>
+    <lastmod>2026-02-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/tags/WAD/</loc>
     <lastmod>2026-02-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
