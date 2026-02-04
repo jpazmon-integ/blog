@@ -6,6 +6,10 @@ tags:
  - Log Analytics
 ---
 
+[更新履歴]
+- 2024/09/18 ブログ公開
+- 2026/02/04 最新情報に更新
+
 こんにちは、Azure Monitoring チームの徳田です。
 
 本ブログでは、Log Analytics ワークスペースのコストの管理方法 (コスト増加原因の調査、コストを抑える方法) についてご説明します。  
@@ -235,7 +239,7 @@ Azure Monitor エージェントとデータ収集ルールを用いたデータ
 ログ収集設定をカスタマイズする方法については、以下弊社サイト、およびサポート チームのブログをご参照ください。
 
 **パフォーマンス カウンター**
-- [パフォーマンス カウンター データ ソースを構成する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-performance#configure-performance-counters-data-source)
+- [パフォーマンス カウンター データ ソースの構成](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/data-collection-performance?tabs=oteldatasource%2Clinux#configure-data-source)
 - [既定で用意されているもの以外のパフォーマンス カウンターを収集する方法](https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomPerfCounter/)
 
 **Windows イベント ログ**
@@ -243,8 +247,7 @@ Azure Monitor エージェントとデータ収集ルールを用いたデータ
 - [既定で用意されているもの以外のイベント ログを収集する方法](https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomEventlog/)
 
 **Linux Syslog**
-- [Syslog データの収集を構成する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-syslog#configure-collection-of-syslog-data)  
-![](./HowToManageLogAnalyticsBilling/docs-syslog.png)
+- [Syslog データ ソースの構成](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/data-collection-syslog#configure-syslog-data-source)  
 
 ■ **Application Insights のサンプリング機能を用いて収集ログを減らす**
   
@@ -253,14 +256,17 @@ Application Insights では、サンプリング機能が実装されており�
 サンプリングを使用することで、APM に必要なデータをコストの観点で効率的に収集出来ます。  
 もし Application Insights に紐づくデータのコストを抑えたい要望がある場合は、一度サンプリング機能をご検討ください。
 
-- [Sampling in Application Insights](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/sampling-classic-api)
+- [Application Insights でのサンプリング](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/sampling-classic-api)
 
 ■ **Container Insights の収集設定をカスタマイズして不要なデータの収集を減らす**  
 Container Insights を有効化していただくことで、AKS や Azure Arc enabled k8s から、コンテナに関するログやパフォーマンス情報を、Log Analytics ワークスペースに収集することが可能です。  
 一方で Container Insights のログ収集設定によっては収集されるログが増え、コスト増加に繋がります。  
 もし不要な Container Insights に関連するログが存在する場合は、Container Insights のログ収集設定の見直しをご検討ください。  
 
-- [Configure log collection in Container insights](https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-data-collection-configure?tabs=portal)
+- [Container insights の構成オプション](https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=portal#configuration-options)
+
+また、Container insights により収集されるログのコスト最適化については、以下公開情報も併せてご確認ください。
+- [Container insights 監視コストの最適化](https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-cost)
 
 #### 2-1-2. 日次上限を設定しデータのインジェスト量を一定量までに抑える
 Log Analytics ワークスペースに日次上限とは、1 日あたりのデータのインジェスト量の上限値を指します。  
@@ -314,7 +320,7 @@ Log Analytics ワークスペース内のデータは、対話型保持と長期
 #### 2-2-2. データの保有量を調整する
 データの保有量を削減するためにできるもう一つの方法は、現在保有しているワークスペース内のデータをストレージ アカウントにエクスポートし、ワークスペース内のデータの保持期間を短くすることです。
 
-ストレージ アカウントの価格 (*4) は、[Log Analytics ワークスペースの保有料金](https://azure.microsoft.com/ja-jp/pricing/details/monitor/)よりも低価格なため、収集したデータに対して対話型クエリを実行する予定がない場合は、ストレージ アカウントにデータをエクスポート (移動) し、ワークスペース内のデータを短くすることで、コストを抑えられます。 
+ストレージ アカウントの価格 (*4) は、[Log Analytics ワークスペースのデータ保有料金](https://azure.microsoft.com/ja-jp/pricing/details/monitor/)よりも低価格なため、収集したデータに対して対話型クエリを実行する予定がない場合は、ストレージ アカウントにデータをエクスポート (移動) し、ワークスペース内のデータ保有期間を短くすることで、コストを抑えられます。 
 
 以下に、ストレージ アカウントまたは Event Hubs にログを送信する 2 つの方法をご紹介します。
 
@@ -325,12 +331,19 @@ Log Analytics ワークスペース内のデータは、対話型保持と長期
 - より詳細な情報は、以下弊社サイトをご参照ください。  
 [Azure Monitor の Log Analytics ワークスペース データ エクスポート](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal)
 
-■ **データ収集ルールを構成して直接アップロードする (プレビュー)**
+■ **【非推奨】データ収集ルールを構成して直接アップロードする (プレビュー)**
+
+>[!IMPORTANT] 本プレビュー機能は、廃止されることとなりました。つきましては、代替機能のご利用をご検討ください。
+>詳細は、以下公開情報および弊社ブログ サイトをご確認ください。
+>[仮想マシン クライアント データを Event Hubs と Storage に送信する (プレビュー)](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/send-event-hubs-storage?tabs=windows%2Cwindows-1)
+>[【非推奨】AMA を使用して VM のデータを Event Hub とストレージ アカウントに送信する方法](https://jpazmon-integ.github.io/blog/LogAnalytics/HowToSendVMDataToEventHubAndStorage/)
+
+
 - データ収集ルールを構成することで、Azure Monitor エージェントを使用して収集したデータを、直接ストレージ アカウント、または Event Hubs へアップロードすることができます。  
 - この方法では、Log Analytics ワークスペースにはデータが収集されません。
-- 本機能がサポートされているデータ型には制限がございます (2024 年 9 月時点)。詳細は、以下弊社サイトをご確認ください。  
-[サポートされている機能](https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-send-data-to-event-hubs-and-storage?tabs=windows%2Cwindows-1#whats-supported)
-- 本機能は 2024 年 9 月時点では、パブリック プレビュー段階です。仕様が余儀なく変更される可能性があるため、使用の際はこちらの点にご留意ください。
+- 本機能がサポートされているデータ型には制限がございます。詳細は、以下弊社サイトをご確認ください。  
+[サポートされているデータ型](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/send-event-hubs-storage?tabs=windows%2Cwindows-1#supported-data-types)
+
 
 (*4) ストレージ アカウントの価格は以下サイトからご確認ください。  
 [Azure Blob Storage の価格](https://azure.microsoft.com/ja-jp/pricing/details/storage/blobs/)
