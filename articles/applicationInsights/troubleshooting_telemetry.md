@@ -6,6 +6,10 @@ tags:
   - Troubleshooting
 ---
 
+[更新履歴]
+- 2024/09/18 ブログ公開
+- 2026/02/05 最新情報に更新
+
 こんにちは、Azure Monitoring サポート チームの北山です。
 
 App Service や Azure VM などにデプロイいただいている Web アプリケーションのパフォーマンスを監視するために、Application Insights をご利用いただいているケースがございます。  
@@ -18,20 +22,20 @@ App Service や Azure VM などにデプロイいただいている Web アプ�
 
 # 目次
 - [目次](#目次)
-- [ケース 1. すべての種類のテレメトリが Application Insights にまったく収集されなくなった](#ケース-1-すべての種類のテレメトリが-application-insights-にまったく収集されなくなった)
+- [ケース 1. すべての種類のテレメトリが Application Insights にまったく収集されなくなった](#case1)
   - [問題の概要](#問題の概要)
   - [疑われるポイント](#疑われるポイント)
-- [ケース 2. 一部の種類のテレメトリが Application Insights にまったく収集されなくなった](#ケース-2-一部の種類のテレメトリが-application-insights-にまったく収集されなくなった)
+- [ケース 2. 一部の種類のテレメトリが Application Insights にまったく収集されなくなった](#case2)
   - [問題の概要](#問題の概要-1)
   - [実際にあったケース](#実際にあったケース)
-- [ケース 3. 問題なく Application Insights にテレメトリが収集出来ているが、時々期待したログが欠落する](#ケース-3-問題なく-application-insights-にテレメトリが収集出来ているが時々期待したログが欠落する)
+- [ケース 3. 問題なく Application Insights にテレメトリが収集出来ているが、時々期待したログが欠落する](#case3)
   - [問題の概要](#問題の概要-2)
   - [疑われるポイント](#疑われるポイント-1)
 - [色々調べたけど問題が解決しない場合……](#色々調べたけど問題が解決しない場合)
 - [まとめ](#まとめ)
 - [関連する記事](#関連する記事)
 
-
+<a id="case1"></a>
 # ケース 1. すべての種類のテレメトリが Application Insights にまったく収集されなくなった
 ## 問題の概要
 - 今までは問題なく Application Insights に各種テレメトリ (requests ログや traces ログ、dependencies ログなど) が収集されていた。
@@ -393,7 +397,7 @@ curl -H "Content-Type: application/json" -X POST -d '{"data":{"baseData":{"ver":
 そうしないと、テレメトリの取り込みが拒否されます。  
 この点について十分ご留意くださいませ。
 
-- [プライベート リンクをネットワークに適用する方法を制御する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-design#control-how-private-links-apply-to-your-networks)  
+- [プライベートのみのアクセス モード](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-design#private-only-access-mode)  
 
 ![](./troubleshooting_telemetry/pict12.png)
 
@@ -414,7 +418,7 @@ curl -H "Content-Type: application/json" -X POST -d '{"data":{"baseData":{"ver":
 
 > サポートされる最小の IPv4 のサブネットは /27 です。 割り当て可能な IP アドレスの数に要注意です。
 
-[Azure Private Link のセットアップを設計する # ネットワーク サブネットのサイズ](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-design#requirements)
+[Azure Monitor のプライベート リンクを構成する # ネットワーク サブネットのサイズ](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-configure#network-subnet-size)
 
 ![](./troubleshooting_telemetry/pict11.png)
 
@@ -431,7 +435,7 @@ App Service リソースの Application Insights を確認し、コレクショ�
 もしコレクション レベルが "無効" の場合は "推奨" にご変更ください。  
 なおコレクション レベルを変更すると、App Service の環境変数が変更されるため App Service の再起動が実施されます。  
 再起動される点について、予めご留意ください。
-
+<a id="case2"></a>
 # ケース 2. 一部の種類のテレメトリが Application Insights にまったく収集されなくなった
 ## 問題の概要
 - requests ログや dependencies ログは収集されているのに、traces ログが収集されなくなった。
@@ -480,7 +484,7 @@ App Service と Application Insights を統合する方法として、下記の 
 
 ランタイムが .NET Framework / .NET の場合、自動インストルメンテーション機能を有効化していてかつ、当該 App Service リソースに対して Application Insights SDK が組み込まれた Web アプリケーションをデプロイした場合、Application Insights SDK 側が優先されます。
 
-- [Azure App Service のアプリケーションの監視の概要](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/opentelemetry-overview?tabs=aspnetcore)
+- [Azure App Service での .NET、Node.js、Python、Java アプリケーションのアプリケーション監視を有効にする](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/codeless-app-service?tabs=aspnetcore)
 
 ![](./troubleshooting_telemetry/pict18.png)
 
@@ -495,18 +499,18 @@ Azure の基盤側ログに、ApplicationInsights.dll ファイルが wwwroot �
 もし当該 Web アプリケーションに対して ApplicationInsights.dll が含まれている場合は、お手数ではございますが当該 DLL を削除し改めて App Service に再デプロイを実施ください。  
 もしくは、当該 Web アプリケーションのプロジェクトに Microsoft.ApplicationInsights.AspNetCore が存在する場合、こちらを削除いただき App Service に再デプロイください。  
 
-- [Application Insights for ASP.NET Core アプリケーション](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/asp-net-core?tabs=netcorenew%2Cnetcore6#enable-application-insights-server-side-telemetry-no-visual-studio)
+- [Application Insights を手動で追加する (Visual Studio を使用しない)#ASP.NET Core](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/classic-api?tabs=dotnet#aspnet-core-2)
  
 ![](./troubleshooting_telemetry/pict19.png)
 
 
 .NET Framework の場合は、こちらを削除ください。
 
-- [ASP.NET Web サイトに Application Insights を構成する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/asp-net#add-application-insights-manually)
+- [Application Insights を手動で追加する (Visual Studio を使用しない)#ASP.NET](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/classic-api?tabs=dotnet#aspnet-2)
 
 ![](./troubleshooting_telemetry/pict20.png)
 
-
+<a id="case3"></a>
 # ケース 3. 問題なく Application Insights にテレメトリが収集出来ているが、時々期待したログが欠落する
 ## 問題の概要
 - 基本的には requests ログや dependencies ログ、traces ログは収集されている。
