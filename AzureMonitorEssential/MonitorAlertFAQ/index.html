@@ -10,12 +10,12 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="[更新履歴]  2025&#x2F;01&#x2F;29 : ブログ公開 2025&#x2F;10&#x2F;21 : アラートの重複と検知漏れに関する情報を追記  こんにちは、Azure Monitoring サポート チームの北村です。今回は Azure Monitor のアラートに関するよくあるご質問をご紹介します。リソース正常性アラートやサービス正常性アラートについては、別途ブログを投稿しておりますので併せてご覧いただけますと幸">
+      <meta name="description" content="[更新履歴]  2025&#x2F;01&#x2F;29 : ブログ公開 2025&#x2F;10&#x2F;21 : アラートの重複と検知漏れに関する情報を追記 2026&#x2F;02&#x2F;06 : 最新の情報であることを確認済み  こんにちは、Azure Monitoring サポート チームの北村です。今回は Azure Monitor のアラートに関するよくあるご質問をご紹介します。リソース正常性アラートやサービス正常性アラートについては、">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Azure Monitor のアラートに関するよくあるご質問">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="[更新履歴]  2025&#x2F;01&#x2F;29 : ブログ公開 2025&#x2F;10&#x2F;21 : アラートの重複と検知漏れに関する情報を追記  こんにちは、Azure Monitoring サポート チームの北村です。今回は Azure Monitor のアラートに関するよくあるご質問をご紹介します。リソース正常性アラートやサービス正常性アラートについては、別途ブログを投稿しておりますので併せてご覧いただけますと幸">
+<meta property="og:description" content="[更新履歴]  2025&#x2F;01&#x2F;29 : ブログ公開 2025&#x2F;10&#x2F;21 : アラートの重複と検知漏れに関する情報を追記 2026&#x2F;02&#x2F;06 : 最新の情報であることを確認済み  こんにちは、Azure Monitoring サポート チームの北村です。今回は Azure Monitor のアラートに関するよくあるご質問をご紹介します。リソース正常性アラートやサービス正常性アラートについては、">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image04.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image05.png">
@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image13.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/image20.png">
 <meta property="article:published_time" content="2025-01-28T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-02-05T12:36:33.779Z">
+<meta property="article:modified_time" content="2026-02-09T08:18:27.606Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="FAQ">
 <meta property="article:tag" content="Azure Monitor Essential">
@@ -196,7 +196,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+32f328b8-12cf-5a80-a754-c9868b6b656d%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Monitor+%E3%81%AE%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E3%81%94%E8%B3%AA%E5%95%8F%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FMonitorAlertFAQ%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FMonitorAlertFAQ.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FMonitorAlertFAQ.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/" data-id="cml9fxo0900gr0nqde1xp0d60" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/" data-id="cmlewh5ez00gr0nk918bm4sx0" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -205,6 +205,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <ul>
 <li>2025/01/29 : ブログ公開</li>
 <li>2025/10/21 : アラートの重複と検知漏れに関する情報を追記</li>
+<li>2026/02/06 : 最新の情報であることを確認済み</li>
 </ul>
 <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回は Azure Monitor のアラートに関するよくあるご質問をご紹介します。<br><a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ResourceHealthAlert/">リソース正常性アラート</a>や<a href="https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/">サービス正常性アラート</a>については、別途ブログを投稿しておりますので併せてご覧いただけますと幸いです！</p>
 <br>
@@ -692,7 +693,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <br>
 
 
-<h3 id="Q-アクション-グループでメールを通知しています。利用料金を教えてください。"><a href="#Q-アクション-グループでメールを通知しています。利用料金を教えてください。" class="headerlink" title="Q. アクション グループでメールを通知しています。利用料金を教えてください。"></a>Q. アクション グループでメールを通知しています。利用料金を教えてください。</h3><p>サブスクリプション毎に 1,000 通までは無料でご利用いただけますが、この無料枠を超えた場合はご利用料金が発生します。<br>100,000 通につき $2 の場合、1,001 通目から 100,000 通目までは、$2 となります。<br>100,001 通 から 200,000 通目までは、さらに + $2 となり、＄4 となります。<br>現時点の価格の詳細は <a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">Azure Monitor 価格サイト</a>や<a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/calculator/">計算ツール</a>をご覧ください。通知の種類 (メール、webhook、SMS など) によってご利用料金が異なりますので、アクション グループの設定内容に応じてご確認ください。</p>
+<h3 id="Q-アクション-グループでメールを通知しています。利用料金を教えてください。"><a href="#Q-アクション-グループでメールを通知しています。利用料金を教えてください。" class="headerlink" title="Q. アクション グループでメールを通知しています。利用料金を教えてください。"></a>Q. アクション グループでメールを通知しています。利用料金を教えてください。</h3><p>課金アカウント毎に 1,000 通までは無料でご利用いただけますが、この無料枠を超えた場合はご利用料金が発生します。<br>100,000 通につき $2 の場合、1,001 通目から 100,000 通目までは、$2 となります。<br>100,001 通 から 200,000 通目までは、さらに + $2 となり、＄4 となります。<br>現時点の価格の詳細は <a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">Azure Monitor 価格サイト</a>や<a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/calculator/">計算ツール</a>をご覧ください。通知の種類 (メール、webhook、SMS など) によってご利用料金が異なりますので、アクション グループの設定内容に応じてご確認ください。</p>
 <br>
 <br>
 
