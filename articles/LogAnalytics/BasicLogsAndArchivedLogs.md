@@ -2,8 +2,7 @@
 title: Log Analytics の新機能 Basic Logs と Archived Logs について
 date: 2022-08-17 00:00:00
 tags:
-  - How-To
-  - Tips
+  - HowTo
   - Log Analytics
 ---
 

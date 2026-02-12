@@ -2,9 +2,9 @@
 title: Log Analytics のクエリの実行コストについて
 date: 2025-09-03 00:00:00
 tags:
-  - How-To
-  - クエリ
-  - コスト
+  - HowTo
+  - Query
+  - Cost
   - Log Analytics
 ---
 

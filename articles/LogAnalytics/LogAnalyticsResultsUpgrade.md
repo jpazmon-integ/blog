@@ -3,7 +3,7 @@ title: Log Analytics のアップグレード
 date: 2022-08-17 00:00:00
 tags:
   - Log Analytics
-  - How-To
+  - HowTo
 ---
 
 こんにちは、Azure Monitoring チームの 北村 です。
