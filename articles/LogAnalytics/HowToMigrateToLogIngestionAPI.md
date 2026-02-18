@@ -3,9 +3,8 @@ title: Retirement notice ： Transition to DCR-based custom log ingestion by 14 
 date: 2023-11-29 00:00:00
 tags:
   - Log Analytics
-  - ログ インジェスト API
-  - データ コレクター API
-  - Tips
+  - Data Collection Rule, Data Collection Endpoint
+  - Retirement
 ---
 
 [更新履歴]

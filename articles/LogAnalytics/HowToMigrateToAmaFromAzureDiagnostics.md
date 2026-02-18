@@ -2,10 +2,10 @@
 title: Retirement notice ： Migrate to Azure Monitor Agent before 31 March 2026 について
 date: 2024-10-31 00:00:00
 tags:
-  - Azure Diagnostics extension
-  - LAD
-  - WAD
-  - How-To
+  - Azure Diagnostics Extension
+  - AMA migration
+  - Log Analytics
+  - Retirement
 ---
 
 こんにちは、Azure Monitoring サポート チームの佐藤、北村です。

@@ -3,6 +3,8 @@ title: 【廃止】Log Analytics 仮想マシン拡張機能のバージョン �
 date: 2022-07-01 00:00:00
 tags:
   - Log Analytics
+  - Log Analytics Agent
+  - HowTo
 ---
 
 [更新履歴]
