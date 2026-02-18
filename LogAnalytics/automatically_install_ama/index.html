@@ -10,12 +10,12 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは！ Azure Monitoring チームの秋田です！今回は、仮想マシン (以下、VM) を作成したときに自動的に Azure Monitor エージェントのインストールとデータ収集ルールへの関連付けがされるよう設定する方法をご紹介します！">
+      <meta name="description" content="[更新履歴]    2022&#x2F;09&#x2F;22 ブログ公開   2026&#x2F;01&#x2F;19 GUI 変更に伴う更新     こんにちは！ Azure Monitoring チームの秋田です！今回は、仮想マシン (以下、VM) を作成したときに自動的に Azure Monitor エージェントのインストールとデータ収集ルールへの関連付けがされるよう設定する方法をご紹介します！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="仮想マシン作成時に Azure Monitor エージェントのインストールとデータ収集ルールへの関連付けを自動で行う方法">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/automatically_install_ama/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは！ Azure Monitoring チームの秋田です！今回は、仮想マシン (以下、VM) を作成したときに自動的に Azure Monitor エージェントのインストールとデータ収集ルールへの関連付けがされるよう設定する方法をご紹介します！">
+<meta property="og:description" content="[更新履歴]    2022&#x2F;09&#x2F;22 ブログ公開   2026&#x2F;01&#x2F;19 GUI 変更に伴う更新     こんにちは！ Azure Monitoring チームの秋田です！今回は、仮想マシン (以下、VM) を作成したときに自動的に Azure Monitor エージェントのインストールとデータ収集ルールへの関連付けがされるよう設定する方法をご紹介します！">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/automatically_install_ama/%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/automatically_install_ama/%E3%82%A4%E3%83%8B%E3%82%B7%E3%82%A2%E3%83%81%E3%83%96.png">
@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/automatically_install_ama/%E9%99%A4%E5%A4%96.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/automatically_install_ama/%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B801.jpg">
 <meta property="article:published_time" content="2022-09-21T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-02-16T08:40:34.653Z">
+<meta property="article:modified_time" content="2026-02-18T00:32:45.033Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Log Analytics">
 <meta property="article:tag" content="How-To">
@@ -179,12 +179,17 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+913138ff-f1e0-5b9b-9392-8804693efd45%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3%E4%BD%9C%E6%88%90%E6%99%82%E3%81%AB+Azure+Monitor+%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%A8%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%B8%E3%81%AE%E9%96%A2%E9%80%A3%E4%BB%98%E3%81%91%E3%82%92%E8%87%AA%E5%8B%95%E3%81%A7%E8%A1%8C%E3%81%86%E6%96%B9%E6%B3%95%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2Fautomatically_install_ama%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2Fautomatically_install_ama.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2Fautomatically_install_ama.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/automatically_install_ama/" data-id="cmloxclaj00300nqngytgczru" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/automatically_install_ama/" data-id="cmlrasxqr00300nqkg19e61xz" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは！ Azure Monitoring チームの秋田です！<br>今回は、仮想マシン (以下、VM) を作成したときに自動的に Azure Monitor エージェントのインストールとデータ収集ルールへの関連付けがされるよう設定する方法をご紹介します！</p>
+        <p>[更新履歴]  </p>
+<ul>
+<li>2022/09/22 ブログ公開  </li>
+<li>2026/01/19 GUI 変更に伴う更新   </li>
+</ul>
+<p>こんにちは！ Azure Monitoring チームの秋田です！<br>今回は、仮想マシン (以下、VM) を作成したときに自動的に Azure Monitor エージェントのインストールとデータ収集ルールへの関連付けがされるよう設定する方法をご紹介します！</p>
 <span id="more"></span>
 
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
@@ -195,7 +200,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </ul>
 <h2 id="どうやって-VM-作成時に-Azure-Monitor-エージェントをインストールし、データ収集ルールへの関連付けを行うのか"><a href="#どうやって-VM-作成時に-Azure-Monitor-エージェントをインストールし、データ収集ルールへの関連付けを行うのか" class="headerlink" title="どうやって VM 作成時に Azure Monitor エージェントをインストールし、データ収集ルールへの関連付けを行うのか"></a>どうやって VM 作成時に Azure Monitor エージェントをインストールし、データ収集ルールへの関連付けを行うのか</h2><p>Azure Policy の機能のひとつであるポリシー イニシアチブを作成することで、VM 作成時に Azure Monitor エージェントのインストールとデータ収集ルールへの関連付けが自動で行われるよう設定できます。<br>そもそも、ポリシー定義とは、JSON 形式で記述されたビジネス ルールのことで、 Azure Policy では、Azure 内のリソースのプロパティとポリシー定義を比較し、リソースの評価を行います。<br>そして今回用いるポリシー イニシアチブとは、複数の関連するポリシー定義をグループ化したものを指します。  </p>
 <p>今回は、このポリシー イニシアチブにより設定する方法をご紹介します。  </p>
-<h2 id="詳細な手順"><a href="#詳細な手順" class="headerlink" title="詳細な手順"></a>詳細な手順</h2><h3 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h3><p>ポリシー イニシアチブを作成する際に、関連付けを行いたいデータ収集ルールのリソース ID が必要となります。<br>事前準備としてリソース ID を取得しておく必要があります。<br>以下、手順です。<br><strong>事前準備 1</strong><br>Azure ポータルで “モニター” と検索し、サービス一覧の中から [モニター] を開いてください。  </p>
+<h2 id="詳細な手順"><a href="#詳細な手順" class="headerlink" title="詳細な手順"></a>詳細な手順</h2><h3 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h3><p>ポリシー イニシアチブを作成する際に、関連付けを行いたいデータ収集ルールのリソース ID が必要となります。<br>事前準備としてリソース ID を取得しておく必要があります。<br>以下、手順です。<br><strong>事前準備 1</strong><br>Azure ポータルで “監視” と検索し、サービス一覧の中から [監視] (モニター) を開いてください。  </p>
 <p><strong>事前準備 2</strong><br>[設定] メニューにあります [データ収集ルール] をクリックしてください。  </p>
 <p><strong>事前準備 3</strong><br>一覧から自動関連付けを行いたいデータ収集ルールをクリックしてください。  </p>
 <p><strong>事前準備 4</strong><br>[概要] ページ右上にあります [JSON ビュー] をクリックしてください。  </p>
@@ -205,8 +210,9 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p><strong>手順 2</strong><br>[作成] メニューにあります [割り当て] をクリックしてください。  </p>
 <p><strong>手順 3</strong><br>遷移後の画面上部にあります [イニシアティブの割り当て] をクリックしてください。  </p>
 <p><strong>手順 4 ([基本] タブ内で行う設定)</strong><br>手順 4-1<br>まずは、[スコープ] 欄右端にある […] をクリックし、ポリシーを適用する対象の範囲 (スコープ) を設定します。<br>スコープは、サブスクリプション単位またはリソース グループ単位で設定いただけます。<br><img src="/blog/LogAnalytics/automatically_install_ama/%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97.png" alt="スコープ設定画面">  </p>
-<p>手順 4-2<br>使用するイニシアチブ定義を設定します。<br>[イニシアティブ定義] 欄の右端にある […] をクリックしてください。<br>検索欄で、”Azure Monitor” と検索ください。<br>使用中の VM の OS に応じて下記の通りイニシアチブをご選択いただいたのち、画面下部にあります [選択] をクリックしてください。  </p>
-<p>Windows OS の場合 -&gt; Azure Monitor エージェントを実行し、データ収集ルールに関連付けるように Windows マシンを構成する<br>Linux OS の場合 -&gt; Azure Monitor エージェントを実行し、データ収集ルールに関連付けるように Linux マシンを構成する</p>
+<p>手順 4-2<br>使用するイニシアチブ定義を設定します。<br>[イニシアティブ定義] 欄の右端にある […] をクリックしてください。<br>検索欄で、”Data Collection Rule” と検索ください。<br>使用中の VM の OS に応じて下記の通りイニシアチブをご選択いただいたのち、画面下部にあります [選択] をクリックしてください。  </p>
+<p><strong>Windows OS の場合</strong> -&gt;<br>  英語表記   : Configure Windows machines to run Azure Monitor Agent and associate them to a Data Collection Rule<br>  日本語表記 : Azure Monitor エージェントを実行し、データ収集ルールに関連付けるように Windows マシンを構成する</p>
+<p><strong>Linux OS の場合</strong> -&gt;<br>  英語表記   :Configure Linux machines to run Azure Monitor Agent and associate them to a Data Collection Rule<br>  日本語表記 : Azure Monitor エージェントを実行し、データ収集ルールに関連付けるように Linux マシンを構成する</p>
 <p><img src="/blog/LogAnalytics/automatically_install_ama/%E3%82%A4%E3%83%8B%E3%82%B7%E3%82%A2%E3%83%81%E3%83%96.png" alt="選択していただくイニシアチブ">  </p>
 <p>上記の手順 4-1 および手順 4-2 が完了したら、画面下部にあります [次へ] をクリックしてください。  </p>
 <p><strong>手順 5 ([パラメーター] タブ内で行う設定)</strong><br>[データ収集ルールのリソース ID] 欄に先ほど事前準備で取得しておいた、関連付けを行いたいデータ収集ルールのリソース ID をペーストしてください。<br>完了しましたら画面下部の [確認および作成] をクリックしてください。  </p>
@@ -220,13 +226,15 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p><img src="/blog/LogAnalytics/automatically_install_ama/%E4%BF%AE%E5%BE%A9%E3%82%BF%E3%82%B9%E3%82%AF.png" alt="修復タスク設定箇所"></p>
 <p>これにより、既存の VM に対してポリシー作成時にポリシーが適用されることを防ぐことができます。  </p>
 <h3 id="更新適用時"><a href="#更新適用時" class="headerlink" title="更新適用時"></a>更新適用時</h3><p>ただ、ポリシー作成時にはポリシー適用対象外となっていても、VM に対して何らかの更新操作があった場合には、一定期間後にポリシーに準拠していないリソースと評価され、ポリシーが適用される可能性があります。<br>この場合は、あらかじめポリシーを作成する際に、適用対象外としたい VM を [除外] 項目に入れておく必要があります。<br>[除外] については、 [基本] タブ内でご設定いただけます。<br><img src="/blog/LogAnalytics/automatically_install_ama/%E9%99%A4%E5%A4%96.png" alt="除外設定箇所"><br>ポリシー適用対象外として [除外] に含められるのは、スコープのレベルよりも 1 つ下のレベルとなります。<br>例えば、リソース グループをスコープとして設定している場合除外できるのはリソース単位となります。  </p>
-<h3 id="カスタム-イメージで-VM-を作成する場合"><a href="#カスタム-イメージで-VM-を作成する場合" class="headerlink" title="カスタム イメージで VM を作成する場合"></a>カスタム イメージで VM を作成する場合</h3><p>本ブログでご案内しているイニシアティブは既定で Marketplace にあるイメージで、かつ Azure Monitor エージェントがサポートしている OS のみに有効となります。<br>既定の設定ではカスタム イメージで作成された VM は評価対象になりません。<br>イニシアティブを利用してカスタム イメージで作成した VM に自動で Azure Monitor エージェントをデプロイしたい場合は、以下の設定変更が必要でございます。</p>
+<h3 id="カスタム-イメージで-VM-を作成する場合"><a href="#カスタム-イメージで-VM-を作成する場合" class="headerlink" title="カスタム イメージで VM を作成する場合"></a>カスタム イメージで VM を作成する場合</h3><p>本ブログでご案内しているイニシアティブは既定で Marketplace にあるイメージで、かつ Azure Monitor エージェントがサポートしている OS のみに有効となります。<br>既定の設定ではカスタム イメージで作成された VM は評価対象になりません。<br>イニシアティブを利用してカスタム イメージで作成した VM に自動で Azure Monitor エージェントをデプロイしたい場合は、作成したイニシアティブに対して以下の設定変更が必要でございます。</p>
 <ol>
-<li>[パラメーター] タブで [入力またはレビューが必要なパラメーターのみを表示する] からチェックを外す。</li>
-<li>[Azure Monitor エージェントがサポートするオペレーティング システムのスコープ ポリシー] を false にする。<br><img src="/blog/LogAnalytics/automatically_install_ama/%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B801.jpg" alt="カスタム イメージ">  </li>
+<li>[ポリシー] - [割り当て] 画面に作成したイニシアティブが表示されているので、作成したイニシアティブを選択します。</li>
+<li>[パラメーター] タブで [入力またはレビューが必要なパラメーターのみを表示する] からチェックを外します。</li>
+<li>[Azure Monitor エージェントがサポートするオペレーティング システムのスコープ ポリシー] を false にします。<br><img src="/blog/LogAnalytics/automatically_install_ama/%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B801.jpg" alt="カスタム イメージ">  </li>
 </ol>
 <p>[Azure Monitor エージェントがサポートするオペレーティング システムのスコープ ポリシー] を false に設定いただくと、”既定で Marketplace にあるイメージでかつ、Azure Monitor エージェントがサポートしている OS” と、”すべてのカスタム イメージの OS” が評価対象となります。<br>一方で特定のカスタム イメージにのみイニシアティブを適用したい場合は、上記設定を true に設定いただき、[追加の仮想マシン イメージ] に対象イメージをご指定ください。<br>その場合、”既定で Marketplace にあるイメージでかつ、Azure Monitor エージェントがサポートしている OS” と、”ご指定いただいたカスタム イメージの OS” が評価対象となります。 </p>
 <h3 id="マネージド-ID-の利用"><a href="#マネージド-ID-の利用" class="headerlink" title="マネージド ID の利用"></a>マネージド ID の利用</h3><p>Azure Monitor エージェントを利用するには、マネージド ID が VM に割り当てられている必要がございます。<br>本ブログでご案内しているイニシアティブの利用は、システム割り当てマネージド ID が割り当てられていることが前提となります。<br>VM 作成時にシステム割り当てマネージド ID を有効化しない場合、その VM は Azure Monitor エージェントのインストール対象になりません。<br>もし VM 作成時にシステム割り当てマネージド ID を有効化したくない場合は、代わりに以下イニシアティブの利用をご検討ください。<br>・ユーザー割り当てマネージド ID ベースの認証を使用する Windows Azure Monitor エージェントをデプロイし、データ収集ルールを関連付ける</p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-policy">Azure Policy を使用して Azure Monitor エージェントをインストールして管理する</a>にも、ユーザー割り当てマネージド ID を使用するイニシアティブについての情報が掲載されておりますので、ご覧いただけますと幸いです。</p>
 <h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>今回は、Azure Policy の一機能であるポリシー イニシアチブにより、VM が作成されると自動的に Azure Monitor エージェントのインストールとデータ収集ルールへの関連付けが行われるよう設定する方法をご紹介しました。<br>VM 作成時に毎回手動で Azure Monitor エージェントをインストールされていた方など、ぜひこちらの方法もご検討ください。  </p>
 
       
