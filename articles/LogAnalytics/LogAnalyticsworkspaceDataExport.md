@@ -2,9 +2,9 @@
 title: Log Analytics ワークスペースのデータ エクスポートに関するよくあるご質問
 date: 2024-01-06 00:00:00
 tags:
-  - How-To
-  - FAQ
   - Log Analytics
+  - Log Analytics workspace data export
+  - FAQ
 ---
 
 こんにちは、Azure Monitoring サポート チームの北村です。

@@ -2,9 +2,8 @@
 title: Log Analytics ワークスペースの保有期間の変更
 date: 2022-04-04 00:00:00
 tags:
-  - How-To
-  - Tips
   - Log Analytics
+  - HowTo
 ---
 
 [更新履歴]
