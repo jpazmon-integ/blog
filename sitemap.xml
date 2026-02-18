@@ -44,6 +44,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/general/HowToCreateSR/</loc>
+    
+    <lastmod>2026-02-18</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/automation/update-AzureRmVmCommandFailesWithVhdCannotBeNull/</loc>
     
     <lastmod>2026-02-18</lastmod>
@@ -52,13 +59,6 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/general/AboutMonandIntg/</loc>
-    
-    <lastmod>2026-02-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/general/HowToCreateSR/</loc>
     
     <lastmod>2026-02-18</lastmod>
     
@@ -205,14 +205,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/UpdateManager/Update_Manager_FAQ/</loc>
     
     <lastmod>2026-02-18</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/UpdateManager/Update_Manager_FAQ/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/</loc>
     
     <lastmod>2026-02-18</lastmod>
     
@@ -485,6 +485,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CMA_FW/</loc>
+    
+    <lastmod>2026-02-18</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CustomLog/</loc>
     
     <lastmod>2026-02-18</lastmod>
@@ -493,13 +500,6 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AMALinux_Perf/</loc>
-    
-    <lastmod>2026-02-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CMA_FW/</loc>
     
     <lastmod>2026-02-18</lastmod>
     
@@ -921,6 +921,13 @@
   </url>
   
   <url>
+    <loc>https://jpazmon-integ.github.io/blog/tags/Retirement/</loc>
+    <lastmod>2026-02-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jpazmon-integ.github.io/blog/tags/Azure-Monitor-Agent-Linux/</loc>
     <lastmod>2026-02-18</lastmod>
     <changefreq>daily</changefreq>
@@ -949,35 +956,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/Azure-Diagnostics-extension/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/tags/Data-Collection-Rule-Data-Collection-Endpoint/</loc>
     <lastmod>2026-02-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/LAD/</loc>
-    <lastmod>2026-02-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/WAD/</loc>
-    <lastmod>2026-02-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/%E3%83%AD%E3%82%B0-%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88-API/</loc>
-    <lastmod>2026-02-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%BF%E3%83%BC-API/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/tags/Log-Analytics-Agent/</loc>
     <lastmod>2026-02-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1027,13 +1013,6 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/tags/Availability-Tests/</loc>
-    <lastmod>2026-02-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/Retirement/</loc>
     <lastmod>2026-02-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1125,41 +1104,6 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/tags/Others/</loc>
-    <lastmod>2026-02-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/</loc>
-    <lastmod>2026-02-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/Log-Analytics-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88/</loc>
-    <lastmod>2026-02-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/VM-insights/</loc>
-    <lastmod>2026-02-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/%E5%88%86%E6%9E%90%E6%83%85%E5%A0%B1/</loc>
-    <lastmod>2026-02-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/Data-Collection-Rule-Data-Collection-Endpoint/</loc>
     <lastmod>2026-02-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
