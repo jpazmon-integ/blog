@@ -2,8 +2,8 @@
 title: Log Analytics ワークスペースの正常性を示す指標の更新について
 date: 2022-09-20 00:00:00
 tags:
- - Azure Monitor
- - Log Analytics
+  - Log Analytics
+  - HowTo
 ---
 
 [更新履歴]

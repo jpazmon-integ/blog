@@ -2,8 +2,9 @@
 title: Log Analytics ワークスペースのコスト増加の原因を分析しコスト削減を検討する
 date: 2024-09-18 00:00:00
 tags:
- - How-To
  - Log Analytics
+ - HowTo
+ - Cost
 ---
 
 [更新履歴]
