@@ -3,11 +3,9 @@ title: Migrate to Azure Monitor agent–based VM insights by 31 August 2024 に�
 date: 2023-11-06 00:00:00
 tags:
   - Log Analytics
-  - Azure Monitor エージェント
-  - Log Analytics エージェント
-  - VM insights
-  - 分析情報
-  - Tips
+  - AMA migration
+  - VM Insights
+  - Retirement
 ---
 
 [更新履歴]
