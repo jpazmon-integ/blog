@@ -3,11 +3,8 @@ title: Update Manager について
 date: 2025-07-18 00:00
 tags:
   - Azure Update Manager
-  - Maintenance Configuration
-  - メンテナンス構成
-  - Automatic VM Guest Patching
-  - Hotpatch
-  - パッチ オーケストレーション
+  - Automation
+  - HowTo
 ---
 
 [更新履歴]
