@@ -2,7 +2,10 @@
 title: アクティビティ ログの分析情報（プレビュー）
 date: 2022-05-23 00:00:00
 tags:
-  - Log Analytics
+  - Azure Monitor Essential
+  - Activity Logs
+  - HowTo
+  - Workbooks
 ---
 
 こんにちは、Azure Monitoring チームの 北村 です。
