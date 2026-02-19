@@ -2,8 +2,8 @@
 title: Windows セキュリティ イベントログの収集
 date: 2022-04-04 00:00:00
 tags:
-  - How-To
-  - Tips
+  - HowTo
+  - Azure Monitor Agent - Windows
   - Log Analytics
 ---
 
