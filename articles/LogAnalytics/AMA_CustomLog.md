@@ -22,20 +22,28 @@ Azure Monitor エージェントを用いたカスタム ログ収集手順
 ==
 
 本手順は以下の順序で作業を進めます。
-- [モニター] にてデータ収集エンドポイント (DCE) を作成
+- [監視] メニューにてデータ収集エンドポイント (DCE) を作成
 - PowerShell でカスタム ログ テーブルを作成
 - DCR を作成して、 VM リソースとの紐づけを行う
 
+### 注意事項
+※ [監視] メニューはポータルのページにより [モニター] と表示される場合があります。なお、検索キーワードは「監視」が使用可能です。
+
 データ収集エンドポイント (DCE) を作成する
 --
+
+
+※ カスタム ログ収集において、DCE は必須ではなくなりました。DCE が無くてもカスタム ログ収集は可能です。
+ファイアウォールなどで宛先の通信制限をする場合や、AMPLS を用いる場合は引き続き必要となります。
+
 
 - Azure Monitor のデータ収集エンドポイント
 https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-collection-endpoint-overview?tabs=portal#create-data-collection-endpoint
 
 
-1. [モニター] を開き、[データ収集エンドポイント] より [作成] を選択します。
+1. [監視] を開き、[データ収集エンドポイント] より [作成] を選択します。キーワード "DCE" で検索することも可能です。
 
-![](./AMA_CustomLog/AMACustomlog_01.png)
+![](./AMA_CustomLog/AMACustomlog_01_202512.png)
 
 2. データ収集エンドポイント (DCE) を任意の名前、リソース グループを指定して作成します。
 
@@ -52,9 +60,9 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-tex
 ### 前提
 今回は、以下の様なテキスト ファイルを取得することを想定します。
 ```
-2022-12-31T01:00:00.1234567Z | Computer=TestVM01 | Log=Service stop
-2022-12-31T01:01:00.1234567Z | Computer=TestVM01 | Log=Service start
-2022-12-31T01:02:00.1234567Z | Computer=TestVM01 | Log=Service stop
+2022-12-31T01:00:00.1234567Z | Log=Service stop
+2022-12-31T01:01:00.1234567Z | Log=Service start
+2022-12-31T01:02:00.1234567Z | Log=Service stop
 ```
 
 ### 手順
@@ -66,22 +74,22 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-tex
         "schema": {
                "name": "{TableName}_CL",
                "columns": [
-        {
+                       {
                                 "name": "TimeGenerated",
                                 "type": "DateTime"
-                        }, 
+                       }, 
                        {
                                 "name": "RawData",
                                 "type": "String"
                        },
                        {
-                                "name": "HostName",
+                                "name": "Computer",
                                 "type": "String"
                        },
-                      {
+                       {
                                 "name": "Log",
                                 "type": "String"
-                     }
+                       }
               ]
         }
     }
@@ -101,19 +109,22 @@ Invoke-AzRestMethod -Path "/subscriptions/{subscription}/resourcegroups/{resourc
 
 ※4 データの変換機能を利用する場合は、必要に応じて他のカラムを作成してください。
 
+※5 Computer、FilePath カラムについては自動で値が収集されます。詳しくは以下公開情報をご参考ください。
+https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/data-collection-log-text?tabs=portal#log-analytics-workspace-table
+
 DCR を設定する
 --
 
-1. [モニター] を開き、[データ収集ルール] より新規にデータ収集ルール (DCR) を作成します。
+1. [監視] を開き、[データ収集ルール] より新規にデータ収集ルール (DCR) を作成します。キーワード "DCR" で検索することも可能です。
 
 2. [基本] タブで、エンドポイント ID (DCE) を含めて、全ての項目を設定します。
-![](./AMA_CustomLog/AMACustomlog_16.png)
+![](./AMA_CustomLog/AMACustomlog_16_202512.png)
 
 3. [リソース] タブを開き、[+リソースの追加] より、カスタム ログを収集したい VM を選び、[適用] を選択します。
-![](./AMA_CustomLog/AMACustomlog_18.png)
+![](./AMA_CustomLog/AMACustomlog_18_202512.png)
 
 4. [収集と配信] タブを開き、[+データ ソースの追加]をクリックします。
-![](./AMA_CustomLog/AMACustomlog_17.png)
+![](./AMA_CustomLog/AMACustomlog_17_202512.png)
 
 5. [データ ソースの種類] にて [カスタム テキスト ログ] を選択します。
 [ファイル パターン] にて収集先のログファイル パスを指定します。
@@ -123,11 +134,11 @@ DCR を設定する
 ```
 
 6. [テーブル名] にはさきほど作成したテーブル名 (_CL 含む) を指定します。
-[Transform] には、以下のクエリを設定してデータを整形します。
+[Transform] には、以下のクエリを設定してデータを整形します。こちらの例は "Log=" に続く情報を Log カラムに収集しております。
 ```
-source| extend TimeGenerated = now()| parse RawData with * "Computer="HostName "| " *| parse RawData with * "Log="Log"
+source| extend TimeGenerated = now() | parse RawData with * "Log=" Log 
 ```
-![](./AMA_CustomLog/AMACustomlog_08.png)
+![](./AMA_CustomLog/AMACustomlog_08_202512.png)
 ※ TransformKql の書き方については、以下公開情報をご参考ください。
 https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-collection-transformations-structure
 
@@ -139,20 +150,19 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-collection
 
 この後、指定したパスへテキスト ログを出力していくと、ログが取得されます。
 
-![](./AMA_CustomLog/AMACustomlog_12.png)
+![](./AMA_CustomLog/AMACustomlog_12_202512.png)
 
 なお、今回のサンプルでは、TimeGenerated 列はログがエージェントによって収集されたタイミングとなります。
 テキスト ログ内の RawData 内の日時を、Log Analytics ワークスペース上の TimeGenerated 列としたいたい場合は、Transform のクエリを以下の様に指定し、ログから時刻を取得し、日付形式に変換の上、TimeGenerated 列として定義します。
 ```
 source
 | extend TimeGenerated = todatetime(substring(RawData,0,28))
-| parse RawData with * "Computer="HostName "| " *
 | parse RawData with * "Log="Log"
 ```
 
 これにより、TimeGenerated 列の値が RawData 内の日時をもとに設定されます。
 
-![](./AMA_CustomLog/AMACustomlog_13.png)
+![](./AMA_CustomLog/AMACustomlog_13_202512.png)
 
 
 - substring()
@@ -190,8 +200,8 @@ https://learn.microsoft.com/ja-JP/azure/azure-monitor/agents/azure-monitor-agent
 上記ポイントに問題がなく、また時間が経過してもログが Log Analytics ワークスペース上に収集がされない場合、以下の手順をお試し下さい。
 
 A. DCR を再作成する
-1. [モニター] より作成した DCR を選択し、[削除] します。
-2. 再度、[モニター] - [データ収集ルール] - [+ 作成] より DCR を新規作成します。
+1. [監視] より作成した DCR を選択し、[削除] します。
+2. 再度、[監視] - [データ収集ルール] - [+ 作成] より DCR を新規作成します。
 3. 任意のルール名、リソース グループを選択します。また、DCE を作成したリージョンと同じリージョンを選択し、ログを収集する VM の OS を選択します。(Windows または Linux)
    エンドポイント ID の箇所で、作成した DCE を選択し、次へ進みます。
 4. [+ リソースの追加] より収集対象の VM を選択します。[データ収集エンドポイントを有効にする] にチェックを入れ、作成した DCE を選択し、次へ進みます。
@@ -220,6 +230,6 @@ B. Azure Monitor エージェントを再インストールする
 本手順をテストされる場合、以下のコマンドにて簡単に検証が可能です。
 
 ```
-echo "`date '+%Y-%m-%dT%H:%M:%S.%7N'` | Computer=`hostname` | Log=Service stop" >> /var/log/test.log
-echo "`date '+%Y-%m-%dT%H:%M:%S.%7N'` | Computer=`hostname` | Log=Service start" >> /var/log/test.log
+echo "`date '+%Y-%m-%dT%H:%M:%S.%7N'` | Log=Service stop" >> /var/log/test.log
+echo "`date '+%Y-%m-%dT%H:%M:%S.%7N'` | Log=Service start" >> /var/log/test.log 　
 ```
