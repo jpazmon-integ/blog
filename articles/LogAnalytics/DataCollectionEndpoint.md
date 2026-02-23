@@ -2,8 +2,9 @@
 title: データ収集ルール作成時のデータ収集エンドポイントの構成について
 date: 2024-07-24 00:00:00
 tags:
- - How-To
  - Log Analytics
+ - Data Collection Rule, Data Collection Endpoint
+ - HowTo
 ---
 
 こんにちは、Azure Monitoring チームの徳田です。
