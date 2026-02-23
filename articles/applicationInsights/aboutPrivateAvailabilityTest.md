@@ -3,8 +3,8 @@ title: プライベート環境への可用性テスト
 date: 2022-05-18 00:00:00
 tags:
   - Application Insights
-  - 可用性テスト
-  - Tips
+  - Availability Tests
+  - HowTo
 ---
 
 [更新履歴]
