@@ -2,15 +2,15 @@
 title: アラート処理ルールについて
 date: 2023-07-07 00:00:00
 tags:
-  - How-To
-  - Tips
-  - Azure Monitor Essentials
-  - アラート処理ルール
+  - Azure Monitor Essential
+  - Alerts, Action Groups
+  - Alert processing rule
+  - HowTo
 ---
 
-[更新履歴]  
-- 2023/07/07 ブログ公開  
-- 2026/01/19 最新の情報であることを確認済み 
+[更新履歴]
+- 2023/07/07 ブログ公開
+- 2026/01/19 最新の情報であることを確認済み
 
 こんにちは、Azure Monitoring サポート チームの北村です。
 Azure Monitor のアラート処理ルールという機能をご存知でしょうか。

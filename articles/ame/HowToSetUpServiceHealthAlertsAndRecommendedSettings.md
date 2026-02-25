@@ -2,9 +2,10 @@
 title: サービス正常性アラートの設定手順と推奨設定について
 date: 2021-07-31 00:00:00
 tags:
-  - How-To
-  - Tips
-  - Azure Monitor Essentials
+  - Azure Monitor Essential
+  - Alerts, Action Groups
+  - Service Health alert
+  - HowTo
 ---
 
 [更新履歴]  

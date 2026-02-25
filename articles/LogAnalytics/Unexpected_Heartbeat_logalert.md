@@ -2,8 +2,12 @@
 title: マシンが起動中にも関わらず Heartbeat ログ アラートが発報された場合の調査方法
 date: 2024-09-05 10:00:00
 tags:
-  - Azure Monitor Agent
+  - Azure Monitor Essential
   - Log Analytics
+  - Alerts, Action Groups
+  - Log search alert
+  - Azure Monitor Agent
+  - Troubleshooting
 ---
 
 [更新履歴]

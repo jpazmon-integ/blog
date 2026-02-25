@@ -2,9 +2,10 @@
 title: アラート メールの登録解除
 date: 2023-06-06 00:00:00
 tags:
-  - How-To
-  - Tips
-  - Azure Monitor Essentials
+  - Azure Monitor Essential
+  - Alerts, Action Groups
+  - Action group
+  - HowTo
 ---
 
 [更新履歴]  

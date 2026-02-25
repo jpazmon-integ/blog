@@ -3,7 +3,7 @@ title: 【廃止】システム言語が日本語の Linux マシンにて発生
 date: 2022-02-28 00:00:00
 tags:
   - Log Analytics
-  - FAQ
+  - Log Analytics Agent
   - Troubleshooting
 ---
 

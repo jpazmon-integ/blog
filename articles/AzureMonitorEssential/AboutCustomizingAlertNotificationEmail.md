@@ -2,9 +2,10 @@
 title: アラート通知メールのカスタマイズについて
 date: 2022-03-25 00:00:00
 tags:
-  - How-To
-  - Tips
-  - Azure Monitor Essentials
+  - Azure Monitor Essential
+  - Alerts, Action Groups
+  - Log search alert
+  - HowTo
 ---
 
 2022/03/25 : 旧 UI と現 UI での対応表/図について、詳細設定オプションを考慮する内容に更新いたしました。  
