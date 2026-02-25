@@ -3,6 +3,7 @@ title: ネットワーク セキュリティ境界とは
 date: 2025-09-19 16:00:00
 tags:
   - Log Analytics
+  - Azure Monitor Private Link Scope
   - HowTo
 ---
 
