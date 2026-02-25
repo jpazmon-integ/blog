@@ -409,7 +409,7 @@ foreach($VM in $VMs){
 Azure Monitor エージェントで収集される Heartbeat の Category は "Azure Monitor Agent" です。
 ```
 Heartbeat
-| where Computer == 'computer-name'
+| where Computer contains 'computer-name'
 | where Category == 'Azure Monitor Agent'
 ```
 
