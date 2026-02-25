@@ -72,7 +72,7 @@ tags:
 ![](../aboutAvailabilityTest/4.png)
 
 [参考情報]  
-[pplication Insights 可用性テスト - Azure Monitor | Microsoft Learn # 可用性テストを作成する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability?tabs=track#create-an-availability-test)  
+[Application Insights 可用性テスト - Azure Monitor | Microsoft Learn # 可用性テストを作成する](https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability?tabs=track#create-an-availability-test)  
 [Azure Functions を利用したプライベート可用性テストについて](https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/)
 
 ## まとめ
