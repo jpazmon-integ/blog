@@ -3,6 +3,7 @@ title: アラート処理ルールについて
 date: 2023-07-07 00:00:00
 tags:
   - Azure Monitor Essential
+  - Alerts, Action Groups
   - Alert processing rule
   - HowTo
 ---
