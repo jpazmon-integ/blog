@@ -2,9 +2,10 @@
 title: リソース正常性アラートに関するよくあるご質問
 date: 2023-01-18 00:00:00
 tags:
-  - How-To
-  - Tips
-  - Azure Monitor Essentials
+  - FAQ
+  - Resource Health alert
+  - Alerts, Action Groups
+  - Azure Monitor Essential
 ---
 
 [更新履歴]

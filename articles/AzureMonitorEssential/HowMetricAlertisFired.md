@@ -2,9 +2,10 @@
 title: メトリック アラートの発報タイミングについて
 date: 2021-09-30 01:30:00
 tags:
-  - Azure Monitor
-  - FAQ
-  - MetricAlert
+  - Azure Monitor Essential
+  - Alerts, Action Groups
+  - HowTo
+  - Metric alert
 ---
 
 [更新履歴]

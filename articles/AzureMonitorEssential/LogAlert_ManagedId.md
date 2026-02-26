@@ -2,8 +2,10 @@
 title: ログ検索アラートのマネージド ID について
 date: 2025-09-12 16:00:00
 tags:
-  - How-To
-  - Azure Monitor Essentials
+  - HowTo
+  - Alerts, Action Groups
+  - Log search alert
+  - Azure Monitor Essential
 ---
 
 こんにちは、Azure Monitoring サポート チームの江口です。
