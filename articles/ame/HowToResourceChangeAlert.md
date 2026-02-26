@@ -2,9 +2,10 @@
 title: リソース変更を検知するアラートを作成する
 date: 2023-11-09 00:00:00
 tags:
-  - How-To
-  - Tips
-  - Azure Monitor Essentials
+  - HowTo
+  - Log search alert
+  - Alerts, Action Groups
+  - Azure Monitor Essential
 ---
 [更新履歴]  
 - 2023/11/09 ブログ公開  
