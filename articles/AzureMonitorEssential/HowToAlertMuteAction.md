@@ -2,11 +2,11 @@
 title: ログ アラート ルールにおけるアクションのミュート機能とは
 date: 2023-10-30 00:00:00
 tags:
-  - How-To
-  - Tips
-  - Azure Monitor Essentials
-  - ログ アラート ルール
-  - アクションのミュート
+  - HowTo
+  - Alerts, Action Groups
+  - Azure Monitor Essential
+  - Log search alert
+  - Action group
 ---
 
 [更新履歴]
