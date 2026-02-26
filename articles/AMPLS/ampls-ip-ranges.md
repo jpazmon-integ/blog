@@ -2,11 +2,10 @@
 title: AMPLS で必要な IP アドレスの個数について
 date: 2025-12-22 00:00:00
 tags:
-  - Azure Monitor Private Link Scopes
-  - Data Collection Endpoint
+  - Azure Monitor Private Link Scope
   - Application Insights
   - Log Analytics
-  - Q&A
+  - HowTo
 ---
 
 [更新履歴]  

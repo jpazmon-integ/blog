@@ -2,9 +2,12 @@
 title: 死活監視のクエリについて
 date: 2022-05-23 00:00:00
 tags:
-  - How-To
-  - Tips
+  - Azure Monitor Essential
   - Log Analytics
+  - Alerts, Action Groups
+  - Log search alert
+  - Azure Monitor Agent
+  - HowTo
 ---
 
 こんにちは！ Azure Monitoring サポート チームの北村です。

@@ -4,13 +4,9 @@ date: 2022-10-14 00:00:00
 tags:
   - Automation
   - Runbook
-  - Run As Account
   - Managed Identity
-  - Managed ID
-  - Migration
-  - 移行
-  - 実行アカウント
-  - マネージド ID
+  - Retirement
+  - FAQ
 ---
 
 [更新履歴]  

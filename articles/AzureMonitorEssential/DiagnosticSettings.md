@@ -2,8 +2,10 @@
 title: 診断設定によるプラットフォーム メトリックやリソース ログの一部欠損について
 date: 2022-09-28 00:00:00
 tags:
-  - Azure Monitor
-  - Diagnostic settings
+  - Azure Monitor Essential
+  - Diagnostics Settings
+  - Metrics
+  - HowTo
 ---
 
 [更新履歴]
