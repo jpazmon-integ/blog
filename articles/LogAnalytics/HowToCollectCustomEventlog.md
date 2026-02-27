@@ -2,8 +2,10 @@
 title: 既定で用意されているもの以外のイベント ログを収集する方法
 date: 2024-08-19 02:00:00
 tags:
- - How-To
  - Log Analytics
+ - Agents and Extensions - Windows
+ - Data Collection Rule, Data Collection Endpoint
+ - HowTo
 ---
 
 [更新履歴]

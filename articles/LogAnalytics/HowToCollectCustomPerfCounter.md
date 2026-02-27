@@ -2,8 +2,10 @@
 title: 既定で用意されているもの以外のパフォーマンス カウンターを収集する方法
 date: 2024-08-19 01:10:00
 tags:
- - How-To
  - Log Analytics
+ - Azure Monitor Agent
+ - Data Collection Rule, Data Collection Endpoint
+ - HowTo
 ---
 
 [更新履歴]  

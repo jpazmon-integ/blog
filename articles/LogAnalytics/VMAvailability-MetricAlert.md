@@ -2,9 +2,10 @@
 title: 可用性メトリック ‘VM Availability Metric (Preview)’ のメトリック アラートについて
 date: 2024-08-30 00:00:00
 tags:
-  - Log Analytics
   - Azure Monitor Essential
-  - How-To
+  - Alerts, Action Groups
+  - Metric alert
+  - HowTo
 ---
 
 [更新履歴]
