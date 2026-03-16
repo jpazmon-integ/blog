@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict8.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict9.png">
 <meta property="article:published_time" content="2025-03-31T02:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.431Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:30.087Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Application Insights">
 <meta property="article:tag" content="Information">
@@ -68,7 +68,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -85,7 +85,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -183,15 +183,15 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+a190bf22-127f-51fd-b87d-bd34c3cfc8ac%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BApplication+Insights+%E3%81%AE+TLS+%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E5%A4%89%E6%9B%B4%E3%81%AE%E3%81%94%E6%A1%88%E5%86%85%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FapplicationInsights%2FupcomingTlsChangesForAppInsights%2F%29%0A*+Content+Source%3A+%5Barticles%2FapplicationInsights%2FupcomingTlsChangesForAppInsights.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FapplicationInsights%2FupcomingTlsChangesForAppInsights.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/upcomingTlsChangesForAppInsights/" data-id="cmm8g5fje00eh0nnya8v8ftds" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/upcomingTlsChangesForAppInsights/" data-id="cuid503uREXwoue-owHMeNlaY" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>[更新履歴]</p>
 <ul>
-<li>2025/3/31 ブログ公開</li>
-<li>2026/1/7 最新情報に更新</li>
+<li>2025&#x2F;3&#x2F;31 ブログ公開</li>
+<li>2026&#x2F;1&#x2F;7 最新情報に更新</li>
 </ul>
 <p>こんにちは、Azure Monitoring サポート チームの北山です。<br>今回の記事では、Application Insights の TLS 変更に関するご案内 (Tracking ID : TT8T-TR0) について記載します。</p>
 <span id="more"></span>
@@ -252,16 +252,16 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <h1 id="影響を受けているか確認する方法"><a href="#影響を受けているか確認する方法" class="headerlink" title="影響を受けているか確認する方法"></a>影響を受けているか確認する方法</h1><h2 id="1-接続文字列を用いて-Application-Insights-と連携している場合"><a href="#1-接続文字列を用いて-Application-Insights-と連携している場合" class="headerlink" title="1. 接続文字列を用いて Application Insights と連携している場合"></a>1. 接続文字列を用いて Application Insights と連携している場合</h2><p>この場合、お客様に実施いただく対処は不要です。<br>接続文字列を用いて Application Insights と連携している場合、監視対象の Web アプリケーションは接続文字列に含まれるリージョナル インストルメンテーション エンドポイントに対して各種テレメトリを送信しております。</p>
 <p>例えば下記の接続文字列の場合、Japan East に展開されたリージョナル エンドポイント (<strong>japaneast-1.in.applicationinsights.azure.com</strong>) 宛に各種テレメトリを送信します。</p>
 <blockquote>
-<p>InstrumentationKey=XXXX;IngestionEndpoint=<a target="_blank" rel="noopener" href="https://japaneast-1.in.applicationinsights.azure.com/;LiveEndpoint=https://japaneast.livediagnostics.monitor.azure.com/;ApplicationId=XXX">https://japaneast-1.in.applicationinsights.azure.com/;LiveEndpoint=https://japaneast.livediagnostics.monitor.azure.com/;ApplicationId=XXX</a></p>
+<p>InstrumentationKey&#x3D;XXXX;IngestionEndpoint&#x3D;<a href="https://japaneast-1.in.applicationinsights.azure.com/;LiveEndpoint=https://japaneast.livediagnostics.monitor.azure.com/;ApplicationId=XXX">https://japaneast-1.in.applicationinsights.azure.com/;LiveEndpoint=https://japaneast.livediagnostics.monitor.azure.com/;ApplicationId=XXX</a></p>
 </blockquote>
-<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/ip-addresses">IP addresses used by Azure Monitor</a><br><img src="/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict1.png"></p>
-<p>このリージョナル インジェスト エンドポイントに関しましては、もともとサーバー側で TLS 1.1 / 1.0 を利用しておりません。<br>そのため、接続文字列を用いて Application Insights と連携していてかつ、Application Insights リソースに各種テレメトリが送信できている状況であれば、クライアント側はすでに TLS 1.2 以上で通信しております。<br>そのため、対処は不要です。</p>
-<h2 id="2-インストルメンテーション-キーを用いて-Application-Insights-と連携している場合"><a href="#2-インストルメンテーション-キーを用いて-Application-Insights-と連携している場合" class="headerlink" title="2. インストルメンテーション キーを用いて Application Insights と連携している場合"></a>2. インストルメンテーション キーを用いて Application Insights と連携している場合</h2><p>インストルメンテーション キーを用いて Application Insights と連携している場合、グローバル インジェスト エンドポイントに対して各種テレメトリを送信しております。<br>このエンドポイントは、現在も TLS 1.0 / 1.1 をサポートしております。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/ip-addresses">IP addresses used by Azure Monitor</a></p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/ip-addresses">IP addresses used by Azure Monitor</a><br><img src="/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict1.png"></p>
+<p>このリージョナル インジェスト エンドポイントに関しましては、もともとサーバー側で TLS 1.1 &#x2F; 1.0 を利用しておりません。<br>そのため、接続文字列を用いて Application Insights と連携していてかつ、Application Insights リソースに各種テレメトリが送信できている状況であれば、クライアント側はすでに TLS 1.2 以上で通信しております。<br>そのため、対処は不要です。</p>
+<h2 id="2-インストルメンテーション-キーを用いて-Application-Insights-と連携している場合"><a href="#2-インストルメンテーション-キーを用いて-Application-Insights-と連携している場合" class="headerlink" title="2. インストルメンテーション キーを用いて Application Insights と連携している場合"></a>2. インストルメンテーション キーを用いて Application Insights と連携している場合</h2><p>インストルメンテーション キーを用いて Application Insights と連携している場合、グローバル インジェスト エンドポイントに対して各種テレメトリを送信しております。<br>このエンドポイントは、現在も TLS 1.0 &#x2F; 1.1 をサポートしております。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/ip-addresses">IP addresses used by Azure Monitor</a></p>
 <p><img src="/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict2.png"></p>
 <p>インストルメンテーション キーを用いて Application Insights と連携している場合は、場合によってはクライアント側の対処が必要です。<br>対処の要否確認方法は、Web アプリケーションをホストしている OS の種類やランタイムによって異なります。<br>TLS 1.0 に関して、弊社からお客様向けにガイダンスを提供しております。<br>確認方法は環境によって異なるため一概にはお答えできませんが、下記公開情報をご参考くださいませ。</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/security/engineering/solving-tls1-problem">TLS 1.0の問題の解決、第2版</a></li>
-<li><a target="_blank" rel="noopener" href="https://jpaztech.github.io/blog/network/tls1.2_migration/">Azure Network 製品について TLS 1.2 以降に移行するアナウンスの補足 (Tracking ID:7_8G-D8Z)</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/security/engineering/solving-tls1-problem">TLS 1.0の問題の解決、第2版</a></li>
+<li><a href="https://jpaztech.github.io/blog/network/tls1.2_migration/">Azure Network 製品について TLS 1.2 以降に移行するアナウンスの補足 (Tracking ID:7_8G-D8Z)</a></li>
 </ul>
 <h1 id="よくあるご質問"><a href="#よくあるご質問" class="headerlink" title="よくあるご質問"></a>よくあるご質問</h1><h2 id="私は接続文字列とインストルメンテーション-キーのどちらを利用していますか"><a href="#私は接続文字列とインストルメンテーション-キーのどちらを利用していますか" class="headerlink" title="私は接続文字列とインストルメンテーション キーのどちらを利用していますか?"></a>私は接続文字列とインストルメンテーション キーのどちらを利用していますか?</h2><p>お客様の実装方法によって確認方法が異なります。<br>インストルメンテーション キーや接続文字列の指定方法は、いくつか方法がございます。<br>ランタイムによって実装方法が異なる可能性がございますが、基本的には下記のとおりです。</p>
 <ol>
@@ -284,7 +284,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>下記の公開情報に Java の記載がございませんが、Java 用の OpenTelemetry Distro と Classic SDK (v2.5.1 と 3.x) は接続文字列に対応しております。</p>
 </blockquote>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/connection-strings#set-a-connection-string">Application Insights の接続文字列 # 接続文字列を設定する</a><br><img src="/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict3.png"></li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/connection-strings#set-a-connection-string">Application Insights の接続文字列 # 接続文字列を設定する</a><br><img src="/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict3.png"></li>
 </ul>
 <p>もしお客様自身でご確認いただいていも分からない場合は、お気兼ねなく Azure portal よりサポート リクエストをご起票ください。<br>その際は下記の情報をご連携いただけると、よりスムーズにサポートを提供出来ると存じます。</p>
 <ul>
@@ -301,13 +301,13 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p><strong>手順 1</strong><br>Azure portal にアクセスして、Web アプリケーションをデプロイしている App Service リソースのページへ移動します。<br>“問題の診断と解決” ページにて、”Collect Network Trace” を選びます。</p>
 <p><img src="/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict4.png"></p>
 <blockquote>
-<p>こちらは Windows 版 の 専用コンピューティング (Basic, Standard, Premium) および Isolated の App Service プランのみです。<br>Linux 版や共有コンピューティングの App Service プランをご利用の場合は手動にて採取いただく必要がございます。<br>詳細は下記の公開情報をご参照ください。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/troubleshoot/azure/app-service/troubleshoot-vnet-integration-apps">仮想ネットワークを Azure App Service に統合する際のトラブルシューティング</a></p>
+<p>こちらは Windows 版 の 専用コンピューティング (Basic, Standard, Premium) および Isolated の App Service プランのみです。<br>Linux 版や共有コンピューティングの App Service プランをご利用の場合は手動にて採取いただく必要がございます。<br>詳細は下記の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/troubleshoot/azure/app-service/troubleshoot-vnet-integration-apps">仮想ネットワークを Azure App Service に統合する際のトラブルシューティング</a></p>
 </blockquote>
 <p><strong>手順 2</strong><br>監視対象の Web アプリケーションが稼働していることを確認して、”Collect Network Trace” をクリックします。<br>すると、60 秒間ネットワーク トレースが採取され続けます。</p>
 <p><img src="/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict5.png"></p>
 <p><strong>手順 3</strong><br>60 秒後、収集が完了します。<br>ハイパーリンクから、収集したトレース ファイルをダウンロードします。</p>
 <p><img src="/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict6.png"></p>
-<p><strong>手順 4</strong><br>弊社のツールである <a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/download/details.aspx?id=4865">Microsoft Network Monitor</a> を使って、ダウンロードしたキャプチャ ファイルを開きます。</p>
+<p><strong>手順 4</strong><br>弊社のツールである <a href="https://www.microsoft.com/en-us/download/details.aspx?id=4865">Microsoft Network Monitor</a> を使って、ダウンロードしたキャプチャ ファイルを開きます。</p>
 <blockquote>
 <p>Wireshark など、他のパケット解析ツールでも問題ございません。  </p>
 </blockquote>
@@ -316,9 +316,9 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>宛先となる Application Insights の IP アドレスですが、接続文字列に指定されたインジェスト エンドポイントを名前解決することで確認可能です。<br>App Service の場合 Kudu にてご確認可能です。<br>Global IP アドレスは一つでは無いため、下図のように複数回実行いただくことを推奨します。</p>
 <p><img src="/blog/applicationInsights/upcomingTlsChangesForAppInsights/pict9.png"></p>
 <blockquote>
-<p>名前解決は、Windows 版の App Service の場合は nameresolver を使います。<br>Linux 版の場合は nslookup を使います。<br>詳細は下記の公開情報をご参考ください。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/troubleshoot/azure/app-service/troubleshoot-vnet-integration-apps">仮想ネットワークを Azure App Service に統合する際のトラブルシューティング</a></p>
+<p>名前解決は、Windows 版の App Service の場合は nameresolver を使います。<br>Linux 版の場合は nslookup を使います。<br>詳細は下記の公開情報をご参考ください。<br><a href="https://learn.microsoft.com/ja-jp/troubleshoot/azure/app-service/troubleshoot-vnet-integration-apps">仮想ネットワークを Azure App Service に統合する際のトラブルシューティング</a></p>
 </blockquote>
-<h2 id="正常性イベントに記載があった-“You-can-determine-if-you’re-using-TLS-1-0-or-1-1-by-enabling-logging-”-とはどういう意味ですか"><a href="#正常性イベントに記載があった-“You-can-determine-if-you’re-using-TLS-1-0-or-1-1-by-enabling-logging-”-とはどういう意味ですか" class="headerlink" title="正常性イベントに記載があった “You can determine if you’re using TLS 1.0 or 1.1 by enabling logging.” とはどういう意味ですか?"></a>正常性イベントに記載があった “You can determine if you’re using TLS 1.0 or 1.1 by enabling logging.” とはどういう意味ですか?</h2><p>結論から申し上げますと、こちらの方法では TLS 1.0 / 1.1 を使っているかどうかの特定は出来ません。<br>お客様に誤った情報を発信して混乱を招いてしまい、大変申し訳ございませんでした。  </p>
+<h2 id="正常性イベントに記載があった-“You-can-determine-if-you’re-using-TLS-1-0-or-1-1-by-enabling-logging-”-とはどういう意味ですか"><a href="#正常性イベントに記載があった-“You-can-determine-if-you’re-using-TLS-1-0-or-1-1-by-enabling-logging-”-とはどういう意味ですか" class="headerlink" title="正常性イベントに記載があった “You can determine if you’re using TLS 1.0 or 1.1 by enabling logging.” とはどういう意味ですか?"></a>正常性イベントに記載があった “You can determine if you’re using TLS 1.0 or 1.1 by enabling logging.” とはどういう意味ですか?</h2><p>結論から申し上げますと、こちらの方法では TLS 1.0 &#x2F; 1.1 を使っているかどうかの特定は出来ません。<br>お客様に誤った情報を発信して混乱を招いてしまい、大変申し訳ございませんでした。  </p>
 <p>ログを収集するために Application Insights を有効化いただいても、TLS バージョンを特定することは出来ません。<br>大変恐れ入りますが、本ブログ記事に記載させていただいた方法でご確認いただけますと幸いです。</p>
 <h1 id="最後に"><a href="#最後に" class="headerlink" title="最後に"></a>最後に</h1><p>もし移行方法についてご質問がある場合やトラブル解決のためにサポートが必要な場合は、Azure portal より Application Insights 観点でお問い合わせください。<br>以上となります。</p>
 

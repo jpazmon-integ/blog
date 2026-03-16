@@ -18,12 +18,12 @@
 <meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの六浦です。 今回は Log Analytics でクエリを実行する際のコストについてご説明します。">
 <meta property="og:locale" content="ja_JP">
 <meta property="article:published_time" content="2025-09-02T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.305Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:29.949Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="Log Analytics">
-<meta property="article:tag" content="HowTo">
-<meta property="article:tag" content="Query">
 <meta property="article:tag" content="Cost">
+<meta property="article:tag" content="HowTo">
+<meta property="article:tag" content="Log Analytics">
+<meta property="article:tag" content="Query">
 <meta name="twitter:card" content="summary">
         
           <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog"
@@ -60,7 +60,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -77,7 +77,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -175,7 +175,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+1375e78d-e8fd-508f-9ee9-ff6a9268aab3%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BLog+Analytics+%E3%81%AE%E3%82%AF%E3%82%A8%E3%83%AA%E3%81%AE%E5%AE%9F%E8%A1%8C%E3%82%B3%E3%82%B9%E3%83%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FLogAnalyticsQueryPricing%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FLogAnalyticsQueryPricing.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FLogAnalyticsQueryPricing.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPricing/" data-id="cmm8g5fg700270nny0lfagapn" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPricing/" data-id="cuidfLx0MeWbpW5yqtHtCnOsx" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -230,22 +230,22 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <h3 id="2-1-Analytics-テーブル-プランの場合"><a href="#2-1-Analytics-テーブル-プランの場合" class="headerlink" title="2-1. Analytics テーブル プランの場合"></a>2-1. Analytics テーブル プランの場合</h3><p><strong>無料</strong>でクエリを実行できます。<br>Analytics テーブル プランはデフォルトのテーブル プランのため、多くのテーブルに該当します。</p>
 <br>
 
-<h3 id="2-2-基本-Basic-テーブル-プランと補助-Auxiliary-テーブル-プランの場合"><a href="#2-2-基本-Basic-テーブル-プランと補助-Auxiliary-テーブル-プランの場合" class="headerlink" title="2-2. 基本 (Basic) テーブル プランと補助 (Auxiliary) テーブル プランの場合"></a>2-2. 基本 (Basic) テーブル プランと補助 (Auxiliary) テーブル プランの場合</h3><p>クエリ実行時にスキャンしたデータ量に応じたコストが発生します。<br>料金は<a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">価格についての公開情報</a>の [クエリ] からご確認ください。</p>
+<h3 id="2-2-基本-Basic-テーブル-プランと補助-Auxiliary-テーブル-プランの場合"><a href="#2-2-基本-Basic-テーブル-プランと補助-Auxiliary-テーブル-プランの場合" class="headerlink" title="2-2. 基本 (Basic) テーブル プランと補助 (Auxiliary) テーブル プランの場合"></a>2-2. 基本 (Basic) テーブル プランと補助 (Auxiliary) テーブル プランの場合</h3><p>クエリ実行時にスキャンしたデータ量に応じたコストが発生します。<br>料金は<a href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">価格についての公開情報</a>の [クエリ] からご確認ください。</p>
 <p>例えば、2 GB のデータに対してクエリを実行した際のコストは以下の式で算出できます。<br><code>$0.00725 * 2 GB = $0.0145</code><br>※ 計算には東日本リージョンの従量課金制の USD 価格を利用しています</p>
-<p>なお、基本および補助テーブルのログに対して実行できるクエリには制限があります。<br>制限については、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/basic-logs-query?tabs=portal-1">こちら</a>をご確認ください。</p>
-<div class="alert is-info"><p class="alert-title">Note</p><p>Basic テーブル プランは一部のテーブルで利用できます。対象のテーブルは<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/basic-logs-azure-tables">こちら</a>を確認ください。</p><p>Auxiliary テーブル プランは DCR ベースのカスタム テーブルのみで利用できます。</p><p>テーブル プランの詳細については<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-platform-logs#table-plans">こちら</a>の公開情報もご確認ください。</p></div>
+<p>なお、基本および補助テーブルのログに対して実行できるクエリには制限があります。<br>制限については、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/basic-logs-query?tabs=portal-1">こちら</a>をご確認ください。</p>
+<div class="alert is-info"><p class="alert-title">Note</p><p>Basic テーブル プランは一部のテーブルで利用できます。対象のテーブルは<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/basic-logs-azure-tables">こちら</a>を確認ください。</p><p>Auxiliary テーブル プランは DCR ベースのカスタム テーブルのみで利用できます。</p><p>テーブル プランの詳細については<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-platform-logs#table-plans">こちら</a>の公開情報もご確認ください。</p></div>
 <br>
 
-<h2 id="3-長期保持-アーカイブ-期間のログに対してクエリを実行する場合"><a href="#3-長期保持-アーカイブ-期間のログに対してクエリを実行する場合" class="headerlink" title="3. 長期保持 (アーカイブ) 期間のログに対してクエリを実行する場合"></a>3. 長期保持 (アーカイブ) 期間のログに対してクエリを実行する場合</h2><p>長期保持期間は、<a href="#1-%E3%82%AF%E3%82%A8%E3%83%AA%E5%AE%9F%E8%A1%8C%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88%E3%81%AB%E9%96%A2%E3%82%8F%E3%82%8B%E8%A8%AD%E5%AE%9A%E3%81%AE%E7%A2%BA%E8%AA%8D">1. クエリ実行のコストに関わる設定の確認</a>の [保有期間の合計] から [Analytics のリテンション期間] を引いた期間です。<br>長期保持期間のログに対するクエリ実行には、テーブル プランに関わらず、<a href="(https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/search-jobs?tabs=portal-1,portal-2)">検索ジョブ</a>の実行、または<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/restore?tabs=api-1">ログの復元</a>のコストがかかります。<br>なお、検索ジョブで作成される結果テーブルのログと復元されたログは、Analytics テーブル プランのログのため、クエリ実行による追加のコストは発生しません。</p>
+<h2 id="3-長期保持-アーカイブ-期間のログに対してクエリを実行する場合"><a href="#3-長期保持-アーカイブ-期間のログに対してクエリを実行する場合" class="headerlink" title="3. 長期保持 (アーカイブ) 期間のログに対してクエリを実行する場合"></a>3. 長期保持 (アーカイブ) 期間のログに対してクエリを実行する場合</h2><p>長期保持期間は、<a href="#1-%E3%82%AF%E3%82%A8%E3%83%AA%E5%AE%9F%E8%A1%8C%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88%E3%81%AB%E9%96%A2%E3%82%8F%E3%82%8B%E8%A8%AD%E5%AE%9A%E3%81%AE%E7%A2%BA%E8%AA%8D">1. クエリ実行のコストに関わる設定の確認</a>の [保有期間の合計] から [Analytics のリテンション期間] を引いた期間です。<br>長期保持期間のログに対するクエリ実行には、テーブル プランに関わらず、<a href="(https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/search-jobs?tabs=portal-1,portal-2)">検索ジョブ</a>の実行、または<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/restore?tabs=api-1">ログの復元</a>のコストがかかります。<br>なお、検索ジョブで作成される結果テーブルのログと復元されたログは、Analytics テーブル プランのログのため、クエリ実行による追加のコストは発生しません。</p>
 <div class="alert is-info"><p class="alert-title">Note</p><p>現在 Auxiliary テーブル プランは復元をサポートしません。Auxiliary テーブルから長期保持されているデータを取得するには、検索ジョブをご利用ください。</p></div>
 <br>
 
-<h3 id="3-1-検索ジョブのコスト"><a href="#3-1-検索ジョブのコスト" class="headerlink" title="3-1. 検索ジョブのコスト"></a>3-1. 検索ジョブのコスト</h3><p>検索ジョブは、「スキャンされたデータのコスト」と「検索結果の取り込みのコスト」が発生します。<br>「スキャンされたデータのコスト」は、<a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">価格についての公開情報</a>の [ジョブの検索] の価格です。<br>「検索結果の取り込みのコスト」は<a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">価格についての公開情報</a> の [インジェスト] の Analytics ログの価格です。</p>
+<h3 id="3-1-検索ジョブのコスト"><a href="#3-1-検索ジョブのコスト" class="headerlink" title="3-1. 検索ジョブのコスト"></a>3-1. 検索ジョブのコスト</h3><p>検索ジョブは、「スキャンされたデータのコスト」と「検索結果の取り込みのコスト」が発生します。<br>「スキャンされたデータのコスト」は、<a href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">価格についての公開情報</a>の [ジョブの検索] の価格です。<br>「検索結果の取り込みのコスト」は<a href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">価格についての公開情報</a> の [インジェスト] の Analytics ログの価格です。</p>
 <p>例えば、1000 GB のログを検索ジョブでスキャンして、100 GB の結果を得た際のコストは以下のように計算できます。<br><code>$0.00725 * 1000 GB + $3.34 * 100 GB = $341.25</code></p>
 <p>※ 計算には東日本リージョンの従量課金制の USD 価格を利用しています。</p>
 <br>
 
-<h3 id="3-2-復元のコスト"><a href="#3-2-復元のコスト" class="headerlink" title="3-2. 復元のコスト"></a>3-2. 復元のコスト</h3><p>復元のコストは、<a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">価格についての公開情報</a>の [復元] をご確認ください。</p>
+<h3 id="3-2-復元のコスト"><a href="#3-2-復元のコスト" class="headerlink" title="3-2. 復元のコスト"></a>3-2. 復元のコスト</h3><p>復元のコストは、<a href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">価格についての公開情報</a>の [復元] をご確認ください。</p>
 <p>復元のコストの計算には 2 つの注意点があります。</p>
 <ul>
 <li>復元したデータを 12 時間未満保持した際、12 時間に保持したとして計算します。</li>
@@ -264,7 +264,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>※ 計算には東日本リージョンの従量課金制の USD 価格を利用しています</p>
 <br>
 
-<h2 id="4-まとめ"><a href="#4-まとめ" class="headerlink" title="4. まとめ"></a>4. まとめ</h2><p>本記事では、クエリ実行時のコストについてご案内いたしましたが、いかがでしたでしょうか。<br>Log Analytics ワークスペースのその他のコストについてはこれらの公開情報にてご案内しておりますので、合わせてご覧ください。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/cost-logs">Azure Monitor ログのコストの計算とオプション</a><br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToManageLogAnalyticsBilling/">Log Analytics ワークスペースのコスト増加の原因を分析しコスト削減を検討する</a></p>
+<h2 id="4-まとめ"><a href="#4-まとめ" class="headerlink" title="4. まとめ"></a>4. まとめ</h2><p>本記事では、クエリ実行時のコストについてご案内いたしましたが、いかがでしたでしょうか。<br>Log Analytics ワークスペースのその他のコストについてはこれらの公開情報にてご案内しておりますので、合わせてご覧ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/cost-logs">Azure Monitor ログのコストの計算とオプション</a><br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToManageLogAnalyticsBilling/">Log Analytics ワークスペースのコスト増加の原因を分析しコスト削減を検討する</a></p>
 <p>最後までお読みいただきありがとうございました！</p>
 
       

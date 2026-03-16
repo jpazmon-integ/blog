@@ -24,11 +24,11 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM02/image04.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM02/image06.png">
 <meta property="article:published_time" content="2024-07-02T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.367Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:30.017Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="HowTo">
-<meta property="article:tag" content="Azure Monitor Essential">
 <meta property="article:tag" content="Alerts, Action Groups">
+<meta property="article:tag" content="Azure Monitor Essential">
+<meta property="article:tag" content="HowTo">
 <meta property="article:tag" content="Log search alert">
 <meta property="article:tag" content="Metric alert">
 <meta property="article:tag" content="Resource Health alert">
@@ -69,7 +69,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -86,7 +86,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -184,15 +184,15 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+fa79114d-4ccc-5a9e-a15b-780295d2bf96%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+VM+%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E6%AD%BB%E6%B4%BB%E7%9B%A3%E8%A6%96%E3%81%AE%E8%80%83%E3%81%88%E6%96%B9%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FMonitorVM02%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FMonitorVM02.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FMonitorVM02.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM02/" data-id="cmm8g5fja00e90nnyelh2fv24" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM02/" data-id="cuid1Ot31NVY7_EhyYRgTVd8I" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>[更新履歴]  </p>
 <ul>
-<li>2024/7/3 ブログ公開</li>
-<li>2026/1/30 最新情報に更新</li>
+<li>2024&#x2F;7&#x2F;3 ブログ公開</li>
+<li>2026&#x2F;1&#x2F;30 最新情報に更新</li>
 </ul>
 <p>こんにちは、Azure Monitoring チームの北村です。<br>今回は、Azure Monitor による Azure VM の死活監視の考え方についてご紹介したいと思います。</p>
 <span id="more"></span>
@@ -226,7 +226,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>弊社 Azure サービスでは、お客様の環境に影響を及ぼす障害が発生しないように日々サービスの品質向上に努めておりますが、<br>ログの収集遅延や欠損が発生する障害が発生した際には、アラートの誤検知に関するお問い合わせを沢山いただきます。</p>
 <p>このような障害が発生した際、Heartbeat による死活監視のみを利用されている場合には、大変心苦しいのですが障害が解消されるまでお待ちいただくしかありません。そのため、弊社としては Heartbeat 以外の死活監視方法を代替案としてご案内させていただいたり、障害が発生した場合でも死活監視を継続できるように死活監視の冗長化を推奨しております。</p>
 <p>今回は、VM の監視方法をレイヤーに分けてご紹介します。<br>お客様には誠に申し訳ございませんが、Heartbeat を含むどの監視方法も 100% の信頼性を保証することはできません。<br>Heartbeat を利用した監視だけではなく、他の監視方法も併用することで障害時でも VM の監視を継続できるようになります。<br>また、Heartbeat の収集遅延の影響を受けずに監視する場合には、Heartbeat 以外を利用した監視方法をご検討ください。<br>各レイヤーの監視方法の特性と内容をご確認いただき、お客様のご要件に合った監視方法や、監視の冗長化をご検討いただけますと幸いです。</p>
-<div class="alert is-important"><p class="alert-title">重要</p><p>Log Analytics エージェントは 2024 年 8 月に廃止済みでございます。今後は Azure Monitor エージェントをご利用ください。詳細は <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration">弊社公開情報</a> や <a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromLA/">弊社サポート ブログ</a> をご覧ください。</p></div>
+<div class="alert is-important"><p class="alert-title">重要</p><p>Log Analytics エージェントは 2024 年 8 月に廃止済みでございます。今後は Azure Monitor エージェントをご利用ください。詳細は <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration">弊社公開情報</a> や <a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromLA/">弊社サポート ブログ</a> をご覧ください。</p></div>
 <br>
 
 
@@ -259,21 +259,21 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <li>メトリック ‘VM Availability Metric (Preview)’ を監視する方法</li>
 <li>リソース正常性を監視する方法</li>
 </ul>
-<p>本ブログでは上記 2 つの方法をご紹介しますが、この他にも VM のホスト監視を行う方法がございます。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/flash-overview#next-steps">こちら</a> の公開情報にも掲載されておりますので、併せてご確認いただけますと幸いです。</p>
+<p>本ブログでは上記 2 つの方法をご紹介しますが、この他にも VM のホスト監視を行う方法がございます。<a href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/flash-overview#next-steps">こちら</a> の公開情報にも掲載されておりますので、併せてご確認いただけますと幸いです。</p>
 <br>
 
-<h3 id="3-1-メトリック-‘VM-Availability-Metric-Preview-’-を監視する方法"><a href="#3-1-メトリック-‘VM-Availability-Metric-Preview-’-を監視する方法" class="headerlink" title="3-1. メトリック ‘VM Availability Metric (Preview)’ を監視する方法"></a>3-1. メトリック ‘VM Availability Metric (Preview)’ を監視する方法</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/monitor-vm-reference#vm-availability-metric-preview">VM Availability Metric (Preview) （VM 可用性メトリック (プレビュー)）</a>は Azure VM のホストが出力するメトリックであり、VM の可用性を確認することができます。このメトリックは Heartbeat を収集する Azure Monitor エージェントや Log Analytics エージェントとは関係ないため、エージェントから Log Analytics ワークスペースへのログの出力に問題が発生した際もメトリックは出力されます。<br><img src="/blog/LogAnalytics/MonitorVM02/image01.png"></p>
-<p>VM Availability Metric (Preview) の値が 1 の場合は、VM が実行中であり、利用可能であることを表します。<br>つまり、この値が 1 より小さい場合には VM の可用性が低下していることになりますので、このメトリックを監視するメトリック アラートを構成することで、VM の可用性が低下した場合に発報させることが可能です。<br>このメトリックを利用したアラート ルールの設定方法については、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/tutorial-monitor-vm-alert-availability#view-vm-availability-metric-in-metrics-explorer">こちら</a>の弊社公開情報をご参照ください。<br><img src="/blog/LogAnalytics/MonitorVM02/image02.png"></p>
-<div class="alert is-warning"><p class="alert-title">警告</p><p>VM Availability Metric (Preview) のメトリック アラートで Azure VM が “停止済み (割り当て解除) “ を検知することはできません。VM が “停止済み (割り当て解除)” の場合は VM Availability Metric (Preview) の値は <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/metrics-aggregation-explained#null-and-zero-values">NULL</a> になりますが、メトリック アラートではメトリックの値が NULL であることを検知できないためです。予めご留意ください。</p></div>
+<h3 id="3-1-メトリック-‘VM-Availability-Metric-Preview-’-を監視する方法"><a href="#3-1-メトリック-‘VM-Availability-Metric-Preview-’-を監視する方法" class="headerlink" title="3-1. メトリック ‘VM Availability Metric (Preview)’ を監視する方法"></a>3-1. メトリック ‘VM Availability Metric (Preview)’ を監視する方法</h3><p><a href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/monitor-vm-reference#vm-availability-metric-preview">VM Availability Metric (Preview) （VM 可用性メトリック (プレビュー)）</a>は Azure VM のホストが出力するメトリックであり、VM の可用性を確認することができます。このメトリックは Heartbeat を収集する Azure Monitor エージェントや Log Analytics エージェントとは関係ないため、エージェントから Log Analytics ワークスペースへのログの出力に問題が発生した際もメトリックは出力されます。<br><img src="/blog/LogAnalytics/MonitorVM02/image01.png"></p>
+<p>VM Availability Metric (Preview) の値が 1 の場合は、VM が実行中であり、利用可能であることを表します。<br>つまり、この値が 1 より小さい場合には VM の可用性が低下していることになりますので、このメトリックを監視するメトリック アラートを構成することで、VM の可用性が低下した場合に発報させることが可能です。<br>このメトリックを利用したアラート ルールの設定方法については、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/tutorial-monitor-vm-alert-availability#view-vm-availability-metric-in-metrics-explorer">こちら</a>の弊社公開情報をご参照ください。<br><img src="/blog/LogAnalytics/MonitorVM02/image02.png"></p>
+<div class="alert is-warning"><p class="alert-title">警告</p><p>VM Availability Metric (Preview) のメトリック アラートで Azure VM が “停止済み (割り当て解除) “ を検知することはできません。VM が “停止済み (割り当て解除)” の場合は VM Availability Metric (Preview) の値は <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/metrics-aggregation-explained#null-and-zero-values">NULL</a> になりますが、メトリック アラートではメトリックの値が NULL であることを検知できないためです。予めご留意ください。</p></div>
 <br>
 
-<h3 id="3-2-リソース正常性を監視する方法"><a href="#3-2-リソース正常性を監視する方法" class="headerlink" title="3-2. リソース正常性を監視する方法"></a>3-2. リソース正常性を監視する方法</h3><p>リソース正常性アラートでは、リソースの正常性に変化が生じた際に通知できます。<br>リソースの状態に変化が発生すると、アクティビティ ログに正常性に関するイベントが書き込まれ、アラートで指定した条件に合致した場合に発報します。Azure VM のリソース正常性では、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/service-health/resource-health-checks-resource-types#microsoftcomputevirtualmachines">以下の項目</a>をチェックします。この項目に該当するようなイベントが発生した場合に、リソースの正常性に変化が発生したと判断されます。<br><img src="/blog/LogAnalytics/MonitorVM02/image03.png"></p>
+<h3 id="3-2-リソース正常性を監視する方法"><a href="#3-2-リソース正常性を監視する方法" class="headerlink" title="3-2. リソース正常性を監視する方法"></a>3-2. リソース正常性を監視する方法</h3><p>リソース正常性アラートでは、リソースの正常性に変化が生じた際に通知できます。<br>リソースの状態に変化が発生すると、アクティビティ ログに正常性に関するイベントが書き込まれ、アラートで指定した条件に合致した場合に発報します。Azure VM のリソース正常性では、<a href="https://learn.microsoft.com/ja-jp/azure/service-health/resource-health-checks-resource-types#microsoftcomputevirtualmachines">以下の項目</a>をチェックします。この項目に該当するようなイベントが発生した場合に、リソースの正常性に変化が発生したと判断されます。<br><img src="/blog/LogAnalytics/MonitorVM02/image03.png"></p>
 <p>リソース正常性では、リソースに変化が発生した際に、リソースの現在と過去の正常性 (リソースの状態) について報告します。<br>リソース正常性アラートで指定する条件は以下であり、”現在のリソースの状態” と “過去のリソースの状態” や、”イベントの状態”、イベントが発生した “理由の種類” を指定できます。<br><img src="/blog/LogAnalytics/MonitorVM02/image05.png"></p>
 <p>“イベントの状態” が Active である場合、リソースの正常性が異常な状態であることを表し、Resolved に変化した場合、異常な状態から正常な状態に遷移したことを表します。また、”リソースの状態” が Unavailable はリソースが利用可能でないことを意味し、Available はリソースが利用可能であることを意味します。</p>
 <p>つまり、以下の設定にすると、<br>リソースの状態が 「Available」 の状態から 「Unavailable」 に遷移したタイミングと、<br>リソースの状態が 「Unavailable」 の状態から 「Available」 に遷移したタイミングでアラートがトリガーされ、リソース正常性に変更が発生したタイミング、解消したタイミングで通知を受け取ることが可能です。</p>
 <p>■ イベントの状態 :  Active, Resolved<br>■ 以前のリソースの状態 : Available, Unavailable<br>■ 現在のリソースの状態 : Unavailable, Available,</p>
 <p><img src="/blog/LogAnalytics/MonitorVM02/image04.png"></p>
-<p>VM のリソース正常性アラート ルールの設定方法については、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/service-health/resource-health-overview">こちら</a>の弊社公開情報や、<a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ResourceHealthAlert/">弊社サポート ブログ</a>も併せてご確認ください。</p>
+<p>VM のリソース正常性アラート ルールの設定方法については、<a href="https://learn.microsoft.com/ja-jp/azure/service-health/resource-health-overview">こちら</a>の弊社公開情報や、<a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ResourceHealthAlert/">弊社サポート ブログ</a>も併せてご確認ください。</p>
 <br>
 
 
@@ -284,27 +284,27 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </ul>
 <br>
 
-<h3 id="4-1-Heartbeat-を利用したログ-アラート"><a href="#4-1-Heartbeat-を利用したログ-アラート" class="headerlink" title="4-1. Heartbeat を利用したログ アラート"></a>4-1. Heartbeat を利用したログ アラート</h3><p>Heartbeat は Log Analytics エージェントや Azure Monitor エージェントによって Log Analytics ワークスペースに収集されます。<br>Log Analytics ワークスペースに収集された Heartbeat を利用して、死活監視の<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule">ログ アラート ルール</a>を構成することが可能です。<br>例えば、直近 10 分以内に Heartbeat が収集されていることを確認するログ アラート ルールが発報した場合、アラートが実行された時点から 過去 10 分以内に Heartbeat が途絶えたことになり、該当のマシンにて何らかの問題が発生している可能性がございます。なお、Heartbeat のログ アラートが発報したとしても、必ずしも仮想マシンに問題が発生しているとは限りません。エージェント自体に問題が発生している場合や、ログの収集遅延によってアラートが発報する場合もございます。</p>
+<h3 id="4-1-Heartbeat-を利用したログ-アラート"><a href="#4-1-Heartbeat-を利用したログ-アラート" class="headerlink" title="4-1. Heartbeat を利用したログ アラート"></a>4-1. Heartbeat を利用したログ アラート</h3><p>Heartbeat は Log Analytics エージェントや Azure Monitor エージェントによって Log Analytics ワークスペースに収集されます。<br>Log Analytics ワークスペースに収集された Heartbeat を利用して、死活監視の<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule">ログ アラート ルール</a>を構成することが可能です。<br>例えば、直近 10 分以内に Heartbeat が収集されていることを確認するログ アラート ルールが発報した場合、アラートが実行された時点から 過去 10 分以内に Heartbeat が途絶えたことになり、該当のマシンにて何らかの問題が発生している可能性がございます。なお、Heartbeat のログ アラートが発報したとしても、必ずしも仮想マシンに問題が発生しているとは限りません。エージェント自体に問題が発生している場合や、ログの収集遅延によってアラートが発報する場合もございます。</p>
 <!--- https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM/ --->
 
 <br>
 
-<h3 id="4-2-Heartbeat-を利用したログのメトリック-アラート"><a href="#4-2-Heartbeat-を利用したログのメトリック-アラート" class="headerlink" title="4-2. Heartbeat を利用したログのメトリック アラート"></a>4-2. Heartbeat を利用したログのメトリック アラート</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-metric-logs">ログのメトリック アラート</a>は、Azure Monitor エージェントや Log Analytics エージェントで収集されたログをメトリックに変換し、メトリックを評価するアラート ルールです。</p>
+<h3 id="4-2-Heartbeat-を利用したログのメトリック-アラート"><a href="#4-2-Heartbeat-を利用したログのメトリック-アラート" class="headerlink" title="4-2. Heartbeat を利用したログのメトリック アラート"></a>4-2. Heartbeat を利用したログのメトリック アラート</h3><p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-metric-logs">ログのメトリック アラート</a>は、Azure Monitor エージェントや Log Analytics エージェントで収集されたログをメトリックに変換し、メトリックを評価するアラート ルールです。</p>
 <p>ログが生成され、Log Analytics のエンドポイントに対してログを送信し、メトリックに変換されてメトリックを検索できるようになるまでの時間と、ログが生成され、Log Analytics のエンドポイントに対してログを送信し、Log Analytics ワークスペース上でアラートの検索クエリでログを検索できるようになるまでの時間を比較した場合、前者の方が早く処理が実施されます。このため、ログ アラート ルールと比較し、「ログのメトリック アラート」の方がよりリアルタイムに近い監視が可能です。</p>
 <p>なお、ログ アラートと同様、Heartbeat メトリックが途絶えたとしても、マシンに問題が発生しているとは限りません。<br>ログが生成され Log Analytics のエンドポイントに到着するまでの間に遅延が発生していた場合には、ログのメトリック アラートでも遅延の影響を受けてアラートが発報します。Log Analytics のエンドポイントに到着するまでの間に遅延が発生すると、メトリックの変換も遅延し、結果的にメトリックの収集遅延が発生するためです。また、Azure Monitor の基盤側の問題により、変換されたメトリックが欠損してしまう可能性があり、欠損の影響でアラートが発報することも考えられます。</p>
 <p><img src="/blog/LogAnalytics/MonitorVM02/image06.png"></p>
 <br>
 
 <h2 id="5-VM-上で稼働している機能の監視"><a href="#5-VM-上で稼働している機能の監視" class="headerlink" title="5. VM 上で稼働している機能の監視"></a>5. VM 上で稼働している機能の監視</h2><p>VM で動作するアプリケーションの死活監視を行います。<br>ホストやゲストの監視に異常が発生しても、アプリケーションが正常に動作していれば VM に異常は発生していないと判断できる場合もあります。</p>
-<p>アプリケーションは Application Insights の<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability-overview">可用性テスト</a>を使用して死活監視できます。<br>可用性テストは弊社の世界各地のサーバーから定期的にアプリケーションに Web リクエストを送信し可用性を確認する機能です。</p>
-<p>可用性テストは、「メトリック ‘VM Availability Metric (Preview)’ を監視する方法」、「Heartbeat を利用した監視方法」および「リソース正常性を監視する方法」とは独立した機能です。アプリケーションが動作している際に Heartbeat に異常が発生しても、可用性テストが正常であればアプリケーションに問題は起きておらず、VM も正常に動作していると判断いただけます。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability-standard-tests">可用性テストの設定方法</a>及び、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability-alerts">アラート ルールの設定方法</a> は、公開情報をご参照いただけますと幸いです。</p>
-<p>なお、Application Insights の可用性テストを使って監視を行う場合は、監視対象の VM に HTTP/HTTPS のリクエストを受け取るための Web サーバー構築が必要です。Application Insights の可用性テストは、Application Insights で管理しているテスト クライアントから監視対象の VM に対して定期的に HTTP/HTTPS のプロトコルでリクエストを送信し、期待するレスポンスが返ってくるかどうかを評価する機能であるためです。HTTP/HTTPS リクエストを受け取る Web サーバーが構築されていないとご利用出来ないので、ご注意ください。</p>
+<p>アプリケーションは Application Insights の<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability-overview">可用性テスト</a>を使用して死活監視できます。<br>可用性テストは弊社の世界各地のサーバーから定期的にアプリケーションに Web リクエストを送信し可用性を確認する機能です。</p>
+<p>可用性テストは、「メトリック ‘VM Availability Metric (Preview)’ を監視する方法」、「Heartbeat を利用した監視方法」および「リソース正常性を監視する方法」とは独立した機能です。アプリケーションが動作している際に Heartbeat に異常が発生しても、可用性テストが正常であればアプリケーションに問題は起きておらず、VM も正常に動作していると判断いただけます。<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability-standard-tests">可用性テストの設定方法</a>及び、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability-alerts">アラート ルールの設定方法</a> は、公開情報をご参照いただけますと幸いです。</p>
+<p>なお、Application Insights の可用性テストを使って監視を行う場合は、監視対象の VM に HTTP&#x2F;HTTPS のリクエストを受け取るための Web サーバー構築が必要です。Application Insights の可用性テストは、Application Insights で管理しているテスト クライアントから監視対象の VM に対して定期的に HTTP&#x2F;HTTPS のプロトコルでリクエストを送信し、期待するレスポンスが返ってくるかどうかを評価する機能であるためです。HTTP&#x2F;HTTPS リクエストを受け取る Web サーバーが構築されていないとご利用出来ないので、ご注意ください。</p>
 <p>また、標準テストは、インターネットからアクセスできるエンドポイントが必要です。<br>もしプライベート ネットワークからのみを許可する機能の監視を行う必要がありましたら、弊社サポート ブログでご案内しております <a href="https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/">Azure Functions を使用した可用性テスト</a>を作成いただけますと幸いです。</p>
 <br>
 
 
 <h2 id="6-Heartbeat-の収集遅延に影響されない監視方法"><a href="#6-Heartbeat-の収集遅延に影響されない監視方法" class="headerlink" title="6. Heartbeat の収集遅延に影響されない監視方法"></a>6. Heartbeat の収集遅延に影響されない監視方法</h2><p>Heartbeat のログ アラートやログのメトリック アラートを構成されているお客様から「VM は正常に稼働しているがアラートが発報したため、原因を調査してほしい」というお問い合わせをいただくことがあります。こういったお問い合わせで原因を調査しますと、ログの収集が遅延していた影響でアラートが発報しているケースが多く見受けられます。</p>
-<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-ingestion-time#average-latency">ログ データを取り込むための一般的な待ち時間は 20 秒から 3 分</a>です。<br>Heartbeat のアラートを構築しているお客様には申し訳ございませんが、以下の要因等によりログの取り込みに遅延が発生する場合がございます。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-ingestion-time#average-latency">ログ データを取り込むための一般的な待ち時間は 20 秒から 3 分</a>です。<br>Heartbeat のアラートを構築しているお客様には申し訳ございませんが、以下の要因等によりログの取り込みに遅延が発生する場合がございます。</p>
 <ul>
 <li>Azure Monitor エージェントや Log Analytics エージェントがインストールされたコンピューターに一時的に負荷が発生し、エージェントの動作に影響した。</li>
 <li>何らかの原因で Azure Monitor エージェントや Log Analytics エージェントが停止していた。</li>
@@ -321,7 +321,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <br>
 
 <h3 id="6-1-アラートの評価期間を長めに設定する"><a href="#6-1-アラートの評価期間を長めに設定する" class="headerlink" title="6-1. アラートの評価期間を長めに設定する"></a>6-1. アラートの評価期間を長めに設定する</h3><p>ログの収集遅延に起因したアラートの発報を減らす方法として、アラートの評価期間を長めに設定いただくことを推奨しております。Log Analytics ワークスペースに収集されるデータや、ログからメトリックに変換するデータでは、収集遅延や待機時間が発生いたします。</p>
-<p>「アラートの評価期間」とは、1 回の評価を行う際に評価の対象となる期間を意味します。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule">ログ アラート</a>の場合は [集計の粒度]、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-metric-alert-rule">ログのメトリック アラート</a>の場合は [ルックバック期間] に該当します。この [集計の粒度] や [ルックバック期間] が短ければ短いほど (例. 1 分や 5 分) 、収集遅延の影響を受けやすくなります。</p>
+<p>「アラートの評価期間」とは、1 回の評価を行う際に評価の対象となる期間を意味します。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule">ログ アラート</a>の場合は [集計の粒度]、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-metric-alert-rule">ログのメトリック アラート</a>の場合は [ルックバック期間] に該当します。この [集計の粒度] や [ルックバック期間] が短ければ短いほど (例. 1 分や 5 分) 、収集遅延の影響を受けやすくなります。</p>
 <p>ログ アラートやログのメトリック アラートでは、ログの TimeGenerated やメトリックの timestamp をもとに評価期間内のデータを検索します。アラート ルールの評価時点でログやメトリックが取り込まれていない場合、アラートのしきい値を満たしてアラートが発報してしまいます。ログやメトリックの収集遅延により期待しないアラート発報を緩和させるためには、[集計の粒度] や [ルックバック期間] をより長い期間へとご指定いただけますと幸いです。</p>
 <br>
 

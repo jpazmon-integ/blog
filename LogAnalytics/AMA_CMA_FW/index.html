@@ -18,13 +18,13 @@
 <meta property="og:description" content="[更新履歴]  2025&#x2F;01&#x2F;05 ブログ公開 2025&#x2F;12&#x2F;22 最新情報への更新">
 <meta property="og:locale" content="ja_JP">
 <meta property="article:published_time" content="2025-01-05T12:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.169Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:29.800Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="Log Analytics">
-<meta property="article:tag" content="HowTo">
-<meta property="article:tag" content="Azure Arc">
 <meta property="article:tag" content="Arc-enabled servers">
+<meta property="article:tag" content="Azure Arc">
 <meta property="article:tag" content="Azure Monitor Agent">
+<meta property="article:tag" content="HowTo">
+<meta property="article:tag" content="Log Analytics">
 <meta name="twitter:card" content="summary">
         
           <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog"
@@ -61,7 +61,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -78,7 +78,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -176,15 +176,15 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+11a81ade-3ad7-5079-898e-1321822f5265%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BCMA%2FAMA+%E3%81%A8%E3%82%A8%E3%83%B3%E3%83%89%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E3%81%AE%E9%80%9A%E4%BF%A1%E7%B5%8C%E8%B7%AF%E4%B8%8A%E3%81%AB+Azure+Firewall+%E3%81%8C%E3%81%82%E3%82%8B%E5%A0%B4%E5%90%88%E3%81%AE%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FAMA_CMA_FW%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FAMA_CMA_FW.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FAMA_CMA_FW.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CMA_FW/" data-id="cmm8g5ffu00140nny0nh5a4g9" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CMA_FW/" data-id="cuid2AcXEQBL_LOMsr5IgtwTk" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>[更新履歴]</p>
 <ul>
-<li>2025/01/05 ブログ公開</li>
-<li>2025/12/22 最新情報への更新</li>
+<li>2025&#x2F;01&#x2F;05 ブログ公開</li>
+<li>2025&#x2F;12&#x2F;22 最新情報への更新</li>
 </ul>
 <span id="more"></span>
 <p>皆様こんにちは、Azure Monitoring チームの佐藤です。<br>本日は Azure Arc や Azure Monitor サービスを使用いただく際に監視、管理対象マシンにインストールする以下エージェントが Azure のエンドポイント（ログなどの送り先）と通信する際の途中経路に Azure Firewall (以後、AZFW) がある場合、留意すべきポイントについてご紹介します。</p>
@@ -208,23 +208,23 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </tr>
 </tbody></table>
 <p>目次</p>
-<h3 id="対象マシンからエンドポイントへ-Test-NetConnection-コマンドで疎通確認する場合"><a href="#対象マシンからエンドポイントへ-Test-NetConnection-コマンドで疎通確認する場合" class="headerlink" title="対象マシンからエンドポイントへ Test-NetConnection コマンドで疎通確認する場合"></a>対象マシンからエンドポイントへ Test-NetConnection コマンドで疎通確認する場合</h3><p>以下 blog で当社 AZFW を所管しているチームにて公開しておりますとおりエンドポイントへ疎通できてなくとも “TcpTestSucceeded : True” の応答を得る点にご注意ください。<br><a target="_blank" rel="noopener" href="https://jpaztech.github.io/blog/network/firewall-rules/">Azure Firewall の各ルールの動作について</a></p>
-<p>//内容抜粋<br>HTTP (80), HTTPS (443) の通信において、ネットワークルール、アプリケーションルールで明示的に拒否していない場合、ルールの処理順序に従って、Azure Firewall の既定の動作として、アプリケーションルールで拒否されることが想定される動作となります。<br>この動作について <strong>Windows の Test-Netconnection</strong> や Linux の curl, nc コマンド等 (以下に記載) で <strong>TCP の 3way handshake による接続確認を実施した場合はアプリケーションルールで許可していないにもかかわらず、3way handshake が確立され、許可されたように見える動作</strong>となります。</p>
+<h3 id="対象マシンからエンドポイントへ-Test-NetConnection-コマンドで疎通確認する場合"><a href="#対象マシンからエンドポイントへ-Test-NetConnection-コマンドで疎通確認する場合" class="headerlink" title="対象マシンからエンドポイントへ Test-NetConnection コマンドで疎通確認する場合"></a>対象マシンからエンドポイントへ Test-NetConnection コマンドで疎通確認する場合</h3><p>以下 blog で当社 AZFW を所管しているチームにて公開しておりますとおりエンドポイントへ疎通できてなくとも “TcpTestSucceeded : True” の応答を得る点にご注意ください。<br><a href="https://jpaztech.github.io/blog/network/firewall-rules/">Azure Firewall の各ルールの動作について</a></p>
+<p>&#x2F;&#x2F;内容抜粋<br>HTTP (80), HTTPS (443) の通信において、ネットワークルール、アプリケーションルールで明示的に拒否していない場合、ルールの処理順序に従って、Azure Firewall の既定の動作として、アプリケーションルールで拒否されることが想定される動作となります。<br>この動作について <strong>Windows の Test-Netconnection</strong> や Linux の curl, nc コマンド等 (以下に記載) で <strong>TCP の 3way handshake による接続確認を実施した場合はアプリケーションルールで許可していないにもかかわらず、3way handshake が確立され、許可されたように見える動作</strong>となります。</p>
 <p>上記シナリオに合致する場合、 Test-NetConnection と tls コネクションまで実施する curl コマンド（※）の結果は以下のように違い発生します。</p>
 <p>◆Test-NetConnection コマンドの実行例<br>PS C:\Users\azureuser&gt; Test-NetConnection global.handler.control.monitor.azure.com -port 443<br>ComputerName     : global.handler.control.monitor.azure.com<br>RemoteAddress    : 20.43.70.102<br>RemotePort       : 443<br>InterfaceAlias   : Ethernet 3<br>SourceAddress    : 10.10.94.69<br>TcpTestSucceeded : True</p>
-<p>◆ curl コマンドの実行例（curl.output.txt より）<br>Starting external process: C:\Windows\system32\curl.exe -v -s -S -k <a target="_blank" rel="noopener" href="https://global.handler.control.monitor.azure.com/ping">https://global.handler.control.monitor.azure.com/ping</a><br>Some arguments have been redacted for security reasons.</p>
+<p>◆ curl コマンドの実行例（curl.output.txt より）<br>Starting external process: C:\Windows\system32\curl.exe -v -s -S -k <a href="https://global.handler.control.monitor.azure.com/ping">https://global.handler.control.monitor.azure.com/ping</a><br>Some arguments have been redacted for security reasons.</p>
 <ul>
 <li>Host global.handler.control.monitor.azure.com:443 was resolved.</li>
 <li>IPv6: (none)</li>
 <li>IPv4: 20.43.70.102</li>
-<li>  Trying 20.43.70.102:443…</li>
+<li>Trying 20.43.70.102:443…</li>
 <li>Connected to global.handler.control.monitor.azure.com (20.43.70.102) port 443</li>
 <li>schannel: disabled automatic use of client certificate</li>
-<li>ALPN: curl offers http/1.1</li>
-<li>schannel: <strong>failed to receive handshake, SSL/TLS connection failed</strong></li>
+<li>ALPN: curl offers http&#x2F;1.1</li>
+<li>schannel: <strong>failed to receive handshake, SSL&#x2F;TLS connection failed</strong></li>
 <li>closing connection #0</li>
 </ul>
-<p>※今回は AMA の トラブルシューティング ツールで取得した curl コマンド結果を使用いたします。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/troubleshooter-ama-windows?tabs=WindowsPowerShell">Azure Monitor エージェント トラブルシューティング ツールの使用方法</a></p>
+<p>※今回は AMA の トラブルシューティング ツールで取得した curl コマンド結果を使用いたします。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/troubleshooter-ama-windows?tabs=WindowsPowerShell">Azure Monitor エージェント トラブルシューティング ツールの使用方法</a></p>
 <p>Test-NetConnection コマンドで疎通できているように見える場合でも実態としては、AZFW で疎通が許可されていない場合は上記のようになる点ご留意ください。<br>その他上記の結果は TLS コネクションをはるための暗号化スイートが要件を満たしていない可能性もございますが、既定では暗号化スイートは基本満たしていることがほとんどです。<br>新しい Windows Server 構築して上記結果になる場合は一度 AZFW の疎通許可を確認いただけますと幸いです。</p>
 
       

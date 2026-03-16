@@ -20,12 +20,12 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromAzureDiagnostics/image01.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromAzureDiagnostics/image02.png">
 <meta property="article:published_time" content="2024-10-30T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.290Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:29.933Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="Log Analytics">
-<meta property="article:tag" content="Azure Diagnostics Extension">
-<meta property="article:tag" content="Retirement">
 <meta property="article:tag" content="AMA migration">
+<meta property="article:tag" content="Azure Diagnostics Extension">
+<meta property="article:tag" content="Log Analytics">
+<meta property="article:tag" content="Retirement">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromAzureDiagnostics/image01.png">
         
@@ -63,7 +63,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -80,7 +80,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -178,7 +178,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+30adb21e-fed0-5bb2-b75d-df4cefb64c62%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BRetirement+notice+%EF%BC%9A+Migrate+to+Azure+Monitor+Agent+before+31+March+2026+%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FHowToMigrateToAmaFromAzureDiagnostics%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FHowToMigrateToAmaFromAzureDiagnostics.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FHowToMigrateToAmaFromAzureDiagnostics.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromAzureDiagnostics/" data-id="cmm8g5fg4001y0nny75gk0owh" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromAzureDiagnostics/" data-id="cuidDwDhoQ1PXjTYtTv-Ruc-x" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -200,9 +200,13 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </ul>
 </li>
 <li><a href="#3-%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86">3. 移行手順</a><ul>
-<li><a href="#3-1-Azure-Diagnostics-%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD-WAD-LAD-%E3%81%A7%E5%8F%8E%E9%9B%86%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E7%A8%AE%E9%A1%9E%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">3-1. Azure Diagnostics 拡張機能 (WAD/LAD) で収集しているデータの種類を確認する</a></li>
-<li><a href="#3-2-Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%A7%E3%83%AD%E3%82%B0%E3%82%92%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E9%80%81%E4%BF%A1%E3%81%99%E3%82%8B">3-2. Azure Monitor エージェントでログをストレージ アカウントに送信する</a></li>
-<li><a href="#3-3-Azure-Diagnostics-%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD-WAD-LAD-%E3%82%92%E3%82%A2%E3%83%B3%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B">3-3. Azure Diagnostics 拡張機能 (WAD/LAD) をアンインストールする</a></li>
+<li><a href="#3-1-Azure-Diagnostics-%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD-WAD-LAD-%E3%81%A7%E5%8F%8E%E9%9B%86%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E7%A8%AE%E9%A1%9E%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">3-1. Azure Diagnostics 拡張機能 (WAD&#x2F;LAD) で収集しているデータの種類を確認する</a></li>
+<li><a href="#3-2-Azure-Monitor-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%A7%E3%83%AD%E3%82%B0%E3%82%92%E5%8F%8E%E9%9B%86%E3%81%99%E3%82%8B">3-2. Azure Monitor エージェントでログを収集する</a><ul>
+<li><a href="#3-2-1-Log-Analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AB%E5%8F%8E%E9%9B%86%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95">3-2-1. Log Analytics ワークスペースに収集する方法</a></li>
+<li><a href="#3-2-2-%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E5%8F%8E%E9%9B%86%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95">3-2-2. ストレージ アカウントに収集する方法</a></li>
+</ul>
+</li>
+<li><a href="#3-3-Azure-Diagnostics-%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD-WAD-LAD-%E3%82%92%E3%82%A2%E3%83%B3%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B">3-3. Azure Diagnostics 拡張機能 (WAD&#x2F;LAD) をアンインストールする</a></li>
 </ul>
 </li>
 </ul>
@@ -239,13 +243,13 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </tbody></table>
 <br>
 
-<h3 id="1-2-内容"><a href="#1-2-内容" class="headerlink" title="1-2. 内容"></a>1-2. 内容</h3><p>You’re receiving this notice because you use the Azure Diagnostics Agent to monitor your virtual machines (VMs) or servers.<br>On 31 March 2026, we’ll retire the Azure Diagnostic Extensions for Windows and Linux (WAD/LAD) and it’ll no longer be supported by Microsoft. You’ll need to start using the Azure Monitor Agent to monitor your VMs and servers in Azure. The Azure Monitor Agent provides new features and capabilities, including:</p>
+<h3 id="1-2-内容"><a href="#1-2-内容" class="headerlink" title="1-2. 内容"></a>1-2. 内容</h3><p>You’re receiving this notice because you use the Azure Diagnostics Agent to monitor your virtual machines (VMs) or servers.<br>On 31 March 2026, we’ll retire the Azure Diagnostic Extensions for Windows and Linux (WAD&#x2F;LAD) and it’ll no longer be supported by Microsoft. You’ll need to start using the Azure Monitor Agent to monitor your VMs and servers in Azure. The Azure Monitor Agent provides new features and capabilities, including:</p>
 <ul>
 <li>Centralized configuration for multiple VMs.</li>
 <li>Data limits and filters at the source.</li>
 <li>Multiple destinations for data from a single agent. (Log Analytics, Storage, Event Hubs, and Metrics).</li>
 </ul>
-<p><strong>翻訳</strong><br>2026 年 3 月 31 日をもって、Windows および Linux 向けの Azure Diagnostics 拡張機能 (WAD / LAD) は廃止となり、Microsoft によるサポートが終了します。Azure の VM やサーバーを監視するために、Azure Monitor エージェントの使用を開始する必要があります。Azure Monitor エージェントには以下の新しい特徴や機能が含まれています。</p>
+<p><strong>翻訳</strong><br>2026 年 3 月 31 日をもって、Windows および Linux 向けの Azure Diagnostics 拡張機能 (WAD &#x2F; LAD) は廃止となり、Microsoft によるサポートが終了します。Azure の VM やサーバーを監視するために、Azure Monitor エージェントの使用を開始する必要があります。Azure Monitor エージェントには以下の新しい特徴や機能が含まれています。</p>
 <ul>
 <li>複数の VM に対する集中管理可能な設定機能</li>
 <li>データ ソースに対する制限とフィルター機能</li>
@@ -253,13 +257,13 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </ul>
 <br>
 
-<h3 id="1-3-実施いただきたいアクション"><a href="#1-3-実施いただきたいアクション" class="headerlink" title="1-3. 実施いただきたいアクション"></a>1-3. 実施いただきたいアクション</h3><p>Follow the <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-send-data-to-event-hubs-and-storage?tabs=windows,windows-1">set-up instructions</a> to start using the Azure Monitor Agent to monitor your VMs and servers before 31 March 2026.<br>To check which extensions are installed on your VM, select Extensions + applications under Settings on your VM.</p>
+<h3 id="1-3-実施いただきたいアクション"><a href="#1-3-実施いただきたいアクション" class="headerlink" title="1-3. 実施いただきたいアクション"></a>1-3. 実施いただきたいアクション</h3><p>Follow the <a href="https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-send-data-to-event-hubs-and-storage?tabs=windows,windows-1">set-up instructions</a> to start using the Azure Monitor Agent to monitor your VMs and servers before 31 March 2026.<br>To check which extensions are installed on your VM, select Extensions + applications under Settings on your VM.</p>
 <p><strong>翻訳</strong><br>2026 年 3 月 31 日までに、Azure Monitor エージェントを使用して VM やサーバーを監視するためのセットアップ手順を実行して下さい。お使いの VM にインストールされている拡張機能を確認するには、Azure VM の [設定] から [拡張機能とアプリケーション] を選択して下さい。</p>
 <br>
 
 
 
-<h2 id="2-移行が必要かどうかを確認する方法"><a href="#2-移行が必要かどうかを確認する方法" class="headerlink" title="2. 移行が必要かどうかを確認する方法"></a>2. 移行が必要かどうかを確認する方法</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview">Azure Diagnostics 拡張機能</a> は 2026 年 3 月 31 日に廃止される予定のため、引き続きパフォーマンス カウンターやログ データの収集を行うためには、同等の機能を有する <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-overview">Azure Monitor エージェント</a>への移行をお願いしております。<br>Azure Diagnostics 拡張機能は <a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToDiagnosticsSettings/#2-Azure-VM-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A">Azure VM の診断設定</a> を有効化することで、Azure VM にインストールされ、ゲスト OS のログやメトリックをストレージ アカウントに送信します。Windows 用の Azure Diagnostics 拡張機能 は Windows Azure Diagnostics extension (WAD)、Linux 用は Linux Azure Diagnostics extension (LAD) と呼ばれています。Azure Monitor エージェントは、基本的に Log Analytics ワークスペースへログ収集を行います。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-send-data-to-event-hubs-and-storage?tabs=windows,windows-1">ストレージ アカウントへのエクスポートを行いたい場合は別途設定が必要です</a>。</p>
+<h2 id="2-移行が必要かどうかを確認する方法"><a href="#2-移行が必要かどうかを確認する方法" class="headerlink" title="2. 移行が必要かどうかを確認する方法"></a>2. 移行が必要かどうかを確認する方法</h2><p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview">Azure Diagnostics 拡張機能</a> は 2026 年 3 月 31 日に廃止される予定のため、引き続きパフォーマンス カウンターやログ データの収集を行うためには、同等の機能を有する <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-overview">Azure Monitor エージェント</a>への移行をお願いしております。<br>Azure Diagnostics 拡張機能は <a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToDiagnosticsSettings/#2-Azure-VM-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A">Azure VM の診断設定</a> を有効化することで、Azure VM にインストールされ、ゲスト OS のログやメトリックをストレージ アカウントに送信します。Windows 用の Azure Diagnostics 拡張機能 は Windows Azure Diagnostics extension (WAD)、Linux 用は Linux Azure Diagnostics extension (LAD) と呼ばれています。Azure Monitor エージェントは、基本的に Log Analytics ワークスペースへログ収集を行います。<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-send-data-to-event-hubs-and-storage?tabs=windows,windows-1">ストレージ アカウントへのエクスポートを行いたい場合は別途設定が必要です</a>。</p>
 <br>
 
 
@@ -269,20 +273,25 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <br>
 
 
-<h3 id="2-2-移行対象のマシンを確認する手順"><a href="#2-2-移行対象のマシンを確認する手順" class="headerlink" title="2-2. 移行対象のマシンを確認する手順"></a>2-2. 移行対象のマシンを確認する手順</h3><p>Azure ポータルで [Resource Graph エクスプローラー] (<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/governance/resource-graph/first-query-portal">Azure Resource Graph エクスプローラー</a>) を開き、下記のようなクエリを実行することで、Azure Diagnostics 拡張機能が導入されたマシンとその接続先のストレージ アカウントを確認できます。<br>以下がサンプル クエリでございます。クエリ内、&lt;&gt; 部分についてはお客様環境に合わせてご変更いただく必要がございます。以下のクエリを実行いただき、該当するマシンがあるかどうかをご確認ください。</p>
+<h3 id="2-2-移行対象のマシンを確認する手順"><a href="#2-2-移行対象のマシンを確認する手順" class="headerlink" title="2-2. 移行対象のマシンを確認する手順"></a>2-2. 移行対象のマシンを確認する手順</h3><p>Azure ポータルで [Resource Graph エクスプローラー] (<a href="https://learn.microsoft.com/ja-jp/azure/governance/resource-graph/first-query-portal">Azure Resource Graph エクスプローラー</a>) を開き、下記のようなクエリを実行することで、Azure Diagnostics 拡張機能が導入されたマシンとその接続先のストレージ アカウントを確認できます。<br>以下がサンプル クエリでございます。クエリ内、&lt;&gt; 部分についてはお客様環境に合わせてご変更いただく必要がございます。以下のクエリを実行いただき、該当するマシンがあるかどうかをご確認ください。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">resources </span><br><span class="line">| where subscriptionId == &quot;&lt;サブスクリプション ID&gt;&quot;</span><br><span class="line">| extend publisher = properties.publisher</span><br><span class="line">| extend extensionType = properties.type</span><br><span class="line">| extend connectedStorageAccount = properties.settings.StorageAccount</span><br><span class="line">| where extensionType in (&quot;IaaSDiagnostics&quot;,&quot;LinuxDiagnostic&quot;)</span><br><span class="line">| parse id with * &quot;/virtualMachines/&quot; vmName &quot;/extensions&quot; *</span><br><span class="line">| project vmName, extensionName = name, extensionType, publisher, location, resourceGroup, connectedStorageAccount</span><br></pre></td></tr></table></figure>
 
 <p>extentionType が IaaSDiagnostics の場合は、Windows 用の Azure Diagnostics 拡張機能、<br>extentionType が LinuxDiagnostic の場合は、Linux 用の Azure Diagnostics 拡張機能を表します。<br>上記のクエリでヒットするマシンがありましたら、そのマシンには Azure Diagnostics 拡張機能が導入されていることになります。</p>
 <br>
 
-<h2 id="3-移行手順"><a href="#3-移行手順" class="headerlink" title="3. 移行手順"></a>3. 移行手順</h2><h3 id="3-1-Azure-Diagnostics-拡張機能-WAD-LAD-で収集しているデータの種類を確認する"><a href="#3-1-Azure-Diagnostics-拡張機能-WAD-LAD-で収集しているデータの種類を確認する" class="headerlink" title="3-1. Azure Diagnostics 拡張機能 (WAD/LAD) で収集しているデータの種類を確認する"></a>3-1. Azure Diagnostics 拡張機能 (WAD/LAD) で収集しているデータの種類を確認する</h3><p>Azure VM の [監視] - [診断設定] より、現在のデータ収集設定をご確認ください。下図は Linux VM の設定画面です。<br><img src="/blog/LogAnalytics/HowToMigrateToAmaFromAzureDiagnostics/image01.png"></p>
+<h2 id="3-移行手順"><a href="#3-移行手順" class="headerlink" title="3. 移行手順"></a>3. 移行手順</h2><h3 id="3-1-Azure-Diagnostics-拡張機能-WAD-LAD-で収集しているデータの種類を確認する"><a href="#3-1-Azure-Diagnostics-拡張機能-WAD-LAD-で収集しているデータの種類を確認する" class="headerlink" title="3-1. Azure Diagnostics 拡張機能 (WAD&#x2F;LAD) で収集しているデータの種類を確認する"></a>3-1. Azure Diagnostics 拡張機能 (WAD&#x2F;LAD) で収集しているデータの種類を確認する</h3><p>Azure VM の [監視] - [診断設定] より、現在のデータ収集設定をご確認ください。下図は Linux VM の設定画面です。<br><img src="/blog/LogAnalytics/HowToMigrateToAmaFromAzureDiagnostics/image01.png"></p>
 <br>
 
-<h3 id="3-2-Azure-Monitor-エージェントでログをストレージ-アカウントに送信する"><a href="#3-2-Azure-Monitor-エージェントでログをストレージ-アカウントに送信する" class="headerlink" title="3-2. Azure Monitor エージェントでログをストレージ アカウントに送信する"></a>3-2. Azure Monitor エージェントでログをストレージ アカウントに送信する</h3><p>Azure Monitor エージェントでログをストレージ アカウントに送信する場合は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-send-data-to-event-hubs-and-storage?tabs=windows,windows-1">こちら</a> の公開情報を参考に設定してください。<br>なお、Azure Monitor エージェントを導入される前に必ず <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-requirements">Azure Monitor エージェントの前提条件</a>や<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-network-configuration?tabs=PowerShellWindows">通信要件</a>をご確認ください。</p>
-<div class="alert is-warning"><p class="alert-title">警告</p><p>Azure Monitor エージェントでストレージ アカウントに送信できるログの種類は <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-send-data-to-event-hubs-and-storage?tabs=windows,windows-1#migration-from-azure-diagnostic-extensions-for-linux-and-windows-ladwad">公開情報</a> に記載されております。移行前に必ずご確認ください。</p></div>
+<h3 id="3-2-Azure-Monitor-エージェントでログを収集する"><a href="#3-2-Azure-Monitor-エージェントでログを収集する" class="headerlink" title="3-2. Azure Monitor エージェントでログを収集する"></a>3-2. Azure Monitor エージェントでログを収集する</h3><h4 id="3-2-1-Log-Analytics-ワークスペースに収集する方法"><a href="#3-2-1-Log-Analytics-ワークスペースに収集する方法" class="headerlink" title="3-2-1. Log Analytics ワークスペースに収集する方法"></a>3-2-1. Log Analytics ワークスペースに収集する方法</h4><p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/data-collection?tabs=current#create-a-data-collection-rule">データ収集ルール (DCR) の作成</a>により、Azure Monitor エージェントを使用して上記で確認したログを Log Analytics ワークスペースに収集します。</p>
+<p>なお、Azure Monitor エージェントを導入される前に必ず <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-requirements">Azure Monitor エージェントの前提条件</a>や<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-network-configuration?tabs=PowerShellWindows">通信要件</a>をご確認ください。</p>
 <br>
 
-<h3 id="3-3-Azure-Diagnostics-拡張機能-WAD-LAD-をアンインストールする"><a href="#3-3-Azure-Diagnostics-拡張機能-WAD-LAD-をアンインストールする" class="headerlink" title="3-3. Azure Diagnostics 拡張機能 (WAD/LAD) をアンインストールする"></a>3-3. Azure Diagnostics 拡張機能 (WAD/LAD) をアンインストールする</h3><p>Azure ポータルから Azure Diagnostics 拡張機能 (WAD/LAD) をアンインストール方法は以下の通りです。</p>
+<h4 id="3-2-2-ストレージ-アカウントに収集する方法"><a href="#3-2-2-ストレージ-アカウントに収集する方法" class="headerlink" title="3-2-2. ストレージ アカウントに収集する方法"></a>3-2-2. ストレージ アカウントに収集する方法</h4><p>Azure Diagnostics 拡張機能 (WAD&#x2F;LAD) を使用して収集しているログは基本的にはストレージ アカウントに収集されています。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal#create-or-update-a-data-export-rule">Log Analytics ワークスペースにて対象ログを収集しているテーブルに対してデータ エクスポート ルールを作成</a>することで、Log Analytics ワークスペースに収集されたログをストレージ アカウントに送信することが可能です。</p>
+<div class="alert is-warning"><p class="alert-title">警告</p><p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-send-data-to-event-hubs-and-storage?tabs=windows,windows-1">Azure Monitor エージェントを使用してログをストレージ アカウントに直接送信する方法</a>は、2026 年 3 月時点ではプレビュー機能として提供されているものの、2026 年 7 月 31 日に廃止予定です。</p><p>Azure Monitor エージェントでストレージ アカウントに直接送信できるログの種類は <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-send-data-to-event-hubs-and-storage?tabs=windows,windows-1#migration-from-azure-diagnostic-extensions-for-linux-and-windows-ladwad">公開情報</a> に記載されております。</p></div>
+<br>
+
+<h3 id="3-3-Azure-Diagnostics-拡張機能-WAD-LAD-をアンインストールする"><a href="#3-3-Azure-Diagnostics-拡張機能-WAD-LAD-をアンインストールする" class="headerlink" title="3-3. Azure Diagnostics 拡張機能 (WAD&#x2F;LAD) をアンインストールする"></a>3-3. Azure Diagnostics 拡張機能 (WAD&#x2F;LAD) をアンインストールする</h3><p>Azure ポータルから Azure Diagnostics 拡張機能 (WAD&#x2F;LAD) をアンインストール方法は以下の通りです。</p>
 <ol>
 <li>Azure ポータル上で VM を開き、画面左側の [設定] &gt; [拡張機能とアプリケーション] を選択します。</li>
 <li>一覧から Azure Diagnostics 拡張機能をクリックします。Windows マシンの場合は [種類] が IaaSDiagnostics を含むもの、Linux マシンの場合は [種類] が LinuxDiagnostic を含むものが該当します。</li>
@@ -314,19 +323,19 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
     
 <nav id="article-nav">
   
-    <a href="../TroubleshootingAMALogIngestion/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="../HowToCreatePerfLogAlertForLinux/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">次の記事</strong>
       <div class="article-nav-title">
         
-          Azure Monitor エージェントを使用したログ収集が行われない場合のトラブルシューティングについて
+          &lt;Linux 版&gt; Azure Monitor エージェントを利用した性能監視（CPU、メモリ、ディスク)
         
       </div>
     </a>
   
   
-    <a href="../HowToCreatePerfLogAlertForLinux/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../../AzureMonitorEssential/LogAlert_NewEmailTemplate_2024/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前の記事</strong>
-      <div class="article-nav-title">&lt;Linux 版&gt; Azure Monitor エージェントを利用した性能監視（CPU、メモリ、ディスク)</div>
+      <div class="article-nav-title">ログ アラートのメール フォーマット変更について</div>
     </a>
   
 </nav>

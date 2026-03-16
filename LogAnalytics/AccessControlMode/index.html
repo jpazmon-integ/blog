@@ -10,22 +10,22 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="[更新履歴]  2023&#x2F;09&#x2F;04 ブログ公開 2026&#x2F;01&#x2F;19 最新情報への更新  こんにちは、Azure Monitoring サポート チームの秋田です。本ブログでは、以下の公開情報に記載されています Log Analytics ワークスペースのアクセス制御モードについて、具体例を用いて違いをご説明します。  アクセス制御モードhttps:&#x2F;&#x2F;learn.microsoft.com&#x2F;j">
+      <meta name="description" content="[更新履歴]  2023&#x2F;09&#x2F;04 ブログ公開 2026&#x2F;01&#x2F;19 最新情報への更新  こんにちは、Azure Monitoring サポート チームの秋田です。本ブログでは、以下の公開情報に記載されています Log Analytics ワークスペースのアクセス制御モードについて、具体例を用いて違いをご説明します。  アクセス制御モードhttps:&#x2F;&#x2F;l">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Log Analytics ワークスペースのアクセス制御モードの違いについて">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AccessControlMode/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="[更新履歴]  2023&#x2F;09&#x2F;04 ブログ公開 2026&#x2F;01&#x2F;19 最新情報への更新  こんにちは、Azure Monitoring サポート チームの秋田です。本ブログでは、以下の公開情報に記載されています Log Analytics ワークスペースのアクセス制御モードについて、具体例を用いて違いをご説明します。  アクセス制御モードhttps:&#x2F;&#x2F;learn.microsoft.com&#x2F;j">
+<meta property="og:description" content="[更新履歴]  2023&#x2F;09&#x2F;04 ブログ公開 2026&#x2F;01&#x2F;19 最新情報への更新  こんにちは、Azure Monitoring サポート チームの秋田です。本ブログでは、以下の公開情報に記載されています Log Analytics ワークスペースのアクセス制御モードについて、具体例を用いて違いをご説明します。  アクセス制御モードhttps:&#x2F;&#x2F;l">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AccessControlMode/image01_2601.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AccessControlMode/image02_2601.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AccessControlMode/image03.jpg">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AccessControlMode/image04.jpg">
 <meta property="article:published_time" content="2023-09-03T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.173Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:29.804Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="Log Analytics">
 <meta property="article:tag" content="HowTo">
+<meta property="article:tag" content="Log Analytics">
 <meta property="article:tag" content="Query">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/AccessControlMode/image01_2601.png">
@@ -64,7 +64,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -81,7 +81,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -179,19 +179,19 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+70231ea7-827e-5458-bc87-eb87fdaa357c%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BLog+Analytics+%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E5%BE%A1%E3%83%A2%E3%83%BC%E3%83%89%E3%81%AE%E9%81%95%E3%81%84%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FAccessControlMode%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FAccessControlMode.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FAccessControlMode.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/AccessControlMode/" data-id="cmm8g5ffv00180nny2bwl5mmu" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/AccessControlMode/" data-id="cuidNnpGL9FXFZu7uvhiaz8Gh" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>[更新履歴]</p>
 <ul>
-<li>2023/09/04 ブログ公開</li>
-<li>2026/01/19 最新情報への更新</li>
+<li>2023&#x2F;09&#x2F;04 ブログ公開</li>
+<li>2026&#x2F;01&#x2F;19 最新情報への更新</li>
 </ul>
 <p>こんにちは、Azure Monitoring サポート チームの秋田です。<br>本ブログでは、以下の公開情報に記載されています Log Analytics ワークスペースのアクセス制御モードについて、具体例を用いて違いをご説明します。</p>
 <ul>
-<li>アクセス制御モード<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/manage-access?tabs=portal#access-control-mode">https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/manage-access?tabs=portal#access-control-mode</a></li>
+<li>アクセス制御モード<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/manage-access?tabs=portal#access-control-mode">https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/manage-access?tabs=portal#access-control-mode</a></li>
 </ul>
 <br>
 
@@ -201,14 +201,14 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>ユーザーが Log Analytics ワークスペースにアクセスする際に、どのような権限を持っていればどのデータを閲覧可能とするかを定義する設定です。<br>アクセス制御モードには、”ワークスペースのアクセス許可が必要” と “リソースまたはワークスペースのアクセス許可を使用” の 2 つがあります。<br>2019 年 3 月以降に作成された Log Analytics ワークスペースは、アクセス制御モードが既定で “リソースまたはワークスペースのアクセス許可を使用” となっています。</p>
 <p>アクセス制御モードの確認および変更方法は以下の公開情報をご参照ください。</p>
 <ul>
-<li>ワークスペースのアクセス制御モードを構成する<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/manage-access?tabs=portal#configure-access-control-mode-for-a-workspace">https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/manage-access?tabs=portal#configure-access-control-mode-for-a-workspace</a></li>
+<li>ワークスペースのアクセス制御モードを構成する<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/manage-access?tabs=portal#configure-access-control-mode-for-a-workspace">https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/manage-access?tabs=portal#configure-access-control-mode-for-a-workspace</a></li>
 </ul>
 <h1 id="アクセス-モードとは"><a href="#アクセス-モードとは" class="headerlink" title="アクセス モードとは"></a>アクセス モードとは</h1><p>各アクセス制御モードを説明するにあたり、前提知識として似た名前のアクセス モードについて先にお話しします。<br>アクセス モードとは一言でいうと、どのように Log Analytics ワークスペースにアクセスをするかです。<br>アクセス モードには、ワークスペース コンテキストとリソース コンテキストの 2 種類があります。</p>
 <h2 id="ワークスペース-コンテキスト"><a href="#ワークスペース-コンテキスト" class="headerlink" title="ワークスペース コンテキスト"></a>ワークスペース コンテキスト</h2><p>ワークスペース コンテキストで Log Analytics ワークスペースにアクセスするとは、<br>Log Analytics ワークスペースの [ログ] メニューよりログを確認することを指します。<br><img src="/blog/LogAnalytics/AccessControlMode/image01_2601.png"></p>
 <h2 id="リソース-コンテキスト"><a href="#リソース-コンテキスト" class="headerlink" title="リソース コンテキスト"></a>リソース コンテキスト</h2><p>リソース コンテキストで Log Analytics ワークスペースにアクセスするとは、<br>リソース (例. 仮想マシン) の画面左側メニューにある [ログ] メニューより Log Analytics ワークスペースにアクセスしてログを確認することを指します。<br><img src="/blog/LogAnalytics/AccessControlMode/image02_2601.png"></p>
-<p>//参考情報</p>
+<p>&#x2F;&#x2F;参考情報</p>
 <ul>
-<li>アクセス モード<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/manage-access?tabs=portal#access-mode">https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/manage-access?tabs=portal#access-mode</a></li>
+<li>アクセス モード<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/manage-access?tabs=portal#access-mode">https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/manage-access?tabs=portal#access-mode</a></li>
 </ul>
 <h1 id="アクセス制御モードによる差異について"><a href="#アクセス制御モードによる差異について" class="headerlink" title="アクセス制御モードによる差異について"></a>アクセス制御モードによる差異について</h1><p>ワークスペース コンテキストで Log Analytics ワークスペースにアクセスする場合、アクセス制御モードに依らず Log Analytics ワークスペースへのアクセス権限により情報の閲覧可否が決まるため、<br>アクセス制御モードによる差異はありません。</p>
 <p>リソース コンテキストで Log Analytics ワークスペースにアクセスする場合は以下の通りです。<br>アクセス制御モードが “ワークスペースへのアクセス許可が必要” の場合、権限があるリソースのデータのうち、権限がある Log Analytics ワークスペースに格納されているデータのみが閲覧可能です。<br>一方で、アクセス制御モードが “リソースまたはワークスペースのアクセス制御” の場合、権限があるリソースのデータであれば、<br>データが格納されている Log Analytics ワークスペースに対して権限を持っていなくても、リソースに関するすべてのデータが閲覧可能です。</p>

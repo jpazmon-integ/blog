@@ -20,11 +20,11 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/image01.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/image02.png">
 <meta property="article:published_time" content="2024-09-17T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.162Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:29.792Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="HowTo">
-<meta property="article:tag" content="Azure Monitor Essential">
 <meta property="article:tag" content="Alerts, Action Groups">
+<meta property="article:tag" content="Azure Monitor Essential">
+<meta property="article:tag" content="HowTo">
 <meta property="article:tag" content="Metric alert">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/image01.png">
@@ -63,7 +63,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -80,7 +80,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -178,15 +178,15 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+09fb108b-0da5-5cff-b499-cf24fa820b22%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF+%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88+%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%A7+NULL+%E3%82%92%E6%A4%9C%E7%9F%A5%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FUnableToDetectNullMetric%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FUnableToDetectNullMetric.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FUnableToDetectNullMetric.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/" data-id="cmm8g5ffq000v0nnybywdag83" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/" data-id="cuid5zme72-AcIi8XsM3vk7XO" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>[更新履歴]</p>
 <ul>
-<li>2024/09/18 ブログ公開</li>
-<li>2026/01/29 最新の情報であることを確認済み</li>
+<li>2024&#x2F;09&#x2F;18 ブログ公開</li>
+<li>2026&#x2F;01&#x2F;29 最新の情報であることを確認済み</li>
 </ul>
 <p>こんにちは、Azure Monitoring チームの北村です。<br>今回はメトリックがない (NULL) 場合のメトリック アラート ルールの動作について説明します。</p>
 <br>
@@ -196,16 +196,19 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <li><a href="#1-%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB">1. はじめに</a></li>
 <li><a href="#2-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%81%8C-NULL-%E3%81%AE%E7%8A%B6%E6%85%8B%E3%81%A8%E3%81%AF">2. メトリックが NULL の状態とは</a></li>
 <li><a href="#3-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%81%8C-NULL-%E3%81%AE%E5%A0%B4%E5%90%88%E3%81%AF%E8%A9%95%E4%BE%A1%E3%81%8C%E3%82%B9%E3%82%AD%E3%83%83%E3%83%97%E3%81%95%E3%82%8C%E3%82%8B">3. メトリックが NULL の場合は評価がスキップされる</a></li>
-<li><a href="#4-%E3%81%BE%E3%81%A8%E3%82%81">4. まとめ</a><br></li>
+<li><a href="#4-%E3%81%BE%E3%81%A8%E3%82%81">4. まとめ</a></li>
 </ul>
-<h2 id="1-はじめに"><a href="#1-はじめに" class="headerlink" title="1. はじめに"></a>1. はじめに</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#metric-alerts">メトリック アラート ルール</a>でテストを実施したが、しきい値を満たしている状況なのに想定どおりに発報しない・・・というお問い合わせをいただくことがございます。このようなときにご確認いただきたい点は「メトリックが出力されているかどうか」です。<br>本ブログのタイトルのとおり、メトリック アラート ルールでは「NULL」を検知することはできません。対象の評価期間の間、メトリックが NULL の場合は、アラート ルールが評価をスキップするためです。一方で、評価期間中に一度でも値が記録された場合は、その値をもとに評価が実行されます (評価はスキップされません)。</p>
 <br>
 
-<h2 id="2-メトリックが-NULL-の状態とは"><a href="#2-メトリックが-NULL-の状態とは" class="headerlink" title="2. メトリックが NULL の状態とは"></a>2. メトリックが NULL の状態とは</h2><p>メトリックが「NULL」の状態は、メトリックが何も出力されていないことを意味します。<br>詳細は <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/metrics-aggregation-explained#null-and-zero-values">弊社公開情報</a> をご参照いただきたく存じますが、NULL はゼロ値とは異なります。</p>
-<p>ここでは Azure VM の<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/monitor-vm-reference#vm-availability-metric-preview">可用性メトリック ‘VM Availability Metric (Preview)’</a> を、折れ線グラフで描画した例に説明します。<br>この<a href="https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/#2-%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E2%80%98VM-Availability-Metric-Preview-%E2%80%99-%E3%81%A8%E3%81%AF">メトリック</a>では VM が実行中の場合は 1 が記録されますが、Azure VM が “停止済み (割り当て解除)” の場合はメトリックの値が NULL になります。</p>
+
+<h2 id="1-はじめに"><a href="#1-はじめに" class="headerlink" title="1. はじめに"></a>1. はじめに</h2><p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#metric-alerts">メトリック アラート ルール</a>でテストを実施したが、しきい値を満たしている状況なのに想定どおりに発報しない・・・というお問い合わせをいただくことがございます。このようなときにご確認いただきたい点は「メトリックが出力されているかどうか」です。<br>本ブログのタイトルのとおり、メトリック アラート ルールでは「NULL」を検知することはできません。対象の評価期間の間、メトリックが NULL の場合は、アラート ルールが評価をスキップするためです。一方で、評価期間中に一度でも値が記録された場合は、その値をもとに評価が実行されます (評価はスキップされません)。</p>
+<br>
+
+<h2 id="2-メトリックが-NULL-の状態とは"><a href="#2-メトリックが-NULL-の状態とは" class="headerlink" title="2. メトリックが NULL の状態とは"></a>2. メトリックが NULL の状態とは</h2><p>メトリックが「NULL」の状態は、メトリックが何も出力されていないことを意味します。<br>詳細は <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/metrics-aggregation-explained#null-and-zero-values">弊社公開情報</a> をご参照いただきたく存じますが、NULL はゼロ値とは異なります。</p>
+<p>ここでは Azure VM の<a href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/monitor-vm-reference#vm-availability-metric-preview">可用性メトリック ‘VM Availability Metric (Preview)’</a> を、折れ線グラフで描画した例に説明します。<br>この<a href="https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/#2-%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E2%80%98VM-Availability-Metric-Preview-%E2%80%99-%E3%81%A8%E3%81%AF">メトリック</a>では VM が実行中の場合は 1 が記録されますが、Azure VM が “停止済み (割り当て解除)” の場合はメトリックの値が NULL になります。</p>
 <p>VM が実行している間は 1 が記録されます。<br><img src="/blog/AzureMonitorEssential/UnableToDetectNullMetric/image01.png"></p>
 <p>一方で、VM が “停止済み (割り当て解除)” の場合はメトリックが記録されず、破線となっていることがわかります。<br><img src="/blog/AzureMonitorEssential/UnableToDetectNullMetric/image02.png"></p>
-<div class="alert is-info"><p class="alert-title">Note</p><p>メトリック エクスプローラーの使い方は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/analyze-metrics">弊社公開情報</a> をご参照ください。また、エクスプローラー上で確認した際に値が 0 と表示されていても、アラート ルールの評価時には NULL と認識されるメトリックもございます。メトリックが NULL と判定されたことにより評価がスキップされていると推測される場合には、一度対象のメトリックを意図的に記録いただき、アラートが検知するかどうかをご確認いただきますようお願いいたします。</p></div>
+<div class="alert is-info"><p class="alert-title">Note</p><p>メトリック エクスプローラーの使い方は、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/analyze-metrics">弊社公開情報</a> をご参照ください。また、エクスプローラー上で確認した際に値が 0 と表示されていても、アラート ルールの評価時には NULL と認識されるメトリックもございます。メトリックが NULL と判定されたことにより評価がスキップされていると推測される場合には、一度対象のメトリックを意図的に記録いただき、アラートが検知するかどうかをご確認いただきますようお願いいたします。</p></div>
 <br>
 
 

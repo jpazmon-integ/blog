@@ -10,12 +10,12 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="[更新履歴]    2025&#x2F;12&#x2F;23 スクリーンショットの更新 2024&#x2F;8&#x2F;19 ブログ公開   こんにちは、Azure Monitoring チームの徳田です。 本ブログでは、以下の公開情報に記載されています、Azure Monitor エージェントを使用してカスタムのパフォーマンス カウンターを収集するためのデータ収集ルールの作成方法についてご説明します。 https:&#x2F;&#x2F;learn.m">
+      <meta name="description" content="[更新履歴]    2025&#x2F;12&#x2F;23 スクリーンショットの更新 2024&#x2F;8&#x2F;19 ブログ公開  こんにちは、Azure Monitoring チームの徳田です。 本ブログでは、以下の公開情報に記載されています、Azure Monitor エージェントを使用してカスタムのパフォーマンス カウンターを収集するためのデータ収集ルールの作成方法についてご説明し">
 <meta property="og:type" content="article">
 <meta property="og:title" content="既定で用意されているもの以外のパフォーマンス カウンターを収集する方法">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomPerfCounter/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="[更新履歴]    2025&#x2F;12&#x2F;23 スクリーンショットの更新 2024&#x2F;8&#x2F;19 ブログ公開   こんにちは、Azure Monitoring チームの徳田です。 本ブログでは、以下の公開情報に記載されています、Azure Monitor エージェントを使用してカスタムのパフォーマンス カウンターを収集するためのデータ収集ルールの作成方法についてご説明します。 https:&#x2F;&#x2F;learn.m">
+<meta property="og:description" content="[更新履歴]    2025&#x2F;12&#x2F;23 スクリーンショットの更新 2024&#x2F;8&#x2F;19 ブログ公開  こんにちは、Azure Monitoring チームの徳田です。 本ブログでは、以下の公開情報に記載されています、Azure Monitor エージェントを使用してカスタムのパフォーマンス カウンターを収集するためのデータ収集ルールの作成方法についてご説明し">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomPerfCounter/performancemonitor-screen1.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomPerfCounter/performancemonitor-screen2.png">
@@ -26,12 +26,12 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomPerfCounter/dcr-addtargets.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomPerfCounter/law-checklog_2512.png">
 <meta property="article:published_time" content="2024-08-18T16:10:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.211Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:29.846Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="Log Analytics">
-<meta property="article:tag" content="HowTo">
 <meta property="article:tag" content="Azure Monitor Agent">
 <meta property="article:tag" content="Data Collection Rule, Data Collection Endpoint">
+<meta property="article:tag" content="HowTo">
+<meta property="article:tag" content="Log Analytics">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomPerfCounter/performancemonitor-screen1.png">
         
@@ -69,7 +69,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -86,7 +86,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -184,19 +184,19 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+89c574e4-211e-54f7-a5e8-539052507834%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E6%97%A2%E5%AE%9A%E3%81%A7%E7%94%A8%E6%84%8F%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%82%82%E3%81%AE%E4%BB%A5%E5%A4%96%E3%81%AE%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9+%E3%82%AB%E3%82%A6%E3%83%B3%E3%82%BF%E3%83%BC%E3%82%92%E5%8F%8E%E9%9B%86%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FHowToCollectCustomPerfCounter%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FHowToCollectCustomPerfCounter.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FHowToCollectCustomPerfCounter.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomPerfCounter/" data-id="cmm8g5fg2001q0nnyakaab995" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomPerfCounter/" data-id="cuidch5cRcnOZRRedwTwo54mR" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>[更新履歴]  </p>
 <ul>
-<li>2025/12/23 スクリーンショットの更新</li>
-<li>2024/8/19 ブログ公開 </li>
+<li>2025&#x2F;12&#x2F;23 スクリーンショットの更新</li>
+<li>2024&#x2F;8&#x2F;19 ブログ公開</li>
 </ul>
 <p>こんにちは、Azure Monitoring チームの徳田です。</p>
 <p>本ブログでは、以下の公開情報に記載されています、Azure Monitor エージェントを使用してカスタムのパフォーマンス カウンターを収集するためのデータ収集ルールの作成方法についてご説明します。</p>
-<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-performance">https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-performance</a></p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-performance">https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-performance</a></p>
 <span id="more"></span>
 
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
@@ -223,13 +223,13 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </li>
 <li><p>左ペインで Monitoring Tools &gt; Performance Monitor (モニター ツール &gt; パフォーマンス モニター) を押下します。ウィンドウ中央に折れ線グラフが表示されます。<br><img src="/blog/LogAnalytics/HowToCollectCustomPerfCounter/performancemonitor-screen1.png"></p>
 </li>
-<li><p>上部 [+] ボタンを押下し、確認したいパフォーマンス カウンターを押下します。この際、”選択したオブジェクトのインスタンス (I)” に複数の値が表示されている場合は任意のインスタンスも押下します。<br>[追加] を押下し、[OK] を押下します。  </p>
+<li><p>上部 [+] ボタンを押下し、確認したいパフォーマンス カウンターを押下します。この際、”選択したオブジェクトのインスタンス (I)” に複数の値が表示されている場合は任意のインスタンスも押下します。<br>[追加] を押下し、[OK] を押下します。</p>
 </li>
 </ol>
 <p>例 : パフォーマンス カウンターにインスタンスがない場合<br><img src="/blog/LogAnalytics/HowToCollectCustomPerfCounter/performancemonitor-screen2.png">  </p>
 <p>例 : パフォーマンス カウンターにインスタンスがある場合<br><img src="/blog/LogAnalytics/HowToCollectCustomPerfCounter/performancemonitor-screen3.png"></p>
 <ol start="4">
-<li>折れ線グラフの下に、選択したパフォーマンス カウンターの一覧が表示されます。<br>オブジェクト、インスタンス、カウンター列を参照し、以下のルールに従ってパフォーマンス カウンター名を手元にメモします。  </li>
+<li>折れ線グラフの下に、選択したパフォーマンス カウンターの一覧が表示されます。<br>オブジェクト、インスタンス、カウンター列を参照し、以下のルールに従ってパフォーマンス カウンター名を手元にメモします。</li>
 </ol>
 <p><img src="/blog/LogAnalytics/HowToCollectCustomPerfCounter/performancemonitor-screen4.png"></p>
 <p>インスタンスがない場合 : <code>\&lt;オブジェクト&gt;\&lt;カウンター&gt;</code><br>    例 : <code>\System\File Read Bytes/sec</code>  </p>
@@ -254,10 +254,15 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <h3 id="パフォーマンス-カウンターが収集されていることを確認する"><a href="#パフォーマンス-カウンターが収集されていることを確認する" class="headerlink" title="パフォーマンス カウンターが収集されていることを確認する"></a>パフォーマンス カウンターが収集されていることを確認する</h3><ol>
 <li>Azure portal にログインします。</li>
 <li><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90">データ収集ルールの作成</a> の 6 で選択した Log Analytics ワークスペースのページを開きます。</li>
-<li>左ペインの [ログ] を押下し、以下のクエリを貼り付け、実行します。<br> なお、where から始まる行は、収集の有無を確認したいパフォーマンス カウンターのオブジェクト名、インスタンス名、カウンター名に置き換えてください。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Perf</span><br><span class="line">| where ObjectName == &quot;オブジェクト名&quot;</span><br><span class="line">| where InstanceName == &quot;インスタンス名&quot;</span><br><span class="line">| where CounterName == &quot;カウンター名&quot;</span><br><span class="line">| sort by TimeGenerated</span><br></pre></td></tr></table></figure>
-例 : パフォーマンス カウンター名が <code>\LogicalDisk(C:)\% Free Space</code> の場合<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Perf</span><br><span class="line">| where ObjectName == &quot;LogicalDisk&quot;</span><br><span class="line">| where InstanceName == &quot;C:&quot;</span><br><span class="line">| where CounterName == &quot;% Free Space&quot;</span><br><span class="line">| sort by TimeGenerated</span><br></pre></td></tr></table></figure></li>
-<li>以下画像のようにログが表示されれば、ログが収集できています。<br><img src="/blog/LogAnalytics/HowToCollectCustomPerfCounter/law-checklog_2512.png"> 　</li>
+<li>左ペインの [ログ] を押下し、以下のクエリを貼り付け、実行します。<br> なお、where から始まる行は、収集の有無を確認したいパフォーマンス カウンターのオブジェクト名、インスタンス名、カウンター名に置き換えてください。</li>
 </ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Perf</span><br><span class="line">| where ObjectName == &quot;オブジェクト名&quot;</span><br><span class="line">| where InstanceName == &quot;インスタンス名&quot;</span><br><span class="line">| where CounterName == &quot;カウンター名&quot;</span><br><span class="line">| sort by TimeGenerated</span><br></pre></td></tr></table></figure>
+<p>例 : パフォーマンス カウンター名が <code>\LogicalDisk(C:)\% Free Space</code> の場合</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Perf</span><br><span class="line">| where ObjectName == &quot;LogicalDisk&quot;</span><br><span class="line">| where InstanceName == &quot;C:&quot;</span><br><span class="line">| where CounterName == &quot;% Free Space&quot;</span><br><span class="line">| sort by TimeGenerated</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>以下画像のようにログが表示されれば、ログが収集できています。<br><img src="/blog/LogAnalytics/HowToCollectCustomPerfCounter/law-checklog_2512.png"></li>
+</ol>
+<p> 　</p>
 <h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>本ブログではパフォーマンス カウンターおよびカスタム パフォーマンス カウンターの収集設定方法についてご紹介しました。<br>データ収集ルールでは、収集したいパフォーマンス カウンターのパフォーマンス カウンター名を指定することで、任意のログを収集することができます。</p>
 
       

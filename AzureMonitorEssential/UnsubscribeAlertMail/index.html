@@ -29,12 +29,12 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/image08.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/image07.png">
 <meta property="article:published_time" content="2023-06-05T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.162Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:29.793Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="HowTo">
-<meta property="article:tag" content="Azure Monitor Essential">
-<meta property="article:tag" content="Alerts, Action Groups">
 <meta property="article:tag" content="Action group">
+<meta property="article:tag" content="Alerts, Action Groups">
+<meta property="article:tag" content="Azure Monitor Essential">
+<meta property="article:tag" content="HowTo">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/image01.png">
         
@@ -72,7 +72,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -89,7 +89,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -187,15 +187,15 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+a9afb8c4-1a27-55dd-90d7-21c5e0194a84%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88+%E3%83%A1%E3%83%BC%E3%83%AB%E3%81%AE%E7%99%BB%E9%8C%B2%E8%A7%A3%E9%99%A4%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FUnsubscribeAlertMail%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FUnsubscribeAlertMail.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FUnsubscribeAlertMail.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/" data-id="cmm8g5ffr000x0nny70aaciv1" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/" data-id="cuidZJbQsHt5Hd4I2WJQbPyKU" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>[更新履歴]  </p>
 <ul>
-<li>2023/6/6 ブログ公開</li>
-<li>2026/1/27 最新情報であることを確認済み</li>
+<li>2023&#x2F;6&#x2F;6 ブログ公開</li>
+<li>2026&#x2F;1&#x2F;27 最新情報であることを確認済み</li>
 </ul>
 <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回は、Azure Monitor のアラート メールの登録解除と再登録の手順等をご紹介します。<br>お客様からよくお問い合わせいただくご質問もご紹介しますので、ご参考になれば幸いです。</p>
 <br>
@@ -221,7 +221,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <br>
 
 
-<h2 id="1-アラート-メールの登録解除について"><a href="#1-アラート-メールの登録解除について" class="headerlink" title="1. アラート メールの登録解除について"></a>1. アラート メールの登録解除について</h2><p>Azure Monitor のアラート ルールでは、アラート ルールに <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">アクション グループ</a> を設定することで、アラートが発報したときに通知することができます。このアクション グループで、アラートが発報したときにメールを通知するようにご設定いただいている方が多いかと思います。</p>
+<h2 id="1-アラート-メールの登録解除について"><a href="#1-アラート-メールの登録解除について" class="headerlink" title="1. アラート メールの登録解除について"></a>1. アラート メールの登録解除について</h2><p>Azure Monitor のアラート ルールでは、アラート ルールに <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">アクション グループ</a> を設定することで、アラートが発報したときに通知することができます。このアクション グループで、アラートが発報したときにメールを通知するようにご設定いただいている方が多いかと思います。</p>
 <p>アクション グループによって通知されたアラート メールには、当該アクション グループによるメール通知を解除するリンクが記載されています。赤線で囲んだ <em><strong>Unsubscribe</strong></em> というリンクから、アラート メールの登録を解除することができます。<br>アラート メールの登録を解除しますと、当該アクション グループによって通知されるアラート メールが配信されなくなります。</p>
 <p>(*) 以下は、Azure Monitor のアラート ルールによって通知されたアラート メールの例です。<br><img src="/blog/AzureMonitorEssential/UnsubscribeAlertMail/image01.png"></p>
 <br>
@@ -252,16 +252,16 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <br>
 
 
-<h5 id="lt-1-gt-アラート-メールの登録を解除したときに表示される画面で再登録する"><a href="#lt-1-gt-アラート-メールの登録を解除したときに表示される画面で再登録する" class="headerlink" title="&lt;1&gt; アラート メールの登録を解除したときに表示される画面で再登録する"></a>&lt;1&gt; アラート メールの登録を解除したときに表示される画面で再登録する</h5><p><em><strong>Click here to continue receiving Microsoft Azure emails</strong></em> というリンクをクリックしてください。<br><img src="/blog/AzureMonitorEssential/UnsubscribeAlertMail/image03.png"></p>
+<h5 id="アラート-メールの登録を解除したときに表示される画面で再登録する"><a href="#アラート-メールの登録を解除したときに表示される画面で再登録する" class="headerlink" title="&lt;1&gt; アラート メールの登録を解除したときに表示される画面で再登録する"></a>&lt;1&gt; アラート メールの登録を解除したときに表示される画面で再登録する</h5><p><em><strong>Click here to continue receiving Microsoft Azure emails</strong></em> というリンクをクリックしてください。<br><img src="/blog/AzureMonitorEssential/UnsubscribeAlertMail/image03.png"></p>
 <br>
 
 <p>このリンクをクリックすると、以下の画面が表示され、アラート メールが再登録されます。<br><img src="/blog/AzureMonitorEssential/UnsubscribeAlertMail/image05.png"></p>
 <br>
 
-<h5 id="lt-2-gt-アラート-メールの登録を解除した後に通知されるメールから再登録する"><a href="#lt-2-gt-アラート-メールの登録を解除した後に通知されるメールから再登録する" class="headerlink" title="&lt;2&gt; アラート メールの登録を解除した後に通知されるメールから再登録する"></a>&lt;2&gt; アラート メールの登録を解除した後に通知されるメールから再登録する</h5><p><em><strong>If this was a mistake, click here to subscribe.</strong></em> の <em><strong>click here</strong></em> をクリックしてください。<br>このリンクをクリックすると、&lt;1&gt; と同様、再登録された旨の画面が表示されます。<br><img src="/blog/AzureMonitorEssential/UnsubscribeAlertMail/image04.png"></p>
+<h5 id="アラート-メールの登録を解除した後に通知されるメールから再登録する"><a href="#アラート-メールの登録を解除した後に通知されるメールから再登録する" class="headerlink" title="&lt;2&gt; アラート メールの登録を解除した後に通知されるメールから再登録する"></a>&lt;2&gt; アラート メールの登録を解除した後に通知されるメールから再登録する</h5><p><em><strong>If this was a mistake, click here to subscribe.</strong></em> の <em><strong>click here</strong></em> をクリックしてください。<br>このリンクをクリックすると、&lt;1&gt; と同様、再登録された旨の画面が表示されます。<br><img src="/blog/AzureMonitorEssential/UnsubscribeAlertMail/image04.png"></p>
 <br>
 
-<h5 id="lt-3-gt-Azure-ポータルからアクション-グループを再設定する"><a href="#lt-3-gt-Azure-ポータルからアクション-グループを再設定する" class="headerlink" title="&lt;3&gt; Azure ポータルからアクション グループを再設定する"></a>&lt;3&gt; Azure ポータルからアクション グループを再設定する</h5><p>Azure ポータルから配信停止を解除する場合は、アクション グループの再設定をお願いいたします。</p>
+<h5 id="Azure-ポータルからアクション-グループを再設定する"><a href="#Azure-ポータルからアクション-グループを再設定する" class="headerlink" title="&lt;3&gt; Azure ポータルからアクション グループを再設定する"></a>&lt;3&gt; Azure ポータルからアクション グループを再設定する</h5><p>Azure ポータルから配信停止を解除する場合は、アクション グループの再設定をお願いいたします。</p>
 <ol>
 <li>アクション グループから該当のメール アドレスを削除し、当該アクション グループを保存します。</li>
 <li>アクション グループに該当のメール アドレスを追加し、当該アクション グループを保存します。</li>
@@ -277,7 +277,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <h3 id="Q5-アラート-メールの登録を解除したユーザーを特定する方法はありますか。"><a href="#Q5-アラート-メールの登録を解除したユーザーを特定する方法はありますか。" class="headerlink" title="Q5. アラート メールの登録を解除したユーザーを特定する方法はありますか。"></a>Q5. アラート メールの登録を解除したユーザーを特定する方法はありますか。</h3><p>アラート メールの登録を解除したユーザーを特定することはできません。<br>アクティビティ ログには、イベント開始者に対象のメール アドレスが記録されますが、そのアドレスを具体的にどのユーザーが無効化したのかまでは確認する方法がございません。<br><img src="/blog/AzureMonitorEssential/UnsubscribeAlertMail/image07.png"></p>
 <br>
 
-<p>上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。<br>また、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-troubleshoot#did-not-receive-expected-email">弊社公開情報</a> もあわせてご確認いただけますと幸いです。<br>最後までお読みいただきありがとうございました！</p>
+<p>上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。<br>また、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-troubleshoot#did-not-receive-expected-email">弊社公開情報</a> もあわせてご確認いただけますと幸いです。<br>最後までお読みいただきありがとうございました！</p>
 
       
       

@@ -10,12 +10,12 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="[更新履歴]  2023&#x2F;07&#x2F;07 ブログ公開 2026&#x2F;01&#x2F;19 最新の情報であることを確認済み  こんにちは、Azure Monitoring サポート チームの北村です。Azure Monitor のアラート処理ルールという機能をご存知でしょうか。アラート処理ルールでは、特定の時間帯のみアクション グループを適用したり、抑制したりすることができます。今回は、アラート処理ルールの概要と、よ">
+      <meta name="description" content="[更新履歴]  2023&#x2F;07&#x2F;07 ブログ公開 2026&#x2F;01&#x2F;19 最新の情報であることを確認済み  こんにちは、Azure Monitoring サポート チームの北村です。Azure Monitor のアラート処理ルールという機能をご存知でしょうか。アラート処理ルールでは、特定の時間帯のみアクション グループを適用したり、抑制したりすることができます">
 <meta property="og:type" content="article">
 <meta property="og:title" content="アラート処理ルールについて">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AlertProcessingRule/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="[更新履歴]  2023&#x2F;07&#x2F;07 ブログ公開 2026&#x2F;01&#x2F;19 最新の情報であることを確認済み  こんにちは、Azure Monitoring サポート チームの北村です。Azure Monitor のアラート処理ルールという機能をご存知でしょうか。アラート処理ルールでは、特定の時間帯のみアクション グループを適用したり、抑制したりすることができます。今回は、アラート処理ルールの概要と、よ">
+<meta property="og:description" content="[更新履歴]  2023&#x2F;07&#x2F;07 ブログ公開 2026&#x2F;01&#x2F;19 最新の情報であることを確認済み  こんにちは、Azure Monitoring サポート チームの北村です。Azure Monitor のアラート処理ルールという機能をご存知でしょうか。アラート処理ルールでは、特定の時間帯のみアクション グループを適用したり、抑制したりすることができます">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AlertProcessingRule/image01.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AlertProcessingRule/image03.png">
@@ -30,12 +30,12 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AlertProcessingRule/image09.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AlertProcessingRule/image10.png">
 <meta property="article:published_time" content="2023-07-06T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.083Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:29.706Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="HowTo">
-<meta property="article:tag" content="Azure Monitor Essential">
-<meta property="article:tag" content="Alerts, Action Groups">
 <meta property="article:tag" content="Alert processing rule">
+<meta property="article:tag" content="Alerts, Action Groups">
+<meta property="article:tag" content="Azure Monitor Essential">
+<meta property="article:tag" content="HowTo">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AlertProcessingRule/image01.png">
         
@@ -73,7 +73,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -90,7 +90,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -188,15 +188,15 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+33735a4a-35d2-5eee-adcc-331a9284235f%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FAlertProcessingRule%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FAlertProcessingRule.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FAlertProcessingRule.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AlertProcessingRule/" data-id="cmm8g5ffc00080nny375z9zir" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AlertProcessingRule/" data-id="cuidnUiEN34EN8iKnBEgUZFZ9" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>[更新履歴]</p>
 <ul>
-<li>2023/07/07 ブログ公開</li>
-<li>2026/01/19 最新の情報であることを確認済み</li>
+<li>2023&#x2F;07&#x2F;07 ブログ公開</li>
+<li>2026&#x2F;01&#x2F;19 最新の情報であることを確認済み</li>
 </ul>
 <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>Azure Monitor のアラート処理ルールという機能をご存知でしょうか。<br>アラート処理ルールでは、特定の時間帯のみアクション グループを適用したり、抑制したりすることができます。<br>今回は、アラート処理ルールの概要と、よくお問い合わせをいただく設定手順をご紹介いたします。</p>
 <br>
@@ -216,7 +216,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </ul>
 <br>
 
-<h2 id="1-アラート処理ルールとは"><a href="#1-アラート処理ルールとは" class="headerlink" title="1. アラート処理ルールとは"></a>1. アラート処理ルールとは</h2><p>アラート処理ルールでは、”アクション グループによる通知の抑制 (通知を表示しない)” と、”アクション グループによる通知の適用” の二種類の機能がございます。例えば、定期メンテナンスなど、特定の時間帯にアラート通知を抑制したい場合に、アラート処理ルールを適用することで、一時的にアラートの通知を抑制することができます。なお、アラート処理ルールは、アクション グループの適用/抑制を行う機能であり、アラート ルールの実行自体を抑制するものではございませんので、ご注意ください。</p>
+<h2 id="1-アラート処理ルールとは"><a href="#1-アラート処理ルールとは" class="headerlink" title="1. アラート処理ルールとは"></a>1. アラート処理ルールとは</h2><p>アラート処理ルールでは、”アクション グループによる通知の抑制 (通知を表示しない)” と、”アクション グループによる通知の適用” の二種類の機能がございます。例えば、定期メンテナンスなど、特定の時間帯にアラート通知を抑制したい場合に、アラート処理ルールを適用することで、一時的にアラートの通知を抑制することができます。なお、アラート処理ルールは、アクション グループの適用&#x2F;抑制を行う機能であり、アラート ルールの実行自体を抑制するものではございませんので、ご注意ください。</p>
 <ul>
 <li>通知を表示しない : 発生したアラート (解決および発報) について、アクション グループを抑制します。</li>
 <li>アクション グループの適用 : 発生したアラート (解決および発報)  について、アクション グループを適用します。<br><img src="/blog/AzureMonitorEssential/AlertProcessingRule/image01.png"></li>
@@ -323,17 +323,17 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </tbody></table>
 <br>
 
-<h5 id="lt-1-gt-リソース-ID-列で分割した場合"><a href="#lt-1-gt-リソース-ID-列で分割した場合" class="headerlink" title="&lt;1&gt; リソース ID 列で分割した場合"></a>&lt;1&gt; リソース ID 列で分割した場合</h5><p>ディメンションを <em><strong>リソース ID 列</strong></em> で分割すると、<em><strong>アラート ルールのスコープ</strong></em> と <em><strong>影響を受けるリソース</strong></em> が異なります (*2)。ディメンションで分割すると、数値列または文字列の組み合わせがグループ化され、複数の Azure リソースで同じ条件を監視できます。このディメンションで <em><strong>リソース ID 列</strong></em> で分割しますと、アラート ルールのスコープが <em><strong>リソース スコープ</strong></em> になります。</p>
+<h5 id="リソース-ID-列で分割した場合"><a href="#リソース-ID-列で分割した場合" class="headerlink" title="&lt;1&gt; リソース ID 列で分割した場合"></a>&lt;1&gt; リソース ID 列で分割した場合</h5><p>ディメンションを <em><strong>リソース ID 列</strong></em> で分割すると、<em><strong>アラート ルールのスコープ</strong></em> と <em><strong>影響を受けるリソース</strong></em> が異なります (*2)。ディメンションで分割すると、数値列または文字列の組み合わせがグループ化され、複数の Azure リソースで同じ条件を監視できます。このディメンションで <em><strong>リソース ID 列</strong></em> で分割しますと、アラート ルールのスコープが <em><strong>リソース スコープ</strong></em> になります。</p>
 <p>アラート ルール Alert 2 では、下図のとおり <em><strong>リソース ID 列</strong></em> で分割しています。<br>この場合は、リソース ID 毎にアラートのターゲットとして分割され、リソース ID 別にアラートの検知、通知が行われます。<br>つまり、Alert 2 では <em><strong>アラート ルールのスコープ</strong></em> で「Log Analytics ワークスペース」を指定していますが、ディメンション分割で <em><strong>リソース ID 列</strong></em> を指定したため、アラート ルールのスコープが <em><strong>リソース スコープ</strong></em>となり、仮想マシン毎にアラートが検知され、通知が行われます。そのため、<em><strong>影響を受けるリソース</strong></em> は「仮想マシン (VM-A, VM-B, VM-C) 」となります。</p>
-<p>(*2) ログ アラート ルールの [条件] タブでディメンションを指定します。<br>ディメンション分割につきましては、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#narrow-the-target-using-dimensions">弊社公開情報</a> もご覧ください。<br><img src="/blog/AzureMonitorEssential/AlertProcessingRule/image05.png"></p>
+<p>(*2) ログ アラート ルールの [条件] タブでディメンションを指定します。<br>ディメンション分割につきましては、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#narrow-the-target-using-dimensions">弊社公開情報</a> もご覧ください。<br><img src="/blog/AzureMonitorEssential/AlertProcessingRule/image05.png"></p>
 <br>
 
 
-<h5 id="lt-2-gt-リソース-ID-列で分割しない場合"><a href="#lt-2-gt-リソース-ID-列で分割しない場合" class="headerlink" title="&lt;2&gt; リソース ID 列で分割しない場合"></a>&lt;2&gt; リソース ID 列で分割しない場合</h5><p>リソース ID 列で「分割しない」に設定した場合は、”アラート ルールのスコープ” と “影響を受けるリソース” は同一リソースとなります。そのため、<em><strong>Alert 1</strong></em> では、<em><strong>アラート ルールのスコープ</strong></em> と <em><strong>影響を受けるリソース</strong></em>ともに Log Analytics ワークスペースとなります。</p>
+<h5 id="リソース-ID-列で分割しない場合"><a href="#リソース-ID-列で分割しない場合" class="headerlink" title="&lt;2&gt; リソース ID 列で分割しない場合"></a>&lt;2&gt; リソース ID 列で分割しない場合</h5><p>リソース ID 列で「分割しない」に設定した場合は、”アラート ルールのスコープ” と “影響を受けるリソース” は同一リソースとなります。そのため、<em><strong>Alert 1</strong></em> では、<em><strong>アラート ルールのスコープ</strong></em> と <em><strong>影響を受けるリソース</strong></em>ともに Log Analytics ワークスペースとなります。</p>
 <br>
 
 
-<h3 id="2-4-アラート処理ルールのスコープで指定するリソース"><a href="#2-4-アラート処理ルールのスコープで指定するリソース" class="headerlink" title="2-4. アラート処理ルールのスコープで指定するリソース"></a>2-4. アラート処理ルールのスコープで指定するリソース</h3><p>下表に、今回準備したアラート ルールと、アラート処理ルールの [スコープ] に指定するリソースをまとめました。<br><em><strong>アラート処理ルールの [スコープ]</strong></em> と <em><strong>通知を抑制するアラート ルールが対象としているリソース</strong></em> が一致しない場合は、アラート ルールで紐づかれたアクション グループを抑制/適用できませんので、十分に注意してください。<br>また、アラート処理ルールの [スコープ] にサブスクリプションやリソース グループを選択することも可能です。この場合は、指定したサブスクリプション配下に存在するリソース、もしくは、リソース グループ配下に存在するリソースを対象としている、すべてのアラート ルールにアラート処理ルールが適用されます。</p>
+<h3 id="2-4-アラート処理ルールのスコープで指定するリソース"><a href="#2-4-アラート処理ルールのスコープで指定するリソース" class="headerlink" title="2-4. アラート処理ルールのスコープで指定するリソース"></a>2-4. アラート処理ルールのスコープで指定するリソース</h3><p>下表に、今回準備したアラート ルールと、アラート処理ルールの [スコープ] に指定するリソースをまとめました。<br><em><strong>アラート処理ルールの [スコープ]</strong></em> と <em><strong>通知を抑制するアラート ルールが対象としているリソース</strong></em> が一致しない場合は、アラート ルールで紐づかれたアクション グループを抑制&#x2F;適用できませんので、十分に注意してください。<br>また、アラート処理ルールの [スコープ] にサブスクリプションやリソース グループを選択することも可能です。この場合は、指定したサブスクリプション配下に存在するリソース、もしくは、リソース グループ配下に存在するリソースを対象としている、すべてのアラート ルールにアラート処理ルールが適用されます。</p>
 <table>
 <thead>
 <tr>
@@ -385,10 +385,10 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 <h3 id="3-アラート処理ルールの設定手順"><a href="#3-アラート処理ルールの設定手順" class="headerlink" title="3. アラート処理ルールの設定手順"></a>3. アラート処理ルールの設定手順</h3><p>それでは、アラート処理ルールでアラートの通知を抑制してみましょう！<br>今回は、アラート ルール Alert 3 のみの通知を抑制するアラート処理ルールを設定します。</p>
 <ol>
-<li>Azure portal で [モニター] - [アラート] を開き、[アラート処理ルール] を選択し、遷移先のページ左上部の [+ 作成] をクリックします。<br><img src="/blog/AzureMonitorEssential/AlertProcessingRule/image12.png"></li>
-</ol>
-<ol start="2">
-<li>スコープタブでは、アラート処理ルールのスコープと条件を指定します。</li>
+<li><p>Azure portal で [モニター] - [アラート] を開き、[アラート処理ルール] を選択し、遷移先のページ左上部の [+ 作成] をクリックします。<br><img src="/blog/AzureMonitorEssential/AlertProcessingRule/image12.png"></p>
+</li>
+<li><p>スコープタブでは、アラート処理ルールのスコープと条件を指定します。</p>
+</li>
 </ol>
 <ul>
 <li>[スコープ] : <em><strong>通知を抑制するアラート ルールが対象としているリソース</strong></em> を指定します。</li>
@@ -399,13 +399,12 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <br>
 
 <ol start="3">
-<li>ルールの設定タブでは、アクション グループの適用、もしくは抑制を指定します。アラートの通知を抑制するため、 [通知を表示しない] を選択します。<br><img src="/blog/AzureMonitorEssential/AlertProcessingRule/image07.png"></li>
-</ol>
-<ol start="4">
-<li>スケジュールタブで、アラートの通知を抑制したい時間帯を指定します。<br><img src="/blog/AzureMonitorEssential/AlertProcessingRule/image08.png"></li>
-</ol>
-<ol start="5">
-<li>詳細タブでは、アラート処理ルールのリソース グループやアラート処理ルール名をご指定ください。<br><img src="/blog/AzureMonitorEssential/AlertProcessingRule/image13.png"></li>
+<li><p>ルールの設定タブでは、アクション グループの適用、もしくは抑制を指定します。アラートの通知を抑制するため、 [通知を表示しない] を選択します。<br> <img src="/blog/AzureMonitorEssential/AlertProcessingRule/image07.png"></p>
+</li>
+<li><p>スケジュールタブで、アラートの通知を抑制したい時間帯を指定します。<br> <img src="/blog/AzureMonitorEssential/AlertProcessingRule/image08.png"></p>
+</li>
+<li><p>詳細タブでは、アラート処理ルールのリソース グループやアラート処理ルール名をご指定ください。<br> <img src="/blog/AzureMonitorEssential/AlertProcessingRule/image13.png"></p>
+</li>
 </ol>
 <br>
 
@@ -414,7 +413,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>今回、Alert 2 の 影響を受けるリソース に VM-A が含まれていました。Alert 2 のアラートの [履歴] も見てみましょう。<br>Alert 3 と同様、影響を受けるリソース が VM-A ですが、アラート通知は抑制されていないことがわかります。<br><img src="/blog/AzureMonitorEssential/AlertProcessingRule/image10.png"></p>
 <br>
 
-<p>今回はアラート処理ルールの概要とその設定手順をご紹介しました。いかがでしたでしょうか。<br>上記内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。<br>また、弊社公開情報の <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-processing-rules?tabs=portal">アラート処理ルール</a> や <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-troubleshoot#alert-processing-rule-is-not-working-as-expected">Azure Monitor のアラートの問題のトラブルシューティング</a> にも、アラート処理ルールの概要や設定手順等が掲載されておりますので、ご覧いただけますと幸いです。</p>
+<p>今回はアラート処理ルールの概要とその設定手順をご紹介しました。いかがでしたでしょうか。<br>上記内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。<br>また、弊社公開情報の <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-processing-rules?tabs=portal">アラート処理ルール</a> や <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-troubleshoot#alert-processing-rule-is-not-working-as-expected">Azure Monitor のアラートの問題のトラブルシューティング</a> にも、アラート処理ルールの概要や設定手順等が掲載されておりますので、ご覧いただけますと幸いです。</p>
 <p>最後までお読みいただきありがとうございました！</p>
 
       

@@ -22,11 +22,11 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/NetworkSecurityPerimeter/image3.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/NetworkSecurityPerimeter/image4.png">
 <meta property="article:published_time" content="2025-09-19T07:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.373Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:30.023Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Azure Monitor Private Link Scope">
-<meta property="article:tag" content="Log Analytics">
 <meta property="article:tag" content="HowTo">
+<meta property="article:tag" content="Log Analytics">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/NetworkSecurityPerimeter/image1.png">
         
@@ -64,7 +64,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -81,7 +81,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -179,13 +179,13 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+95a6f5ce-742b-5d37-8063-4632070e25a6%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF+%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E5%A2%83%E7%95%8C%E3%81%A8%E3%81%AF%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FNetworkSecurityPerimeter%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FNetworkSecurityPerimeter.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FNetworkSecurityPerimeter.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/NetworkSecurityPerimeter/" data-id="cmm8g5fgd002i0nnyd9ax40dr" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/NetworkSecurityPerimeter/" data-id="cuid38P_p4kZ2AMtZw-XotL5Y" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>こんにちは、Azure Monitoring サポート チームの江口です。</p>
-<p>今回は 2025 年 8 月に一般提供となった、ネットワーク セキュリティ境界 (Network Security Perimeter) について<a target="_blank" rel="noopener" href="https://techcommunity.microsoft.com/blog/azureobservabilityblog/general-availability-of-azure-monitor-network-security-perimeter-features/4440307">こちらの記事</a>を参考にご紹介します。</p>
+<p>今回は 2025 年 8 月に一般提供となった、ネットワーク セキュリティ境界 (Network Security Perimeter) について<a href="https://techcommunity.microsoft.com/blog/azureobservabilityblog/general-availability-of-azure-monitor-network-security-perimeter-features/4440307">こちらの記事</a>を参考にご紹介します。</p>
 <p>「ネットワーク セキュリティ境界とは何？どんなことができるの？」という方にぜひ読んでいただきたいです。</p>
 <span id="more"></span>
 <br>
@@ -193,15 +193,15 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
 <li><a href="#%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF-%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E5%A2%83%E7%95%8C%E3%81%A8%E3%81%AF-1">ネットワーク セキュリティ境界とは</a></li>
 <li><a href="#%E8%A8%AD%E5%AE%9A%E9%A0%85%E7%9B%AE">設定項目</a></li>
-<li><a href="#%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF-%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E5%A2%83%E7%95%8C%E3%81%A8-azure-monitor-%E3%83%97%E3%83%A9%E3%82%A4%E3%83%99%E3%83%BC%E3%83%88-%E3%83%AA%E3%83%B3%E3%82%AF-%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%81%AE%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%93%E3%81%A8%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E3%81%93%E3%81%A8">ネットワーク セキュリティ境界と Azure Monitor プライベート リンク スコープのできること/できないこと</a></li>
+<li><a href="#%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF-%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E5%A2%83%E7%95%8C%E3%81%A8-azure-monitor-%E3%83%97%E3%83%A9%E3%82%A4%E3%83%99%E3%83%BC%E3%83%88-%E3%83%AA%E3%83%B3%E3%82%AF-%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%81%AE%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%93%E3%81%A8%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E3%81%93%E3%81%A8">ネットワーク セキュリティ境界と Azure Monitor プライベート リンク スコープのできること&#x2F;できないこと</a></li>
 <li><a href="#%E3%81%BE%E3%81%A8%E3%82%81">まとめ</a></li>
 </ul>
 <br>
 
 <h2 id="ネットワーク-セキュリティ境界とは"><a href="#ネットワーク-セキュリティ境界とは" class="headerlink" title="ネットワーク セキュリティ境界とは"></a>ネットワーク セキュリティ境界とは</h2><p>ネットワーク セキュリティ境界とは、仮想ネットワークの外部にデプロイされる PaaS リソースの周囲に確立できる論理ネットワーク境界で、複数の PaaS リソースに対して統一したパブリック ネットワークからのアクセス制御が行えます。</p>
 <p>ネットワーク セキュリティ境界を作成することで、境界の内部と外部がネットワーク レベルで明確に区別され、セキュリティ保護された境界を確立することができます。</p>
-<p>境界内部のリソース同士のアクセスはネットワーク レベルでは制御されず、従来通り、マネージド ID やロールベースのアクセス制御 (<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/overview">RBAC</a>) によるアクセス管理が必要となります。</p>
-<p>ネットワーク セキュリティ境界でサポートされている Azure Monitor のリソースを以下の表に示します。<br>詳細は<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/network-security-perimeter#supported-components">こちら</a> から確認できます。</p>
+<p>境界内部のリソース同士のアクセスはネットワーク レベルでは制御されず、従来通り、マネージド ID やロールベースのアクセス制御 (<a href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/overview">RBAC</a>) によるアクセス管理が必要となります。</p>
+<p>ネットワーク セキュリティ境界でサポートされている Azure Monitor のリソースを以下の表に示します。<br>詳細は<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/network-security-perimeter#supported-components">こちら</a> から確認できます。</p>
 <table>
 <thead>
 <tr>
@@ -211,29 +211,29 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </thead>
 <tbody><tr>
 <td>データ収集エンドポイント (DCE)</td>
-<td>Microsoft.Insights/dataCollectionEndpoints</td>
+<td>Microsoft.Insights&#x2F;dataCollectionEndpoints</td>
 </tr>
 <tr>
 <td>Log Analytics ワークスペース</td>
-<td>Microsoft.OperationalInsights/workspaces</td>
+<td>Microsoft.OperationalInsights&#x2F;workspaces</td>
 </tr>
 <tr>
 <td>ログ クエリ アラート</td>
-<td>Microsoft.Insights/ScheduledQueryRules</td>
+<td>Microsoft.Insights&#x2F;ScheduledQueryRules</td>
 </tr>
 <tr>
 <td>アクション グループ</td>
-<td>Microsoft.Insights/actionGroups</td>
+<td>Microsoft.Insights&#x2F;actionGroups</td>
 </tr>
 <tr>
 <td>診断設定</td>
-<td>Microsoft.Insights/diagnosticSettings</td>
+<td>Microsoft.Insights&#x2F;diagnosticSettings</td>
 </tr>
 </tbody></table>
-<div class="alert is-info"><p class="alert-title">Note</p><p>ネットワーク セキュリティ境界に Application Insights を関連付ける場合、作成時の [リソース] の選択で Application Insights リソースを直接選択することはできません。</p><p>代わりに、Application Insights リソースに使用される Log Analytics ワークスペースのネットワーク セキュリティ境界を構成します。</p><p>詳細については、下記の弊社公開情報をご参照ください。</p><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/network-security-perimeter#unsupported-components">ネットワーク セキュリティ境界で Azure Monitor を構成する</a> </p></div>
+<div class="alert is-info"><p class="alert-title">Note</p><p>ネットワーク セキュリティ境界に Application Insights を関連付ける場合、作成時の [リソース] の選択で Application Insights リソースを直接選択することはできません。</p><p>代わりに、Application Insights リソースに使用される Log Analytics ワークスペースのネットワーク セキュリティ境界を構成します。</p><p>詳細については、下記の弊社公開情報をご参照ください。</p><p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/network-security-perimeter#unsupported-components">ネットワーク セキュリティ境界で Azure Monitor を構成する</a> </p></div>
 <br>
 
-<p>Azure Monitor リソース以外でサポートされているコンポーネントは、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/private-link/network-security-perimeter-concepts#onboarded-private-link-resources">こちら</a> から確認できます。</p>
+<p>Azure Monitor リソース以外でサポートされているコンポーネントは、<a href="https://learn.microsoft.com/ja-jp/azure/private-link/network-security-perimeter-concepts#onboarded-private-link-resources">こちら</a> から確認できます。</p>
 <br>
 
 <h2 id="設定項目"><a href="#設定項目" class="headerlink" title="設定項目"></a>設定項目</h2><p>このセクションでは、ネットワーク セキュリティ境界を作成する際に設定する内容を Azure Portal の画面で説明します。</p>
@@ -243,11 +243,11 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <h3 id="2-受信アクセス規則"><a href="#2-受信アクセス規則" class="headerlink" title="2. 受信アクセス規則"></a>2. 受信アクセス規則</h3><p>ネットワーク セキュリティ境界の外部から内部リソースへのアクセスに関する規則を定めます。</p>
 <p>IP アドレスに基づくアクセス規則と、サブスクリプションに基づくアクセス規則を作成することができます。</p>
 <p>IP アドレスに基づくアクセス規則は、下記のように受信トラフィックを許可するパブリック IP アドレス範囲を CIDR 形式で入力します。</p>
-<p>例 ) 198.168.99.0/24<br> (IPv4 アドレス範囲で、198.168.99.0 から 198.168.99.255 までの 256 個の IP アドレスを含む)</p>
+<p>例 ) 198.168.99.0&#x2F;24<br> (IPv4 アドレス範囲で、198.168.99.0 から 198.168.99.255 までの 256 個の IP アドレスを含む)</p>
 <p><img src="/blog/LogAnalytics/NetworkSecurityPerimeter/image2.png"></p>
 <h3 id="3-送信アクセス規則"><a href="#3-送信アクセス規則" class="headerlink" title="3. 送信アクセス規則"></a>3. 送信アクセス規則</h3><p>ネットワーク セキュリティ境界の内部リソースから外部へのアクセスに関する規則を定めます。</p>
 <p>下記のように FQDNs に基づくアクセス規則を作成します。</p>
-<p>例 ) <a target="_blank" rel="noopener" href="http://www.contoso.com/">www.contoso.com</a></p>
+<p>例 ) <a href="http://www.contoso.com/">www.contoso.com</a></p>
 <p><img src="/blog/LogAnalytics/NetworkSecurityPerimeter/image3.png"></p>
 <h3 id="構成例"><a href="#構成例" class="headerlink" title="構成例"></a>構成例</h3><h4 id="仮想マシン-A-から、ネットワーク-セキュリティ境界に関連付けた-Log-Analytics-ワークスペース-X-にログを送信し、そのログに基づいてログ検索アラート-Y-を発報する"><a href="#仮想マシン-A-から、ネットワーク-セキュリティ境界に関連付けた-Log-Analytics-ワークスペース-X-にログを送信し、そのログに基づいてログ検索アラート-Y-を発報する" class="headerlink" title="仮想マシン A から、ネットワーク セキュリティ境界に関連付けた Log Analytics ワークスペース X にログを送信し、そのログに基づいてログ検索アラート Y を発報する"></a>仮想マシン A から、ネットワーク セキュリティ境界に関連付けた Log Analytics ワークスペース X にログを送信し、そのログに基づいてログ検索アラート Y を発報する</h4><p><a href="#1-%E9%96%A2%E9%80%A3%E4%BB%98%E3%81%91%E3%82%8B%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9">1. 関連付けるリソース</a>で Log Analytics ワークスペース X とログ検索アラート Y のアラート ルールを選択すると、それらのリソースがネットワーク セキュリティ境界に関連付けられ、境界内部のリソースとなります。</p>
 <p><a href="#2-%E5%8F%97%E4%BF%A1%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E8%A6%8F%E5%89%87">2. 受信アクセス規則</a>で仮想マシン A のパブリック IP アドレスを入力することで、仮想マシン A からネットワーク セキュリティ境界へのアクセスがネットワーク レベルで許可されます。</p>
@@ -260,13 +260,13 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </ol>
 <p>また、この場合、<a href="#3-%E9%80%81%E4%BF%A1%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E8%A6%8F%E5%89%87">3. 送信アクセス規則</a>を定めていないため、境界内部のリソースからパブリック ネットワークへのトラフィックはデフォルトでブロックされます。</p>
 <p><img src="/blog/LogAnalytics/NetworkSecurityPerimeter/image4.png"></p>
-<p>ネットワーク セキュリティ境界を利用するその他のシナリオについては<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/network-security-perimeter-scenarios">こちら</a>をご覧ください。</p>
+<p>ネットワーク セキュリティ境界を利用するその他のシナリオについては<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/network-security-perimeter-scenarios">こちら</a>をご覧ください。</p>
 <br>
 
-<h2 id="ネットワーク-セキュリティ境界と-Azure-Monitor-プライベート-リンク-スコープのできること-できないこと"><a href="#ネットワーク-セキュリティ境界と-Azure-Monitor-プライベート-リンク-スコープのできること-できないこと" class="headerlink" title="ネットワーク セキュリティ境界と Azure Monitor プライベート リンク スコープのできること/できないこと"></a>ネットワーク セキュリティ境界と Azure Monitor プライベート リンク スコープのできること/できないこと</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-security">Azure Monitor プライベート リンク スコープ (AMPLS)</a> は、Azure Monitor の複数のリソースをまとめて、仮想ネットワークからプライベート接続するためのスコープです。</p>
+<h2 id="ネットワーク-セキュリティ境界と-Azure-Monitor-プライベート-リンク-スコープのできること-できないこと"><a href="#ネットワーク-セキュリティ境界と-Azure-Monitor-プライベート-リンク-スコープのできること-できないこと" class="headerlink" title="ネットワーク セキュリティ境界と Azure Monitor プライベート リンク スコープのできること&#x2F;できないこと"></a>ネットワーク セキュリティ境界と Azure Monitor プライベート リンク スコープのできること&#x2F;できないこと</h2><p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-security">Azure Monitor プライベート リンク スコープ (AMPLS)</a> は、Azure Monitor の複数のリソースをまとめて、仮想ネットワークからプライベート接続するためのスコープです。</p>
 <p>ネットワーク セキュリティ境界と AMPLS はいずれも Azure Monitor のリソースに対するセキュリティを高めるサービスですが、それぞれの役割が異なります。</p>
 <p>簡潔に言えば、ネットワーク セキュリティ境界はパブリック ネットワークからのアクセスを制限し、AMPLS はプライベート ネットワークを構築します。</p>
-<p>このセクションでは、ネットワーク セキュリティ境界と AMPLS のそれぞれのサービスで、できること/できないことを整理します。</p>
+<p>このセクションでは、ネットワーク セキュリティ境界と AMPLS のそれぞれのサービスで、できること&#x2F;できないことを整理します。</p>
 <h3 id="ネットワーク-セキュリティ境界"><a href="#ネットワーク-セキュリティ境界" class="headerlink" title="ネットワーク セキュリティ境界"></a>ネットワーク セキュリティ境界</h3><ul>
 <li>できること</li>
 </ul>
@@ -290,11 +290,10 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </ul>
 <p>仮想ネットワークから Azure Monitor リソースへのアクセスは保護されるものの、Azure Monitor のサービス エンドポイント自体は依然としてパブリック ネットワーク経由でアクセス可能です。</p>
 <p>また、AMPLS に紐づけることができるリソースは Log Analytics ワークスペース、Application Insights、データ収集エンドポイント (DCE) の Azure Monitor リソースに限られています。</p>
-<p>AMPLS に接続するリソースについての詳細は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-configure#connect-resources-to-the-ampls">こちら</a>をご参照ください。</p>
+<p>AMPLS に接続するリソースについての詳細は、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-configure#connect-resources-to-the-ampls">こちら</a>をご参照ください。</p>
 <br>
     
-上記のように、ネットワーク セキュリティ境界と AMPLS では役割や利用する目的が異なります。
-
+<p>上記のように、ネットワーク セキュリティ境界と AMPLS では役割や利用する目的が異なります。</p>
 <p>両者を併用することで、防御の多層化を実現し、より安全なネットワークを構成することもできます。</p>
 <h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>この記事では、以下の 3 点についてまとめました。</p>
 <ul>

@@ -28,11 +28,11 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/image09.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/image10.png">
 <meta property="article:published_time" content="2024-08-29T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.390Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:30.042Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="HowTo">
-<meta property="article:tag" content="Azure Monitor Essential">
 <meta property="article:tag" content="Alerts, Action Groups">
+<meta property="article:tag" content="Azure Monitor Essential">
+<meta property="article:tag" content="HowTo">
 <meta property="article:tag" content="Metric alert">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/image01.png">
@@ -71,7 +71,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -88,7 +88,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -186,15 +186,15 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+85d3d457-410a-560b-a346-839d7dd82b4f%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E5%8F%AF%E7%94%A8%E6%80%A7%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF+%E2%80%98VM+Availability+Metric+%28Preview%29%E2%80%99+%E3%81%AE%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF+%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FVMAvailability-MetricAlert%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FVMAvailability-MetricAlert.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FVMAvailability-MetricAlert.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/" data-id="cmm8g5fgi002v0nnyhfk73py3" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/" data-id="cuid4uhgxXPJBP18-npb6D42N" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>[更新履歴]</p>
 <ul>
-<li>2024/8/30 ブログ公開</li>
-<li>2026/1/28 最新情報であることを確認済み</li>
+<li>2024&#x2F;8&#x2F;30 ブログ公開</li>
+<li>2026&#x2F;1&#x2F;28 最新情報であることを確認済み</li>
 </ul>
 <p>こんにちは、Azure Monitoring チームの北村です。<br>今回は Azure VM のホストが出力するメトリック ‘VM Availability Metric (Preview)’ を利用したメトリック アラートの設定方法をご紹介します。</p>
 <br>
@@ -215,9 +215,9 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <br>
 
 
-<h2 id="2-可用性メトリック-‘VM-Availability-Metric-Preview-’-とは"><a href="#2-可用性メトリック-‘VM-Availability-Metric-Preview-’-とは" class="headerlink" title="2. 可用性メトリック ‘VM Availability Metric (Preview)’ とは"></a>2. 可用性メトリック ‘VM Availability Metric (Preview)’ とは</h2><p>可用性メトリックは Azure VM のホストが出力するメトリックです。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/supported-metrics/microsoft-compute-virtualmachines-metrics">ホスト メトリック</a>は仮想マシンを作成すると自動的に収集されます。このホスト メトリックの中で、VM の可用性を表すメトリックが「VM Availability Metric (Preview)」です。</p>
+<h2 id="2-可用性メトリック-‘VM-Availability-Metric-Preview-’-とは"><a href="#2-可用性メトリック-‘VM-Availability-Metric-Preview-’-とは" class="headerlink" title="2. 可用性メトリック ‘VM Availability Metric (Preview)’ とは"></a>2. 可用性メトリック ‘VM Availability Metric (Preview)’ とは</h2><p>可用性メトリックは Azure VM のホストが出力するメトリックです。<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/supported-metrics/microsoft-compute-virtualmachines-metrics">ホスト メトリック</a>は仮想マシンを作成すると自動的に収集されます。このホスト メトリックの中で、VM の可用性を表すメトリックが「VM Availability Metric (Preview)」です。</p>
 <p>このメトリックの値が 1 の場合は VM が実行中であり、利用可能であることを表します。<br>このメトリックの値が 0 の場合は VM を利用できない状態であることを意味します。<br>つまり、このメトリックの値が 1 を下回ったことを検知するアラートを作成いただくことで、VM ホストにおける可用性を監視することができます。</p>
-<p>ご注意いただきたい点は、このメトリックでは <strong>Azure VM が “停止済み (割り当て解除) “ を検知することができない</strong>ことです。<br>VM が “停止済み (割り当て解除)” の場合は、メトリックの値が <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/monitor-vm-reference#vm-availability-metric-preview">NULL</a> になります。<br>しかし、メトリック アラートではメトリックの値が <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/metrics-aggregation-explained#null-and-zero-values">NULL</a> であることを検知できませんので、予めご留意ください。<br><img src="/blog/LogAnalytics/VMAvailability-MetricAlert/image01.png"></p>
+<p>ご注意いただきたい点は、このメトリックでは <strong>Azure VM が “停止済み (割り当て解除) “ を検知することができない</strong>ことです。<br>VM が “停止済み (割り当て解除)” の場合は、メトリックの値が <a href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/monitor-vm-reference#vm-availability-metric-preview">NULL</a> になります。<br>しかし、メトリック アラートではメトリックの値が <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/metrics-aggregation-explained#null-and-zero-values">NULL</a> であることを検知できませんので、予めご留意ください。<br><img src="/blog/LogAnalytics/VMAvailability-MetricAlert/image01.png"></p>
 <br>
 
 
@@ -226,7 +226,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 <p><strong>1). 監視対象の Azure VM のメトリック エクスプローラーを開きます。</strong><br>Azure portal にログインし、監視対象の Azure VM を開きます。<br>Azure VM のリソース メニュー [メトリック] を選択し、VM Availability Metric (Preview) のメトリックを表示します。<br>[メトリックの名前空間] で「仮想マシン ホスト」を選択し、[メトリック] で「VM Availability Metric (Preview)」を検索してください。<br><img src="/blog/LogAnalytics/VMAvailability-MetricAlert/image02.png"></p>
 <p>下図では [集計] で「平均」を選択していますが、これは指定した期間のメトリックを集計する方法を意味します。<br>例えば、以下の場合は [時間の範囲] で指定した過去 30 分以内に記録されたメトリックを、[時間の粒度] の 5 分間隔でキャプチャされたメトリック値の平均が表示されます。可用性メトリックでは、平均、最小値、最大値の集計方法がサポートされています。<br><img src="/blog/LogAnalytics/VMAvailability-MetricAlert/image03.png"></p>
-<div class="alert is-info"><p class="alert-title">Note</p><p>メトリック エクスプローラーの使い方は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/analyze-metrics">弊社公開情報</a> をご参照ください。また、メトリックの集計の考え方につきましては、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/metrics-aggregation-explained#aggregation-types">こちら</a> の公開情報をご覧ください。</p></div>
+<div class="alert is-info"><p class="alert-title">Note</p><p>メトリック エクスプローラーの使い方は、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/analyze-metrics">弊社公開情報</a> をご参照ください。また、メトリックの集計の考え方につきましては、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/metrics-aggregation-explained#aggregation-types">こちら</a> の公開情報をご覧ください。</p></div>
 <br>
 
 <p><strong>2). メトリック アラートの発報条件を指定します。</strong><br>VM Availability Metric (Preview) のメトリックを表示できましたら、画面上部の [新しいアラート ルール] をクリックします。<br><img src="/blog/LogAnalytics/VMAvailability-MetricAlert/image04.png"></p>
@@ -257,19 +257,19 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </li>
 </ul>
 <hr>
-<div class="alert is-info"><p class="alert-title">Note</p><p>メトリック アラートの設定項目につきましては、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-metric-alert-rule">弊社公開情報</a>をご覧ください。</p></div>
+<div class="alert is-info"><p class="alert-title">Note</p><p>メトリック アラートの設定項目につきましては、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-metric-alert-rule">弊社公開情報</a>をご覧ください。</p></div>
 <br>
 
-<p><strong>3). アラートで通知する方法を指定します。</strong><br>Azure Monitor のアラート機能では、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">アクション グループ</a> というリソースでアラートを通知する方法を定義します。新規で作成する場合は [+ アクション グループの作成]、既存のグループを指定する場合は [+ アクション グループの選択] をクリックします。<br><img src="/blog/LogAnalytics/VMAvailability-MetricAlert/image06.png"></p>
-<p>例えば、アラートをメールで通知する場合には、[通知のタイプ] で “電子メール/SMS メッセージ/プッシュ/音声” を選択し、通知するメール アドレスを指定します。<br><img src="/blog/LogAnalytics/VMAvailability-MetricAlert/image07.png"></p>
+<p><strong>3). アラートで通知する方法を指定します。</strong><br>Azure Monitor のアラート機能では、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">アクション グループ</a> というリソースでアラートを通知する方法を定義します。新規で作成する場合は [+ アクション グループの作成]、既存のグループを指定する場合は [+ アクション グループの選択] をクリックします。<br><img src="/blog/LogAnalytics/VMAvailability-MetricAlert/image06.png"></p>
+<p>例えば、アラートをメールで通知する場合には、[通知のタイプ] で “電子メール&#x2F;SMS メッセージ&#x2F;プッシュ&#x2F;音声” を選択し、通知するメール アドレスを指定します。<br><img src="/blog/LogAnalytics/VMAvailability-MetricAlert/image07.png"></p>
 <p>また、[アクション] では、アクション グループがトリガーされた際に実行するアクションを選択できます (今回は設定しません)。<br><img src="/blog/LogAnalytics/VMAvailability-MetricAlert/image08.png"></p>
-<div class="alert is-info"><p class="alert-title">Note</p><p>アクション グループの概要や設定手順につきましては、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups#create-an-action-group-in-the-azure-portal">弊社公開情報</a>をご覧ください。</p></div>
+<div class="alert is-info"><p class="alert-title">Note</p><p>アクション グループの概要や設定手順につきましては、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups#create-an-action-group-in-the-azure-portal">弊社公開情報</a>をご覧ください。</p></div>
 <br>
 
 <p><strong>4. アラート ルールの名前、アラートの重大度等を設定します。</strong><br>[アラート ルールの詳細] では、重大度、アラート ルール名、アラート ルールの説明を設定します。<br>[詳細設定オプション] では、アラート ルールの有効化や自動解決を設定します。</p>
-<p><strong>[アラートを自動的に解決する] にチェックをいれた場合には、アラートの閾値を満たす度にアラートは発報しません。</strong><br>このようなアラートは “<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#alerts-and-state">ステートフルなアラート</a>“ と呼ばれ、アラートの閾値を満たしたときに一度発報し、アラートが解決したとみなされたときに、解決したことが通知されます。メトリック アラートの場合は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts">3 回連続で閾値を満たさなかった場合に解決したとみなされます</a>。</p>
+<p><strong>[アラートを自動的に解決する] にチェックをいれた場合には、アラートの閾値を満たす度にアラートは発報しません。</strong><br>このようなアラートは “<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#alerts-and-state">ステートフルなアラート</a>“ と呼ばれ、アラートの閾値を満たしたときに一度発報し、アラートが解決したとみなされたときに、解決したことが通知されます。メトリック アラートの場合は、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts">3 回連続で閾値を満たさなかった場合に解決したとみなされます</a>。</p>
 <p><strong>[アラートを自動的に解決する] にチェックをいれない場合は、アラートの閾値を満たす度にアラートが発報します。</strong> お客様のご要件に合わせてご設定ください。<br><img src="/blog/LogAnalytics/VMAvailability-MetricAlert/image09.png"></p>
-<div class="alert is-info"><p class="alert-title">Note</p><p>ステートフルなアラートの詳細につきましては、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts">弊社公開情報</a>をご覧ください。</p></div>
+<div class="alert is-info"><p class="alert-title">Note</p><p>ステートフルなアラートの詳細につきましては、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts">弊社公開情報</a>をご覧ください。</p></div>
 <br>
 
 <p><strong>5). 最後に設定した内容を確認し、[作成] をクリックします。</strong><br>手順は以上です。</p>

@@ -10,12 +10,12 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="[更新履歴]  2023&#x2F;09&#x2F;01 ブログ公開 2026&#x2F;01&#x2F;05 最新情報への更新  こんにちは、Azure Monitoring サポート チームの北村です。今回は、Azure PowerShell で Log Analytics ワークスペースのログを取得する方法をご紹介します。 Azure ポータルで表示されるログ クエリの検索結果の上限は 30,000 件です。この上限値の引き上げを">
+      <meta name="description" content="[更新履歴]  2023&#x2F;09&#x2F;01 ブログ公開 2026&#x2F;01&#x2F;05 最新情報への更新  こんにちは、Azure Monitoring サポート チームの北村です。今回は、Azure PowerShell で Log Analytics ワークスペースのログを取得する方法をご紹介します。 Azure ポータルで表示されるログ クエリの検索結果の上限は 30">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Azure PowerShell で 3 万件以上のログを取得する方法">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="[更新履歴]  2023&#x2F;09&#x2F;01 ブログ公開 2026&#x2F;01&#x2F;05 最新情報への更新  こんにちは、Azure Monitoring サポート チームの北村です。今回は、Azure PowerShell で Log Analytics ワークスペースのログを取得する方法をご紹介します。 Azure ポータルで表示されるログ クエリの検索結果の上限は 30,000 件です。この上限値の引き上げを">
+<meta property="og:description" content="[更新履歴]  2023&#x2F;09&#x2F;01 ブログ公開 2026&#x2F;01&#x2F;05 最新情報への更新  こんにちは、Azure Monitoring サポート チームの北村です。今回は、Azure PowerShell で Log Analytics ワークスペースのログを取得する方法をご紹介します。 Azure ポータルで表示されるログ クエリの検索結果の上限は 30">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/image02.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/image01.png">
@@ -24,10 +24,10 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/image05.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/image06.png">
 <meta property="article:published_time" content="2023-08-31T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.376Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:30.026Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="Log Analytics">
 <meta property="article:tag" content="HowTo">
+<meta property="article:tag" content="Log Analytics">
 <meta property="article:tag" content="Query">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/image02.png">
@@ -66,7 +66,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -83,7 +83,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -181,20 +181,20 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+c08a4943-3ee0-5177-91cd-905158cb65cb%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+PowerShell+%E3%81%A7+3+%E4%B8%87%E4%BB%B6%E4%BB%A5%E4%B8%8A%E3%81%AE%E3%83%AD%E3%82%B0%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FQueryByPowerShell%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FQueryByPowerShell.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FQueryByPowerShell.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/" data-id="cmm8g5fgf002l0nnya7azf4sl" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/QueryByPowerShell/" data-id="cuid96mQV43DnR_fhsvAbdhi5" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>[更新履歴]</p>
 <ul>
-<li>2023/09/01 ブログ公開</li>
-<li>2026/01/05 最新情報への更新</li>
+<li>2023&#x2F;09&#x2F;01 ブログ公開</li>
+<li>2026&#x2F;01&#x2F;05 最新情報への更新</li>
 </ul>
 <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回は、Azure PowerShell で Log Analytics ワークスペースのログを取得する方法をご紹介します。</p>
 <p>Azure ポータルで表示されるログ クエリの検索結果の上限は 30,000 件です。<br>この上限値の引き上げをご要望いただくお問い合わせをいただくことがありますが、残念ながら引き上げることはできません。<br>そのため、Azure ポータル からクエリを実行する必要がある場合は、時間範囲等で条件を指定いただき、検索結果を絞っていただくようご案内しております。</p>
 <p>一方で Azure PowerShell からクエリを実行する場合、最大 500,000 行まで取得することが可能です。<br>そのため、今回は Azure PowerShell からクエリを実行する方法等をご紹介します！</p>
-<div class="alert is-important"><p class="alert-title">重要</p><p>2026/01/05 時点では、Azure ポータルで表示されるログ クエリの検索結果の上限は 500,000 件です。</p><p>そのため、本記事では項目 <a href="#3-Azure-PowerShell-%E3%81%A7%E4%B8%8A%E9%99%90%E3%81%AB%E8%A7%A6%E3%82%8C%E3%81%AA%E3%81%84%E3%82%88%E3%81%86%E3%81%AB%E5%B7%A5%E5%A4%AB%E3%81%97%E3%81%A6%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95">3. Azure PowerShell で上限に触れないように工夫して実行する方法</a> をご参照の上、レコード数や容量などの上限に触れないデータ取得方法をご参考にしてください。</p><p>上限の詳細は以下のドキュメントをご参照ください。</p><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/service-limits#azure-portal">https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/service-limits#azure-portal</a></p></div>
+<div class="alert is-important"><p class="alert-title">重要</p><p>2026&#x2F;01&#x2F;05 時点では、Azure ポータルで表示されるログ クエリの検索結果の上限は 500,000 件です。</p><p>そのため、本記事では項目 <a href="#3-Azure-PowerShell-%E3%81%A7%E4%B8%8A%E9%99%90%E3%81%AB%E8%A7%A6%E3%82%8C%E3%81%AA%E3%81%84%E3%82%88%E3%81%86%E3%81%AB%E5%B7%A5%E5%A4%AB%E3%81%97%E3%81%A6%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95">3. Azure PowerShell で上限に触れないように工夫して実行する方法</a> をご参照の上、レコード数や容量などの上限に触れないデータ取得方法をご参考にしてください。</p><p>上限の詳細は以下のドキュメントをご参照ください。</p><p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/service-limits#azure-portal">https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/service-limits#azure-portal</a></p></div>
 <br>
 
 <span id="more"></span>
@@ -208,32 +208,32 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 <h2 id="1-Azure-ポータルからクエリを実行したときの上限"><a href="#1-Azure-ポータルからクエリを実行したときの上限" class="headerlink" title="1. Azure ポータルからクエリを実行したときの上限"></a>1. Azure ポータルからクエリを実行したときの上限</h2><p>本ブログの冒頭でもご説明したとおり、Azure ポータルで表示されるログ クエリの検索結果の上限は 30,000 件です (*1)。<br>この上限値を引き上げることはできません。一方で、Azure ポータル ではなく Azure PowerShell からクエリを実行の場合、500,000 行までの上限に変わります。</p>
 <p>(*1) Azure ポータルでクエリを実行し、ログ クエリの検索結果の上限に達すると、上限に達した旨のメッセージが表示されます。<br><img src="/blog/LogAnalytics/QueryByPowerShell/image02.png"></p>
-<p>(*2) <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/service-limits#log-analytics-workspaces">Azure ポータルで実行したときの上限</a> です。<br><img src="/blog/LogAnalytics/QueryByPowerShell/image01.png"></p>
-<p>(*3) <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/service-limits#log-analytics-workspaces">Azure PowerShell からクエリを実行したときの上限</a> です。<br><img src="/blog/LogAnalytics/QueryByPowerShell/image03.png"></p>
+<p>(*2) <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/service-limits#log-analytics-workspaces">Azure ポータルで実行したときの上限</a> です。<br><img src="/blog/LogAnalytics/QueryByPowerShell/image01.png"></p>
+<p>(*3) <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/service-limits#log-analytics-workspaces">Azure PowerShell からクエリを実行したときの上限</a> です。<br><img src="/blog/LogAnalytics/QueryByPowerShell/image03.png"></p>
 <br>
 <br>
 
-<h2 id="2-Azure-PowerShell-からクエリを実行する方法"><a href="#2-Azure-PowerShell-からクエリを実行する方法" class="headerlink" title="2. Azure PowerShell からクエリを実行する方法"></a>2. Azure PowerShell からクエリを実行する方法</h2><p>Azure PowerShell にて用意されている <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/powershell/module/az.operationalinsights/invoke-azoperationalinsightsquery?view=azps-10.2.0">Invoke-AzOperationalInsightsQuery</a> のコマンドレットを利用する方法がございます。<br>以下のサンプル スクリプトでは、Azure PowerShell よりクエリを実行し CSV ファイルに出力しています。<br>ワークスペース ID は Azure Portal で該当のワークスペースを開き、[概要] のページからご確認ください。</p>
+<h2 id="2-Azure-PowerShell-からクエリを実行する方法"><a href="#2-Azure-PowerShell-からクエリを実行する方法" class="headerlink" title="2. Azure PowerShell からクエリを実行する方法"></a>2. Azure PowerShell からクエリを実行する方法</h2><p>Azure PowerShell にて用意されている <a href="https://learn.microsoft.com/ja-jp/powershell/module/az.operationalinsights/invoke-azoperationalinsightsquery?view=azps-10.2.0">Invoke-AzOperationalInsightsQuery</a> のコマンドレットを利用する方法がございます。<br>以下のサンプル スクリプトでは、Azure PowerShell よりクエリを実行し CSV ファイルに出力しています。<br>ワークスペース ID は Azure Portal で該当のワークスペースを開き、[概要] のページからご確認ください。</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$query = &quot;Heartbeat | where TimeGenerated &gt; ago(<span class="number">3</span>d)&quot;</span><br><span class="line">$result = Invoke-AzOperationalInsightsQuery -WorkspaceId &quot;&lt;ワークスペース ID&gt;&quot; -Query $query</span><br><span class="line">$result.Results | ConvertTo-Csv &gt; &lt;出力ファイル パス&gt;</span><br></pre></td></tr></table></figure>
 
 <br>
 
 <p>ただし、Azure PowerShell でクエリを実行する場合も、取得するデータのサイズやクエリの実行時間等の制限がございます (*4)。<br>そのため、必ず 500,000 件のレコードが取得可能であるということではない点、ご留意ください。<br>以下の上限にも抵触し、全量のログを取得できなかった場合には、時間範囲や条件を細かく指定していただき、クエリを実行いただく必要がございます。</p>
-<p>(*4) <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/service-limits#log-analytics-workspaces">Azure PowerShell からクエリを実行したときの上限</a> です。<br><img src="/blog/LogAnalytics/QueryByPowerShell/image04.png"></p>
+<p>(*4) <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/service-limits#log-analytics-workspaces">Azure PowerShell からクエリを実行したときの上限</a> です。<br><img src="/blog/LogAnalytics/QueryByPowerShell/image04.png"></p>
 <p>取得しようとしたデータのサイズが上限に達している場合、以下のとおりエラーが出力されます。<br>例えば、Invoke-AzOperationalInsightsQuery の結果を $result 変数に保存した場合、$result.Error に PartialError が記録されます。全量のログを取得できているかどうかを確認されたい場合は、以下のメッセージをご確認ください。<br><img src="/blog/LogAnalytics/QueryByPowerShell/image05.png"></p>
-<p>なお、レコード数の条件に達している場合は、エラーが出力されません。<br>そのため、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/data-explorer/kusto/query/countoperator">count</a> 演算子で取得するログのレコード数を出力させ、全量のログを取得できているかどうかをご確認ください。<br><img src="/blog/LogAnalytics/QueryByPowerShell/image06.png"></p>
+<p>なお、レコード数の条件に達している場合は、エラーが出力されません。<br>そのため、<a href="https://learn.microsoft.com/ja-jp/azure/data-explorer/kusto/query/countoperator">count</a> 演算子で取得するログのレコード数を出力させ、全量のログを取得できているかどうかをご確認ください。<br><img src="/blog/LogAnalytics/QueryByPowerShell/image06.png"></p>
 <br>
 
-<div class="alert is-info"><p class="alert-title">Note</p><p>サンプル スクリプトを実行するには、Azure PowerShell をインストールしていただく必要がございます。</p><p>Azure PowerShell をインストール方法は <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/powershell/azure/install-azure-powershell?view=azps-10.2.0&viewFallbackFrom=azps-8.1.0">弊社公開情報</a> をご欄ください。</p><p>なお、Azure PowerShell や Azure CLI を使用する際には Azure Cloud Shell が便利です。</p><p>ポータルでログインしているユーザーの認証情報が引き継がれるため、Connect-AzAccount コマンド等の実行は不要です。</p><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-JP/azure/cloud-shell/overview">弊社公開情報</a> にも利用方法を掲載しておりますので、ご覧いただけますと幸いです。</p></div>
+<div class="alert is-info"><p class="alert-title">Note</p><p>サンプル スクリプトを実行するには、Azure PowerShell をインストールしていただく必要がございます。</p><p>Azure PowerShell をインストール方法は <a href="https://learn.microsoft.com/ja-jp/powershell/azure/install-azure-powershell?view=azps-10.2.0&viewFallbackFrom=azps-8.1.0">弊社公開情報</a> をご欄ください。</p><p>なお、Azure PowerShell や Azure CLI を使用する際には Azure Cloud Shell が便利です。</p><p>ポータルでログインしているユーザーの認証情報が引き継がれるため、Connect-AzAccount コマンド等の実行は不要です。</p><p><a href="https://learn.microsoft.com/ja-JP/azure/cloud-shell/overview">弊社公開情報</a> にも利用方法を掲載しておりますので、ご覧いただけますと幸いです。</p></div>
 <br>
 
 
-<h2 id="3-Azure-PowerShell-で上限に触れないように工夫して実行する方法"><a href="#3-Azure-PowerShell-で上限に触れないように工夫して実行する方法" class="headerlink" title="3. Azure PowerShell で上限に触れないように工夫して実行する方法"></a>3. Azure PowerShell で上限に触れないように工夫して実行する方法</h2><p>クエリ実行の上限に抵触せずに、繰り返しデータを取得する方法の一例をご紹介します。<br>この方法は、レコード数で分割してログを取得します。<br>クエリで取得したデータの推定データ サイズは <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-JP/azure/data-explorer/kusto/query/estimate-data-sizefunction">estimate_data_size</a> で確認することが可能です。<br>例えば、以下のクエリでは、過去 31 日間の Syslog レコードの最大、最小、平均データ サイズを確認できます。</p>
+<h2 id="3-Azure-PowerShell-で上限に触れないように工夫して実行する方法"><a href="#3-Azure-PowerShell-で上限に触れないように工夫して実行する方法" class="headerlink" title="3. Azure PowerShell で上限に触れないように工夫して実行する方法"></a>3. Azure PowerShell で上限に触れないように工夫して実行する方法</h2><p>クエリ実行の上限に抵触せずに、繰り返しデータを取得する方法の一例をご紹介します。<br>この方法は、レコード数で分割してログを取得します。<br>クエリで取得したデータの推定データ サイズは <a href="https://learn.microsoft.com/ja-JP/azure/data-explorer/kusto/query/estimate-data-sizefunction">estimate_data_size</a> で確認することが可能です。<br>例えば、以下のクエリでは、過去 31 日間の Syslog レコードの最大、最小、平均データ サイズを確認できます。</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Syslog</span><br><span class="line">| where Facility == &#x27;cron&#x27;</span><br><span class="line">| where TimeGenerated between (datetime(<span class="number">2023</span>-<span class="number">08</span>-<span class="number">01</span> <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>) .. <span class="number">31</span>d)</span><br><span class="line">| summarize max(estimate_data_size(*)), min(estimate_data_size(*)), avg(estimate_data_size(*))</span><br></pre></td></tr></table></figure>
 
 <br>
 
-<p>弊社検証環境では、上記に該当するレコードの最小サイズが 328 バイト、最大サイズが 431 バイト、平均が 395 バイトでした。<br>つまり、全てのレコードが 431 バイトであったとしても、100,000 行で 43 MB ですので、データの最大サイズの上限 (64MB) には達しません。そのため、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/data-explorer/kusto/query/topoperator">top 演算子</a> を利用して 100,000 行ずつデータを取得します。top 演算子では、指定した列で並べ替えられた、先頭の N 個のレコードを返します。</p>
+<p>弊社検証環境では、上記に該当するレコードの最小サイズが 328 バイト、最大サイズが 431 バイト、平均が 395 バイトでした。<br>つまり、全てのレコードが 431 バイトであったとしても、100,000 行で 43 MB ですので、データの最大サイズの上限 (64MB) には達しません。そのため、<a href="https://learn.microsoft.com/ja-jp/azure/data-explorer/kusto/query/topoperator">top 演算子</a> を利用して 100,000 行ずつデータを取得します。top 演算子では、指定した列で並べ替えられた、先頭の N 個のレコードを返します。</p>
 <br>
 
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> 回目のクエリ (最初の <span class="number">100</span>,<span class="number">000</span> 行を出力) :</span><br><span class="line">$query = &quot;Syslog | where TimeGenerated between(datetime(<span class="number">2023</span>-<span class="number">08</span>-<span class="number">01</span>) .. <span class="number">1</span>d) | where Facility == &#x27;cron&#x27; | top <span class="number">100000</span> by TimeGenerated asc | top <span class="number">100000</span> by TimeGenerated desc&quot;</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> 回目のクエリ (<span class="number">100</span>,<span class="number">001</span> 行目から <span class="number">200</span>,<span class="number">000</span> 行目を出力) :</span><br><span class="line">$query = &quot;Syslog | where TimeGenerated between(datetime(<span class="number">2023</span>-<span class="number">08</span>-<span class="number">01</span>) .. <span class="number">1</span>d) | where Facility == &#x27;cron&#x27; | top <span class="number">200000</span> by TimeGenerated asc | top <span class="number">100000</span> by TimeGenerated desc&quot;</span><br><span class="line"></span><br><span class="line"><span class="number">3</span> 回目のクエリ (<span class="number">200</span>,<span class="number">001</span> 行目から <span class="number">300</span>,<span class="number">000</span> 行目を出力) :</span><br><span class="line">$query = &quot;Syslog | where TimeGenerated between(datetime(<span class="number">2023</span>-<span class="number">08</span>-<span class="number">01</span>) .. <span class="number">1</span>d) | where Facility == &#x27;cron&#x27; | top <span class="number">300000</span> by TimeGenerated asc | top <span class="number">100000</span> by TimeGenerated desc&quot;</span><br></pre></td></tr></table></figure>
@@ -244,9 +244,9 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <br>
 
 <h2 id="参考情報"><a href="#参考情報" class="headerlink" title="参考情報"></a>参考情報</h2><ul>
-<li><p>Azure Monitor でログ クエリの使用を開始する<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/get-started-queries">https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/get-started-queries</a></p>
+<li><p>Azure Monitor でログ クエリの使用を開始する<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/get-started-queries">https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/get-started-queries</a></p>
 </li>
-<li><p>チュートリアル: 一般的な演算子について学習する<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/data-explorer/kusto/query/tutorials/learn-common-operators#advanced-aggregations">https://learn.microsoft.com/ja-jp/azure/data-explorer/kusto/query/tutorials/learn-common-operators#advanced-aggregations</a></p>
+<li><p>チュートリアル: 一般的な演算子について学習する<br><a href="https://learn.microsoft.com/ja-jp/azure/data-explorer/kusto/query/tutorials/learn-common-operators#advanced-aggregations">https://learn.microsoft.com/ja-jp/azure/data-explorer/kusto/query/tutorials/learn-common-operators#advanced-aggregations</a></p>
 </li>
 </ul>
 

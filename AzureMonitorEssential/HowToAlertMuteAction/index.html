@@ -22,13 +22,13 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction/image03.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction/image04.png">
 <meta property="article:published_time" content="2023-10-29T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.093Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:29.716Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="HowTo">
-<meta property="article:tag" content="Azure Monitor Essential">
-<meta property="article:tag" content="Alerts, Action Groups">
-<meta property="article:tag" content="Log search alert">
 <meta property="article:tag" content="Action group">
+<meta property="article:tag" content="Alerts, Action Groups">
+<meta property="article:tag" content="Azure Monitor Essential">
+<meta property="article:tag" content="HowTo">
+<meta property="article:tag" content="Log search alert">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction/image01_202512.png">
         
@@ -66,7 +66,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -83,7 +83,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -181,15 +181,15 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+b5709f8b-ff9d-593a-8de4-220534675076%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%83%AD%E3%82%B0+%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88+%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88%E6%A9%9F%E8%83%BD%E3%81%A8%E3%81%AF%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FHowToAlertMuteAction%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FHowToAlertMuteAction.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FHowToAlertMuteAction.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction/" data-id="cmm8g5fff000e0nnyamtqeysg" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction/" data-id="cuid76wlT8DNPT59_3-wK8xty" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>[更新履歴]</p>
 <ul>
-<li>2023/10/30 ブログ公開</li>
-<li>2025/12/29 現時点の UI の画像に差し替え</li>
+<li>2023&#x2F;10&#x2F;30 ブログ公開</li>
+<li>2025&#x2F;12&#x2F;29 現時点の UI の画像に差し替え</li>
 </ul>
 <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回は、ログ アラート ルールにおけるアクションのミュート機能をご紹介します！</p>
 <span id="more"></span>
@@ -198,7 +198,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <li><a href="#2-%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%8C%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%9F%E4%BE%8B">2. アクションがミュートされた例</a></li>
 <li><a href="#3-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%87%A6%E7%90%86%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%A8%E3%81%AE%E9%81%95%E3%81%84">3. アラート処理ルールとの違い</a></li>
 </ul>
-<h2 id="1-アクションのミュートとは"><a href="#1-アクションのミュートとは" class="headerlink" title="1. アクションのミュートとは"></a>1. アクションのミュートとは</h2><p>“アクションのミュート” とは、ステートレス ログ アラートの発報後にアクション グループを一定期間実行しない機能です。<br>この機能は、ログ アラート ルールの [詳細] タブの [詳細設定オプション] で設定することができます。<br>Azure Monitor には、アラート ルールの閾値を満たす度に発報する <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateless-alerts"><em><strong>ステートレス アラート</strong></em></a> と、アラート ルールの閾値を満たしたときに一度だけ発報し、アラートが解決したとみなされた時に解決を通知する <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts"><em><strong>ステートフル アラート</strong></em></a> があります。ステートレス アラートでは、アラート ルールの閾値を満たす度に発報しますので、通常はアラートが発報する度にアクション グループが実行されます。しかし、この “アクションのミュート” 機能を利用しますと、アラートが発報してから一定期間はアクション グループが実行されないため、アラートが通知されません。</p>
+<h2 id="1-アクションのミュートとは"><a href="#1-アクションのミュートとは" class="headerlink" title="1. アクションのミュートとは"></a>1. アクションのミュートとは</h2><p>“アクションのミュート” とは、ステートレス ログ アラートの発報後にアクション グループを一定期間実行しない機能です。<br>この機能は、ログ アラート ルールの [詳細] タブの [詳細設定オプション] で設定することができます。<br>Azure Monitor には、アラート ルールの閾値を満たす度に発報する <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateless-alerts"><em><strong>ステートレス アラート</strong></em></a> と、アラート ルールの閾値を満たしたときに一度だけ発報し、アラートが解決したとみなされた時に解決を通知する <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts"><em><strong>ステートフル アラート</strong></em></a> があります。ステートレス アラートでは、アラート ルールの閾値を満たす度に発報しますので、通常はアラートが発報する度にアクション グループが実行されます。しかし、この “アクションのミュート” 機能を利用しますと、アラートが発報してから一定期間はアクション グループが実行されないため、アラートが通知されません。</p>
 <p>(*) ログ アラート ルールの編集画面の [詳細] タブ &gt; [詳細設定オプション] です。<br><img src="/blog/AzureMonitorEssential/HowToAlertMuteAction/image01_202512.png"></p>
 <br>
 
@@ -209,8 +209,8 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>一方で、22:08 の履歴ではアラートが発報していますが、アクション グループが実行されていないことが分かります。<br><img src="/blog/AzureMonitorEssential/HowToAlertMuteAction/image04.png"></p>
 <br>
 
-<h2 id="3-アラート処理ルールとの違い"><a href="#3-アラート処理ルールとの違い" class="headerlink" title="3. アラート処理ルールとの違い"></a>3. アラート処理ルールとの違い</h2><p>ここまでお読みいただいて、<a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AlertProcessingRule/">アラート処理ルール</a> と何が違うの？と思った方もいらっしゃるかもしれません。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-processing-rules?tabs=portal">アラート処理ルール</a> もアクション グループを抑制する機能があります。アラート処理ルールとの違いは、このミュート機能は、あくまで “特定のアラート ルールに関連付けられたアクション グループの通知を一定期間ミュートする” という点です。</p>
-<p>アラート処理ルールは、発生したアラートに対してアクション グループを適用/抑制します。単一のリソースからサブスクリプションまでさまざまなリソースをスコープに適用し、複数のアラート ルールを対象にアクション グループを抑制することが可能です。また、アクション グループを抑制する時間帯を指定できる等、より柔軟にアクション グループを制御することができます。</p>
+<h2 id="3-アラート処理ルールとの違い"><a href="#3-アラート処理ルールとの違い" class="headerlink" title="3. アラート処理ルールとの違い"></a>3. アラート処理ルールとの違い</h2><p>ここまでお読みいただいて、<a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/AlertProcessingRule/">アラート処理ルール</a> と何が違うの？と思った方もいらっしゃるかもしれません。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-processing-rules?tabs=portal">アラート処理ルール</a> もアクション グループを抑制する機能があります。アラート処理ルールとの違いは、このミュート機能は、あくまで “特定のアラート ルールに関連付けられたアクション グループの通知を一定期間ミュートする” という点です。</p>
+<p>アラート処理ルールは、発生したアラートに対してアクション グループを適用&#x2F;抑制します。単一のリソースからサブスクリプションまでさまざまなリソースをスコープに適用し、複数のアラート ルールを対象にアクション グループを抑制することが可能です。また、アクション グループを抑制する時間帯を指定できる等、より柔軟にアクション グループを制御することができます。</p>
 <p>一方で、アクションのミュートはミュートする期間を指定することはできますが、ミュートする時間帯を指定することはできません。また、アラート ルール単位で設定する必要があります。そのため、定期メンテナンスなど、特定の時間帯にアラート通知を抑制したい場合はアラート処理ルール、時間帯に関わらずアラートが発報してからある一定期間通知を抑制した場合はアクションのミュート機能のご利用をご検討ください。</p>
 <br>
 

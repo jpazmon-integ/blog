@@ -10,12 +10,12 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="[更新履歴]  2024&#x2F;5&#x2F;14 ブログ公開 2026&#x2F;1&#x2F;28 最新情報に更新  こんにちは、Azure Monitoring チームの北村です。今回は、Azure Monitor に関するデータの保持期間を紹介します。今回ご紹介する内容は、それぞれの公開情報に掲載されておりますが、一つのページに集約されておりません。よくお問い合わせいただく内容ですので、本記事では情報を集約化してお伝えします">
+      <meta name="description" content="[更新履歴]  2024&#x2F;5&#x2F;14 ブログ公開 2026&#x2F;1&#x2F;28 最新情報に更新  こんにちは、Azure Monitoring チームの北村です。今回は、Azure Monitor に関するデータの保持期間を紹介します。今回ご紹介する内容は、それぞれの公開情報に掲載されておりますが、一つのページに集約されておりません。よくお問い合わせいただく内容ですので">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Azure Monitor の各種データの保持期間について">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorRetentionPeriod/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="[更新履歴]  2024&#x2F;5&#x2F;14 ブログ公開 2026&#x2F;1&#x2F;28 最新情報に更新  こんにちは、Azure Monitoring チームの北村です。今回は、Azure Monitor に関するデータの保持期間を紹介します。今回ご紹介する内容は、それぞれの公開情報に掲載されておりますが、一つのページに集約されておりません。よくお問い合わせいただく内容ですので、本記事では情報を集約化してお伝えします">
+<meta property="og:description" content="[更新履歴]  2024&#x2F;5&#x2F;14 ブログ公開 2026&#x2F;1&#x2F;28 最新情報に更新  こんにちは、Azure Monitoring チームの北村です。今回は、Azure Monitor に関するデータの保持期間を紹介します。今回ご紹介する内容は、それぞれの公開情報に掲載されておりますが、一つのページに集約されておりません。よくお問い合わせいただく内容ですので">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorRetentionPeriod/image07.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorRetentionPeriod/image08.png">
@@ -31,12 +31,12 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorRetentionPeriod/image05.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorRetentionPeriod/image06.png">
 <meta property="article:published_time" content="2024-05-13T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.147Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:29.776Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="HowTo">
-<meta property="article:tag" content="Azure Monitor Essential">
-<meta property="article:tag" content="Metrics">
 <meta property="article:tag" content="Activity Logs">
+<meta property="article:tag" content="Azure Monitor Essential">
+<meta property="article:tag" content="HowTo">
+<meta property="article:tag" content="Metrics">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorRetentionPeriod/image07.png">
         
@@ -74,7 +74,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -91,7 +91,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -189,15 +189,15 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+09f67a26-2683-5446-8ae7-ed24971772e3%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Monitor+%E3%81%AE%E5%90%84%E7%A8%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E4%BF%9D%E6%8C%81%E6%9C%9F%E9%96%93%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FMonitorRetentionPeriod%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FMonitorRetentionPeriod.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FMonitorRetentionPeriod.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorRetentionPeriod/" data-id="cmm8g5ffn000r0nnycjad6ece" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorRetentionPeriod/" data-id="cuidyj4zHpjRX5YmWD8vRIDhE" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>[更新履歴]</p>
 <ul>
-<li>2024/5/14 ブログ公開</li>
-<li>2026/1/28 最新情報に更新</li>
+<li>2024&#x2F;5&#x2F;14 ブログ公開</li>
+<li>2026&#x2F;1&#x2F;28 最新情報に更新</li>
 </ul>
 <p>こんにちは、Azure Monitoring チームの北村です。<br>今回は、Azure Monitor に関するデータの保持期間を紹介します。<br>今回ご紹介する内容は、それぞれの公開情報に掲載されておりますが、一つのページに集約されておりません。<br>よくお問い合わせいただく内容ですので、本記事では情報を集約化してお伝えします。</p>
 <span id="more"></span>
@@ -271,29 +271,29 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </tbody></table>
 <br>
 
-<h3 id="1-1-メトリック"><a href="#1-1-メトリック" class="headerlink" title="1-1. メトリック"></a>1-1. メトリック</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-platform-metrics">Azure Monitor のメトリック</a>とは、監視対象のリソースから一定の間隔で収集される数値データです。</p>
+<h3 id="1-1-メトリック"><a href="#1-1-メトリック" class="headerlink" title="1-1. メトリック"></a>1-1. メトリック</h3><p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-platform-metrics">Azure Monitor のメトリック</a>とは、監視対象のリソースから一定の間隔で収集される数値データです。</p>
 <br>
 
-<h5 id="プラットフォーム-メトリック"><a href="#プラットフォーム-メトリック" class="headerlink" title="プラットフォーム メトリック"></a>プラットフォーム メトリック</h5><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-platform-metrics#platform-and-custom-metrics">プラットフォーム メトリック</a>は、Azure リソースを作成すると自動的に収集されます。<br>このメトリックの保持期間は <em><strong>93 日間</strong></em>であり、保持期間を延長することはできません。<br>プラットフォーム メトリックのデータを 93 日以上保持したい場合は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal">Azure Monitor の診断設定</a>で対象リソースの<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/supported-metrics/metrics-index">メトリック</a>を、 Log Analytics ワークスペースやストレージ アカウント等に送信することをご検討ください。<br>※ 以下は Azure VM のプラットフォーム メトリック (ホスト OS メトリック) を表示した例です。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image07.png"></p>
+<h5 id="プラットフォーム-メトリック"><a href="#プラットフォーム-メトリック" class="headerlink" title="プラットフォーム メトリック"></a>プラットフォーム メトリック</h5><p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-platform-metrics#platform-and-custom-metrics">プラットフォーム メトリック</a>は、Azure リソースを作成すると自動的に収集されます。<br>このメトリックの保持期間は <em><strong>93 日間</strong></em>であり、保持期間を延長することはできません。<br>プラットフォーム メトリックのデータを 93 日以上保持したい場合は、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal">Azure Monitor の診断設定</a>で対象リソースの<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/supported-metrics/metrics-index">メトリック</a>を、 Log Analytics ワークスペースやストレージ アカウント等に送信することをご検討ください。<br>※ 以下は Azure VM のプラットフォーム メトリック (ホスト OS メトリック) を表示した例です。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image07.png"></p>
 <br>
 
-<h5 id="クラシック-ゲスト-OS-メトリック"><a href="#クラシック-ゲスト-OS-メトリック" class="headerlink" title="クラシック ゲスト OS メトリック"></a>クラシック ゲスト OS メトリック</h5><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics">クラシック ゲスト OS メトリック</a> は、Azure VM に <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview">Azure Diagnostics 拡張機能</a>をインストールすることで収集されます。<br>このメトリックは、メトリック エクスプローラーで少なくとも <em><strong>14 日間</strong></em> 表示することが可能です。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image08.png"></p>
-<div class="alert is-important"><p class="alert-title">重要</p><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview">Azure Diagnostics 拡張機能</a>は 2026 年 3 月 31 日をもってサポートを終了予定となります。</p><p>詳細については、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview#migration-guidance">弊社公開情報</a>および<a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromAzureDiagnostics/">弊社ブログ記事</a>をご確認ください。</p></div>
+<h5 id="クラシック-ゲスト-OS-メトリック"><a href="#クラシック-ゲスト-OS-メトリック" class="headerlink" title="クラシック ゲスト OS メトリック"></a>クラシック ゲスト OS メトリック</h5><p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics">クラシック ゲスト OS メトリック</a> は、Azure VM に <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview">Azure Diagnostics 拡張機能</a>をインストールすることで収集されます。<br>このメトリックは、メトリック エクスプローラーで少なくとも <em><strong>14 日間</strong></em> 表示することが可能です。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image08.png"></p>
+<div class="alert is-important"><p class="alert-title">重要</p><p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview">Azure Diagnostics 拡張機能</a>は 2026 年 3 月 31 日をもってサポートを終了予定となります。</p><p>詳細については、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview#migration-guidance">弊社公開情報</a>および<a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromAzureDiagnostics/">弊社ブログ記事</a>をご確認ください。</p></div>
 <br>
 
-<h5 id="ゲスト-OS-メトリック"><a href="#ゲスト-OS-メトリック" class="headerlink" title="ゲスト OS メトリック"></a>ゲスト OS メトリック</h5><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics">ゲスト OS メトリック</a> は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/agents-overview">Azure Monitor エージェント</a> や <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview">Azure Diagnostics 拡張機能</a> の <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-windows-install#overview">データ シンク</a> 機能で収集できます。<br>このメトリックの保持期間は <em><strong>93 日間</strong></em>であり、保持期間を延長することはできません。<br>※ 以下は Linux の Azure VM に Azure Monitor エージェントをインストールし、ゲスト OS メトリックを表示した例です。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image09.png"></p>
+<h5 id="ゲスト-OS-メトリック"><a href="#ゲスト-OS-メトリック" class="headerlink" title="ゲスト OS メトリック"></a>ゲスト OS メトリック</h5><p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics">ゲスト OS メトリック</a> は、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/agents-overview">Azure Monitor エージェント</a> や <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview">Azure Diagnostics 拡張機能</a> の <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-windows-install#overview">データ シンク</a> 機能で収集できます。<br>このメトリックの保持期間は <em><strong>93 日間</strong></em>であり、保持期間を延長することはできません。<br>※ 以下は Linux の Azure VM に Azure Monitor エージェントをインストールし、ゲスト OS メトリックを表示した例です。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image09.png"></p>
 <br>
 
-<h5 id="Application-Insights-ログ-ベースのメトリック"><a href="#Application-Insights-ログ-ベースのメトリック" class="headerlink" title="Application Insights ログ ベースのメトリック"></a>Application Insights ログ ベースのメトリック</h5><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics">Application Insights ログ ベースのメトリック</a> は、Application Insights SDK や OpenTelemetry Distro、自動インストルメンテーション機能によって Application Insights リソースに送信された各種ログ データをもとに表示されるメトリックです。<br>Application Insights リソースに保存されたログ データをもとに表示するため、<strong>データ保持期間は Application Insights リソースに紐づいた Log Analytics ワークスペースの保持期間に依存</strong>します。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image12.png"></p>
+<h5 id="Application-Insights-ログ-ベースのメトリック"><a href="#Application-Insights-ログ-ベースのメトリック" class="headerlink" title="Application Insights ログ ベースのメトリック"></a>Application Insights ログ ベースのメトリック</h5><p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics">Application Insights ログ ベースのメトリック</a> は、Application Insights SDK や OpenTelemetry Distro、自動インストルメンテーション機能によって Application Insights リソースに送信された各種ログ データをもとに表示されるメトリックです。<br>Application Insights リソースに保存されたログ データをもとに表示するため、<strong>データ保持期間は Application Insights リソースに紐づいた Log Analytics ワークスペースの保持期間に依存</strong>します。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image12.png"></p>
 <br>
 
-<h5 id="Prometheus-メトリック"><a href="#Prometheus-メトリック" class="headerlink" title="Prometheus メトリック"></a>Prometheus メトリック</h5><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-platform-metrics#prometheus-metrics">Prometheus メトリック</a> は、AKS や Azure Arc enabled k8s から Azure Monitor ワークスペースに出力された<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/prometheus-metrics-overview">メトリック データ</a>です。<br>このメトリックの保持期間は <em><strong>18 か月間</strong></em>です。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image13.png"></p>
+<h5 id="Prometheus-メトリック"><a href="#Prometheus-メトリック" class="headerlink" title="Prometheus メトリック"></a>Prometheus メトリック</h5><p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-platform-metrics#prometheus-metrics">Prometheus メトリック</a> は、AKS や Azure Arc enabled k8s から Azure Monitor ワークスペースに出力された<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/prometheus-metrics-overview">メトリック データ</a>です。<br>このメトリックの保持期間は <em><strong>18 か月間</strong></em>です。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image13.png"></p>
 <br>
 
-<h3 id="1-2-ログ"><a href="#1-2-ログ" class="headerlink" title="1-2. ログ"></a>1-2. ログ</h3><p>Azure Monitor のログとは、監視対象のリソースのシステム内で発生したイベントのデータです。<br>対象のリソースや種類により、様々なデータ型や値となり、Log Analytics ワークスペースに収集されます。<br>ログの保持期間は、<em><strong>Log Analytics ワークスペースの保持設定</strong></em>に依存します。この保持期間は、テーブル単位でも設定することができます。Log Analytics ワークスペースの保持期間や各テーブルの保持期間を確認する方法は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-retention-archive?tabs=portal-3,portal-1,portal-2">こちら</a>の公開情報をご覧ください。<br>※ 以下は Log Analytics ワークスペースの保持期間を表示した例です。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image10.png"></p>
+<h3 id="1-2-ログ"><a href="#1-2-ログ" class="headerlink" title="1-2. ログ"></a>1-2. ログ</h3><p>Azure Monitor のログとは、監視対象のリソースのシステム内で発生したイベントのデータです。<br>対象のリソースや種類により、様々なデータ型や値となり、Log Analytics ワークスペースに収集されます。<br>ログの保持期間は、<em><strong>Log Analytics ワークスペースの保持設定</strong></em>に依存します。この保持期間は、テーブル単位でも設定することができます。Log Analytics ワークスペースの保持期間や各テーブルの保持期間を確認する方法は、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-retention-archive?tabs=portal-3,portal-1,portal-2">こちら</a>の公開情報をご覧ください。<br>※ 以下は Log Analytics ワークスペースの保持期間を表示した例です。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image10.png"></p>
 <br>
 
-<h3 id="1-3-アクティビティ-ログ"><a href="#1-3-アクティビティ-ログ" class="headerlink" title="1-3. アクティビティ ログ"></a>1-3. アクティビティ ログ</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/activity-log-insights#retention-period">アクティビティ ログ</a>は、サブスクリプション レベルのイベントが記録されます。<br>例えば、リソースが作成された、変更された、削除された、VM が起動された、といった情報です。<br>アクティビティ ログの保持期間は <em><strong>90 日間</strong></em>であり、保持期間を延長することはできません。<br>アクティビティ ログのデータを 90 日以上保持したい場合は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal#activity-log-settings">Azure Monitor の診断設定</a>で <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/activity-log?tabs=powershell">Log Analytics ワークスペースやストレージ アカウント等に送信する</a>ことをご検討ください。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image11.png"></p>
+<h3 id="1-3-アクティビティ-ログ"><a href="#1-3-アクティビティ-ログ" class="headerlink" title="1-3. アクティビティ ログ"></a>1-3. アクティビティ ログ</h3><p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/activity-log-insights#retention-period">アクティビティ ログ</a>は、サブスクリプション レベルのイベントが記録されます。<br>例えば、リソースが作成された、変更された、削除された、VM が起動された、といった情報です。<br>アクティビティ ログの保持期間は <em><strong>90 日間</strong></em>であり、保持期間を延長することはできません。<br>アクティビティ ログのデータを 90 日以上保持したい場合は、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal#activity-log-settings">Azure Monitor の診断設定</a>で <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/activity-log?tabs=powershell">Log Analytics ワークスペースやストレージ アカウント等に送信する</a>ことをご検討ください。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image11.png"></p>
 <br>
 
 <h2 id="2-Azure-Monitor-のアラートの履歴"><a href="#2-Azure-Monitor-のアラートの履歴" class="headerlink" title="2. Azure Monitor のアラートの履歴"></a>2. Azure Monitor のアラートの履歴</h2><table>
@@ -318,16 +318,16 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </tbody></table>
 <br>
 
-<h3 id="2-1-各種アラートの履歴"><a href="#2-1-各種アラートの履歴" class="headerlink" title="2-1. 各種アラートの履歴"></a>2-1. 各種アラートの履歴</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-manage-alert-instances#access-the-alerts-page">各種アラートの履歴</a>は Azure ポータルの [モニター] &gt; [アラート] のページで確認することができます。<br>アラートの履歴の保持期間は <em><strong>30 日間</strong></em> であり、保持期間を延長することはできません。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image01.png"></p>
-<p>アラートの履歴を 30 日以上保持したい場合は、Azure ポータルから CSV 形式でデータをダウンロードいただくことや、<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/resource-graph-samples?tabs=azure-cli#view-recent-azure-monitor-alerts">アラート履歴を取得する Azure Resource Graph クエリ</a>を定期的に実行いただき、外部のシステム等にエクスポートするような仕組みをご構築いただくことをご検討いただけますと幸いです。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image02.png"></p>
+<h3 id="2-1-各種アラートの履歴"><a href="#2-1-各種アラートの履歴" class="headerlink" title="2-1. 各種アラートの履歴"></a>2-1. 各種アラートの履歴</h3><p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-manage-alert-instances#access-the-alerts-page">各種アラートの履歴</a>は Azure ポータルの [モニター] &gt; [アラート] のページで確認することができます。<br>アラートの履歴の保持期間は <em><strong>30 日間</strong></em> であり、保持期間を延長することはできません。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image01.png"></p>
+<p>アラートの履歴を 30 日以上保持したい場合は、Azure ポータルから CSV 形式でデータをダウンロードいただくことや、<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/resource-graph-samples?tabs=azure-cli#view-recent-azure-monitor-alerts">アラート履歴を取得する Azure Resource Graph クエリ</a>を定期的に実行いただき、外部のシステム等にエクスポートするような仕組みをご構築いただくことをご検討いただけますと幸いです。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image02.png"></p>
 <br>
 
 <h3 id="2-2-サービス正常性"><a href="#2-2-サービス正常性" class="headerlink" title="2-2. サービス正常性"></a>2-2. サービス正常性</h3><p>サービス正常性は Azure ポータルの [モニター] &gt; [Service Health] のページで確認することができます。<br>サービス正常性の保持期間は <em><strong>90 日間</strong></em> であり、保持期間を延長することはできません。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image03.png"></p>
-<p>サービス正常性のデータを 90 日以上保持したい場合は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/activity-log-schema#service-health-category">サービス正常性カテゴリのアクティビティ ログ</a>を、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal#activity-log-settings">Azure Monitor の診断設定</a>で <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/activity-log?tabs=powershell">Log Analytics ワークスペースやストレージ アカウント等に送信する</a>ことをご検討ください。サービス正常性は、Azure サービス自体の正常性を監視する機能です。Azure サービスの障害や計画メンテナンスの情報は、”サービス正常性カテゴリ” のアクティビティ ログとして記録されます。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image04.png"></p>
+<p>サービス正常性のデータを 90 日以上保持したい場合は、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/activity-log-schema#service-health-category">サービス正常性カテゴリのアクティビティ ログ</a>を、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal#activity-log-settings">Azure Monitor の診断設定</a>で <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/activity-log?tabs=powershell">Log Analytics ワークスペースやストレージ アカウント等に送信する</a>ことをご検討ください。サービス正常性は、Azure サービス自体の正常性を監視する機能です。Azure サービスの障害や計画メンテナンスの情報は、”サービス正常性カテゴリ” のアクティビティ ログとして記録されます。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image04.png"></p>
 <br>
 
-<h3 id="2-3-リソース正常性"><a href="#2-3-リソース正常性" class="headerlink" title="2-3. リソース正常性"></a>2-3. リソース正常性</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/service-health/resource-health-overview#history-information">リソース正常性</a>は、各リソースの [リソース正常性] のページで確認することができます。<br>リソース正常性の保持期間は <em><strong>30 日間</strong></em> であり、保持期間を延長することはできません。<br>※ <a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ResourceHealthAlert/#Q2-%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%AF%E3%80%81%E3%81%99%E3%81%B9%E3%81%A6%E3%81%AE%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%A7%E8%A8%AD%E5%AE%9A%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">リソース正常性はすべてのリソースでサポートしている機能ではございません</a>ので、ご留意ください。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image05.png"></p>
-<p>リソース正常性のデータを 30 日以上保持したい場合は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/activity-log-schema#resource-health-category">リソース正常性カテゴリのアクティビティ ログ</a>を、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal#activity-log-settings">Azure Monitor の診断設定</a>で <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/activity-log?tabs=powershell">Log Analytics ワークスペースやストレージ アカウント等に送信する</a>ことをご検討ください。リソース正常性はリソース単位で正常性を確認する機能であり、リソースの正常性に変化が生じた際に、その情報が “リソース正常性カテゴリ” のアクティビティ ログに記録されます。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image06.png"></p>
+<h3 id="2-3-リソース正常性"><a href="#2-3-リソース正常性" class="headerlink" title="2-3. リソース正常性"></a>2-3. リソース正常性</h3><p><a href="https://learn.microsoft.com/ja-jp/azure/service-health/resource-health-overview#history-information">リソース正常性</a>は、各リソースの [リソース正常性] のページで確認することができます。<br>リソース正常性の保持期間は <em><strong>30 日間</strong></em> であり、保持期間を延長することはできません。<br>※ <a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ResourceHealthAlert/#Q2-%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%AF%E3%80%81%E3%81%99%E3%81%B9%E3%81%A6%E3%81%AE%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%A7%E8%A8%AD%E5%AE%9A%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">リソース正常性はすべてのリソースでサポートしている機能ではございません</a>ので、ご留意ください。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image05.png"></p>
+<p>リソース正常性のデータを 30 日以上保持したい場合は、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/activity-log-schema#resource-health-category">リソース正常性カテゴリのアクティビティ ログ</a>を、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal#activity-log-settings">Azure Monitor の診断設定</a>で <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/activity-log?tabs=powershell">Log Analytics ワークスペースやストレージ アカウント等に送信する</a>ことをご検討ください。リソース正常性はリソース単位で正常性を確認する機能であり、リソースの正常性に変化が生じた際に、その情報が “リソース正常性カテゴリ” のアクティビティ ログに記録されます。<br><img src="/blog/AzureMonitorEssential/MonitorRetentionPeriod/image06.png"></p>
 <br>
 
 <p>上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。<br>最後までお読みいただきありがとうございました！</p>

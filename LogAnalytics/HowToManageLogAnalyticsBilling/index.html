@@ -10,21 +10,21 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="[更新履歴]  2024&#x2F;09&#x2F;18 ブログ公開 2026&#x2F;02&#x2F;04 最新情報に更新  こんにちは、Azure Monitoring チームの徳田です。 本ブログでは、Log Analytics ワークスペースのコストの管理方法 (コスト増加原因の調査、コストを抑える方法) についてご説明します。   なお、Azure Monitor のコスト最適化、および Log Analytics ワークス">
+      <meta name="description" content="[更新履歴]  2024&#x2F;09&#x2F;18 ブログ公開 2026&#x2F;02&#x2F;04 最新情報に更新  こんにちは、Azure Monitoring チームの徳田です。 本ブログでは、Log Analytics ワークスペースのコストの管理方法 (コスト増加原因の調査、コストを抑える方法) についてご説明します。   なお、Azure Monitor のコスト最適化、およ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Log Analytics ワークスペースのコスト増加の原因を分析しコスト削減を検討する">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToManageLogAnalyticsBilling/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="[更新履歴]  2024&#x2F;09&#x2F;18 ブログ公開 2026&#x2F;02&#x2F;04 最新情報に更新  こんにちは、Azure Monitoring チームの徳田です。 本ブログでは、Log Analytics ワークスペースのコストの管理方法 (コスト増加原因の調査、コストを抑える方法) についてご説明します。   なお、Azure Monitor のコスト最適化、および Log Analytics ワークス">
+<meta property="og:description" content="[更新履歴]  2024&#x2F;09&#x2F;18 ブログ公開 2026&#x2F;02&#x2F;04 最新情報に更新  こんにちは、Azure Monitoring チームの徳田です。 本ブログでは、Log Analytics ワークスペースのコストの管理方法 (コスト増加原因の調査、コストを抑える方法) についてご説明します。   なお、Azure Monitor のコスト最適化、およ">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToManageLogAnalyticsBilling/portal-ingest-barchart.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToManageLogAnalyticsBilling/dataretention-cost.png">
 <meta property="article:published_time" content="2024-09-17T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.281Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:29.923Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="Log Analytics">
-<meta property="article:tag" content="HowTo">
 <meta property="article:tag" content="Cost">
+<meta property="article:tag" content="HowTo">
+<meta property="article:tag" content="Log Analytics">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToManageLogAnalyticsBilling/portal-ingest-barchart.png">
         
@@ -62,7 +62,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -79,7 +79,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -177,19 +177,19 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+e840004a-6f32-5ac8-96ca-1201e3d0ef5f%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BLog+Analytics+%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88%E5%A2%97%E5%8A%A0%E3%81%AE%E5%8E%9F%E5%9B%A0%E3%82%92%E5%88%86%E6%9E%90%E3%81%97%E3%82%B3%E3%82%B9%E3%83%88%E5%89%8A%E6%B8%9B%E3%82%92%E6%A4%9C%E8%A8%8E%E3%81%99%E3%82%8B%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FHowToManageLogAnalyticsBilling%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FHowToManageLogAnalyticsBilling.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FHowToManageLogAnalyticsBilling.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToManageLogAnalyticsBilling/" data-id="cmm8g5fj700e10nny8od6b9b3" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToManageLogAnalyticsBilling/" data-id="cuidtjtGgK0LbYa9iYQsKDgEz" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>[更新履歴]</p>
 <ul>
-<li>2024/09/18 ブログ公開</li>
-<li>2026/02/04 最新情報に更新</li>
+<li>2024&#x2F;09&#x2F;18 ブログ公開</li>
+<li>2026&#x2F;02&#x2F;04 最新情報に更新</li>
 </ul>
 <p>こんにちは、Azure Monitoring チームの徳田です。</p>
 <p>本ブログでは、Log Analytics ワークスペースのコストの管理方法 (コスト増加原因の調査、コストを抑える方法) についてご説明します。  </p>
-<p>なお、Azure Monitor のコスト最適化、および Log Analytics ワークスペースの使用量の分析については、以下弊社サイトもご参照ください。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/best-practices-cost">https://learn.microsoft.com/ja-jp/azure/azure-monitor/best-practices-cost</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/analyze-usage">https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/analyze-usage</a></p>
+<p>なお、Azure Monitor のコスト最適化、および Log Analytics ワークスペースの使用量の分析については、以下弊社サイトもご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/best-practices-cost">https://learn.microsoft.com/ja-jp/azure/azure-monitor/best-practices-cost</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/analyze-usage">https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/analyze-usage</a></p>
 <span id="more"></span>
 
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
@@ -225,7 +225,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <ul>
 <li>データのインジェスト量</li>
 <li>データの保有量と保有期間  </li>
-<li>Log Analytics ワークスペースが存在するリージョン  </li>
+<li>Log Analytics ワークスペースが存在するリージョン</li>
 </ul>
 <p>このうち、コスト増加の原因となりうるのは、データのインジェスト量およびデータの保有量と保有期間です。<br>したがって、コスト増加の主な原因を分析するためには、以下の情報を得る必要があります。<br>それぞれの確認方法については後述いたします。</p>
 <ul>
@@ -233,7 +233,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <li>データの保有量の推移</li>
 <li>データの保有期間</li>
 </ul>
-<p>※ 期待せずコストが増加した場合、上記以外にも要因がある場合がございます。一例として、ログの復元を行った場合の復元コストが挙げられます。<br>復元のコストはその課金体系上、少量のデータ、短期間の復元であっても予期せず高額になることがあるため、ご注意ください。<br>具体的な課金体系およびコストの計算方法については以下弊社公開情報、ブログを参照ください。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/restore?tabs=api-1#pricing-model">Azure Monitor でログを復元する | 価格モデル</a><br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPricing/#3-2-%E5%BE%A9%E5%85%83%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88">Log Analytics のクエリの実行コストについて | 3-2. 復元のコスト</a></p>
+<p>※ 期待せずコストが増加した場合、上記以外にも要因がある場合がございます。一例として、ログの復元を行った場合の復元コストが挙げられます。<br>復元のコストはその課金体系上、少量のデータ、短期間の復元であっても予期せず高額になることがあるため、ご注意ください。<br>具体的な課金体系およびコストの計算方法については以下弊社公開情報、ブログを参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/restore?tabs=api-1#pricing-model">Azure Monitor でログを復元する | 価格モデル</a><br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsQueryPricing/#3-2-%E5%BE%A9%E5%85%83%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88">Log Analytics のクエリの実行コストについて | 3-2. 復元のコスト</a></p>
 <h3 id="1-1-データのインジェスト量の推移を確認する"><a href="#1-1-データのインジェスト量の推移を確認する" class="headerlink" title="1-1. データのインジェスト量の推移を確認する"></a>1-1. データのインジェスト量の推移を確認する</h3><p>Log Analytics ワークスペースごとのデータのインジェスト量の推移を確認する方法は、主に以下 2 つです。</p>
 <ul>
 <li>[使用量と推定コスト] から確認する方法</li>
@@ -242,7 +242,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <h4 id="1-1-1-使用量と推定コスト-から確認する"><a href="#1-1-1-使用量と推定コスト-から確認する" class="headerlink" title="1-1-1. [使用量と推定コスト] から確認する"></a>1-1-1. [使用量と推定コスト] から確認する</h4><ul>
 <li>Azure portal で、コストを確認したい Log Analytics ワークスペースを開きます。</li>
 <li>左ペインの [設定] &gt; [使用量と推定コスト] を押下します。</li>
-<li>ページ右側に “使用状況のグラフ” として、過去 31 日間の、課金対象のテーブルごとのデータ インジェスト量が表示されます。  </li>
+<li>ページ右側に “使用状況のグラフ” として、過去 31 日間の、課金対象のテーブルごとのデータ インジェスト量が表示されます。</li>
 </ul>
 <p><img src="/blog/LogAnalytics/HowToManageLogAnalyticsBilling/portal-ingest-barchart.png"></p>
 <h4 id="1-1-2-クエリを実行して確認する"><a href="#1-1-2-クエリを実行して確認する" class="headerlink" title="1-1-2. クエリを実行して確認する"></a>1-1-2. クエリを実行して確認する</h4><ol>
@@ -304,14 +304,15 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-AzOperationalInsightsTable -ResourceGroupName &lt;リソース グループ名&gt; -WorkspaceName &lt;ワークスペース名&gt; -tableName &lt;テーブル名&gt;</span><br></pre></td></tr></table></figure>
 
 <p>■ Azure CLI の場合</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">az monitor log-analytics workspace table show --resource-group &lt;リソース グループ名&gt; --workspace-name &lt;ワークスペース名&gt; --name &lt;テーブル名&gt;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">az monitor log-analytics workspace table show --resource-group &lt;リソース グループ名&gt; --workspace-name &lt;ワークスペース名&gt; --name &lt;テーブル名&gt;</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>結果を確認します。<br>返ってきた結果のうち、<code>RetentionInDays</code> が対話型の保有期間を、<code>TotalRetentionInDays</code> が保有期間の合計を示します。<br>(Azure CLI の場合はそれぞれ <code>retentionInDays</code>, <code>totalRetentionInDays</code> です。)<br>保有期間が長く、再設定が必要なテーブルが見つかった場合 → <a href="#1-3-%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E4%BF%9D%E6%9C%89%E6%9C%9F%E9%96%93%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">1-3. データの保有期間を確認する</a>をご確認ください。</p>
 </li>
 </ol>
 <h4 id="1-3-3-API-を使用して確認する"><a href="#1-3-3-API-を使用して確認する" class="headerlink" title="1-3-3. API を使用して確認する"></a>1-3-3. API を使用して確認する</h4><p>以下の Get API を呼び出すことでも、上記と同様に、指定したテーブルの情報を取得することができます。<br>なお、{} の箇所は任意の値に変更してください (“{}” は不要です)。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET &quot;https://management.azure.com/subscriptions/&#123;サブスクリプション ID&#125;/resourceGroups/&#123;リソース グループ名&#125;/providers/Microsoft.OperationalInsights/workspaces/&#123;ワークスペース名&#125;/Tables/&#123;テーブル名&#125;?api-version=2022-10-01&quot;</span><br></pre></td></tr></table></figure>
 
-<p>なお、保有期間については、以下弊社サイトでもご案内しております。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-retention-configure?tabs=portal-3,portal-1,portal-2">Log Analytics ワークスペース内のデータ保持を管理する</a></p>
+<p>なお、保有期間については、以下弊社サイトでもご案内しております。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-retention-configure?tabs=portal-3,portal-1,portal-2">Log Analytics ワークスペース内のデータ保持を管理する</a></p>
 <h2 id="2-コストを抑える"><a href="#2-コストを抑える" class="headerlink" title="2. コストを抑える"></a>2. コストを抑える</h2><p><a href="#1-%E3%82%B3%E3%82%B9%E3%83%88%E5%A2%97%E5%8A%A0%E3%81%AE%E5%8E%9F%E5%9B%A0%E3%82%92%E5%88%86%E6%9E%90%E3%81%99%E3%82%8B">1. コスト増加の原因を分析する</a>により、コスト増加の原因が明らかになった場合は、その原因に応じて、コストを抑えるための対処法を実行します。</p>
 <h3 id="2-1-データのインジェストにかかるコストを抑える"><a href="#2-1-データのインジェストにかかるコストを抑える" class="headerlink" title="2-1. データのインジェストにかかるコストを抑える"></a>2-1. データのインジェストにかかるコストを抑える</h3><p>データのインジェストにかかるコストは、データのインジェスト量によって決まります。<br>そのため、データのインジェストにかかるコストを抑えるためには、インジェスト量を減らす必要があります。</p>
 <h4 id="2-1-1-不要なログの収集を停止する"><a href="#2-1-1-不要なログの収集を停止する" class="headerlink" title="2-1-1. 不要なログの収集を停止する"></a>2-1-1. 不要なログの収集を停止する</h4><p>インジェスト量を減らすためにまずはじめに検討できることは、不要なログの収集を停止することです。  </p>
@@ -325,39 +326,39 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>ログ収集設定をカスタマイズする方法については、以下弊社サイト、およびサポート チームのブログをご参照ください。</p>
 <p><strong>パフォーマンス カウンター</strong></p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/data-collection-performance?tabs=oteldatasource,linux#configure-data-source">パフォーマンス カウンター データ ソースの構成</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/data-collection-performance?tabs=oteldatasource,linux#configure-data-source">パフォーマンス カウンター データ ソースの構成</a></li>
 <li><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomPerfCounter/">既定で用意されているもの以外のパフォーマンス カウンターを収集する方法</a></li>
 </ul>
 <p><strong>Windows イベント ログ</strong></p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-windows-events#configure-windows-event-data-source">Windows イベント データ ソースを構成する</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-windows-events#configure-windows-event-data-source">Windows イベント データ ソースを構成する</a></li>
 <li><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCollectCustomEventlog/">既定で用意されているもの以外のイベント ログを収集する方法</a></li>
 </ul>
 <p><strong>Linux Syslog</strong></p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/data-collection-syslog#configure-syslog-data-source">Syslog データ ソースの構成</a>  </li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/data-collection-syslog#configure-syslog-data-source">Syslog データ ソースの構成</a></li>
 </ul>
 <p>■ <strong>Application Insights のサンプリング機能を用いて収集ログを減らす</strong></p>
 <p>Application Insights では、サンプリング機能が実装されております。<br>このサンプリング機能では、アプリケーションから出力されるテレメトリ データの出力量を抑えることが出来ます。<br>サンプリングを使用することで、APM に必要なデータをコストの観点で効率的に収集出来ます。<br>もし Application Insights に紐づくデータのコストを抑えたい要望がある場合は、一度サンプリング機能をご検討ください。</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/sampling-classic-api">Application Insights でのサンプリング</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/sampling-classic-api">Application Insights でのサンプリング</a></li>
 </ul>
 <p>■ <strong>Container Insights の収集設定をカスタマイズして不要なデータの収集を減らす</strong><br>Container Insights を有効化していただくことで、AKS や Azure Arc enabled k8s から、コンテナに関するログやパフォーマンス情報を、Log Analytics ワークスペースに収集することが可能です。<br>一方で Container Insights のログ収集設定によっては収集されるログが増え、コスト増加に繋がります。<br>もし不要な Container Insights に関連するログが存在する場合は、Container Insights のログ収集設定の見直しをご検討ください。  </p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=portal#configuration-options">Container insights の構成オプション</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=portal#configuration-options">Container insights の構成オプション</a></li>
 </ul>
 <p>また、Container insights により収集されるログのコスト最適化については、以下公開情報も併せてご確認ください。</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-cost">Container insights 監視コストの最適化</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-cost">Container insights 監視コストの最適化</a></li>
 </ul>
 <h4 id="2-1-2-日次上限を設定しデータのインジェスト量を一定量までに抑える"><a href="#2-1-2-日次上限を設定しデータのインジェスト量を一定量までに抑える" class="headerlink" title="2-1-2. 日次上限を設定しデータのインジェスト量を一定量までに抑える"></a>2-1-2. 日次上限を設定しデータのインジェスト量を一定量までに抑える</h4><p>Log Analytics ワークスペースに日次上限とは、1 日あたりのデータのインジェスト量の上限値を指します。<br>一時的なインジェスト量の上昇がみられた場合、日次上限を設定することで予期しないインジェスト量の増加を防ぐことができます。  </p>
 <p>1 日のデータのインジェスト量が日次上限に達すると、その日の残りの時間は、課金対象のデータの収集が自動的に停止します (*1)。</p>
 <p><strong>重要</strong><br>(*1) データ収集が停止すると、以下の影響が起こりうることをご確認の上、日次上限を設定してください。  </p>
 <ul>
 <li>リソースの正常性の状態を観察したり、アラートを受信したりする機能に影響が出る可能性  </li>
-<li>ワークスペースで利用できる最新のデータに機能が依存している他の Azure サービスやソリューションに影響を与える可能性  </li>
+<li>ワークスペースで利用できる最新のデータに機能が依存している他の Azure サービスやソリューションに影響を与える可能性</li>
 </ul>
-<p>日次上限については、以下弊社サイトでもご案内しております。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/daily-cap">Log Analytics ワークスペースの日次上限を設定する</a>  </p>
+<p>日次上限については、以下弊社サイトでもご案内しております。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/daily-cap">Log Analytics ワークスペースの日次上限を設定する</a>  </p>
 <h3 id="2-2-データの保持にかかるコストを抑える"><a href="#2-2-データの保持にかかるコストを抑える" class="headerlink" title="2-2. データの保持にかかるコストを抑える"></a>2-2. データの保持にかかるコストを抑える</h3><p>データの保持に対してかかるコストは、保有期間と保持するデータ量に基づいて決定します。<br>保持するデータ量は、データのインジェスト量とその保有期間によって決まるため、データ保持にかかるコストを抑えるためには、まずは前述の<a href="#2-1-%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88%E3%81%AB%E3%81%8B%E3%81%8B%E3%82%8B%E3%82%B3%E3%82%B9%E3%83%88%E3%82%92%E6%8A%91%E3%81%88%E3%82%8B">データのインジェスト量の見直し</a>と、以下でご案内する、<a href="#2-2-1-%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E4%BF%9D%E6%9C%89%E6%9C%9F%E9%96%93%E3%82%92%E8%AA%BF%E6%95%B4%E3%81%99%E3%82%8B">保有期間の調整</a>が有効です。</p>
 <h4 id="2-2-1-データの保有期間を調整する"><a href="#2-2-1-データの保有期間を調整する" class="headerlink" title="2-2-1. データの保有期間を調整する"></a>2-2-1. データの保有期間を調整する</h4><p>Log Analytics ワークスペース内のデータは、対話型保持と長期保持のいずれかの状態で保持されます。</p>
 <ul>
@@ -372,29 +373,29 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <li>クエリを通したデータ取得  </li>
 <li>テーブル プランに基づいた視覚化、アラート、およびその他の機能やサービスでのデータ利用  </li>
 <li>長期保持されているデータに対してアクセスするためには、検索ジョブの実行、またはログの復元が必要です。<br>検索ジョブの実行、またはログの復元には別途費用がかかります。  <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/search-jobs?tabs=portal-1,portal-2">Azure Monitor で検索ジョブを実行する</a>  </li>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/restore?tabs=api-1">Azure Monitor でログを復元する</a></li>
-<li>それぞれにかかる費用は、<a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">Azure Monitor の価格</a>の “ジョブの検索”、”復元” の項目をご確認ください。  </li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/search-jobs?tabs=portal-1,portal-2">Azure Monitor で検索ジョブを実行する</a>  </li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/restore?tabs=api-1">Azure Monitor でログを復元する</a></li>
+<li>それぞれにかかる費用は、<a href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">Azure Monitor の価格</a>の “ジョブの検索”、”復元” の項目をご確認ください。</li>
 </ul>
 </li>
 </ul>
 <h4 id="2-2-2-データの保有量を調整する"><a href="#2-2-2-データの保有量を調整する" class="headerlink" title="2-2-2. データの保有量を調整する"></a>2-2-2. データの保有量を調整する</h4><p>データの保有量を削減するためにできるもう一つの方法は、現在保有しているワークスペース内のデータをストレージ アカウントにエクスポートし、ワークスペース内のデータの保持期間を短くすることです。</p>
-<p>ストレージ アカウントの価格 (*4) は、<a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">Log Analytics ワークスペースのデータ保有料金</a>よりも低価格なため、収集したデータに対して対話型クエリを実行する予定がない場合は、ストレージ アカウントにデータをエクスポート (移動) し、ワークスペース内のデータ保有期間を短くすることで、コストを抑えられます。 </p>
+<p>ストレージ アカウントの価格 (*4) は、<a href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">Log Analytics ワークスペースのデータ保有料金</a>よりも低価格なため、収集したデータに対して対話型クエリを実行する予定がない場合は、ストレージ アカウントにデータをエクスポート (移動) し、ワークスペース内のデータ保有期間を短くすることで、コストを抑えられます。 </p>
 <p>以下に、ストレージ アカウントまたは Event Hubs にログを送信する 2 つの方法をご紹介します。</p>
 <p>■ <strong>データ エクスポート ルールを利用してエクスポートする</strong></p>
 <ul>
 <li>選択したテーブルごとに、データをストレージ アカウント、または Event Hubs にエクスポート・保存できます。</li>
 <li>ストレージ アカウント、または Event Hubs にエクスポート・保存されるデータは、Log Analytics ワークスペースにも収集されます。<br>そのため、コストを抑えたい場合は、テーブルの保有期間を無料期間の範囲に収めるなど、保有期間を短くする必要があります。</li>
-<li>より詳細な情報は、以下弊社サイトをご参照ください。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal">Azure Monitor の Log Analytics ワークスペース データ エクスポート</a></li>
+<li>より詳細な情報は、以下弊社サイトをご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal">Azure Monitor の Log Analytics ワークスペース データ エクスポート</a></li>
 </ul>
 <p>■ <strong>【非推奨】データ収集ルールを構成して直接アップロードする (プレビュー)</strong></p>
-<div class="alert is-important"><p class="alert-title">重要</p><p> 本プレビュー機能は、廃止されることとなりました。つきましては、代替機能のご利用をご検討ください。</p><p>詳細は、以下公開情報および弊社ブログ サイトをご確認ください。</p><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/send-event-hubs-storage?tabs=windows,windows-1">仮想マシン クライアント データを Event Hubs と Storage に送信する (プレビュー)</a></p><p><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToSendVMDataToEventHubAndStorage/">【非推奨】AMA を使用して VM のデータを Event Hub とストレージ アカウントに送信する方法</a></p></div>
+<div class="alert is-important"><p class="alert-title">重要</p><p> 本プレビュー機能は、廃止されることとなりました。つきましては、代替機能のご利用をご検討ください。</p><p>詳細は、以下公開情報および弊社ブログ サイトをご確認ください。</p><p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/send-event-hubs-storage?tabs=windows,windows-1">仮想マシン クライアント データを Event Hubs と Storage に送信する (プレビュー)</a></p><p><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToSendVMDataToEventHubAndStorage/">【非推奨】AMA を使用して VM のデータを Event Hub とストレージ アカウントに送信する方法</a></p></div>
 <ul>
 <li>データ収集ルールを構成することで、Azure Monitor エージェントを使用して収集したデータを、直接ストレージ アカウント、または Event Hubs へアップロードすることができます。  </li>
 <li>この方法では、Log Analytics ワークスペースにはデータが収集されません。</li>
-<li>本機能がサポートされているデータ型には制限がございます。詳細は、以下弊社サイトをご確認ください。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/send-event-hubs-storage?tabs=windows,windows-1#supported-data-types">サポートされているデータ型</a></li>
+<li>本機能がサポートされているデータ型には制限がございます。詳細は、以下弊社サイトをご確認ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/send-event-hubs-storage?tabs=windows,windows-1#supported-data-types">サポートされているデータ型</a></li>
 </ul>
-<p>(*4) ストレージ アカウントの価格は以下サイトからご確認ください。<br><a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/storage/blobs/">Azure Blob Storage の価格</a></p>
+<p>(*4) ストレージ アカウントの価格は以下サイトからご確認ください。<br><a href="https://azure.microsoft.com/ja-jp/pricing/details/storage/blobs/">Azure Blob Storage の価格</a></p>
 <h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>本記事では、Log Analytics ワークスペースのコストを分析し、それぞれのコスト増加原因に対する対処法をご紹介しました。<br>まずはデータのインジェスト量、保有量、および保有期間の設定を確認し、どこにコストがかかっているかを特定し、適切な対処法を取ることが、コストの削減およびコスト増加の抑制につながります。  </p>
 
       

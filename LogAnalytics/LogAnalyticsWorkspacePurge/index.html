@@ -10,12 +10,12 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="[更新履歴]  2024&#x2F;01&#x2F;06 : ブログ公開 2025&#x2F;05&#x2F;07 : Delete Data API の情報を追記 2026&#x2F;1&#x2F;7 : 最新情報であることを確認済み  こんにちは、Azure Monitoring サポート チームの北村です。今回は、Log Analytics ワークスペースのデータを削除する方法をご紹介します。Log Analytics ワークスペースでは指定した保持">
+      <meta name="description" content="[更新履歴]  2024&#x2F;01&#x2F;06 : ブログ公開 2025&#x2F;05&#x2F;07 : Delete Data API の情報を追記 2026&#x2F;1&#x2F;7 : 最新情報であることを確認済み  こんにちは、Azure Monitoring サポート チームの北村です。今回は、Log Analytics ワークスペースのデータを削除する方法をご紹介します">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Log Analytics ワークスペースのデータを削除する方法">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsWorkspacePurge/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="[更新履歴]  2024&#x2F;01&#x2F;06 : ブログ公開 2025&#x2F;05&#x2F;07 : Delete Data API の情報を追記 2026&#x2F;1&#x2F;7 : 最新情報であることを確認済み  こんにちは、Azure Monitoring サポート チームの北村です。今回は、Log Analytics ワークスペースのデータを削除する方法をご紹介します。Log Analytics ワークスペースでは指定した保持">
+<meta property="og:description" content="[更新履歴]  2024&#x2F;01&#x2F;06 : ブログ公開 2025&#x2F;05&#x2F;07 : Delete Data API の情報を追記 2026&#x2F;1&#x2F;7 : 最新情報であることを確認済み  こんにちは、Azure Monitoring サポート チームの北村です。今回は、Log Analytics ワークスペースのデータを削除する方法をご紹介します">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsWorkspacePurge/image20.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsWorkspacePurge/image18.png">
@@ -33,10 +33,10 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsWorkspacePurge/image13.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsWorkspacePurge/image15.png">
 <meta property="article:published_time" content="2024-01-05T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.332Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:29.979Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="Log Analytics">
 <meta property="article:tag" content="HowTo">
+<meta property="article:tag" content="Log Analytics">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsWorkspacePurge/image20.png">
         
@@ -74,7 +74,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -91,7 +91,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -189,18 +189,18 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+98676958-b1a5-5dc0-bbab-ac356fbfa3a6%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BLog+Analytics+%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E5%89%8A%E9%99%A4%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FLogAnalyticsWorkspacePurge%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FLogAnalyticsWorkspacePurge.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FLogAnalyticsWorkspacePurge.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsWorkspacePurge/" data-id="cmm8g5fja00e70nnyged8gvh4" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsWorkspacePurge/" data-id="cuidtgPjBJCaLcON26csLs9Vz" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>[更新履歴]</p>
 <ul>
-<li>2024/01/06 : ブログ公開</li>
-<li>2025/05/07 : Delete Data API の情報を追記</li>
-<li>2026/1/7 : 最新情報であることを確認済み</li>
+<li>2024&#x2F;01&#x2F;06 : ブログ公開</li>
+<li>2025&#x2F;05&#x2F;07 : Delete Data API の情報を追記</li>
+<li>2026&#x2F;1&#x2F;7 : 最新情報であることを確認済み</li>
 </ul>
-<p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回は、Log Analytics ワークスペースのデータを削除する方法をご紹介します。<br>Log Analytics ワークスペースでは指定した<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-retention-archive?tabs=portal-1,portal-2#configure-the-default-workspace-retention">保持期間</a>を超えると、自動的にログが削除されます。<br>一方で、この保持期間を迎える前にログを削除したい、特定のログのみを削除したい、といった場合には、今回紹介する方法でデータを削除することをご検討いただけますと幸いです。<br><br></p>
+<p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回は、Log Analytics ワークスペースのデータを削除する方法をご紹介します。<br>Log Analytics ワークスペースでは指定した<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-retention-archive?tabs=portal-1,portal-2#configure-the-default-workspace-retention">保持期間</a>を超えると、自動的にログが削除されます。<br>一方で、この保持期間を迎える前にログを削除したい、特定のログのみを削除したい、といった場合には、今回紹介する方法でデータを削除することをご検討いただけますと幸いです。<br><br></p>
 <span id="more"></span>
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
 <li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
@@ -236,18 +236,18 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 
 
-<h2 id="1-Log-Analytics-ワークスペースのログを削除する方法は-2-つある"><a href="#1-Log-Analytics-ワークスペースのログを削除する方法は-2-つある" class="headerlink" title="1. Log Analytics ワークスペースのログを削除する方法は 2 つある"></a>1. Log Analytics ワークスペースのログを削除する方法は 2 つある</h2><p>Log Analytics ワークスペースのログは REST API で削除することができます (Azure ポータルからログを削除することはできません)。以前から提供されていた <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/purge?view=rest-loganalytics-2020-08-01&tabs=HTTP">Purge API</a> に加え、2025/3 に <a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/updates/?id=479041">Delete Data API</a> が一般公開されました。この 2 つの API の違いについて説明します。</p>
+<h2 id="1-Log-Analytics-ワークスペースのログを削除する方法は-2-つある"><a href="#1-Log-Analytics-ワークスペースのログを削除する方法は-2-つある" class="headerlink" title="1. Log Analytics ワークスペースのログを削除する方法は 2 つある"></a>1. Log Analytics ワークスペースのログを削除する方法は 2 つある</h2><p>Log Analytics ワークスペースのログは REST API で削除することができます (Azure ポータルからログを削除することはできません)。以前から提供されていた <a href="https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/purge?view=rest-loganalytics-2020-08-01&tabs=HTTP">Purge API</a> に加え、2025&#x2F;3 に <a href="https://azure.microsoft.com/ja-jp/updates/?id=479041">Delete Data API</a> が一般公開されました。この 2 つの API の違いについて説明します。</p>
 <br>
 
 
-<h3 id="1-1-Purge-API"><a href="#1-1-Purge-API" class="headerlink" title="1-1. Purge API"></a>1-1. Purge API</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/rest/api/loganalytics/workspace-purge/purge?view=rest-loganalytics-2025-02-01&tabs=HTTP">Purge API</a> は以前から提供されていた API であり、 <strong><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/compliance/regulatory/gdpr">GDPR（EU 一般データ保護規則）</a>に準拠しています。</strong><br>この API は Log Analyticsワークスペース内のデータを完全に削除（パージ）するための API であり、<strong>物理的にストレージからデータを削除します</strong>。</p>
+<h3 id="1-1-Purge-API"><a href="#1-1-Purge-API" class="headerlink" title="1-1. Purge API"></a>1-1. Purge API</h3><p><a href="https://learn.microsoft.com/ja-jp/rest/api/loganalytics/workspace-purge/purge?view=rest-loganalytics-2025-02-01&tabs=HTTP">Purge API</a> は以前から提供されていた API であり、 <strong><a href="https://learn.microsoft.com/ja-jp/compliance/regulatory/gdpr">GDPR（EU 一般データ保護規則）</a>に準拠しています。</strong><br>この API は Log Analyticsワークスペース内のデータを完全に削除（パージ）するための API であり、<strong>物理的にストレージからデータを削除します</strong>。</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">POST https://management.azure.com/subscriptions/&#123;subscriptionId&#125;/resourceGroups/&#123;resourceGroupName&#125;/providers/Microsoft.OperationalInsights/workspaces/&#123;workspaceName&#125;/purge?api-version=<span class="number">2025</span>-<span class="number">02</span>-<span class="number">01</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;table&quot;: &quot;Heartbeat&quot;,</span><br><span class="line">  &quot;filters&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;column&quot;: &quot;TimeGenerated&quot;,</span><br><span class="line">      &quot;operator&quot;: &quot;&gt;&quot;,</span><br><span class="line">      &quot;value&quot;: &quot;<span class="number">2017</span>-<span class="number">09</span>-<span class="number">01</span>T00:<span class="number">00</span>:<span class="number">00</span>&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <br>
 <br>
 
 
-<h3 id="1-2-Delete-Data-API"><a href="#1-2-Delete-Data-API" class="headerlink" title="1-2. Delete Data API"></a>1-2. Delete Data API</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/delete-log-data">Delete Data API</a> は、2025/3 に一般公開された新しい API です。この API は <strong><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/compliance/regulatory/gdpr">GDPR（EU 一般データ保護規則）</a>に準拠していません。</strong><br>この API では、<strong>物理的にストレージからデータを削除するのではなく、指定された条件を満たすデータを削除済みとしてマークします</strong>。</p>
+<h3 id="1-2-Delete-Data-API"><a href="#1-2-Delete-Data-API" class="headerlink" title="1-2. Delete Data API"></a>1-2. Delete Data API</h3><p><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/delete-log-data">Delete Data API</a> は、2025&#x2F;3 に一般公開された新しい API です。この API は <strong><a href="https://learn.microsoft.com/ja-jp/compliance/regulatory/gdpr">GDPR（EU 一般データ保護規則）</a>に準拠していません。</strong><br>この API では、<strong>物理的にストレージからデータを削除するのではなく、指定された条件を満たすデータを削除済みとしてマークします</strong>。</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">POST https://management.azure.com/subscriptions/&#123;subscriptionId&#125;/resourceGroups/&#123;resourceGroupName&#125;/providers/Microsoft.OperationalInsights/workspaces/&#123;workspaceName&#125;/tables/&#123;tableName&#125;/deleteData?api-version=<span class="number">2023</span>-<span class="number">09</span>-<span class="number">01</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;filters&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;column&quot;: &quot;TimeGenerated&quot;,</span><br><span class="line">      &quot;operator&quot;: &quot;&lt;&quot;,</span><br><span class="line">      &quot;value&quot;: &quot;<span class="number">2024</span>-<span class="number">09</span>-<span class="number">23</span>T00:<span class="number">00</span>:<span class="number">00</span>&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;column&quot;: &quot;Resource&quot;,</span><br><span class="line">      &quot;operator&quot;: &quot;==&quot;,</span><br><span class="line">      &quot;value&quot;: &quot;VM-<span class="number">1</span>&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -257,7 +257,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 
 
-<h2 id="2-Delete-Data-API-と-Purge-API-の使い分けについて"><a href="#2-Delete-Data-API-と-Purge-API-の使い分けについて" class="headerlink" title="2. Delete Data API と Purge API の使い分けについて"></a>2. Delete Data API と Purge API の使い分けについて</h2><p><strong>GDPR（EU 一般データ保護規則）の要件に準拠する必要がある場合は <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/personal-data-mgmt#purge">Purge API</a> をご利用ください。</strong><br><strong>それ以外の場合は、基本的に <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/personal-data-mgmt#delete">Delete Data API</a> をご利用ください。</strong><br>どちらの API も<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/personal-data-mgmt#delete">操作を元に戻すことはできません</a>。API を実行する際には細心の注意を払って実施してください。</p>
+<h2 id="2-Delete-Data-API-と-Purge-API-の使い分けについて"><a href="#2-Delete-Data-API-と-Purge-API-の使い分けについて" class="headerlink" title="2. Delete Data API と Purge API の使い分けについて"></a>2. Delete Data API と Purge API の使い分けについて</h2><p><strong>GDPR（EU 一般データ保護規則）の要件に準拠する必要がある場合は <a href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/personal-data-mgmt#purge">Purge API</a> をご利用ください。</strong><br><strong>それ以外の場合は、基本的に <a href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/personal-data-mgmt#delete">Delete Data API</a> をご利用ください。</strong><br>どちらの API も<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/personal-data-mgmt#delete">操作を元に戻すことはできません</a>。API を実行する際には細心の注意を払って実施してください。</p>
 <br>
 <br>
 <br>
@@ -267,26 +267,29 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <h2 id="3-Delete-Data-API-について"><a href="#3-Delete-Data-API-について" class="headerlink" title="3. Delete Data API について"></a>3. Delete Data API について</h2><p><u>GDPR（EU 一般データ保護規則）の要件を満たす必要がない場合には、Delete Data API をご利用ください。</u><br>このセクションでは、Delete Data API の実行例と主な留意点をご紹介します。</p>
 <br>
 
-<h3 id="3-1-Delete-Data-API-の主な留意点"><a href="#3-1-Delete-Data-API-の主な留意点" class="headerlink" title="3-1. Delete Data API の主な留意点"></a>3-1. Delete Data API の主な留意点</h3><p>Delete Data API を実行いただく上での主な留意点をご紹介します。API を実行する前に、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/delete-log-data">こちら</a>の公開情報もご一読いただきますようお願いいたします。</p>
+<h3 id="3-1-Delete-Data-API-の主な留意点"><a href="#3-1-Delete-Data-API-の主な留意点" class="headerlink" title="3-1. Delete Data API の主な留意点"></a>3-1. Delete Data API の主な留意点</h3><p>Delete Data API を実行いただく上での主な留意点をご紹介します。API を実行する前に、<a href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/delete-log-data">こちら</a>の公開情報もご一読いただきますようお願いいたします。</p>
 <ul>
-<li><strong>必要なロール</strong> :<br>Delete Data API を実行するには Log Analytics ワークスペースに対して <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/delete-log-data#permissions-required">Microsoft.OperationalInsights/workspaces/tables/deleteData/action</a> の権限が必要です。Log Analytics の組み込みロールでは <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-contributor">Log Analytics 共同作成者</a> が該当します。</li>
+<li><p><strong>必要なロール</strong> :<br>Delete Data API を実行するには Log Analytics ワークスペースに対して <a href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/delete-log-data#permissions-required">Microsoft.OperationalInsights&#x2F;workspaces&#x2F;tables&#x2F;deleteData&#x2F;action</a> の権限が必要です。Log Analytics の組み込みロールでは <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-contributor">Log Analytics 共同作成者</a> が該当します。</p>
+</li>
+<li><p><strong>利用可能な演算子</strong> :<br>カラム名とその値を指定して条件を指定します。<a href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/delete-log-data#filter-parameters">値を指定する際に利用できる演算子</a>は以下のとおりです。<br>すべての演算子をサポートしておりませんので、API を実行する前にサポートしている演算子をご確認ください。</p>
+</li>
 </ul>
+<img width="700" src="../LogAnalyticsWorkspacePurge/image20.png">
+
+
 <ul>
-<li><strong>利用可能な演算子</strong> :<br>カラム名とその値を指定して条件を指定します。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/delete-log-data#filter-parameters">値を指定する際に利用できる演算子</a>は以下のとおりです。<br>すべての演算子をサポートしておりませんので、API を実行する前にサポートしている演算子をご確認ください。<img width="700" src="../LogAnalyticsWorkspacePurge/image20.png"></li>
-</ul>
-<ul>
-<li><strong>データが削除されるまでにかかる時間</strong> :<br>Delete Data API のリクエストは非同期で行われ、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/delete-log-data#how-the-delete-data-api-works">通常は数分以内に完了しますが、最大 5 日かかる場合がございます</a>。<br>データの削除ステータスは、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/delete-log-data#check-delete-data-operations-and-status">REST API からご確認いただけます</a>。</li>
-</ul>
-<ul>
-<li><strong>削除操作は元に戻すことはできない</strong> :<br><a href="hhttps://learn.microsoft.com/en-us/azure/azure-monitor/logs/delete-log-data#how-the-delete-data-api-works">削除操作は元に戻すことはできません</a>。API を実行する際には細心の注意を払って実施してください。</li>
+<li><p><strong>データが削除されるまでにかかる時間</strong> :<br>Delete Data API のリクエストは非同期で行われ、<a href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/delete-log-data#how-the-delete-data-api-works">通常は数分以内に完了しますが、最大 5 日かかる場合がございます</a>。<br>データの削除ステータスは、<a href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/delete-log-data#check-delete-data-operations-and-status">REST API からご確認いただけます</a>。</p>
+</li>
+<li><p><strong>削除操作は元に戻すことはできない</strong> :<br><a href="hhttps://learn.microsoft.com/en-us/azure/azure-monitor/logs/delete-log-data#how-the-delete-data-api-works">削除操作は元に戻すことはできません</a>。API を実行する際には細心の注意を払って実施してください。</p>
+</li>
 </ul>
 <br>
 <br>
 
 
-<h3 id="3-2-Delete-Data-API-の実行例"><a href="#3-2-Delete-Data-API-の実行例" class="headerlink" title="3-2. Delete Data API の実行例"></a>3-2. Delete Data API の実行例</h3><h4 id="3-2-1-Delete-Data-API-でログを削除する"><a href="#3-2-1-Delete-Data-API-でログを削除する" class="headerlink" title="3-2-1. Delete Data API でログを削除する"></a>3-2-1. Delete Data API でログを削除する</h4><p>Delete Data API で Heartbeat のログを削除した例を紹介します。<br>このワークスペースには TimeGenerated が 2025/04/13 03:55:52 UTC ～ 2025/04/13 04:16:52 UTC の Heartbeat が存在しますが、TimeGenerated が 2025/04/13 04:00:00 UTC より後のログを削除します。</p>
-<p>以下は Heartbeat テーブルを検索した実行結果の一部抜粋です。2025/04/13 04:00:00 UTC より後のログを削除するため、赤線で囲んだ部分のログが削除され、緑線で囲んだ部分のログは削除されずに残ります。<br>※ ログの TimeGenerated の値は UTC 時刻であることに注意してください。<br><img width="700" src="../LogAnalyticsWorkspacePurge/image18.png"></p>
-<p>それでは API の実行例を示します。<br>今回は TimeGenerated が 2025/04/13 04:00:00 UTC より後の Heartbeat を削除したいので、以下のように指定します。</p>
+<h3 id="3-2-Delete-Data-API-の実行例"><a href="#3-2-Delete-Data-API-の実行例" class="headerlink" title="3-2. Delete Data API の実行例"></a>3-2. Delete Data API の実行例</h3><h4 id="3-2-1-Delete-Data-API-でログを削除する"><a href="#3-2-1-Delete-Data-API-でログを削除する" class="headerlink" title="3-2-1. Delete Data API でログを削除する"></a>3-2-1. Delete Data API でログを削除する</h4><p>Delete Data API で Heartbeat のログを削除した例を紹介します。<br>このワークスペースには TimeGenerated が 2025&#x2F;04&#x2F;13 03:55:52 UTC ～ 2025&#x2F;04&#x2F;13 04:16:52 UTC の Heartbeat が存在しますが、TimeGenerated が 2025&#x2F;04&#x2F;13 04:00:00 UTC より後のログを削除します。</p>
+<p>以下は Heartbeat テーブルを検索した実行結果の一部抜粋です。2025&#x2F;04&#x2F;13 04:00:00 UTC より後のログを削除するため、赤線で囲んだ部分のログが削除され、緑線で囲んだ部分のログは削除されずに残ります。<br>※ ログの TimeGenerated の値は UTC 時刻であることに注意してください。<br><img width="700" src="../LogAnalyticsWorkspacePurge/image18.png"></p>
+<p>それでは API の実行例を示します。<br>今回は TimeGenerated が 2025&#x2F;04&#x2F;13 04:00:00 UTC より後の Heartbeat を削除したいので、以下のように指定します。</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">POST https://management.azure.com/subscriptions/&#123;subscriptionId&#125;/resourceGroups/&#123;resourceGroupName&#125;/providers/Microsoft.OperationalInsights/workspaces/&#123;workspaceName&#125;/tables/Heartbeat/deleteData?api-version=<span class="number">2023</span>-<span class="number">09</span>-<span class="number">01</span></span><br><span class="line"></span><br><span class="line"> &#123;</span><br><span class="line">   &quot;filters&quot;: [</span><br><span class="line">     &#123;</span><br><span class="line">       &quot;column&quot;: &quot;TimeGenerated&quot;,</span><br><span class="line">       &quot;operator&quot;: &quot;&gt;&quot;,</span><br><span class="line">       &quot;value&quot;: &quot;<span class="number">2025</span>-<span class="number">04</span>-<span class="number">13</span>T04:<span class="number">00</span>:<span class="number">00</span>&quot;</span><br><span class="line">     &#125;</span><br><span class="line">   ]</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -316,7 +319,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <br>
 
 
-<h4 id="3-2-3-Delete-Data-API-によってログが削除されたかどうかを確認する"><a href="#3-2-3-Delete-Data-API-によってログが削除されたかどうかを確認する" class="headerlink" title="3-2-3. Delete Data API によってログが削除されたかどうかを確認する"></a>3-2-3. Delete Data API によってログが削除されたかどうかを確認する</h4><p>ログが削除されているかどうかを確認します。下図は Delete Data API を実行する前に確認したクエリを改めて実行した結果です。<br>API を実行する前には TimeGenerated が 2025/04/13 03:55:52 UTC ～ 2025/04/13 04:16:52 UTC のレコードが存在していましたが、2025/04/13 04:00:00 UTC より後のログを削除したため、2025/04/13 04:00:52 UTC ～ 2025/04/13 04:16:52 UTC (17 件) が表示されないことが分かります。<br><img width="700" src="../LogAnalyticsWorkspacePurge/image21.png"></p>
+<h4 id="3-2-3-Delete-Data-API-によってログが削除されたかどうかを確認する"><a href="#3-2-3-Delete-Data-API-によってログが削除されたかどうかを確認する" class="headerlink" title="3-2-3. Delete Data API によってログが削除されたかどうかを確認する"></a>3-2-3. Delete Data API によってログが削除されたかどうかを確認する</h4><p>ログが削除されているかどうかを確認します。下図は Delete Data API を実行する前に確認したクエリを改めて実行した結果です。<br>API を実行する前には TimeGenerated が 2025&#x2F;04&#x2F;13 03:55:52 UTC ～ 2025&#x2F;04&#x2F;13 04:16:52 UTC のレコードが存在していましたが、2025&#x2F;04&#x2F;13 04:00:00 UTC より後のログを削除したため、2025&#x2F;04&#x2F;13 04:00:52 UTC ～ 2025&#x2F;04&#x2F;13 04:16:52 UTC (17 件) が表示されないことが分かります。<br><img width="700" src="../LogAnalyticsWorkspacePurge/image21.png"></p>
 <br>
 <br>
 
@@ -327,26 +330,30 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <br>
 
 
-<h3 id="4-1-Purge-API-の主な留意点"><a href="#4-1-Purge-API-の主な留意点" class="headerlink" title="4-1. Purge API の主な留意点"></a>4-1. Purge API の主な留意点</h3><p>Purge API を実行いただく上での主な留意点をご紹介します。API を実行する前に、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/personal-data-mgmt#purge">こちら</a>の公開情報もご一読いただきますようお願いいたします。</p>
+<h3 id="4-1-Purge-API-の主な留意点"><a href="#4-1-Purge-API-の主な留意点" class="headerlink" title="4-1. Purge API の主な留意点"></a>4-1. Purge API の主な留意点</h3><p>Purge API を実行いただく上での主な留意点をご紹介します。API を実行する前に、<a href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/personal-data-mgmt#purge">こちら</a>の公開情報もご一読いただきますようお願いいたします。</p>
 <ul>
-<li><p><strong>必要なロール</strong> :<br>Purge の REST API を実行するには Log Analytics ワークスペースに対して <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/personal-data-mgmt#permissions-required">Microsoft.OperationalInsights/workspaces/purge/action</a> の権限が必要です。Log Analytics の組み込みロールでは <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/monitor#data-purger">Data Purger (データ消去者)</a> が該当します。</p>
+<li><p><strong>必要なロール</strong> :<br>Purge の REST API を実行するには Log Analytics ワークスペースに対して <a href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/personal-data-mgmt#permissions-required">Microsoft.OperationalInsights&#x2F;workspaces&#x2F;purge&#x2F;action</a> の権限が必要です。Log Analytics の組み込みロールでは <a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/monitor#data-purger">Data Purger (データ消去者)</a> が該当します。</p>
 </li>
-<li><p><strong>利用可能な演算子</strong> :<br>カラム名とその値を指定して条件を指定します。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/purge?view=rest-loganalytics-2020-08-01&tabs=HTTP#workspacepurgebodyfilters">値を指定する際に利用できる演算子</a>は以下のとおりです。すべての演算子をサポートしておりませんので、API を実行する前にサポートしている演算子をご確認ください。</p>
-<img width="700" src="../LogAnalyticsWorkspacePurge/image03.png"></li>
-<li><p><strong>データがパージされるまでにかかる時間</strong> :<br>Purge API のリクエストは<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/personal-data-mgmt#exporting-and-deleting-personal-data">基本的に数分 ～ 数時間で反映されますが、最大 30 日かかる場合がございます</a>。<br>データがパージされたかどうかを確認する場合は、Log Analytics ワークスペース上でクエリを実行してください。</p>
+<li><p><strong>利用可能な演算子</strong> :<br>カラム名とその値を指定して条件を指定します。<a href="https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/purge?view=rest-loganalytics-2020-08-01&tabs=HTTP#workspacepurgebodyfilters">値を指定する際に利用できる演算子</a>は以下のとおりです。すべての演算子をサポートしておりませんので、API を実行する前にサポートしている演算子をご確認ください。</p>
 </li>
-<li><p><strong>パージ操作は元に戻すことはできない</strong> :<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/personal-data-mgmt#purge">パージの操作は元に戻すことはできません</a>。パージの操作を実行する際には細心の注意を払って実施してください。</p>
+</ul>
+<img width="700" src="../LogAnalyticsWorkspacePurge/image03.png">
+
+<ul>
+<li><p><strong>データがパージされるまでにかかる時間</strong> :<br>Purge API のリクエストは<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/personal-data-mgmt#exporting-and-deleting-personal-data">基本的に数分 ～ 数時間で反映されますが、最大 30 日かかる場合がございます</a>。<br>データがパージされたかどうかを確認する場合は、Log Analytics ワークスペース上でクエリを実行してください。</p>
+</li>
+<li><p><strong>パージ操作は元に戻すことはできない</strong> :<br><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/personal-data-mgmt#purge">パージの操作は元に戻すことはできません</a>。パージの操作を実行する際には細心の注意を払って実施してください。</p>
 </li>
 </ul>
 <br>
 <br>
 
 
-<h3 id="4-2-Purge-API-の実行例"><a href="#4-2-Purge-API-の実行例" class="headerlink" title="4-2. Purge API の実行例"></a>4-2. Purge API の実行例</h3><h4 id="4-2-1-Purge-API-でログをパージする"><a href="#4-2-1-Purge-API-でログをパージする" class="headerlink" title="4-2-1. Purge API でログをパージする"></a>4-2-1. Purge API でログをパージする</h4><p>Purge API で Heartbeat のログを削除した例を紹介します。<br>このワークスペースには TimeGenerated が 2023/12/26 07:45:55 UTC ～ 2023/12/26 12:12:45 UTC の Heartbeat が存在しますが、TimeGenerated が 2023/12/26 07:50:00 UTC より後のログを削除します。</p>
-<p>以下は Heartbeat テーブルを検索した実行結果の一部抜粋です。2023/12/26 07:50:00 UTC より後のログを削除するため、赤線で囲んだ部分のログが削除され、黄色でマーカーした部分のログは削除されずに残ります。<br>※ TimeGenerated の値は UTC 時刻であることに注意してください。<br><img width="550" src="../LogAnalyticsWorkspacePurge/image04.png"></p>
-<p>それでは API の実行手順をご紹介します。まず、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/purge?view=rest-loganalytics-2020-08-01&tabs=HTTP">こちら</a>のサイトにアクセスし、”Try It” を選択します。<br><img width="700" src="../LogAnalyticsWorkspacePurge/image05.png"></p>
+<h3 id="4-2-Purge-API-の実行例"><a href="#4-2-Purge-API-の実行例" class="headerlink" title="4-2. Purge API の実行例"></a>4-2. Purge API の実行例</h3><h4 id="4-2-1-Purge-API-でログをパージする"><a href="#4-2-1-Purge-API-でログをパージする" class="headerlink" title="4-2-1. Purge API でログをパージする"></a>4-2-1. Purge API でログをパージする</h4><p>Purge API で Heartbeat のログを削除した例を紹介します。<br>このワークスペースには TimeGenerated が 2023&#x2F;12&#x2F;26 07:45:55 UTC ～ 2023&#x2F;12&#x2F;26 12:12:45 UTC の Heartbeat が存在しますが、TimeGenerated が 2023&#x2F;12&#x2F;26 07:50:00 UTC より後のログを削除します。</p>
+<p>以下は Heartbeat テーブルを検索した実行結果の一部抜粋です。2023&#x2F;12&#x2F;26 07:50:00 UTC より後のログを削除するため、赤線で囲んだ部分のログが削除され、黄色でマーカーした部分のログは削除されずに残ります。<br>※ TimeGenerated の値は UTC 時刻であることに注意してください。<br><img width="550" src="../LogAnalyticsWorkspacePurge/image04.png"></p>
+<p>それでは API の実行手順をご紹介します。まず、<a href="https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/purge?view=rest-loganalytics-2020-08-01&tabs=HTTP">こちら</a>のサイトにアクセスし、”Try It” を選択します。<br><img width="700" src="../LogAnalyticsWorkspacePurge/image05.png"></p>
 <p>“Try It” をクリックすると、以下のような画面に遷移します。<br>Parameters (赤線で囲った部分) では、対象のワークスペースが存在するサブスクリプション、リソース グループ、ワークスペースの名前を指定します。Body (黄色線で囲った部分) では、削除するログのテーブル名と、カラム名とその値を指定します。<br><img src="/blog/LogAnalytics/LogAnalyticsWorkspacePurge/image06.png"></p>
-<p>今回は TimeGenerated が 2023/12/26 07:50:00 UTC より後の Heartbeat を削除したいので、Body 部分の table で Heartbeat、column で TimeGenerated を指定します。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/purge?view=rest-loganalytics-2020-08-01&tabs=HTTP">こちら</a>のサイトにもサンプル リクエストが掲載されておりますので、ご確認ください。</p>
+<p>今回は TimeGenerated が 2023&#x2F;12&#x2F;26 07:50:00 UTC より後の Heartbeat を削除したいので、Body 部分の table で Heartbeat、column で TimeGenerated を指定します。<a href="https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/purge?view=rest-loganalytics-2020-08-01&tabs=HTTP">こちら</a>のサイトにもサンプル リクエストが掲載されておりますので、ご確認ください。</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;table&quot;: &quot;Heartbeat&quot;,</span><br><span class="line">  &quot;filters&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;column&quot;: &quot;TimeGenerated&quot;,</span><br><span class="line">      &quot;operator&quot;: &quot;&gt;&quot;,</span><br><span class="line">      &quot;value&quot;: &quot;<span class="number">2023</span>-<span class="number">12</span>-<span class="number">26</span>T07:<span class="number">50</span>:<span class="number">00</span>&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <br>
@@ -357,10 +364,10 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <br>
 
 
-<h4 id="4-2-2-Get-Purge-Status-API-でパージの受付状態を確認する"><a href="#4-2-2-Get-Purge-Status-API-でパージの受付状態を確認する" class="headerlink" title="4-2-2. Get Purge Status API でパージの受付状態を確認する"></a>4-2-2. Get Purge Status API でパージの受付状態を確認する</h4><p>パージ操作の受付状態は <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/get-purge-status?view=rest-loganalytics-2020-08-01&tabs=HTTP">Get Purge Status</a> という REST API で確認することができます。<br>この API を実行するためには、purgeId が必要です。purgeId とは、Purge API を実行した際に表示された “operationId” の値が該当します。このため、パージ操作の受付状態を確認する場合は、必ず “operationId” をメモしていただきますようお願いいたします。<br><u>また、Get Purge Status API で completed が返された場合には、パージ操作が受付されたことを意味しますが、パージ操作が受付されてからデータが削除されるまでに最大 30 日かかる場合がありますので、ご了承ください。</u></p>
+<h4 id="4-2-2-Get-Purge-Status-API-でパージの受付状態を確認する"><a href="#4-2-2-Get-Purge-Status-API-でパージの受付状態を確認する" class="headerlink" title="4-2-2. Get Purge Status API でパージの受付状態を確認する"></a>4-2-2. Get Purge Status API でパージの受付状態を確認する</h4><p>パージ操作の受付状態は <a href="https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/get-purge-status?view=rest-loganalytics-2020-08-01&tabs=HTTP">Get Purge Status</a> という REST API で確認することができます。<br>この API を実行するためには、purgeId が必要です。purgeId とは、Purge API を実行した際に表示された “operationId” の値が該当します。このため、パージ操作の受付状態を確認する場合は、必ず “operationId” をメモしていただきますようお願いいたします。<br><u>また、Get Purge Status API で completed が返された場合には、パージ操作が受付されたことを意味しますが、パージ操作が受付されてからデータが削除されるまでに最大 30 日かかる場合がありますので、ご了承ください。</u></p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET https://management.azure.com/subscriptions/&#123;subscriptionId&#125;/resourceGroups/&#123;resourceGroupName&#125;/providers/Microsoft.OperationalInsights/workspaces/&#123;workspaceName&#125;/operations/&#123;purgeId&#125;?api-version=<span class="number">2020</span>-<span class="number">08</span>-<span class="number">01</span></span><br></pre></td></tr></table></figure>
 
-<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/get-purge-status?view=rest-loganalytics-2020-08-01&tabs=HTTP">こちら</a>のサイトにアクセスし、”Try It” を選択します。<br><img width="600" src="../LogAnalyticsWorkspacePurge/image16.png"></p>
+<p><a href="https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/get-purge-status?view=rest-loganalytics-2020-08-01&tabs=HTTP">こちら</a>のサイトにアクセスし、”Try It” を選択します。<br><img width="600" src="../LogAnalyticsWorkspacePurge/image16.png"></p>
 <p>Parameters では、Purge API を実行した際に表示された “operationId” と、対象のワークスペースが存在するサブスクリプション、リソース グループ、ワークスペースの名前を指定します。<br><img src="/blog/LogAnalytics/LogAnalyticsWorkspacePurge/image09.png"></p>
 <p>API を実行すると status が表示されます。パージ操作の受付が完了していない場合は pending が返されます。<br><img width="550" src="../LogAnalyticsWorkspacePurge/image10.png"></p>
 <p>パージ操作が受付された場合は completed が返されます。<br><img width="550" src="../LogAnalyticsWorkspacePurge/image13.png"></p>
@@ -369,7 +376,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 
 <h4 id="4-2-3-Purge-API-によってログがパージされたかどうかを確認する"><a href="#4-2-3-Purge-API-によってログがパージされたかどうかを確認する" class="headerlink" title="4-2-3. Purge API によってログがパージされたかどうかを確認する"></a>4-2-3. Purge API によってログがパージされたかどうかを確認する</h4><p>Purge API によってデータがパージされたかどうかを確認する場合は、Log Analytics ワークスペース上でクエリを実行いただく必要がございます。時間の範囲や列名等で条件句をご指定いただき、対象のログが削除されたかどうかをご確認ください。</p>
-<p>下図は Purge API を実行する前に確認したクエリを改めて実行した結果です。<br>API を実行する前には TimeGenerated が 2023/12/26 07:45:55 UTC ～ 2023/12/27 12:12:45 UTC のレコードが存在していましたが、<br>2023/12/26 07:50:00 UTC より後のログを削除したため、2023/12/26 07:50:55 UTC ～ 2023/12/26 12:12:45 UTC が表示されないことが分かります。<br><img src="/blog/LogAnalytics/LogAnalyticsWorkspacePurge/image15.png"></p>
+<p>下図は Purge API を実行する前に確認したクエリを改めて実行した結果です。<br>API を実行する前には TimeGenerated が 2023&#x2F;12&#x2F;26 07:45:55 UTC ～ 2023&#x2F;12&#x2F;27 12:12:45 UTC のレコードが存在していましたが、<br>2023&#x2F;12&#x2F;26 07:50:00 UTC より後のログを削除したため、2023&#x2F;12&#x2F;26 07:50:55 UTC ～ 2023&#x2F;12&#x2F;26 12:12:45 UTC が表示されないことが分かります。<br><img src="/blog/LogAnalytics/LogAnalyticsWorkspacePurge/image15.png"></p>
 <br>
 
 <p>上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。<br>最後までお読みいただきありがとうございました！</p>
@@ -397,19 +404,19 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
     
 <nav id="article-nav">
   
-    <a href="../LogAnalyticsworkspaceDataExport/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="../AMALinux_Perf/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">次の記事</strong>
       <div class="article-nav-title">
         
-          Log Analytics ワークスペースのデータ エクスポートに関するよくあるご質問
+          Azure Monitor Agent for Linux で取得可能なパフォーマンス カウンターの一覧
         
       </div>
     </a>
   
   
-    <a href="../../applicationInsights/wrongSlotNameAfterSwapping/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../LogAnalyticsworkspaceDataExport/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前の記事</strong>
-      <div class="article-nav-title">App Service でスロットをスワップした後に、cloud_RoleName にスワップ後の環境の値を記録するための対処方法</div>
+      <div class="article-nav-title">Log Analytics ワークスペースのデータ エクスポートに関するよくあるご質問</div>
     </a>
   
 </nav>

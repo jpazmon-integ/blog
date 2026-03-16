@@ -10,12 +10,12 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは、Azure Monitoring サポート チームの北村です。Linux マシンにおける Azure Monitor エージェントを利用した性能監視（CPU、メモリ、ディスク） の設定手順の一例をご紹介します。なお、本記事は 10&#x2F;2 に投稿した&lt;Windows 版&gt; Azure Monitor エージェントを利用した性能監視（CPU、メモリ、ディスク) の Linux 版">
+      <meta name="description" content="こんにちは、Azure Monitoring サポート チームの北村です。Linux マシンにおける Azure Monitor エージェントを利用した性能監視（CPU、メモリ、ディスク） の設定手順の一例をご紹介します。なお、本記事は 10&#x2F;2 に投稿した&lt;Windows 版&gt; Azure Monitor エージェントを利用した性能監視（CPU、メモリ、ディスク) の Li">
 <meta property="og:type" content="article">
 <meta property="og:title" content="&lt;Linux 版&gt; Azure Monitor エージェントを利用した性能監視（CPU、メモリ、ディスク)">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの北村です。Linux マシンにおける Azure Monitor エージェントを利用した性能監視（CPU、メモリ、ディスク） の設定手順の一例をご紹介します。なお、本記事は 10&#x2F;2 に投稿した&lt;Windows 版&gt; Azure Monitor エージェントを利用した性能監視（CPU、メモリ、ディスク) の Linux 版">
+<meta property="og:description" content="こんにちは、Azure Monitoring サポート チームの北村です。Linux マシンにおける Azure Monitor エージェントを利用した性能監視（CPU、メモリ、ディスク） の設定手順の一例をご紹介します。なお、本記事は 10&#x2F;2 に投稿した&lt;Windows 版&gt; Azure Monitor エージェントを利用した性能監視（CPU、メモリ、ディスク) の Li">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image01.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image02.png">
@@ -48,14 +48,14 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image19.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image20.png">
 <meta property="article:published_time" content="2024-10-30T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.258Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:29.898Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="Log Analytics">
-<meta property="article:tag" content="HowTo">
-<meta property="article:tag" content="Azure Monitor Essential">
 <meta property="article:tag" content="Alerts, Action Groups">
-<meta property="article:tag" content="Log search alert">
 <meta property="article:tag" content="Azure Monitor Agent - Linux">
+<meta property="article:tag" content="Azure Monitor Essential">
+<meta property="article:tag" content="HowTo">
+<meta property="article:tag" content="Log Analytics">
+<meta property="article:tag" content="Log search alert">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image01.png">
         
@@ -93,7 +93,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -110,7 +110,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -208,12 +208,12 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+0dee8ad7-208e-5392-a0a5-f1bad9d82e83%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%3CLinux+%E7%89%88%3E+Azure+Monitor+%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%81%9F%E6%80%A7%E8%83%BD%E7%9B%A3%E8%A6%96%EF%BC%88CPU%E3%80%81%E3%83%A1%E3%83%A2%E3%83%AA%E3%80%81%E3%83%87%E3%82%A3%E3%82%B9%E3%82%AF%29%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FHowToCreatePerfLogAlertForLinux%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FHowToCreatePerfLogAlertForLinux.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FHowToCreatePerfLogAlertForLinux.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/" data-id="cmm8g5fjq00fs0nnycfiwhzqq" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/" data-id="cuidIi3asc3Kee0En3GRUM8Wh" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>Linux マシンにおける Azure Monitor エージェントを利用した性能監視（CPU、メモリ、ディスク） の設定手順の一例をご紹介します。なお、本記事は 10/2 に投稿した<a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCreatePerfLogAlertForWin/">&lt;Windows 版&gt; Azure Monitor エージェントを利用した性能監視（CPU、メモリ、ディスク)</a> の Linux 版です。</p>
+        <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>Linux マシンにおける Azure Monitor エージェントを利用した性能監視（CPU、メモリ、ディスク） の設定手順の一例をご紹介します。なお、本記事は 10&#x2F;2 に投稿した<a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToCreatePerfLogAlertForWin/">&lt;Windows 版&gt; Azure Monitor エージェントを利用した性能監視（CPU、メモリ、ディスク)</a> の Linux 版です。</p>
 <br>
 
 
@@ -255,17 +255,15 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 
 <h2 id="1-はじめに"><a href="#1-はじめに" class="headerlink" title="1. はじめに"></a>1. はじめに</h2><h3 id="1-1-ログ-アラート-ルールとは"><a href="#1-1-ログ-アラート-ルールとは" class="headerlink" title="1-1. ログ アラート ルールとは"></a>1-1. ログ アラート ルールとは</h3><p>本ブログでは Red Hat Enterprise Linux 8.8 (LVM) の Azure VM に Azure Monitor エージェントを導入し、当該 VM からパフォーマンス カウンターの情報を収集して CPU 使用率やメモリ使用率、ディスク使用率を監視する「ログ アラート ルール」の設定手順を紹介します。</p>
-<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#log-alerts">ログ アラート ルール</a>とは、Log Analytics ワークスペースに収集したデータを評価し、条件が満たされたときにアラートを発報します。監視要件に応じてログ クエリを設定し、アラートの条件を定義することで、しきい値を満たしたときに<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">電子メールや SMS 等に通知する</a>ことができます。例えば、Azure VM からイベント ログを収集し、5 分単位でログの評価を行い、特定のイベント ログが出力されたときにアラートを発報する、といったことが可能です。</p>
-<div class="alert is-info"><p class="alert-title">Note</p><p>Azure Monitor エージェントではパフォーマンス カウンターを<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/tutorial-monitor-vm-guest#view-guest-metrics">メトリック</a>として収集することも可能です。そのため、ログ アラート ルールではなく、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/tutorial-metrics">メトリック アラート ルール</a>でも同様の内容を監視することができます。</p></div>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#log-alerts">ログ アラート ルール</a>とは、Log Analytics ワークスペースに収集したデータを評価し、条件が満たされたときにアラートを発報します。監視要件に応じてログ クエリを設定し、アラートの条件を定義することで、しきい値を満たしたときに<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">電子メールや SMS 等に通知する</a>ことができます。例えば、Azure VM からイベント ログを収集し、5 分単位でログの評価を行い、特定のイベント ログが出力されたときにアラートを発報する、といったことが可能です。</p>
+<div class="alert is-info"><p class="alert-title">Note</p><p>Azure Monitor エージェントではパフォーマンス カウンターを<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/tutorial-monitor-vm-guest#view-guest-metrics">メトリック</a>として収集することも可能です。そのため、ログ アラート ルールではなく、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/tutorial-metrics">メトリック アラート ルール</a>でも同様の内容を監視することができます。</p></div>
 <br>
 
 
 <h3 id="1-2-Azure-Monitor-エージェントを利用した-ログ-アラート-ルールの設定の流れ"><a href="#1-2-Azure-Monitor-エージェントを利用した-ログ-アラート-ルールの設定の流れ" class="headerlink" title="1-2. Azure Monitor エージェントを利用した ログ アラート ルールの設定の流れ"></a>1-2. Azure Monitor エージェントを利用した ログ アラート ルールの設定の流れ</h3><p>ログ アラート ルールを作成するための基本的な流れを説明します。<br>本ブログでは 2. および 3. の手順を紹介します。</p>
 <hr>
-<p><strong>1). Log Analytics ワークスペースの作成</strong><br><strong>2). データ収集ルールの作成と Azure Monitor エージェントのインストール</strong><br><strong>3). ログ アラート ルールの設定</strong></p>
-<hr>
-<p><strong>1). Log Analytics ワークスペースの作成</strong><br>パフォーマンス カウンターを収集する Log Analytics ワークスペースを作成してください (既存の Log Analytics ワークスペースをご利用いただくことでも構いません)。新規にワークスペースを作成する場合には <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal">弊社公開情報</a> をご参照ください。</p>
-<p><strong>2). データ収集ルールの作成と Azure Monitor エージェントのインストール</strong><br>パフォーマンス カウンターを収集するために <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-performance">“データ収集ルール”</a> を作成します。<br>Azure Monitor エージェントでは、データ収集ルールでデータ ソースやデータの宛先 (Azure Monitor Metrics や Log Analytics ワークスペース) を指定します。このデータ収集ルールにマシンを紐づけることで、データ収集ルールの内容に従ってログやメトリックが収集されます。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-manage?tabs=azure-portal#installation-options">Azure ポータルからデータ収集ルールをマシンに紐づけた場合は、対象マシンのシステム割り当てマネージド ID が有効化され、自動で Azure Monitor エージェントがインストールされます</a>。</p>
+<h2 id="1-Log-Analytics-ワークスペースの作成2-データ収集ルールの作成と-Azure-Monitor-エージェントのインストール3-ログ-アラート-ルールの設定"><a href="#1-Log-Analytics-ワークスペースの作成2-データ収集ルールの作成と-Azure-Monitor-エージェントのインストール3-ログ-アラート-ルールの設定" class="headerlink" title="1). Log Analytics ワークスペースの作成2). データ収集ルールの作成と Azure Monitor エージェントのインストール3). ログ アラート ルールの設定"></a><strong>1). Log Analytics ワークスペースの作成</strong><br><strong>2). データ収集ルールの作成と Azure Monitor エージェントのインストール</strong><br><strong>3). ログ アラート ルールの設定</strong></h2><p><strong>1). Log Analytics ワークスペースの作成</strong><br>パフォーマンス カウンターを収集する Log Analytics ワークスペースを作成してください (既存の Log Analytics ワークスペースをご利用いただくことでも構いません)。新規にワークスペースを作成する場合には <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/quick-create-workspace?tabs=azure-portal">弊社公開情報</a> をご参照ください。</p>
+<p><strong>2). データ収集ルールの作成と Azure Monitor エージェントのインストール</strong><br>パフォーマンス カウンターを収集するために <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-performance">“データ収集ルール”</a> を作成します。<br>Azure Monitor エージェントでは、データ収集ルールでデータ ソースやデータの宛先 (Azure Monitor Metrics や Log Analytics ワークスペース) を指定します。このデータ収集ルールにマシンを紐づけることで、データ収集ルールの内容に従ってログやメトリックが収集されます。<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-manage?tabs=azure-portal#installation-options">Azure ポータルからデータ収集ルールをマシンに紐づけた場合は、対象マシンのシステム割り当てマネージド ID が有効化され、自動で Azure Monitor エージェントがインストールされます</a>。</p>
 <p><strong>3). ログ アラート ルールの設定</strong><br>Azure Monitor エージェントによってパフォーマンス カウンターが収集されていることを確認し、監視要件に応じたクエリを作成、しきい値やアラートの通知方法等を設定します。</p>
 <div class="alert is-warning"><p class="alert-title">警告</p><p>データ収集ルールは、ログ収集先の Log Analytics ワークスペースと同じリージョンに作成する必要があります。例えば、東日本リージョンの Log Analytics ワークスペースにログを収集したい場合は、データ収集ルールのリージョンも東日本リージョンを指定する必要があります。</p></div>
 <br>
@@ -292,14 +290,14 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <td>5 分毎にアラートを評価し、直近 10 分間のディスク使用率 (特定のファイル システム) の平均が 80 ％ を超えた場合に発報する</td>
 </tr>
 </tbody></table>
-<p>Azure Monitor エージェントを導入するマシンは <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-supported-operating-systems#linux-operating-systems">Azure VM (Red Hat Enterprise Linux 8.8 (LVM)</a> であり、インターネットに接続可能な構成で、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-requirements">Azure Monitor エージェントの前提条件</a>と<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-network-configuration?tabs=PowerShellWindows">通信要件</a>を満たしているものとします。また、監視対象のマシンは 1 台、各パフォーマンスカウンターは同一の Log Analytics ワークスペースに収集します。Azure Monitor エージェントを導入いただく際には、必ず前提要件や通信要件を満たしていることをご確認ください。</p>
-<div class="alert is-warning"><p class="alert-title">警告</p><p>今回ご紹介するデータ収集ルールの設定は <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-security">Azure Monitor Private Link Scope (AMPLS)</a> の利用を想定しておりません。AMPLS を用いて閉域網でログを収集する場合、別途<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-collection-endpoint-overview?tabs=portal">データ収集エンドポイント (DCE)</a> の構築と設定が必要です。データ収集エンドポイントの詳細につきましては、<a href="https://jpazmon-integ.github.io/blog/LogAnalytics/DataCollectionEndpoint/">弊社サポート ブログ</a>で紹介しております。AMPLS をご利用されている場合は、<a href="https://jpazmon-integ.github.io/blog/LogAnalytics/DataCollectionEndpoint/">ブログ</a> や<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-configure">公開情報</a>もご確認くださいませ。</p></div>
+<p>Azure Monitor エージェントを導入するマシンは <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-supported-operating-systems#linux-operating-systems">Azure VM (Red Hat Enterprise Linux 8.8 (LVM)</a> であり、インターネットに接続可能な構成で、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-requirements">Azure Monitor エージェントの前提条件</a>と<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-network-configuration?tabs=PowerShellWindows">通信要件</a>を満たしているものとします。また、監視対象のマシンは 1 台、各パフォーマンスカウンターは同一の Log Analytics ワークスペースに収集します。Azure Monitor エージェントを導入いただく際には、必ず前提要件や通信要件を満たしていることをご確認ください。</p>
+<div class="alert is-warning"><p class="alert-title">警告</p><p>今回ご紹介するデータ収集ルールの設定は <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-security">Azure Monitor Private Link Scope (AMPLS)</a> の利用を想定しておりません。AMPLS を用いて閉域網でログを収集する場合、別途<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-collection-endpoint-overview?tabs=portal">データ収集エンドポイント (DCE)</a> の構築と設定が必要です。データ収集エンドポイントの詳細につきましては、<a href="https://jpazmon-integ.github.io/blog/LogAnalytics/DataCollectionEndpoint/">弊社サポート ブログ</a>で紹介しております。AMPLS をご利用されている場合は、<a href="https://jpazmon-integ.github.io/blog/LogAnalytics/DataCollectionEndpoint/">ブログ</a> や<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-configure">公開情報</a>もご確認くださいませ。</p></div>
 <br>
 
 
 
 
-<h2 id="2-性能監視（CPU、メモリ、ディスク）-に関するパフォーマンス-カウンター"><a href="#2-性能監視（CPU、メモリ、ディスク）-に関するパフォーマンス-カウンター" class="headerlink" title="2. 性能監視（CPU、メモリ、ディスク） に関するパフォーマンス カウンター"></a>2. 性能監視（CPU、メモリ、ディスク） に関するパフォーマンス カウンター</h2><p>Linux では 以下のパフォーマンス カウンターを収集いただくことで、性能（CPU、メモリ、ディスク) を監視できます。<br>Azure Monitor エージェント for Linux では、<a href="https://jpazmon-integ.github.io/blog/LogAnalytics/AMALinux_Perf/">こちら</a>のブログに掲載しているパフォーマンス カウンターであれば収集可能であり、Windows マシンと同様、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/tables/perf">Perf テーブル</a> に格納されます。</p>
+<h2 id="2-性能監視（CPU、メモリ、ディスク）-に関するパフォーマンス-カウンター"><a href="#2-性能監視（CPU、メモリ、ディスク）-に関するパフォーマンス-カウンター" class="headerlink" title="2. 性能監視（CPU、メモリ、ディスク） に関するパフォーマンス カウンター"></a>2. 性能監視（CPU、メモリ、ディスク） に関するパフォーマンス カウンター</h2><p>Linux では 以下のパフォーマンス カウンターを収集いただくことで、性能（CPU、メモリ、ディスク) を監視できます。<br>Azure Monitor エージェント for Linux では、<a href="https://jpazmon-integ.github.io/blog/LogAnalytics/AMALinux_Perf/">こちら</a>のブログに掲載しているパフォーマンス カウンターであれば収集可能であり、Windows マシンと同様、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/tables/perf">Perf テーブル</a> に格納されます。</p>
 <table>
 <thead>
 <tr>
@@ -311,17 +309,17 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <tbody><tr>
 <td>CPU</td>
 <td>Processor(_Total)\% Processor Time</td>
-<td>Perf &#124; where ObjectName == &#39;Processor&#39; and CounterName == &#39;% Processor Time&#39; and InstanceName == &#39;total&#39;</td>
+<td>Perf &#124; where ObjectName &#x3D;&#x3D; &#39;Processor&#39; and CounterName &#x3D;&#x3D; &#39;% Processor Time&#39; and InstanceName &#x3D;&#x3D; &#39;total&#39;</td>
 </tr>
 <tr>
 <td>メモリ</td>
 <td>Memory(*)\% Used Memory</td>
-<td>Perf &#124; where ObjectName == &#39;Memory&#39; and CounterName == &#39;% Used Memory&#39;</td>
+<td>Perf &#124; where ObjectName &#x3D;&#x3D; &#39;Memory&#39; and CounterName &#x3D;&#x3D; &#39;% Used Memory&#39;</td>
 </tr>
 <tr>
 <td>ディスク</td>
 <td>Logical Disk(*)\% Used Space</td>
-<td>Perf &#124; where ObjectName == &#39;Logical Disk&#39; and CounterName == &#39;% Used Space&#39;</td>
+<td>Perf &#124; where ObjectName &#x3D;&#x3D; &#39;Logical Disk&#39; and CounterName &#x3D;&#x3D; &#39;% Used Space&#39;</td>
 </tr>
 </tbody></table>
 <br>
@@ -358,15 +356,20 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <br>
 
 
-<h3 id="3-2-パフォーマンス-カウンターのデータ収集ルール設定手順"><a href="#3-2-パフォーマンス-カウンターのデータ収集ルール設定手順" class="headerlink" title="3-2. パフォーマンス カウンターのデータ収集ルール設定手順"></a>3-2. パフォーマンス カウンターのデータ収集ルール設定手順</h3><p>前置きが長くなりましたが、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-performance">パフォーマンス カウンターを収集するためにデータ収集ルールを作成</a>しましょう！</p>
+<h3 id="3-2-パフォーマンス-カウンターのデータ収集ルール設定手順"><a href="#3-2-パフォーマンス-カウンターのデータ収集ルール設定手順" class="headerlink" title="3-2. パフォーマンス カウンターのデータ収集ルール設定手順"></a>3-2. パフォーマンス カウンターのデータ収集ルール設定手順</h3><p>前置きが長くなりましたが、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-performance">パフォーマンス カウンターを収集するためにデータ収集ルールを作成</a>しましょう！</p>
 <hr>
 <p><strong>以下手順を実施する前に、監視対象マシンが起動中であることを確認してください。</strong><br>Azure ポータルからデータ収集ルールをマシンに紐づけた際、そのマシンが起動している場合は自動で Azure Monitor エージェントがインストールされますが、<strong>マシンが起動していない場合はエージェントがインストールされません。</strong></p>
 <ol>
-<li>Azure ポータルで [モニター] を検索し、[設定] &gt; [データ収集ルール] を開き、 [+ 作成] をクリックします。<img width="400" src="../HowToCreatePerfLogAlertForLinux/image06.png"></li>
+<li>Azure ポータルで [モニター] を検索し、[設定] &gt; [データ収集ルール] を開き、 [+ 作成] をクリックします。</li>
 </ol>
+<img width="400" src="../HowToCreatePerfLogAlertForLinux/image06.png">
+
+
 <ol start="2">
-<li><strong>基本画面</strong>では、データ収集ルールの名前やリージョン、プラットフォームの種類を選択します。設定例は下図のとおりです。<br>データ収集ルールは、ログ収集先の Log Analytics ワークスペースと同じリージョンに作成する必要がありますのでご注意ください。<img width="600" src="../HowToCreatePerfLogAlertForLinux/image07.png"></li>
+<li><strong>基本画面</strong>では、データ収集ルールの名前やリージョン、プラットフォームの種類を選択します。設定例は下図のとおりです。<br>データ収集ルールは、ログ収集先の Log Analytics ワークスペースと同じリージョンに作成する必要がありますのでご注意ください。</li>
 </ol>
+<img width="600" src="../HowToCreatePerfLogAlertForLinux/image07.png">
+
 <div class="alert is-important"><p class="alert-title">重要</p><p><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/DataCollectionEndpoint/#%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90-%E5%9F%BA%E6%9C%AC-%E3%82%BF%E3%83%96">基本タブで設定するデータ収集エンドポイント (エンドポイント ID) </a>は Log Analytics ワークスペースにログを取り込む際に使用するエンドポイントで、カスタム ログや IIS ログを収集するときに必要になります。このため、パフォーマンス カウンターを収集する場合は指定する必要はございません。</p></div>
 <br>
 
@@ -385,8 +388,10 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <br>
 
 <ol start="5">
-<li>タグ画面では必要に応じてタグをご指定ください。<br>確認と作成画面で設定した内容を確認の上、[作成] ボタンを押します。データ収集ルールの作成手順は以上です。<img width="500" src="../HowToCreatePerfLogAlertForLinux/image11.png"></li>
+<li>タグ画面では必要に応じてタグをご指定ください。<br>確認と作成画面で設定した内容を確認の上、[作成] ボタンを押します。データ収集ルールの作成手順は以上です。</li>
 </ol>
+<img width="500" src="../HowToCreatePerfLogAlertForLinux/image11.png">
+
 <br>
 
 <ol start="6">
@@ -398,7 +403,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 
 
-<h2 id="4-ログ-アラート-ルールの主な設定項目"><a href="#4-ログ-アラート-ルールの主な設定項目" class="headerlink" title="4. ログ アラート ルールの主な設定項目"></a>4. ログ アラート ルールの主な設定項目</h2><p>ログ アラート ルールを作成する前に、今回作成するログ アラート ルールに関連する項目を簡単にご説明します。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule">弊社公開情報</a> と共に、必要に応じてご確認ください。</p>
+<h2 id="4-ログ-アラート-ルールの主な設定項目"><a href="#4-ログ-アラート-ルールの主な設定項目" class="headerlink" title="4. ログ アラート ルールの主な設定項目"></a>4. ログ アラート ルールの主な設定項目</h2><p>ログ アラート ルールを作成する前に、今回作成するログ アラート ルールに関連する項目を簡単にご説明します。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule">弊社公開情報</a> と共に、必要に応じてご確認ください。</p>
 <details><summary><b>測定</b></summary>
 ログ検索を行う検索期間、実行結果の集計方法を指定します。
 例えば、[集計の粒度] を 10 分、[集計の種類] を [平均] とした場合、10 分間の期間にあるデータを平均化し、その値をアラート検知に利用します。
@@ -502,7 +507,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 
 
-<h3 id="5-1-CPU-使用率のログ-アラート-ルールの設定例"><a href="#5-1-CPU-使用率のログ-アラート-ルールの設定例" class="headerlink" title="5-1. CPU 使用率のログ アラート ルールの設定例"></a>5-1. CPU 使用率のログ アラート ルールの設定例</h3><p>パフォーマンス カウンターの値は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/perf">Perf テーブル</a>の CounterValue 列に格納されるため、[メジャー] で CounterValue を指定します。<br>今回は 5 分毎に直近 10 分間の CPU 使用率の平均値を監視するため、[評価の頻度] は 5 分、[集計の種類] は「平均」、[集計の粒度] は 10 分を指定します。</p>
+<h3 id="5-1-CPU-使用率のログ-アラート-ルールの設定例"><a href="#5-1-CPU-使用率のログ-アラート-ルールの設定例" class="headerlink" title="5-1. CPU 使用率のログ アラート ルールの設定例"></a>5-1. CPU 使用率のログ アラート ルールの設定例</h3><p>パフォーマンス カウンターの値は、<a href="https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/perf">Perf テーブル</a>の CounterValue 列に格納されるため、[メジャー] で CounterValue を指定します。<br>今回は 5 分毎に直近 10 分間の CPU 使用率の平均値を監視するため、[評価の頻度] は 5 分、[集計の種類] は「平均」、[集計の粒度] は 10 分を指定します。</p>
 <table>
 <thead>
 <tr>
@@ -516,7 +521,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </tr>
 <tr>
 <td>検索クエリ</td>
-<td>Perf &#124; where ObjectName == &#39;Processor&#39; and CounterName == &#39;% Processor Time&#39; and InstanceName == &#39;total&#39;</td>
+<td>Perf &#124; where ObjectName &#x3D;&#x3D; &#39;Processor&#39; and CounterName &#x3D;&#x3D; &#39;% Processor Time&#39; and InstanceName &#x3D;&#x3D; &#39;total&#39;</td>
 </tr>
 <tr>
 <td>測定 - メジャー</td>
@@ -547,19 +552,19 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <td>5 分</td>
 </tr>
 </tbody></table>
-<div class="alert is-info"><p class="alert-title">Note</p><p>同一の Log Analytics ワークスペースに複数のマシンのログを収集している場合、[ディメンションで分割する] の項目で “リソース ID 列” もしくは “Computer” を指定することで、1 つのログ アラート ルールで複数のマシンを同じ条件で監視することが可能です。ログ アラート ルールのディメンション分割につきましては、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#log-alerts">弊社公開情報</a> もご確認ください。</p></div>
+<div class="alert is-info"><p class="alert-title">Note</p><p>同一の Log Analytics ワークスペースに複数のマシンのログを収集している場合、[ディメンションで分割する] の項目で “リソース ID 列” もしくは “Computer” を指定することで、1 つのログ アラート ルールで複数のマシンを同じ条件で監視することが可能です。ログ アラート ルールのディメンション分割につきましては、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#log-alerts">弊社公開情報</a> もご確認ください。</p></div>
 <br>
 
 
 
 <h3 id="5-2-CPU-使用率のログ-アラート-ルールの設定手順"><a href="#5-2-CPU-使用率のログ-アラート-ルールの設定手順" class="headerlink" title="5-2. CPU 使用率のログ アラート ルールの設定手順"></a>5-2. CPU 使用率のログ アラート ルールの設定手順</h3><hr>
 <p><strong>1. ログ収集先の Log Analytics ワークスペースを開きます。</strong><br>データ収集ルールで指定したログ収集先の Log Analytics ワークスペースを開きます。</p>
-<p><strong>2. CPU 使用率を確認するクエリを実行します。</strong><br>[ログ] から Perf &#124; where ObjectName == &#39;Processor&#39; and CounterName == &#39;% Processor Time&#39; and InstanceName == &#39;total&#39; を入力します。[実行] をクリックし、[+ 新しいアラート ルール] をクリックします。<br>※ ログの収集が開始されるまでに時間がかかる場合がございます。予めご留意ください。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image16.png"></p>
+<p><strong>2. CPU 使用率を確認するクエリを実行します。</strong><br>[ログ] から Perf &#124; where ObjectName &#x3D;&#x3D; &#39;Processor&#39; and CounterName &#x3D;&#x3D; &#39;% Processor Time&#39; and InstanceName &#x3D;&#x3D; &#39;total&#39; を入力します。[実行] をクリックし、[+ 新しいアラート ルール] をクリックします。<br>※ ログの収集が開始されるまでに時間がかかる場合がございます。予めご留意ください。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image16.png"></p>
 <p><strong>3. ログ アラート ルールの条件を指定します。</strong><br>5-1. のとおり値を指定します。<br><img width="650" src="../HowToCreatePerfLogAlertForLinux/image17.png"></p>
-<p><strong>4. アラートが発報した際に通知する方法を指定します。</strong><br>Azure Monitor のアラート機能では、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">アクション グループ</a> というリソースでアラートを通知する方法を定義します。新規で作成する場合は [+ アクション グループの作成]、既存のグループを指定する場合は [+ アクション グループの選択] をクリックします。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image18.png"></p>
-<p>例えば、アラートをメールで通知する場合には、[通知のタイプ] で “電子メール/SMS メッセージ/プッシュ/音声” を選択し、通知するメール アドレスを指定します。アクション グループの概要や設定手順の詳細は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups#create-an-action-group-in-the-azure-portal">弊社公開情報</a>をご覧ください。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image19.png"></p>
-<p><strong>5. アラート ルールの名前、アラートの重大度等を設定します。</strong><br>[アラート ルールの詳細] では、重大度、アラート ルール名、アラート ルールの説明を設定します。<br>[詳細設定オプション] は既定の状態 (作成時に有効化のみチェックが入っている状態) とします。また、今回は Log Analytics ワークスペースのログを対象にクエリを実行するため、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details">Identity</a> でマネージド ID を有効化する必要はございません。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image20.png"></p>
-<div class="alert is-info"><p class="alert-title">Note</p><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details">詳細設定オプション</a>の [アラートを自動的に解決する] と [アクションのミュート] につきましては、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts">弊社公開情報</a>や<a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction">弊社サポート ブログ</a> をご確認ください。</p></div>
+<p><strong>4. アラートが発報した際に通知する方法を指定します。</strong><br>Azure Monitor のアラート機能では、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">アクション グループ</a> というリソースでアラートを通知する方法を定義します。新規で作成する場合は [+ アクション グループの作成]、既存のグループを指定する場合は [+ アクション グループの選択] をクリックします。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image18.png"></p>
+<p>例えば、アラートをメールで通知する場合には、[通知のタイプ] で “電子メール&#x2F;SMS メッセージ&#x2F;プッシュ&#x2F;音声” を選択し、通知するメール アドレスを指定します。アクション グループの概要や設定手順の詳細は、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups#create-an-action-group-in-the-azure-portal">弊社公開情報</a>をご覧ください。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image19.png"></p>
+<p><strong>5. アラート ルールの名前、アラートの重大度等を設定します。</strong><br>[アラート ルールの詳細] では、重大度、アラート ルール名、アラート ルールの説明を設定します。<br>[詳細設定オプション] は既定の状態 (作成時に有効化のみチェックが入っている状態) とします。また、今回は Log Analytics ワークスペースのログを対象にクエリを実行するため、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details">Identity</a> でマネージド ID を有効化する必要はございません。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image20.png"></p>
+<div class="alert is-info"><p class="alert-title">Note</p><p><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details">詳細設定オプション</a>の [アラートを自動的に解決する] と [アクションのミュート] につきましては、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts">弊社公開情報</a>や<a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction">弊社サポート ブログ</a> をご確認ください。</p></div>
 <ol start="6">
 <li>最後に設定した内容を確認し、[作成] をクリックします。手順は以上です。</li>
 </ol>
@@ -601,7 +606,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </tr>
 <tr>
 <td>検索クエリ</td>
-<td>Perf &#124; where ObjectName == &#39;Memory&#39; and CounterName == &#39;% Used Memory&#39;</td>
+<td>Perf &#124; where ObjectName &#x3D;&#x3D; &#39;Memory&#39; and CounterName &#x3D;&#x3D; &#39;% Used Memory&#39;</td>
 </tr>
 <tr>
 <td>測定 - メジャー</td>
@@ -632,19 +637,19 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <td>5 分</td>
 </tr>
 </tbody></table>
-<div class="alert is-info"><p class="alert-title">Note</p><p>同一の Log Analytics ワークスペースに複数のマシンのログを収集している場合、[ディメンションで分割する] の項目で “リソース ID 列” もしくは “Computer” を指定することで、1 つのログ アラート ルールで複数のマシンを同じ条件で監視することが可能です。ログ アラート ルールのディメンション分割につきましては、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#log-alerts">弊社公開情報</a> もご確認ください。</p></div>
+<div class="alert is-info"><p class="alert-title">Note</p><p>同一の Log Analytics ワークスペースに複数のマシンのログを収集している場合、[ディメンションで分割する] の項目で “リソース ID 列” もしくは “Computer” を指定することで、1 つのログ アラート ルールで複数のマシンを同じ条件で監視することが可能です。ログ アラート ルールのディメンション分割につきましては、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#log-alerts">弊社公開情報</a> もご確認ください。</p></div>
 <br>
 
 
 
 <h3 id="6-2-メモリ使用率のログ-アラート-ルールの設定手順"><a href="#6-2-メモリ使用率のログ-アラート-ルールの設定手順" class="headerlink" title="6-2. メモリ使用率のログ アラート ルールの設定手順"></a>6-2. メモリ使用率のログ アラート ルールの設定手順</h3><hr>
 <p><strong>1. ログ収集先の Log Analytics ワークスペースを開きます。</strong><br>データ収集ルールで指定したログ収集先の Log Analytics ワークスペースを開きます。</p>
-<p><strong>2. メモリ使用率を確認するクエリを実行します。</strong><br>[ログ] から Perf &#124; where ObjectName == &#39;Memory&#39; and CounterName == &#39;% Used Memory&#39; を入力します。<br>[実行] をクリックし、[+ 新しいアラート ルール] をクリックします。<br>※ ログの収集が開始されるまでに時間がかかる場合がございます。予めご留意ください。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image21.png"></p>
+<p><strong>2. メモリ使用率を確認するクエリを実行します。</strong><br>[ログ] から Perf &#124; where ObjectName &#x3D;&#x3D; &#39;Memory&#39; and CounterName &#x3D;&#x3D; &#39;% Used Memory&#39; を入力します。<br>[実行] をクリックし、[+ 新しいアラート ルール] をクリックします。<br>※ ログの収集が開始されるまでに時間がかかる場合がございます。予めご留意ください。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image21.png"></p>
 <p><strong>3. ログ アラート ルールの条件を指定します。</strong><br>6-1. のとおり値を指定します。<br><img width="650" src="../HowToCreatePerfLogAlertForLinux/image22.png"></p>
-<p><strong>4. アラートが発報した際に通知する方法を指定します。</strong><br>Azure Monitor のアラート機能では、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">アクション グループ</a> というリソースでアラートを通知する方法を定義します。新規で作成する場合は [+ アクション グループの作成]、既存のグループを指定する場合は [+ アクション グループの選択] をクリックします。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image18.png"></p>
-<p>例えば、アラートをメールで通知する場合には、[通知のタイプ] で “電子メール/SMS メッセージ/プッシュ/音声” を選択し、通知するメール アドレスを指定します。アクション グループの概要や設定手順の詳細は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups#create-an-action-group-in-the-azure-portal">弊社公開情報</a>をご覧ください。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image19.png"></p>
-<p><strong>5. アラート ルールの名前、アラートの重大度等を設定します。</strong><br>[アラート ルールの詳細] では、重大度、アラート ルール名、アラート ルールの説明を設定します。<br>[詳細設定オプション] は既定の状態 (作成時に有効化のみチェックが入っている状態) とします。また、今回は Log Analytics ワークスペースのログを対象にクエリを実行するため、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details">Identity</a> でマネージド ID を有効化する必要はございません。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image20.png"></p>
-<div class="alert is-info"><p class="alert-title">Note</p><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details">詳細設定オプション</a>の [アラートを自動的に解決する] と [アクションのミュート] につきましては、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts">弊社公開情報</a>や<a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction">弊社サポート ブログ</a> をご確認ください。</p></div>
+<p><strong>4. アラートが発報した際に通知する方法を指定します。</strong><br>Azure Monitor のアラート機能では、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">アクション グループ</a> というリソースでアラートを通知する方法を定義します。新規で作成する場合は [+ アクション グループの作成]、既存のグループを指定する場合は [+ アクション グループの選択] をクリックします。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image18.png"></p>
+<p>例えば、アラートをメールで通知する場合には、[通知のタイプ] で “電子メール&#x2F;SMS メッセージ&#x2F;プッシュ&#x2F;音声” を選択し、通知するメール アドレスを指定します。アクション グループの概要や設定手順の詳細は、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups#create-an-action-group-in-the-azure-portal">弊社公開情報</a>をご覧ください。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image19.png"></p>
+<p><strong>5. アラート ルールの名前、アラートの重大度等を設定します。</strong><br>[アラート ルールの詳細] では、重大度、アラート ルール名、アラート ルールの説明を設定します。<br>[詳細設定オプション] は既定の状態 (作成時に有効化のみチェックが入っている状態) とします。また、今回は Log Analytics ワークスペースのログを対象にクエリを実行するため、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details">Identity</a> でマネージド ID を有効化する必要はございません。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image20.png"></p>
+<div class="alert is-info"><p class="alert-title">Note</p><p><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details">詳細設定オプション</a>の [アラートを自動的に解決する] と [アクションのミュート] につきましては、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts">弊社公開情報</a>や<a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction">弊社サポート ブログ</a> をご確認ください。</p></div>
 <ol start="6">
 <li>最後に設定した内容を確認し、[作成] をクリックします。手順は以上です。</li>
 </ol>
@@ -672,7 +677,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 
 
-<h3 id="7-1-ディスク空き容量率のログ-アラート-ルールの設定例"><a href="#7-1-ディスク空き容量率のログ-アラート-ルールの設定例" class="headerlink" title="7-1. ディスク空き容量率のログ アラート ルールの設定例"></a>7-1. ディスク空き容量率のログ アラート ルールの設定例</h3><p>データ収集ルールでは Logical Disk(*)\% Used Space を設定しているため、各ファイル システムの使用率と各ファイル システム合計での使用率が収集されます。そのため、特定のファイル システムを監視する場合にはディメンションで InstanceName を選択し、値を指定します。今回は InstanceName が /var の使用率を監視するアラート ルールを作成します。</p>
+<h3 id="7-1-ディスク空き容量率のログ-アラート-ルールの設定例"><a href="#7-1-ディスク空き容量率のログ-アラート-ルールの設定例" class="headerlink" title="7-1. ディスク空き容量率のログ アラート ルールの設定例"></a>7-1. ディスク空き容量率のログ アラート ルールの設定例</h3><p>データ収集ルールでは Logical Disk(*)\% Used Space を設定しているため、各ファイル システムの使用率と各ファイル システム合計での使用率が収集されます。そのため、特定のファイル システムを監視する場合にはディメンションで InstanceName を選択し、値を指定します。今回は InstanceName が &#x2F;var の使用率を監視するアラート ルールを作成します。</p>
 <table>
 <thead>
 <tr>
@@ -686,7 +691,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </tr>
 <tr>
 <td>検索クエリ</td>
-<td>Perf &#124; where ObjectName == &#39;Logical Disk&#39; and CounterName == &#39;% Used Space&#39;</td>
+<td>Perf &#124; where ObjectName &#x3D;&#x3D; &#39;Logical Disk&#39; and CounterName &#x3D;&#x3D; &#39;% Used Space&#39;</td>
 </tr>
 <tr>
 <td>測定 - メジャー</td>
@@ -702,7 +707,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </tr>
 <tr>
 <td>ディメンションで分割する</td>
-<td>リソース ID 列 : 分割しない <br> ディメンション名 : InstanceName <br> ディメンション値 : /var</td>
+<td>リソース ID 列 : 分割しない <br> ディメンション名 : InstanceName <br> ディメンション値 : &#x2F;var</td>
 </tr>
 <tr>
 <td>アラート ロジック - 演算子</td>
@@ -717,19 +722,19 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <td>5 分</td>
 </tr>
 </tbody></table>
-<div class="alert is-info"><p class="alert-title">Note</p><p>同一の Log Analytics ワークスペースに複数のマシンのログを収集している場合、[ディメンションで分割する] の項目で “リソース ID 列” もしくは “Computer” を指定することで、1 つのログ アラート ルールで複数のマシンを同じ条件で監視することが可能です。ログ アラート ルールのディメンション分割につきましては、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#log-alerts">弊社公開情報</a> もご確認ください。</p></div>
+<div class="alert is-info"><p class="alert-title">Note</p><p>同一の Log Analytics ワークスペースに複数のマシンのログを収集している場合、[ディメンションで分割する] の項目で “リソース ID 列” もしくは “Computer” を指定することで、1 つのログ アラート ルールで複数のマシンを同じ条件で監視することが可能です。ログ アラート ルールのディメンション分割につきましては、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#log-alerts">弊社公開情報</a> もご確認ください。</p></div>
 <br>
 
 
 
 <h3 id="7-2-ディスク空き容量率のログ-アラート-ルールの設定手順"><a href="#7-2-ディスク空き容量率のログ-アラート-ルールの設定手順" class="headerlink" title="7-2. ディスク空き容量率のログ アラート ルールの設定手順"></a>7-2. ディスク空き容量率のログ アラート ルールの設定手順</h3><hr>
 <p><strong>1. ログ収集先の Log Analytics ワークスペースを開きます。</strong><br>データ収集ルールで指定したログ収集先の Log Analytics ワークスペースを開きます。</p>
-<p><strong>2. ディスク空き容量率を確認するクエリを実行します。</strong><br>[ログ] から Perf &#124; where ObjectName == &#39;Logical Disk&#39; and CounterName == &#39;% Free Space&#39;を入力します。<br>[実行] をクリックし、[+ 新しいアラート ルール] をクリックします。<br>※ ログの収集が開始されるまでに時間がかかる場合がございます。予めご留意ください。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image23.png"></p>
+<p><strong>2. ディスク空き容量率を確認するクエリを実行します。</strong><br>[ログ] から Perf &#124; where ObjectName &#x3D;&#x3D; &#39;Logical Disk&#39; and CounterName &#x3D;&#x3D; &#39;% Free Space&#39;を入力します。<br>[実行] をクリックし、[+ 新しいアラート ルール] をクリックします。<br>※ ログの収集が開始されるまでに時間がかかる場合がございます。予めご留意ください。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image23.png"></p>
 <p><strong>3. ログ アラート ルールの条件を指定します。</strong><br>7-1. のとおり値を指定します。<br><img width="750" src="../HowToCreatePerfLogAlertForLinux/image24.png"></p>
-<p><strong>4. アラートが発報した際に通知する方法を指定します。</strong><br>Azure Monitor のアラート機能では、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">アクション グループ</a> というリソースでアラートを通知する方法を定義します。新規で作成する場合は [+ アクション グループの作成]、既存のグループを指定する場合は [+ アクション グループの選択] をクリックします。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image18.png"></p>
-<p>例えば、アラートをメールで通知する場合には、[通知のタイプ] で “電子メール/SMS メッセージ/プッシュ/音声” を選択し、通知するメール アドレスを指定します。アクション グループの概要や設定手順の詳細は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups#create-an-action-group-in-the-azure-portal">弊社公開情報</a>をご覧ください。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image19.png"></p>
-<p><strong>5. アラート ルールの名前、アラートの重大度等を設定します。</strong><br>[アラート ルールの詳細] では、重大度、アラート ルール名、アラート ルールの説明を設定します。<br>[詳細設定オプション] は既定の状態 (作成時に有効化のみチェックが入っている状態) とします。また、今回は Log Analytics ワークスペースのログを対象にクエリを実行するため、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details">Identity</a> でマネージド ID を有効化する必要はございません。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image20.png"></p>
-<div class="alert is-info"><p class="alert-title">Note</p><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details">詳細設定オプション</a>の [アラートを自動的に解決する] と [アクションのミュート] につきましては、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts">弊社公開情報</a>や<a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction">弊社サポート ブログ</a> をご確認ください。</p></div>
+<p><strong>4. アラートが発報した際に通知する方法を指定します。</strong><br>Azure Monitor のアラート機能では、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">アクション グループ</a> というリソースでアラートを通知する方法を定義します。新規で作成する場合は [+ アクション グループの作成]、既存のグループを指定する場合は [+ アクション グループの選択] をクリックします。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image18.png"></p>
+<p>例えば、アラートをメールで通知する場合には、[通知のタイプ] で “電子メール&#x2F;SMS メッセージ&#x2F;プッシュ&#x2F;音声” を選択し、通知するメール アドレスを指定します。アクション グループの概要や設定手順の詳細は、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups#create-an-action-group-in-the-azure-portal">弊社公開情報</a>をご覧ください。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image19.png"></p>
+<p><strong>5. アラート ルールの名前、アラートの重大度等を設定します。</strong><br>[アラート ルールの詳細] では、重大度、アラート ルール名、アラート ルールの説明を設定します。<br>[詳細設定オプション] は既定の状態 (作成時に有効化のみチェックが入っている状態) とします。また、今回は Log Analytics ワークスペースのログを対象にクエリを実行するため、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details">Identity</a> でマネージド ID を有効化する必要はございません。<br><img src="/blog/LogAnalytics/HowToCreatePerfLogAlertForLinux/image20.png"></p>
+<div class="alert is-info"><p class="alert-title">Note</p><p><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details">詳細設定オプション</a>の [アラートを自動的に解決する] と [アクションのミュート] につきましては、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts">弊社公開情報</a>や<a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction">弊社サポート ブログ</a> をご確認ください。</p></div>
 <ol start="6">
 <li>最後に設定した内容を確認し、[作成] をクリックします。手順は以上です。</li>
 </ol>
@@ -737,7 +742,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <br>
 
 
-<p>今回は Linux VM 向けの性能監視におけるアラート ルールの設定手順をご紹介しました。いかがでしたでしょうか。<br>また、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/queries/perf">公開情報</a>に Perf のサンプル クエリも掲載されておりますので、こちらもご覧いただけますと幸いです。<br>上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。<br>最後までお読みいただきありがとうございました！</p>
+<p>今回は Linux VM 向けの性能監視におけるアラート ルールの設定手順をご紹介しました。いかがでしたでしょうか。<br>また、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/queries/perf">公開情報</a>に Perf のサンプル クエリも掲載されておりますので、こちらもご覧いただけますと幸いです。<br>上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。<br>最後までお読みいただきありがとうございました！</p>
 
       
       
@@ -762,19 +767,19 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
     
 <nav id="article-nav">
   
-    <a href="../HowToMigrateToAmaFromAzureDiagnostics/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="../TroubleshootingAMALogIngestion/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">次の記事</strong>
       <div class="article-nav-title">
         
-          Retirement notice ： Migrate to Azure Monitor Agent before 31 March 2026 について
+          Azure Monitor エージェントを使用したログ収集が行われない場合のトラブルシューティングについて
         
       </div>
     </a>
   
   
-    <a href="../../AzureMonitorEssential/LogAlert_NewEmailTemplate_2024/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../HowToMigrateToAmaFromAzureDiagnostics/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前の記事</strong>
-      <div class="article-nav-title">ログ アラートのメール フォーマット変更について</div>
+      <div class="article-nav-title">Retirement notice ： Migrate to Azure Monitor Agent before 31 March 2026 について</div>
     </a>
   
 </nav>

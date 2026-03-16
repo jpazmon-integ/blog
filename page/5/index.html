@@ -17,11 +17,11 @@
 <meta property="og:description" content="日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。">
 <meta property="og:locale" content="ja_JP">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="Azure">
-<meta property="article:tag" content="Azure Monitor">
-<meta property="article:tag" content="Azure Log Analytics">
-<meta property="article:tag" content="Azure Automation">
 <meta property="article:tag" content="Application Insights">
+<meta property="article:tag" content="Azure">
+<meta property="article:tag" content="Azure Automation">
+<meta property="article:tag" content="Azure Log Analytics">
+<meta property="article:tag" content="Azure Monitor">
 <meta name="twitter:card" content="summary">
         
           <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog"
@@ -58,7 +58,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -75,7 +75,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -101,57 +101,6 @@
 
       <div class="outer">
         <section id="main">
-  
-    <article id="post-LogAnalytics/LogAnalyticsworkspaceDataExport" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    <!-- post date -->
-    <div class="article-meta">
-      <a href="../../LogAnalytics/LogAnalyticsworkspaceDataExport/" class="article-date">
-  <time datetime="2024-01-05T15:00:00.000Z" itemprop="datePublished">2024-01-06</time>
-</a>
-      
-    </div>
-
-    
-    <!-- post title -->
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../LogAnalytics/LogAnalyticsworkspaceDataExport/">Log Analytics ワークスペースのデータ エクスポートに関するよくあるご質問</a>
-    </h1>
-  
-
-      </header>
-    
-
-    <!-- post caption -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>皆さまは <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal">Log Analytics ワークスペースのデータ エクスポート</a> という機能をご存知でしょうか。<br>この機能では Log Analytics ワークスペースに収集されたログをストレージ アカウントやイベント ハブにエクスポートすることができます。今回はこのデータ エクスポート機能でよくお問い合わせをいただくご質問を紹介いたします。</p>
-<br>
-        
-          <p class="article-more-link">
-            <a href="../../LogAnalytics/LogAnalyticsworkspaceDataExport/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-
-    <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/" data-id="cmm8g5fg9002b0nny83pt8kyb" class="article-share-link">共有</a-->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics-workspace-data-export/" rel="tag">Log Analytics workspace data export</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
   
     <article id="post-LogAnalytics/LogAnalyticsWorkspacePurge" class="article article-type-post" itemscope itemprop="blogPost">
 
@@ -183,11 +132,11 @@
       
         <p>[更新履歴]</p>
 <ul>
-<li>2024/01/06 : ブログ公開</li>
-<li>2025/05/07 : Delete Data API の情報を追記</li>
-<li>2026/1/7 : 最新情報であることを確認済み</li>
+<li>2024&#x2F;01&#x2F;06 : ブログ公開</li>
+<li>2025&#x2F;05&#x2F;07 : Delete Data API の情報を追記</li>
+<li>2026&#x2F;1&#x2F;7 : 最新情報であることを確認済み</li>
 </ul>
-<p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回は、Log Analytics ワークスペースのデータを削除する方法をご紹介します。<br>Log Analytics ワークスペースでは指定した<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-retention-archive?tabs=portal-1,portal-2#configure-the-default-workspace-retention">保持期間</a>を超えると、自動的にログが削除されます。<br>一方で、この保持期間を迎える前にログを削除したい、特定のログのみを削除したい、といった場合には、今回紹介する方法でデータを削除することをご検討いただけますと幸いです。<br><br></p>
+<p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回は、Log Analytics ワークスペースのデータを削除する方法をご紹介します。<br>Log Analytics ワークスペースでは指定した<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-retention-archive?tabs=portal-1,portal-2#configure-the-default-workspace-retention">保持期間</a>を超えると、自動的にログが削除されます。<br>一方で、この保持期間を迎える前にログを削除したい、特定のログのみを削除したい、といった場合には、今回紹介する方法でデータを削除することをご検討いただけますと幸いです。<br><br></p>
         
           <p class="article-more-link">
             <a href="../../LogAnalytics/LogAnalyticsWorkspacePurge/#more">Read More</a>
@@ -197,10 +146,61 @@
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsWorkspacePurge/" data-id="cmm8g5fja00e70nnyged8gvh4" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsWorkspacePurge/" data-id="cuidtgPjBJCaLcON26csLs9Vz" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/HowTo/" rel="tag">HowTo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-LogAnalytics/LogAnalyticsworkspaceDataExport" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    <!-- post date -->
+    <div class="article-meta">
+      <a href="../../LogAnalytics/LogAnalyticsworkspaceDataExport/" class="article-date">
+  <time datetime="2024-01-05T15:00:00.000Z" itemprop="datePublished">2024-01-06</time>
+</a>
+      
+    </div>
+
+    
+    <!-- post title -->
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../LogAnalytics/LogAnalyticsworkspaceDataExport/">Log Analytics ワークスペースのデータ エクスポートに関するよくあるご質問</a>
+    </h1>
+  
+
+      </header>
+    
+
+    <!-- post caption -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>皆さまは <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal">Log Analytics ワークスペースのデータ エクスポート</a> という機能をご存知でしょうか。<br>この機能では Log Analytics ワークスペースに収集されたログをストレージ アカウントやイベント ハブにエクスポートすることができます。今回はこのデータ エクスポート機能でよくお問い合わせをいただくご質問を紹介いたします。</p>
+<br>
+        
+          <p class="article-more-link">
+            <a href="../../LogAnalytics/LogAnalyticsworkspaceDataExport/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+
+    <footer class="article-footer">
+      <!--a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsworkspaceDataExport/" data-id="cuidF7cib-9xKGf8KmFlIGBj8" class="article-share-link">共有</a-->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics-workspace-data-export/" rel="tag">Log Analytics workspace data export</a></li></ul>
 
     </footer>
   </div>
@@ -239,8 +239,8 @@
       
         [更新履歴]  
 
-2023/12/27 ブログ公開
-2026/1/13 最新情報に更新
+2023&#x2F;12&#x2F;27 ブログ公開
+2026&#x2F;1&#x2F;13 最新情報に更新
 
 こんにちは、Azure Monitoring サポート チームの北山です。App Service に対してデプロイ スロットをスワップした後に、Application Insights の cloud_RoleName にスワップ後の環境の値を記録するための対処方法についてご案内いたします。
 
@@ -251,7 +251,7 @@
 
 概要App Service の Web アプリケーションを Application Insights で監視している場合、Application Insights に関連するログ テーブルの cloud_RoleName には、当該 Web サイト URL のホスト名が記録されます。
 
-xxxx-appservice.azurewebsites.net の場合は、”xxxx-a...
+xxxx-appservice.azurewebsi...
         <p class="article-readmore">
           <a href="../../applicationInsights/wrongSlotNameAfterSwapping/">Read more</a>
         </p>
@@ -259,7 +259,7 @@ xxxx-appservice.azurewebsites.net の場合は、”xxxx-a...
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/wrongSlotNameAfterSwapping/" data-id="cmm8g5fgs003k0nny8cmc2au3" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/wrongSlotNameAfterSwapping/" data-id="cuidGyp98s_0fbIoLykDBr31P" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li></ul>
@@ -301,11 +301,11 @@ xxxx-appservice.azurewebsites.net の場合は、”xxxx-a...
       
         <p>[更新履歴]  </p>
 <ul>
-<li>2023/12/24 ブログ公開  </li>
-<li>2026/01/19 廃止情報について追記 </li>
+<li>2023&#x2F;12&#x2F;24 ブログ公開  </li>
+<li>2026&#x2F;01&#x2F;19 廃止情報について追記</li>
 </ul>
 <blockquote>
-<p>[!IMPORTANT] Log Analytics エージェント（MMA/OMS）は 2024 年 8 月 31 日をもって完全に廃止されました。<br>本記事で紹介している DCR Config Generator は、廃止済みエージェントから Azure Monitor エージェント (AMA) への移行を支援するためのツールです。<br>新規構成や運用では AMA をご利用ください。</p>
+<p>[!IMPORTANT] Log Analytics エージェント（MMA&#x2F;OMS）は 2024 年 8 月 31 日をもって完全に廃止されました。<br>本記事で紹介している DCR Config Generator は、廃止済みエージェントから Azure Monitor エージェント (AMA) への移行を支援するためのツールです。<br>新規構成や運用では AMA をご利用ください。</p>
 </blockquote>
 <p>こんにちは！Azure Monitoring チームの加治屋です。<br>この記事では、Log Analytics エージェントから Azure Monitor エージェントへの移行のために使用できるツールについてご紹介いたします。</p>
 <p>※<br>DCR Config Generator の更新に伴い、ツールの利用方法が変更されております。<br>当記事は、DCR Config Generator バージョン 1.0.0 を前提として記載しております。</p>
@@ -318,7 +318,7 @@ xxxx-appservice.azurewebsites.net の場合は、”xxxx-a...
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/" data-id="cmm8g5ffy001h0nnyg5smg32u" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/" data-id="cuida2WpsbS-RBFd1-XVgHaNi" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/AMA-migration/" rel="tag">AMA migration</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/HowTo/" rel="tag">HowTo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li></ul>
@@ -360,11 +360,11 @@ xxxx-appservice.azurewebsites.net の場合は、”xxxx-a...
       
         <p>[更新履歴]  </p>
 <ul>
-<li>2023/12/14 ブログ公開</li>
-<li>2026/1/28 最新情報に更新</li>
+<li>2023&#x2F;12&#x2F;14 ブログ公開</li>
+<li>2026&#x2F;1&#x2F;28 最新情報に更新</li>
 </ul>
 <blockquote>
-<p>[!IMPORTANT]<br>本記事で紹介している <a href="#2-Azure-VM-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A">2. Azure VM の診断設定</a> の機能は 2026 年 3 月 31 日をもってサポートを終了予定となります。<br>詳細については、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview#migration-guidance">弊社公開情報</a>および<a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromAzureDiagnostics/">弊社ブログ記事</a>をご確認ください。</p>
+<p>[!IMPORTANT]<br>本記事で紹介している <a href="#2-Azure-VM-%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A">2. Azure VM の診断設定</a> の機能は 2026 年 3 月 31 日をもってサポートを終了予定となります。<br>詳細については、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/diagnostics-extension-overview#migration-guidance">弊社公開情報</a>および<a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromAzureDiagnostics/">弊社ブログ記事</a>をご確認ください。</p>
 </blockquote>
 <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回のブログでは Azure VM の診断設定と、それ以外のリソースにおける診断設定の違いをご説明します。<br>皆さんは、Azure Monitor には “診断設定” という名前の機能が 2 つ存在することをご存知ですか？<br>どちらの機能もログやメトリックを収集しますが、実は全く別の機能です。しかし、同じ名前の機能のため、この 2 つの違いについてのお問い合わせが多く寄せられます。そこで、今回はこの 2 つの機能の違いに焦点をあてて機能の概要をご説明します！</p>
 <br>
@@ -377,7 +377,7 @@ xxxx-appservice.azurewebsites.net の場合は、”xxxx-a...
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToDiagnosticsSettings/" data-id="cmm8g5ffg000g0nnygq7phzqm" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToDiagnosticsSettings/" data-id="cuidMDGamlPOctz4OK6tpkM_e" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Diagnostics-Extension/" rel="tag">Azure Diagnostics Extension</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Essential/" rel="tag">Azure Monitor Essential</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Diagnostics-Settings/" rel="tag">Diagnostics Settings</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/HowTo/" rel="tag">HowTo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li></ul>
@@ -419,8 +419,8 @@ xxxx-appservice.azurewebsites.net の場合は、”xxxx-a...
       
         <p>[更新履歴]</p>
 <ul>
-<li>2023/11/29 ブログ公開</li>
-<li>2026/01/13 最新の情報であることを確認済み</li>
+<li>2023&#x2F;11&#x2F;29 ブログ公開</li>
+<li>2026&#x2F;01&#x2F;13 最新の情報であることを確認済み</li>
 </ul>
 <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回の記事では、サービス正常性にて通知された「Retirement notice: Transition to DCR-based custom log ingestion by 14 September 2026」についてご説明します。</p>
 <br>
@@ -433,7 +433,7 @@ xxxx-appservice.azurewebsites.net の場合は、”xxxx-a...
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToLogIngestionAPI/" data-id="cmm8g5fg500200nny34zq3b4s" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToLogIngestionAPI/" data-id="cuidB0hIvwP8B9PY6TMHmfunP" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Data-Collection-Rule-Data-Collection-Endpoint/" rel="tag">Data Collection Rule, Data Collection Endpoint</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Retirement/" rel="tag">Retirement</a></li></ul>
@@ -475,8 +475,8 @@ xxxx-appservice.azurewebsites.net の場合は、”xxxx-a...
       
         <p>[更新履歴]  </p>
 <ul>
-<li>2023/11/09 ブログ公開  </li>
-<li>2026/01/19 クエリ一部修正 </li>
+<li>2023&#x2F;11&#x2F;09 ブログ公開  </li>
+<li>2026&#x2F;01&#x2F;19 クエリ一部修正</li>
 </ul>
 <p>こんにちは、Azure Monitoring チームの佐々木です。<br>今回はリソース変更を検知するアラートが作成できる様になりましたので、その設定方法やサンプルクエリを紹介させていただきます。</p>
         
@@ -488,7 +488,7 @@ xxxx-appservice.azurewebsites.net の場合は、”xxxx-a...
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/" data-id="cmm8g5fgk00320nny8sz6022n" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/ame/HowToResourceChangeAlert/" data-id="cuidoDSNMCBZae0L7-jf7lC40" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Alerts-Action-Groups/" rel="tag">Alerts, Action Groups</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Essential/" rel="tag">Azure Monitor Essential</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/HowTo/" rel="tag">HowTo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-search-alert/" rel="tag">Log search alert</a></li></ul>
@@ -530,9 +530,9 @@ xxxx-appservice.azurewebsites.net の場合は、”xxxx-a...
       
         <p>[更新履歴]</p>
 <ul>
-<li>2023/11/06 ブログ公開</li>
-<li>2024/07/22 最新情報への更新</li>
-<li>2026/01/06 最新情報への更新</li>
+<li>2023&#x2F;11&#x2F;06 ブログ公開</li>
+<li>2024&#x2F;07&#x2F;22 最新情報への更新</li>
+<li>2026&#x2F;01&#x2F;06 最新情報への更新</li>
 </ul>
 <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回の記事では、サービス正常性にて通知された「Migrate to Azure Monitor agent–based VM insights by 31 August 2024 」についてご説明します。</p>
 <br>
@@ -545,7 +545,7 @@ xxxx-appservice.azurewebsites.net の場合は、”xxxx-a...
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/" data-id="cmm8g5fj800e30nny69opdxxr" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/" data-id="cuidcBJR9zo7xZUJ0I3mRhBqB" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/AMA-migration/" rel="tag">AMA migration</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Retirement/" rel="tag">Retirement</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/VM-Insights/" rel="tag">VM Insights</a></li></ul>
@@ -587,8 +587,8 @@ xxxx-appservice.azurewebsites.net の場合は、”xxxx-a...
       
         <p>[更新履歴]</p>
 <ul>
-<li>2023/11/01 ブログ公開</li>
-<li>2026/1/7 最新情報であることを確認済み</li>
+<li>2023&#x2F;11&#x2F;01 ブログ公開</li>
+<li>2026&#x2F;1&#x2F;7 最新情報であることを確認済み</li>
 </ul>
 <p>こんにちは、Azure Monitoring サポート チームの六浦です。</p>
 <p>サービス正常性 BTNG-JT8 にて通知されている Application Insights のクラシックからワークスペースベースへの移行に関するよくあるご質問をご紹介します。<br>移行を行う際に疑問点があれば、是非ご確認ください。</p>
@@ -601,7 +601,7 @@ xxxx-appservice.azurewebsites.net の場合は、”xxxx-a...
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/migrateWorkspaceAiFAQ/" data-id="cmm8g5fgr003h0nnybr6r7k9c" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/migrateWorkspaceAiFAQ/" data-id="cuidlb1exf9iWw7m3y1IpURMa" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Retirement/" rel="tag">Retirement</a></li></ul>
@@ -643,8 +643,8 @@ xxxx-appservice.azurewebsites.net の場合は、”xxxx-a...
       
         <p>[更新履歴]</p>
 <ul>
-<li>2023/10/30 ブログ公開</li>
-<li>2025/12/29 現時点の UI の画像に差し替え</li>
+<li>2023&#x2F;10&#x2F;30 ブログ公開</li>
+<li>2025&#x2F;12&#x2F;29 現時点の UI の画像に差し替え</li>
 </ul>
 <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回は、ログ アラート ルールにおけるアクションのミュート機能をご紹介します！</p>
         
@@ -656,7 +656,7 @@ xxxx-appservice.azurewebsites.net の場合は、”xxxx-a...
     </div>
 
     <footer class="article-footer">
-      <!--a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction/" data-id="cmm8g5fff000e0nnyamtqeysg" class="article-share-link">共有</a-->
+      <!--a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToAlertMuteAction/" data-id="cuid76wlT8DNPT59_3-wK8xty" class="article-share-link">共有</a-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Action-group/" rel="tag">Action group</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Alerts-Action-Groups/" rel="tag">Alerts, Action Groups</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Essential/" rel="tag">Azure Monitor Essential</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/HowTo/" rel="tag">HowTo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Log-search-alert/" rel="tag">Log search alert</a></li></ul>

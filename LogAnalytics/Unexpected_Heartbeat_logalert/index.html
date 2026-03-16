@@ -10,22 +10,22 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="[更新履歴]  2024&#x2F;09&#x2F;05 ブログ公開 2025&#x2F;12&#x2F;23 最新の情報であることを確認済み  こんにちは、Azure Monitoring チームの佐藤です！今回は、Heartbeat ログ アラート ルールが発報したが、マシンは稼働しているという状況、特に Heartbeat ログの遅延により期待しないアラートが発報した場合の調査方法についてご紹介いたします。">
+      <meta name="description" content="[更新履歴]  2024&#x2F;09&#x2F;05 ブログ公開 2025&#x2F;12&#x2F;23 最新の情報であることを確認済み  こんにちは、Azure Monitoring チームの佐藤です！今回は、Heartbeat ログ アラート ルールが発報したが、マシンは稼働しているという状況、特に Heartbeat ログの遅延により期待しないアラートが発報した場合の調査方法についてご">
 <meta property="og:type" content="article">
 <meta property="og:title" content="マシンが起動中にも関わらず Heartbeat ログ アラートが発報された場合の調査方法">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/Unexpected_Heartbeat_logalert/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="[更新履歴]  2024&#x2F;09&#x2F;05 ブログ公開 2025&#x2F;12&#x2F;23 最新の情報であることを確認済み  こんにちは、Azure Monitoring チームの佐藤です！今回は、Heartbeat ログ アラート ルールが発報したが、マシンは稼働しているという状況、特に Heartbeat ログの遅延により期待しないアラートが発報した場合の調査方法についてご紹介いたします。">
+<meta property="og:description" content="[更新履歴]  2024&#x2F;09&#x2F;05 ブログ公開 2025&#x2F;12&#x2F;23 最新の情報であることを確認済み  こんにちは、Azure Monitoring チームの佐藤です！今回は、Heartbeat ログ アラート ルールが発報したが、マシンは稼働しているという状況、特に Heartbeat ログの遅延により期待しないアラートが発報した場合の調査方法についてご">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/Unexpected_Heartbeat_logalert/image001.png">
 <meta property="article:published_time" content="2024-09-05T01:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.389Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:30.041Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="Log Analytics">
-<meta property="article:tag" content="Azure Monitor Essential">
 <meta property="article:tag" content="Alerts, Action Groups">
-<meta property="article:tag" content="Log search alert">
 <meta property="article:tag" content="Azure Monitor Agent">
+<meta property="article:tag" content="Azure Monitor Essential">
+<meta property="article:tag" content="Log Analytics">
+<meta property="article:tag" content="Log search alert">
 <meta property="article:tag" content="Troubleshooting">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/Unexpected_Heartbeat_logalert/image001.png">
@@ -64,7 +64,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -81,7 +81,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -179,15 +179,15 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+5bcef5df-1151-5913-ab2e-0c1e4f09bf57%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%8C%E8%B5%B7%E5%8B%95%E4%B8%AD%E3%81%AB%E3%82%82%E9%96%A2%E3%82%8F%E3%82%89%E3%81%9A+Heartbeat+%E3%83%AD%E3%82%B0+%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%8C%E7%99%BA%E5%A0%B1%E3%81%95%E3%82%8C%E3%81%9F%E5%A0%B4%E5%90%88%E3%81%AE%E8%AA%BF%E6%9F%BB%E6%96%B9%E6%B3%95%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FUnexpected_Heartbeat_logalert%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FUnexpected_Heartbeat_logalert.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FUnexpected_Heartbeat_logalert.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/Unexpected_Heartbeat_logalert/" data-id="cmm8g5fgh002q0nnyfpiq2e3a" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/Unexpected_Heartbeat_logalert/" data-id="cuidWaOpssurPiRwQY1wrzoSU" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>[更新履歴]</p>
 <ul>
-<li>2024/09/05 ブログ公開</li>
-<li>2025/12/23 最新の情報であることを確認済み</li>
+<li>2024&#x2F;09&#x2F;05 ブログ公開</li>
+<li>2025&#x2F;12&#x2F;23 最新の情報であることを確認済み</li>
 </ul>
 <p>こんにちは、Azure Monitoring チームの佐藤です！<br><br>今回は、Heartbeat ログ アラート ルールが発報したが、マシンは稼働しているという状況、<br>特に Heartbeat ログの遅延により期待しないアラートが発報した場合の調査方法についてご紹介いたします。<br></p>
 <span id="more"></span>
@@ -205,11 +205,11 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <h1 id="2-Heartbeat-ログの収集遅延状況を確認する方法"><a href="#2-Heartbeat-ログの収集遅延状況を確認する方法" class="headerlink" title="2. Heartbeat ログの収集遅延状況を確認する方法"></a>2. Heartbeat ログの収集遅延状況を確認する方法</h1><p>以下のクエリにより、まず Heartbeat ログの遅延状況をご確認いただくことが可能です。<br><br>(※ たとえば、ログが 30 分遅延して収集されてしまった環境の場合、10:30 に収集されるべきログが Log Analytics ワークスペースに到着するのは 11:00 でございます。<br><br>    10:30 ~ 11:00 の間に 10:30 に収集されたログを確認した場合、クエリに該当するレコードがない旨表示されることにご留意ください。)<br></p>
 <p>Log Analytics ワークスペースの各テーブルに存在する以下の 3 列を使用して、収集遅延状況を確認することが可能です。<br><br>各列の名称およびどのような値を格納しているかについては以下の通りでございます。​<br><br>(列名 : どのような値を格納しているか の順で記載いたします。)<br></p>
 <p>TimeGenerated 列 : エージェントでデータを検知した時刻<br><br>_TimeReceived 列 : データが Azure に届いた時刻<br><br>ingestion_time() 列 : Log Analytics ワークスペースに取り込まれ、クエリが可能になった時刻<br></p>
-<p>// 参考情報<br></p>
+<p>&#x2F;&#x2F; 参考情報<br></p>
 <ul>
-<li>インジェスト時間のチェック<br><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-ingestion-time#check-ingestion-time">https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-ingestion-time#check-ingestion-time</a><br></li>
+<li>インジェスト時間のチェック<br><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-ingestion-time#check-ingestion-time">https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-ingestion-time#check-ingestion-time</a><br></li>
 </ul>
-<p>Heartbeat<br><br>| where _ResourceId contains “&lt;仮想マシン名&gt;” //&lt;仮想マシン名&gt; は、遅延状況を確認したいログの収集元マシン名に置き換えます<br><br>| order by TimeGenerated asc​<br><br>| extend E2EIngestionLatency = ingestion_time() - TimeGenerated​ // ①<br><br>| extend AgentLatency = _TimeReceived - TimeGenerated​ // ②<br><br>| project TimeGenerated, Computer, E2EIngestionLatency, AgentLatency, _TimeReceived, ingestion_time(), Category​<br><br>| order by E2EIngestionLatency<br><br><br><br>① : エージェントがデータを検知してから、データがクエリ可能になるまでの所要時間を計算します<br><br>② : エージェントがデータを検知してから、Azure に届くまでの所要時間を計算します<br><br><br><br>上述のクエリを実行いただくことで、① として計算した値が大きい順に以下の表なテーブル形式でデータが出力されます。</p>
+<p>Heartbeat<br><br>| where _ResourceId contains “&lt;仮想マシン名&gt;” &#x2F;&#x2F;&lt;仮想マシン名&gt; は、遅延状況を確認したいログの収集元マシン名に置き換えます<br><br>| order by TimeGenerated asc​<br><br>| extend E2EIngestionLatency &#x3D; ingestion_time() - TimeGenerated​ &#x2F;&#x2F; ①<br><br>| extend AgentLatency &#x3D; _TimeReceived - TimeGenerated​ &#x2F;&#x2F; ②<br><br>| project TimeGenerated, Computer, E2EIngestionLatency, AgentLatency, _TimeReceived, ingestion_time(), Category​<br><br>| order by E2EIngestionLatency<br><br><br><br>① : エージェントがデータを検知してから、データがクエリ可能になるまでの所要時間を計算します<br><br>② : エージェントがデータを検知してから、Azure に届くまでの所要時間を計算します<br><br><br><br>上述のクエリを実行いただくことで、① として計算した値が大きい順に以下の表なテーブル形式でデータが出力されます。</p>
 <p>エージェントがデータを検知してからログがクエリ可能な状態に処理されるまで、おおよそ 3 分ほどの時間を要します。<br><br>E2EIngestionLatency 列の値をご確認いただき、遅延の有無をご確認ください。<br></p>
 <p><img src="/blog/LogAnalytics/Unexpected_Heartbeat_logalert/image001.png"><br>例えば、上述のハイライトの場合ですと、以下のようになっております。<br><br><br><br>E2EIngestionLatency : 18 分 8 秒<br><br>AgentLatency : 18 分 2 秒<br><br><br><br><br>この場合、AgentLatency が大きいために E2EIngestionLatency の値が大きくなっています。<br>すなわち、エージェントがデータを検知してから Azure に届くまでの過程で時間を要していることがわかります。</p>
 <h1 id="3-Heartbeat-ログの遅延が確認されたら"><a href="#3-Heartbeat-ログの遅延が確認されたら" class="headerlink" title="3. Heartbeat ログの遅延が確認されたら"></a>3. Heartbeat ログの遅延が確認されたら</h1><p>2 に記載のクエリにより Heartbeat ログの遅延が確認された場合、以下 2 パターンの遅延の仕方がございます。<br><br>パターン 1 : E2EIngestionLatency が大きく、かつ AgentLatency も大きい<br><br>パターン 2 : E2EIngestionLatency が大きいが、 AgentLatency は小さい<br></p>
@@ -222,20 +222,21 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>エージェントで問題が発生しているかどうかは、以下の手順でエージェントのログを取得いただくことでご確認いただけます。</p>
 <h3 id="Windows-OS-の場合"><a href="#Windows-OS-の場合" class="headerlink" title="Windows OS の場合"></a>Windows OS の場合</h3><p>以下をご参照ください。</p>
 <ul>
-<li>Windows オペレーティング システム (OS) の Azure Monitor エージェント トラブルシューティング ツールの使用方法<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/troubleshooter-ama-windows?tabs=WindowsPowerShell">https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/troubleshooter-ama-windows?tabs=WindowsPowerShell</a></li>
+<li>Windows オペレーティング システム (OS) の Azure Monitor エージェント トラブルシューティング ツールの使用方法<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/troubleshooter-ama-windows?tabs=WindowsPowerShell">https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/troubleshooter-ama-windows?tabs=WindowsPowerShell</a></li>
 </ul>
 <h3 id="Linux-OS-の場合"><a href="#Linux-OS-の場合" class="headerlink" title="Linux OS の場合"></a>Linux OS の場合</h3><p>以下をご参照ください。</p>
 <ul>
-<li>Linux オペレーティング システム (OS) の Azure Monitor エージェント トラブルシューティング ツールの使用方法<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/troubleshooter-ama-linux?tabs=redhat,GenerateLogs">https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/troubleshooter-ama-linux?tabs=redhat%2CGenerateLogs</a></li>
+<li>Linux オペレーティング システム (OS) の Azure Monitor エージェント トラブルシューティング ツールの使用方法<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/troubleshooter-ama-linux?tabs=redhat,GenerateLogs">https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/troubleshooter-ama-linux?tabs=redhat%2CGenerateLogs</a></li>
 </ul>
 <p>事象発生直後のほうが、ログに残存している情報が多いため、<br>弊社サポート窓口にお問い合わせいただく場合でも事象発生後なるべくお早めにログを取得いただくことをお勧めいたします。<br><br>ログ ファイルがディレクトリとなっている場合には、弊社にご提供いただきます際には圧縮いただきますようお願いいたします。<br></p>
 <p>また、エージェントのバージョンが最新でない場合には、<br>過去のエージェント特有の不具合として事象が発生する可能性もございます。<br><br>エージェントは不具合の修正などを目的としたアップグレードが行われております。<br><br>そのため、エージェントは最新バージョンをご利用いただくことを合わせてご検討ください。<br></p>
 <h2 id="パターン-2-E2EIngestionLatency-が大きいが、-AgentLatency-は小さい"><a href="#パターン-2-E2EIngestionLatency-が大きいが、-AgentLatency-は小さい" class="headerlink" title="パターン 2 : E2EIngestionLatency が大きいが、 AgentLatency は小さい"></a>パターン 2 : E2EIngestionLatency が大きいが、 AgentLatency は小さい</h2><p>この場合、AgentLatency が小さいことからエージェントがデータを検知してから Azure に届くまでの経路に問題はありません。<br><br>一方で、Azure に届いてからクエリ可能になるまでに時間を要しているため E2EIngestionLatency の値が大きくなっています。<br><br>この場合、Azure 内部の処理 (受信したデータをクエリ可能となるよう行う処理) に時間がかかっております。<br><br><br>なぜ Azure 内部の処理に時間がかかったか詳細な原因を調査されたい場合には、サポート リクエストを発行いただくことで調査が可能です。<br><br><br><br>Heartbeat 監視は、Log Analytics ワークスペースのデータ取り込み遅延によって期待どおり監視出来ない可能性がございます。<br><br>コンピューターの死活監視として、Heartbeat の監視以外にも様々な方法がございます。<br><br>下記の記事に死活監視に関する内容が記載しております。<br><br>こちらもあわせてご参考ください<br><br><br></p>
 <ul>
-<li>Azure VM における死活監視の考え方<br><br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM02/">https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM02/</a><br><br>
-上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。
-最後までお読みいただきありがとうございました！</li>
+<li>Azure VM における死活監視の考え方<br><br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM02/">https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM02/</a><br></li>
 </ul>
+<br>
+上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。
+最後までお読みいただきありがとうございました！
 
       
       

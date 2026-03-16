@@ -57,10 +57,10 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-08.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-09.png">
 <meta property="article:published_time" content="2025-08-19T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.095Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:29.719Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="Azure Monitor Essential">
 <meta property="article:tag" content="Alerts, Action Groups">
+<meta property="article:tag" content="Azure Monitor Essential">
 <meta property="article:tag" content="Create a Support Request">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-metric-alert-06.png">
@@ -99,7 +99,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -116,7 +116,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -214,12 +214,12 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+f628de49-d671-5016-89ea-a80047093550%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Monitor+%E3%81%AE%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88+%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%8C%E7%99%BA%E5%A0%B1%E3%81%97%E3%81%9F%E5%8E%9F%E5%9B%A0%E8%AA%BF%E6%9F%BB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B%E3%82%92%E7%99%BA%E8%A1%8C%E3%81%84%E3%81%9F%E3%81%A0%E3%81%8F%E5%89%8D%E3%81%AE%E7%A2%BA%E8%AA%8D%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FHowToCreateAlertRuleSR%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FHowToCreateAlertRuleSR.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FHowToCreateAlertRuleSR.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/" data-id="cmm8g5fk200gi0nnygq7r6tln" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/" data-id="cuidXRqRnXSkqOXRKJvHVzzrX" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは、Azure Monitoring サポート チームの北村、徳田です。<br>今回は <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview">Azure Monitor のアラート ルール</a>が発報した原因の調査をご依頼いただく際に、事前にご確認いただきたいポイントをご紹介します。<br><br></p>
+        <p>こんにちは、Azure Monitoring サポート チームの北村、徳田です。<br>今回は <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview">Azure Monitor のアラート ルール</a>が発報した原因の調査をご依頼いただく際に、事前にご確認いただきたいポイントをご紹介します。<br><br></p>
 <span id="more"></span>
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
 <li><a href="#1-%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB">1. はじめに</a></li>
@@ -279,14 +279,14 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </tr>
 </tbody></table>
 <p><strong>閾値を満たして発報した場合は、監視している Azure リソースに何らかの問題が発生していた可能性があるため、Azure リソース観点での調査が必要です。一方で、閾値を満たしていないにもかかわらず発報した場合は、アラート ルールの動作に問題があった可能性があるため、アラート ルール観点（Azure Monitor 製品観点）で調査を実施する必要があります。</strong></p>
-<p>つまり、アラートが発報した状況によって、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-portal/supportability/how-to-create-azure-support-request#create-a-support-request:~:text=%E5%95%8F%E9%A1%8C%E3%81%AB%E9%96%A2%E9%80%A3%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%BE%E3%81%99%E3%80%82">お問い合わせの起票時に選択いただく製品カテゴリ</a> (監視している Azure リソース or アラート ルール) が異なります。例えば、閾値を満たしている状況であったものの Azure Monitor 製品を選択してお問い合わせを起票された場合、Azure Monitor チームでは内容を確認したうえで、適切なチームを探すところから対応が始まります。逆に、閾値を満たしていないのに Azure リソースを選択された場合も同様です。そのため、<strong>「閾値を満たして発報したかどうか」</strong>を事前にご確認いただくことで、適切な製品・カテゴリを選択してお問い合わせを起票いただけるようになり、弊社での対応もよりスムーズに進みます。</p>
+<p>つまり、アラートが発報した状況によって、<a href="https://learn.microsoft.com/ja-jp/azure/azure-portal/supportability/how-to-create-azure-support-request#create-a-support-request:~:text=%E5%95%8F%E9%A1%8C%E3%81%AB%E9%96%A2%E9%80%A3%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%BE%E3%81%99%E3%80%82">お問い合わせの起票時に選択いただく製品カテゴリ</a> (監視している Azure リソース or アラート ルール) が異なります。例えば、閾値を満たしている状況であったものの Azure Monitor 製品を選択してお問い合わせを起票された場合、Azure Monitor チームでは内容を確認したうえで、適切なチームを探すところから対応が始まります。逆に、閾値を満たしていないのに Azure リソースを選択された場合も同様です。そのため、**「閾値を満たして発報したかどうか」**を事前にご確認いただくことで、適切な製品・カテゴリを選択してお問い合わせを起票いただけるようになり、弊社での対応もよりスムーズに進みます。</p>
 <p>本記事では、アラート ルールの発報条件を確認する方法や、実際に閾値を満たしていたかどうかを確認する手順についてご紹介します。</p>
 <br>
 <br>
 
 
 
-<h2 id="2-メトリック-アラート-ルール"><a href="#2-メトリック-アラート-ルール" class="headerlink" title="2. メトリック アラート ルール"></a>2. メトリック アラート ルール</h2><h3 id="2-1-確認するポイント"><a href="#2-1-確認するポイント" class="headerlink" title="2-1. 確認するポイント"></a>2-1. 確認するポイント</h3><p><strong><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#metric-alerts">メトリック アラート ルール</a>の場合は、アラート ルールが実行された時にメトリックの値が閾値を満たしていたかどうかを確認します。</strong>メトリック アラート ルールは、Azure プラットフォームから既定で収集される<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/metrics/data-platform-metrics#types-of-metrics">プラットフォーム メトリックやカスタム メトリック</a>を、一定の間隔で監視します。アラート ルールの閾値を満たして発報したかどうかを確認するためには、アラートが評価した期間と、当該期間におけるメトリックの値を確認する必要があります。</p>
+<h2 id="2-メトリック-アラート-ルール"><a href="#2-メトリック-アラート-ルール" class="headerlink" title="2. メトリック アラート ルール"></a>2. メトリック アラート ルール</h2><h3 id="2-1-確認するポイント"><a href="#2-1-確認するポイント" class="headerlink" title="2-1. 確認するポイント"></a>2-1. 確認するポイント</h3><p>**<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#metric-alerts">メトリック アラート ルール</a>の場合は、アラート ルールが実行された時にメトリックの値が閾値を満たしていたかどうかを確認します。**メトリック アラート ルールは、Azure プラットフォームから既定で収集される<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/metrics/data-platform-metrics#types-of-metrics">プラットフォーム メトリックやカスタム メトリック</a>を、一定の間隔で監視します。アラート ルールの閾値を満たして発報したかどうかを確認するためには、アラートが評価した期間と、当該期間におけるメトリックの値を確認する必要があります。</p>
 <br>
 
 
@@ -306,10 +306,10 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 <h3 id="2-3-閾値を満たしていたかどうかを確認する方法"><a href="#2-3-閾値を満たしていたかどうかを確認する方法" class="headerlink" title="2-3. 閾値を満たしていたかどうかを確認する方法"></a>2-3. 閾値を満たしていたかどうかを確認する方法</h3><p>まずは、アラート ルールが監視している Azure リソースとアラートの評価期間を確認します。<br>次に、メトリック エクスプローラーで評価期間におけるメトリックの値を確認します。</p>
 <ol>
-<li>Azure ポータル &gt; モニター &gt; [アラート] を開き、発報したアラートを選択します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-metric-alert-01.png"></li>
-</ol>
-<ol start="2">
-<li>監視対象のリソース、評価された値、アラートの評価期間を確認します。<br>[メトリック アラートの詳細] 画面が開きますので、下表に表示されている内容をご確認ください。<br>このアラート ルールでは、Azure VM の <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/monitor-vm-reference#:~:text=VmAvailabilityMetric">VmAvailabilityMetric</a> (可用性メトリック) を監視しており、 評価期間 5 分間の平均値が 0.8 を下回った場合に発報します。</li>
+<li><p>Azure ポータル &gt; モニター &gt; [アラート] を開き、発報したアラートを選択します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-metric-alert-01.png"></p>
+</li>
+<li><p>監視対象のリソース、評価された値、アラートの評価期間を確認します。<br>[メトリック アラートの詳細] 画面が開きますので、下表に表示されている内容をご確認ください。<br>このアラート ルールでは、Azure VM の <a href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/monitor-vm-reference#:~:text=VmAvailabilityMetric">VmAvailabilityMetric</a> (可用性メトリック) を監視しており、 評価期間 5 分間の平均値が 0.8 を下回った場合に発報します。</p>
+</li>
 </ol>
 <table>
 <thead>
@@ -332,23 +332,23 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <tr>
 <td>アラートの評価期間</td>
 <td>“追加の詳細” の Evaluation window start time, <br>Evaluation window end time (緑枠部分)</td>
-<td>2025/7/3 16:58 ～ 2025/7/3 17:03</td>
+<td>2025&#x2F;7&#x2F;3 16:58 ～ 2025&#x2F;7&#x2F;3 17:03</td>
 </tr>
 </tbody></table>
 <p><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-metric-alert-02.png"></p>
 <br>
 
 <ol start="3">
-<li><p>[影響を受けるリソース] のリンクを押下し、左ペインの [監視] &gt; [メトリック] から <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/metrics/analyze-metrics">メトリック エクスプローラー</a>を開きます。</p>
+<li><p>[影響を受けるリソース] のリンクを押下し、左ペインの [監視] &gt; [メトリック] から <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/metrics/analyze-metrics">メトリック エクスプローラー</a>を開きます。</p>
 </li>
-<li><p>[スコープ] に監視している Azure リソースが表示されていることを確認します（赤枠部分）。<br>このアラート ルールは VmAvailabilityMetric の平均を監視しているので、[メトリック] で <strong>VmAvailabilityMetric</strong>、[集計の粒度] は <strong>平均</strong> を選択します（青枠部分）。画面右上の [現地時刻] のボタンを押下し、2. で確認したアラートの評価期間 (2025/7/3 16:58 ～ 17:03 JST) を指定します（緑枠部分）。今回は、評価期間内のメトリックの推移を最小単位 (1 分) で確認したかったため、[時間の粒度] は <strong>1 分</strong> を指定していますが、7/3 16:59 以降はメトリックが 1 を下回っており、アラートの閾値を満たしていたことが分かります。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-metric-alert-03.png"></p>
+<li><p>[スコープ] に監視している Azure リソースが表示されていることを確認します（赤枠部分）。<br>このアラート ルールは VmAvailabilityMetric の平均を監視しているので、[メトリック] で <strong>VmAvailabilityMetric</strong>、[集計の粒度] は <strong>平均</strong> を選択します（青枠部分）。画面右上の [現地時刻] のボタンを押下し、2. で確認したアラートの評価期間 (2025&#x2F;7&#x2F;3 16:58 ～ 17:03 JST) を指定します（緑枠部分）。今回は、評価期間内のメトリックの推移を最小単位 (1 分) で確認したかったため、[時間の粒度] は <strong>1 分</strong> を指定していますが、7&#x2F;3 16:59 以降はメトリックが 1 を下回っており、アラートの閾値を満たしていたことが分かります。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-metric-alert-03.png"></p>
 </li>
 </ol>
 <div class="alert is-important"><p class="alert-title">重要</p><p>繰り返しとなりますが、<strong>閾値を満たして発報したのか</strong>、<strong>閾値を満たしていないにもかかわらず発報したのか</strong>によって、調査の観点が異なります。上記の例では閾値を満たして発報しているため、発報した原因をお知りになりたい場合は、<strong>アラート ルール観点ではなく、監視しているリソース (Azure VM) 観点で調査が必要となります。</strong> もし、閾値を満たしていなかった状況であった場合には、アラート ルールの動作に問題があった可能性があるため、アラート ルール観点（Azure Monitor 製品観点）で調査する必要がございます。</p></div>
 <br>
 
 
-<h3 id="2-4-メトリックの値を確認するときにご留意いただきたいこと"><a href="#2-4-メトリックの値を確認するときにご留意いただきたいこと" class="headerlink" title="2-4. メトリックの値を確認するときにご留意いただきたいこと"></a>2-4. メトリックの値を確認するときにご留意いただきたいこと</h3><p>メトリック アラート ルールの編集画面の [プレビュー] や、アラートの詳細画面で表示されるグラフは、実際のアラート ルールの評価期間に基づいた集計の粒度で表示されていない場合がございます。アラートの評価期間におけるメトリックの値を確認する際には、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/metrics/analyze-metrics">メトリック エクスプローラー</a>からご確認いただきますようお願いいたします。</p>
+<h3 id="2-4-メトリックの値を確認するときにご留意いただきたいこと"><a href="#2-4-メトリックの値を確認するときにご留意いただきたいこと" class="headerlink" title="2-4. メトリックの値を確認するときにご留意いただきたいこと"></a>2-4. メトリックの値を確認するときにご留意いただきたいこと</h3><p>メトリック アラート ルールの編集画面の [プレビュー] や、アラートの詳細画面で表示されるグラフは、実際のアラート ルールの評価期間に基づいた集計の粒度で表示されていない場合がございます。アラートの評価期間におけるメトリックの値を確認する際には、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/metrics/analyze-metrics">メトリック エクスプローラー</a>からご確認いただきますようお願いいたします。</p>
 <ul>
 <li><p>メトリック アラート ルールの編集画面<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-metric-alert-04.png"></p>
 </li>
@@ -360,7 +360,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 
 
-<h2 id="3-ログ-アラート-ルール"><a href="#3-ログ-アラート-ルール" class="headerlink" title="3. ログ アラート ルール"></a>3. ログ アラート ルール</h2><h3 id="3-1-確認するポイント"><a href="#3-1-確認するポイント" class="headerlink" title="3-1. 確認するポイント"></a>3-1. 確認するポイント</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#log-alerts">ログ アラート ルール</a>の場合は、アラート ルールが実行された時に検索クエリが閾値を満たしていたかどうかを確認します。<br>ログ アラート ルールは、各評価時に、アラート ルールの検索クエリが指定したスコープの範囲で実行され、それにヒットしたログをもとに発報条件を満たすかどうかが評価されます。</p>
+<h2 id="3-ログ-アラート-ルール"><a href="#3-ログ-アラート-ルール" class="headerlink" title="3. ログ アラート ルール"></a>3. ログ アラート ルール</h2><h3 id="3-1-確認するポイント"><a href="#3-1-確認するポイント" class="headerlink" title="3-1. 確認するポイント"></a>3-1. 確認するポイント</h3><p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#log-alerts">ログ アラート ルール</a>の場合は、アラート ルールが実行された時に検索クエリが閾値を満たしていたかどうかを確認します。<br>ログ アラート ルールは、各評価時に、アラート ルールの検索クエリが指定したスコープの範囲で実行され、それにヒットしたログをもとに発報条件を満たすかどうかが評価されます。</p>
 <p>そのため、アラート ルールのスコープ、アラートが評価した期間、検索クエリをもとに、主に以下 2 点をご確認いただく必要がございます。</p>
 <ul>
 <li>評価時に対象のログが存在して (収集されて) いたか</li>
@@ -411,11 +411,11 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <tr>
 <td>アラートの評価期間</td>
 <td>“追加の詳細” の<br> Evaluation window start time, <br>Evaluation window end time (緑枠部分)</td>
-<td>2025/7/23 11:48 ～ 2025/7/23 11:53</td>
+<td>2025&#x2F;7&#x2F;23 11:48 ～ 2025&#x2F;7&#x2F;23 11:53</td>
 </tr>
 </tbody></table>
 <p><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-log-search-alert-01.png" alt="ログ検索アラートの詳細画面の例"></p>
-<p>※1<br>アラート ルールで<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#monitor-multiple-instances-of-a-resource-using-dimensions">ディメンション分割</a>を行っている場合、アラート ルールのスコープと、発報したアラートの “影響を受けるリソース” が異なる場合があります。例えば、仮想マシン A を含むリソース グループをアラート ルールのスコープに設定し、_ResourceId でディメンション分割を行っている場合に、仮想マシン A から収集されたログがアラートの発報条件を満たすと、アラートの “影響を受けるリソース” は仮想マシン A となります。</p>
+<p>※1<br>アラート ルールで<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#monitor-multiple-instances-of-a-resource-using-dimensions">ディメンション分割</a>を行っている場合、アラート ルールのスコープと、発報したアラートの “影響を受けるリソース” が異なる場合があります。例えば、仮想マシン A を含むリソース グループをアラート ルールのスコープに設定し、_ResourceId でディメンション分割を行っている場合に、仮想マシン A から収集されたログがアラートの発報条件を満たすと、アラートの “影響を受けるリソース” は仮想マシン A となります。</p>
 <p>※2<br>Time aggregation が “Count” の場合は、クエリ結果のログ レコード数が閾値を満たすかどうかが評価されます。<br>Time aggregation が “Count” 以外の場合、クエリ結果のうちの特定のカラム内の値が Time aggregation で指定された集計方法で集計され、その値が閾値を満たすかどうか評価されます。こちらの場合は、同箇所に記載のある Metric measure column に評価対象のカラム名が記載されていますため、併せてご確認ください。</p>
 <br>
 
@@ -440,8 +440,8 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 
 
-<h2 id="4-アクティビティ-ログ-アラート"><a href="#4-アクティビティ-ログ-アラート" class="headerlink" title="4. アクティビティ ログ アラート"></a>4. アクティビティ ログ アラート</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#activity-log-alerts">アクティビティ ログ アラート</a>は、指定した発報条件に一致するアクティビティ ログが出力されたかどうかを監視します。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/platform/activity-log-schema#categories">アクティビティ ログ</a>は、サブスクリプション レベルのイベントが記録されます。例えば、リソースが作成された、変更された、削除された、Azure VM が起動された、といったログが出力されます。</p>
-<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/data-sources#azure-resources">アクティビティ ログは、操作が実行される Azure リソースのリソース プロバイダーによって提供され、リソース プロバイダー側でアクティビティ ログの出力条件が決定されております。</a> このため、<strong>アラートの条件を満たして発報し、アクティビティ ログが記録された原因の調査をご希望される場合は、監視対象の Azure リソース観点でお問い合わせをご起票ください。</strong></p>
+<h2 id="4-アクティビティ-ログ-アラート"><a href="#4-アクティビティ-ログ-アラート" class="headerlink" title="4. アクティビティ ログ アラート"></a>4. アクティビティ ログ アラート</h2><p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types#activity-log-alerts">アクティビティ ログ アラート</a>は、指定した発報条件に一致するアクティビティ ログが出力されたかどうかを監視します。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/platform/activity-log-schema#categories">アクティビティ ログ</a>は、サブスクリプション レベルのイベントが記録されます。例えば、リソースが作成された、変更された、削除された、Azure VM が起動された、といったログが出力されます。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/data-sources#azure-resources">アクティビティ ログは、操作が実行される Azure リソースのリソース プロバイダーによって提供され、リソース プロバイダー側でアクティビティ ログの出力条件が決定されております。</a> このため、<strong>アラートの条件を満たして発報し、アクティビティ ログが記録された原因の調査をご希望される場合は、監視対象の Azure リソース観点でお問い合わせをご起票ください。</strong></p>
 <p>本記事では、アクティビティ ログ アラートの発報条件と、アクティビティ ログ アラートで検知した内容を確認する手順をご紹介します。もし、アラートの条件を満たしていないにもかかわらず発報したと疑われる場合は、アラート ルールの動作に関する調査が必要となるため、アラート ルール観点 (Azure Monitor 製品) でお問い合わせをご起票ください。</p>
 <br>
 
@@ -450,11 +450,11 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <ol>
 <li><p>Azure ポータル &gt; モニター &gt; [アラート] を開き、画面上部の [アラート ルール] を選択します。</p>
 </li>
-<li><p>アクティビティ ログ アラートを選択し、[概要] ページを開きます。赤枠部分が発報条件、青枠部分がアラートのスコープです。<br>下記の設定の場合は、該当の Azure VM で、下記のアクティビティ ログが出力された場合に発報します。アクティビティ ログ アラートの発報条件の項目につきましては、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-activity-log-alert-rule?tabs=activity-log#:~:text=On%20the%20Conditions,of%20these%20fields%3A">公開情報</a>をご覧ください。</p>
+<li><p>アクティビティ ログ アラートを選択し、[概要] ページを開きます。赤枠部分が発報条件、青枠部分がアラートのスコープです。<br>下記の設定の場合は、該当の Azure VM で、下記のアクティビティ ログが出力された場合に発報します。アクティビティ ログ アラートの発報条件の項目につきましては、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-activity-log-alert-rule?tabs=activity-log#:~:text=On%20the%20Conditions,of%20these%20fields%3A">公開情報</a>をご覧ください。</p>
 </li>
 </ol>
 <ul>
-<li>(<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log-schema#categories">カテゴリ</a>が Administrative) かつ (<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/resource-provider-operations">操作名</a>が Microsoft.Compute/virtualMachines/start/action) かつ (<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log-schema#severity-level">レベル</a>が Informational) かつ (状態= Started)</li>
+<li>(<a href="https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log-schema#categories">カテゴリ</a>が Administrative) かつ (<a href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/resource-provider-operations">操作名</a>が Microsoft.Compute&#x2F;virtualMachines&#x2F;start&#x2F;action) かつ (<a href="https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log-schema#severity-level">レベル</a>が Informational) かつ (状態&#x3D; Started)</li>
 </ul>
 <p><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-activity-log-alert-01.png"></p>
 <p>※ [概要] ページ画面上部の [JSON ビュー] を選択した画面です。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-activity-log-alert-02.png"></p>
@@ -465,7 +465,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <ol>
 <li><p>Azure ポータル &gt; モニター &gt; [アラート] を開き、発報したアラートを選択します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-activity-log-alert-03.png"></p>
 </li>
-<li><p>発報したリソースと検知されたアクティビティ ログの内容を確認します。<br>[アクティビティ ログ アラートの詳細] 画面が開きますので、下表に表示されている内容をご確認ください。<br>このアクティビティ ログ アラートは <strong>(カテゴリが Administrative) かつ (操作名が Microsoft.Compute/virtualMachines/start/action) かつ (レベルが Informational) かつ (状態= Started)</strong> のときに発報する条件のため、想定どおりアラートが発報したことが分かります。</p>
+<li><p>発報したリソースと検知されたアクティビティ ログの内容を確認します。<br>[アクティビティ ログ アラートの詳細] 画面が開きますので、下表に表示されている内容をご確認ください。<br>このアクティビティ ログ アラートは <strong>(カテゴリが Administrative) かつ (操作名が Microsoft.Compute&#x2F;virtualMachines&#x2F;start&#x2F;action) かつ (レベルが Informational) かつ (状態&#x3D; Started)</strong> のときに発報する条件のため、想定どおりアラートが発報したことが分かります。</p>
 </li>
 </ol>
 <table>
@@ -484,12 +484,12 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <tr>
 <td>アクティビティ ログの操作名、<br> カテゴリ、レベル</td>
 <td>このアラートが発生した理由 (青枠部分)</td>
-<td>操作名 : Microsoft.Compute/virtualMachines/start/action<br>カテゴリ : Administrative<br>レベル :  Informational</td>
+<td>操作名 : Microsoft.Compute&#x2F;virtualMachines&#x2F;start&#x2F;action<br>カテゴリ : Administrative<br>レベル :  Informational</td>
 </tr>
 <tr>
 <td>アクティビティ ログの状態と<br>ログが出力された日時</td>
 <td>“追加の詳細” の<br> Status, Submission timestamp (緑枠部分)</td>
-<td>状態 : Started<br>ログが出力された日時 : 2025/7/16 14:48</td>
+<td>状態 : Started<br>ログが出力された日時 : 2025&#x2F;7&#x2F;16 14:48</td>
 </tr>
 </tbody></table>
 <p><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-activity-log-alert-04.png"></p>
@@ -508,13 +508,13 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <li><p>[JSON] を選択すると、アクティビティ ログの内容が表示されます。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-activity-log-alert-07.png"></p>
 </li>
 </ol>
-<div class="alert is-info"><p class="alert-title">Note</p><p>アクティビティ ログのカテゴリやレベルなどの値は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/platform/activity-log-schema">こちら</a>の公開情報でご確認ください。</p></div>
+<div class="alert is-info"><p class="alert-title">Note</p><p>アクティビティ ログのカテゴリやレベルなどの値は、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/platform/activity-log-schema">こちら</a>の公開情報でご確認ください。</p></div>
 <br>
 <br>
 
 
 
-<h2 id="5-リソース正常性アラート"><a href="#5-リソース正常性アラート" class="headerlink" title="5. リソース正常性アラート"></a>5. リソース正常性アラート</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/service-health/resource-health-overview">リソース正常性アラート</a>は、Azure リソースの正常性に変化が生じた際に通知する機能です。<br>リソースの正常性に変化が生じると、リソース プロバイダーによってリソース正常性に関するイベントがアクティビティ ログに書き込まれます。出力されたアクティビティ ログがアラートで指定した条件を満たした場合に発報します。<br>そのため、<strong>アラートの条件を満たして発報し、リソース正常性イベントが発生した原因の調査をご希望の場合は、監視対象の Azure リソース観点でお問い合わせをご起票ください。</strong></p>
+<h2 id="5-リソース正常性アラート"><a href="#5-リソース正常性アラート" class="headerlink" title="5. リソース正常性アラート"></a>5. リソース正常性アラート</h2><p><a href="https://learn.microsoft.com/ja-jp/azure/service-health/resource-health-overview">リソース正常性アラート</a>は、Azure リソースの正常性に変化が生じた際に通知する機能です。<br>リソースの正常性に変化が生じると、リソース プロバイダーによってリソース正常性に関するイベントがアクティビティ ログに書き込まれます。出力されたアクティビティ ログがアラートで指定した条件を満たした場合に発報します。<br>そのため、<strong>アラートの条件を満たして発報し、リソース正常性イベントが発生した原因の調査をご希望の場合は、監視対象の Azure リソース観点でお問い合わせをご起票ください。</strong></p>
 <p>本記事では、リソース正常性アラートの発報条件と、リソース正常性アラートで検知した内容を確認する手順をご紹介します。<br>なお、アラートの条件を満たしていないにもかかわらず発報したと疑われる場合は、アラート ルールの動作に関する調査が必要となるため、アラート ルール観点 (Azure Monitor 製品) でお問い合わせをご起票ください。</p>
 <br>
 
@@ -523,7 +523,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <ol>
 <li><p>Azure ポータル &gt; モニター &gt; [アラート] を開き、画面上部の [アラート ルール] を選択します。</p>
 </li>
-<li><p>リソース正常性アラートを選択し、[概要] ページを開きます。赤枠部分が発報条件、青枠部分がアラートのスコープです。<br>下記の設定の場合は、指定したリソース グループの Azure VM (microsoft.compute/virtualmachines のリソース) で、下記の条件を満たした場合に発報します。</p>
+<li><p>リソース正常性アラートを選択し、[概要] ページを開きます。赤枠部分が発報条件、青枠部分がアラートのスコープです。<br>下記の設定の場合は、指定したリソース グループの Azure VM (microsoft.compute&#x2F;virtualmachines のリソース) で、下記の条件を満たした場合に発報します。</p>
 </li>
 </ol>
 <ul>
@@ -561,7 +561,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <tr>
 <td>イベントの状態、 <br>イベントが発生した日時</td>
 <td>“追加の詳細” の<br> Status, Event timestamp (緑枠部分)</td>
-<td>イベントの状態 : Active<br>イベントが発生した日時 : 2025/7/14 17:16 JST</td>
+<td>イベントの状態 : Active<br>イベントが発生した日時 : 2025&#x2F;7&#x2F;14 17:16 JST</td>
 </tr>
 </tbody></table>
 <p><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-resource-health-05.png"></p>
@@ -574,18 +574,18 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </li>
 <li><p>フィルタ―の条件として <strong>イベント カテゴリ</strong> を選択し、<strong>リソース正常性</strong> カテゴリを指定します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-resource-health-03.png"></p>
 </li>
-<li><p>[リソースの正常性 アラートの詳細] 画面で確認した Event timestamp (2025/7/14 17:16) のアクティビティ ログを選択します。<br>※ 同じ日時に記録されたアクティビティ ログが 2 件ありますが、状態が「アクティブ (Active)」のログが該当します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-resource-health-06.png"></p>
+<li><p>[リソースの正常性 アラートの詳細] 画面で確認した Event timestamp (2025&#x2F;7&#x2F;14 17:16) のアクティビティ ログを選択します。<br>※ 同じ日時に記録されたアクティビティ ログが 2 件ありますが、状態が「アクティブ (Active)」のログが該当します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-resource-health-06.png"></p>
 </li>
 <li><p>[JSON] を選択すると、アクティビティ ログの内容が表示されます。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-resource-health-07.png"></p>
 </li>
 </ol>
-<div class="alert is-info"><p class="alert-title">Note</p><p>アクティビティ ログのスキーマは、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/platform/activity-log-schema#resource-health-category">こちら</a>の公開情報でご確認ください。</p></div>
+<div class="alert is-info"><p class="alert-title">Note</p><p>アクティビティ ログのスキーマは、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/platform/activity-log-schema#resource-health-category">こちら</a>の公開情報でご確認ください。</p></div>
 <br>
 <br>
 
 
 
-<h2 id="6-サービス正常性アラート"><a href="#6-サービス正常性アラート" class="headerlink" title="6. サービス正常性アラート"></a>6. サービス正常性アラート</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/service-health/overview">サービス正常性アラート</a>は、お客様環境にてご利用いただいている Azure サービスおよびリージョンを監視対象とし、Azure サービス自体の正常性を監視します。例えば、以下のような情報が通知されます：</p>
+<h2 id="6-サービス正常性アラート"><a href="#6-サービス正常性アラート" class="headerlink" title="6. サービス正常性アラート"></a>6. サービス正常性アラート</h2><p><a href="https://learn.microsoft.com/ja-jp/azure/service-health/overview">サービス正常性アラート</a>は、お客様環境にてご利用いただいている Azure サービスおよびリージョンを監視対象とし、Azure サービス自体の正常性を監視します。例えば、以下のような情報が通知されます：</p>
 <ul>
 <li>Azure サービスの障害</li>
 <li>計画メンテナンス</li>
@@ -604,7 +604,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <ol>
 <li><p>Azure ポータル &gt; モニター &gt; [アラート] を開き、画面上部の [アラート ルール] を選択します。</p>
 </li>
-<li><p>サービス正常性アラートを選択し、[概要] ページを開きます。赤枠部分が発報条件、青枠部分がスコープ（サブスクリプション）です。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/service-health/alerts-activity-log-service-notifications-portal#key-features-of-service-health-alerts">サービス正常性アラートでは、発報条件として下記の項目を指定します。</a></p>
+<li><p>サービス正常性アラートを選択し、[概要] ページを開きます。赤枠部分が発報条件、青枠部分がスコープ（サブスクリプション）です。<a href="https://learn.microsoft.com/ja-jp/azure/service-health/alerts-activity-log-service-notifications-portal#key-features-of-service-health-alerts">サービス正常性アラートでは、発報条件として下記の項目を指定します。</a></p>
 </li>
 </ol>
 <ul>
@@ -663,7 +663,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>※2<br>サービス正常性に関するお問い合わせをご起票いただく際には、必ず Tracking ID (追跡 ID) をご確認ください。</p>
 <br>
 
-<div class="alert is-info"><p class="alert-title">Note</p><p>サービス正常性のイベントの種類の詳細につきましては、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/service-health/service-health-notifications-properties">こちら</a>の公開情報でご確認ください。</p></div>
+<div class="alert is-info"><p class="alert-title">Note</p><p>サービス正常性のイベントの種類の詳細につきましては、<a href="https://learn.microsoft.com/ja-jp/azure/service-health/service-health-notifications-properties">こちら</a>の公開情報でご確認ください。</p></div>
 <br>
 
 
@@ -673,7 +673,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </li>
 <li><p>フィルタ―の条件として <strong>イベント カテゴリ</strong> を選択し、<strong>サービス正常性</strong> カテゴリを指定します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-10.png"></p>
 </li>
-<li><p>サービス正常性が発報した時間帯 (7/3 11:10 頃) のアクティビティ ログを検索し、イベントの種類が「ActionRequired」のログを選択します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-11.png"></p>
+<li><p>サービス正常性が発報した時間帯 (7&#x2F;3 11:10 頃) のアクティビティ ログを検索し、イベントの種類が「ActionRequired」のログを選択します。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-11.png"></p>
 </li>
 <li><p>[JSON] を選択すると、アクティビティ ログの内容が表示されます。<br><img src="/blog/AzureMonitorEssential/HowToCreateAlertRuleSR/image-service-health-12.png"></p>
 </li>

@@ -10,12 +10,12 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="[更新履歴]  2024&#x2F;09&#x2F;18 ブログ公開 2026&#x2F;02&#x2F;05 最新情報に更新  こんにちは、Azure Monitoring サポート チームの北山です。 App Service や Azure VM などにデプロイいただいている Web アプリケーションのパフォーマンスを監視するために、Application Insights をご利用いただいているケースがございます。監視対象の We">
+      <meta name="description" content="[更新履歴]  2024&#x2F;09&#x2F;18 ブログ公開 2026&#x2F;02&#x2F;05 最新情報に更新  こんにちは、Azure Monitoring サポート チームの北山です。 App Service や Azure VM などにデプロイいただいている Web アプリケーションのパフォーマンスを監視するために、Application Insights をご利用いただいて">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Application Insights にテレメトリが保存されなかった場合のトラブルシューティングについて">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/applicationInsights/troubleshooting_telemetry/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="[更新履歴]  2024&#x2F;09&#x2F;18 ブログ公開 2026&#x2F;02&#x2F;05 最新情報に更新  こんにちは、Azure Monitoring サポート チームの北山です。 App Service や Azure VM などにデプロイいただいている Web アプリケーションのパフォーマンスを監視するために、Application Insights をご利用いただいているケースがございます。監視対象の We">
+<meta property="og:description" content="[更新履歴]  2024&#x2F;09&#x2F;18 ブログ公開 2026&#x2F;02&#x2F;05 最新情報に更新  こんにちは、Azure Monitoring サポート チームの北山です。 App Service や Azure VM などにデプロイいただいている Web アプリケーションのパフォーマンスを監視するために、Application Insights をご利用いただいて">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/troubleshooting_telemetry/pict1.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/troubleshooting_telemetry/pict2.png">
@@ -56,7 +56,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/troubleshooting_telemetry/pict22.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/applicationInsights/troubleshooting_telemetry/pict23.png">
 <meta property="article:published_time" content="2024-02-29T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.420Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:30.075Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Application Insights">
 <meta property="article:tag" content="Troubleshooting">
@@ -97,7 +97,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -114,7 +114,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -212,15 +212,15 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+32c8a915-d7f6-5188-8ce4-9c826663c1d9%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BApplication+Insights+%E3%81%AB%E3%83%86%E3%83%AC%E3%83%A1%E3%83%88%E3%83%AA%E3%81%8C%E4%BF%9D%E5%AD%98%E3%81%95%E3%82%8C%E3%81%AA%E3%81%8B%E3%81%A3%E3%81%9F%E5%A0%B4%E5%90%88%E3%81%AE%E3%83%88%E3%83%A9%E3%83%96%E3%83%AB%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FapplicationInsights%2Ftroubleshooting_telemetry%2F%29%0A*+Content+Source%3A+%5Barticles%2FapplicationInsights%2Ftroubleshooting_telemetry.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FapplicationInsights%2Ftroubleshooting_telemetry.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/troubleshooting_telemetry/" data-id="cmm8g5fjs00fy0nny7ho7h015" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/troubleshooting_telemetry/" data-id="cuidR67t6xqWADC_XpxGt6wHB" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>[更新履歴]</p>
 <ul>
-<li>2024/09/18 ブログ公開</li>
-<li>2026/02/05 最新情報に更新</li>
+<li>2024&#x2F;09&#x2F;18 ブログ公開</li>
+<li>2026&#x2F;02&#x2F;05 最新情報に更新</li>
 </ul>
 <p>こんにちは、Azure Monitoring サポート チームの北山です。</p>
 <p>App Service や Azure VM などにデプロイいただいている Web アプリケーションのパフォーマンスを監視するために、Application Insights をご利用いただいているケースがございます。<br>監視対象の Web アプリケーションから Application Insights リソースに対してテレメトリ (ログやメトリックなどの情報) を送信することで、Web アプリケーションのパフォーマンス監視が可能です。<br>しかし、場合によっては監視対象の Web アプリケーションから Application Insights リソースに対してテレメトリが送信されないケースがございます。</p>
@@ -265,7 +265,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>「目的」がテレメトリの箇所の URL をご確認ください。</p>
 </blockquote>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/ip-addresses#outgoing-ports">Azure Monitor で使用される IP アドレス # 送信ポート</a><br><img src="/blog/applicationInsights/troubleshooting_telemetry/pict1.png"></li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/ip-addresses#outgoing-ports">Azure Monitor で使用される IP アドレス # 送信ポート</a><br><img src="/blog/applicationInsights/troubleshooting_telemetry/pict1.png"></li>
 </ul>
 <p>もしくは、もしサービス タグを用いて通信制御を構築している場合、監視対象の Web アプリケーションから外向きの通信に対して AzureMonitor サービス タグに対する通信許可が必要です。<br>ポート番号は 443 番に対して通信許可をご構築ください。</p>
 <p>そのため、例えば VNET 統合した App Service リソースから「dc.applicationinsights.azure.com」に対する名前解決が失敗する、通信でタイムアウトが発生している場合、突然すべての種類のテレメトリが宛先の Application Insights に対して送信できなくなる可能性がございます。</p>
@@ -303,7 +303,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>正常に名前解決出来る場合は、下図のように IP アドレスが表示されます。<br>※ 下図の環境は AMPLS を構築しているため、プライベート エンドポイントの IP アドレスが表示されております。</p>
 <p><img src="/blog/applicationInsights/troubleshooting_telemetry/image-2.png" alt="Alt text"></p>
 <ol start="7">
-<li>下記コマンドを実行し、Application Insights のエンドポイントと通信が可能かご確認ください。  </li>
+<li>下記コマンドを実行し、Application Insights のエンドポイントと通信が可能かご確認ください。</li>
 </ol>
 <p><strong>Linux の場合</strong>  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -v --tlsv1.1 --tls-max 1.2 https://&lt;2 でコピーした値&gt;:443</span><br></pre></td></tr></table></figure>
@@ -323,11 +323,11 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 <p>もし宛先と通信が出来ない場合、一例ではございますが下図のようにエラーが発生します。</p>
 <p><img src="/blog/applicationInsights/troubleshooting_telemetry/image-6.png" alt="Alt text"></p>
-<p>もし、「Complete: 4/4 successful attempts (100%)」が出力された場合は、正常に通信出来ております。</p>
+<p>もし、「Complete: 4&#x2F;4 successful attempts (100%)」が出力された場合は、正常に通信出来ております。</p>
 <p><img src="/blog/applicationInsights/troubleshooting_telemetry/image-5.png" alt="Alt text"></p>
 <p>App Service や Azure Functions の場合、nslookup や ping は機能しません。<br>そのため、nameresolver や tcpping を利用しております。<br>詳細は下記の公開情報をご参考ください。</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/troubleshoot/azure/app-service/troubleshoot-vnet-integration-apps#troubleshoot-outbound-connectivity-on-windows-apps">仮想ネットワークとAzure App Serviceの統合のトラブルシューティング # Windows Apps での送信接続のトラブルシューティング</a>  </li>
+<li><a href="https://learn.microsoft.com/ja-jp/troubleshoot/azure/app-service/troubleshoot-vnet-integration-apps#troubleshoot-outbound-connectivity-on-windows-apps">仮想ネットワークとAzure App Serviceの統合のトラブルシューティング # Windows Apps での送信接続のトラブルシューティング</a></li>
 </ul>
 <p><img src="/blog/applicationInsights/troubleshooting_telemetry/pict3.png"></p>
 <h4 id="Azure-VM-やオンプレミス環境のコンピューターに-Web-アプリケーションをデプロイしている場合"><a href="#Azure-VM-やオンプレミス環境のコンピューターに-Web-アプリケーションをデプロイしている場合" class="headerlink" title="Azure VM やオンプレミス環境のコンピューターに Web アプリケーションをデプロイしている場合"></a>Azure VM やオンプレミス環境のコンピューターに Web アプリケーションをデプロイしている場合</h4><p>下記の手順で当該コンピューターから Application Insights へ通信が可能であるかどうかをご確認ください。</p>
@@ -369,7 +369,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <h3 id="その-2-日時上限の制限抵触"><a href="#その-2-日時上限の制限抵触" class="headerlink" title="その 2. 日時上限の制限抵触"></a>その 2. 日時上限の制限抵触</h3><p>クラシック・ワークスペース ベースの両方に、日時上限の設定が可能です。<br>もし日時上限の制限に抵触していた場合、Application Insights リソースへのテレメトリ取り込みがストップします。</p>
 <p>クラシック Application Insights リソースにて日時上限が発生した場合、当該 Application Insights リソースのアクティビティ ログが出力されます。<br>出力されるアクティビティ ログは、下記公開情報に記載があるログです。</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/daily-cap#classic-application-insights-resource">Log Analytics ワークスペースの日次上限を設定する # 従来の Application Insights リソース</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/daily-cap#classic-application-insights-resource">Log Analytics ワークスペースの日次上限を設定する # 従来の Application Insights リソース</a></li>
 </ul>
 <p><img src="/blog/applicationInsights/troubleshooting_telemetry/pict4.png"></p>
 <p>ワークスペース ベースの Application Insights の場合、Application Insights リソース側もしくは Application Insights リソースに紐づいた Log Analytics ワークスペース側に日時上限の設定が可能です。  </p>
@@ -377,12 +377,12 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>もし Application Insights リソース側の日時上限に抵触した場合は、前述のアクティビティ ログが出力されます。  </p>
 <p>一方で、<strong>「Application Insights リソース側の日時上限データ サイズ &gt; Log Analytics ワークスペース側の日時上限データ サイズ」</strong> の場合は、Log Analytics ワークスペース側の制限に抵触し、テレメトリの取り込みがストップします。<br>この場合は、Log Analytics ワークスペース側にて <code>_LogOperation | where Category =~ &quot;Ingestion&quot; | where Detail contains &quot;OverQuota&quot;</code> のクエリを実行することで、日時上限に抵触したかどうかの判断が可能です。</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/daily-cap#alert-when-daily-cap-is-reached">Log Analytics ワークスペースの日次上限を設定する # 1 日の上限に達したら警告する</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/daily-cap#alert-when-daily-cap-is-reached">Log Analytics ワークスペースの日次上限を設定する # 1 日の上限に達したら警告する</a></li>
 </ul>
 <p><img src="/blog/applicationInsights/troubleshooting_telemetry/pict5.png"></p>
 <p>日時上限に抵触してテレメトリの取り込みがストップしたかどうかは、上記の内容でご判断ください。<br>その他参考資料はこちらです。</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/troubleshoot/azure/azure-monitor/app-insights/daily-cap-unexpected-behaviors">Application Insights の日次上限の予期しない動作</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/troubleshoot/azure/azure-monitor/app-insights/daily-cap-unexpected-behaviors">Application Insights の日次上限の予期しない動作</a></li>
 </ul>
 <h3 id="その-3-AMPLS-による意図的なテレメトリ取り込みの拒否"><a href="#その-3-AMPLS-による意図的なテレメトリ取り込みの拒否" class="headerlink" title="その 3. AMPLS による意図的なテレメトリ取り込みの拒否"></a>その 3. AMPLS による意図的なテレメトリ取り込みの拒否</h3><p>もしお客様の環境にて AMPLS をご利用いただいており、Application Insights への通信を AMPLS のプライベート エンドポイント経由で行っている場合に発生する可能性がございます。</p>
 <p>例えば下図の VNET 上に Web アプリケーションがデプロイされた Azure VM が存在する場合。<br>下図の VNET と統合した App Service・Azure Functions が存在する場合などです。</p>
@@ -407,7 +407,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </blockquote>
 <p><img src="/blog/applicationInsights/troubleshooting_telemetry/pict10.png"></p>
 <p>もしお客様の環境で Application Insights へのテレメトリ送信を試されたい場合は、下記の PowerShell コマンドを Kudu や Azure VM のゲスト OS などから実行ください。</p>
-<p>※ 下記 PowerShell スクリプトは、当該 Application Insights リソースに対して availabilityResults テーブルにテスト用のログを送信するためのスクリプトです。詳細は<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/troubleshoot/azure/azure-monitor/app-insights/investigate-missing-telemetry#powershell-script-send-availability-test-result">可用性テスト結果を送信する PowerShell スクリプト
+<p>※ 下記 PowerShell スクリプトは、当該 Application Insights リソースに対して availabilityResults テーブルにテスト用のログを送信するためのスクリプトです。詳細は<a href="https://learn.microsoft.com/ja-jp/troubleshoot/azure/azure-monitor/app-insights/investigate-missing-telemetry#powershell-script-send-availability-test-result">可用性テスト結果を送信する PowerShell スクリプト
 </a> の公開情報をご確認ください。<br>※ $ConnectionString の変数に対して、適宜当該 Application Insights リソースの接続文字列の値をご指定ください。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Info: Provide either the Connection String or Ikey for your Application Insights Resource</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$ConnectionString</span> = <span class="string">&quot;InstrumentationKey=XXXXXXXX;IngestionEndpoint=https://japaneast-1.in.applicationinsights.azure.com/;LiveEndpoint=https://japaneast.livediagnostics.monitor.azure.com/&quot;</span> </span><br><span class="line"><span class="variable">$InstrumentationKey</span> = <span class="string">&quot;&quot;</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ParseConnectionString</span></span> &#123;</span><br><span class="line"><span class="keyword">param</span> ([<span class="built_in">string</span>]<span class="variable">$ConnectionString</span>)</span><br><span class="line">  <span class="variable">$Map</span> = <span class="selector-tag">@</span>&#123;&#125;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">foreach</span> (<span class="variable">$Part</span> <span class="keyword">in</span> <span class="variable">$ConnectionString</span>.Split(<span class="string">&quot;;&quot;</span>)) &#123;</span><br><span class="line">     <span class="variable">$KeyValue</span> = <span class="variable">$Part</span>.Split(<span class="string">&quot;=&quot;</span>)</span><br><span class="line">     <span class="variable">$Map</span>.Add(<span class="variable">$KeyValue</span>[<span class="number">0</span>], <span class="variable">$KeyValue</span>[<span class="number">1</span>])</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable">$Map</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment"># If Ikey is the only parameter supplied, we&#x27;ll send telemetry to the </span></span><br><span class="line"><span class="comment"># global ingestion endpoint instead of regional endpoint found in connection strings</span></span><br><span class="line"><span class="keyword">If</span> ((<span class="variable">$InstrumentationKey</span>) <span class="operator">-and</span> (<span class="string">&quot;&quot;</span> <span class="operator">-eq</span> <span class="variable">$ConnectionString</span>)) &#123;</span><br><span class="line"><span class="variable">$ConnectionString</span> = <span class="string">&quot;InstrumentationKey=<span class="variable">$InstrumentationKey</span>;IngestionEndpoint=https://dc.services.visualstudio.com/&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="variable">$map</span> = ParseConnectionString(<span class="variable">$ConnectionString</span>)</span><br><span class="line"><span class="variable">$url</span> = <span class="variable">$map</span>[<span class="string">&quot;IngestionEndpoint&quot;</span>] + <span class="string">&quot;v2/track&quot;</span></span><br><span class="line"><span class="variable">$ikey</span> = <span class="variable">$map</span>[<span class="string">&quot;InstrumentationKey&quot;</span>]</span><br><span class="line"><span class="variable">$lmUrl</span> = <span class="variable">$map</span>[<span class="string">&quot;LiveEndpoint&quot;</span>]</span><br><span class="line"> </span><br><span class="line"><span class="variable">$time</span> = (<span class="built_in">Get-Date</span>).ToUniversalTime().ToString(<span class="string">&quot;o&quot;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="variable">$availabilityData</span> = <span class="string">@&quot;</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">  &quot;data&quot;: &#123;</span></span><br><span class="line"><span class="string">        &quot;baseData&quot;: &#123;</span></span><br><span class="line"><span class="string">            &quot;ver&quot;: 2,</span></span><br><span class="line"><span class="string">            &quot;id&quot;: &quot;SampleRunId&quot;,</span></span><br><span class="line"><span class="string">            &quot;name&quot;: &quot;Microsoft Support Sample Webtest Result&quot;,</span></span><br><span class="line"><span class="string">            &quot;duration&quot;: &quot;00.00:00:10&quot;,</span></span><br><span class="line"><span class="string">            &quot;success&quot;: true,</span></span><br><span class="line"><span class="string">            &quot;runLocation&quot;: &quot;Region Name&quot;,</span></span><br><span class="line"><span class="string">            &quot;message&quot;: &quot;Sample Webtest Result&quot;,</span></span><br><span class="line"><span class="string">            &quot;properties&quot;: &#123;</span></span><br><span class="line"><span class="string">                &quot;Sample Property&quot;: &quot;Sample Value&quot;</span></span><br><span class="line"><span class="string">                &#125;</span></span><br><span class="line"><span class="string">        &#125;,</span></span><br><span class="line"><span class="string">        &quot;baseType&quot;: &quot;AvailabilityData&quot;</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string">  &quot;ver&quot;: 1,</span></span><br><span class="line"><span class="string">  &quot;name&quot;: &quot;Microsoft.ApplicationInsights.Metric&quot;,</span></span><br><span class="line"><span class="string">  &quot;time&quot;: &quot;<span class="variable">$time</span>&quot;,</span></span><br><span class="line"><span class="string">  &quot;sampleRate&quot;: 100,</span></span><br><span class="line"><span class="string">  &quot;iKey&quot;: &quot;<span class="variable">$iKey</span>&quot;,</span></span><br><span class="line"><span class="string">  &quot;flags&quot;: 0</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&quot;@</span> </span><br><span class="line"> </span><br><span class="line"><span class="comment"># Uncomment one or more of the following lines to test client TLS/SSL protocols other than the machine default option</span></span><br><span class="line"><span class="comment"># [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::SSL3</span></span><br><span class="line"><span class="comment"># [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::TLS</span></span><br><span class="line"><span class="comment"># [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::TLS11</span></span><br><span class="line">[<span class="type">System.Net.ServicePointManager</span>]::SecurityProtocol = [<span class="type">System.Net.SecurityProtocolType</span>]::TLS12</span><br><span class="line"><span class="comment"># [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::TLS13</span></span><br><span class="line"> </span><br><span class="line"><span class="variable">$ProgressPreference</span> = <span class="string">&quot;SilentlyContinue&quot;</span></span><br><span class="line"><span class="built_in">Invoke-WebRequest</span> <span class="literal">-Uri</span> <span class="variable">$url</span> <span class="literal">-Method</span> POST <span class="literal">-Body</span> <span class="variable">$availabilityData</span> <span class="literal">-UseBasicParsing</span></span><br></pre></td></tr></table></figure>
 
@@ -420,7 +420,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 <p><img src="/blog/applicationInsights/troubleshooting_telemetry/image-10.png" alt="Alt text"></p>
 <p>上記は PowerShell スクリプトですが、Linux の場合は下記の CURL コマンドを実行することで確認可能です。</p>
-<p>※ 下記 CURL コマンドの詳細は<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/troubleshoot/azure/azure-monitor/app-insights/investigate-missing-telemetry#curl-command-send-availability-test-result">Curl コマンドを使用して可用性テスト結果を送信する
+<p>※ 下記 CURL コマンドの詳細は<a href="https://learn.microsoft.com/ja-jp/troubleshoot/azure/azure-monitor/app-insights/investigate-missing-telemetry#curl-command-send-availability-test-result">Curl コマンドを使用して可用性テスト結果を送信する
 </a> の公開情報をご確認ください。<br>※ iKey の XXX の箇所には、適宜当該 Application Insights リソースのインストルメンテーション キーの値をご指定ください。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -H &quot;Content-Type: application/json&quot; -X POST -d &#x27;&#123;&quot;data&quot;:&#123;&quot;baseData&quot;:&#123;&quot;ver&quot;:2,&quot;id&quot;:&quot;SampleRunId&quot;,&quot;name&quot;:&quot;MicrosoftSupportSampleWebtestResultUsingCurl&quot;,&quot;duration&quot;:&quot;00.00:00:10&quot;,&quot;success&quot;:true,&quot;runLocation&quot;:&quot;RegionName&quot;,&quot;message&quot;:&quot;SampleWebtestResult&quot;,&quot;properties&quot;:&#123;&quot;SampleProperty&quot;:&quot;SampleValue&quot;&#125;&#125;,&quot;baseType&quot;:&quot;AvailabilityData&quot;&#125;,&quot;ver&quot;:1,&quot;name&quot;:&quot;Microsoft.ApplicationInsights.Metric&quot;,&quot;time&quot;:&quot;2022-09-01T12:00:00.0000000Z&quot;,&quot;sampleRate&quot;:100,&quot;iKey&quot;:&quot;XXXXXXXXXXXX&quot;,&quot;flags&quot;:0&#125;&#x27; https://japaneast-1.in.applicationinsights.azure.com/v2.1/track</span><br></pre></td></tr></table></figure>
 
@@ -428,7 +428,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p><img src="/blog/applicationInsights/troubleshooting_telemetry/image-11.png" alt="Alt text"></p>
 <p>このように AMPLS 側でインジェストが拒否される振る舞いは仕様どおりです。<br>下記の公開情報に記載がございますが、AMPLS のインジェスト アクセス モードが「プライベートのみ」の場合は、宛先となる Application Insights リソースを当該 AMPLS に追加する必要がございます。<br>そうしないと、テレメトリの取り込みが拒否されます。<br>この点について十分ご留意くださいませ。</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-design#private-only-access-mode">プライベートのみのアクセス モード</a>  </li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-design#private-only-access-mode">プライベートのみのアクセス モード</a></li>
 </ul>
 <p><img src="/blog/applicationInsights/troubleshooting_telemetry/pict12.png"></p>
 <p>もし当該 AMPLS のインジェスト アクセス モードが「プライベートのみ」の場合は、このような原因でテレメトリが取り込まれなくなる可能性があります。<br>一度当該 AMPLS リソースをご確認いただき、当該 Application Insights リソースが追加されているか、追加されている Application Insights リソースのプロビジョニング状態が「Succeeded」であるかどうかを、ご確認ください。  </p>
@@ -437,9 +437,9 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>当該 VNET のページから「使用可能な IP」をご確認いただく事で枯渇しているかどうか確認可能です。<br>もし IP アドレスが足りないようでしたら、拡張いただくようご検討ください。</p>
 <p><img src="/blog/applicationInsights/troubleshooting_telemetry/pict14.png"></p>
 <blockquote>
-<p>サポートされる最小の IPv4 のサブネットは /27 です。 割り当て可能な IP アドレスの数に要注意です。</p>
+<p>サポートされる最小の IPv4 のサブネットは &#x2F;27 です。 割り当て可能な IP アドレスの数に要注意です。</p>
 </blockquote>
-<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-configure#network-subnet-size">Azure Monitor のプライベート リンクを構成する # ネットワーク サブネットのサイズ</a></p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-configure#network-subnet-size">Azure Monitor のプライベート リンクを構成する # ネットワーク サブネットのサイズ</a></p>
 <p><img src="/blog/applicationInsights/troubleshooting_telemetry/pict11.png"></p>
 <p>もし IP アドレスの数に問題が無いのにもかかわらずプロビジョニング状態が「Failed」の場合、一度適当なリソースを AMPLS から削除いただき、改めて追加してください。<br>それでも問題が改善しない場合は、お手数ではございますがサポート リクエストをご起票ください。</p>
 <h3 id="その-4-コレクション-レベルが-“無効”-になっている"><a href="#その-4-コレクション-レベルが-“無効”-になっている" class="headerlink" title="その 4. コレクション レベルが “無効” になっている"></a>その 4. コレクション レベルが “無効” になっている</h3><p>.NET (.NET Framework ではない) の Web アプリケーションを App Service にデプロイし、自動インストルメンテーションを用いて Application Insights と統合している場合。<br>App Service リソースの Application Insights を確認し、コレクション レベルが “無効” になっていると Application Insights にテレメトリが出力されません。<br><img src="/blog/applicationInsights/troubleshooting_telemetry/pict24.png"></p>
@@ -451,7 +451,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>このような事例の場合、収集されるログ レベルの既定値の影響の可能性が非常に高いです。</p>
 <p>.NET 用の Application Insights SDK は、規定では Ilogger Warning 以上のログが収集されます。<br>つまり、例えば LogInformation で収集されたログは規定では Application Insights に収集されません。</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/app/asp-net-core#ilogger-logs">Application Insights for ASP.NET Core アプリケーション</a></li>
+<li><a href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/app/asp-net-core#ilogger-logs">Application Insights for ASP.NET Core アプリケーション</a></li>
 </ul>
 <p><img src="/blog/applicationInsights/troubleshooting_telemetry/pict15.png"></p>
 <p>もし Application Insights SDK ですべてのレベルのログを収集されたい場合は、appsettings.json ファイルに下記の設定を追加ください。</p>
@@ -460,7 +460,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 <p>監視対象 Web アプリケーションのランタイムが Java の場合でも発生しうる問題です。<br>Java に関しましては下記の公開情報をご確認ください。</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/java-standalone-config#autocollected-logging">構成オプション: Azure Monitor Application Insights for Java # 自動収集されるログ</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/java-standalone-config#autocollected-logging">構成オプション: Azure Monitor Application Insights for Java # 自動収集されるログ</a></li>
 </ul>
 <p><img src="/blog/applicationInsights/troubleshooting_telemetry/pict17.png"></p>
 <h3 id="ケース-2-自動インストルメンテーション機能を有効にしているのに、中途半端な状態で-Application-Insights-SDK-が組み込まれてしまった"><a href="#ケース-2-自動インストルメンテーション機能を有効にしているのに、中途半端な状態で-Application-Insights-SDK-が組み込まれてしまった" class="headerlink" title="ケース 2. 自動インストルメンテーション機能を有効にしているのに、中途半端な状態で Application Insights SDK が組み込まれてしまった"></a>ケース 2. 自動インストルメンテーション機能を有効にしているのに、中途半端な状態で Application Insights SDK が組み込まれてしまった</h3><p>App Service と Application Insights を統合する方法として、下記の 2 種類ございます。</p>
@@ -469,23 +469,23 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <li>Web アプリケーションに Application Insights SDK 組み込む (ソースコードの変更が必要)</li>
 </ol>
 <blockquote>
-<p>これらの違いは <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/opentelemetry-overview?tabs=aspnetcore">こちらの公開情報</a> をご参考ください。</p>
+<p>これらの違いは <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/opentelemetry-overview?tabs=aspnetcore">こちらの公開情報</a> をご参考ください。</p>
 </blockquote>
-<p>ランタイムが .NET Framework / .NET の場合、自動インストルメンテーション機能を有効化していてかつ、当該 App Service リソースに対して Application Insights SDK が組み込まれた Web アプリケーションをデプロイした場合、Application Insights SDK 側が優先されます。</p>
+<p>ランタイムが .NET Framework &#x2F; .NET の場合、自動インストルメンテーション機能を有効化していてかつ、当該 App Service リソースに対して Application Insights SDK が組み込まれた Web アプリケーションをデプロイした場合、Application Insights SDK 側が優先されます。</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/codeless-app-service?tabs=aspnetcore">Azure App Service での .NET、Node.js、Python、Java アプリケーションのアプリケーション監視を有効にする</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/codeless-app-service?tabs=aspnetcore">Azure App Service での .NET、Node.js、Python、Java アプリケーションのアプリケーション監視を有効にする</a></li>
 </ul>
 <p><img src="/blog/applicationInsights/troubleshooting_telemetry/pict18.png"></p>
 <p>Application Insights SDK 側が優先されるため、Application Insights SDK 側の設定に影響して収集されるテレメトリの種類が決定します。<br>もし担当者の方が自動インストルメンテーション機能の有効化を期待していた場合、何らかの原因によって組み込まれた Application Insights SDK が意図せず機能する可能性があります。<br>その場合に適切に Application Insights SDK の設定が構築出来ていないと、期待どおりテレメトリが収集出来ない場合がございます。</p>
 <p>もし Application Insights SDK は不要であれば、下記の手順で当該 Web アプリケーションから Application Insights SDK の削除をご検討ください。</p>
 <h4 id="Application-Insights-SDK-を完全に削除する"><a href="#Application-Insights-SDK-を完全に削除する" class="headerlink" title="Application Insights SDK を完全に削除する"></a>Application Insights SDK を完全に削除する</h4><p>Azure の基盤側ログに、ApplicationInsights.dll ファイルが wwwroot フォルダに検出されたことが記録されております。<br>もし当該 Web アプリケーションに対して ApplicationInsights.dll が含まれている場合は、お手数ではございますが当該 DLL を削除し改めて App Service に再デプロイを実施ください。<br>もしくは、当該 Web アプリケーションのプロジェクトに Microsoft.ApplicationInsights.AspNetCore が存在する場合、こちらを削除いただき App Service に再デプロイください。  </p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/classic-api?tabs=dotnet#aspnet-core-2">Application Insights を手動で追加する (Visual Studio を使用しない)#ASP.NET Core</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/classic-api?tabs=dotnet#aspnet-core-2">Application Insights を手動で追加する (Visual Studio を使用しない)#ASP.NET Core</a></li>
 </ul>
 <p><img src="/blog/applicationInsights/troubleshooting_telemetry/pict19.png"></p>
 <p>.NET Framework の場合は、こちらを削除ください。</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/classic-api?tabs=dotnet#aspnet-2">Application Insights を手動で追加する (Visual Studio を使用しない)#ASP.NET</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/classic-api?tabs=dotnet#aspnet-2">Application Insights を手動で追加する (Visual Studio を使用しない)#ASP.NET</a></li>
 </ul>
 <p><img src="/blog/applicationInsights/troubleshooting_telemetry/pict20.png"></p>
 <p><a id="case3"></a></p>
@@ -495,12 +495,12 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </ul>
 <h2 id="疑われるポイント-1"><a href="#疑われるポイント-1" class="headerlink" title="疑われるポイント"></a>疑われるポイント</h2><p>サンプリングが機能している可能性が非常に高いです。<br>下記の公開情報をご参考に、サンプリングによってログが意図的に間引かれているかどうかをご確認ください。</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/sampling-classic-api#knowing-whether-sampling-is-in-operation">サンプリングが動作しているかどうかを把握する</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/sampling-classic-api#knowing-whether-sampling-is-in-operation">サンプリングが動作しているかどうかを把握する</a></li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">union requests,dependencies,pageViews,browserTimings,exceptions,traces</span><br><span class="line">| where timestamp &gt; ago(1d)</span><br><span class="line">| summarize RetainedPercentage = 100/avg(itemCount) by bin(timestamp, 1h), itemType</span><br></pre></td></tr></table></figure>
 
 
-<h1 id="色々調べたけど問題が解決しない場合……"><a href="#色々調べたけど問題が解決しない場合……" class="headerlink" title="色々調べたけど問題が解決しない場合……"></a>色々調べたけど問題が解決しない場合……</h1><p>問題解消のために、ぜひ弊社サポートにお問い合わせください。<br>その際は、<strong>必ず問題が発生したサブスクリプションからサポート リクエストをご起票ください</strong>ませ。<br>セキュリティ上の理由から、権限の確認を厳密化させていただいているためです。<br>詳細は、<a target="_blank" rel="noopener" href="https://jpaztech.github.io/blog/information/Different-subscriptions-research/">お問い合わせ発行時と「異なる」サブスクリプションならびに AAD テナントの調査依頼に対してのセキュリティ チェックが強化されます</a> をご確認ください。</p>
+<h1 id="色々調べたけど問題が解決しない場合……"><a href="#色々調べたけど問題が解決しない場合……" class="headerlink" title="色々調べたけど問題が解決しない場合……"></a>色々調べたけど問題が解決しない場合……</h1><p>問題解消のために、ぜひ弊社サポートにお問い合わせください。<br>その際は、<strong>必ず問題が発生したサブスクリプションからサポート リクエストをご起票ください</strong>ませ。<br>セキュリティ上の理由から、権限の確認を厳密化させていただいているためです。<br>詳細は、<a href="https://jpaztech.github.io/blog/information/Different-subscriptions-research/">お問い合わせ発行時と「異なる」サブスクリプションならびに AAD テナントの調査依頼に対してのセキュリティ チェックが強化されます</a> をご確認ください。</p>
 <p>なお、お問い合わせいただく際には下記の情報をご共有いただく事でスムーズに調査が可能となります。<br>Application Insights に対してテレメトリが収集されなくなり、弊社サポートにお問い合わせいただく場合にご参考いただけますと幸いです。</p>
 <ul>
 <li>問題が発生した Application Insights リソース名</li>
@@ -528,7 +528,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>本記事が少しでもお役に立ちましたら幸いです。<br>最後までお読みいただきありがとうございました！</p>
 <h1 id="関連する記事"><a href="#関連する記事" class="headerlink" title="関連する記事"></a>関連する記事</h1><p>Application Insights に関するトラブルシューティング系の公開情報は別で用意されています。<br>今回の記事で案内させて頂いた内容も多々含まれておりますので、問題が発生した際はぜひ下記の公開情報をご確認くださいませ。</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/troubleshoot/azure/azure-monitor/app-insights/investigate-missing-telemetry">Azure Monitor Application Insights でアプリケーション テレメトリが見つからない場合のトラブルシューティング</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/troubleshoot/azure/azure-monitor/app-insights/investigate-missing-telemetry">Azure Monitor Application Insights でアプリケーション テレメトリが見つからない場合のトラブルシューティング</a></li>
 </ul>
 <p>またあまり知られておりませんが、当該 Application Insights リソースのページからトラブルシューティングが可能です。<br>Azure portal より問題が発生した Application Insights のページへ移動し、「問題の診断と解決」から「Application Insights の有効かごのデータがない…」という箇所をクリックしてみてください。</p>
 <p><img src="/blog/applicationInsights/troubleshooting_telemetry/pict21.png"></p>

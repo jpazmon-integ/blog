@@ -10,15 +10,15 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="[更新履歴]    7&#x2F;12 10:45 (日本時間) Post Incident Review (PIR) の「どのように対応したのか」を一部修正しました。   Azure Service Health を通じた最初の通知の時間に誤りがあり、2023 年 7 月 6 日 23:19 UTC (2023 年 7 月 7 日 08:19 JST) に変更しました。   7&#x2F;11 15:45 (日本時">
+      <meta name="description" content="[更新履歴]    7&#x2F;12 10:45 (日本時間) Post Incident Review (PIR) の「どのように対応したのか」を一部修正しました。   Azure Service Health を通じた最初の通知の時間に誤りがあり、2023 年 7 月 6 日 23:19 UTC (2023 年 7 月 7 日 08:19 JST) に変更しました。   7&#x2F;11">
 <meta property="og:type" content="article">
 <meta property="og:title" content="7&#x2F;7 に発生した障害 XMGF-5Z0 について">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/general/mdsFalseAlerts/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="[更新履歴]    7&#x2F;12 10:45 (日本時間) Post Incident Review (PIR) の「どのように対応したのか」を一部修正しました。   Azure Service Health を通じた最初の通知の時間に誤りがあり、2023 年 7 月 6 日 23:19 UTC (2023 年 7 月 7 日 08:19 JST) に変更しました。   7&#x2F;11 15:45 (日本時">
+<meta property="og:description" content="[更新履歴]    7&#x2F;12 10:45 (日本時間) Post Incident Review (PIR) の「どのように対応したのか」を一部修正しました。   Azure Service Health を通じた最初の通知の時間に誤りがあり、2023 年 7 月 6 日 23:19 UTC (2023 年 7 月 7 日 08:19 JST) に変更しました。   7&#x2F;11">
 <meta property="og:locale" content="ja_JP">
 <meta property="article:published_time" content="2023-07-09T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.475Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:30.131Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Azure Monitor All">
 <meta property="article:tag" content="Outage">
@@ -58,7 +58,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -75,7 +75,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -173,26 +173,26 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+9841001a-ff92-5aba-b378-cca940315f39%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B7%2F7+%E3%81%AB%E7%99%BA%E7%94%9F%E3%81%97%E3%81%9F%E9%9A%9C%E5%AE%B3+XMGF-5Z0+%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2Fgeneral%2FmdsFalseAlerts%2F%29%0A*+Content+Source%3A+%5Barticles%2Fgeneral%2FmdsFalseAlerts.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2Fgeneral%2FmdsFalseAlerts.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/general/mdsFalseAlerts/" data-id="cmm8g5fjh00ep0nnycb3p83ky" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/general/mdsFalseAlerts/" data-id="cuidQ9m3ZZAm6i8wfpaMosQo9" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>[更新履歴]  </p>
 <ul>
-<li>7/12 10:45 (日本時間) Post Incident Review (PIR) の「どのように対応したのか」を一部修正しました。  <ul>
+<li>7&#x2F;12 10:45 (日本時間) Post Incident Review (PIR) の「どのように対応したのか」を一部修正しました。  <ul>
 <li>Azure Service Health を通じた最初の通知の時間に誤りがあり、2023 年 7 月 6 日 23:19 UTC (2023 年 7 月 7 日 08:19 JST) に変更しました。</li>
 </ul>
 </li>
-<li>7/11 15:45 (日本時間) Post Incident Review (PIR) の抄訳を追記いたしました。  </li>
-<li>7/10 10:00 (日本時間) ブログ公開</li>
+<li>7&#x2F;11 15:45 (日本時間) Post Incident Review (PIR) の抄訳を追記いたしました。  </li>
+<li>7&#x2F;10 10:00 (日本時間) ブログ公開</li>
 </ul>
-<p>こんにちは、Azure Monitoring サポート チームの横山です。<br>7/7 に発生した障害 XMGF-5Z0 について記載いたします。<br>この度は弊社 Azure の障害によりご不便ご迷惑をおかけし、大変申し訳ございませんでした。</p>
+<p>こんにちは、Azure Monitoring サポート チームの横山です。<br>7&#x2F;7 に発生した障害 XMGF-5Z0 について記載いたします。<br>この度は弊社 Azure の障害によりご不便ご迷惑をおかけし、大変申し訳ございませんでした。</p>
 <p><a href="#summary">発生した事象と時間帯</a><br><a href="#region">事象の発生したリージョン</a><br><a href="#impact1">直接影響を受けたサービス</a><br><a href="#impact2">副次的に影響を受けたサービス</a><br><a href="#impact3">影響を受けなかったサービス</a><br><a href="#FAQ">よくあるご質問</a><br><a href="#pir">Post Incident Review (PIR) の抄訳</a><br><a href="#atLast">最後に</a></p>
 <p><a id="summary"></a></p>
-<h1 id="発生した事象と時間帯"><a href="#発生した事象と時間帯" class="headerlink" title="発生した事象と時間帯"></a>発生した事象と時間帯</h1><p>日本時間 7/7 8:15 - 18:00 の間、Azure Monitor 関連サービスにおけるデータの取り込みに欠損ならびに遅延が発生いたしました。<br>具体的には、問題のある構成により過剰な数の処理が発生しいたしました。これにより、ログの取り込みを行う Azure 基盤側のサービスが高負荷状態に陥り、内部で利用する認証情報の取得に失敗する事象が発生いたしました。  </p>
+<h1 id="発生した事象と時間帯"><a href="#発生した事象と時間帯" class="headerlink" title="発生した事象と時間帯"></a>発生した事象と時間帯</h1><p>日本時間 7&#x2F;7 8:15 - 18:00 の間、Azure Monitor 関連サービスにおけるデータの取り込みに欠損ならびに遅延が発生いたしました。<br>具体的には、問題のある構成により過剰な数の処理が発生しいたしました。これにより、ログの取り込みを行う Azure 基盤側のサービスが高負荷状態に陥り、内部で利用する認証情報の取得に失敗する事象が発生いたしました。  </p>
 <p>Azure 基盤側のサーバー増強を行い、滞留していた処理と新規の処理を適切に処理できるよう対処いたしました。  </p>
-<p>根本原因ならびに今後の恒久対策については現在も弊社開発にて調査、検討中です。(7/10 10:00 (日本時間) 現在)<br>なお、最新の状況は以下よりご確認いただけます。<br><a target="_blank" rel="noopener" href="https://app.azure.com/h/XMGF-5Z0/">https://app.azure.com/h/XMGF-5Z0/</a> (Azure ポータル)<br><a target="_blank" rel="noopener" href="https://azure.status.microsoft/ja-jp/status/history/">https://azure.status.microsoft/ja-jp/status/history/</a> (Azure の状態ページ)</p>
+<p>根本原因ならびに今後の恒久対策については現在も弊社開発にて調査、検討中です。(7&#x2F;10 10:00 (日本時間) 現在)<br>なお、最新の状況は以下よりご確認いただけます。<br><a href="https://app.azure.com/h/XMGF-5Z0/">https://app.azure.com/h/XMGF-5Z0/</a> (Azure ポータル)<br><a href="https://azure.status.microsoft/ja-jp/status/history/">https://azure.status.microsoft/ja-jp/status/history/</a> (Azure の状態ページ)</p>
 <p><a id="region"></a></p>
 <h1 id="発生したリージョン"><a href="#発生したリージョン" class="headerlink" title="発生したリージョン"></a>発生したリージョン</h1><p>東日本、西日本を含む以下のリージョンで事象が発生いたしました。<br>Global; Australia Central; Australia Central 2; Australia East; Australia Southeast; Brazil South; Brazil Southeast; Canada Central; Canada East; Central India; Central US; Central US EUAP; East Asia; East US; East US 2; East US 2 EUAP; France Central; France South; Germany North; Germany West Central; Japan East; Japan West; Jio India Central; Jio India West; Korea Central; Korea South; North Central US; North Europe; Norway East; Norway West; Qatar Central; South Africa North; South Africa West; South Central US; South India; Southeast Asia; Sweden Central; Sweden South; Switzerland North; Switzerland West; UK South; UK West; West Central US; West Europe; West India; West US; West US 2; West US 3</p>
 <p><a id="impact1"></a></p>
@@ -223,7 +223,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p>Q. 欠損したデータの復旧は可能か？<br>A. いいえ、欠損したデータの復旧を行うことはできません。</p>
 <p>Q. 今回の障害による返金はあるか？<br>A. いいえ、Azure Monitor 各種サービスへのデータ取り込みに関しては SLA (Service Level Agreements) が定められていないため、今回の障害による返金はございません。</p>
 <p><a id="pir"></a></p>
-<h1 id="Post-Incident-Review-PIR-の抄訳"><a href="#Post-Incident-Review-PIR-の抄訳" class="headerlink" title="Post Incident Review (PIR) の抄訳"></a>Post Incident Review (PIR) の抄訳</h1><p>下記に公開されている PIR の抄訳を記載いたしました。<br><a target="_blank" rel="noopener" href="https://azure.status.microsoft/ja-jp/status/history/">https://azure.status.microsoft/ja-jp/status/history/</a> (Azure の状態の履歴)</p>
+<h1 id="Post-Incident-Review-PIR-の抄訳"><a href="#Post-Incident-Review-PIR-の抄訳" class="headerlink" title="Post Incident Review (PIR) の抄訳"></a>Post Incident Review (PIR) の抄訳</h1><p>下記に公開されている PIR の抄訳を記載いたしました。<br><a href="https://azure.status.microsoft/ja-jp/status/history/">https://azure.status.microsoft/ja-jp/status/history/</a> (Azure の状態の履歴)</p>
 <h2 id="何が起こったのか"><a href="#何が起こったのか" class="headerlink" title="何が起こったのか"></a>何が起こったのか</h2><p>2023 年 7 月 6 日の UTC 23:15 から 7 月 7 日の UTC 9:00 (日本時間 2023 年 7 月 7 日 08:15 から 7 月 7 日 18:00) まで、Azure Monitor Log Analytics と Microsoft Sentinel の一部のデータの取り込みが失敗しました。<br>さらに、診断設定を介して収集したプラットフォーム ログは、Log Analytics、ストレージ、Event Hub、マーケットプレイスなどの顧客向けの宛先に一部のデータをルーティング (データを送信) することに失敗しました。<br>これらの失敗は、Microsoft 内のサービスのデプロイによるものであり、予想よりもはるかに高い呼び出し量を引き起こすバグが原因で、テレメトリ コントロール プレーンのリソースを使い果たしました。これによりすべてのリージョンの顧客が影響を受けました。</p>
 <p>Sentinel 内の Security Operations Center (SOC) の機能、つまり、ハンティング クエリ、カスタム クエリを含むブック、削除されたログ データを含む範囲のインパクト テーブルをクエリしたノートブックが部分的または空の結果を返す可能性がありました。<br>Event テーブルや SecurityEvent テーブルが影響を受けた場合、相関するインシデントの調査は部分的または空の結果を示す可能性がありました。<br>残念ながら、この問題はお客様の Azure リソースの一つ以上に影響を与えました。<br>私たちはこの Post Incident Review (PIR) を提供して、何が間違っていたのか、どのように対応したのか、Microsoft が何を学び、どのように改善しているのかをまとめます。</p>
 <h2 id="何がうまくいかなかったのか、そしてその理由は"><a href="#何がうまくいかなかったのか、そしてその理由は" class="headerlink" title="何がうまくいかなかったのか、そしてその理由は"></a>何がうまくいかなかったのか、そしてその理由は</h2><p>2023 年 7 月 3 日 UTC に Azure Container Apps サービスのコード デプロイメントが通常の Safe Deployment Practices (SDP) を介して開始され、最初に Azure の canary とステージング リージョンに展開されました。<br>このバージョンには、サービスが正常に起動しないようになってしまう、誤った構成が含まれていました。この誤った構成のため、サービスのブートストラップ コードは例外をスローし、自動的に再起動されました。これにより、ブートストラップ サービスが 5 から 10 秒ごとに再起動するループに陥りました。<br>ブートストラップ サービスが再起動されるたびに、それは構成情報をテレメトリ エージェントに提供し、サービス ホストに構成情報をインストールしました。<br>構成情報がテレメトリ ホストに送信されるたびに、テレメトリ ホストはこれを設定の変更と解釈し、したがって自分たちも現在のプロセスを終了して自動的に再起動しました。<br>アプリケーション ホストごとに、エージェント テレメトリ ホストの三つの別々のインスタンスが、5 から 10 秒ごとに再起動を繰り返していました。</p>
@@ -239,9 +239,9 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <li>コア テレメトリ コントロール プレーン API に追加のスロットリングとサーキット ブレーカー パターンを導入します。 (予定完了 : 2023 年 9 月)</li>
 <li>長期的には、テレメトリ コントロール プレーンを使用して内部向けサービスと外部向けサービスを分離します。 (予定完了 : 2023 年 12 月)</li>
 </ul>
-<h2 id="このようなインシデントをどのようにして影響を軽減することができますか"><a href="#このようなインシデントをどのようにして影響を軽減することができますか" class="headerlink" title="このようなインシデントをどのようにして影響を軽減することができますか"></a>このようなインシデントをどのようにして影響を軽減することができますか</h2><p>お客様はこのインシデントの影響を防止することはできませんでした。また、インシデント発生中の影響を緩和することもできませんでした。<br>一般的には、Azure の Well-Architected フレームワークとその対話的 Well-Architected レビューの指針を用いて、アプリケーションの信頼性を評価することを考慮してみてください :<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-JP/azure/well-architected/resiliency/">https://learn.microsoft.com/ja-JP/azure/well-architected/resiliency/</a></p>
-<p>最後に、組織内の適切な人々が将来のサービス問題について通知を受けるようにすることを検討してください。<br>これは Azure サービス正常性のアラートを設定することで行えます。これらのアラートは、電子メール、SMS、プッシュ通知、Web フックなどをトリガーすることができます : <a target="_blank" rel="noopener" href="https://aka.ms/ash-alerts">https://aka.ms/ash-alerts</a></p>
-<h2 id="どのようにしてインシデント-レポートをより有用にすることができますか"><a href="#どのようにしてインシデント-レポートをより有用にすることができますか" class="headerlink" title="どのようにしてインシデント レポートをより有用にすることができますか"></a>どのようにしてインシデント レポートをより有用にすることができますか</h2><p>この PIR を評価し、3 問の調査を使用してフィードバックを提供することができます : <a target="_blank" rel="noopener" href="https://aka.ms/AzPIR/XMGF-5Z0">https://aka.ms/AzPIR/XMGF-5Z0</a></p>
+<h2 id="このようなインシデントをどのようにして影響を軽減することができますか"><a href="#このようなインシデントをどのようにして影響を軽減することができますか" class="headerlink" title="このようなインシデントをどのようにして影響を軽減することができますか"></a>このようなインシデントをどのようにして影響を軽減することができますか</h2><p>お客様はこのインシデントの影響を防止することはできませんでした。また、インシデント発生中の影響を緩和することもできませんでした。<br>一般的には、Azure の Well-Architected フレームワークとその対話的 Well-Architected レビューの指針を用いて、アプリケーションの信頼性を評価することを考慮してみてください :<br><a href="https://learn.microsoft.com/ja-JP/azure/well-architected/resiliency/">https://learn.microsoft.com/ja-JP/azure/well-architected/resiliency/</a></p>
+<p>最後に、組織内の適切な人々が将来のサービス問題について通知を受けるようにすることを検討してください。<br>これは Azure サービス正常性のアラートを設定することで行えます。これらのアラートは、電子メール、SMS、プッシュ通知、Web フックなどをトリガーすることができます : <a href="https://aka.ms/ash-alerts">https://aka.ms/ash-alerts</a></p>
+<h2 id="どのようにしてインシデント-レポートをより有用にすることができますか"><a href="#どのようにしてインシデント-レポートをより有用にすることができますか" class="headerlink" title="どのようにしてインシデント レポートをより有用にすることができますか"></a>どのようにしてインシデント レポートをより有用にすることができますか</h2><p>この PIR を評価し、3 問の調査を使用してフィードバックを提供することができます : <a href="https://aka.ms/AzPIR/XMGF-5Z0">https://aka.ms/AzPIR/XMGF-5Z0</a></p>
 <p><a id="atlast"></a></p>
 <h1 id="最後に"><a href="#最後に" class="headerlink" title="最後に"></a>最後に</h1><p>もし、本ブログに記載の内容以外について追加のご質問やご不明点がございましたら、大変お手数ではございますが、事象を受けたサブスクリプションからお問い合わせをご発行ください。<br>なお、以下についてはお問い合わせを新規ご発行いただいても回答いたしかねますので、予めご了承ください。  </p>
 <ul>

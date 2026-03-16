@@ -10,21 +10,21 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="[更新履歴]    2023&#x2F;12&#x2F;24 ブログ公開   2026&#x2F;01&#x2F;19 廃止情報について追記    [!IMPORTANT] Log Analytics エージェント（MMA&#x2F;OMS）は 2024 年 8 月 31 日をもって完全に廃止されました。本記事で紹介している DCR Config Generator は、廃止済みエージェントから Azure Monitor エージェント (AMA">
+      <meta name="description" content="[更新履歴]    2023&#x2F;12&#x2F;24 ブログ公開   2026&#x2F;01&#x2F;19 廃止情報について追記   [!IMPORTANT] Log Analytics エージェント（MMA&#x2F;OMS）は 2024 年 8 月 31 日をもって完全に廃止されました。本記事で紹介している DCR Config Generator は、廃止済みエージェントから A">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DCR Config Generator の使用方法">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="[更新履歴]    2023&#x2F;12&#x2F;24 ブログ公開   2026&#x2F;01&#x2F;19 廃止情報について追記    [!IMPORTANT] Log Analytics エージェント（MMA&#x2F;OMS）は 2024 年 8 月 31 日をもって完全に廃止されました。本記事で紹介している DCR Config Generator は、廃止済みエージェントから Azure Monitor エージェント (AMA">
+<meta property="og:description" content="[更新履歴]    2023&#x2F;12&#x2F;24 ブログ公開   2026&#x2F;01&#x2F;19 廃止情報について追記   [!IMPORTANT] Log Analytics エージェント（MMA&#x2F;OMS）は 2024 年 8 月 31 日をもって完全に廃止されました。本記事で紹介している DCR Config Generator は、廃止済みエージェントから A">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/4-3.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/4-4.png">
 <meta property="article:published_time" content="2023-12-23T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.187Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:29.819Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="Log Analytics">
-<meta property="article:tag" content="HowTo">
 <meta property="article:tag" content="AMA migration">
+<meta property="article:tag" content="HowTo">
+<meta property="article:tag" content="Log Analytics">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/4-3.png">
         
@@ -62,7 +62,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -79,7 +79,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -177,17 +177,17 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+1fe77f35-6c97-52c2-9320-41db4fcb1c05%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BDCR+Config+Generator+%E3%81%AE%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FDCRConfigGenerator%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FDCRConfigGenerator.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FDCRConfigGenerator.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/" data-id="cmm8g5ffy001h0nnyg5smg32u" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/DCRConfigGenerator/" data-id="cuida2WpsbS-RBFd1-XVgHaNi" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>[更新履歴]  </p>
 <ul>
-<li>2023/12/24 ブログ公開  </li>
-<li>2026/01/19 廃止情報について追記 </li>
+<li>2023&#x2F;12&#x2F;24 ブログ公開  </li>
+<li>2026&#x2F;01&#x2F;19 廃止情報について追記</li>
 </ul>
-<div class="alert is-important"><p class="alert-title">重要</p><p> Log Analytics エージェント（MMA/OMS）は 2024 年 8 月 31 日をもって完全に廃止されました。</p><p>本記事で紹介している DCR Config Generator は、廃止済みエージェントから Azure Monitor エージェント (AMA) への移行を支援するためのツールです。</p><p>新規構成や運用では AMA をご利用ください。</p></div>
+<div class="alert is-important"><p class="alert-title">重要</p><p> Log Analytics エージェント（MMA&#x2F;OMS）は 2024 年 8 月 31 日をもって完全に廃止されました。</p><p>本記事で紹介している DCR Config Generator は、廃止済みエージェントから Azure Monitor エージェント (AMA) への移行を支援するためのツールです。</p><p>新規構成や運用では AMA をご利用ください。</p></div>
 <p>こんにちは！Azure Monitoring チームの加治屋です。<br>この記事では、Log Analytics エージェントから Azure Monitor エージェントへの移行のために使用できるツールについてご紹介いたします。</p>
 <p>※<br>DCR Config Generator の更新に伴い、ツールの利用方法が変更されております。<br>当記事は、DCR Config Generator バージョン 1.0.0 を前提として記載しております。</p>
 <span id="more"></span>
@@ -199,10 +199,10 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <h2 id="DCR-Config-Generator-の仕様"><a href="#DCR-Config-Generator-の仕様" class="headerlink" title="DCR Config Generator の仕様"></a>DCR Config Generator の仕様</h2><p>このツールは、指定した Log Analytics ワークスペースに登録されている Log Analytics エージェント用の定義をもとに、データ収集ルールをデプロイするための JSON ファイルを作成するためのツールです。<br>このツールを実行することにより、以下の JSON ファイルが作成されます。</p>
 <p>・Windows イベントログ・パフォーマンス カウンター用ファイル<br>・Linux Syslog・パフォーマンス カウンター用ファイル<br>・VM Insights 用ファイル<br>・カスタム テキスト ログ用ファイル<br>・IIS Logs 用ファイル</p>
 <p>上記のうち、カスタム テキスト ログ定義用ファイルのみ、カスタム テキスト ログ用として使用されているのカスタム テーブルの数だけデータ収集ルール用ファイルが作成されます。<br>また、上記それぞれに ARM テンプレート用のファイル (arm_template を含むファイル)、およびコマンドによるデータ収集ルール作成時用のファイル (payload を含むファイル) が作成されます。</p>
-<h3 id="DCR-Config-Generator-使用のための前提条件"><a href="#DCR-Config-Generator-使用のための前提条件" class="headerlink" title="DCR Config Generator 使用のための前提条件"></a>DCR Config Generator 使用のための前提条件</h3><p>DCR Config Generator を使用するためには、以下のものが必要です。<br>・PowerShell バージョン 5.1 以降。 PowerShell バージョン 7.1.3 以降の使用をお勧めします。<br>・指定したワークスペース リソースへの読み取り/書き込みアクセス権<br>・ワークスペース エージェント構成情報をプルする Az Powershell モジュール。 Az.Accounts および Az.OperationalInsights モジュールが必要です。<br>・スクリプトを実行するためのコンテキストを設定する、Connect-AzAccount および Select-AzContext の実行用の Azure 資格情報。</p>
+<h3 id="DCR-Config-Generator-使用のための前提条件"><a href="#DCR-Config-Generator-使用のための前提条件" class="headerlink" title="DCR Config Generator 使用のための前提条件"></a>DCR Config Generator 使用のための前提条件</h3><p>DCR Config Generator を使用するためには、以下のものが必要です。<br>・PowerShell バージョン 5.1 以降。 PowerShell バージョン 7.1.3 以降の使用をお勧めします。<br>・指定したワークスペース リソースへの読み取り&#x2F;書き込みアクセス権<br>・ワークスペース エージェント構成情報をプルする Az Powershell モジュール。 Az.Accounts および Az.OperationalInsights モジュールが必要です。<br>・スクリプトを実行するためのコンテキストを設定する、Connect-AzAccount および Select-AzContext の実行用の Azure 資格情報。</p>
 <h3 id="DCR-Config-Generator-使用前の確認事項"><a href="#DCR-Config-Generator-使用前の確認事項" class="headerlink" title="DCR Config Generator 使用前の確認事項"></a>DCR Config Generator 使用前の確認事項</h3><p>現在、Log Analytics エージェントにて VM Insights をご利用されており、かつ Azure Monitor エージェント移行後も VM Insights のご利用を予定されている場合は、以下の点についてご確認をお願いいたします。</p>
 <p>＜確認事項＞<br>移行対象とするマシンにて、Dependency Agent がインストールされているかをご確認ください。<br>マシンの [拡張機能とアプリケーション] より、[DependencyAgentLinux] もしくは [DependencyAgentWindows] が表示されているかどうかで判断が可能です。<br>Dependency Agent がインストールされているマシンについては、Log Analytics エージェントの削除後に VM Insights 用のデータ収集ルールへの紐づけが必要です。</p>
-<h2 id="DCR-Config-Generator-の使用手順"><a href="#DCR-Config-Generator-の使用手順" class="headerlink" title="DCR Config Generator の使用手順"></a>DCR Config Generator の使用手順</h2><h3 id="手順-1"><a href="#手順-1" class="headerlink" title="手順 1"></a>手順 1</h3><p>WorkspaceConfigToDCRMigrationTool.ps1 というスクリプトをダウンロードします。<br>スクリプトはこちらよりダウンロードください。<br><a target="_blank" rel="noopener" href="https://github.com/microsoft/AzureMonitorCommunity/tree/master/Azure%20Services/Azure%20Monitor/Agents/Migration%20Tools/DCR%20Config%20Generator">https://github.com/microsoft/AzureMonitorCommunity/tree/master/Azure%20Services/Azure%20Monitor/Agents/Migration%20Tools/DCR%20Config%20Generator</a></p>
+<h2 id="DCR-Config-Generator-の使用手順"><a href="#DCR-Config-Generator-の使用手順" class="headerlink" title="DCR Config Generator の使用手順"></a>DCR Config Generator の使用手順</h2><h3 id="手順-1"><a href="#手順-1" class="headerlink" title="手順 1"></a>手順 1</h3><p>WorkspaceConfigToDCRMigrationTool.ps1 というスクリプトをダウンロードします。<br>スクリプトはこちらよりダウンロードください。<br><a href="https://github.com/microsoft/AzureMonitorCommunity/tree/master/Azure%20Services/Azure%20Monitor/Agents/Migration%20Tools/DCR%20Config%20Generator">https://github.com/microsoft/AzureMonitorCommunity/tree/master/Azure%20Services/Azure%20Monitor/Agents/Migration%20Tools/DCR%20Config%20Generator</a></p>
 <h3 id="手順-2"><a href="#手順-2" class="headerlink" title="手順 2"></a>手順 2</h3><p>手順 1 でダウンロードしたスクリプトを実行します。<br>実行例は以下の通りです。</p>
 <p>&lt;実行例&gt;</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$subId = &quot;&lt;subscription_id&gt;&quot;</span><br><span class="line">$rgName = &quot;&lt;resourcegroup_Name&gt;&quot;</span><br><span class="line">$workspaceName = &quot;&lt;ws_name&gt;&quot;</span><br><span class="line">$dcrName = &quot;&lt;newdcr_name&gt;&quot;</span><br><span class="line">$folderPath = &quot;&lt;結果を出力するフォルダへのパス&gt;&quot;</span><br><span class="line">.\WorkspaceConfigToDCRMigrationTool.ps1 -SubscriptionId $subId -ResourceGroupName $rgName -WorkspaceName $workspaceName -DCRName $dcrName -OutputFolder $folderPath</span><br></pre></td></tr></table></figure>
@@ -246,7 +246,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <h4 id="手順-4-II-3"><a href="#手順-4-II-3" class="headerlink" title="手順 4-II-3"></a>手順 4-II-3</h4><p>DCR とリソースの紐づけを行います。<br>※ 紐づけたいマシンの電源は、あらかじめ ON にしておく必要がございます。<br><img src="/blog/LogAnalytics/DCRConfigGenerator/4-4.png" alt="DCRとリソースの紐づけ"></p>
 <p>手順は以上です。<br>もし、スクリプトの動作がおかしい、使用方法がよくわからない、などございましたら、ご遠慮なく弊社サポート チームへお問い合わせください。</p>
 <h2 id="参考情報"><a href="#参考情報" class="headerlink" title="参考情報"></a>参考情報</h2><ul>
-<li>移行に関してはこちら<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration">Log Analytics エージェントから Azure Monitor エージェントへの移行</a></li>
+<li>移行に関してはこちら<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration">Log Analytics エージェントから Azure Monitor エージェントへの移行</a></li>
 </ul>
 
       

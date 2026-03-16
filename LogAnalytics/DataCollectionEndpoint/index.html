@@ -27,11 +27,11 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/DataCollectionEndpoint/dceshared_ex1.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/DataCollectionEndpoint/dcenotshared.png">
 <meta property="article:published_time" content="2024-07-23T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.188Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:29.821Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
-<meta property="article:tag" content="Log Analytics">
-<meta property="article:tag" content="HowTo">
 <meta property="article:tag" content="Data Collection Rule, Data Collection Endpoint">
+<meta property="article:tag" content="HowTo">
+<meta property="article:tag" content="Log Analytics">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/DataCollectionEndpoint/endpointid_ingestion.png">
         
@@ -69,7 +69,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -86,7 +86,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -184,14 +184,14 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+ec96905e-ef6f-5ae3-a2cc-4d7579e4c9dc%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86%E3%83%AB%E3%83%BC%E3%83%AB%E4%BD%9C%E6%88%90%E6%99%82%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86%E3%82%A8%E3%83%B3%E3%83%89%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E3%81%AE%E6%A7%8B%E6%88%90%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FDataCollectionEndpoint%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FDataCollectionEndpoint.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FDataCollectionEndpoint.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/DataCollectionEndpoint/" data-id="cmm8g5ffz001k0nny8obp380w" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/DataCollectionEndpoint/" data-id="cuid0PLJT0LiQUNSKNeDDYoZi" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
         <p>こんにちは、Azure Monitoring チームの徳田です。</p>
 <p>本ブログでは、以下の公開情報に記載されていますデータ収集エンドポイントについて、その設定方法、利用目的、設定時の制限事項を、具体例を用いてご説明します。</p>
-<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-collection-endpoint-overview?tabs=portal">https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-collection-endpoint-overview?tabs=portal</a></p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-collection-endpoint-overview?tabs=portal">https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/data-collection-endpoint-overview?tabs=portal</a></p>
 <span id="more"></span>
 
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
@@ -224,13 +224,13 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 </ul>
 <h2 id="はじめに"><a href="#はじめに" class="headerlink" title="はじめに"></a>はじめに</h2><p>Azure Monitor エージェントを使用してログやメトリックを収集する場合、どのようなログを収集するのかはデータ収集ルール (DCR) を使用して設定します。<br>データ収集ルールを作成する際、データ収集エンドポイントを設定できる箇所が 2 つあります。<br>今回は、それぞれで設定できるデータ収集エンドポイントの違いを説明するとともに、具体的な例を用いて、どのようにそれぞれのエンドポイントを構成すればよいのかをご紹介します。</p>
 <h2 id="データ収集エンドポイント-DCE-とは"><a href="#データ収集エンドポイント-DCE-とは" class="headerlink" title="データ収集エンドポイント (DCE) とは"></a>データ収集エンドポイント (DCE) とは</h2><p>データ収集エンドポイント (DCE) は、Azure Monitor エージェントなどのデータ ソースが収集したデータを、処理して Azure Monitor に送信する際の接続を担います。</p>
-<h2 id="データ収集ルールが使用するエンドポイントの種類"><a href="#データ収集ルールが使用するエンドポイントの種類" class="headerlink" title="データ収集ルールが使用するエンドポイントの種類"></a>データ収集ルールが使用するエンドポイントの種類</h2><h3 id="ログ-インジェスト-エンドポイント"><a href="#ログ-インジェスト-エンドポイント" class="headerlink" title="ログ インジェスト エンドポイント"></a>ログ インジェスト エンドポイント</h3><p>ログをデータ インジェスト パイプラインに取り込むエンドポイントです。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-text-log?tabs=portal">カスタム ログ</a>、および <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-iis">IIS ログ</a>を取り込む際または<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-ingestion-api-overview">ログ インジェスト API </a>を使用してログ収集を行いたい場合に必要です。</p>
-<h3 id="メトリック-インジェスト-エンドポイント"><a href="#メトリック-インジェスト-エンドポイント" class="headerlink" title="メトリック インジェスト エンドポイント"></a>メトリック インジェスト エンドポイント</h3><p>メトリックをデータ インジェスト パイプラインに取り込むエンドポイントです。<br>エンドポイントを介してデータ インジェスト パイプラインに取り込まれたメトリックは、データ収集ルールで設定された <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/azure-monitor-workspace-overview">Azure Monitor ワークスペース</a>とテーブルに送信されます。</p>
+<h2 id="データ収集ルールが使用するエンドポイントの種類"><a href="#データ収集ルールが使用するエンドポイントの種類" class="headerlink" title="データ収集ルールが使用するエンドポイントの種類"></a>データ収集ルールが使用するエンドポイントの種類</h2><h3 id="ログ-インジェスト-エンドポイント"><a href="#ログ-インジェスト-エンドポイント" class="headerlink" title="ログ インジェスト エンドポイント"></a>ログ インジェスト エンドポイント</h3><p>ログをデータ インジェスト パイプラインに取り込むエンドポイントです。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-text-log?tabs=portal">カスタム ログ</a>、および <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-iis">IIS ログ</a>を取り込む際または<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-ingestion-api-overview">ログ インジェスト API </a>を使用してログ収集を行いたい場合に必要です。</p>
+<h3 id="メトリック-インジェスト-エンドポイント"><a href="#メトリック-インジェスト-エンドポイント" class="headerlink" title="メトリック インジェスト エンドポイント"></a>メトリック インジェスト エンドポイント</h3><p>メトリックをデータ インジェスト パイプラインに取り込むエンドポイントです。<br>エンドポイントを介してデータ インジェスト パイプラインに取り込まれたメトリックは、データ収集ルールで設定された <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/azure-monitor-workspace-overview">Azure Monitor ワークスペース</a>とテーブルに送信されます。</p>
 <details><summary>Azure Monitor ワークスペースとは</summary>
 Azure Monitor が収集したメトリック データが収集されます。2024 年 7 月時点では、Prometheus に関連するメトリックのみが収集対象です。
 </details>
 
-<h3 id="構成アクセス-エンドポイント"><a href="#構成アクセス-エンドポイント" class="headerlink" title="構成アクセス エンドポイント"></a>構成アクセス エンドポイント</h3><p>Azure Monitor エージェントがデータ収集ルールの構成情報を取得するためのエンドポイントです。<br>データ収集元となる仮想マシン (以下、VM) に紐づけられます。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-security">Azure Monitor Private Link Scope (AMPLS)</a> を使用してログ収集を行いたい場合に必要です。</p>
+<h3 id="構成アクセス-エンドポイント"><a href="#構成アクセス-エンドポイント" class="headerlink" title="構成アクセス エンドポイント"></a>構成アクセス エンドポイント</h3><p>Azure Monitor エージェントがデータ収集ルールの構成情報を取得するためのエンドポイントです。<br>データ収集元となる仮想マシン (以下、VM) に紐づけられます。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-security">Azure Monitor Private Link Scope (AMPLS)</a> を使用してログ収集を行いたい場合に必要です。</p>
 <h2 id="データ収集エンドポイントの-2-種類の設定箇所"><a href="#データ収集エンドポイントの-2-種類の設定箇所" class="headerlink" title="データ収集エンドポイントの 2 種類の設定箇所"></a>データ収集エンドポイントの 2 種類の設定箇所</h2><p>“データ収集ルールが使用するエンドポイントの種類” でご紹介したそれぞれのエンドポイントは、データ収集ルール作成時に設定することが可能です。<br>その方法をご紹介します。</p>
 <h3 id="データ収集ルールの作成-基本-タブ"><a href="#データ収集ルールの作成-基本-タブ" class="headerlink" title="データ収集ルールの作成 - [基本] タブ"></a>データ収集ルールの作成 - [基本] タブ</h3><h4 id="設定方法"><a href="#設定方法" class="headerlink" title="設定方法"></a>設定方法</h4><p>Azure portal のデータ収集ルールの作成手順における [基本] タブで設定します。<br>以下画像に示す、”エンドポイント ID” で設定します。<br><img src="/blog/LogAnalytics/DataCollectionEndpoint/endpointid_ingestion.png" alt="alt text"></p>
 <h4 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h4><p>ログ インジェスト エンドポイントおよびメトリック インジェスト エンドポイント を設定します。</p>
@@ -239,7 +239,7 @@ Azure Monitor が収集したメトリック データが収集されます。20
 </ul>
 <h4 id="補足-1-ログ-インジェスト-エンドポイントの設定について"><a href="#補足-1-ログ-インジェスト-エンドポイントの設定について" class="headerlink" title="補足 1 : ログ インジェスト エンドポイントの設定について"></a>補足 1 : ログ インジェスト エンドポイントの設定について</h4><p>ログ インジェスト API を使用しない場合、およびカスタム ログ、IIS ログの収集を行わない場合、このデータ収集エンドポイントの設定は必要ありません。<br>この場合、ログは Log Analytics ワークスペース リソース固有のエンドポイントを介して収集されます。</p>
 <h4 id="補足-2-メトリック-インジェスト-エンドポイントの設定について"><a href="#補足-2-メトリック-インジェスト-エンドポイントの設定について" class="headerlink" title="補足 2 : メトリック インジェスト エンドポイントの設定について"></a>補足 2 : メトリック インジェスト エンドポイントの設定について</h4><p>2024 年 7 月時点で、Prometheus メトリックを Azure Monitor ワークスペースに収集するデータ収集ルールを作成すると、自動的にそのデータ収集ルールに、メトリック インジェスト エンドポイントとしての DCE が新規作成され紐づけられます (すなわちお客様ご自身で作成し、紐づける必要はございません) 。<br>この自動で DCE が作成され紐づけられる仕様は、ログ インジェスト エンドポイントとは異なります。<br>そのため、以降本 blog 内では [基本] タブで設定する DCE はログ インジェスト エンドポイント用の DCE として扱います。<br>尚、Prometheus メトリックの収集方法については、下記の参考情報をご確認ください。  </p>
-<p>(参考情報) Prometheus 用の Azure Monitor マネージド サービス<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/prometheus-metrics-overview#enable">https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/prometheus-metrics-overview#enable</a></p>
+<p>(参考情報) Prometheus 用の Azure Monitor マネージド サービス<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/prometheus-metrics-overview#enable">https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/prometheus-metrics-overview#enable</a></p>
 <h3 id="データ収集ルールの作成-リソース-タブ"><a href="#データ収集ルールの作成-リソース-タブ" class="headerlink" title="データ収集ルールの作成 - [リソース] タブ"></a>データ収集ルールの作成 - [リソース] タブ</h3><h4 id="設定方法-1"><a href="#設定方法-1" class="headerlink" title="設定方法"></a>設定方法</h4><p>Azure portal のデータ収集ルールの作成手順における [リソース] タブで設定します。<br>以下画像に示す “データ収集エンドポイントを有効にする” のチェック ボックスにチェックを入れ、”データ収集エンドポイント” 列でエンドポイントを設定します。</p>
 <p><img src="/blog/LogAnalytics/DataCollectionEndpoint/dce-getconfig.png" alt="alt text"></p>
 <h4 id="目的-1"><a href="#目的-1" class="headerlink" title="目的"></a>目的</h4><p>構成アクセス エンドポイントを設定します。</p>
@@ -249,10 +249,10 @@ Azure Monitor が収集したメトリック データが収集されます。20
 </ul>
 <h4 id="補足"><a href="#補足" class="headerlink" title="補足"></a>補足</h4><p>Azure Private Link Scope (APMPLS) を使用せずにログ収集を行う場合、このデータ収集エンドポイントの設定は必要ありません。<br>この場合、Azure Monitor エージェントはグローバルまたはリージョン共通の構成アクセス エンドポイント (下記参考情報のハイライト箇所) を介して構成情報を取得します。</p>
 <p>(参考情報) ファイアウォールの要件</p>
-<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-data-collection-endpoint?tabs=PowerShellWindows#firewall-requirements">https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-data-collection-endpoint?tabs=PowerShellWindows#firewall-requirements</a></p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-data-collection-endpoint?tabs=PowerShellWindows#firewall-requirements">https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-data-collection-endpoint?tabs=PowerShellWindows#firewall-requirements</a></p>
 <p><img src="/blog/LogAnalytics/DataCollectionEndpoint/configaccessDCE_globalregional.png" alt="alt text"></p>
 <h2 id="具体的なシナリオ"><a href="#具体的なシナリオ" class="headerlink" title="具体的なシナリオ"></a>具体的なシナリオ</h2><p>※ このセクションでは、メトリックの収集を行わないシナリオをご紹介します。メトリックの収集を行いたい場合は、[基本] タブで設定するデータ収集エンドポイントと収集先の Azure Monitor ワークスペースを同じリージョンに配置する必要があります (<a href="#%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90---%E5%9F%BA%E6%9C%AC-%E3%82%BF%E3%83%96">データ収集ルールの作成 - [基本] タブ</a>)。</p>
-<h3 id="ログ-インジェスト-API-を使用したい-カスタム-ログ-または-IIS-ログを収集したい"><a href="#ログ-インジェスト-API-を使用したい-カスタム-ログ-または-IIS-ログを収集したい" class="headerlink" title="ログ インジェスト API を使用したい / カスタム ログ または IIS ログを収集したい"></a>ログ インジェスト API を使用したい / カスタム ログ または IIS ログを収集したい</h3><ul>
+<h3 id="ログ-インジェスト-API-を使用したい-カスタム-ログ-または-IIS-ログを収集したい"><a href="#ログ-インジェスト-API-を使用したい-カスタム-ログ-または-IIS-ログを収集したい" class="headerlink" title="ログ インジェスト API を使用したい &#x2F; カスタム ログ または IIS ログを収集したい"></a>ログ インジェスト API を使用したい &#x2F; カスタム ログ または IIS ログを収集したい</h3><ul>
 <li>ログ インジェスト エンドポイント用の DCE が必要です。</li>
 <li>DCE は DCE と紐づけを行うデータ収集ルール、および送信先 Log Analytics ワークスペースと同じリージョンに存在している必要があります。</li>
 </ul>
@@ -264,12 +264,12 @@ Azure Monitor が収集したメトリック データが収集されます。20
 <li>構成アクセス エンドポイント用の DCE が必要です。</li>
 <li>DCE はデータ収集元の VM と同じリージョンに存在している必要があります</li>
 </ul>
-<p>※ 以降の図内では、簡略化のためグローバル/リージョン共通のログ インジェスト エンドポイントを省略しております。</p>
+<p>※ 以降の図内では、簡略化のためグローバル&#x2F;リージョン共通のログ インジェスト エンドポイントを省略しております。</p>
 <h4 id="例-1-1"><a href="#例-1-1" class="headerlink" title="例 1"></a>例 1</h4><p>VM が Log Analytics ワークスペースおよびデータ収集ルールと同じリージョン (下図のリージョン A) に存在する場合、DCE (構成アクセス エンドポイント) もリージョン A に配置します。  </p>
 <p><img src="/blog/LogAnalytics/DataCollectionEndpoint/configaccess_ex1.png" alt="alt text"></p>
 <h4 id="例-2-1"><a href="#例-2-1" class="headerlink" title="例 2"></a>例 2</h4><p>1 つのデータ収集ルールに複数の VM を紐づける場合、それぞれの VM に対して DCE (構成アクセス エンドポイント) を設定する必要があります。<br>VM と VM に設定する DCE は同じリージョンに存在している必要があります。  </p>
 <p><img src="/blog/LogAnalytics/DataCollectionEndpoint/configaccess_ex4.png" alt="alt text"></p>
-<h3 id="ログ-インジェスト-API-を使用したい-カスタム-ログ-または-IIS-ログを収集したい-かつ-Azure-Private-Link-Scope-を使用してログを収集したい"><a href="#ログ-インジェスト-API-を使用したい-カスタム-ログ-または-IIS-ログを収集したい-かつ-Azure-Private-Link-Scope-を使用してログを収集したい" class="headerlink" title="ログ インジェスト API を使用したい / カスタム ログ または IIS ログを収集したい かつ Azure Private Link Scope を使用してログを収集したい"></a>ログ インジェスト API を使用したい / カスタム ログ または IIS ログを収集したい かつ Azure Private Link Scope を使用してログを収集したい</h3><ul>
+<h3 id="ログ-インジェスト-API-を使用したい-カスタム-ログ-または-IIS-ログを収集したい-かつ-Azure-Private-Link-Scope-を使用してログを収集したい"><a href="#ログ-インジェスト-API-を使用したい-カスタム-ログ-または-IIS-ログを収集したい-かつ-Azure-Private-Link-Scope-を使用してログを収集したい" class="headerlink" title="ログ インジェスト API を使用したい &#x2F; カスタム ログ または IIS ログを収集したい かつ Azure Private Link Scope を使用してログを収集したい"></a>ログ インジェスト API を使用したい &#x2F; カスタム ログ または IIS ログを収集したい かつ Azure Private Link Scope を使用してログを収集したい</h3><ul>
 <li>ログ インジェスト エンドポイント用の DCE と構成アクセス エンドポイント用の DCE が必要です。</li>
 <li>必要な DCE の数は VM が Log Analytics ワークスペースおよびデータ収集ルールと同じリージョンに存在しているかどうかで変わります。</li>
 </ul>

@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/SecurityAdvisoriesElevatedAccess/image01.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/SecurityAdvisoriesElevatedAccess/image02.png">
 <meta property="article:published_time" content="2025-06-26T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-02T00:34:31.161Z">
+<meta property="article:modified_time" content="2026-03-16T02:27:29.791Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Azure Monitor Essential">
 <meta property="article:tag" content="Information">
@@ -62,7 +62,7 @@
                       }
                     });
                   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
   <div id="container">
     <div id="wrap">
@@ -79,7 +79,7 @@
         
           <a class="main-nav-link" href="/blog/archives">Archives</a>
         
-        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
       </nav>
       <nav id="sub-nav">
         
@@ -177,7 +177,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+577eee1a-efeb-58aa-8c23-d2e70f9e5f06%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAction+required%3A+Ensure+the+right+people+can+access+security+advisories+in+Azure+Service+Health++%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FSecurityAdvisoriesElevatedAccess%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FSecurityAdvisoriesElevatedAccess.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FSecurityAdvisoriesElevatedAccess.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/SecurityAdvisoriesElevatedAccess/" data-id="cmm8g5ffp000u0nnydvs247d9" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/SecurityAdvisoriesElevatedAccess/" data-id="cuidacP01NFCHpRLGjZHU7xz_" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -234,7 +234,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 <br>
 
-<h3 id="1-2-内容"><a href="#1-2-内容" class="headerlink" title="1-2. 内容"></a>1-2. 内容</h3><p>You’re receiving this notice because you use Azure Service Health. <br>To ensure sensitive security advisories are only received by people with elevated permissions, we’re making <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/service-health/security-advisories-elevated-access?branch=pr-en-us-255499">changes to role-based access control</a> (RBAC) in Azure Service Health beginning 22 April 2025. To make the changes, we’ll:</p>
+<h3 id="1-2-内容"><a href="#1-2-内容" class="headerlink" title="1-2. 内容"></a>1-2. 内容</h3><p>You’re receiving this notice because you use Azure Service Health. <br>To ensure sensitive security advisories are only received by people with elevated permissions, we’re making <a href="https://learn.microsoft.com/ja-jp/azure/service-health/security-advisories-elevated-access?branch=pr-en-us-255499">changes to role-based access control</a> (RBAC) in Azure Service Health beginning 22 April 2025. To make the changes, we’ll:</p>
 <ul>
 <li>Introduce a new version of the Resource Health API on 22 April 2025 which makes sure security advisory event details will be accessible only to privileged users.</li>
 <li>Enable RBAC for security advisory events in the Azure portal on 22 October 2025.</li>
@@ -245,55 +245,55 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 <h3 id="1-3-実施いただきたいアクション"><a href="#1-3-実施いただきたいアクション" class="headerlink" title="1-3. 実施いただきたいアクション"></a>1-3. 実施いただきたいアクション</h3><p>If you’re accessing security advisories using the Azure portal:</p>
 <ul>
-<li>Review your <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/service-health/security-advisories-elevated-access?branch=pr-en-us-255499">security RBAC assignments</a> before 22 October 2025 and make changes or additions as needed.</li>
+<li>Review your <a href="https://learn.microsoft.com/ja-jp/azure/service-health/security-advisories-elevated-access?branch=pr-en-us-255499">security RBAC assignments</a> before 22 October 2025 and make changes or additions as needed.</li>
 </ul>
 <p>If you monitor the health of your resources or services using the Resource Health API, including viewing security advisories:</p>
 <ul>
 <li>Update to the new Resource Health API before old versions are deprecated, starting on 22 October 2025.</li>
-<li>Use <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/rest/api/resourcehealth/event/fetch-details-by-subscription-id-and-tracking-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP">FetchEventDetails</a> to view sensitive security information going forward.</li>
+<li>Use <a href="https://learn.microsoft.com/ja-jp/rest/api/resourcehealth/event/fetch-details-by-subscription-id-and-tracking-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP">FetchEventDetails</a> to view sensitive security information going forward.</li>
 </ul>
 <p>If you’re accessing security advisories in Azure Resource Graph:</p>
 <ul>
-<li>Review the <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/service-health/resource-graph-samples?tabs=azure-cli">ServiceHealthResources properties</a> that will require elevated access and make changes or additions before 22 October 2025.</li>
+<li>Review the <a href="https://learn.microsoft.com/ja-jp/azure/service-health/resource-graph-samples?tabs=azure-cli">ServiceHealthResources properties</a> that will require elevated access and make changes or additions before 22 October 2025.</li>
 </ul>
-<p>Visit <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/service-health/stay-informed-security">Microsoft Learn</a> to read more about these changes and stay informed about Azure security issues.</p>
+<p>Visit <a href="https://learn.microsoft.com/ja-jp/azure/service-health/stay-informed-security">Microsoft Learn</a> to read more about these changes and stay informed about Azure security issues.</p>
 <br>
 <br>
 
 
 
-<h2 id="2-Azure-Service-Health-サービス正常性-の「セキュリティ-アドバイザリ」に関する仕様変更について"><a href="#2-Azure-Service-Health-サービス正常性-の「セキュリティ-アドバイザリ」に関する仕様変更について" class="headerlink" title="2. Azure Service Health (サービス正常性) の「セキュリティ アドバイザリ」に関する仕様変更について"></a>2. Azure Service Health (サービス正常性) の「セキュリティ アドバイザリ」に関する仕様変更について</h2><p>今回の通知は、 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/service-health/overview">Azure Service Health (サービス正常性)</a> の「セキュリティ アドバイザリ」に関する仕様変更を通知しております。<br>サービス正常性の中でセキュリティ問題に関するイベントは 「セキュリティ アドバイザリ」 に分類されます。今後 「セキュリティ アドバイザリ」 の情報にアクセスする場合には、下記の事項にご留意いただきますようお願いいたします。</p>
+<h2 id="2-Azure-Service-Health-サービス正常性-の「セキュリティ-アドバイザリ」に関する仕様変更について"><a href="#2-Azure-Service-Health-サービス正常性-の「セキュリティ-アドバイザリ」に関する仕様変更について" class="headerlink" title="2. Azure Service Health (サービス正常性) の「セキュリティ アドバイザリ」に関する仕様変更について"></a>2. Azure Service Health (サービス正常性) の「セキュリティ アドバイザリ」に関する仕様変更について</h2><p>今回の通知は、 <a href="https://learn.microsoft.com/ja-jp/azure/service-health/overview">Azure Service Health (サービス正常性)</a> の「セキュリティ アドバイザリ」に関する仕様変更を通知しております。<br>サービス正常性の中でセキュリティ問題に関するイベントは 「セキュリティ アドバイザリ」 に分類されます。今後 「セキュリティ アドバイザリ」 の情報にアクセスする場合には、下記の事項にご留意いただきますようお願いいたします。</p>
 <ol>
 <li>「セキュリティ アドバイザリ」 のイベントを閲覧・取得するための権限について</li>
 <li>「セキュリティ アドバイザリ」 のイベントを取得する REST API について</li>
 </ol>
 <br>
 
-<h3 id="2-1-「セキュリティ-アドバイザリ」-のイベントを閲覧・取得するための権限について"><a href="#2-1-「セキュリティ-アドバイザリ」-のイベントを閲覧・取得するための権限について" class="headerlink" title="2-1. 「セキュリティ アドバイザリ」 のイベントを閲覧・取得するための権限について"></a>2-1. 「セキュリティ アドバイザリ」 のイベントを閲覧・取得するための権限について</h3><p>今回の仕様変更に伴い、「セキュリティ アドバイザリ」の機密性の高い情報にアクセスする権限が変更となります。<br>Azure ポータルの [サービス正常性] – <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/service-health/security-advisories-elevated-access?branch=pr-en-us-255499#what-are-security-advisories">[セキュリティ アドバイザリ]</a> にアクセスして情報を閲覧するには、下記の <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/service-health/impacted-resources-security#role-based-access-rbac-for-security-incident-resource-impact">Role Based Access (RBAC) For Security Incident</a> に記載の権限 (*) が必要となります。</p>
-<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/service-health/impacted-resources-security#role-based-access-rbac-for-security-incident-resource-impact">(*) Role Based Access (RBAC) For Security Incident</a><br><img src="/blog/AzureMonitorEssential/SecurityAdvisoriesElevatedAccess/image01.png"></p>
+<h3 id="2-1-「セキュリティ-アドバイザリ」-のイベントを閲覧・取得するための権限について"><a href="#2-1-「セキュリティ-アドバイザリ」-のイベントを閲覧・取得するための権限について" class="headerlink" title="2-1. 「セキュリティ アドバイザリ」 のイベントを閲覧・取得するための権限について"></a>2-1. 「セキュリティ アドバイザリ」 のイベントを閲覧・取得するための権限について</h3><p>今回の仕様変更に伴い、「セキュリティ アドバイザリ」の機密性の高い情報にアクセスする権限が変更となります。<br>Azure ポータルの [サービス正常性] – <a href="https://learn.microsoft.com/ja-jp/azure/service-health/security-advisories-elevated-access?branch=pr-en-us-255499#what-are-security-advisories">[セキュリティ アドバイザリ]</a> にアクセスして情報を閲覧するには、下記の <a href="https://learn.microsoft.com/en-us/azure/service-health/impacted-resources-security#role-based-access-rbac-for-security-incident-resource-impact">Role Based Access (RBAC) For Security Incident</a> に記載の権限 (*) が必要となります。</p>
+<p><a href="https://learn.microsoft.com/en-us/azure/service-health/impacted-resources-security#role-based-access-rbac-for-security-incident-resource-impact">(*) Role Based Access (RBAC) For Security Incident</a><br><img src="/blog/AzureMonitorEssential/SecurityAdvisoriesElevatedAccess/image01.png"></p>
 <br>
 
-<h3 id="2-2-「セキュリティ-アドバイザリ」-のイベントを取得する-REST-API-について"><a href="#2-2-「セキュリティ-アドバイザリ」-のイベントを取得する-REST-API-について" class="headerlink" title="2-2. 「セキュリティ アドバイザリ」 のイベントを取得する REST API について"></a>2-2. 「セキュリティ アドバイザリ」 のイベントを取得する REST API について</h3><p>現在は、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/rest/api/resourcehealth/event/get-by-subscription-id-and-tracking-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP">Event - Get By Subscription Id And Tracking Id</a> や <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/rest/api/resourcehealth/event/get-by-tenant-id-and-tracking-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP">Event - Get By Tenant Id And Tracking Id</a> の REST API を利用して「セキュリティ アドバイザリ」の情報を取得することができます。</p>
-<p>今後、上記の API では「セキュリティ アドバイザリ」の機密情報に該当するプロパティは含まれなくなります。<br>このため、今後は下記の <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/service-health/security-advisories-elevated-access#new-api-endpoint-details">API</a> をご利用いただく必要があり、<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/service-health/impacted-resources-security#role-based-access-rbac-for-security-incident-resource-impact">Role Based Access (RBAC) For Security Incident</a> に記載の権限も必要となります。<br><img src="/blog/AzureMonitorEssential/SecurityAdvisoriesElevatedAccess/image02.png"></p>
+<h3 id="2-2-「セキュリティ-アドバイザリ」-のイベントを取得する-REST-API-について"><a href="#2-2-「セキュリティ-アドバイザリ」-のイベントを取得する-REST-API-について" class="headerlink" title="2-2. 「セキュリティ アドバイザリ」 のイベントを取得する REST API について"></a>2-2. 「セキュリティ アドバイザリ」 のイベントを取得する REST API について</h3><p>現在は、<a href="https://learn.microsoft.com/en-us/rest/api/resourcehealth/event/get-by-subscription-id-and-tracking-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP">Event - Get By Subscription Id And Tracking Id</a> や <a href="https://learn.microsoft.com/en-us/rest/api/resourcehealth/event/get-by-tenant-id-and-tracking-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP">Event - Get By Tenant Id And Tracking Id</a> の REST API を利用して「セキュリティ アドバイザリ」の情報を取得することができます。</p>
+<p>今後、上記の API では「セキュリティ アドバイザリ」の機密情報に該当するプロパティは含まれなくなります。<br>このため、今後は下記の <a href="https://learn.microsoft.com/en-us/azure/service-health/security-advisories-elevated-access#new-api-endpoint-details">API</a> をご利用いただく必要があり、<a href="https://learn.microsoft.com/en-us/azure/service-health/impacted-resources-security#role-based-access-rbac-for-security-incident-resource-impact">Role Based Access (RBAC) For Security Incident</a> に記載の権限も必要となります。<br><img src="/blog/AzureMonitorEssential/SecurityAdvisoriesElevatedAccess/image02.png"></p>
 <br>
 <br>
 
 
 
 <h2 id="3-Azure-Service-Health-サービス正常性-の「セキュリティ-アドバイザリ」に関する仕様変更に伴う必要なアクション"><a href="#3-Azure-Service-Health-サービス正常性-の「セキュリティ-アドバイザリ」に関する仕様変更に伴う必要なアクション" class="headerlink" title="3. Azure Service Health (サービス正常性) の「セキュリティ アドバイザリ」に関する仕様変更に伴う必要なアクション"></a>3. Azure Service Health (サービス正常性) の「セキュリティ アドバイザリ」に関する仕様変更に伴う必要なアクション</h2><p>上記 2 点の仕様変更に伴って必要なアクションは以下の通りです。<br>今回の仕様変更によってお客様環境で影響のあるユーザー様や、REST API のご利用状況、アプリケーションの確認方法については、弊社からご案内できる情報がございません。誠に恐れ入りますが、お客様ご自身でシステムの設計資料や運用方法などを確認していただき、影響を受ける可能性のあるユーザー様やアプリケーションを特定していただく必要がございますのでご了承ください。<br><br></p>
-<h3 id="3-1-Azure-ポータル-や-Azure-Resource-Graph-でサービス正常性を閲覧している場合"><a href="#3-1-Azure-ポータル-や-Azure-Resource-Graph-でサービス正常性を閲覧している場合" class="headerlink" title="3-1. Azure ポータル や Azure Resource Graph でサービス正常性を閲覧している場合"></a>3-1. Azure ポータル や Azure Resource Graph でサービス正常性を閲覧している場合</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/service-health/security-advisories-elevated-access?branch=pr-en-us-255499#what-are-security-advisories">Azure ポータル</a>や <a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/service-health/resource-graph-samples?tabs=azure-cli">Azure Resource Graph</a> でサービス正常性イベントを確認している場合、2025 年 10 月 22 日までに対象のユーザー様に<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/service-health/impacted-resources-security#role-based-access-rbac-for-security-incident-resource-impact">必要なロール</a>を付与してください。</p>
+<h3 id="3-1-Azure-ポータル-や-Azure-Resource-Graph-でサービス正常性を閲覧している場合"><a href="#3-1-Azure-ポータル-や-Azure-Resource-Graph-でサービス正常性を閲覧している場合" class="headerlink" title="3-1. Azure ポータル や Azure Resource Graph でサービス正常性を閲覧している場合"></a>3-1. Azure ポータル や Azure Resource Graph でサービス正常性を閲覧している場合</h3><p><a href="https://learn.microsoft.com/ja-jp/azure/service-health/security-advisories-elevated-access?branch=pr-en-us-255499#what-are-security-advisories">Azure ポータル</a>や <a href="https://learn.microsoft.com/ja-jp/azure/service-health/resource-graph-samples?tabs=azure-cli">Azure Resource Graph</a> でサービス正常性イベントを確認している場合、2025 年 10 月 22 日までに対象のユーザー様に<a href="https://learn.microsoft.com/en-us/azure/service-health/impacted-resources-security#role-based-access-rbac-for-security-incident-resource-impact">必要なロール</a>を付与してください。</p>
 <br>
 
 <h3 id="3-2-REST-API-でサービス正常性のイベントを取得している場合"><a href="#3-2-REST-API-でサービス正常性のイベントを取得している場合" class="headerlink" title="3-2. REST API でサービス正常性のイベントを取得している場合"></a>3-2. REST API でサービス正常性のイベントを取得している場合</h3><p>今後も REST API で「セキュリティ アドバイザリ」 の情報を確認する場合には、2025 年 10 月 22 日までに、下記事項を実施してください。</p>
 <ul>
-<li><p>REST API を実行しているアプリケーションに対して<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/service-health/impacted-resources-security#role-based-access-rbac-for-security-incident-resource-impact">必要な権限</a>の付与をお願いいたします。</p>
+<li><p>REST API を実行しているアプリケーションに対して<a href="https://learn.microsoft.com/en-us/azure/service-health/impacted-resources-security#role-based-access-rbac-for-security-incident-resource-impact">必要な権限</a>の付与をお願いいたします。</p>
 </li>
 <li><p>下記の REST API で「セキュリティ アドバイザリ」 の情報を取得するようにアプリケーションの改修をお願いいたします。</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/rest/api/resourcehealth/event/fetch-details-by-subscription-id-and-tracking-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP">Event - fetch Details By Subscription Id And Tracking Id</a> </li>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/rest/api/resourcehealth/event/fetch-details-by-tenant-id-and-tracking-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP">Event - fetch Details By Tenant Id And Tracking Id</a></li>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/rest/api/resourcehealth/security-advisory-impacted-resources/list-by-subscription-id-and-event-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP">Security Advisory Impacted Resources - List By Subscription Id And Event Id</a></li>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/rest/api/resourcehealth/security-advisory-impacted-resources/list-by-tenant-id-and-event-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP">Security Advisory Impacted Resources - List By Tenant Id And Event Id</a> をご利用ください</li>
+<li><a href="https://learn.microsoft.com/en-us/rest/api/resourcehealth/event/fetch-details-by-subscription-id-and-tracking-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP">Event - fetch Details By Subscription Id And Tracking Id</a> </li>
+<li><a href="https://learn.microsoft.com/en-us/rest/api/resourcehealth/event/fetch-details-by-tenant-id-and-tracking-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP">Event - fetch Details By Tenant Id And Tracking Id</a></li>
+<li><a href="https://learn.microsoft.com/en-us/rest/api/resourcehealth/security-advisory-impacted-resources/list-by-subscription-id-and-event-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP">Security Advisory Impacted Resources - List By Subscription Id And Event Id</a></li>
+<li><a href="https://learn.microsoft.com/en-us/rest/api/resourcehealth/security-advisory-impacted-resources/list-by-tenant-id-and-event-id?view=rest-resourcehealth-2024-02-01&tabs=HTTP">Security Advisory Impacted Resources - List By Tenant Id And Event Id</a> をご利用ください</li>
 </ul>
 </li>
 </ul>
@@ -302,7 +302,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 
 
-<h2 id="4-よくあるご質問"><a href="#4-よくあるご質問" class="headerlink" title="4. よくあるご質問"></a>4. よくあるご質問</h2><h3 id="Q-今回の仕様変更に関する情報が掲載されている公開情報はありますか。"><a href="#Q-今回の仕様変更に関する情報が掲載されている公開情報はありますか。" class="headerlink" title="Q. 今回の仕様変更に関する情報が掲載されている公開情報はありますか。"></a>Q. 今回の仕様変更に関する情報が掲載されている公開情報はありますか。</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/service-health/security-advisories-elevated-access">セキュリティ アドバイザリを表示するための昇格されたアクセス権</a> の公開情報をご覧ください。</p>
+<h2 id="4-よくあるご質問"><a href="#4-よくあるご質問" class="headerlink" title="4. よくあるご質問"></a>4. よくあるご質問</h2><h3 id="Q-今回の仕様変更に関する情報が掲載されている公開情報はありますか。"><a href="#Q-今回の仕様変更に関する情報が掲載されている公開情報はありますか。" class="headerlink" title="Q. 今回の仕様変更に関する情報が掲載されている公開情報はありますか。"></a>Q. 今回の仕様変更に関する情報が掲載されている公開情報はありますか。</h3><p><a href="https://learn.microsoft.com/ja-jp/azure/service-health/security-advisories-elevated-access">セキュリティ アドバイザリを表示するための昇格されたアクセス権</a> の公開情報をご覧ください。</p>
 <br>
 
 
@@ -314,7 +314,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <br>
 
 
-<h3 id="Q-現時点でユーザーに必要なロールが割り当てられているかを確認する方法を教えてください。"><a href="#Q-現時点でユーザーに必要なロールが割り当てられているかを確認する方法を教えてください。" class="headerlink" title="Q. 現時点でユーザーに必要なロールが割り当てられているかを確認する方法を教えてください。"></a>Q. 現時点でユーザーに必要なロールが割り当てられているかを確認する方法を教えてください。</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/role-assignments-list-portal">Azure portal を使用して Azure でのロールの割り当てを一覧表示する</a> の公開情報をご覧ください。</p>
+<h3 id="Q-現時点でユーザーに必要なロールが割り当てられているかを確認する方法を教えてください。"><a href="#Q-現時点でユーザーに必要なロールが割り当てられているかを確認する方法を教えてください。" class="headerlink" title="Q. 現時点でユーザーに必要なロールが割り当てられているかを確認する方法を教えてください。"></a>Q. 現時点でユーザーに必要なロールが割り当てられているかを確認する方法を教えてください。</h3><p><a href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/role-assignments-list-portal">Azure portal を使用して Azure でのロールの割り当てを一覧表示する</a> の公開情報をご覧ください。</p>
 <br>
 
 
