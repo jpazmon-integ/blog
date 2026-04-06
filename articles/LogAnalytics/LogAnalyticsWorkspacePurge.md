@@ -10,6 +10,7 @@ tags:
 - 2024/01/06 : ブログ公開
 - 2025/05/07 : Delete Data API の情報を追記
 - 2026/1/7 : 最新情報であることを確認済み
+- 2026/4/6 : Purge API には LA共同作成者も必要になった事を追記
 
 
 こんにちは、Azure Monitoring サポート チームの北村です。
@@ -251,7 +252,8 @@ Purge API を実行いただく上での主な留意点をご紹介します。A
 
 
 - **必要なロール** :
-Purge の REST API を実行するには Log Analytics ワークスペースに対して [Microsoft.OperationalInsights/workspaces/purge/action](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/personal-data-mgmt#permissions-required) の権限が必要です。Log Analytics の組み込みロールでは [Data Purger (データ消去者)](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/monitor#data-purger) が該当します。
+  - Purge の REST API を実行するには Log Analytics ワークスペースに対して [Microsoft.OperationalInsights/workspaces/purge/action](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/personal-data-mgmt#permissions-required) の権限が必要です。Log Analytics の組み込みロールでは [Data Purger (データ消去者)](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/monitor#data-purger) が該当します。
+  - [LA 共同作成者](https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles/monitor#log-analytics-contributor) も必要です。 
 
 - **利用可能な演算子** :
 カラム名とその値を指定して条件を指定します。[値を指定する際に利用できる演算子](https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/purge?view=rest-loganalytics-2020-08-01&tabs=HTTP#workspacepurgebodyfilters)は以下のとおりです。すべての演算子をサポートしておりませんので、API を実行する前にサポートしている演算子をご確認ください。
