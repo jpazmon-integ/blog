@@ -47,7 +47,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/general/HowWeWorkRemotely/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/general/HowToCreateSR/</loc>
     
     <lastmod>2026-04-15</lastmod>
     
@@ -56,7 +56,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/general/HowToCreateSR/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/general/HowWeWorkRemotely/</loc>
     
     <lastmod>2026-04-15</lastmod>
     
@@ -119,7 +119,16 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/automation/DifferenceRunAsAccountAndManagedID/</loc>
+    
+    <lastmod>2026-04-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/automation/HowToCreatePowerShellRunbookSR/</loc>
     
     <lastmod>2026-04-15</lastmod>
     
@@ -137,16 +146,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/DifferenceRunAsAccountAndManagedID/</loc>
-    
-    <lastmod>2026-04-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jpazmon-integ.github.io/blog/automation/HowToCreatePowerShellRunbookSR/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/automation/HowToManageRunAsAccount/</loc>
     
     <lastmod>2026-04-15</lastmod>
     
@@ -299,15 +299,6 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/UpdateLAHealth/</loc>
-    
-    <lastmod>2026-04-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/VMAvailability-MetricAlert/</loc>
     
     <lastmod>2026-04-15</lastmod>
@@ -318,6 +309,15 @@
   
   <url>
     <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/Unexpected_Heartbeat_logalert/</loc>
+    
+    <lastmod>2026-04-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/UpdateLAHealth/</loc>
     
     <lastmod>2026-04-15</lastmod>
     
@@ -623,7 +623,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CMA_FW/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CustomLog/</loc>
     
     <lastmod>2026-04-15</lastmod>
     
@@ -632,7 +632,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CustomLog/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/LogAnalytics/AMA_CMA_FW/</loc>
     
     <lastmod>2026-04-15</lastmod>
     
@@ -668,7 +668,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/</loc>
     
     <lastmod>2026-04-15</lastmod>
     
@@ -677,7 +677,7 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnableToDetectNullMetric/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/AzureMonitorEssential/UnsubscribeAlertMail/</loc>
     
     <lastmod>2026-04-15</lastmod>
     
@@ -1110,14 +1110,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/Data-Collection-Rule-Data-Collection-Endpoint/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/tags/Agents-and-Extensions-Windows/</loc>
     <lastmod>2026-04-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/Agents-and-Extensions-Windows/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/tags/Data-Collection-Rule-Data-Collection-Endpoint/</loc>
     <lastmod>2026-04-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1152,14 +1152,14 @@
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/Automation/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/tags/Azure-Update-Manager/</loc>
     <lastmod>2026-04-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://jpazmon-integ.github.io/blog/tags/Azure-Update-Manager/</loc>
+    <loc>https://jpazmon-integ.github.io/blog/tags/Automation/</loc>
     <lastmod>2026-04-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
