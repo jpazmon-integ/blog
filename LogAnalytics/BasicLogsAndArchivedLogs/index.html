@@ -18,7 +18,7 @@
 <meta property="og:description" content="[更新履歴]  2022&#x2F;08&#x2F;17 : ブログ公開 2026&#x2F;04&#x2F;15 : Archive ログの保持日数を更新 7年 -&gt; 10年 2026&#x2F;04&#x2F;15 : Basic ログの既定の保持日数を更新 8日 -&gt; 30日  こんにちは！ Azure Monitoring サポート チームの北村です。 今回は Log Anal">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image10.png">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image11.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image03.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image04.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image05.png">
@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image08.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image09.png">
 <meta property="article:published_time" content="2022-08-16T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-04-15T04:03:55.830Z">
+<meta property="article:modified_time" content="2026-04-15T04:05:22.383Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="HowTo">
 <meta property="article:tag" content="Log Analytics">
@@ -183,7 +183,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+bf943bbb-e1c1-5e72-9bba-63d4fe46ce65%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BLog+Analytics+%E3%81%AE%E6%96%B0%E6%A9%9F%E8%83%BD+Basic+Logs+%E3%81%A8+Archived+Logs+%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FBasicLogsAndArchivedLogs%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FBasicLogsAndArchivedLogs.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FBasicLogsAndArchivedLogs.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/" data-id="cuidzBYQJkttwi9KorBDDMph7" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/" data-id="cuidDdfDxBOfzedc5cJ6_RSEd" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -215,7 +215,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <li>Basic Logs のご利用料金は <a href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">Azure Monitor の価格</a> の [Basic ログ] をご確認ください。</li>
 </ul>
 <p><br><br></p>
-<h2 id="Archived-Logs-とは"><a href="#Archived-Logs-とは" class="headerlink" title="Archived Logs とは"></a>Archived Logs とは</h2><p>Archived Logs は、名前のとおりログをアーカイブ領域に移動させ、長期保管するための機能です。<br>Analytics Logs は 最大 730 日、Basic Logs は 8 日間しかログを保持できませんが、<br>Archived Logs では 最大 10 年間データを保持することができます。<br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image02.png"></p>
+<h2 id="Archived-Logs-とは"><a href="#Archived-Logs-とは" class="headerlink" title="Archived Logs とは"></a>Archived Logs とは</h2><p>Archived Logs は、名前のとおりログをアーカイブ領域に移動させ、長期保管するための機能です。<br>Analytics Logs は 最大 730 日、Basic Logs は 8 日間しかログを保持できませんが、<br>Archived Logs では 最大 10 年間データを保持することができます。<br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image11.png"></p>
 <p>&lt;参考&gt;</p>
 <ul>
 <li>アーカイブしたデータにアクセスする場合はデータを復元するかジョブで検索する必要があります。詳細は <a href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/log-analytics-workspace-overview#data-retention-and-archive">データ保持とアーカイブ</a> をご確認ください。</li>
