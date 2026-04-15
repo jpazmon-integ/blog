@@ -6,6 +6,11 @@ tags:
   - Log Analytics
 ---
 
+[更新履歴]
+- 2022/08/17 : ブログ公開
+- 2026/04/15 : Archive ログの保持日数を更新 7年 -> 10年
+- 2026/04/15 : Basic ログの既定の保持日数を更新 8日 -> 30日
+
 こんにちは！ Azure Monitoring サポート チームの北村です。
 
 今回は Log Analytics の新機能としてプレビューで提供されている Basic Logs と Archived Logs をご紹介いたします。
@@ -30,13 +35,13 @@ Log Analytics ワークスペースにログを収集しているが、コスト
 
 
 そして、今回の大幅なアップデートに伴い、Analytics Logs とは別に Basic Logs というプランが追加されました。
-Basic Logs のデフォルトのデータ保有期間は 8 日間であり、クエリで使用できる演算子が限定的であったり、
+Basic Logs のデフォルトのデータ保有期間は 30 日間であり、クエリで使用できる演算子が限定的であったり、
 アラートには使用できない等の制限事項がございます。
 しかし、Azure Monitor のすべての機能を使用できないという制約がある分、Analytics Logs より安くご利用いただけます。
 
 **Analytics Logs と Basic Logs の違い**
-※ [Log Analytics ワークスペースの概要 - ログ データ プラン（プレビュー）](https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/log-analytics-workspace-overview#log-data-plans-preview) より抜粋
-![](./BasicLogsAndArchivedLogs/image01.png)
+※ [Azure Monitor ログの概要 - テーブルプラン](https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-platform-logs#table-plans) より抜粋
+![](./BasicLogsAndArchivedLogs/image10.png)
 
 <参考>
 - Basic Logs で使用できる演算子は [KQL 言語の制限](https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/basic-logs-query?tabs=portal-1#kql-language-limits) をご覧ください。
@@ -49,7 +54,7 @@ Basic Logs のデフォルトのデータ保有期間は 8 日間であり、ク
 ## Archived Logs とは
 Archived Logs は、名前のとおりログをアーカイブ領域に移動させ、長期保管するための機能です。
 Analytics Logs は 最大 730 日、Basic Logs は 8 日間しかログを保持できませんが、
-Archived Logs では 最大 7 年間データを保持することができます。
+Archived Logs では 最大 10 年間データを保持することができます。
 ![](./BasicLogsAndArchivedLogs/image02.png)
 
 <参考>
