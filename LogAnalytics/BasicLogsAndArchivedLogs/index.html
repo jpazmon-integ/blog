@@ -10,14 +10,14 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="こんにちは！ Azure Monitoring サポート チームの北村です。 今回は Log Analytics の新機能としてプレビューで提供されている Basic Logs と Archived Logs をご紹介いたします。Log Analytics ワークスペースにログを収集しているが、コストを削減したい…という方にはお勧めしたい機能です。本記事では Basic Logs と Archiv">
+      <meta name="description" content="[更新履歴]  2022&#x2F;08&#x2F;17 : ブログ公開 2026&#x2F;04&#x2F;15 : Archive ログの保持日数を更新 7年 -&gt; 10年 2026&#x2F;04&#x2F;15 : Basic ログの既定の保持日数を更新 8日 -&gt; 30日  こんにちは！ Azure Monitoring サポート チームの北村です。 今回は Log Anal">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Log Analytics の新機能 Basic Logs と Archived Logs について">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="こんにちは！ Azure Monitoring サポート チームの北村です。 今回は Log Analytics の新機能としてプレビューで提供されている Basic Logs と Archived Logs をご紹介いたします。Log Analytics ワークスペースにログを収集しているが、コストを削減したい…という方にはお勧めしたい機能です。本記事では Basic Logs と Archiv">
+<meta property="og:description" content="[更新履歴]  2022&#x2F;08&#x2F;17 : ブログ公開 2026&#x2F;04&#x2F;15 : Archive ログの保持日数を更新 7年 -&gt; 10年 2026&#x2F;04&#x2F;15 : Basic ログの既定の保持日数を更新 8日 -&gt; 30日  こんにちは！ Azure Monitoring サポート チームの北村です。 今回は Log Anal">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image10.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image02.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image03.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image04.png">
@@ -27,12 +27,12 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image08.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image09.png">
 <meta property="article:published_time" content="2022-08-16T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-04-07T05:47:35.985Z">
+<meta property="article:modified_time" content="2026-04-15T04:03:55.830Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="HowTo">
 <meta property="article:tag" content="Log Analytics">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image01.png">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/image10.png">
         
           <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog"
             type="application/atom+xml">
@@ -183,12 +183,18 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+bf943bbb-e1c1-5e72-9bba-63d4fe46ce65%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BLog+Analytics+%E3%81%AE%E6%96%B0%E6%A9%9F%E8%83%BD+Basic+Logs+%E3%81%A8+Archived+Logs+%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FBasicLogsAndArchivedLogs%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FBasicLogsAndArchivedLogs.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FBasicLogsAndArchivedLogs.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/" data-id="cuidhZCHYRJaQF4mR9pV3Vzdh" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/BasicLogsAndArchivedLogs/" data-id="cuidzBYQJkttwi9KorBDDMph7" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは！ Azure Monitoring サポート チームの北村です。</p>
+        <p>[更新履歴]</p>
+<ul>
+<li>2022&#x2F;08&#x2F;17 : ブログ公開</li>
+<li>2026&#x2F;04&#x2F;15 : Archive ログの保持日数を更新 7年 -&gt; 10年</li>
+<li>2026&#x2F;04&#x2F;15 : Basic ログの既定の保持日数を更新 8日 -&gt; 30日</li>
+</ul>
+<p>こんにちは！ Azure Monitoring サポート チームの北村です。</p>
 <p>今回は Log Analytics の新機能としてプレビューで提供されている Basic Logs と Archived Logs をご紹介いたします。<br>Log Analytics ワークスペースにログを収集しているが、コストを削減したい…という方にはお勧めしたい機能です。<br>本記事では Basic Logs と Archived Logs の概要とその設定方法をご案内します。</p>
 <span id="more"></span>
 
@@ -200,8 +206,8 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <li>まとめ</li>
 </ul>
 <h2 id="Basic-Logs-とは"><a href="#Basic-Logs-とは" class="headerlink" title="Basic Logs とは"></a>Basic Logs とは</h2><p>まず、Basic Logs のプレビュー リリースに伴い、Azure Monitor のすべての機能を使用できる Log Analytics ワークスペース内の<br>テーブルは Analytics Logs と呼ばれるようになりました。今まで Log Analytics ワークスペースに収集されていたログは<br>すべて Analytics Logs であり、デフォルトでは Analytics Logs となっています。</p>
-<p>そして、今回の大幅なアップデートに伴い、Analytics Logs とは別に Basic Logs というプランが追加されました。<br>Basic Logs のデフォルトのデータ保有期間は 8 日間であり、クエリで使用できる演算子が限定的であったり、<br>アラートには使用できない等の制限事項がございます。<br>しかし、Azure Monitor のすべての機能を使用できないという制約がある分、Analytics Logs より安くご利用いただけます。</p>
-<p><strong>Analytics Logs と Basic Logs の違い</strong><br>※ <a href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/log-analytics-workspace-overview#log-data-plans-preview">Log Analytics ワークスペースの概要 - ログ データ プラン（プレビュー）</a> より抜粋<br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image01.png"></p>
+<p>そして、今回の大幅なアップデートに伴い、Analytics Logs とは別に Basic Logs というプランが追加されました。<br>Basic Logs のデフォルトのデータ保有期間は 30 日間であり、クエリで使用できる演算子が限定的であったり、<br>アラートには使用できない等の制限事項がございます。<br>しかし、Azure Monitor のすべての機能を使用できないという制約がある分、Analytics Logs より安くご利用いただけます。</p>
+<p><strong>Analytics Logs と Basic Logs の違い</strong><br>※ <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/data-platform-logs#table-plans">Azure Monitor ログの概要 - テーブルプラン</a> より抜粋<br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image10.png"></p>
 <p>&lt;参考&gt;</p>
 <ul>
 <li>Basic Logs で使用できる演算子は <a href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/basic-logs-query?tabs=portal-1#kql-language-limits">KQL 言語の制限</a> をご覧ください。</li>
@@ -209,7 +215,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <li>Basic Logs のご利用料金は <a href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">Azure Monitor の価格</a> の [Basic ログ] をご確認ください。</li>
 </ul>
 <p><br><br></p>
-<h2 id="Archived-Logs-とは"><a href="#Archived-Logs-とは" class="headerlink" title="Archived Logs とは"></a>Archived Logs とは</h2><p>Archived Logs は、名前のとおりログをアーカイブ領域に移動させ、長期保管するための機能です。<br>Analytics Logs は 最大 730 日、Basic Logs は 8 日間しかログを保持できませんが、<br>Archived Logs では 最大 7 年間データを保持することができます。<br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image02.png"></p>
+<h2 id="Archived-Logs-とは"><a href="#Archived-Logs-とは" class="headerlink" title="Archived Logs とは"></a>Archived Logs とは</h2><p>Archived Logs は、名前のとおりログをアーカイブ領域に移動させ、長期保管するための機能です。<br>Analytics Logs は 最大 730 日、Basic Logs は 8 日間しかログを保持できませんが、<br>Archived Logs では 最大 10 年間データを保持することができます。<br><img src="/blog/LogAnalytics/BasicLogsAndArchivedLogs/image02.png"></p>
 <p>&lt;参考&gt;</p>
 <ul>
 <li>アーカイブしたデータにアクセスする場合はデータを復元するかジョブで検索する必要があります。詳細は <a href="https://docs.microsoft.com/ja-JP/azure/azure-monitor/logs/log-analytics-workspace-overview#data-retention-and-archive">データ保持とアーカイブ</a> をご確認ください。</li>
