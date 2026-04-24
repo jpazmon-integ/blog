@@ -9,7 +9,7 @@ tags:
 - 2026/04/24 ブログ公開  
 
 
-こんにちは、Azure Monitoring & Integration サポート チームの佐々木です。
+こんにちは、Azure Monitoring サポート チームの佐々木です。
 近日発表された以下の API キーの廃止と移行について Q&A 形式でご紹介させていただきます。
 
 https://azure.microsoft.com/ja-jp/updates?id=transition-to-azure-ad-to-query-data-from-azure-monitor-application-insights-by-31-march-2026
