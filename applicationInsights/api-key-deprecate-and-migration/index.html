@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+    
+      <title>
+        
+          Application Insights API キーの廃止と移行について | 
+              Japan Azure Monitoring Support Blog
+      </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <meta name="description" content="[更新履歴]    2026&#x2F;04&#x2F;24 ブログ公開  こんにちは、Azure Monitoring &amp; Integration サポート チームの佐々木です。近日発表された以下の API キーの廃止と移行について Q&amp;A 形式でご紹介させていただきます。 https:&#x2F;&#x2F;azure.microsoft.com&#x2F;ja-jp&#x2F;updates?id&#x3D;transiti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Application Insights API キーの廃止と移行について">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/applicationInsights/api-key-deprecate-and-migration/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="[更新履歴]    2026&#x2F;04&#x2F;24 ブログ公開  こんにちは、Azure Monitoring &amp; Integration サポート チームの佐々木です。近日発表された以下の API キーの廃止と移行について Q&amp;A 形式でご紹介させていただきます。 https:&#x2F;&#x2F;azure.microsoft.com&#x2F;ja-jp&#x2F;updates?id&#x3D;transiti">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://github.com/user-attachments/assets/977965f0-00c9-4113-bb0b-881d9a21f7fe">
+<meta property="article:published_time" content="2026-04-23T15:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-24T07:45:01.595Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="HowTo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/user-attachments/assets/977965f0-00c9-4113-bb0b-881d9a21f7fe">
+        
+          <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog"
+            type="application/atom+xml">
+          
+
+            <link rel="icon" href="../../%20favicon.ico">
+            <link rel="apple-touch-icon" sizes="180x180" href="../../%20apple-touch-icon.png">
+            <link rel="icon" type="image/png" sizes="32x32" href="../../%20favicon-32x32.png">
+            <link rel="icon" type="image/png" sizes="16x16" href="../../%20favicon-16x16.png">
+            <link rel="manifest" href="../../%20site.webmanifest">
+            <link rel="mask-icon" href="../../%20safari-pinned-tab.svg" color="#5bbad5">
+            <meta name="msapplication-TileColor" content="#ffffff">
+            <meta name="theme-color" content="#ffffff">
+            
+              <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+              
+                
+<link rel="stylesheet" href="../../css/style.css">
+
+                  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+                  <script type="text/javascript">
+                    !(function (cfg) { function e() { cfg.onInit && cfg.onInit(n) } var x, w, D, t, E, n, C = window, O = document, b = C.location, q = "script", I = "ingestionendpoint", L = "disableExceptionTracking", j = "ai.device."; "instrumentationKey"[x = "toLowerCase"](), w = "crossOrigin", D = "POST", t = "appInsightsSDK", E = cfg.name || "appInsights", (cfg.name || C[t]) && (C[t] = E), n = C[E] || function (g) { var f = !1, m = !1, h = { initialize: !0, queue: [], sv: "8", version: 2, config: g }; function v(e, t) { var n = {}, i = "Browser"; function a(e) { e = "" + e; return 1 === e.length ? "0" + e : e } return n[j + "id"] = i[x](), n[j + "type"] = i, n["ai.operation.name"] = b && b.pathname || "_unknown_", n["ai.internal.sdkVersion"] = "javascript:snippet_" + (h.sv || h.version), { time: (i = new Date).getUTCFullYear() + "-" + a(1 + i.getUTCMonth()) + "-" + a(i.getUTCDate()) + "T" + a(i.getUTCHours()) + ":" + a(i.getUTCMinutes()) + ":" + a(i.getUTCSeconds()) + "." + (i.getUTCMilliseconds() / 1e3).toFixed(3).slice(2, 5) + "Z", iKey: e, name: "Microsoft.ApplicationInsights." + e.replace(/-/g, "") + "." + t, sampleRate: 100, tags: n, data: { baseData: { ver: 2 } }, ver: undefined, seq: "1", aiDataContract: undefined } } var n, i, t, a, y = -1, T = 0, S = ["js.monitor.azure.com", "js.cdn.applicationinsights.io", "js.cdn.monitor.azure.com", "js0.cdn.applicationinsights.io", "js0.cdn.monitor.azure.com", "js2.cdn.applicationinsights.io", "js2.cdn.monitor.azure.com", "az416426.vo.msecnd.net"], o = g.url || cfg.src, r = function () { return s(o, null) }; function s(d, t) { if ((n = navigator) && (~(n = (n.userAgent || "").toLowerCase()).indexOf("msie") || ~n.indexOf("trident/")) && ~d.indexOf("ai.3") && (d = d.replace(/(\/)(ai\.3\.)([^\d]*)$/, function (e, t, n) { return t + "ai.2" + n })), !1 !== cfg.cr) for (var e = 0; e < S.length; e++)if (0 < d.indexOf(S[e])) { y = e; break } var n, i = function (e) { var a, t, n, i, o, r, s, c, u, l; h.queue = [], m || (0 <= y && T + 1 < S.length ? (a = (y + T + 1) % S.length, p(d.replace(/^(.*\/\/)([\w\.]*)(\/.*)$/, function (e, t, n, i) { return t + S[a] + i })), T += 1) : (f = m = !0, s = d, !0 !== cfg.dle && (c = (t = function () { var e, t = {}, n = g.connectionString; if (n) for (var i = n.split(";"), a = 0; a < i.length; a++) { var o = i[a].split("="); 2 === o.length && (t[o[0][x]()] = o[1]) } return t[I] || (e = (n = t.endpointsuffix) ? t.location : null, t[I] = "https://" + (e ? e + "." : "") + "dc." + (n || "services.visualstudio.com")), t }()).instrumentationkey || g.instrumentationKey || "", t = (t = (t = t[I]) && "/" === t.slice(-1) ? t.slice(0, -1) : t) ? t + "/v2/track" : g.endpointUrl, t = g.userOverrideEndpointUrl || t, (n = []).push((i = "SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details)", o = s, u = t, (l = (r = v(c, "Exception")).data).baseType = "ExceptionData", l.baseData.exceptions = [{ typeName: "SDKLoadFailed", message: i.replace(/\./g, "-"), hasFullStack: !1, stack: i + "\nSnippet failed to load [" + o + "] -- Telemetry is disabled\nHelp Link: https://go.microsoft.com/fwlink/?linkid=2128109\nHost: " + (b && b.pathname || "_unknown_") + "\nEndpoint: " + u, parsedStack: [] }], r)), n.push((l = s, i = t, (u = (o = v(c, "Message")).data).baseType = "MessageData", (r = u.baseData).message = 'AI (Internal): 99 message:"' + ("SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details) (" + l + ")").replace(/\"/g, "") + '"', r.properties = { endpoint: i }, o)), s = n, c = t, JSON && ((u = C.fetch) && !cfg.useXhr ? u(c, { method: D, body: JSON.stringify(s), mode: "cors" }) : XMLHttpRequest && ((l = new XMLHttpRequest).open(D, c), l.setRequestHeader("Content-type", "application/json"), l.send(JSON.stringify(s))))))) }, a = function (e, t) { m || setTimeout(function () { !t && h.core || i() }, 500), f = !1 }, p = function (e) { var n = O.createElement(q), e = (n.src = e, t && (n.integrity = t), n.setAttribute("data-ai-name", E), cfg[w]); return !e && "" !== e || "undefined" == n[w] || (n[w] = e), n.onload = a, n.onerror = i, n.onreadystatechange = function (e, t) { "loaded" !== n.readyState && "complete" !== n.readyState || a(0, t) }, cfg.ld && cfg.ld < 0 ? O.getElementsByTagName("head")[0].appendChild(n) : setTimeout(function () { O.getElementsByTagName(q)[0].parentNode.appendChild(n) }, cfg.ld || 0), n }; p(d) } cfg.sri && (n = o.match(/^((http[s]?:\/\/.*\/)\w+(\.\d+){1,5})\.(([\w]+\.){0,2}js)$/)) && 6 === n.length ? (d = "".concat(n[1], ".integrity.json"), i = "@".concat(n[4]), l = window.fetch, t = function (e) { if (!e.ext || !e.ext[i] || !e.ext[i].file) throw Error("Error Loading JSON response"); var t = e.ext[i].integrity || null; s(o = n[2] + e.ext[i].file, t) }, l && !cfg.useXhr ? l(d, { method: "GET", mode: "cors" }).then(function (e) { return e.json()["catch"](function () { return {} }) }).then(t)["catch"](r) : XMLHttpRequest && ((a = new XMLHttpRequest).open("GET", d), a.onreadystatechange = function () { if (a.readyState === XMLHttpRequest.DONE) if (200 === a.status) try { t(JSON.parse(a.responseText)) } catch (e) { r() } else r() }, a.send())) : o && r(); try { h.cookie = O.cookie } catch (k) { } function e(e) { for (; e.length;)!function (t) { h[t] = function () { var e = arguments; f || h.queue.push(function () { h[t].apply(h, e) }) } }(e.pop()) } var c, u, l = "track", d = "TrackPage", p = "TrackEvent", l = (e([l + "Event", l + "PageView", l + "Exception", l + "Trace", l + "DependencyData", l + "Metric", l + "PageViewPerformance", "start" + d, "stop" + d, "start" + p, "stop" + p, "addTelemetryInitializer", "setAuthenticatedUserContext", "clearAuthenticatedUserContext", "flush"]), h.SeverityLevel = { Verbose: 0, Information: 1, Warning: 2, Error: 3, Critical: 4 }, (g.extensionConfig || {}).ApplicationInsightsAnalytics || {}); return !0 !== g[L] && !0 !== l[L] && (e(["_" + (c = "onerror")]), u = C[c], C[c] = function (e, t, n, i, a) { var o = u && u(e, t, n, i, a); return !0 !== o && h["_" + c]({ message: e, url: t, lineNumber: n, columnNumber: i, error: a, evt: C.event }), o }, g.autoExceptionInstrumented = !0), h }(cfg.cfg), (C[E] = n).queue && 0 === n.queue.length ? (n.queue.push(e), n.trackPageView({})) : e(); })({
+                      src: "https://js.monitor.azure.com/scripts/b/ai.3.gbl.min.js",
+                      // name: "appInsights", // Global SDK Instance name defaults to "appInsights" when not supplied
+                      // ld: 0, // Defines the load delay (in ms) before attempting to load the sdk. -1 = block page load and add to head. (default) = 0ms load after timeout,
+                      // useXhr: 1, // Use XHR instead of fetch to report failures (if available),
+                      // dle: true, // Prevent the SDK from reporting load failure log
+                      crossOrigin: "anonymous", // When supplied this will add the provided value as the cross origin attribute on the script tag
+                      // onInit: null, // Once the application insights instance has loaded and initialized this callback function will be called with 1 argument -- the sdk instance (DON'T ADD anything to the sdk.queue -- As they won't get called)
+                      // sri: false, // Custom optional value to specify whether fetching the snippet from integrity file and do integrity check
+                      cfg: { // Application Insights Configuration
+                        connectionString: "InstrumentationKey=3bdbf1fd-6df1-4401-9bc6-1756db37fa5f;IngestionEndpoint=https://japaneast-1.in.applicationinsights.azure.com/;LiveEndpoint=https://japaneast.livediagnostics.monitor.azure.com/;ApplicationId=b3c3cc51-434a-4437-bc36-e5fe3f744127"
+                      }
+                    });
+                  </script>
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-applicationInsights/api-key-deprecate-and-migration" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Application Insights API キーの廃止と移行について
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Published: 
+        <a href="" class="article-date-single">
+  <time datetime="2026-04-23T15:00:00.000Z" itemprop="datePublished">2026-04-24</time>
+</a>
+        
+            
+                <!-- Published / Last update -->
+/ Last update: <a id="update-time" class="article-date-single"></a><br>
+Contributors: <ul style="display: inline-block; list-style:none" id="contributors" class="github-contributors"> </ul>
+
+<script type="text/javascript">
+  const sourceUrl = "https://github.com/jpazmon-integ/blog/blob/master/articles/applicationInsights/api-key-deprecate-and-migration.md";
+  const urlParts = sourceUrl.split("/");
+  const user = urlParts[3];
+  const repo = urlParts[4];
+  const filePath = urlParts.slice(7).join("/");
+  const apiUrl = `https://api.github.com/repos/${user}/${repo}/commits?path=${filePath}`;
+
+  function formatDate(date) {
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    if (month < 10) month = '0' + month;
+    if (day < 10) day = '0' + day;
+    return `${year}-${month}-${day}`;
+  }
+
+  $.getJSON(apiUrl, function (data) {
+    if (!data || data.length === 0) return;
+    const commit = data[0];
+    const updateDate = new Date(commit.commit.author.date);
+    const localDate = formatDate(updateDate);
+    const contributors = new Map();
+
+    data.reverse().forEach(function (commit) {
+      if (commit.author) {
+        const name = commit.author.login;
+        const url = commit.author.html_url;
+        contributors.set(name, { name, url });
+      }
+    });
+
+    $("#update-time").text(localDate);
+
+    const contributorLinks = Array.from(contributors.values())
+      .reverse()
+      .map(c => `<a href="${c.url}" target="_blank" style="color: inherit; text-decoration: none;">${c.name}</a>`)
+      .join(", ");
+
+    $("#contributors").html(contributorLinks);
+  });
+</script>
+            
+        
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+fe8a30dd-021e-5ebb-9608-5361ef32894f%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BApplication+Insights+API+%E3%82%AD%E3%83%BC%E3%81%AE%E5%BB%83%E6%AD%A2%E3%81%A8%E7%A7%BB%E8%A1%8C%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FapplicationInsights%2Fapi-key-deprecate-and-migration%2F%29%0A*+Content+Source%3A+%5Barticles%2FapplicationInsights%2Fapi-key-deprecate-and-migration.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FapplicationInsights%2Fapi-key-deprecate-and-migration.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/applicationInsights/api-key-deprecate-and-migration/" data-id="cuidDgecz8IKhMKSLNBGObVhH" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[更新履歴]  </p>
+<ul>
+<li>2026&#x2F;04&#x2F;24 ブログ公開</li>
+</ul>
+<p>こんにちは、Azure Monitoring &amp; Integration サポート チームの佐々木です。<br>近日発表された以下の API キーの廃止と移行について Q&amp;A 形式でご紹介させていただきます。</p>
+<p><a href="https://azure.microsoft.com/ja-jp/updates?id=transition-to-azure-ad-to-query-data-from-azure-monitor-application-insights-by-31-march-2026">https://azure.microsoft.com/ja-jp/updates?id=transition-to-azure-ad-to-query-data-from-azure-monitor-application-insights-by-31-march-2026</a></p>
+<span id="more"></span>
+
+
+<ul>
+<li><a href="#api-%E3%82%AD%E3%83%BC%E3%81%AE%E5%BB%83%E6%AD%A2%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">API キーの廃止について</a></li>
+<li><a href="#qa">Q&amp;A</a><ul>
+<li><a href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%AB%E3%83%A1%E3%83%B3%E3%83%86%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AD%E3%83%BCinstrumentationkey-%E3%81%BE%E3%81%9F%E3%81%AF-ikey%E3%82%84%E6%8E%A5%E7%B6%9A%E6%96%87%E5%AD%97%E5%88%97%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E7%A7%BB%E8%A1%8C%E3%81%AE%E5%BF%85%E8%A6%81%E3%81%8C%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99%E3%81%8B">インストルメンテーションキー(InstrumentationKey または ikey)や接続文字列を使っています。移行の必要がありますか?</a></li>
+<li><a href="#api-%E3%82%AD%E3%83%BC%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF%E3%81%A9%E3%81%86%E3%81%99%E3%82%8C%E3%81%B0%E3%81%84%E3%81%84%E3%81%A7%E3%81%99%E3%81%8B">API キーを使用しているか確認するにはどうすればいいですか?</a></li>
+<li><a href="#api-%E3%82%AD%E3%83%BC%E3%81%8B%E3%82%89-microsoft-entra-id-%E8%AA%8D%E8%A8%BC%E3%81%B8%E7%A7%BB%E8%A1%8C%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF%E3%81%A9%E3%81%AE%E6%A7%98%E3%81%AB%E3%81%99%E3%82%8C%E3%81%B0%E3%81%84%E3%81%84%E3%81%A7%E3%81%99%E3%81%8B">API キーから Microsoft Entra ID 認証へ移行するにはどの様にすればいいですか?</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="API-キーの廃止について"><a href="#API-キーの廃止について" class="headerlink" title="API キーの廃止について"></a>API キーの廃止について</h1><p>以下ページにて Application Insights の API キーの廃止と、Entra ID 認証への移行が案内されています。</p>
+<p><a href="https://azure.microsoft.com/ja-jp/updates?id=transition-to-azure-ad-to-query-data-from-azure-monitor-application-insights-by-31-march-2026">https://azure.microsoft.com/ja-jp/updates?id=transition-to-azure-ad-to-query-data-from-azure-monitor-application-insights-by-31-march-2026</a></p>
+<p>サービス正常性やメールにて、過去にも同様の廃止通知を受け取っていたお客様もいるかと思います。</p>
+<h1 id="Q-A"><a href="#Q-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1><h2 id="インストルメンテーションキー-InstrumentationKey-または-ikey-や接続文字列を使っています。移行の必要がありますか"><a href="#インストルメンテーションキー-InstrumentationKey-または-ikey-や接続文字列を使っています。移行の必要がありますか" class="headerlink" title="インストルメンテーションキー(InstrumentationKey または ikey)や接続文字列を使っています。移行の必要がありますか?"></a>インストルメンテーションキー(InstrumentationKey または ikey)や接続文字列を使っています。移行の必要がありますか?</h2><p>ikey(および接続文字列) と 廃止通知が行われた API Key は異なりますので、それぞれ以下の様にご理解いただけますと幸いです。</p>
+<table>
+<thead>
+<tr>
+<th align="center">区分</th>
+<th align="center">用途</th>
+<th align="center">今回の記事の対象か</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Instrumentation Key &#x2F; Connection String</td>
+<td align="center">アプリから Application Insights へテレメトリを送信するための識別・取り込み設定</td>
+<td align="center">対象ではない</td>
+</tr>
+<tr>
+<td align="center">Application Insights API key</td>
+<td align="center">api.applicationinsights.io などで Application Insights のデータをクエリ取得するための API key</td>
+<td align="center">対象</td>
+</tr>
+<tr>
+<td align="center">Microsoft Entra ID 認証</td>
+<td align="center">上記 API key の代替として、クエリ API 呼び出し時に使う認証方式</td>
+<td align="center"><strong>API Key を使用している場合の移行先</strong></td>
+</tr>
+</tbody></table>
+<p>より簡潔にしますと、以下の様に使用方法も異なる別の機能であると言えます。</p>
+<ul>
+<li>ikeyおよび接続文字列 … ログを送信する際に使用されます。</li>
+<li>API keyおよびMicrosoft Entra ID … ログを検索する際に使用されます。</li>
+</ul>
+<p>また、これらは使用方法が異なるため、Application Insights へログを送信するアプリケーション(ikeyおよび接続文字列を使用)とは別のアプリケーションで使用されている事があります。</p>
+<p>複数のアプリケーションを実装・管理されている場合にはご留意ください。</p>
+<h2 id="API-キーを使用しているか確認するにはどうすればいいですか"><a href="#API-キーを使用しているか確認するにはどうすればいいですか" class="headerlink" title="API キーを使用しているか確認するにはどうすればいいですか?"></a>API キーを使用しているか確認するにはどうすればいいですか?</h2><p>Azure ポータル &gt; Application Insights &gt; API アクセス に API キーが表示されるかご確認ください。</p>
+<ul>
+<li>API キーが作成されていない場合の表示例</li>
+</ul>
+<img width="761" height="752" alt="image" src="https://github.com/user-attachments/assets/977965f0-00c9-4113-bb0b-881d9a21f7fe" />
+
+<p>API キーが表示される場合には、お客様のアプリケーションが API キーを利用して、ログ検索を行っている可能性がありますので、<br>お客様がお持ちのアプリケーションソースコードで API キー 認証によるクエリ等が実装されていないかをご確認ください。</p>
+<p>コードは開発言語、フレームワーク等により全く異なります。また、Azure および Azure サポートでは Azure VM や App Service&#x2F;Function App 等に配置された任意のファイルの読み取りができません。</p>
+<p>原則として、該当するアプリケーションの有無はお客様にてご確認いただく必要がある事をご理解いただけますと幸いです。</p>
+<h2 id="API-キーから-Microsoft-Entra-ID-認証へ移行するにはどの様にすればいいですか"><a href="#API-キーから-Microsoft-Entra-ID-認証へ移行するにはどの様にすればいいですか" class="headerlink" title="API キーから Microsoft Entra ID 認証へ移行するにはどの様にすればいいですか?"></a>API キーから Microsoft Entra ID 認証へ移行するにはどの様にすればいいですか?</h2><p>例えば、API キー による認証から Microsoft Entra ID 認証に移行する場合は以下の様な PowerShell へ置き換えいただく事も可能です。</p>
+<p>この様な Connect-AzAccount + Get-AzAccessToken により取得されたトークンによるクエリ実行は Microsoft Entra ID 認証です。</p>
+<p>ご利用される場合には冒頭の以下の値を書き換えいただく必要があります。</p>
+<ul>
+<li>$tenantId</li>
+<li>$appId</li>
+<li>$query</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"># Install-Module Az.Accounts -Scope CurrentUser</span><br><span class="line">$tenantId = &quot;&lt;Tenant ID&gt;&quot;</span><br><span class="line">$appId = &quot;&lt;Application Insights の Application ID&gt;&quot; # API Access ブレードの Application ID</span><br><span class="line">$query    = @&quot;</span><br><span class="line">requests</span><br><span class="line">| where timestamp &gt;= ago(12h) //過去12時間のログを探します。</span><br><span class="line">| order by timestamp desc</span><br><span class="line">&quot;@</span><br><span class="line"></span><br><span class="line">Connect-AzAccount -Tenant $tenantId</span><br><span class="line"># Application Insights API 用のアクセストークンを取得</span><br><span class="line">$tokenObject = Get-AzAccessToken -ResourceUrl &quot;https://api.applicationinsights.io&quot;</span><br><span class="line"># Az.Accounts のバージョンにより Token が SecureString の場合があるため平文化</span><br><span class="line">if ($tokenObject.Token -is [System.Security.SecureString]) &#123;</span><br><span class="line">   $accessToken = [System.Net.NetworkCredential]::new(&quot;&quot;, $tokenObject.Token).Password</span><br><span class="line">&#125; else &#123;</span><br><span class="line">   $accessToken = $tokenObject.Token</span><br><span class="line">&#125;</span><br><span class="line">$uri = &quot;https://api.applicationinsights.io/v1/apps/$appId/query&quot;</span><br><span class="line">$headers = @&#123;</span><br><span class="line">   Authorization  = &quot;Bearer $accessToken&quot;</span><br><span class="line">   &quot;Content-Type&quot; = &quot;application/json&quot;</span><br><span class="line">&#125;</span><br><span class="line">$body = @&#123;</span><br><span class="line">   query    = $query</span><br><span class="line">&#125; | ConvertTo-Json -Depth 5</span><br><span class="line">$response = Invoke-RestMethod `</span><br><span class="line">   -Method Post `</span><br><span class="line">   -Uri $uri `</span><br><span class="line">   -Headers $headers `</span><br><span class="line">   -Body $body</span><br><span class="line"># 結果を PowerShell オブジェクトに変換して表示</span><br><span class="line">$table = $response.tables[0]</span><br><span class="line">$columns = $table.columns.name</span><br><span class="line">$results = foreach ($row in $table.rows) &#123;</span><br><span class="line">   $obj = [ordered]@&#123;&#125;</span><br><span class="line">   for ($i = 0; $i -lt $columns.Count; $i++) &#123;</span><br><span class="line">       $obj[$columns[$i]] = $row[$i]</span><br><span class="line">   &#125;</span><br><span class="line">   [pscustomobject]$obj</span><br><span class="line">&#125;</span><br><span class="line">$results | Format-Table -AutoSize</span><br></pre></td></tr></table></figure>
+
+<p>このスクリプトの $tenantId と $appId のみを書き換えた実行結果サンプルは以下の様になります。</p>
+<p>(保管されているログの内容により表示結果は異なりますので、ご留意ください。)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">省略</span><br><span class="line">&gt; $results | Format-Table -AutoSize</span><br><span class="line"></span><br><span class="line">timestamp                    id               source name                  url                                                                  success resultCode   duration performanceBucket itemType</span><br><span class="line">---------                    --               ------ ----                  ---                                                                  ------- ----------   -------- ----------------- --------</span><br><span class="line">2026-04-24T05:54:56.975431Z  beabe5acf40edd43        GET /                 https://dasasaki-appservice-aienable.azurewebsites.net/              True    200            4.0036 &lt;250ms            request</span><br><span class="line">2026-04-24T05:54:56.975431Z  beabe5acf40edd43        GET /                 https://dasasaki-appservice-aienable.azurewebsites.net/              True    200            4.0036 &lt;250ms            request</span><br><span class="line">2026-04-24T05:54:56.975431Z  beabe5acf40edd43        GET /                 https://dasasaki-appservice-aienable.azurewebsites.net/              True    200            4.0036 &lt;250ms            request</span><br><span class="line">2026-04-24T05:54:00.7867403Z 650e9970e17fd645        GET /                 https://dasasaki-appservice-aienable.azurewebsites.net/              True    200           10.3806 &lt;250ms            request</span><br><span class="line">2026-04-24T05:54:00.7867403Z 650e9970e17fd645        GET /                 https://dasasaki-appservice-aienable.azurewebsites.net/              True    200           10.3806 &lt;250ms            request</span><br><span class="line">2026-04-24T05:54:00.7867403Z 650e9970e17fd645        GET /                 https://dasasaki-appservice-aienable.azurewebsites.net/              True    200           10.3806 &lt;250ms            request</span><br><span class="line">2026-04-24T05:52:16.6158311Z 1ec0c6f4d80ec740        GET /                 http://app-codex-profiler-jpe-20260424-b.azurewebsites.net/          True    200           20.2825 &lt;250ms            request</span><br><span class="line">2026-04-24T05:52:16.6158311Z 1ec0c6f4d80ec740        GET /                 http://app-codex-profiler-jpe-20260424-b.azurewebsites.net/          True    200           20.2825 &lt;250ms            request</span><br><span class="line">2026-04-24T05:52:16.6158311Z 1ec0c6f4d80ec740        GET /                 http://app-codex-profiler-jpe-20260424-b.azurewebsites.net/          True    200           20.2825 &lt;250ms            request</span><br><span class="line">2026-04-24T05:51:49.215188Z  db3281a511fc7a4f        GET /                 https://dasasaki-appservice-aienable.azurewebsites.net/              True    200            6.7112 &lt;250ms            request</span><br><span class="line">2026-04-24T05:51:49.215188Z  db3281a511fc7a4f        GET /                 https://dasasaki-appservice-aienable.azurewebsites.net/              True    200            6.7112 &lt;250ms            request</span><br><span class="line">2026-04-24T05:51:49.215188Z  db3281a511fc7a4f        GET /                 https://dasasaki-appservice-aienable.azurewebsites.net/              True    200            6.7112 &lt;250ms            request</span><br><span class="line">2026-04-24T05:51:47.7188839Z cff6ba3ad9d44a72        GET /                 http://app-codex-profiler-jpe-20260424.azurewebsites.net/            True    200          151.2283 &lt;250ms            request</span><br><span class="line">2026-04-24T05:51:47.7188839Z cff6ba3ad9d44a72        GET /                 http://app-codex-profiler-jpe-20260424.azurewebsites.net/            True    200          151.2283 &lt;250ms            request</span><br><span class="line">2026-04-24T05:51:47.7188839Z cff6ba3ad9d44a72        GET /                 http://app-codex-profiler-jpe-20260424.azurewebsites.net/            True    200          151.2283 &lt;250ms            request</span><br></pre></td></tr></table></figure>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/HowTo/" rel="tag">HowTo</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/applicationInsights/api-key-deprecate-and-migration.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../AMPLS/ampls-ip-ranges/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">AMPLS で必要な IP アドレスの個数について</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">Application Insights API キーの廃止と移行について</a>
+          </li>
+        
+          <li>
+            <a href="../../AMPLS/ampls-ip-ranges/">AMPLS で必要な IP アドレスの個数について</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/NetworkSecurityPerimeter/">ネットワーク セキュリティ境界とは</a>
+          </li>
+        
+          <li>
+            <a href="../../AzureMonitorEssential/LogAlert_ManagedId/">ログ検索アラートのマネージド ID について</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/HowToSendVMDataToEventHubAndStorage/">【非推奨】AMA を使用して VM のデータを Event Hub とストレージ アカウントに送信する方法</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/AMA-migration/" rel="tag">AMA migration</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Action-group/" rel="tag">Action group</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Activity-Logs/" rel="tag">Activity Logs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Agents-and-Extensions-Windows/" rel="tag">Agents and Extensions - Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Alert-processing-rule/" rel="tag">Alert processing rule</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Alerts-Action-Groups/" rel="tag">Alerts, Action Groups</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Arc-enabled-servers/" rel="tag">Arc-enabled servers</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Availability-Tests/" rel="tag">Availability Tests</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Arc/" rel="tag">Azure Arc</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Diagnostics-Extension/" rel="tag">Azure Diagnostics Extension</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent/" rel="tag">Azure Monitor Agent</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent-Linux/" rel="tag">Azure Monitor Agent - Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent-Windows/" rel="tag">Azure Monitor Agent - Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-All/" rel="tag">Azure Monitor All</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essential/" rel="tag">Azure Monitor Essential</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Private-Link-Scope/" rel="tag">Azure Monitor Private Link Scope</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Update-Manager/" rel="tag">Azure Update Manager</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Container-Insights/" rel="tag">Container Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Cost/" rel="tag">Cost</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Create-a-Support-Request/" rel="tag">Create a Support Request</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Data-Collection-Rule-Data-Collection-Endpoint/" rel="tag">Data Collection Rule, Data Collection Endpoint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostics-Settings/" rel="tag">Diagnostics Settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HowTo/" rel="tag">HowTo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hybrid-Runbook-Worker/" rel="tag">Hybrid Runbook Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Information/" rel="tag">Information</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics-Agent/" rel="tag">Log Analytics Agent</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics-workspace-data-export/" rel="tag">Log Analytics workspace data export</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-search-alert/" rel="tag">Log search alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-Identity/" rel="tag">Managed Identity</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Metric-alert/" rel="tag">Metric alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Metrics/" rel="tag">Metrics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Others/" rel="tag">Others</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Outage/" rel="tag">Outage</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Query/" rel="tag">Query</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Resource-Health-alert/" rel="tag">Resource Health alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Retirement/" rel="tag">Retirement</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Service-Health/" rel="tag">Service Health</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Service-Health-alert/" rel="tag">Service Health alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM-Insights/" rel="tag">VM Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Workbooks/" rel="tag">Workbooks</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">11</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/">Log Analytics</a><span class="tag-list-count">41</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/">Troubleshooting</a><span class="tag-list-count">11</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/">FAQ</a><span class="tag-list-count">9</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/">Automation</a><span class="tag-list-count">13</span><ul></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2026/04/">2026 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/12/">2025 / 12</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/09/">2025 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/08/">2025 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/07/">2025 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/06/">2025 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/05/">2025 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/03/">2025 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/02/">2025 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/01/">2025 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/11/">2024 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/10/">2024 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/09/">2024 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/08/">2024 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/07/">2024 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/05/">2024 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/04/">2024 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/03/">2024 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/01/">2024 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/12/">2023 / 12</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/11/">2023 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/10/">2023 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/09/">2023 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/07/">2023 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/06/">2023 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/03/">2023 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/01/">2023 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/11/">2022 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/10/">2022 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/09/">2022 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/08/">2022 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/AMA-migration/" style="font-size: 12.14px;">AMA migration</a> <a href="../../tags/Action-group/" style="font-size: 10.71px;">Action group</a> <a href="../../tags/Activity-Logs/" style="font-size: 10.71px;">Activity Logs</a> <a href="../../tags/Agents-and-Extensions-Windows/" style="font-size: 10px;">Agents and Extensions - Windows</a> <a href="../../tags/Alert-processing-rule/" style="font-size: 10px;">Alert processing rule</a> <a href="../../tags/Alerts-Action-Groups/" style="font-size: 17.86px;">Alerts, Action Groups</a> <a href="../../tags/Application-Insights/" style="font-size: 15.71px;">Application Insights</a> <a href="../../tags/Arc-enabled-servers/" style="font-size: 12.86px;">Arc-enabled servers</a> <a href="../../tags/Automation/" style="font-size: 16.43px;">Automation</a> <a href="../../tags/Availability-Tests/" style="font-size: 11.43px;">Availability Tests</a> <a href="../../tags/Azure-Arc/" style="font-size: 12.86px;">Azure Arc</a> <a href="../../tags/Azure-Diagnostics-Extension/" style="font-size: 10.71px;">Azure Diagnostics Extension</a> <a href="../../tags/Azure-Monitor-Agent/" style="font-size: 17.14px;">Azure Monitor Agent</a> <a href="../../tags/Azure-Monitor-Agent-Linux/" style="font-size: 10.71px;">Azure Monitor Agent - Linux</a> <a href="../../tags/Azure-Monitor-Agent-Windows/" style="font-size: 10.71px;">Azure Monitor Agent - Windows</a> <a href="../../tags/Azure-Monitor-All/" style="font-size: 11.43px;">Azure Monitor All</a> <a href="../../tags/Azure-Monitor-Essential/" style="font-size: 18.57px;">Azure Monitor Essential</a> <a href="../../tags/Azure-Monitor-Private-Link-Scope/" style="font-size: 11.43px;">Azure Monitor Private Link Scope</a> <a href="../../tags/Azure-Update-Manager/" style="font-size: 10.71px;">Azure Update Manager</a> <a href="../../tags/Container-Insights/" style="font-size: 10.71px;">Container Insights</a> <a href="../../tags/Cost/" style="font-size: 12.14px;">Cost</a> <a href="../../tags/Create-a-Support-Request/" style="font-size: 10.71px;">Create a Support Request</a> <a href="../../tags/Data-Collection-Rule-Data-Collection-Endpoint/" style="font-size: 12.86px;">Data Collection Rule, Data Collection Endpoint</a> <a href="../../tags/Diagnostics-Settings/" style="font-size: 13.57px;">Diagnostics Settings</a> <a href="../../tags/FAQ/" style="font-size: 15px;">FAQ</a> <a href="../../tags/General/" style="font-size: 13.57px;">General</a> <a href="../../tags/HowTo/" style="font-size: 20px;">HowTo</a> <a href="../../tags/Hybrid-Runbook-Worker/" style="font-size: 10px;">Hybrid Runbook Worker</a> <a href="../../tags/Information/" style="font-size: 11.43px;">Information</a> <a href="../../tags/Log-Analytics/" style="font-size: 19.29px;">Log Analytics</a> <a href="../../tags/Log-Analytics-Agent/" style="font-size: 10.71px;">Log Analytics Agent</a> <a href="../../tags/Log-Analytics-workspace-data-export/" style="font-size: 10px;">Log Analytics workspace data export</a> <a href="../../tags/Log-search-alert/" style="font-size: 16.43px;">Log search alert</a> <a href="../../tags/Managed-Identity/" style="font-size: 10.71px;">Managed Identity</a> <a href="../../tags/Metric-alert/" style="font-size: 12.14px;">Metric alert</a> <a href="../../tags/Metrics/" style="font-size: 11.43px;">Metrics</a> <a href="../../tags/Others/" style="font-size: 13.57px;">Others</a> <a href="../../tags/Outage/" style="font-size: 10px;">Outage</a> <a href="../../tags/Query/" style="font-size: 12.14px;">Query</a> <a href="../../tags/Resource-Health-alert/" style="font-size: 10.71px;">Resource Health alert</a> <a href="../../tags/Retirement/" style="font-size: 15px;">Retirement</a> <a href="../../tags/Runbook/" style="font-size: 14.29px;">Runbook</a> <a href="../../tags/Service-Health/" style="font-size: 10px;">Service Health</a> <a href="../../tags/Service-Health-alert/" style="font-size: 10px;">Service Health alert</a> <a href="../../tags/Troubleshooting/" style="font-size: 15.71px;">Troubleshooting</a> <a href="../../tags/VM-Insights/" style="font-size: 10.71px;">VM Insights</a> <a href="../../tags/Workbooks/" style="font-size: 10px;">Workbooks</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
