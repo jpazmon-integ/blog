@@ -17,11 +17,11 @@ https://azure.microsoft.com/ja-jp/updates?id=transition-to-azure-ad-to-query-dat
 <!-- more -->
 
 # 目次
-- [API キーの廃止について](#-API-キーの廃止について)
-- [Q&A](#-Q&A)
-  - [インストルメンテーションキー(InstrumentationKey または ikey)や接続文字列を使っています。移行の必要がありますか?](##-インストルメンテーションキー-InstrumentationKey-または-ikey-や接続文字列を使っています。移行の必要がありますか?)
-  - [API キーを使用しているか確認するにはどうすればいいですか?](##-API-キーを使用しているか確認するにはどうすればいいですか?)
-  - [API キーから Microsoft Entra ID 認証へ移行するにはどの様にすればいいですか?](##-API-キーから-Microsoft-Entra-ID-認証へ移行するにはどの様にすればいいですか?)
+- [API キーの廃止について](#api-キーの廃止について)
+- [Q&A](#qa)
+  - [インストルメンテーションキー(InstrumentationKey または ikey)や接続文字列を使っています。移行の必要がありますか?](#インストルメンテーションキーinstrumentationkey-または-ikeyや接続文字列を使っています移行の必要がありますか)
+  - [API キーを使用しているか確認するにはどうすればいいですか?](#api-キーを使用しているか確認するにはどうすればいいですか)
+  - [API キーから Microsoft Entra ID 認証へ移行するにはどの様にすればいいですか?](#api-キーから-microsoft-entra-id-認証へ移行するにはどの様にすればいいですか)
 
 # API キーの廃止について
 
