@@ -17,6 +17,7 @@ https://azure.microsoft.com/ja-jp/updates?id=transition-to-azure-ad-to-query-dat
 <!-- more -->
 
 # 目次
+
 - [API キーの廃止について](#api-キーの廃止について)
 - [Q&A](#qa)
   - [インストルメンテーションキー(InstrumentationKey または ikey)や接続文字列を使っています。移行の必要がありますか?](#インストルメンテーションキーinstrumentationkey-または-ikeyや接続文字列を使っています移行の必要がありますか)
