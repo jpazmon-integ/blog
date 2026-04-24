@@ -14,7 +14,7 @@ tags:
 
 ---
 
-こんにちは、Azure Monitoring & Integration サポート チームの佐々木です。
+こんにちは、Azure Monitoring サポート チームの佐々木です。
 
 今回の記事では、Azure Monitor Private Link Scope 利用の際に必要になる IP レンジについてご説明します。
 
