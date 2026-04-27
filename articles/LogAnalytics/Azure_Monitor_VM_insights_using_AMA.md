@@ -3,7 +3,7 @@ title: Azure Monitor エージェントを使用した Azure Monitor VM insights
 date: 2022-10-20 00:00:00
 tags:
  - Log Analytics
- - VM Insights
+ - VM insights
  - Azure Monitor Agent
  - HowTo
 ---
@@ -16,7 +16,7 @@ tags:
 こんにちは！Azure Monitoring チームの秋田です。
 
 本記事は、2022 年 8 月 4 日に米国の Azure Moniotr Blog で公開された、[Announcing preview: Enable Azure Monitor VM insights using Azure Monitor agent](https://techcommunity.microsoft.com/t5/azure-observability-blog/announcing-preview-enable-azure-monitor-vm-insights-using-azure/ba-p/3589423) を翻訳したものになります。
-Azure Monitor エージェントを使用した Azuer Monitor VM Insights について、既存の VM insights と比べてどういうところが変わるのか、設定方法などに関して最新情報をお届けします。
+Azure Monitor エージェントを使用した Azuer Monitor VM insights について、既存の VM insights と比べてどういうところが変わるのか、設定方法などに関して最新情報をお届けします。
 <!-- more -->
 
 
@@ -28,15 +28,15 @@ Azure Monitor エージェントを使用した Azuer Monitor VM Insights につ
 
 ## 目次
 - はじめに
-- 既存の VM insigtsh との違い
+- 既存の VM insights との違い
 - 設定方法
   - 現在
-  - Azure Monitor VM Insights (preview)
+  - Azure Monitor VM insights (preview)
 - 導入方法
 - VM insights DCRs とは？
 
 ## はじめに
-本ブログでは、プレビュー段階の機能である Azure Monitor エージェントを使用した Azure Monitor VM Insights の構成についてご紹介します。
+本ブログでは、プレビュー段階の機能である Azure Monitor エージェントを使用した Azure Monitor VM insights の構成についてご紹介します。
 
 ## 既存の VM insights との違い
 ここでは、現状ご利用いただいております VM insghts と比べてどのようなところが変わるのかをご説明します。
@@ -45,17 +45,17 @@ Azure Monitor エージェントを使用した Azuer Monitor VM Insights につ
 ### 現在
 VM insights は、監視のために VM や VM スケールセットに Log Analytics エージェントと Dependency エージェントの 2 つをインストールする必要があります。
 
-### Azure Monitor VM Insights (preview)
-Azure Monitor VM Insights には、レガシーの Log Analytics エージェントから Azure Monitor エージェントにエージェントを交換するだけではなく、
+### Azure Monitor VM insights (preview)
+Azure Monitor VM insights には、レガシーの Log Analytics エージェントから Azure Monitor エージェントにエージェントを交換するだけではなく、
 もっと多くの利点があります。
 - Centralized configuration (一元化された構成)
-データ収集ルール (以下、DCR) を使用して、VM Insights を簡単にセット アップすることが可能です。
+データ収集ルール (以下、DCR) を使用して、VM insights を簡単にセット アップすることが可能です。
 Azure ポータルを利用して VM insights を有効化する場合、VM insights を利用するための DCR が存在しない場合は、新たな DCR が構成されます。
 同一構成の DCR を複数台の VM に適用する際には、DCR に当該 VM を関連付けするだけで適用することが可能です。
 
 - Optimize costs (最適化されたコスト)
 プロセスとマップ ビューを提供する依存関係データを収集するか否かをご選択いただけるように変更しました。
-従来は、依存関係データの収集のために Dependency エージェント (依存関係エージェント) が必要でしたが、新しい Azure Monitor VM Insights の構成オプションでは、Dependency エージェントのインストールが不要になりました。これにより、必要な情報だけを収集でき、コストを最適化することが可能になります。
+従来は、依存関係データの収集のために Dependency エージェント (依存関係エージェント) が必要でしたが、新しい Azure Monitor VM insights の構成オプションでは、Dependency エージェントのインストールが不要になりました。これにより、必要な情報だけを収集でき、コストを最適化することが可能になります。
 
 - Enhanced security and performance (セキュリティとパフォーマンスの強化)
 Azure Monitor エージェントでは、認証とセキュリティのためにマネージド ID を使用しております。
@@ -66,7 +66,7 @@ Azure Monitor エージェントでは、認証とセキュリティのために
 Azure ポータルから導入する方法、ARM テンプレートや Azure ポリシーにより導入する方法など様々な方法がありますが、
 本ブログでは Azure ポータルから導入する方法をご案内いたします。
 
-注意 : Azure Monitor VM Insights を導入する VM が事前に [開始] されている必要があることにご注意ください。
+注意 : Azure Monitor VM insights を導入する VM が事前に [開始] されている必要があることにご注意ください。
 
 下記の弊社公開情報に手順が記載されております。
 こちらも併せてご参照ください。
@@ -109,8 +109,8 @@ VM insights 用の DCR を既に作成している場合は、プルダウンか
 上記のユニークな組み合わせにより、DCR が形成されます。
 
 ### 注意事項
-- VM insights を有効化する際にはこのドキュメントに記載した VM insights 用の DCR の使用を推奨します。既存の DCR を編集して VM insights の機能を使えるようにしようとすると、必要な拡張機能がインストールされなかったり、VM Insights による可視化のために必要なデータ ストリームが構成されない可能性があります。
-- Windows や Syslog event のような追加のデータを収集するために既存の VM Insights DCR を編集することは可能ですが、新たな DCR を作成してマシンを関連付けることを推奨します。
+- VM insights を有効化する際にはこのドキュメントに記載した VM insights 用の DCR の使用を推奨します。既存の DCR を編集して VM insights の機能を使えるようにしようとすると、必要な拡張機能がインストールされなかったり、VM insights による可視化のために必要なデータ ストリームが構成されない可能性があります。
+- Windows や Syslog event のような追加のデータを収集するために既存の VM insights DCR を編集することは可能ですが、新たな DCR を作成してマシンを関連付けることを推奨します。
 - 同一のイベント ID を収集するよう設定している DCR が複数個あったり、1 つの VM を複数の DCR と関連付けたりしていると、データが重複する原因となります。重複を避けるため、DCR により収集するイベントが重複しないよう注意して DCR を作成してください。
 
 既に Log Analytics エージェントにより VM insights を構成済みの場合には、[移行ガイダンス](https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/vminsights-enable-overview#migrate-from-log-analytics-agent) をご参照いただき、Azure Monitor エージェントへ移行を行ってください。
