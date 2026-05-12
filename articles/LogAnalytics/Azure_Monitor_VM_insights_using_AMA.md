@@ -1,6 +1,6 @@
 ---
 title: Azure Monitor エージェントを使用した Azure Monitor VM insights の有効化 
-date: 2022-10-20 00:00:00
+date: 2026-05-12 00:00:00
 tags:
  - Log Analytics
  - VM insights
@@ -12,6 +12,7 @@ tags:
 [更新履歴]
 - 2022/10/20 ブログ公開
 - 2026/01/09 最新情報への更新
+- 2026/05/12 誤字修正
 
 こんにちは！Azure Monitoring チームの秋田です。
 
