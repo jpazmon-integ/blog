@@ -6,6 +6,11 @@ tags:
   - Log Analytics
 ---
 
+[更新履歴]
+
+2023/03/22 ブログ公開
+2026/05/17 最新情報への更新
+
 こんにちは、Azure Monitor サポートの三輪です。
 今回は Azure Monitor エージェントにて任意のテキスト ログ (カスタム ログ) を取得する方法についてご案内します。
 
@@ -86,6 +91,10 @@ https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/data-collection-tex
                                 "type": "String"
                        },
                        {
+                                "name": "FilePath",
+                                "type": "String"
+                       },
+                       {
                                 "name": "Log",
                                 "type": "String"
                        }
@@ -135,7 +144,7 @@ DCR を設定する
 6. [テーブル名] にはさきほど作成したテーブル名 (_CL 含む) を指定します。
 [Transform] には、以下のクエリを設定してデータを整形します。こちらの例は "Log=" に続く情報を Log カラムに収集しております。
 ```
-source| extend TimeGenerated = now() | parse RawData with * "Log=" Log 
+source | parse RawData with * "Log=" Log 
 ```
 ![](./AMA_CustomLog/AMACustomlog_08_202512.png)
 ※ TransformKql の書き方については、以下公開情報をご参考ください。
