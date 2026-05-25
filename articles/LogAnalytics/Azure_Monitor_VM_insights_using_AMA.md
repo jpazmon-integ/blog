@@ -3,7 +3,7 @@ title: Azure Monitor エージェントを使用した Azure Monitor VM insights
 date: 2026-05-12 00:00:00
 tags:
  - Log Analytics
- - VM insights
+ - VM Insights
  - Azure Monitor Agent
  - HowTo
 ---
@@ -12,7 +12,7 @@ tags:
 [更新履歴]
 - 2022/10/20 ブログ公開
 - 2026/01/09 最新情報への更新
-- 2026/05/12 誤字修正
+- 2026/05/25 誤字修正
 
 こんにちは！Azure Monitoring チームの秋田です。
 
