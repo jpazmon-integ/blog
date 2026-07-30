@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+    
+      <title>
+        
+          Azure Monitor スタートアップ ガイド | 
+              Japan Azure Monitoring Support Blog
+      </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <meta name="description" content="[更新履歴]  2026&#x2F;07&#x2F;30 : ブログ公開">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Azure Monitor スタートアップ ガイド">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="[更新履歴]  2026&#x2F;07&#x2F;30 : ブログ公開">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/3_conceptDiagram.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/4-1_VMAvailabilityMetric.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/4-1_HeartbeatWorkbook.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/4-2_HeartbeatMetric.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/4-3_VM_GuestMetric.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/4-3_SqlServer_GuestMetric.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/4-4_MonitorVMLogs.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/4-5_ChangeTrackingInventory.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/4-6_logalert.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/4-6_metricalert.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/4-6_activitylogalert.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/4-6_actgrp.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/4-6_actgrp_action_alertschema.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/4-6_actgrp_mail_alertschema.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/4-7_servicehealth_portal.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/4-7_servicehealth_serviceissue.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-1-1_platformmetric_sample.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-1-1_guestmetrics.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-1-7_activitylog1.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-1-7_activitylog2.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-1-7_activitylog3.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-1-7_activitylog4.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-1-7_activitylog5.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-1-2_logcollectionfromVM_samplelog.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-1-4_ContainerInsights.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-1-4_ManagedPrometheus.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-1-4_applicationinsights_overview.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-1-4_applicationinsights_auto_instrumentation.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-1-4_webtest.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-1-6_createDiagnosticSettings.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-1-6_AzureDiagnosticsTable.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-1-6_ResourceSpecificTable.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-1-6_diagnosticSetting4ActivityLogs.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-1-6_AzureActivityTable.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-1-6_ActivityLogsExportedtoStorageaccount.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-1-8_dataexportflow.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-1-9_network_monitor1.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-1_loganalyticsworkspace_query1.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-1_loganalyticsworkspace_query2.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-1_loganalyticsworkspace_query3.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-1_loganalyticsworkspace_query4.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-1_loganalyticsworkspace_query5.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-2_laws_heartbeat.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-2_logalert-heartbeat-portal.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-2_logalert_heartbeat_actiongrp.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-3_metric_percentagecpu.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-3_metricalert_percentagecpu_portal.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-3_metricalert_percentagecpu_actiongrp.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-4_activitylog.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-4_activitylogalert-portal.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-4_activitylogalert_actiongrp.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-5_servicehealth_portal.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-5_servicehealthalert_settings.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-5_servicehealth_activitylog.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-5_servicehealthalert_portal.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-5_servicehealthalert-actiongrp.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-5_resourcehealthalert_settings.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-5_resourcehealth_activitylog.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-5_resourcehealthalert_portal.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-5_resourcehealthalert-actiongrp.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-6_LogAnalytics_Cost_Usage.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-7_0_adx_url.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-7_1_adx_query.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-7_2_logana_query.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-7_3_sas.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-7_4_externaldata.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-7_5_externaldata-all.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-8_0_applicationinsights_log.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-2-8_1_loganalytics_log.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-3-1_workbook_menu.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-3-1_workbook_edit.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-3-1_workbook_add_parameter.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-3-1_workbook_parameter_type.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-3-1_workbook_parameter_name.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-3-1_workbook_graph.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-3-2_dashboard1.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-3-2_dashboard2.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-3-2_dashboard3.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-3-2_dashboard4.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-3-2_dashboard5.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-3-2_dashboard6.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-3-2_dashboard7.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-3-2_dashboard8.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-3-3_metricexplorer1.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-3-3_metricexplorer2.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-3-4_0_chosa.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/5-3-4_1_usage_analysis.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/6-3_basic-concepts.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/6-3_dns.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/6-3_pe.png">
+<meta property="article:published_time" content="2026-07-29T15:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-30T07:47:49.761Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="Azure Monitor All">
+<meta property="article:tag" content="HowTo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/3_conceptDiagram.png">
+        
+          <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog"
+            type="application/atom+xml">
+          
+
+            <link rel="icon" href="../../%20favicon.ico">
+            <link rel="apple-touch-icon" sizes="180x180" href="../../%20apple-touch-icon.png">
+            <link rel="icon" type="image/png" sizes="32x32" href="../../%20favicon-32x32.png">
+            <link rel="icon" type="image/png" sizes="16x16" href="../../%20favicon-16x16.png">
+            <link rel="manifest" href="../../%20site.webmanifest">
+            <link rel="mask-icon" href="../../%20safari-pinned-tab.svg" color="#5bbad5">
+            <meta name="msapplication-TileColor" content="#ffffff">
+            <meta name="theme-color" content="#ffffff">
+            
+              <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+              
+                
+<link rel="stylesheet" href="../../css/style.css">
+
+                  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+                  <script type="text/javascript">
+                    !(function (cfg) { function e() { cfg.onInit && cfg.onInit(n) } var x, w, D, t, E, n, C = window, O = document, b = C.location, q = "script", I = "ingestionendpoint", L = "disableExceptionTracking", j = "ai.device."; "instrumentationKey"[x = "toLowerCase"](), w = "crossOrigin", D = "POST", t = "appInsightsSDK", E = cfg.name || "appInsights", (cfg.name || C[t]) && (C[t] = E), n = C[E] || function (g) { var f = !1, m = !1, h = { initialize: !0, queue: [], sv: "8", version: 2, config: g }; function v(e, t) { var n = {}, i = "Browser"; function a(e) { e = "" + e; return 1 === e.length ? "0" + e : e } return n[j + "id"] = i[x](), n[j + "type"] = i, n["ai.operation.name"] = b && b.pathname || "_unknown_", n["ai.internal.sdkVersion"] = "javascript:snippet_" + (h.sv || h.version), { time: (i = new Date).getUTCFullYear() + "-" + a(1 + i.getUTCMonth()) + "-" + a(i.getUTCDate()) + "T" + a(i.getUTCHours()) + ":" + a(i.getUTCMinutes()) + ":" + a(i.getUTCSeconds()) + "." + (i.getUTCMilliseconds() / 1e3).toFixed(3).slice(2, 5) + "Z", iKey: e, name: "Microsoft.ApplicationInsights." + e.replace(/-/g, "") + "." + t, sampleRate: 100, tags: n, data: { baseData: { ver: 2 } }, ver: undefined, seq: "1", aiDataContract: undefined } } var n, i, t, a, y = -1, T = 0, S = ["js.monitor.azure.com", "js.cdn.applicationinsights.io", "js.cdn.monitor.azure.com", "js0.cdn.applicationinsights.io", "js0.cdn.monitor.azure.com", "js2.cdn.applicationinsights.io", "js2.cdn.monitor.azure.com", "az416426.vo.msecnd.net"], o = g.url || cfg.src, r = function () { return s(o, null) }; function s(d, t) { if ((n = navigator) && (~(n = (n.userAgent || "").toLowerCase()).indexOf("msie") || ~n.indexOf("trident/")) && ~d.indexOf("ai.3") && (d = d.replace(/(\/)(ai\.3\.)([^\d]*)$/, function (e, t, n) { return t + "ai.2" + n })), !1 !== cfg.cr) for (var e = 0; e < S.length; e++)if (0 < d.indexOf(S[e])) { y = e; break } var n, i = function (e) { var a, t, n, i, o, r, s, c, u, l; h.queue = [], m || (0 <= y && T + 1 < S.length ? (a = (y + T + 1) % S.length, p(d.replace(/^(.*\/\/)([\w\.]*)(\/.*)$/, function (e, t, n, i) { return t + S[a] + i })), T += 1) : (f = m = !0, s = d, !0 !== cfg.dle && (c = (t = function () { var e, t = {}, n = g.connectionString; if (n) for (var i = n.split(";"), a = 0; a < i.length; a++) { var o = i[a].split("="); 2 === o.length && (t[o[0][x]()] = o[1]) } return t[I] || (e = (n = t.endpointsuffix) ? t.location : null, t[I] = "https://" + (e ? e + "." : "") + "dc." + (n || "services.visualstudio.com")), t }()).instrumentationkey || g.instrumentationKey || "", t = (t = (t = t[I]) && "/" === t.slice(-1) ? t.slice(0, -1) : t) ? t + "/v2/track" : g.endpointUrl, t = g.userOverrideEndpointUrl || t, (n = []).push((i = "SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details)", o = s, u = t, (l = (r = v(c, "Exception")).data).baseType = "ExceptionData", l.baseData.exceptions = [{ typeName: "SDKLoadFailed", message: i.replace(/\./g, "-"), hasFullStack: !1, stack: i + "\nSnippet failed to load [" + o + "] -- Telemetry is disabled\nHelp Link: https://go.microsoft.com/fwlink/?linkid=2128109\nHost: " + (b && b.pathname || "_unknown_") + "\nEndpoint: " + u, parsedStack: [] }], r)), n.push((l = s, i = t, (u = (o = v(c, "Message")).data).baseType = "MessageData", (r = u.baseData).message = 'AI (Internal): 99 message:"' + ("SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details) (" + l + ")").replace(/\"/g, "") + '"', r.properties = { endpoint: i }, o)), s = n, c = t, JSON && ((u = C.fetch) && !cfg.useXhr ? u(c, { method: D, body: JSON.stringify(s), mode: "cors" }) : XMLHttpRequest && ((l = new XMLHttpRequest).open(D, c), l.setRequestHeader("Content-type", "application/json"), l.send(JSON.stringify(s))))))) }, a = function (e, t) { m || setTimeout(function () { !t && h.core || i() }, 500), f = !1 }, p = function (e) { var n = O.createElement(q), e = (n.src = e, t && (n.integrity = t), n.setAttribute("data-ai-name", E), cfg[w]); return !e && "" !== e || "undefined" == n[w] || (n[w] = e), n.onload = a, n.onerror = i, n.onreadystatechange = function (e, t) { "loaded" !== n.readyState && "complete" !== n.readyState || a(0, t) }, cfg.ld && cfg.ld < 0 ? O.getElementsByTagName("head")[0].appendChild(n) : setTimeout(function () { O.getElementsByTagName(q)[0].parentNode.appendChild(n) }, cfg.ld || 0), n }; p(d) } cfg.sri && (n = o.match(/^((http[s]?:\/\/.*\/)\w+(\.\d+){1,5})\.(([\w]+\.){0,2}js)$/)) && 6 === n.length ? (d = "".concat(n[1], ".integrity.json"), i = "@".concat(n[4]), l = window.fetch, t = function (e) { if (!e.ext || !e.ext[i] || !e.ext[i].file) throw Error("Error Loading JSON response"); var t = e.ext[i].integrity || null; s(o = n[2] + e.ext[i].file, t) }, l && !cfg.useXhr ? l(d, { method: "GET", mode: "cors" }).then(function (e) { return e.json()["catch"](function () { return {} }) }).then(t)["catch"](r) : XMLHttpRequest && ((a = new XMLHttpRequest).open("GET", d), a.onreadystatechange = function () { if (a.readyState === XMLHttpRequest.DONE) if (200 === a.status) try { t(JSON.parse(a.responseText)) } catch (e) { r() } else r() }, a.send())) : o && r(); try { h.cookie = O.cookie } catch (k) { } function e(e) { for (; e.length;)!function (t) { h[t] = function () { var e = arguments; f || h.queue.push(function () { h[t].apply(h, e) }) } }(e.pop()) } var c, u, l = "track", d = "TrackPage", p = "TrackEvent", l = (e([l + "Event", l + "PageView", l + "Exception", l + "Trace", l + "DependencyData", l + "Metric", l + "PageViewPerformance", "start" + d, "stop" + d, "start" + p, "stop" + p, "addTelemetryInitializer", "setAuthenticatedUserContext", "clearAuthenticatedUserContext", "flush"]), h.SeverityLevel = { Verbose: 0, Information: 1, Warning: 2, Error: 3, Critical: 4 }, (g.extensionConfig || {}).ApplicationInsightsAnalytics || {}); return !0 !== g[L] && !0 !== l[L] && (e(["_" + (c = "onerror")]), u = C[c], C[c] = function (e, t, n, i, a) { var o = u && u(e, t, n, i, a); return !0 !== o && h["_" + c]({ message: e, url: t, lineNumber: n, columnNumber: i, error: a, evt: C.event }), o }, g.autoExceptionInstrumented = !0), h }(cfg.cfg), (C[E] = n).queue && 0 === n.queue.length ? (n.queue.push(e), n.trackPageView({})) : e(); })({
+                      src: "https://js.monitor.azure.com/scripts/b/ai.3.gbl.min.js",
+                      // name: "appInsights", // Global SDK Instance name defaults to "appInsights" when not supplied
+                      // ld: 0, // Defines the load delay (in ms) before attempting to load the sdk. -1 = block page load and add to head. (default) = 0ms load after timeout,
+                      // useXhr: 1, // Use XHR instead of fetch to report failures (if available),
+                      // dle: true, // Prevent the SDK from reporting load failure log
+                      crossOrigin: "anonymous", // When supplied this will add the provided value as the cross origin attribute on the script tag
+                      // onInit: null, // Once the application insights instance has loaded and initialized this callback function will be called with 1 argument -- the sdk instance (DON'T ADD anything to the sdk.queue -- As they won't get called)
+                      // sri: false, // Custom optional value to specify whether fetching the snippet from integrity file and do integrity check
+                      cfg: { // Application Insights Configuration
+                        connectionString: "InstrumentationKey=3bdbf1fd-6df1-4401-9bc6-1756db37fa5f;IngestionEndpoint=https://japaneast-1.in.applicationinsights.azure.com/;LiveEndpoint=https://japaneast.livediagnostics.monitor.azure.com/;ApplicationId=b3c3cc51-434a-4437-bc36-e5fe3f744127"
+                      }
+                    });
+                  </script>
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-AzureMonitorEssential/StartUpGuide" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Azure Monitor スタートアップ ガイド
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Published: 
+        <a href="" class="article-date-single">
+  <time datetime="2026-07-29T15:00:00.000Z" itemprop="datePublished">2026-07-30</time>
+</a>
+        
+            
+                <!-- Published / Last update -->
+/ Last update: <a id="update-time" class="article-date-single"></a><br>
+Contributors: <ul style="display: inline-block; list-style:none" id="contributors" class="github-contributors"> </ul>
+
+<script type="text/javascript">
+  const sourceUrl = "https://github.com/jpazmon-integ/blog/blob/master/articles/AzureMonitorEssential/StartUpGuide.md";
+  const urlParts = sourceUrl.split("/");
+  const user = urlParts[3];
+  const repo = urlParts[4];
+  const filePath = urlParts.slice(7).join("/");
+  const apiUrl = `https://api.github.com/repos/${user}/${repo}/commits?path=${filePath}`;
+
+  function formatDate(date) {
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    if (month < 10) month = '0' + month;
+    if (day < 10) day = '0' + day;
+    return `${year}-${month}-${day}`;
+  }
+
+  $.getJSON(apiUrl, function (data) {
+    if (!data || data.length === 0) return;
+    const commit = data[0];
+    const updateDate = new Date(commit.commit.author.date);
+    const localDate = formatDate(updateDate);
+    const contributors = new Map();
+
+    data.reverse().forEach(function (commit) {
+      if (commit.author) {
+        const name = commit.author.login;
+        const url = commit.author.html_url;
+        contributors.set(name, { name, url });
+      }
+    });
+
+    $("#update-time").text(localDate);
+
+    const contributorLinks = Array.from(contributors.values())
+      .reverse()
+      .map(c => `<a href="${c.url}" target="_blank" style="color: inherit; text-decoration: none;">${c.name}</a>`)
+      .join(", ");
+
+    $("#contributors").html(contributorLinks);
+  });
+</script>
+            
+        
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+3ac6487d-04a1-520d-aadc-6ad045540c85%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Monitor+%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%88%E3%82%A2%E3%83%83%E3%83%97+%E3%82%AC%E3%82%A4%E3%83%89%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FStartUpGuide%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FStartUpGuide.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FStartUpGuide.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/StartUpGuide/" data-id="cuidBoVscooD4xacsiiUSN7Gw" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[更新履歴]</p>
+<ul>
+<li>2026&#x2F;07&#x2F;30 : ブログ公開</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li><a href="#1-%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB">1. はじめに</a></li>
+<li><a href="#2-%E7%94%A8%E8%AA%9E%E9%9B%86">2. 用語集</a><ul>
+<li><a href="#2-1-%E3%83%AA%E3%82%BF%E3%82%A4%E3%82%A2%E6%B8%88%E3%81%BF%E8%A3%BD%E5%93%81">2.1 リタイア済み製品</a></li>
+<li><a href="#2-2-%E3%83%AA%E3%82%BF%E3%82%A4%E3%82%A2%E4%BA%88%E5%AE%9A%E3%81%AE%E8%A3%BD%E5%93%81">2.2 リタイア予定の製品</a></li>
+</ul>
+</li>
+<li><a href="#3-%E6%A6%82%E5%BF%B5">3. 概念</a></li>
+<li><a href="#4-%E7%9B%A3%E8%A6%96%E3%82%B7%E3%83%8A%E3%83%AA%E3%82%AA%E4%BE%8B">4. 監視シナリオ例</a><ul>
+<li><a href="#4-1-%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%AE%E6%AD%BB%E6%B4%BB%E7%9B%A3%E8%A6%96">4.1 仮想マシンの死活監視</a></li>
+<li><a href="#4-2-%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3-%E3%83%9B%E3%82%B9%E3%83%88%E3%81%AE%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9%E7%9B%A3%E8%A6%96">4.2 仮想マシン ホストのパフォーマンス監視</a></li>
+<li><a href="#4-3-Azure-VM-%E3%81%AE%E3%82%B2%E3%82%B9%E3%83%88-OS-%E3%81%AE%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9%E7%9B%A3%E8%A6%96">4.3 Azure VM のゲスト OS のパフォーマンス監視</a></li>
+<li><a href="#4-4-%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3-%E3%83%AD%E3%82%B0%E3%81%AE%E7%9B%A3%E8%A6%96">4.4 仮想マシン ログの監視</a></li>
+<li><a href="#4-5-OS-%E5%86%85%E3%81%AE%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E7%9B%A3%E8%A6%96">4.5 OS 内のサービス監視</a></li>
+<li><a href="#4-6-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A">4.6 アラート ルールの設定</a></li>
+<li><a href="#4-7-%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7">4.7 サービス正常性</a></li>
+</ul>
+</li>
+<li><a href="#5-%E5%90%84%E6%A9%9F%E8%83%BD%E3%81%A8%E3%82%BD%E3%83%AA%E3%83%A5%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3">5. 各機能とソリューション</a><ul>
+<li><a href="#5-1-%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86">5.1 データ収集</a><ul>
+<li><a href="#5-1-1-%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%81%A8%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF">5.1.1 プラットフォーム メトリックとカスタム メトリック</a></li>
+<li><a href="#5-1-2-%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0">5.1.2 アクティビティ ログ</a></li>
+<li><a href="#5-1-3-%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%8B%E3%82%89%E3%81%AE%E3%83%AD%E3%82%B0%E5%8F%8E%E9%9B%86">5.1.3 仮想マシンからのログ収集</a></li>
+<li><a href="#5-1-4-%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%83%BC%E3%81%8B%E3%82%89%E3%81%AE%E3%83%AD%E3%82%B0%E5%8F%8E%E9%9B%86">5.1.4 コンテナーからのログ収集</a></li>
+<li><a href="#5-1-5-%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%8B%E3%82%89%E3%81%AE%E3%83%AD%E3%82%B0%E5%8F%8E%E9%9B%86">5.1.5 アプリケーションからのログ収集</a></li>
+<li><a href="#5-1-6-%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A">5.1.6 診断設定</a></li>
+<li><a href="#5-1-7-%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88">5.1.7 データ エクスポート</a></li>
+<li><a href="#5-1-8-%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%81%AE%E7%9B%A3%E8%A6%96">5.1.8 ネットワークの監視</a></li>
+</ul>
+</li>
+<li><a href="#5-2-%E5%88%86%E6%9E%90%E3%81%A8%E3%83%AC%E3%83%9D%E3%83%BC%E3%83%88">5.2 分析とレポート</a><ul>
+<li><a href="#5-2-1-Log-Analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AE%E3%82%AF%E3%82%A8%E3%83%AA">5.2.1 Log Analytics ワークスペースのクエリ</a></li>
+<li><a href="#5-2-2-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB">5.2.2 ログ アラート ルール</a></li>
+<li><a href="#5-2-3-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB">5.2.3 メトリック アラート ルール</a></li>
+<li><a href="#5-2-4-%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88">5.2.4 アクティビティ ログ アラート</a></li>
+<li><a href="#5-2-5-%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%A8%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88">5.2.5 サービス正常性アラートとリソース正常性アラート</a></li>
+<li><a href="#5-2-6-Log-Analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88%E5%88%86%E6%9E%90">5.2.6 Log Analytics ワークスペースのコスト分析</a></li>
+<li><a href="#5-2-7-%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E5%8F%8E%E9%9B%86%E3%81%97%E3%81%9F%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E5%8F%AF%E8%A6%96%E5%8C%96">5.2.7 ストレージ アカウントに収集したデータの可視化</a></li>
+<li><a href="#5-2-8-Application-Insights-%E3%81%AE%E3%82%AF%E3%82%A8%E3%83%AA">5.2.8 Application Insights のクエリ</a></li>
+</ul>
+</li>
+<li><a href="#5-3-%E5%8F%AF%E8%A6%96%E5%8C%96">5.3 可視化</a><ul>
+<li><a href="#5-3-1-%E3%83%AF%E3%83%BC%E3%82%AF%E3%83%96%E3%83%83%E3%82%AF">5.3.1 ワークブック</a></li>
+<li><a href="#5-3-2-%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5%E3%83%9C%E3%83%BC%E3%83%89">5.3.2 ダッシュボード</a></li>
+<li><a href="#5-3-3-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%97%E3%83%AD%E3%83%BC%E3%83%A9%E3%83%BC">5.3.3 メトリック エクスプローラー</a></li>
+<li><a href="#5-3-4-Application-Insights-%E3%81%AE%E5%8F%AF%E8%A6%96%E5%8C%96">5.3.4 Application Insights の可視化</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#6-%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3">6. セキュリティ</a><ul>
+<li><a href="#6-1-Azure-Monitor-Private-Link-Scope-AMPLS">6.1 Azure Monitor Private Link Scope (AMPLS)</a></li>
+<li><a href="#6-2-%E3%83%87%E3%83%BC%E3%82%BF%E5%89%8A%E9%99%A4">6.2 データ削除</a></li>
+</ul>
+</li>
+</ul>
+<br>
+
+
+<!-- 1章始まり--大項目 -->
+<h2 id="1-はじめに"><a href="#1-はじめに" class="headerlink" title="1. はじめに"></a>1. はじめに</h2><p>この記事はこれから Azure Monitor 製品を利用する方や、追加の監視構成を検討している方への入り口となることを目的にしています。Azure Monitor 製品にはどのような機能があり、構成することで何を行うことができるのかを極力簡潔に記載しています。<br>また、製品を利用するうえで頻出の用語や、各ソリューションの概念図も載せています。<br>是非ご覧いただき、Azure Monitor 製品ご利用の一助となれば幸いです。</p>
+<p>※本記事は Microsoft Learn の Azure Monitor に関する公開情報を代替するものではありません。各機能の詳細や、最新の情報は Microsoft Learn でご確認ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/">Azure Monitor のドキュメント - Azure Monitor | Microsoft Learn</a></p>
+<p><br><!-- 1章終わり--大項目の終わり <br> を追加する --></p>
+<!-- 2章始まり--大項目 -->
+<h2 id="2-用語集"><a href="#2-用語集" class="headerlink" title="2. 用語集"></a>2. 用語集</h2><p>本項では Azure Monitor 関連製品でよく使われる用語を記載しています。<br>本ブログ記事や公開情報を参照する際の参考となれば幸いです。</p>
+<br>
+
+<h3 id="Azure-Monitor-全般に関連する用語"><a href="#Azure-Monitor-全般に関連する用語" class="headerlink" title="Azure Monitor 全般に関連する用語"></a>Azure Monitor 全般に関連する用語</h3><p><strong>Azure Monitor</strong><br>Azure リソースやアプリケーションの状態を収集、分析、可視化、通知するための監視サービス ソリューションの総称です。<br>メトリックやログの収集と可視化、アラートによる通知など、監視に必要な機能をまとめて提供しています。</p>
+<br>
+
+<h3 id="ログ収集機能に関連する用語"><a href="#ログ収集機能に関連する用語" class="headerlink" title="ログ収集機能に関連する用語"></a>ログ収集機能に関連する用語</h3><p><strong>Azure Monitor エージェント (AMA)</strong><br>OS にインストールされ、ログやメトリック情報を Azure 上に送信するためのエージェントです。<br>Windows 用と Linux 用があり、Azure VM の場合は拡張機能としてインストールされます。</p>
+<p><strong>データ収集ルール (DCR)</strong><br>Azure Monitor エージェントが収集するデータの種類や送信先を定義するルールです。<br>Windows イベント ログ、Syslog、パフォーマンス カウンターなどの収集設定に利用します。</p>
+<p><strong>データ収集エンドポイント (DCE)</strong><br>Azure Monitor エージェントやログ インジェスト API のデータ送信先となるエンドポイントです。<br>ネットワーク制御や Azure Monitor Private Link Scope (AMPLS) を利用する構成で必要になる場合があります。</p>
+<p><strong>Azure Monitor Private Link Scope (AMPLS)</strong><br>Azure Monitor の各リソースへのアクセスをプライベート エンドポイント経由で実現するための構成リソースです。<br>Log Analytics ワークスペースや Application Insights、DCE などを AMPLS に関連付け、プライベート エンドポイント経由で通信できます。</p>
+<p><strong>VM Insights</strong><br>Azure Monitor で仮想マシンのパフォーマンスや依存関係のデータを収集し監視するための機能です。<br>CPU、メモリ、ディスク、ネットワークなどの情報を収集し、複数 VM の状態をまとめて確認できます。<br>Azure Monitor エージェント (AMA) が使用されます。</p>
+<p><strong>変更履歴とインベントリ</strong><br>OS 内のソフトウェア、サービス、ファイル、レジストリなどの変更情報を収集するための機能です。<br>サービスの起動状態や構成変更を Log Analytics ワークスペースで確認できます。<br>Change Tracking and Inventory とも呼ばれます。</p>
+<p><strong>Application Insights</strong><br>アプリケーションの可用性、性能、利用状況、例外などを監視するための Azure Monitor の機能です。<br>アプリケーションから送信されるテレメトリを収集し、ログ検索や可視化に利用できます。</p>
+<p><strong>可用性テスト</strong><br>Application Insights で外部からアプリケーションの応答を定期的に確認する機能です。<br>Web サイトや API の応答失敗や遅延を検知し、アラートに利用できます。</p>
+<p><strong>Container Insights</strong><br>AKS などのコンテナー環境を監視するための Azure Monitor の機能です。<br>ノード、Pod、コンテナーのログやパフォーマンス情報を収集し、分析やアラートに利用できます。</p>
+<p><strong>Managed Prometheus</strong><br>Prometheus 形式のメトリックを Azure Monitor ワークスペースに収集するマネージド サービスです。<br>AKS などのコンテナー環境で、メトリック中心の監視を行う場合に利用します。</p>
+<p><strong>診断設定</strong><br>Azure リソースのプラットフォーム ログやメトリックを送信するための設定です。<br>Log Analytics ワークスペース、ストレージ アカウント、Event Hubs などを送信先にできます。</p>
+<p><strong>Log Analytics ワークスペースのデータ エクスポート機能</strong><br>Log Analytics ワークスペースに収集されたログを継続的に外部へ送信する機能です。<br>ストレージ アカウントや Event Hubs にデータを保管、連携したい場合に利用します。</p>
+<p><strong>Network Watcher</strong><br>Azure 仮想ネットワークの接続性や通信経路を診断、監視するためのサービスです。<br>接続モニターや仮想ネットワーク フロー ログなど、ネットワーク監視に関連する機能を提供します。</p>
+<br>
+
+<h3 id="データの種類・呼称に関連する用語"><a href="#データの種類・呼称に関連する用語" class="headerlink" title="データの種類・呼称に関連する用語"></a>データの種類・呼称に関連する用語</h3><p><strong>Heartbeat ログ</strong><br>Azure Monitor エージェントが既定で Azure Monitor に定期的に送信するログです。<br>一定時間 Heartbeat ログが届かないことを条件に、仮想マシンの死活監視を構成できます。</p>
+<p><strong>パフォーマンス カウンター</strong><br>Windows や Linux の OS が持つ CPU、メモリ、ディスクなどの性能値です。<br>仮想マシン ゲストのパフォーマンス監視で、Log Analytics ワークスペースに収集して分析できます。</p>
+<p><strong>アクティビティ ログ</strong><br>Azure リソースに対する管理操作やサービス正常性イベントを記録するサブスクリプション単位のログです。<br>誰が、いつ、どのリソースに対して操作したかを確認できます。</p>
+<p><strong>プラットフォーム メトリック</strong><br>Azure リソースから自動的に収集されるメトリックです。<br>仮想マシンではホスト側の CPU、ディスク、ネットワークなどの状態を追加エージェントなしで確認できます。</p>
+<p><strong>カスタム メトリック</strong><br>利用者やエージェントが任意に送信するメトリックです。<br>仮想マシンのゲスト OS 内のパフォーマンス情報など、標準のプラットフォーム メトリックでは取得できない値を扱えます。</p>
+<p><strong>ゲスト OS メトリック</strong><br>仮想マシンの OS 内部から収集する CPU、メモリ、ディスクなどのパフォーマンス情報です。<br>Azure Monitor エージェントとデータ収集ルールを使って収集します。<br>カスタム メトリックの一種に該当します。</p>
+<p><strong>テレメトリ</strong><br>アプリケーションやサービスから送信される要求、例外、依存関係、トレースなどの監視データです。<br>Application Insights では、これらのデータをもとに性能分析や障害調査を行います。</p>
+<br>
+
+<h3 id="データの分析・可視化に関連する用語"><a href="#データの分析・可視化に関連する用語" class="headerlink" title="データの分析・可視化に関連する用語"></a>データの分析・可視化に関連する用語</h3><p><strong>Kusto Query Language (KQL)</strong><br>Log Analytics ワークスペースや Application Insights に収集したログを検索、集計、分析するためのクエリ言語です。<br>ログ アラート ルールやワークブックで条件判定や可視化を行う際にも利用します。</p>
+<p><strong>Log Analytics ワークスペース</strong><br>Azure Monitor ログを保存し、KQL で検索や分析を行うためのデータ ストアです。<br>仮想マシン、コンテナー、アプリケーションなど、複数のリソースのログを集約できます。</p>
+<p><strong>ストレージ アカウント</strong><br>Azure のログやメトリックを長期保管するために利用できるストレージ サービスです。<br>診断設定やデータ エクスポートの送信先として指定できます。</p>
+<p><strong>サービス正常性</strong><br>Azure サービス側の障害、メンテナンス、正常性勧告を確認するための機能です。<br>利用中のリージョンやサービスに影響するイベントを把握し、通知を構成できます。</p>
+<p><strong>リソース正常性</strong><br>個々の Azure リソースが利用可能な状態かを確認するための機能です。<br>仮想マシンやストレージ アカウントなど、リソース単位の停止や性能低下の切り分けに利用します。</p>
+<p><strong>メトリック エクスプローラー</strong><br>Azure Monitor メトリック (プラットフォーム メトリック、カスタム メトリック) をグラフで表示し、期間や集計方法を変えて確認するための画面です。<br>リソースの性能傾向を把握し、メトリック アラートの条件検討にも利用できます。</p>
+<p><strong>ワークブック</strong><br>Azure Monitor のログ、メトリック、テキスト、パラメーターを組み合わせて可視化する機能です。<br>監視データの分析画面や運用レポートを柔軟に作成できます。</p>
+<p><strong>ダッシュボード</strong><br>Azure ポータル上で複数のリソースや監視グラフをまとめて表示するための画面です。<br>メトリック、ログ クエリ、ワークブックなどを配置して運用状況を確認できます。</p>
+<p><strong>コスト分析</strong><br>Log Analytics ワークスペースのデータ取り込み量や保存期間を確認し、利用料金を把握する作業です。<br>テーブルごとのデータ量や課金対象データを確認して、収集設定の見直しに役立てます。</p>
+<br>
+
+<h3 id="監視・通知に関連する用語"><a href="#監視・通知に関連する用語" class="headerlink" title="監視・通知に関連する用語"></a>監視・通知に関連する用語</h3><p><strong>アラート ルール</strong><br>メトリック、ログ、アクティビティ ログなどの条件を評価し、異常を検知するための機能です。<br>条件に一致した場合は、アクション グループを通じて通知や自動処理を実行できます。</p>
+<p><strong>ログ アラート ルール</strong><br>Log Analytics ワークスペースや Application Insights の KQL クエリ結果を条件にするアラートです。<br>ログ内の特定イベント、文字列、集計値などをもとに異常を検知できます。ログ検索アラート ルールとも呼ばれます。</p>
+<p><strong>メトリック アラート ルール</strong><br>Azure Monitor メトリックの値を条件にするアラート ルールです。<br>CPU 使用率や応答時間など、数値データのしきい値監視に利用します。</p>
+<p><strong>アクティビティ ログ アラート</strong><br>Azure サブスクリプション内の管理操作やサービス正常性イベントを条件にするアラート ルールです。<br>リソースの作成、削除、停止、障害通知などのイベントを検知・通知できます。</p>
+<p><strong>アクション グループ</strong><br>アラート発生時の通知先や実行するアクションをまとめた設定です。<br>メール、SMS、Webhook、Azure Functions などへの通知や連携に利用します。</p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h2 id="2-1-リタイア済み製品"><a href="#2-1-リタイア済み製品" class="headerlink" title="2.1 リタイア済み製品"></a>2.1 リタイア済み製品</h2><p>本項では、Azure Monitor で以前提供していた機能やソリューションのうち 2026 年 7 月 1 日時点で廃止済みまたは非推奨となっているものを記載します。後継機能への移行や対応方法に関する情報をあわせてご紹介しますので、該当する製品を現在もご利用の場合にはご参照ください。なお、本情報は公開情報をもとに Azure Monitor に関連する主なリタイア済み製品を整理したものであり、すべての製品を網羅していることを保証するものではありません。</p>
+<table>
+<thead>
+<tr>
+<th>リタイア日</th>
+<th>対象機能</th>
+<th>主な対応</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2024 年 2 月 29 日</td>
+<td>Application Insights クラシック版</td>
+<td>ワークスペース版 Application Insights へ移行</td>
+</tr>
+<tr>
+<td>2024 年 8 月 31 日</td>
+<td>Log Analytics エージェント (OMS Agent&#x2F;MMA)</td>
+<td>Azure Monitor エージェントへ移行</td>
+</tr>
+<tr>
+<td>2024 年 8 月 31 日</td>
+<td>コンテナー監視ソリューション</td>
+<td>Container Insights へ移行</td>
+</tr>
+<tr>
+<td>2026 年 3 月 31 日</td>
+<td>Azure Diagnostics 拡張機能 (WAD&#x2F;LAD)</td>
+<td>Azure Monitor エージェントへ移行</td>
+</tr>
+<tr>
+<td>2026 年 3 月 31 日</td>
+<td>Log Analytics beta API</td>
+<td>Log Analytics クエリ API v1 へ移行</td>
+</tr>
+</tbody></table>
+<br>
+  
+<h4 id="Application-Insights-のクラシック版"><a href="#Application-Insights-のクラシック版" class="headerlink" title="Application Insights のクラシック版"></a>Application Insights のクラシック版</h4><p>2024 年 2 月 29 日に廃止されました。クラシック版 Application Insights リソースは、テレメトリ データを独自のワークスペースに保存していました。ワークスペース版では、Log Analytics ワークスペースにテレメトリ データを保存するため、Log Analytics の機能が使えるようになりました。既にクラシック版リソースへのテレメトリ取り込みは停止されており、廃止後に Application Insights リソースを作成する場合は、必ず 1 つの Log Analytics ワークスペースが必要です。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/previous-versions/azure/azure-monitor/app/convert-classic-resource">Application Insights のクラシック リソースをワークスペースベースのリソースに移行する - Azure Monitor | Microsoft Learn</a><br><a href="https://jpazmon-integ.github.io/blog/applicationInsights/aboutDifferentTypesOfAi/">Application Insights クラシック版 (廃止) とワークスペース版との違いについて | Japan Azure Monitoring Support Blog</a></p>
+<br>
+ 
+<h4 id="Log-Analytics-エージェント-OMS-Agent-Microsoft-Monitoring-Agent-MMA"><a href="#Log-Analytics-エージェント-OMS-Agent-Microsoft-Monitoring-Agent-MMA" class="headerlink" title="Log Analytics エージェント (OMS Agent, Microsoft Monitoring Agent&#x2F;MMA)"></a>Log Analytics エージェント (OMS Agent, Microsoft Monitoring Agent&#x2F;MMA)</h4><p>2024 年 8 月 31 日に廃止されました。Log Analytics エージェント (OMS&#x2F;MMA) は、仮想マシンやオンプレミス サーバーからログやパフォーマンス データを収集するために使用されていたレガシー エージェントです。<br>2026 年 3 月 2 日以降、順次データの収集が停止するため、後継の Azure Monitor エージェントへ移行が必要です。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration">Log Analytics エージェントから Azure Monitor エージェントへの移行 - Azure Monitor | Microsoft Learn</a><br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromLA/">Log Analytics エージェントから Azure Monitor エージェントへの移行に関するよくあるご質問集 | Japan Azure Monitoring Support Blog</a><br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaBasedVMInsights/">Migrate to Azure Monitor agent–based VM insights by 31 August 2024 について | Japan Azure Monitoring Support Blog</a></p>
+<br>
+
+<h4 id="コンテナー監視ソリューション"><a href="#コンテナー監視ソリューション" class="headerlink" title="コンテナー監視ソリューション"></a>コンテナー監視ソリューション</h4><p>2024 年 8 月 31 日より非推奨となりました。コンテナー監視ソリューションは、Log Analytics エージェントを利用して Docker や Windows コンテナーのホストとコンテナーを一元的に監視する機能です。後継は Container Insights です。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-transition-solution">コンテナー監視ソリューションからコンテナーの分析情報の使用への移行 - Azure Monitor | Microsoft Learn</a></p>
+<br>
+  
+<h4 id="Azure-Diagnostics-拡張機能-WAD-LAD"><a href="#Azure-Diagnostics-拡張機能-WAD-LAD" class="headerlink" title="Azure Diagnostics 拡張機能 (WAD&#x2F;LAD)"></a>Azure Diagnostics 拡張機能 (WAD&#x2F;LAD)</h4><p>2026 年 3 月 31 日に廃止されました。Azure Diagnostics 拡張機能は、仮想マシンのログやメトリックをストレージ アカウントや Event Hubs に送信する機能です。引き続きログやメトリックを収集する場合は、後継の Azure Monitor エージェントへの移行が必要です。Azure Monitor エージェントは、基本的に Log Analytics ワークスペースへデータを送信します。ストレージ アカウントや Event Hubs にデータを送信する場合は、Log Analytics のデータ エクスポート機能を利用します。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-migration-wad-lad">Azure Diagnostic Extensions (WAD&#x2F;LAD) から Azure Monitor エージェントに移行する - Azure Monitor | Microsoft Learn</a><br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToAmaFromAzureDiagnostics/">Retirement notice ： Migrate to Azure Monitor Agent before 31 March 2026 について | Japan Azure Monitoring Support Blog</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal">Azure Monitor の Log Analytics ワークスペース データ エクスポート - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<h4 id="Log-Analytics-beta-API"><a href="#Log-Analytics-beta-API" class="headerlink" title="Log Analytics beta API"></a>Log Analytics beta API</h4><p>2026 年 3 月 31 日に廃止されました。Log Analytics beta API は、現在公開されている Log Analytics クエリ API のバージョン v1 より前から提供している beta 版の API です。beta API では Log Analytics のクエリが正常に実行できなくなるため、API 呼び出しのパスを beta から v1 に変更する必要があります。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/api/migrate-batch-and-beta">バッチクエリとベータクエリを使用して標準の Log Analytics クエリ API に移行する - Azure Monitor | Microsoft Learn</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h2 id="2-2-リタイア予定の製品"><a href="#2-2-リタイア予定の製品" class="headerlink" title="2.2 リタイア予定の製品"></a>2.2 リタイア予定の製品</h2><p>本項では、Azure Monitor で提供している機能やソリューションのうち 2026 年 7 月 1 日時点で今後廃止予定のものを記載しています。本情報は、公開情報をもとに Azure Monitor に関連する主なリタイア予定を整理したものであり、すべての変更を網羅していることを保証するものではありません。また、リタイア日や影響範囲は変更される場合があります。<br>ご利用の環境がリタイアの影響を受ける場合、原則として<a href="https://learn.microsoft.com/ja-jp/azure/service-health/overview">サービス正常性</a>を通じて対象サブスクリプションへ通知される予定です。実際の影響、対応期限、および必要な作業については、Azure ポータル &gt; [モニター (監視)] &gt; <strong>[サービスの正常性] &gt; [正常性に関する勧告]</strong> に表示される通知を必ずご確認ください。</p>
+<table>
+<thead>
+<tr>
+<th>リタイア予定日</th>
+<th>対象機能</th>
+<th>主な対応</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2026 年 7 月 31 日</td>
+<td>Azure Monitor エージェントから Event Hubs／ストレージへ仮想マシンのクライアント データを直接送信する機能 （プレビュー）</td>
+<td>Log Analytics のデータ エクスポートなど、代替の送信方法へ切り替え</td>
+</tr>
+<tr>
+<td>2026 年 9 月 14 日</td>
+<td>HTTP Data Collector API</td>
+<td>DCR ベースのログ インジェスト API へ移行</td>
+</tr>
+<tr>
+<td>2026 年 9 月 15 日</td>
+<td>アクティビティ ログのレガシー転送方式</td>
+<td>Azure Monitor の診断設定へ移行</td>
+</tr>
+<tr>
+<td>2026 年 9 月 30 日</td>
+<td>Container Insights の ContainerLog テーブル</td>
+<td>ContainerLogV2 テーブルへ移行し、クエリやアラート ルールを更新</td>
+</tr>
+<tr>
+<td>2026 年 9 月 30 日</td>
+<td>Container Insights のレガシー認証</td>
+<td>マネージド ID 認証へ移行</td>
+</tr>
+<tr>
+<td>2026 年 9 月 30 日</td>
+<td>Application Insights API キー</td>
+<td>Microsoft Entra ID 認証へ移行</td>
+</tr>
+<tr>
+<td>2026 年 9 月 30 日</td>
+<td>Application Insights URL Ping テスト（クラシック テスト）</td>
+<td>標準テストへ移行</td>
+</tr>
+<tr>
+<td>2027 年 3 月 31 日</td>
+<td>Application Insights .NET Classic API SDK 2.x</td>
+<td>Application Insights .NET SDK 3.x または Azure Monitor OpenTelemetry Distro へ移行</td>
+</tr>
+<tr>
+<td>2028 年 3 月 31 日</td>
+<td>Log Analytics batch API</td>
+<td>バッチ要求を個別の Logs Query API 呼び出しへ変更</td>
+</tr>
+<tr>
+<td>2028 年 6 月 30 日</td>
+<td>VM Insights の Map 機能と Dependency Agent</td>
+<td>インベントリや変更の追跡には Change Tracking とインベントリを検討し、依存関係の可視化については監視要件に応じた代替手段を検討</td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="仮想マシン-クライアント-データを-Event-Hubs-とストレージ-アカウントに送信する-（プレビュー）"><a href="#仮想マシン-クライアント-データを-Event-Hubs-とストレージ-アカウントに送信する-（プレビュー）" class="headerlink" title="仮想マシン クライアント データを Event Hubs とストレージ アカウントに送信する （プレビュー）"></a>仮想マシン クライアント データを Event Hubs とストレージ アカウントに送信する （プレビュー）</h4><p>2026 年 7 月 31 日に廃止予定です。Azure Monitor エージェントで Event Hubs やストレージ アカウントに仮想マシンのデータを直接送信する機能をプレビューで提供していましたが、廃止までに代替の送信方法 (Log Analytics のデータ エクスポート機能など) への切り替えをご検討ください。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/send-event-hubs-storage?tabs=windows,windows-1">Event Hubs と Storage にデータを送信する (プレビュー) - Azure Monitor | Microsoft Learn</a><br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToSendVMDataToEventHubAndStorage/">【非推奨】AMA を使用して VM のデータを Event Hub とストレージ アカウントに送信する方法 | Japan Azure Monitoring Support Blog</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal">Azure Monitor の Log Analytics ワークスペース データ エクスポート - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<h4 id="HTTP-Data-Collector-API"><a href="#HTTP-Data-Collector-API" class="headerlink" title="HTTP Data Collector API"></a>HTTP Data Collector API</h4><p>2026 年 9 月 14 日にサポート終了予定です。Data Collector API は、Log Analytics ワークスペースにカスタム ログ データを HTTP 経由で送信するためのレガシー API です。後継のログ インジェスト API では、データ収集ルール (DCR) による取り込み時の変換やフィルタリング、RBAC によるきめ細かなアクセス制御が可能です。サポート終了後も Data Collector API でログを送信できる予定ですが、ログの取り込みに関する処理能力や柔軟性、問題が発生した際のサポートの有無を考慮し、ログ インジェスト API への移行を推奨しております。移行にあたっては、ログ インジェスト API を呼び出すようにスクリプトやアプリケーションの改修が必要です。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/custom-logs-migrate">HTTP データ コレクター API からログ インジェスト API に移行する - Azure Monitor | Microsoft Learn</a><br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToMigrateToLogIngestionAPI/">Retirement notice ： Transition to DCR-based custom log ingestion by 14 September 2026 について | Japan Azure Monitoring Support Blog</a></p>
+<br>
+
+<h4 id="アクティビティ-ログのレガシー転送方式"><a href="#アクティビティ-ログのレガシー転送方式" class="headerlink" title="アクティビティ ログのレガシー転送方式"></a>アクティビティ ログのレガシー転送方式</h4><p>2026 年 9 月 15 日に廃止予定です。アクティビティ ログを Log Analytics ワークスペース、Event Hubs、またはストレージ アカウントへ転送するレガシー方式をご利用されている場合は、廃止期日までに診断設定へ移行をお願いいたします。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/previous-versions/azure/azure-monitor/essentials/legacy-collection-methods?tabs=powershell">従来の収集方法 - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<h4 id="ContainerLog-テーブル"><a href="#ContainerLog-テーブル" class="headerlink" title="ContainerLog テーブル"></a>ContainerLog テーブル</h4><p>2026 年 9 月 30 日に廃止予定です。ContainerLog テーブルは、Container Insights で使用されてきた旧ログ スキーマです。後継の ContainerLogV2 テーブルでは、ログ エントリの構造化 (LogLevel や ContainerName 等のカラム追加) や複数行のログ取り込みがサポートされています。ContainerLogV2 は、ConfigMap やデータ収集ルール (DCR) で有効化することが可能です。また、既存のクエリやアラート ルールで ContainerLog テーブルを参照している場合は、ContainerLogV2 に合わせた書き換えも必要になります。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-logs-schema">Container Insights の ContainerLogV2 スキーマを構成する - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<h4 id="Container-Insights-のレガシー認証"><a href="#Container-Insights-のレガシー認証" class="headerlink" title="Container Insights のレガシー認証"></a>Container Insights のレガシー認証</h4><p>2026 年 9 月 30 日にサポート終了予定です。レガシー認証は、証明書と Log Analytics ワークスペース キーを使用して、監視エージェントから Azure Monitor へデータを送信する従来の認証方式です。現在は、より安全なマネージド ID 認証が既定の認証方式となっています。マネージド ID 認証では、クラスターのマネージド ID を使用して Azure Monitor へデータを送信するため、Log Analytics ワークスペース キーを管理する必要がありません。また、Syslog の収集や高スケール モードなど、マネージド ID 認証を前提とする新しい Container Insights の機能も利用できます。<br>レガシー認証を使用しているクラスターは、廃止日までにマネージド ID 認証へ移行する必要があります。Azure Resource Graph を使用して対象となる AKS クラスターおよび Azure Arc 対応 Kubernetes クラスターを確認できます。移行は Azure ポータルの移行機能に加え、Azure CLI を使用して実施できます。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/container-insights-authentication?tabs=cli">コンテナーの分析情報のレガシー認証 - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<h4 id="Application-Insights-API-キー"><a href="#Application-Insights-API-キー" class="headerlink" title="Application Insights API キー"></a>Application Insights API キー</h4><p>2026 年 9 月 30 日に廃止予定です。<br>Application Insights API キーは、api.applicationinsights.io などで Application Insights のテレメトリ データをクエリする際に使用される API キーです。廃止後は API キーによるクエリができなくなるため、Microsoft Entra ID 認証への移行が必要です。<br>※ 当初案内されていた 2026 年 3 月 31 日から延長されています。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/azure-ad-authentication">Microsoft Entra ID を使用した Application Insights の認証 - Azure Monitor | Microsoft Learn</a><br><a href="https://jpazmon-integ.github.io/blog/applicationInsights/api-key-deprecate-and-migration/">Application Insights API キーの廃止と移行について | Japan Azure Monitoring Support Blog</a></p>
+<br>
+
+<h4 id="Application-Insights-URL-Ping-テスト（クラシック-テスト）"><a href="#Application-Insights-URL-Ping-テスト（クラシック-テスト）" class="headerlink" title="Application Insights URL Ping テスト（クラシック テスト）"></a>Application Insights URL Ping テスト（クラシック テスト）</h4><p>2026 年 9 月 30 日に廃止予定です。URL Ping テストは、クラシック テストとも呼ばれ、指定した URL に HTTP リクエストを送信してエンドポイントが応答するかどうかを検証する機能です。後継の標準テストでは、エンドポイントの応答に加え、SSL 証明書の有効性検証や有効期限のチェック、HTTP リクエスト メソッドの指定やカスタム ヘッダーの設定といった機能が追加されています。廃止後は既存の URL Ping テストがリソースから削除されるため、標準テストへの移行が必要です。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability">Application Insights の可用性テスト - Azure Monitor | Microsoft Learn</a><br><a href="https://jpazmon-integ.github.io/blog/applicationInsights/aboutAvailabilityTest/">Application Insights 可用性テスト の クラシック と 標準 の違いについて | Japan Azure Monitoring Support Blog</a></p>
+<br>
+
+<h4 id="Application-Insights-NET-Classic-API-SDK-2-x"><a href="#Application-Insights-NET-Classic-API-SDK-2-x" class="headerlink" title="Application Insights .NET Classic API SDK 2.x"></a>Application Insights .NET Classic API SDK 2.x</h4><p>2027 年 3 月 31 日に廃止予定です。移行先は次のいずれかが挙げられます。</p>
+<ul>
+<li>Application Insights .NET SDK 3.x</li>
+<li>Azure Monitor OpenTelemetry Distro</li>
+</ul>
+<p>新規アプリケーションでは、Azure Monitor OpenTelemetry Distro が推奨されています。既存の <code>TelemetryClient</code> や <code>Track*</code> 呼び出しへの互換性が必要な場合は、SDK 3.x への移行も検討いただけます。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/previous-versions/azure/azure-monitor/app/classic-api?tabs=dotnet,net">Application Insights を使用して .NET アプリケーションと Node.js アプリケーションを監視する (クラシック API 2.x) - Azure Monitor | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/migrate-to-opentelemetry?tabs=dotnet">Application Insights クラシック API ソフトウェア開発キット (SDK) を Azure Monitor OpenTelemetry に移行する - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<h4 id="Log-Analytics-batch-API"><a href="#Log-Analytics-batch-API" class="headerlink" title="Log Analytics batch API"></a>Log Analytics batch API</h4><p>2028 年 3 月 31 日に廃止予定です。現在公開されている Log Analytics クエリ API（バージョン v1）に含まれる機能の一つで、複数のクエリをまとめて一回の API 呼び出しで送信します。</p>
+<p>廃止後は batch 操作を利用できなくなるため、バッチ要求の <code>requests</code> 配列に含まれている各クエリを分割し、Logs クエリ API の <code>query</code> 操作を個別に実行するよう、アプリケーションやスクリプトを変更する必要があります。Azure SDK のバッチ クエリ メソッドを使用している場合も、個別のクエリ メソッドへ変更する必要があります。  </p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/api/migrate-batch-and-beta">バッチクエリとベータクエリを使用して標準の Log Analytics クエリ API に移行する - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<h4 id="VM-Insights-の-Map-機能と-Dependency-Agent"><a href="#VM-Insights-の-Map-機能と-Dependency-Agent" class="headerlink" title="VM Insights の Map 機能と Dependency Agent"></a>VM Insights の Map 機能と Dependency Agent</h4><p>2028 年 6 月 30 日に廃止予定です。VM Insights の Map 機能は、仮想マシン上で動作するプロセスや、TCP 接続によるサーバーや外部サービスへの依存関係をマップとして可視化する機能です。この機能では、Azure Monitor エージェントに加えて Dependency Agent も使用します。</p>
+<p>廃止後は、Azure ポータルの VM Insights の Map 機能、マップ データを利用するブック、Dependency Agent によるデータ送信、および Service Map API などが利用できなくなります。</p>
+<p>仮想マシン内のソフトウェア、Windows サービス、Linux デーモン、ファイル、Windows レジストリなどのインベントリや変更を把握する用途については、Azure Monitor エージェントを使用する Change Tracking とインベントリが一部の代替となる場合があります。</p>
+<p>ただし、Change Tracking とインベントリは、プロセス間の依存関係、TCP 接続、サーバーや外部サービスとの通信関係をマップとして可視化する機能を提供しないため、VM Insights の Map 機能を完全に置き換えるものではありません。これらの依存関係データを引き続き収集する必要がある場合は、現在の利用状況と監視要件を確認し、必要に応じて別の代替手段をご検討ください。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/vminsights-maps-retirement">VM Insights Map と Dependency Agent の提供終了に関するガイダンス - Azure Monitor | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-change-tracking-inventory/overview-monitoring-agent">Azure Monitor エージェントを使用した Azure Change Tracking とインベントリの概要 | Microsoft Learn</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --><br><br><!-- 2章終わり--大項目の終わり <br> を追加する --></p>
+<!-- 大項目 -->
+<h2 id="3-概念"><a href="#3-概念" class="headerlink" title="3. 概念"></a>3. 概念</h2><p>ここでは Azure Monitor のソリューション間の関係とデータの流れの概念図を記載します。<br>図の矢印はデータの流れを示します。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/3_conceptDiagram.png"></p>
+<p><br><!-- 小項目の終わり <br> を追加する --><br><br><!-- 2章終わり--大項目の終わり <br> を追加する --></p>
+<!-- 大項目 -->
+<h2 id="4-監視シナリオ例"><a href="#4-監視シナリオ例" class="headerlink" title="4. 監視シナリオ例"></a>4. 監視シナリオ例</h2><p>まずは仮想マシンを例に、Azure Monitor での監視方法について記載します。<br>どのようなデータを利用し、どのような監視を実現することができるか、具体的な例も示しながらご紹介します。<br>この章を読むことで、Azure Monitor の基本的な監視構成を知ることができます。</p>
+<br>
+
+<h3 id="4-1-仮想マシンの死活監視"><a href="#4-1-仮想マシンの死活監視" class="headerlink" title="4.1 仮想マシンの死活監視"></a>4.1 仮想マシンの死活監視</h3><p>本項では Azure VM が期待どおり稼働しているかを確認し、VM の停止や OS からの応答を検知する死活監視について記載します。<br>Azure Monitor における Azure VM の死活監視では、Azure 基盤側とゲスト OS 側の 2 つのレイヤーがあり、レイヤーごとに監視対象や方法が異なります。</p>
+<p><strong>■ Azure 基盤側の監視</strong><br>VM の可用性メトリックやリソース正常性の監視を死活監視に利用する方法です。<br>VM の可用性メトリック (VM Availability Metric) は Azure 基盤側のメトリック情報であり、VM の利用状況を示します。<br>メトリックの値が 1 の場合は VM が実行中で利用可能な状態です。VM のシャットダウンや再起動を行った場合は、値が 0 となります。</p>
+<p>※ VM の可用性メトリックを表示した例<br><img src="/blog/AzureMonitorEssential/StartUpGuide/4-1_VMAvailabilityMetric.png"></p>
+<p>Azure 基盤側のメトリックは、可用性だけでなく CPU 使用率等のパフォーマンス データについても確認することが可能ですが、この点については次項でご紹介します。</p>
+<p>リソース正常性は Azure 基盤側から対象のリソースに何らかの問題が起きている場合に知らせる機能であり、この情報をもとに監視を行います。リソース正常性については、本記事 <a href="#5-2-5-%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%A8%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88">5.2.5 サービス正常性アラートとリソース正常性アラート</a> をご参照ください。</p>
+<br>
+
+<p><strong>■ Azure VM の OS 側の監視</strong><br>Azure VM のゲスト OS 内で動作するエージェントが収集する、Heartbeat ログや OS のメトリックを監視する方法です。<br>Heartbeat ログの収集状況から、一定時間ログが届かない場合にはエージェントの停止やネットワークの異常等の問題が発生している可能性を検知することが可能です。</p>
+<p>ワークブックを利用すると、複数の VM の稼働状態や Heartbeat ログの有無を一覧で視覚化することもできます。<br>ワークブックについては、本記事 <a href="#5-3-%E5%8F%AF%E8%A6%96%E5%8C%96">5.3 可視化</a> をご参照ください。</p>
+<p>※ Heartbeat ログの収集状況をワークブックで可視化した例<br><img src="/blog/AzureMonitorEssential/StartUpGuide/4-1_HeartbeatWorkbook.png"></p>
+<p>また、Azure 基盤側と OS 側を問わず、前述したシグナルはアラート ルールの条件として設定し、メール通知することもできます。<br>アラート ルールについては、本記事 <a href="#4-6-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A">4.6 アラート ルールの設定</a> をご参照ください。</p>
+<p>これらの監視方法を組み合わせることで、より信頼性の高い死活監視を構成することが可能です。<br>Azure VM の死活監視の詳細については、以下のブログをご参照ください。<br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorVM02/">Azure VM における死活監視の考え方 | Japan Azure Monitoring Support Blog</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h3 id="4-2-仮想マシン-ホストのパフォーマンス監視"><a href="#4-2-仮想マシン-ホストのパフォーマンス監視" class="headerlink" title="4.2 仮想マシン ホストのパフォーマンス監視"></a>4.2 仮想マシン ホストのパフォーマンス監視</h3><p>前項 <a href="#4-1-%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%AE%E6%AD%BB%E6%B4%BB%E7%9B%A3%E8%A6%96">4.1 仮想マシンの死活監視</a> で紹介した Azure 基盤側のメトリック情報を利用して、Azure VM のパフォーマンス監視を行うことができます。</p>
+<p>※ Azure VM の CPU とメモリの使用率を表示した例<br><img src="/blog/AzureMonitorEssential/StartUpGuide/4-2_HeartbeatMetric.png"></p>
+<p>Azure 基盤側で収集されるメトリックはプラットフォーム メトリックと呼ばれます。<br>プラットフォーム メトリックは Azure 基盤上のハイパーバイザー層から自動的に収集されるため、Azure VM の作成後に追加構成を行うことなく利用できる点が大きな特徴です。<br>このため、お客様の要件によりゲスト OS にエージェントをインストールできない場合にも有用です。</p>
+<p>Azure VM でサポートされているプラットフォーム メトリックの一覧は以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/supported-metrics/microsoft-compute-virtualmachines-metrics">サポートされているメトリック - Microsoft.Compute&#x2F;virtualMachines - Azure Monitor | Microsoft Learn</a></p>
+<p>プラットフォーム メトリックは Azure 基盤側から見える CPU、メモリ、ディスク I&#x2F;O、ネットワークなどの監視に向いています。<br>例えば Windows OS 内の C ドライブの空き容量を監視したい、といった場合には、各ドライブの空き容量を示すメトリックがプラットフォーム メトリックとして提供されていないため、このシナリオではプラットフォーム メトリックを利用した監視は適しません。</p>
+<p>サポートされていないメトリックやより詳細なゲスト OS の情報を監視したい場合には、ゲスト OS 内のエージェントが収集するゲスト OS メトリックやログを利用します。<br>プラットフォーム メトリックは Azure ポータルの監視画面での確認や、本記事 <a href="#4-6-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A">4.6 アラート ルールの設定</a> で紹介するアラート ルールを設定することで、特定の条件に一致した場合に利用者へ通知を行うこともできます。</p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h3 id="4-3-Azure-VM-のゲスト-OS-のパフォーマンス監視"><a href="#4-3-Azure-VM-のゲスト-OS-のパフォーマンス監視" class="headerlink" title="4.3 Azure VM のゲスト OS のパフォーマンス監視"></a>4.3 Azure VM のゲスト OS のパフォーマンス監視</h3><p>前項 <a href="#4-2-%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3-%E3%83%9B%E3%82%B9%E3%83%88%E3%81%AE%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9%E7%9B%A3%E8%A6%96">4.2 仮想マシン ホストのパフォーマンス監視</a> で紹介した Azure VM のプラットフォーム メトリックでは取得できないゲスト OS 内部の詳細なパフォーマンス情報を監視したい場合は、エージェントが収集するゲスト OS のパフォーマンス情報 (ゲスト OS メトリック) を利用して監視を行います。</p>
+<p>Azure Monitor エージェント (AMA) と呼ばれるエージェントをゲスト OS にインストールする必要がありますが、Windows の Perfmon で確認できるパフォーマンス カウンターや、Linux OS 内の特定のパフォーマンス カウンターのデータを収集することができます。</p>
+<p>Azure VM のプラットフォーム メトリックの場合と同様に、収集した情報は Azure ポータルの監視画面での確認や、アラート ルールによる監視と通知に利用できます。</p>
+<p>※ Windows のパフォーマンス カウンター情報を AMA により収集した例<br><img src="/blog/AzureMonitorEssential/StartUpGuide/4-3_VM_GuestMetric.png"></p>
+<br>
+
+<p><strong>■ プラットフォーム メトリックとゲスト OS メトリックの違い</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>プラットフォーム メトリック</th>
+<th>ゲスト OS メトリック</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>データ ソース</strong></td>
+<td>Azure ハイパーバイザー層で収集される Azure 基盤側のメトリック</td>
+<td>ゲスト OS 内のパフォーマンス カウンターやパフォーマンス データ</td>
+</tr>
+<tr>
+<td><strong>収集方法</strong></td>
+<td>Azure VM の作成後に自動で収集</td>
+<td>OS にインストールしたエージェントが収集</td>
+</tr>
+<tr>
+<td><strong>ゲスト OS へのエージェント インストール</strong></td>
+<td>不要</td>
+<td>必要</td>
+</tr>
+<tr>
+<td><strong>向いている監視要件</strong></td>
+<td>VM 全体の CPU、メモリ、ディスク I&#x2F;O、ネットワークなどを追加構成なしで監視したい場合</td>
+<td>OS 内のドライブ空き容量、プロセス、アプリケーション固有のパフォーマンス カウンターなどを監視したい場合</td>
+</tr>
+</tbody></table>
+<br>
+
+<p>例えば以下のようなシナリオではゲスト OS のパフォーマンス監視が有用です。<br>Azure 基盤側から VM 全体の状態をプラットフォーム メトリックで確認し、さらに OS 内部の詳細な状態や追加で必要な情報をゲスト OS メトリックを利用する、というように監視要件に応じて使い分けたり組み合わせて利用します。</p>
+<table>
+<thead>
+<tr>
+<th>シナリオ</th>
+<th>利用するデータ例</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows OS 内の C ドライブの空き容量を監視したい</td>
+<td><code>\LogicalDisk(C:)\% Free Space</code> など</td>
+<td>プラットフォーム メトリックにはドライブ単位の空き容量を示すメトリックがないため、OS 内のパフォーマンス カウンターを収集します。</td>
+</tr>
+<tr>
+<td>SQL Server の詳細な性能を監視したい</td>
+<td><code>\SQLServer:Buffer Manager\Checkpoint pages/sec</code>、<code>\SQLServer:SQL Statistics\Batch Requests/sec</code> など</td>
+<td>SQL Server が公開する Perfmon カウンターを収集することで、アプリケーションやミドルウェア固有の性能値を監視できます。</td>
+</tr>
+<tr>
+<td>特定プロセスの CPU やメモリ使用量を監視したい</td>
+<td><code>\Process(*)\% Processor Time</code>、<code>\Process(*)\Working Set</code> など</td>
+<td>VM 全体ではなく、OS 内のプロセス単位で負荷を確認したい場合に利用します。</td>
+</tr>
+</tbody></table>
+<p>※ SQL Server のパフォーマンス カウンター情報を AMA により収集した例<br><img src="/blog/AzureMonitorEssential/StartUpGuide/4-3_SqlServer_GuestMetric.png"></p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h3 id="4-4-仮想マシン-ログの監視"><a href="#4-4-仮想マシン-ログの監視" class="headerlink" title="4.4 仮想マシン ログの監視"></a>4.4 仮想マシン ログの監視</h3><p>前項 <a href="#4-3-Azure-VM-%E3%81%AE%E3%82%B2%E3%82%B9%E3%83%88-OS-%E3%81%AE%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9%E7%9B%A3%E8%A6%96">4.3 Azure VM のゲスト OS のパフォーマンス監視</a> で触れた Azure Monitor エージェント (AMA) を利用することで、ゲスト OS のログ情報を収集し、監視することも可能です。</p>
+<p>※ Windows OS の C ドライブの空き容量の情報をログとして収集した例<br><img src="/blog/AzureMonitorEssential/StartUpGuide/4-4_MonitorVMLogs.png"></p>
+<p>AMA によりゲスト OS の各情報をログとして Log Analytics ワークスペースと呼ばれる Azure 上のデータ ストアに収集し、クエリ言語である KQL により検索します。また、ログ アラート ルールでクエリ検索結果をもとにアラートを構成し、監視を行うことができます。ログ アラート ルールについては、本記事 <a href="#5-2-2-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB">5.2.2 ログ アラート ルール</a>をご参照ください。</p>
+<p>ゲスト OS のログを収集することで、例えば以下のようなシナリオに対応できます。</p>
+<ul>
+<li>Windows イベント ログに特定のイベント ID のログが出力された場合に通知する</li>
+<li>Linux の Syslog に特定の Facility のログが出力された場合に通知する</li>
+<li>アプリケーションが出力するテキスト ログに <code>ERROR</code> や <code>Failed</code> などの任意の文字列が出力された場合に通知する</li>
+<li>同じエラー ログが一定時間内に複数回出力された場合のみ通知する</li>
+<li>複数の VM から収集したログをクエリにより検索し同じエラーが複数台で発生していないか確認する</li>
+<li>パフォーマンス情報をログとして収集し複数の VM をまとめて監視する</li>
+</ul>
+<p>このように、ログ監視は KQL により条件を記載することで様々な要件に対応することができます。<br>AMA により収集可能なログ種については、本記事 <a href="#5-1-3-%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%8B%E3%82%89%E3%81%AE%E3%83%AD%E3%82%B0%E5%8F%8E%E9%9B%86">5.1.3 仮想マシンからのログ収集</a>をご参照ください。</p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h3 id="4-5-OS-内のサービス監視"><a href="#4-5-OS-内のサービス監視" class="headerlink" title="4.5 OS 内のサービス監視"></a>4.5 OS 内のサービス監視</h3><p>変更履歴とインベントリ機能を有効化することで、OS 内のサービス状態を監視することができます。</p>
+<p>※ Windows Update サービスが停止状態であることを示すログを抽出した例<br><img src="/blog/AzureMonitorEssential/StartUpGuide/4-5_ChangeTrackingInventory.png"></p>
+<p>変更履歴とインベントリ機能も、Azure Monitor エージェント (AMA) を利用して情報を Log Analytics ワークスペースに収集します。<br>Windows サービスや Linux デーモンの状態、構成変更などをログとして確認できるため、ログ アラート ルールを利用することで、特定のサービスが停止状態となった場合に通知を行う等の構成が可能です。</p>
+<p>例えば、サービス監視では以下のようなシナリオに対応できます。</p>
+<ul>
+<li>Azure VM 上の Web サーバーやデータベースなど、業務上重要なサービスが停止した場合に通知する</li>
+<li>サービスのスタートアップの種類が自動から手動や無効に変更された場合に検知する</li>
+<li>パッチ適用やアプリケーション更新後に、想定外のサービス停止や状態変更が発生していないか確認する</li>
+<li>複数の VM で同じサービスの状態を横断的に確認し停止している VM を特定する</li>
+</ul>
+<p>また、変更履歴とインベントリ機能はサービス監視だけでなく、OS 内の構成変更を確認する用途でも利用できます。<br>例えば、インストール済みソフトウェアの追加や削除、ファイルの変更、Windows のレジストリ キーの変更などを追跡できます。<br>これにより、監査やガバナンスの向上を目的として構成変更がないかを確認したり、意図しない変更を検知したりすることができます。障害対応においても、例えば事象発生時における構成変更の有無を確認することに利用できます。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-change-tracking-inventory/overview-monitoring-agent">Azure Monitor エージェントを使用した Azure Change Tracking とインベントリの概要 | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/queries/configurationdata">ConfigurationData のログ テーブル クエリの例 - Azure Monitor | Microsoft Learn</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h3 id="4-6-アラート-ルールの設定"><a href="#4-6-アラート-ルールの設定" class="headerlink" title="4.6 アラート ルールの設定"></a>4.6 アラート ルールの設定</h3><p>Azure Monitor には、各種 Azure サービスやリソースを監視する機能があり、異常を検知した際にメールや SMS などの通知や自動アクションを実行できます。</p>
+<p><strong>■ アラート ルール</strong><br>各種 Azure サービスやリソースを監視する機能の総称です。監視対象のデータ（メトリックやログ、アクティビティ ログなど）や監視条件を決め、異常を検知します。監視するデータの種類によってアラート ルールの種類が異なります。</p>
+<table>
+<thead>
+<tr>
+<th>アラート ルールの種類</th>
+<th>概要</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ログ アラート ルール</td>
+<td>Log Analytics ワークスペースに収集されたログや、Azure Resource Graph や Azure Data Explorer のデータを監視</td>
+</tr>
+<tr>
+<td>メトリック アラート ルール</td>
+<td>Azure リソースのパフォーマンスや状態を示す<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/metrics/data-platform-metrics">プラットフォーム メトリックやカスタム メトリック</a>を監視</td>
+</tr>
+<tr>
+<td>アクティビティ ログ アラート</td>
+<td>Azure の<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/platform/activity-log-schema">アクティビティ ログ</a>を監視 （サービス正常性アラートやリソース正常性アラートも含む）</td>
+</tr>
+</tbody></table>
+<p>以下は<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule">ログ アラート ルール</a>の条件を指定する画面の例です。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/4-6_logalert.png"></p>
+<p>以下は <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-metric-alert-rule">メトリック アラート ルール</a>の条件を指定する画面の例です。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/4-6_metricalert.png"></p>
+<!--<4-6_metricalert.png>-->
+
+<p>以下は<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-activity-log-alert-rule?tabs=activity-log">アクティビティ ログ アラート</a> の条件を指定する画面の例です。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/4-6_activitylogalert.png"></p>
+<!--<4-6_activitylogalert.png>-->
+
+<br>
+
+<p><strong>■ アクション グループ</strong><br>アラートが発報した際の通知方法や実行する自動アクションを設定する機能です。<br>アラート ルールにアクション グループを関連付けることで、アラートが発報した際にアクション グループがトリガーされ、メールや電話、SMS で通知したり、Webhook などの自動アクションを実行することが可能です。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/4-6_actgrp.png"></p>
+<!--<4-6_actgrp.png>-->
+
+<p>アクション グループには「共通アラート スキーマ」という設定項目があります。アラート スキーマとはアラートが発生した際に生成される通知データの構造であり、共通アラート スキーマ &#x2F; 非共通アラート スキーマの 2 種類があります。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-common-schema">共通アラート スキーマ</a>は、Azure Monitor のすべてのアラート ルールで統一されたスキーマが提供されます。一方、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-non-common-schema-definitions">非共通アラート スキーマ</a>では、アラート ルールの種類ごとに個別に定義された構造となります。アクション グループで Logic Apps や Webhook などの自動アクションを設定する場合、共通アラート スキーマの有効／無効によって連携されるデータ構造が異なるためご留意ください。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/4-6_actgrp_action_alertschema.png"></p>
+<p>また、共通アラート スキーマの設定により、通知メールのフォーマットも変わります。本記事 <a href="#5-2-%E5%88%86%E6%9E%90%E3%81%A8%E3%83%AC%E3%83%9D%E3%83%BC%E3%83%88">5.2 分析とレポート</a> では、共通アラート スキーマを有効化した場合の通知メールの例をご紹介しています。非共通アラート スキーマのメール フォーマットを確認されたい場合は、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups#test-an-action-group-in-the-azure-portal">テスト アクション グループ</a>にてご確認ください。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/4-6_actgrp_mail_alertschema.png"></p>
+<p>アラート ルールの種類やアクション グループの詳細は、以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#types-of-alerts">Azure Monitor の警告の概要 - Azure Monitor | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-types">Azure Monitor アラートの種類 - Azure Monitor | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">Azure Monitor でアクション グループを作成および管理する - Azure Monitor | Microsoft Learn</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h3 id="4-7-サービス正常性"><a href="#4-7-サービス正常性" class="headerlink" title="4.7 サービス正常性"></a>4.7 サービス正常性</h3><p>サービス正常性は、Azure サービス正常性のイベント（サービスに関する問題、計画メンテナンス、正常性の勧告、セキュリティ アドバイザリ、課金情報の更新）の情報を提供する機能です。ご利用いただいている Azure サービスおよびリージョンに影響がある正常性イベントが発生すると、Azure ポータル &gt; [モニター (監視)] &gt; [サービスの正常性] に情報が表示されます。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/4-7_servicehealth_portal.png"></p>
+<p>各イベントには一意の追跡 ID が付与されます。上記画面で各イベントのリンクをクリックすると、より詳細な情報を確認することができます。また、<a href="https://learn.microsoft.com/ja-jp/azure/service-health/alerts-activity-log-service-notifications-portal">サービス正常性アラート</a>を設定すると、サービス正常性のイベントが発生した際に通知を受け取ることも可能です。サービス正常性アラートについては、本記事 <a href="#5-2-5-%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%A8%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88">5.2.5 サービス正常性アラートとリソース正常性アラート</a> をご参照ください。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/4-7_servicehealth_serviceissue.png"></p>
+<p>サービス正常性の概要は、以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/service-health/">Azure Service Health のドキュメント - Azure Service Health | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/service-health/service-health-notifications-properties">Azure Service Health 通知の概要 - Azure Service Health | Microsoft Learn</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --><br><br><!-- 大項目の終わり <br> を追加する --></p>
+<!-- 大項目 -->
+<h2 id="5-各機能とソリューション"><a href="#5-各機能とソリューション" class="headerlink" title="5. 各機能とソリューション"></a>5. 各機能とソリューション</h2><p>ここでは、Azure Monitor の代表的な機能やソリューションについて記載します。<br>本章を読むことで、監視データの取得、分析、可視化の方法と作業の流れを知ることができます。</p>
+<br>
+
+<h3 id="5-1-データ収集"><a href="#5-1-データ収集" class="headerlink" title="5.1 データ収集"></a>5.1 データ収集</h3><p>本項では、監視に利用するデータの種類とその取得方法をご紹介します。</p>
+<br>
+
+
+<h4 id="5-1-1-プラットフォーム-メトリックとカスタム-メトリック"><a href="#5-1-1-プラットフォーム-メトリックとカスタム-メトリック" class="headerlink" title="5.1.1 プラットフォーム メトリックとカスタム メトリック"></a>5.1.1 プラットフォーム メトリックとカスタム メトリック</h4><p>Azure で扱われるメトリックには以下の 3 種類があります。</p>
+<ul>
+<li>プラットフォーム メトリック</li>
+<li>カスタム メトリック</li>
+<li>Prometheus メトリック (本項ではこちらの説明は割愛します)</li>
+</ul>
+<p><strong>■ プラットフォーム メトリックとは</strong><br>プラットフォーム メトリックとは、各 Azure リソースから既定で (ユーザーによる追加構成を必要とせず) 収集されるメトリックで、主に Azure リソースの正常性やパフォーマンスを示すデータです。プラットフォーム メトリックの収集・保持に費用はかかりません。Azure ポータル &gt; 対象の Azure リソース &gt; [監視] &gt; [メトリック] のページ (メトリック エクスプローラー) で確認ができます。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-1-1_platformmetric_sample.png"></p>
+<p>どのようなメトリックが収集できるかは Azure リソースの種類によって異なります。<br>各種リソースでどのようなメトリックが収集されるかは、以下の公開情報の表内のリンクから確認いただけます。<br><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/reference/metrics-index#supported-metrics-and-log-categories-by-resource-type">Azure Monitor supported metrics by resource type - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<p><strong>■ カスタム メトリックとは</strong><br>カスタム メトリックとはユーザーが収集を構成することで収集されるメトリックです。<br>例えば、Azure Monitor エージェントによって仮想マシンのゲスト OS から収集されるメトリック（ゲスト OS メトリック）や、Application Insights によって Web アプリケーションから収集されるメトリックはカスタム メトリックとして扱われます。カスタム メトリックも、プラットフォーム メトリックと同様に Azure ポータル &gt; 対象の Azure リソース &gt; [監視] &gt; [メトリック] から確認できます。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-1-1_guestmetrics.png"></p>
+<p>カスタム メトリックの収集にかかる費用や各種メトリックの詳細な説明は、以下の公開情報をご参照ください。<br><a href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">価格 - Azure Monitor [メトリック] タブ | Microsoft Azure</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/metrics/data-platform-metrics">Azure Monitor のメトリック - Azure Monitor | Microsoft Learn</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h4 id="5-1-2-アクティビティ-ログ"><a href="#5-1-2-アクティビティ-ログ" class="headerlink" title="5.1.2 アクティビティ ログ"></a>5.1.2 アクティビティ ログ</h4><p>アクティビティ ログには各 Azure リソースの操作等のログ、サービス正常性、リソース正常性があります。</p>
+<p><strong>■ アクティビティ ログ (操作等のログ)</strong><br>Azure ポータル &gt; [モニター (監視)] &gt; [アクティビティ ログ] にてサブスクリプション内の Azure リソースに対して実行された操作等のログの一覧を確認できます。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-1-7_activitylog1.png"></p>
+<!--<5-1-7_activitylog1.png>-->
+
+<p>既定ではアクティビティ ログの保持期間は 90 日間です。<br>90 日以上さかのぼって確認するためには、上図の [診断設定] からサブスクリプション スコープで診断設定を作成します。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/platform/activity-log?tabs=log-analytics#export-activity-log">Azure Monitor アクティビティ ログ - Azure Monitor | Microsoft Learn</a><br><a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorRetentionPeriod/">Azure Monitor の各種データの保持期間について | Japan Azure Monitoring Support Blog</a></p>
+<br>
+
+<p><strong>■ サービス正常性</strong><br>サービス正常性ではご利用の Azure サービスの障害や計画メンテナンス、サービスの廃止などのイベントについて表示します。<br>Azure ポータル &gt; [モニター (監視)] &gt; [サービスの正常性] &gt; [有効なイベント] もしくは [履歴] をクリックして確認します。<br>[有効なイベント] には現時点でアクティブなサービス正常性が表示され、[履歴] には過去のサービス正常性イベントが表示されます。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-1-7_activitylog2.png"></p>
+<p><img src="/blog/AzureMonitorEssential/StartUpGuide/5-1-7_activitylog3.png"></p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/service-health/service-health-portal-update">Azure Service Health ポータル - Azure Service Health | Microsoft Learn</a></p>
+<br>
+
+<p><strong>■ リソース正常性</strong><br>リソース正常性では、ご利用の Azure リソースが正常であるかどうかを評価し、リソースの状態が [利用可能 (Available)]、[使用不可 (Unavailable)]、[不明 (Unknown)]、[低下 (Degraded)] のいずれかの状態と表示します。<br>Azure ポータル &gt; [モニター (監視)] &gt; [サービスの正常性] &gt; [リソース正常性] にて、確認したいリソースの種類を指定して確認します。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-1-7_activitylog4.png"></p>
+<p><img src="/blog/AzureMonitorEssential/StartUpGuide/5-1-7_activitylog5.png"></p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/service-health/resource-health-overview">Azure Resource Health の概要 - Azure Service Health | Microsoft Learn</a>.</p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h4 id="5-1-3-仮想マシンからのログ収集"><a href="#5-1-3-仮想マシンからのログ収集" class="headerlink" title="5.1.3 仮想マシンからのログ収集"></a>5.1.3 仮想マシンからのログ収集</h4><p><strong>■ Azure Monitor エージェント (AMA) とデータ収集ルール (DCR) とは</strong><br>Azure 仮想マシン (Azure VM) からログを収集するための主な手段は、Azure Monitor エージェントとデータ収集ルールを使用する方法です。それぞれを一言で表現すると、Azure Monitor エージェント (AMA) とは VM 上でデータを集めて送信するもので、データ収集ルール (DCR) とは AMA が収集するデータとその送信先を指定するものです。</p>
+<br>
+
+<p><strong>■ Azure Monitor エージェント (AMA) とデータ収集ルールによるログ収集の流れ</strong><br>ログ収集を構成してからログが閲覧できるようになるまでの大まかな流れは以下のとおりです。</p>
+<ul>
+<li>AMA を VM にインストールする、VM と DCR を関連付ける<br>↓</li>
+<li>関連付けられた DCR の内容を AMA が認識する<br>↓</li>
+<li>AMA が DCR で指定されたログを指定された宛先に送信する<br>↓</li>
+<li>送信されたログが Azure 基盤側に到着し、処理され、指定の宛先に格納される<br>↓</li>
+<li>Azure ポータル等でログが閲覧できるようになる</li>
+</ul>
+<br>
+
+<p><strong>■ Azure Monitor エージェント (AMA) とデータ収集ルール (DCR) で収集できるデータの種類</strong><br>上記のとおり、収集したいログと送信先に応じて DCR を作成し、VM に関連付ける必要があります。<br>AMA と DCR を使用して収集できるデータの種類と、指定できる収集先は以下のとおりです。</p>
+<table>
+<thead>
+<tr>
+<th>データ ソース</th>
+<th>説明</th>
+<th>オペレーティング システム</th>
+<th>収集先</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows イベント</td>
+<td>Windows イベント ログ システムによって出力される情報</td>
+<td>Windows</td>
+<td>Log Analytics ワークスペース (Event テーブル)</td>
+</tr>
+<tr>
+<td>パフォーマンス カウンター</td>
+<td>オペレーティング システムとワークロードのパフォーマンスを測定する数値</td>
+<td>Windows, Linux</td>
+<td>Log Analytics ワークスペース (Perf テーブル), Azure Monitor メトリック（プレビュー）</td>
+</tr>
+<tr>
+<td>Syslog</td>
+<td>Linux イベント ログ システムによって出力される情報</td>
+<td>Linux</td>
+<td>Log Analytics ワークスペース (Syslog テーブル)</td>
+</tr>
+<tr>
+<td>テキスト ログ</td>
+<td>ローカル ディスクのテキスト ログ ファイルに出力される情報</td>
+<td>Windows, Linux</td>
+<td>Log Analytics ワークスペース (任意のカスタム テーブル)</td>
+</tr>
+<tr>
+<td>JSON ログ</td>
+<td>ローカル ディスクの JSON ログ ファイルに出力される情報</td>
+<td>Windows, Linux</td>
+<td>Log Analytics ワークスペース (任意のカスタム テーブル)</td>
+</tr>
+<tr>
+<td>IIS ログ</td>
+<td>インターネット インフォメーション サービス (IIS) によりローカル ディスク上のファイルに出力される情報</td>
+<td>Windows</td>
+<td>Log Analytics ワークスペース (W3CIISLog テーブル)</td>
+</tr>
+</tbody></table>
+<p>Log Analytics ワークスペースに収集されたログはワークスペース内の特定のテーブル内に格納されます。<br>テーブルについては以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/log-analytics-workspace-overview#log-tables">Log Analytics ワークスペースの概要 - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<p><strong>■ Azure Monitor エージェント (AMA) とデータ収集ルール (DCR) によるログ収集を構成する</strong><br>AMA と DCR を使用してログ収集を行う場合、収集するデータ ソースの種類に関わらず、以下の前提条件を満たしているかご確認ください。</p>
+<ul>
+<li>OS がサポートされているか</li>
+<li>ネットワーク要件を満たしているか</li>
+<li>十分なディスク領域が確保されているか</li>
+</ul>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-network-configuration?tabs=PowerShellWindows">Azure Monitor エージェントのネットワーク構成 - Azure Monitor | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-supported-operating-systems">Azure Monitor エージェントでサポートされるオペレーティング システム - Azure Monitor | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-requirements#disk-spaces">Azure Monitor エージェントの要件 - Azure Monitor | Microsoft Learn</a></p>
+<p>前提条件が確認できたら、次に DCR の作成を行います。<br>それぞれの作業は、Azure ポータル、コマンドライン (Azure CLI, Azure PowerShell)、ARM テンプレート等を使用して実施できます。<br>ここでは、Azure ポータルを使用した方法について具体的にご紹介します。</p>
+<p>Azure ポータルでの DCR の作成方法や、DCR と VM を関連付ける方法は以下の公開情報をご参照ください。<br>なお、Azure ポータルで DCR を関連付けた場合、(VM に AMA が未インストールの場合は) AMA のインストールも自動で実施されます。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/data-collection?tabs=default#create-a-data-collection-rule">Azure Monitor を使用して仮想マシンからログ データを収集する - Azure Monitor | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/data-collection/data-collection-rule-associations?tabs=cli#view-and-modify-associations-for-a-dcr-in-the-azure-portal">Azure Monitor でデータ収集ルールの関連付けを管理する - Azure Monitor | Microsoft Learn</a></p>
+<p>Azure ポータル以外の方法で DCR を作成する方法、および DCR と VM を関連付ける方法については以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/data-collection/data-collection-rule-create-edit?tabs=cli#create-or-edit-a-dcr-using-json">Azure Monitor でデータ収集ルール (DCR) を作成する - Azure Monitor | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/data-collection/data-collection-rule-associations?tabs=cli#create-new-association">Azure Monitor でデータ収集ルールの関連付けを管理する - Azure Monitor | Microsoft Learn</a></p>
+<p>Log Analytics ワークスペースに収集された各種ログは、KQL を使用してクエリすることで確認が可能です。<br>例えば、パフォーマンス カウンターを収集した場合、そのログは Perf テーブルに収集されるため、以下のようなクエリ結果が得られます。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-1-2_logcollectionfromVM_samplelog.png"></p>
+<p>はじめてクエリを実施される方は、以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/get-started-queries?tabs=kql">Azure Monitor ログでログ クエリの使用を開始する - Azure Monitor | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/log-analytics-overview?tabs=simple">Azure Monitor の Log Analytics の概要 - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<p><strong>■ Azure Monitor エージェント (AMA) の管理</strong><br>AMA を VM にインストールする方法として、Azure PowerShell および Azure CLI コマンドを使用する方法や、ARM テンプレートを使用する方法もございます。AMA のアンインストールも、インストールと同様に、Azure ポータル, Azure PowerShell や Azure CLI, ARM テンプレートを使用した方法で実施できます。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-manage?tabs=azure-powershell">Azure Monitor エージェントのインストールと管理 - Azure Monitor | Microsoft Learn</a></p>
+<p>AMA の自動アップグレードを有効化することで、最新バージョンが利用可能となった場合に、自動でアップグレードを適用するように構成することが可能です。自動アップグレードの有効化は、インストール時・インストール後のどちらでも設定できます。<br><a href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/automatic-extension-upgrade?tabs=RestAPI1,RestAPI2">Azure の仮想マシンとスケール セットの拡張機能の自動アップグレード - Azure Monitor | Microsoft Learn</a></p>
+<p>AMA の自動アップグレード機能に関するよくあるご質問については以下のブログをご参照ください。<br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/AMAAutoupgradeFAQ/">Azure Monitor エージェントの自動アップグレード機能に関するよくあるご質問集 | Japan Azure Monitoring Support Blog</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h4 id="5-1-4-コンテナーからのログ収集"><a href="#5-1-4-コンテナーからのログ収集" class="headerlink" title="5.1.4 コンテナーからのログ収集"></a>5.1.4 コンテナーからのログ収集</h4><p>AKS などのコンテナー環境の、ノード、Pod、コンテナー、Kubernetes イベント、アプリケーションの状態を継続的に監視するための機能がいくつか提供されています。主な使い分けとしては、ログや Kubernetes イベントの確認には Container Insights、Prometheus 形式のメトリック監視には Managed Prometheus を使用します。</p>
+<ol>
+<li>Container Insights: コンテナー ログ、Kubernetes イベント、インベントリ情報などを Log Analytics ワークスペースに収集するログ収集機能</li>
+<li>Managed Prometheus (Azure Monitor managed service for Prometheus) : Prometheus 形式のメトリックを Azure Monitor ワークスペースに収集するメトリック収集機能</li>
+</ol>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-overview">Azure Monitor での Kubernetes の監視 - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<p><strong>1. Container Insights について</strong><br>Container Insights は Azure Kubernetes Service (AKS) などのコンテナー環境から、コンテナー ログ、Kubernetes イベント、インベントリ情報などを収集し、Azure ポータルや Log Analytics で確認できるログ収集機能です。</p>
+<p>ノード、Pod、コンテナーなどの状態やイベントを確認し、必要に応じて Log Analytics の KQL クエリや Azure Monitor のアラートを用いた調査・監視を行うことが可能です。以下は、AKS リソースの [モニター (分析情報)] で [Log Analytics の視覚化（クラシック）] を選択し、収集されたログ情報を確認している例です。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-1-4_ContainerInsights.png"></p>
+<br>
+
+<p><strong>■ Container Insights によるデータ収集の流れ</strong><br>Container Insights の構成とデータ収集を行う基本的な流れは以下のとおりです。</p>
+<ul>
+<li>Azure ポータルもしくは Azure CLI 等により対象クラスターで Container Insights を有効化する<br>↓</li>
+<li>コンテナー化された Azure Monitor エージェント (AMA) がデプロイされる<br>↓</li>
+<li>コンテナー化された AMA により Log Analytics ワークスペースに各ログ データが収集される<br>↓</li>
+<li>Azure ポータル &gt; 対象のクラスター リソース &gt; [モニター (分析情報)] の画面や、Log Analytics の KQL により分析や可視化を行う</li>
+</ul>
+<p>Container Insights の有効化方法については以下の公開情報やブログをご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=azure-portal#enable-container-insights-and-logging-on-an-aks-cluster">Azure Kubernetes Service (AKS) クラスターの監視を有効にする - Azure Monitor | Microsoft Learn</a><br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToContainerInsights/">Container Insights のご紹介 | Japan Azure Monitoring Support Blog</a></p>
+<br>
+
+<p><strong>■ Container Insights で収集されるログ</strong><br>Container Insights で収集される主なログには、コンテナーの標準出力 &#x2F; 標準エラー出力、Kubernetes イベント、Pod やコンテナーのインベントリ情報などがあります。収集されたログは Log Analytics ワークスペースに保存され、Azure ポータル &gt; 対象の AKS リソース &gt; [モニター (分析情報)] の画面や Log Analytics の KQL クエリから確認できます。</p>
+<p>Log Analytics では、用途に応じて複数のテーブルにデータが格納されます。<br>例えば、コンテナーの標準出力 &#x2F; 標準エラー出力は主に ContainerLogV2 テーブルに格納され、Kubernetes イベントは KubeEvents、Pod の状態やインベントリ情報は KubePodInventory で確認できます。</p>
+<p>Container Insights に関連するテーブルの一覧や各テーブルの詳細については、以下の公開情報で、ソリューションが ContainerInsights と記載されているテーブルをご確認ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/tables/microsoft-containerservice-managedclusters">microsoft.containerservice&#x2F;managedclusters の Azure Monitor テーブル - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+
+<p><strong>2. Managed Prometheus について</strong><br>Managed Prometheus では、Prometheus 形式のメトリックを Azure Monitor ワークスペースに収集します。収集したメトリックは、Azure Monitor ワークスペースのメトリック エクスプローラーや Prometheus エクスプローラー、Azure Managed Grafana などから、PromQL により分析・可視化できます。</p>
+<p>以下は、AKS リソースの [モニター (分析情報)] で [マネージド Prometheus の視覚化] を選択し、収集されたメトリック情報を確認している例です。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-1-4_ManagedPrometheus.png"></p>
+<br>
+
+<p><strong>■ Managed Prometheus によるデータ収集の流れ</strong><br>Managed Prometheus の構成とデータ収集を行う基本的な流れは以下のとおりです。</p>
+<ul>
+<li>Azure ポータルもしくは Azure CLI 等により対象クラスターで Managed Prometheus を有効化する<br>↓</li>
+<li>Azure Monitor Agent のメトリック アドオンが構成される<br>↓</li>
+<li>メトリック アドオンにより Prometheus 形式のメトリックが Azure Monitor ワークスペースに収集される<br>↓</li>
+<li>Azure ポータル &gt; 対象のクラスター リソース &gt; [モニター (分析情報)] の画面や、Azure Monitor ワークスペースのメトリック エクスプローラーなどから PromQL を用いて分析や可視化を行う</li>
+</ul>
+<p>Prometheus メトリックの有効化方法については以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=azure-cli#enable-prometheus-metrics-on-an-aks-cluster">Azure Kubernetes Service (AKS) クラスターの監視を有効にする - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<p><strong>■ Managed Prometheus で収集されるメトリック</strong><br>Managed Prometheus で既定収集される Prometheus メトリックには、kubelet、cAdvisor、kube-state-metrics、node exporter などから取得されるノード、Pod、コンテナー、Kubernetes オブジェクトのメトリックが含まれます。</p>
+<p>収集対象の詳細は、以下の Azure Monitor の既定 Prometheus メトリック構成に記載されています。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/prometheus-metrics-scrape-default">Azure Monitor での既定の Prometheus メトリック構成 - Azure Monitor | Microsoft Learn</a></p>
+<p>Arc 対応 Kubernetes クラスターでの Container Insights によるログ収集、および Managed Prometheus による Prometheus メトリック収集の有効化手順については、以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/containers/kubernetes-monitoring-enable-arc?tabs=cli">Arc 対応 Kubernetes クラスターの監視を有効にする - Azure Monitor | Microsoft Learn</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h4 id="5-1-5-アプリケーションからのログ収集"><a href="#5-1-5-アプリケーションからのログ収集" class="headerlink" title="5.1.5 アプリケーションからのログ収集"></a>5.1.5 アプリケーションからのログ収集</h4><p>Application Insights は、アプリケーションのパフォーマンスを監視するサービスです。<br>Web アプリや API が</p>
+<ul>
+<li>正常に動いているか</li>
+<li>エラーが発生していないか</li>
+<li>レスポンスが遅くなっていないか</li>
+</ul>
+<p>といったことを、Application Insights を有効化することで、自動的にデータを収集し可視化できます。</p>
+<p>収集したデータは下図のように Azure ポータルの画面ですぐに閲覧できます。<br>前述の<br>「正常に動いているか」は [有効] グラフ (右側の緑色グラフ)、<br>「エラーが発生していないか」は [失敗した要求] グラフ (左側の赤色グラフ)、<br>「レスポンスが遅くなっていないか」は [サーバー応答時間] グラフ (左側の青色グラフ)<br>にて確認できます。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-1-4_applicationinsights_overview.png"></p>
+<p>収集したデータの分析方法および可視化方法の詳細は、<br>本記事 <a href="#5-2-8-Application-Insights-%E3%81%AE%E3%82%AF%E3%82%A8%E3%83%AA">5.2.8 Application Insights のクエリ</a> と <a href="#5-3-4-Application-Insights-%E3%81%AE%E5%8F%AF%E8%A6%96%E5%8C%96">5.3.4 Application Insights の可視化</a> をご参照ください。</p>
+<p>また、Azure App Service や Azure VM などの Azure サービスに加えて、オンプレミスのサーバーで動作するアプリケーションからもログを収集できます。Application Insights の詳細については、以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/app-insights-overview">Application Insights OpenTelemetry の可観測性の概要 - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<p>アプリケーションで Application Insights を有効化する方法は 2 つあります。</p>
+<p><strong>■ 自動インストルメンテーション</strong><br>自動インストルメンテーションはソース コードの変更なしで、Application Insights を有効にできます。<br>手動インストルメンテーションと比較して、簡単に有効化できる一方で一部の機能が制限されます。</p>
+<p>自動インストルメンテーションを利用できるシナリオは以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/codeless-overview">Azure Monitor Application Insights の自動インストルメンテーション - Azure Monitor | Microsoft Learn</a></p>
+<p>例えば、Azure App Service では Azure ポータル &gt; 対象の App Service &gt; [監視] &gt; [Application Insights] から自動インストルメンテーションを有効化します。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-1-4_applicationinsights_auto_instrumentation.png"></p>
+<br>
+
+<p><strong>■ 手動インストルメンテーション</strong><br>アプリケーションのソース コードに Application Insights SDK (クラシックまたは Azure Monitor OpenTelemetry Distro) をインストールして、Application Insights を有効にします。ソース コードの変更は必要ですが、自動インストルメンテーションより多くの情報を取得でき、カスタム テレメトリの収集も可能です。</p>
+<p>利用方法はアプリケーションの開発言語ごとに異なるため、詳細は以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/opentelemetry-enable?tabs=net">Application Insights で OpenTelemetry を有効にする - Azure Monitor | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/classic-api?tabs=dotnet">Application Insights を使用して .NET アプリケーションと Node.js アプリケーションを監視する (クラシック API) - Azure Monitor | Microsoft Learn</a></p>
+<p>また、Application Insights の可用性テストを使って、アプリケーションの死活監視も可能です。<br>可用性テストでは、世界中のさまざまな場所から Web リクエストをアプリケーションに定期的に送信します。<br>アラート ルールの設定も可能で、アプリケーションの応答がない場合や応答が遅い場合はユーザーに警告も可能です。</p>
+<p>可用性テストは Azure ポータル &gt; 対象の Application Insights &gt; [調査] &gt; [有効] から設定と結果の確認ができます。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-1-4_webtest.png"></p>
+<p>詳細な利用方法は、以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability?tabs=standard">Application Insights 可用性テスト - Azure Monitor | Microsoft Learn</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h4 id="5-1-6-診断設定"><a href="#5-1-6-診断設定" class="headerlink" title="5.1.6 診断設定"></a>5.1.6 診断設定</h4><p><strong>■ 診断設定とは</strong><br>診断設定を使用することで、各 Azure リソースから出力される以下のデータを指定した宛先に送信することができます。</p>
+<ul>
+<li>アクティビティ ログ</li>
+<li>リソース ログ</li>
+<li>プラットフォーム メトリック</li>
+</ul>
+<p>宛先には、以下を指定することが可能です。</p>
+<ul>
+<li>Log Analytics ワークスペース</li>
+<li>ストレージ アカウント</li>
+<li>Event Hubs</li>
+<li>Azure Monitor パートナー ソリューション</li>
+</ul>
+<br>
+
+<p><strong>■ 診断設定の主な利用シナリオ</strong><br>リソース ログは既定では収集されません。<br>そのため、リソース ログを収集し監視や分析を行う必要がある場合は診断設定をご利用ください。</p>
+<p>アクティビティ ログおよびプラットフォーム メトリックは既定で収集されます。<br>ただし、そのままではそれぞれを監視したり分析したりする方法は限られています。診断設定を利用することで、Log Analytics ワークスペース、ストレージ アカウント、Event Hubs などの宛先にデータを送信し、監視、分析、長期保管、外部連携といった用途に活用できます。</p>
+<p>また、既定で収集されるアクティビティ ログおよびプラットフォーム メトリックの保持期間はそれぞれ 90 日と 93 日です。<br>診断設定を用いて任意の宛先に収集することで、この保持期間を延長することが可能です。</p>
+<p>プラットフォーム メトリックとアクティビティ ログについては、本記事 <a href="#5-1-1-%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%81%A8%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF">5.1.1 プラットフォーム メトリックとカスタム メトリック</a> と <a href="#5-1-2-%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0">5.1.2 アクティビティ ログ</a> をご参照ください。</p>
+<br>
+
+<p><strong>■ 診断設定の作成方法 (リソース ログ・プラットフォーム メトリック)</strong><br>診断設定は Azure ポータル上、Azure PowerShell や Azure CLI のコマンド、ARM テンプレートなどを用いて作成することが可能です。Azure ポータル上での作成方法としては、大きく Azure リソースのページから行う方法と、[モニター (監視)] のページから行う方法があります。ここでは、Azure ポータル &gt; 対象の Azure リソース &gt; [監視] &gt; [診断設定] からの作成方法をご紹介します。</p>
+<p>Azure ポータル &gt; 対象の Azure リソース &gt; [監視] &gt; [診断設定] &gt; [診断設定を追加] をクリックすると、以下のような作成画面が表示されます。画像のように、収集対象のデータ (ログおよびメトリック) と宛先を選択することが可能です。</p>
+<p>※ Web App リソースの診断設定作成画面<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-1-6_createDiagnosticSettings.png"></p>
+<p>なお、ログはカテゴリ単位で選択することが可能ですが、このカテゴリについてはリソースの種類によって異なります。<br>また、メトリックについても、どのような種類のメトリックが収集されるかは、リソースの種類によって異なります。<br>各種リソースからどのようなログおよびメトリックが収集されるかは、以下の公開情報の表内のリンクから確認いただけます。<br><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/reference/logs-index#supported-metrics-and-log-categories-by-resource-type">Supported Resource log categories for Azure Monitor - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<p>Log Analytics ワークスペースに収集した場合は以下のように確認が可能です。</p>
+<p>※ Log Analytics ワークスペースの AzureDiagnostics テーブルにクエリしたときのサンプル<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-1-6_AzureDiagnosticsTable.png"></p>
+<p>リソース ログは Log Analytics ワークスペースの AzureDiagnostics テーブルに収集されます。<br>ただし、一部のリソース種では設定によりリソース固有のテーブルに収集することも可能です。</p>
+<p>※ Event Hubs のリソース固有テーブルへクエリしたときの例<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-1-6_ResourceSpecificTable.png"></p>
+<p>リソース ログのテーブルの詳細は以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/platform/resource-logs?tabs=log-analytics#collection-mode">Azure Monitor のリソース ログ - Azure Monitor | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/platform/resource-logs-schema">Azure リソース ログでサポートされているサービスとスキーマ - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<p><strong>■ 診断設定の作成方法 (アクティビティ ログ)</strong><br>アクティビティ ログ用の診断設定はサブスクリプションのスコープでのみ作成が可能です。<br>そのため、リソース ログ用の診断設定のように対象リソースの画面から診断設定を作成するのではなく、Azure ポータル &gt; サブスクリプション &gt; [アクティビティ ログ] &gt; [診断設定] から作成します。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-1-6_diagnosticSetting4ActivityLogs.png"></p>
+<p>例えば、Log Analytics ワークスペースに送信した場合は、AzureActivity テーブルに収集され、ストレージ アカウントに送信した場合は以下の形式の JSON にログが収集されます。<br><code>insights-activity-logs/resourceId=/SUBSCRIPTIONS/{subscription ID}/y={four-digit numeric year}/m={two-digit numeric month}/d={two-digit numeric day}/h={two-digit 24-hour clock hour}/m=00/PT1H.json</code></p>
+<p>※ Log Analytics ワークスペースの AzureActivity テーブルにクエリしたときの例<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-1-6_AzureActivityTable.png"></p>
+<p>※ ストレージ アカウントにエクスポートされたアクティビティ ログの例<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-1-6_ActivityLogsExportedtoStorageaccount.png"></p>
+<p>アクティビティ ログ用の診断設定の詳細については以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/platform/activity-log?tabs=portal-1,log-analytics,portal-2#export-activity-log">Azure Monitor のアクティビティ ログ | アクティビティ ログのエクスポート - Azure Monitor | Microsoft Learn</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h4 id="5-1-7-データ-エクスポート"><a href="#5-1-7-データ-エクスポート" class="headerlink" title="5.1.7 データ エクスポート"></a>5.1.7 データ エクスポート</h4><p><strong>■ データ エクスポートとは</strong><br>Log Analytics ワークスペースのデータ エクスポート機能を使用することで、Log Analytics ワークスペースのテーブルに格納されるログを他の宛先 (ストレージ アカウントまたは Event Hubs) にエクスポートすることが可能です。データ エクスポート ルールを作成し、その中で対象となるテーブルと宛先を指定します。</p>
+<p>データ エクスポート ルールを作成すると、対象のデータが Azure Monitor のパイプラインに到着次第、Log Analytics ワークスペースのテーブルに取り込まれるのと並行して、指定した宛先へのエクスポートが実施されます。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-1-8_dataexportflow.png"></p>
+<br>
+
+<p><strong>■ データ エクスポート機能の主な利用シナリオ - ストレージ アカウント</strong></p>
+<p><strong>改ざん防止に関するコンプライアンス</strong><br>Log Analytics ワークスペースに取り込まれたデータを変更することはできません。しかし、以下の手順で消去することは可能です。<br>一方で、不変ポリシーが設定されたストレージ アカウントに格納されたデータは、設定した保持期間を超えるまでは変更、削除いずれもできません。そのため、データの改ざん (消去) 防止の要件がある場合は、不変ポリシーが設定されたストレージ アカウントにエクスポートすることをご検討ください。<br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsWorkspacePurge/">Log Analytics ワークスペースのデータを削除する方法 | Japan Azure Monitoring Support Blog</a></p>
+<p><strong>データの冗長化および長期保管</strong><br>監査データやセキュリティ データ等、冗長化や長期保管が必要であるデータについて、Log Analytics ワークスペースと同一リージョンにあるストレージ アカウントへのエクスポートをご利用いただけます。GRS、GZRS など、ストレージ アカウントの冗長オプションを使用することで、他のリージョンにデータをレプリケートすることができます。</p>
+<p>また、ストレージ アカウントにエクスポートされたデータは、Log Analytics ワークスペースに設定された保持期間の影響は受けないため、ストレージ アカウントにログをエクスポートし、ストレージ アカウントで長期保管することが可能です。さらに、ストレージ アカウントのライフサイクル管理ポリシーを利用することで、ストレージ アカウントにエクスポートされたデータを管理する (一定期間を過ぎた後に自動で削除する等) ことが可能です。</p>
+<p>ストレージ アカウントのライフサイクル管理については、以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/storage/blobs/lifecycle-management-overview">Azure Blob Storage ライフサイクル管理の概要 - Azure Blob Storage | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/storage/blobs/lifecycle-management-policy-configure?tabs=azure-portal">ライフサイクル管理ポリシーを構成する - Azure Blob Storage | Microsoft Learn</a></p>
+<p>なお、ストレージ アカウント上にエクスポートされた JSON ファイル内のデータは、KQL の <a href="https://learn.microsoft.com/en-us/kusto/query/externaldata-operator?view=microsoft-fabric">externaldata operator</a> を使用することでクエリすることが可能です。詳細は、本記事 <a href="#5-2-7-%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E5%8F%8E%E9%9B%86%E3%81%97%E3%81%9F%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E5%8F%AF%E8%A6%96%E5%8C%96">5.2.7 ストレージ アカウントに収集したデータの可視化</a> をご参照ください。</p>
+<br>
+
+<p><strong>■ データ エクスポート機能の主な利用シナリオ - Event Hubs</strong><br>Azure サービスおよびその他のツールとの統合: Event Hubs にエクスポートすることで、他 Azure サービスやツールとの統合が実現可能です。</p>
+<br>
+
+<p><strong>■ データ エクスポート機能の利用開始方法</strong><br>データ エクスポート ルールの必要な権限や制限、作成手順の詳細については以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-data-export?tabs=portal-1,portal-2#limitations">Azure Monitor の Log Analytics データ エクスポート - Azure Monitor | Microsoft Learn</a></p>
+<p>一部のテーブルはデータ エクスポート機能がサポートされていないため、ご注意ください。<br>サポート対象外のテーブルは以下より確認いただけます。<br><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/logs/logs-data-export?tabs=portal#unsupported-tables">Log Analytics workspace data export in Azure Monitor | Unsupported tables - Azure Monitor | Microsoft Learn</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h4 id="5-1-8-ネットワークの監視"><a href="#5-1-8-ネットワークの監視" class="headerlink" title="5.1.8 ネットワークの監視"></a>5.1.8 ネットワークの監視</h4><p>Network Watcher は、仮想マシン (VM)、仮想ネットワーク (VNet)、アプリケーション ゲートウェイ、ロード バランサーなどの IaaS 製品のネットワーク正常性の監視や修復が可能なサービスです。<br><a href="https://learn.microsoft.com/ja-jp/azure/network-watcher/network-watcher-overview?toc=/azure/azure-monitor/toc.json">Azure Network Watcher の概要 | Microsoft Learn</a></p>
+<p>Network Watcher の機能の一つであるネットワークの分析情報は、Azure ポータル &gt; [モニター (監視)] &gt; [分析情報] &gt; [ネットワーク] にて確認できます。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-1-9_network_monitor1.png"></p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/network-watcher/network-insights-overview?toc=/azure/azure-monitor/toc.json">ネットワークの分析情報 | Microsoft Learn</a></p>
+<br>
+
+<p><strong>お問い合わせに関するご留意事項</strong><br>ネットワークの分析情報を含め Network Watcher については、Japan Azure Monitoring サポート チームではなく、Japan Azure Networking サポート チームにて対応しております。これらに関するお困りごとやご質問はネットワーク製品観点でお問い合わせを発行してください。Japan Azure Networking サポート チームのブログは以下のリンクよりご確認ください。<br><a href="https://jpaztech.github.io/blog/index.html">Japan Azure IaaS Core Support Blog</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --><br><br><!-- 中項目の終わり <br> を追加する --></p>
+<!-- 中項目 -->
+<h3 id="5-2-分析とレポート"><a href="#5-2-分析とレポート" class="headerlink" title="5.2 分析とレポート"></a>5.2 分析とレポート</h3><p>本項では、取得した監視データの利用方法をご紹介します。</p>
+<h4 id="5-2-1-Log-Analytics-ワークスペースのクエリ"><a href="#5-2-1-Log-Analytics-ワークスペースのクエリ" class="headerlink" title="5.2.1 Log Analytics ワークスペースのクエリ"></a>5.2.1 Log Analytics ワークスペースのクエリ</h4><p>各種の Azure リソースやマシンから Log Analytics ワークスペースに収集したデータはクエリを実行して確認します。</p>
+<p><strong>■ クエリのモード</strong><br>クエリを実行する 2 種類のモードがあります。簡易モードでは Azure ポータル &gt; 対象の Log Analytics ワークスペース &gt; [ログ] &gt; [テーブル] &gt; [対象テーブルの実行] をクリックすることで、簡単にクエリを実行可能です。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-1_loganalyticsworkspace_query1.png"></p>
+<p>KQL モードではより詳細なクエリを指定して実行することでカスタマイズしたクエリ実行結果を取得することが可能です。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-1_loganalyticsworkspace_query2.png"></p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/get-started-queries?tabs=kql#search-queries">Azure Monitor ログでログ クエリの使用を開始する - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<p><strong>■ 共有機能</strong><br>クエリの実行結果は [共有] から Excel 等のファイルに出力可能です。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-1_loganalyticsworkspace_query3.png"></p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/log-excel">Log Analytics と Excel を統合する - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<p><strong>■ アクセス制御モード</strong><br>Log Analytics ワークスペースのアクセス制御モードには 2 種類あります。<br>ワークスペース コンテキスト アクセス制御モードでは Log Analytics ワークスペースの [ログ] からアクセスすることで、複数のリソースから Log Analytics ワークスペースに収集されたすべてのログを参照します。</p>
+<p>※ ワークスペース コンテキスト アクセス制御モードの場合の例<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-1_loganalyticsworkspace_query4.png"></p>
+<p>リソース コンテキスト アクセス制御モードでは Azure ポータル &gt; 対象の Azure リソース &gt; [監視] &gt; [ログ] からアクセスすることで、対象のリソースから Log Analytics ワークスペースに収集されたログのみを参照します。</p>
+<p>※ リソース コンテキスト アクセス制御モードの場合の例<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-1_loganalyticsworkspace_query5.png"></p>
+<p><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/AccessControlMode/">Log Analytics ワークスペースのアクセス制御モードの違いについて | Japan Azure Monitoring Support Blog</a></p>
+<p>Log Analytics ワークスペース内の各テーブルや、各テーブルのサンプル クエリは、以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables-index">Azure Monitor Resource log &#x2F; log analytics tables - Azure Monitor | Microsoft Learn</a><br><a href="https://learn.microsoft.com/en-us/azure/azure-monitor/reference/queries-by-table">Azure Monitor log analytics queries by tables - Azure Monitor | Microsoft Learn</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h4 id="5-2-2-ログ-アラート-ルール"><a href="#5-2-2-ログ-アラート-ルール" class="headerlink" title="5.2.2 ログ アラート ルール"></a>5.2.2 ログ アラート ルール</h4><p>ログ アラート ルールは、Azure リソースやお客様のアプリケーションなどから収集されたログを監視する機能です。<br>Log Analytics ワークスペースに収集されたログに加え、Azure Resource Graph や Azure Data Explorer のデータを監視することもできます。</p>
+<p><strong>1. 定期的にクエリを実行してログを評価する</strong><br><a href="https://learn.microsoft.com/ja-jp/kusto/query/?view=azure-monitor">KQL (Kusto Query Language)</a> という Log Analytics のクエリ言語を使って監視する条件を定義します。<br>例 : 仮想マシンが停止していないかどうか (過去 10 分間の Heartbeat のレコードが 0 件かどうか)<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-2_laws_heartbeat.png"></p>
+<p>ログ アラート ルールは、指定された評価期間のログを対象に、定期的にクエリを実行します。クエリの実行結果がしきい値（例：過去 10 分間の Heartbeat のレコード数 &lt; 1）を満たすと、アラートが発報します。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-2_logalert-heartbeat-portal.png"></p>
+<p><strong>2. 通知や自動アクションを実行する</strong><br>アラートが発報した時に通知する方法や、実行するアクションは「アクション グループ」で設定します。<br>アラート ルールにアクション グループを関連付けると、メールや電話、SMS で通知したり、Webhook などの自動アクションを実行することが可能です。</p>
+<p>※ 以下例はアクション グループで共通アラート スキーマを有効化した時に通知されたメールです。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-2_logalert_heartbeat_actiongrp.png"></p>
+<p>ログ アラート ルールの設定手順などは、以下の公開情報やブログをご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule">Azure Monitor のログ検索アラート ルールを作成する - Azure Monitor | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">Azure Monitor でアクション グループを作成および管理する - Azure Monitor | Microsoft Learn</a><br><a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/#%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB">Azure Monitor のアラートに関するよくあるご質問 | Japan Azure Monitoring Support Blog</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h4 id="5-2-3-メトリック-アラート-ルール"><a href="#5-2-3-メトリック-アラート-ルール" class="headerlink" title="5.2.3 メトリック アラート ルール"></a>5.2.3 メトリック アラート ルール</h4><p>メトリック アラート ルールは、Azure リソースのパフォーマンスや状態を示すメトリックを監視する機能です。<br>既定で収集されるプラットフォーム メトリックや、既定では収集されない<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/metrics/metrics-custom-overview">カスタム メトリック</a>を監視することが可能です。</p>
+<p><strong>1. 定期的にメトリックの値を評価する</strong><br>監視する Azure リソースやメトリックを決め、しきい値などの監視条件を指定します。<br>例 : Azure VM の CPU 使用率が 80% を超えているかどうか<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-3_metric_percentagecpu.png"></p>
+<p>メトリック アラート ルールは、指定されたルックバック期間（評価期間）のメトリックを対象に、しきい値を満たしているかどうかを定期的に評価します。メトリックの値がしきい値（例：PercentageCpu &gt; 80）を満たすと、アラートが発報します。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-3_metricalert_percentagecpu_portal.png"></p>
+<p><strong>2. 通知や自動アクションを実行する</strong><br>アラートが発報した時に通知する方法や、実行するアクションは「アクション グループ」で設定します。<br>アラート ルールにアクション グループを関連付けると、メールや電話、SMS で通知したり、Webhook などの自動アクションを実行することが可能です。</p>
+<p>※ 以下例はアクション グループで共通アラート スキーマを有効化した時に通知されたメールです。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-3_metricalert_percentagecpu_actiongrp.png"></p>
+<p>メトリック アラート ルールの設定手順などは、以下の公開情報やブログをご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-metric-alert-rule">Azure Monitor のメトリック警告ルールを作成する - Azure Monitor | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">Azure Monitor でアクション グループを作成および管理する - Azure Monitor | Microsoft Learn</a><br><a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/#%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB">Azure Monitor のアラートに関するよくあるご質問 | Japan Azure Monitoring Support Blog</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h4 id="5-2-4-アクティビティ-ログ-アラート"><a href="#5-2-4-アクティビティ-ログ-アラート" class="headerlink" title="5.2.4 アクティビティ ログ アラート"></a>5.2.4 アクティビティ ログ アラート</h4><p>アクティビティ ログ アラートは、Azure リソースの<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/platform/activity-log?tabs=log-analytics">アクティビティ ログ</a>を監視する機能です。<br>アクティビティ ログ アラートには、サービス正常性アラートやリソース正常性アラートも含まれます。</p>
+<p><strong>1. 条件に一致するアクティビティ ログが記録されているかどうかを評価する</strong><br>監視する Azure リソースやアクティビティ ログの条件を決めます。<br>例 : Azure VM の割り当て解除 (Deallocate Virtual Machine)<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-4_activitylog.png"></p>
+<p>アクティビティ ログ アラートは、指定した条件に一致するアクティビティ ログ イベントが発生しているかどうかを評価します。監視対象の Azure リソースで条件に一致するアクティビティ ログが記録されると、アラートが発報します。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-4_activitylogalert-portal.png"></p>
+<p><strong>2. 通知や自動アクションを実行する</strong><br>アラートが発報した時に通知する方法や、実行するアクションは「アクション グループ」で設定します。<br>アラート ルールにアクション グループを関連付けると、メールや電話、SMS で通知したり、Webhook などの自動アクションを実行することが可能です。</p>
+<p>※ 以下例はアクション グループで共通アラート スキーマを有効化した時に通知されたメールです。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-4_activitylogalert_actiongrp.png"></p>
+<p>アクティビティ ログ アラートの設定手順などは、以下の公開情報やブログをご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-activity-log-alert-rule?tabs=activity-log">アクティビティ ログ、サービス正常性、またはリソース正常性の警告ルールを作成する - Azure Monitor | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">Azure Monitor でアクション グループを作成および管理する - Azure Monitor | Microsoft Learn</a><br><a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/#%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%EF%BC%88%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%80%81%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%80%81%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%EF%BC%89">Azure Monitor のアラートに関するよくあるご質問 | Japan Azure Monitoring Support Blog</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h4 id="5-2-5-サービス正常性アラートとリソース正常性アラート"><a href="#5-2-5-サービス正常性アラートとリソース正常性アラート" class="headerlink" title="5.2.5 サービス正常性アラートとリソース正常性アラート"></a>5.2.5 サービス正常性アラートとリソース正常性アラート</h4><p><strong>■ サービス正常性アラート</strong><br>サービス正常性アラートは、お客様環境にてご利用いただいている Azure サービスおよびリージョンを監視対象とし、Azure サービス自体の正常性を監視する機能です。Azure サービスの障害や計画メンテナンス、サービスの廃止などのイベントが発生した際に、メールや SMS 等の方法で通知することが可能です。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-5_servicehealth_portal.png"></p>
+<p><strong>1. 条件に一致するアクティビティ ログが記録されているかどうかを評価する</strong><br>監視する Azure サービス、リージョン、イベントの種類を指定します。サービス正常性アラートは、ご利用いただいているサービスおよびリージョンを対象としたイベントが発生した場合にのみ通知が行われる仕組みのため、”サービス” や “リージョン” はすべて選択いただくことを推奨しております。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-5_servicehealthalert_settings.png"></p>
+<p>例. Azure OpenAI Service の正常性の勧告<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-5_servicehealth_activitylog.png"></p>
+<p>サービス正常性アラート（アクティビティ ログ アラート）は、指定した条件に一致するアクティビティ ログ イベントが発生しているかどうかを評価します。監視対象のサービスやリージョンに関するサービス正常性イベントのアクティビティ ログが記録されると、アラートが発報します。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-5_servicehealthalert_portal.png"></p>
+<p><strong>2. 通知や自動アクションを実行する</strong><br>アラートが発報した時に通知する方法や、実行するアクションは「アクション グループ」で設定します。<br>アラート ルールにアクション グループを関連付けると、メールや電話、SMS で通知したり、Webhook などの自動アクションを実行することが可能です。</p>
+<p>※ 以下例は Azure Monitor のアクション グループによって通知されたメールです。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-5_servicehealthalert-actiongrp.png"></p>
+<p>サービス正常性アラートの設定手順などは、以下の公開情報やブログをご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/service-health/alerts-activity-log-service-notifications-portal">Azure ポータル で Azure サービス通知の Service Health アラートを作成する - Azure Service Health | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">Azure Monitor でアクション グループを作成および管理する - Azure Monitor | Microsoft Learn</a><br><a href="https://jpazmon-integ.github.io/blog/ame/HowToSetUpServiceHealthAlertsAndRecommendedSettings/">サービス正常性アラートの設定手順と推奨設定について | Japan Azure Monitoring Support Blog</a></p>
+<br>
+
+<p><strong>■ リソース正常性アラート</strong><br>リソース正常性アラートは、Azure リソースの正常性を監視する機能です。<br>リソースの正常性に変化が生じた際に、メールや SMS 等の方法で通知することが可能です。サービス正常性アラートは Azure サービスおよびリージョンを監視対象としますが、リソース正常性アラートはお客様環境の固有のリソースを監視します。監視対象のスコープが異なるとご認識ください。</p>
+<p><strong>1. 条件に一致するアクティビティ ログが記録されているかどうかを評価する</strong><br>監視する Azure リソースや監視条件を決めます。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-5_resourcehealthalert_settings.png"></p>
+<p>例 : Azure VM のリソース正常性（以下はリソース正常性が解消した際のアクティビティ ログの一例）<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-5_resourcehealth_activitylog.png"></p>
+<p>リソース正常性アラート（アクティビティ ログ アラート）は、指定した条件に一致するアクティビティ ログ イベントが発生しているかどうかを評価します。監視対象のリソースで条件に一致したリソース正常性イベントのアクティビティ ログが記録されると、アラートが発報します。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-5_resourcehealthalert_portal.png"></p>
+<p><strong>2. 通知や自動アクションを実行する</strong><br>アラートが発報した時に通知する方法や、実行するアクションは「アクション グループ」で設定します。<br>アラート ルールにアクション グループを関連付けると、メールや電話、SMS で通知したり、Webhook などの自動アクションを実行することが可能です。</p>
+<p>※ 以下例は Azure Monitor のアクション グループで共通アラート スキーマを有効化した時に通知されたメールです。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-5_resourcehealthalert-actiongrp.png"></p>
+<p>リソース正常性アラートの設定手順などは、以下の公開情報やブログをご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/service-health/resource-health-alert-arm-template-guide">Resource Health アラートを作成する方法 - Azure Service Health | Microsoft Learn</a><br><a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ResourceHealthAlert/">リソース正常性アラートに関するよくあるご質問 | Japan Azure Monitoring Support Blog</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h4 id="5-2-6-Log-Analytics-ワークスペースのコスト分析"><a href="#5-2-6-Log-Analytics-ワークスペースのコスト分析" class="headerlink" title="5.2.6 Log Analytics ワークスペースのコスト分析"></a>5.2.6 Log Analytics ワークスペースのコスト分析</h4><p>Log Analytics ワークスペースのコストは収集するデータの量によって変動します。</p>
+<p><strong>1. ログの料金について</strong><br>Log Analytics ワークスペースのコストは主に以下 3 点によって決まります。</p>
+<ul>
+<li>データのインジェスト量 (取り込んだログの量)</li>
+<li>データの保有量と保有期間</li>
+<li>Log Analytics ワークスペースが存在するリージョン</li>
+</ul>
+<p><strong>■ データ インジェストに対するコストについて</strong><br>インジェストに対するコストは、取り込み先テーブルのテーブル プラン (Analytics (分析) &#x2F; Basic (基本) &#x2F; Auxiliary (補助)) により異なり、既定は Analytics プランで設定されています。また、既定の価格モデルは「従量課金制」です。<br>金額の詳細は以下の公開情報をご参照ください。<br><a href="https://azure.microsoft.com/ja-jp/pricing/details/monitor/">価格 - Azure Monitor | Microsoft Azure</a></p>
+<p>プランを変更する場合はテーブル単位で設定変更が可能です。詳細は以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/logs-table-plans?tabs=portal-1#set-the-table-plan">Log Analytics ワークスペースでのデータ使用状況に基づいてテーブル プランを選択する - Azure Monitor | Microsoft Learn</a></p>
+<p><strong>■ データ保持に対するコストについて</strong><br>Log Analytics ワークスペースに取り込まれたデータは 31 日間無料で保持されます。<br>データ保持期間を 31 日にご設定いただいている場合はデータ保持料金の費用は発生しません。<br>既定のデータ保持期間は 30 日です。</p>
+<br>
+
+<p><strong>2. 現在のコストを確認する方法</strong><br>[Log Analytics ワークスペース] - [設定] - [使用料と推定コスト] のページ右側に “使用状況のグラフ” として、過去 31 日間の、課金対象のテーブルごとのデータ インジェスト量が表示されます。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-6_LogAnalytics_Cost_Usage.png"></p>
+<p>使用料と推定コストについては以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/cost-usage#log-analytics-workspace">Azure Monitor のコストと使用量 - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<p><strong>3. クエリを用いてコストを確認する方法</strong><br>Log Analytics ワークスペース内の各テーブルの使用状況データは <a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/reference/tables/usage">Usage</a> テーブルに集計されています。Usage の Quantity は MB（Mbytes）単位です。以下は、過去 31 日間の「テーブル (DataType) 別・日別」の課金対象データ量 (MB) を集計する例です。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Usage </span><br><span class="line">| where TimeGenerated &gt; ago(32d) </span><br><span class="line">| where StartTime &gt;= startofday(ago(31d)) and EndTime &lt; startofday(now()) </span><br><span class="line">| where IsBillable == true </span><br><span class="line">| summarize BillableDataMB = sum(Quantity) by bin(StartTime, 1d), DataType</span><br><span class="line">| render columnchart</span><br></pre></td></tr></table></figure>
+
+<p>また、特定のテーブルで課金対象データ量を確認する場合は以下の標準列を使用します。</p>
+<ul>
+<li><code>_IsBillable</code>：そのレコードが課金対象かどうか （true &#x2F; false）</li>
+<li><code>_BilledSize</code>：そのレコードのサイズ（Bytes）</li>
+</ul>
+<p>以下は Event テーブルの Event ID ごとの課金対象データ量（MB）を日別に集計する例です。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Event </span><br><span class="line">| where TimeGenerated &gt; startofday(ago(31d)) and TimeGenerated &lt; startofday(now()) </span><br><span class="line">| where _IsBillable == true </span><br><span class="line">| summarize count(), BillableDataMB =sum(_BilledSize) / 1000 / 1000 by EventID, bin(TimeGenerated, 1d)</span><br></pre></td></tr></table></figure>
+
+<p>Log Analytics のコスト分析の詳細は、以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/analyze-usage#querying-data-volumes-from-the-usage-table">Azure Monitor の Log Analytics ワークスペースでの使用量を分析します - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<p><strong>4. コストを分析し削減を検討する</strong><br>コスト分析と削減についての検討については以下のブログをご参照ください。<br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/HowToManageLogAnalyticsBilling/">Log Analytics ワークスペースのコスト増加の原因を分析しコスト削減を検討する | Japan Azure Monitoring Support Blog</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h4 id="5-2-7-ストレージ-アカウントに収集したデータの可視化"><a href="#5-2-7-ストレージ-アカウントに収集したデータの可視化" class="headerlink" title="5.2.7 ストレージ アカウントに収集したデータの可視化"></a>5.2.7 ストレージ アカウントに収集したデータの可視化</h4><p>本記事 <a href="#5-1-6-%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A">5.1.6 診断設定</a> や <a href="#5-1-7-%E3%83%87%E3%83%BC%E3%82%BF-%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88">5.1.7 データ エクスポート</a> にて、ストレージ アカウントに出力したログ ファイルに対してもクエリを実行することが可能です。本項では次の 2 つのアプローチを紹介します。</p>
+<p>1 つは Azure Data Explorer に BLOB（ログ ファイル）を取り込んで分析する方法、もう 1 つは Log Analytics ワークスペースで externaldata 演算子を使ってクエリを実行する方法です。なお、頻繁にデータにクエリしたり、アラートを発報する必要がある場合は、診断設定ではストレージ アカウントではなく Log Analytics ワークスペースへ収集することをご検討ください。</p>
+<p><strong>■ Azure Data Explorer を使う方法</strong> <a id="azure-data-explorer"></a><br>以下に Azure Data Explorer に BLOB を取り込んで、クエリする方法を簡単にご紹介します。</p>
+<ol>
+<li><p>以下の公開情報の手順に沿ってクラスターとデータ ベースを作成します。<br><a href="https://learn.microsoft.com/ja-jp/azure/data-explorer/create-cluster-and-database?tabs=free#create-a-cluster">クイック スタート: Azure Data Explorer クラスターとデータベースを作成する - Azure Data Explorer | Microsoft Learn</a></p>
+</li>
+<li><p>Azure Data Explorer のクラスターに <a href="https://dataexplorer.azure.com/">Azure Data Explorer</a> または下図の ADX の [概要] の [URI] からアクセスします。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-7_0_adx_url.png"></p>
+</li>
+<li><p>クエリを実行したいファイルがあるコンテナーからログを取り込みます。<br><a href="https://learn.microsoft.com/ja-jp/azure/data-explorer/get-data-storage">Azure Storage からデータを取得する - Azure Data Explorer | Microsoft Learn</a></p>
+</li>
+<li><p>3 で作成したテーブルに対して、下図のように Log Analytics ワークスペースと同じクエリでデータを参照できます。<br> ※ Azure Data Explorer のクエリ結果（テーブル名は手順 3 にて設定できます）<br> <img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-7_1_adx_query.png"></p>
+<p> ※ Log Analytics ワークスペースのクエリ結果<br> <img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-7_2_logana_query.png"></p>
+</li>
+</ol>
+<p>Azure Data Explorer の概要については、以下の公開情報をご参照ください。<br>なお、Azure Data Explorer リソースの利用にはコストが発生する点をご留意ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/data-explorer/data-explorer-overview">Azure Data Explorer とは - Azure Data Explorer | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/data-explorer/pricing-cost-drivers">Azure Data Explorer の取り込まれたデータの GB あたりのコスト - Azure Data Explorer | Microsoft Learn</a></p>
+<br>
+
+<p><strong>■ <code>externaldata</code> 演算子を使う方法</strong><br>Log Analytics ワークスペースの [ログ] から <code>externaldata</code> 演算子にて、ストレージ アカウントの BLOB に対してクエリを実行できます。<code>externaldata</code> 演算子の使い方を簡単にご紹介します。</p>
+<ol>
+<li><p>クエリを実行したい BLOB の SAS を取得します。<br><a href="https://learn.microsoft.com/ja-jp/azure/ai-services/translator/document-translation/how-to-guides/create-sas-tokens?source=recommendations&tabs=Containers#create-sas-tokens-in-the-azure-portal">ストレージ コンテナーと BLOB の共有アクセス署名 (SAS) トークンを作成する - Foundry Tools | Microsoft Learn</a></p>
+</li>
+<li><p>[BLOB SAS URL] をコピーします。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-7_3_sas.png"></p>
+</li>
+<li><p>Log Analytics ワークスペースの [ログ] にて、2 でコピーした [BLOB SAS URL] を以下クエリの <code>&lt;BLOB SAS URL&gt;</code> に設定すると、BLOB のデータに対してクエリを実行できます。</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let Testdata = externaldata(TimeGenerated:datetime, Computer:string, Category:string, OSType:string)[</span><br><span class="line">h@&quot;&lt;BLOB SAS URL&gt;&quot;  </span><br><span class="line">] with (format=&#x27;multijson&#x27;);  </span><br><span class="line">Testdata  </span><br></pre></td></tr></table></figure>
+<p> ※ externaldata 演算子の実行例<br> <img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-7_4_externaldata.png"></p>
+<p> なお、txt 形式で 1 行のレコードを dynamic として取り込むことで、全プロパティを取得することもできます。</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let Testdata = externaldata(RawData:dynamic) [</span><br><span class="line">h@&quot;&lt;BLOB SAS URL&gt;&quot;  </span><br><span class="line">] with (format=&#x27;txt&#x27;);  </span><br><span class="line">Testdata  </span><br><span class="line">| evaluate bag_unpack(RawData)  </span><br></pre></td></tr></table></figure>
+<p> ※ externaldata 演算子ですべてのプロパティを取得する実行例<br> <img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-7_5_externaldata-all.png"></p>
+</li>
+</ol>
+<p><code>externaldata</code> 演算子については、以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/kusto/query/externaldata-operator?view=microsoft-fabric">エクスターナルデータ演算子 - Kusto | Microsoft Learn</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h4 id="5-2-8-Application-Insights-のクエリ"><a href="#5-2-8-Application-Insights-のクエリ" class="headerlink" title="5.2.8 Application Insights のクエリ"></a>5.2.8 Application Insights のクエリ</h4><p>Application Insights に記録されたログは、Application Insights が Log Analytics ワークスペースと統合されているため、Application Insights と Log Analytics ワークスペースの両方から参照できます。</p>
+<p>Application Insights は Azure ポータル &gt; Application Insights &#x2F; Log Analytics ワークスペース &gt; [監視] &gt; [ログ] からクエリを実行します。UI の構成や機能は同じであるため、クエリの実行方法については本記事 <a href="#5-2-1-Log-Analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AE%E3%82%AF%E3%82%A8%E3%83%AA">5.2.1 Log Analytics ワークスペースのクエリ</a> をご参照ください。ただし、ご留意いただく点が 2 つあります。</p>
+<p><strong>1. Application Insights と Log Analytics ワークスペースで同じデータを参照する場合のテーブルとカラムが異なります。</strong><br>Application Insights と Log Analytics ワークスペースのテーブルとカラムの対応は以下の公開情報でご案内しております。<br>テーブルは [テーブル構造] にてご案内しており、Application Insights では [レガシー テーブル名] が利用されています。Log Analytics ワークスペースでは、[新しいテーブル名] が利用されています。カラムは [テーブル スキーマ] にてご案内しております。<br>例えばリクエスト ログを取得するには、Application Insights では requests テーブルを参照し、Log Analytics ワークスペースでは AppRequests テーブルを参照します。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/previous-versions/azure/azure-monitor/app/convert-classic-resource#workspace-based-resource-changes">Application Insights のクラシック リソースをワークスペースベースのリソースに移行する - Azure Monitor - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<p><strong>2. Log Analytics ワークスペースからは関連付いたすべての Application Insights のログが参照されます。</strong><br>Application Insights の [ログ] からクエリを実行すると、対象の Application Insights のログのみを参照します。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-8_0_applicationinsights_log.png"></p>
+<p>一方で、Log Analytics ワークスペースの [ログ] からクエリを実行すると、対象の Log Analytics ワークスペースに関連付いたすべての Application Insights のログを参照できます。下図の赤枠は上図の Application Insights とは別の Application Insights のログです。<br>他の Application Insights からのログも同時に参照できることが分かります。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-2-8_1_loganalytics_log.png"></p>
+<p><br><!-- 大項目の終わり <br> を追加する --></p>
+<!-- 中項目 -->
+<h3 id="5-3-可視化"><a href="#5-3-可視化" class="headerlink" title="5.3 可視化"></a>5.3 可視化</h3><p>本項では、取得データを可視化する方法についてご紹介します。</p>
+<br>
+
+<h4 id="5-3-1-ワークブック"><a href="#5-3-1-ワークブック" class="headerlink" title="5.3.1 ワークブック"></a>5.3.1 ワークブック</h4><p><strong>1. Azure ワークブックの概要</strong><br>Azure ワークブックを利用することで、様々な Azure リソースから得られるデータをもとに、視覚的なレポートを作成することができます。ワークブックは単なるグラフ表示にとどまらず、以下のような内容を組み合わせることで、分析・調査・状況説明に適したレポートを作成できる点が特徴です。</p>
+<ul>
+<li>テキストによる説明</li>
+<li>グラフ、表、タイルなどのビジュアル表示</li>
+<li>パラメーターを用いた対話型操作</li>
+</ul>
+<br>
+
+<p><strong>2. Azure ワークブックが対応するデータ ソース</strong><br>Azure ワークブックは、さまざまなデータ ソースから情報を取得できます。</p>
+<ul>
+<li>ログ (Log Analytics ワークスペース、Application Insights)</li>
+<li>メトリック</li>
+<li>Azure Resource Graph</li>
+<li>Azure Resource Manager</li>
+<li>Azure Data Explorer</li>
+<li>JSON</li>
+</ul>
+<p>サポートされているデータ ソースの詳細については、以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/visualize/workbooks-data-sources">Azure Workbooks のデータ ソース - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<p><strong>3. Azure ワークブックの可視化機能</strong><br>ワークブックには、Azure Monitor のデータを視覚化するための豊富なビジュアル コンポーネントが用意されています。<br>使用できる機能はデータ ソースや結果セットに依存しますが、以下のような代表的なコンポーネントがあります。</p>
+<ul>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/visualize/workbooks-visualizations#text-parameters">テキスト パラメーター</a></li>
+<li>クエリの使用:<ul>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/visualize/workbooks-visualizations#charts">グラフ</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/visualize/workbooks-visualizations#grids">グリッド</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/visualize/workbooks-visualizations#tiles">タイル</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/visualize/workbooks-visualizations#trees">ツリー</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/visualize/workbooks-visualizations#honeycomb">ハニカム</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/visualize/workbooks-visualizations#stat">統計</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/visualize/workbooks-visualizations#graphs">グラフ</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/visualize/workbooks-visualizations#maps">マップ</a></li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/visualize/workbooks-visualizations#text-visualizations">テキストの視覚化</a></li>
+</ul>
+</li>
+</ul>
+<br>
+
+<p><strong>4. Azure ワークブックのパラメーター機能</strong><br>Azure ワークブックの大きな特徴の一つが、パラメーター機能です。<br>パラメーターを使用すると、利用者からの入力を受け取り、その値をワークブック内の他のクエリやビジュアルで参照できます。<br>具体的には以下のような対話型のレポートを作成することができます。</p>
+<ul>
+<li>表示対象の時間範囲を切り替える</li>
+<li>クエリ結果を動的に変更する</li>
+</ul>
+<br>
+
+<p><strong>5. パラメーターの表示方法と入力形式</strong><br>ワークブックでは、パラメーターを次のような形式で表示できます。</p>
+<ul>
+<li>テキスト ボックス</li>
+<li>ドロップダウン リスト</li>
+<li>単一選択／複数選択</li>
+<li>JSON、KQL、Azure Resource Graph による値の動的生成</li>
+</ul>
+<br>
+
+<p><strong>6. Azure ワークブックの作成</strong></p>
+<ol>
+<li><p>Azure ワークブックへのアクセス<br>Azure ワークブックには Azure ポータル &gt; [モニター (監視)] &gt; [ブック] よりアクセスすると、[ギャラリー] に Azure ワークブックのテンプレートが一覧表示されます。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-3-1_workbook_menu.png"></p>
+</li>
+<li><p>テンプレートの表示・編集<br>[ギャラリー] に表示されているテンプレートを開き、パラメーターを選択してグラフや表をカスタマイズできます。さらに、画面上部の [編集] を選択すると編集モードに切り替わります。編集モードでは、グラフや表の設定変更、パラメーターの追加・並べ替えが可能です。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-3-1_workbook_edit.png"></p>
+</li>
+<li><p>パラメーターの作成<br>パラメーターにより表示時間を切り替えるブックの作成方法について以下にご紹介します。<br>ⅰ. パラメーターを追加します。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-3-1_workbook_add_parameter.png"><br>ⅱ. パラメーターの型では「時間の範囲の選択」を選びます。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-3-1_workbook_parameter_type.png"><br>ⅲ. つづいてブックにクエリを追加し、[時間範囲] で先に作成したパラメーター名を指定します。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-3-1_workbook_parameter_name.png"><br>ⅳ. 編集完了後、パラメーターの値を変更すると自動でグラフが変化します。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-3-1_workbook_graph.png"></p>
+</li>
+</ol>
+<p>テンプレートやブックのパラメーター、ブックの作成・編集の詳細については、以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/visualize/workbooks-templates">Azure Workbooks テンプレート - Azure Monitor | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/visualize/workbooks-parameters">ブックのパラメーターを作成する - Azure Monitor | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/visualize/workbooks-create-workbook">Azure ワークブックを作成または編集する - Azure Monitor | Microsoft Learn</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h4 id="5-3-2-ダッシュボード"><a href="#5-3-2-ダッシュボード" class="headerlink" title="5.3.2 ダッシュボード"></a>5.3.2 ダッシュボード</h4><p>Log Analytics ワークスペース内のログに対して実行したクエリをグラフ等に可視化し、ダッシュボードにピン留めすることで、Log Analytics ワークスペースに保存されたデータをリアルタイムで確認できます。</p>
+<p><strong>■ ログ クエリの可視化手順</strong><br>Log Analytics ワークスペースにてクエリを実行します。<br>クエリの実行方法については、本記事 <a href="#5-2-1-Log-Analytics-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AE%E3%82%AF%E3%82%A8%E3%83%AA">5.2.1 Log Analytics ワークスペースのクエリ</a> をご参照ください。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;サンプル クエリ&gt;</span><br><span class="line">AzureMetrics</span><br><span class="line">| where MetricName contains &quot;Percentage CPU&quot;</span><br><span class="line">| summarize AggregatedValue = avg(Average) by bin(TimeGenerated, 1m), _ResourceId</span><br><span class="line">| render timechart</span><br></pre></td></tr></table></figure>
+
+<p>[保存] &gt; [ピン留め先 Azure ダッシュボード] をクリックします。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-3-2_dashboard1.png"></p>
+<p><img src="/blog/AzureMonitorEssential/StartUpGuide/5-3-2_dashboard2.png"></p>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/visualize/tutorial-logs-dashboards">Azure Monitor ログのデータを視覚化するダッシュボードを作成して共有する - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<p><strong>■ Azure ワークブックとの違い</strong><br>ダッシュボードと類似機能の Azure ワークブックとの違いについて説明します。<br>Azure ワークブックの詳細は、本記事 <a href="#5-3-1-%E3%83%AF%E3%83%BC%E3%82%AF%E3%83%96%E3%83%83%E3%82%AF">5.3.1 ワークブック</a> をご参照ください。</p>
+<p><strong>Azure ワークブック</strong></p>
+<ul>
+<li>テンプレートが充実している</li>
+<li>分析内容のカスタマイズ性が高い (KQL 等にて分析内容を要件に合わせて変更できます。) </li>
+<li>設定が比較的難しいため利用難度が高い</li>
+</ul>
+<p>※ Azure ワークブックは Azure ポータル &gt; [モニター (監視)] &gt; [ブック] からアクセスできます。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-3-2_dashboard3.png"></p>
+<br>
+
+<p><strong>ダッシュボード</strong></p>
+<ul>
+<li><p>画面の表示方法 (レイアウト) を容易に変更できる<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-3-2_dashboard4.png"></p>
+</li>
+<li><p>Azure ワークブックをダッシュボードにピン留めすることができる<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-3-2_dashboard5.png"></p>
+</li>
+<li><p>分析グラフ以外にもリソースやソリューション ページ等よく使う項目のリンクとしても活用できる<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-3-2_dashboard6.png"></p>
+</li>
+<li><p>ダッシュボードは Azure ポータル上のポータル メニュー (画面左上の三本線アイコン) &gt; [ダッシュボード] からアクセスできます。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-3-2_dashboard7.png"></p>
+<p><img src="/blog/AzureMonitorEssential/StartUpGuide/5-3-2_dashboard8.png"></p>
+</li>
+</ul>
+<p><a href="https://learn.microsoft.com/ja-jp/azure/azure-portal/azure-portal-dashboards">Azure portal でダッシュボードを作成する - Azure portal | Microsoft Learn</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h4 id="5-3-3-メトリック-エクスプローラー"><a href="#5-3-3-メトリック-エクスプローラー" class="headerlink" title="5.3.3 メトリック エクスプローラー"></a>5.3.3 メトリック エクスプローラー</h4><p>メトリック エクスプローラーではメトリックを時系列のグラフとして可視化します。<br>Azure ポータル &gt; 対象の Azure リソース &gt; [監視] &gt; [メトリック] からメトリック エクスプローラーにアクセスします。<br>以下は Azure VM のプラットフォーム メトリック (ホスト メトリック) とゲスト OS メトリックの表示の例です。</p>
+<p><strong>■ プラットフォーム メトリック</strong><br>プラットフォーム メトリックは Azure VM を作成すると自動的に収集が開始され、[メトリック名前空間] を “仮想マシンホスト” に設定すると確認できます。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-3-3_metricexplorer1.png"></p>
+<p><strong>■ ゲスト OS メトリック</strong><br>ゲスト OS メトリックはゲスト OS にインストールした Azure Monitor エージェントにより収集され、[メトリック名前空間] を “仮想マシンのゲスト” に設定すると確認できます。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-3-3_metricexplorer2.png"></p>
+<p>メトリック エクスプローラーの詳細や、プラットフォーム メトリックとゲスト OS メトリックの違いについては、以下の公開情報とブログをご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/metrics/analyze-metrics">Azure Monitor メトリックス エクスプローラーを使用してメトリックを分析する - Azure Monitor | Microsoft Learn</a><br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MonitorAzVM_logs/">Azure VM の監視について | Japan Azure Monitoring Support Blog</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --></p>
+<h4 id="5-3-4-Application-Insights-の可視化"><a href="#5-3-4-Application-Insights-の可視化" class="headerlink" title="5.3.4 Application Insights の可視化"></a>5.3.4 Application Insights の可視化</h4><p>Application Insights に収集されたデータは、クエリを利用しなくても Azure ポータルの UI から可視化・分析できます。<br>もちろん Log Analytics ワークスペースへ記録した他のログと同様に、クエリを利用した分析やアラート ルールの構成も可能です。</p>
+<p>はじめに Application Insights の [調査] タブ内の各メニューを簡単に紹介します。詳細な使い方は以下の公開情報をご参照ください。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-3-4_0_chosa.png"></p>
+<table>
+<thead>
+<tr>
+<th>ポータルの表示</th>
+<th>内容</th>
+<th>公開情報のリンク</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>アプリケーション マップ</td>
+<td>アプリケーションの依存関係を可視化し、各コンポーネント間のパフォーマンスを表示します。</td>
+<td><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/app-map">公開情報</a></td>
+</tr>
+<tr>
+<td>スマート検出</td>
+<td>機械学習によってアプリケーションの異常を検知します。アラート ルールによる通知も設定できます。</td>
+<td><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/proactive-diagnostics">公開情報</a></td>
+</tr>
+<tr>
+<td>ライブ メトリック</td>
+<td>アプリケーションから収集されるテレメトリをリアルタイムに表示します。</td>
+<td><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/live-stream?tabs=otel">公開情報</a></td>
+</tr>
+<tr>
+<td>検索</td>
+<td>記録されたテレメトリを検索します。後述の [失敗] と [パフォーマンス] では表示されない、ページ ビュー、例外、カスタム イベントなどの個々のテレメトリ項目を検索できます。</td>
+<td><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/failures-performance-transactions?tabs=search-view,results-list">公開情報</a></td>
+</tr>
+<tr>
+<td>有効</td>
+<td>可用性テストを作成し、その結果を表示します。</td>
+<td><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/availability?tabs=standard">公開情報</a> <a href="https://jpazmon-integ.github.io/blog/applicationInsights/privateAvailabilityTestSampleCode/">ブログ</a></td>
+</tr>
+<tr>
+<td>障害</td>
+<td>アプリケーションのエラー状況を分析します。</td>
+<td><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/failures-performance-transactions?tabs=failures-view,results-list">公開情報</a></td>
+</tr>
+<tr>
+<td>パフォーマンス</td>
+<td>応答時間とリクエスト数からアプリケーションのパフォーマンスを分析します。</td>
+<td><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/failures-performance-transactions?tabs=performance-view,results-list">公開情報</a></td>
+</tr>
+<tr>
+<td>Agents (Preview)</td>
+<td>AI エージェントの監視データを可視化します。</td>
+<td><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/agents-view">公開情報</a></td>
+</tr>
+</tbody></table>
+<p>また、[使用状況] タブ内の各メニューではアプリケーションの利用状況 (ユーザー、セッションなど) を分析できます。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/5-3-4_1_usage_analysis.png"></p>
+<p>詳細は以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/app/usage?tabs=users">Application Insights による利用状況分析 - Azure Monitor | Microsoft Learn</a></p>
+<p><br><!-- 小項目の終わり <br> を追加する --><br><br><!-- 大項目の終わり <br> を追加する --></p>
+<!-- 大項目 -->
+<h2 id="6-セキュリティ"><a href="#6-セキュリティ" class="headerlink" title="6. セキュリティ"></a>6. セキュリティ</h2><p>本章では Azure Monitor のセキュリティ機能に関してご紹介します。<br>すべてのセキュリティ設定を網羅するのではなく、利用者様が疑問を持ちやすく、よくお問い合わせをいただく項目に絞ってご紹介します。</p>
+<p>Azure Monitor では、サービス側のセキュリティ対策として、既定でログの送信やクエリなどの転送中のデータが TLS 1.2 以降で保護され、保存されるすべてのデータとクエリは Microsoft マネージド キーで暗号化されます。<br>また、Microsoft Entra ID による認証や Azure RBAC によるアクセス制御が提供されています。<br>パブリック エンドポイントへの接続についてもエンドツーエンドで暗号化されるため、後述の Azure Monitor Private Link Scope (AMPLS) を構成しない場合にも、通信や保存データは暗号化されますのでご安心ください。</p>
+<p><br><!-- 大項目の終わり <br> を追加する --></p>
+<h3 id="6-1-Azure-Monitor-Private-Link-Scope-AMPLS"><a href="#6-1-Azure-Monitor-Private-Link-Scope-AMPLS" class="headerlink" title="6.1 Azure Monitor Private Link Scope (AMPLS)"></a>6.1 Azure Monitor Private Link Scope (AMPLS)</h3><p><strong>1. AMPLS の概要</strong><br>AMPLS（Azure Monitor Private Link）を構成することで、Azure Monitor（Log Analytics や Application Insights など）への通信をパブリック インターネットを経由せず、プライベート ネットワーク経由で行うことが可能になります。</p>
+<p>仮想ネットワーク (VNet) にプライベート エンドポイント (PE) を作成して AMPLS に接続し、AMPLS に関連付けた Log Analytics &#x2F; Application Insights などに対するインジェスト（送信） および クエリ（参照）の通信を、インターネットを経由せず Private Link 経由にする構成です。基本的には VNet ごとに 1 つの PE を作成し構成します。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/6-3_basic-concepts.png"></p>
+<p>AMPLS の基本的な概念や概要については、以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/private-link-security#basic-concepts">基本的な概念 - Azure Monitor | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/private-link-security">Azure Private Link を使用して、ネットワークを Azure Monitor に接続する - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<p><strong>■ AMPLS を構成するとできること</strong><br>例えば、次のような要件に対応できます。</p>
+<ul>
+<li>インターネットへの outbound を厳しく制限したまま、VM から Log Analytics にログを送信したい<blockquote>
+<p>VNet 内の PE 経由で Azure Monitor のエンドポイントへ到達できるため、監視データがパブリック インターネットを経由しない設計が可能です。</p>
+</blockquote>
+</li>
+<li>特定のネットワークからのみ Log Analytics ワークスペースに対するクエリ（KQL）を許可したい<blockquote>
+<p> AMPLS では、クエリ &#x2F; インジェスト それぞれについて、アクセス モード (Open &#x2F; PrivateOnly) を設計できます。</p>
+</blockquote>
+</li>
+</ul>
+<br>
+
+<p><strong>■ AMPLS 環境下で扱う通信の種類</strong></p>
+<ul>
+<li>データの参照（クエリ）：Log Analytics のログ クエリ、Application Insights のクエリ等</li>
+<li>データの送信（インジェスト）：エージェントや Application Insights SDK 等からのログ&#x2F;テレメトリ送信</li>
+</ul>
+<br>
+
+<p><strong>2. AMPLS の構成設計について</strong><br>AMPLS の構成においては、DNS の名前解決設計が重要なポイントとなります。</p>
+<p><strong>■ AMPLS のプライベート DNS ゾーンについて</strong><br>AMPLS を作ると、Azure Monitor のエンドポイントは DNS ゾーンでプライベート IP にマップされ、通信が Private Link 経由になります。Azure Monitor はリソース固有エンドポイントだけでなく、共有 (グローバル&#x2F;リージョン) エンドポイントも使います。</p>
+<p>そのため、たとえ 1 つのリソースに Private Link を構成しただけでも DNS 構成が変更され、“すべてのリソース” 向けトラフィックに影響が出る可能性があります。さらに、同じ DNS を共有するネットワークで複数 AMPLS を作ると DNS が上書き (override) され、既存環境に影響が出る可能性があるため、設計段階での整理が重要となります。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/6-3_dns.png"></p>
+<p>AMPLS のプライベート DNS ゾーンの詳細については、以下の公開情報をご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/private-link-security#shared-global-and-regional-endpoints">グローバルおよびリージョンエンドポイントの共有 - Azure Monitor | Microsoft Learn</a><br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/private-link-design">Azure Monitor Private Link の構成を設計する - Azure Monitor | Microsoft Learn</a></p>
+<br>
+
+<p><strong>■ AMPLS のサブネット サイズ &#x2F; 必要 IP アドレス数について</strong><br>Azure Monitor Private Link の構成では、サポートされる最小の IPv4 サブネットは &#x2F;27 です。<br>Azure Monitor プライベート リンク エンドポイントの一覧については、エンドポイントの DNS 設定を確認してください。<br>また、より詳しい IP 消費の考え方（目安・計算方法の例）は、以下のブログをご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/private-link-configure?tabs=portal#review-endpoints-dns-settings">Azure Monitor のプライベート リンクを構成する - Azure Monitor | Microsoft Learn</a><br><a href="https://jpazmon-integ.github.io/blog/AMPLS/ampls-ip-ranges/">AMPLS で必要な IP アドレスの個数について | Japan Azure Monitoring Support Blog</a></p>
+<br>
+
+<p><strong>■ AMPLS 利用時の注意点（制限事項 &#x2F; 例外）</strong><br>AMPLS は以下の例外、制限事項があります。</p>
+<ul>
+<li><p>診断ログ <br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/essentials/diagnostic-settings">診断設定</a>で Log Analytics ワークスペースに送信されるログやメトリックは、Azure 基盤側で管理されているセキュアなプライベート Microsoft チャネル経由で送信されるため、AMPLS のネットワーク制御の影響を受けません。</p>
+</li>
+<li><p>ゲスト OS メトリック<br>Azure Monitor エージェント (AMA) により送信されるゲスト OS メトリックは、AMPLS 経由で収集することができません。</p>
+</li>
+</ul>
+<br>
+
+<p><strong>3. AMPLS の構成について</strong><br>構成手順の概要は以下のとおりです。詳細は以下の公開情報をご参照ください。</p>
+<ol>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/private-link-configure?tabs=portal#create-azure-monitor-private-link-scope-ampls">AMPLS を作成します</a>。</li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/private-link-configure?tabs=portal#connect-resources-to-the-ampls">Azure Monitor リソースを AMPLS に接続します</a>。</li>
+<li><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/fundamentals/private-link-configure?tabs=portal#connect-ampls-to-a-private-endpoint">PE を作成し AMPLS に接続します</a>。</li>
+</ol>
+<p>PE の IP 割り当てを<strong>静的</strong>にすると、作成後に PE 側へ割り当てる IP（＝プライベート DNS で解決される各エンドポイントの宛先）を増やせません。そのため、後から AMPLS にデータ収集エンドポイント (DCE) や Application Insights などのリソースを追加して到達先エンドポイントが増える場合、既存の PE では対応できず作り直しが必要になります。将来的に追加で AMPLS にリソースを接続させる可能性がある場合は <strong>動的</strong>割り当てを推奨します。<br><img src="/blog/AzureMonitorEssential/StartUpGuide/6-3_pe.png"></p>
+<p><br><!-- 中項目の終わり <br> を追加する --></p>
+<h3 id="6-2-データ削除"><a href="#6-2-データ削除" class="headerlink" title="6.2 データ削除"></a>6.2 データ削除</h3><p>Log Analytics ワークスペースのログは、保持期間を超えると自動的に削除されます。<br>一方、保持期間を迎える前にログを削除する場合は、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/personal-data-mgmt">REST API</a> を利用いただく必要がございます (Azure ポータルから手動でログを削除することはできません)。ログを削除するための REST API は用途の異なる 2 種類があり、目的に応じて使い分けていただく必要があります。</p>
+<p><strong>■ Purge API</strong><br>Log Analytics ワークスペースから対象データを完全に削除します。このため、<a href="https://learn.microsoft.com/ja-jp/compliance/regulatory/gdpr">GDPR（EU 一般データ保護規則）</a>に準拠しています。<br><a href="https://learn.microsoft.com/ja-jp/rest/api/loganalytics/workspace-purge/purge?view=rest-loganalytics-2025-07-01&tabs=HTTP">Workspace Purge - Purge - REST API (Azure Log Analytics) | Microsoft Learn</a></p>
+<p><strong>■ Delete Data API</strong><br>対象データを削除済みとしてマークし、物理的にデータを削除しません。このため、GDPR に準拠していません。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/delete-log-data?tabs=api">Log Analytics ワークスペースのデータを削除する - Azure Monitor | Microsoft Learn</a></p>
+<p>GDPR の要件に準拠する必要がある場合は Purge API、それ以外の場合は基本的に Delete Data API をご利用ください。<br>REST API の実行手順や前提条件は、以下の公開情報やブログをご参照ください。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/logs/personal-data-mgmt">Azure Monitor ログで個人データを管理する - Azure Monitor | Microsoft Learn</a><br><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/LogAnalyticsWorkspacePurge/">Log Analytics ワークスペースのデータを削除する方法 | Japan Azure Monitoring Support Blog</a></p>
+<p><br><!-- 中項目の終わり <br> を追加する --></p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-All/" rel="tag">Azure Monitor All</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/HowTo/" rel="tag">HowTo</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/AzureMonitorEssential/StartUpGuide.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../applicationInsights/api-key-deprecate-and-migration/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Application Insights API キーの廃止と移行について</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">Azure Monitor スタートアップ ガイド</a>
+          </li>
+        
+          <li>
+            <a href="../../applicationInsights/api-key-deprecate-and-migration/">Application Insights API キーの廃止と移行について</a>
+          </li>
+        
+          <li>
+            <a href="../../AMPLS/ampls-ip-ranges/">AMPLS で必要な IP アドレスの個数について</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/NetworkSecurityPerimeter/">ネットワーク セキュリティ境界とは</a>
+          </li>
+        
+          <li>
+            <a href="../LogAlert_ManagedId/">ログ検索アラートのマネージド ID について</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/AMA-migration/" rel="tag">AMA migration</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Action-group/" rel="tag">Action group</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Activity-Logs/" rel="tag">Activity Logs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Agents-and-Extensions-Windows/" rel="tag">Agents and Extensions - Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Alert-processing-rule/" rel="tag">Alert processing rule</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Alerts-Action-Groups/" rel="tag">Alerts, Action Groups</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Arc-enabled-servers/" rel="tag">Arc-enabled servers</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Availability-Tests/" rel="tag">Availability Tests</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Arc/" rel="tag">Azure Arc</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Diagnostics-Extension/" rel="tag">Azure Diagnostics Extension</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent/" rel="tag">Azure Monitor Agent</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent-Linux/" rel="tag">Azure Monitor Agent - Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent-Windows/" rel="tag">Azure Monitor Agent - Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-All/" rel="tag">Azure Monitor All</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essential/" rel="tag">Azure Monitor Essential</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Private-Link-Scope/" rel="tag">Azure Monitor Private Link Scope</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Update-Manager/" rel="tag">Azure Update Manager</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Container-Insights/" rel="tag">Container Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Cost/" rel="tag">Cost</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Create-a-Support-Request/" rel="tag">Create a Support Request</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Data-Collection-Rule-Data-Collection-Endpoint/" rel="tag">Data Collection Rule, Data Collection Endpoint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostics-Settings/" rel="tag">Diagnostics Settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HowTo/" rel="tag">HowTo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hybrid-Runbook-Worker/" rel="tag">Hybrid Runbook Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Information/" rel="tag">Information</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics-Agent/" rel="tag">Log Analytics Agent</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics-workspace-data-export/" rel="tag">Log Analytics workspace data export</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-search-alert/" rel="tag">Log search alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-Identity/" rel="tag">Managed Identity</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Metric-alert/" rel="tag">Metric alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Metrics/" rel="tag">Metrics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Others/" rel="tag">Others</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Outage/" rel="tag">Outage</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Query/" rel="tag">Query</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Resource-Health-alert/" rel="tag">Resource Health alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Retirement/" rel="tag">Retirement</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Service-Health/" rel="tag">Service Health</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Service-Health-alert/" rel="tag">Service Health alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM-Insights/" rel="tag">VM Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Workbooks/" rel="tag">Workbooks</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">12</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/">Log Analytics</a><span class="tag-list-count">41</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/">Troubleshooting</a><span class="tag-list-count">11</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/">FAQ</a><span class="tag-list-count">9</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/">Automation</a><span class="tag-list-count">13</span><ul></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2026/07/">2026 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2026/04/">2026 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/12/">2025 / 12</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/09/">2025 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/08/">2025 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/07/">2025 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/06/">2025 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/05/">2025 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/03/">2025 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/02/">2025 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/01/">2025 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/11/">2024 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/10/">2024 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/09/">2024 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/08/">2024 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/07/">2024 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/05/">2024 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/04/">2024 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/03/">2024 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/01/">2024 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/12/">2023 / 12</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/11/">2023 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/10/">2023 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/09/">2023 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/07/">2023 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/06/">2023 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/03/">2023 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/01/">2023 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/11/">2022 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/10/">2022 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/09/">2022 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/08/">2022 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/AMA-migration/" style="font-size: 12px;">AMA migration</a> <a href="../../tags/Action-group/" style="font-size: 10.67px;">Action group</a> <a href="../../tags/Activity-Logs/" style="font-size: 10.67px;">Activity Logs</a> <a href="../../tags/Agents-and-Extensions-Windows/" style="font-size: 10px;">Agents and Extensions - Windows</a> <a href="../../tags/Alert-processing-rule/" style="font-size: 10px;">Alert processing rule</a> <a href="../../tags/Alerts-Action-Groups/" style="font-size: 18px;">Alerts, Action Groups</a> <a href="../../tags/Application-Insights/" style="font-size: 16px;">Application Insights</a> <a href="../../tags/Arc-enabled-servers/" style="font-size: 12.67px;">Arc-enabled servers</a> <a href="../../tags/Automation/" style="font-size: 16.67px;">Automation</a> <a href="../../tags/Availability-Tests/" style="font-size: 11.33px;">Availability Tests</a> <a href="../../tags/Azure-Arc/" style="font-size: 12.67px;">Azure Arc</a> <a href="../../tags/Azure-Diagnostics-Extension/" style="font-size: 10.67px;">Azure Diagnostics Extension</a> <a href="../../tags/Azure-Monitor-Agent/" style="font-size: 17.33px;">Azure Monitor Agent</a> <a href="../../tags/Azure-Monitor-Agent-Linux/" style="font-size: 10.67px;">Azure Monitor Agent - Linux</a> <a href="../../tags/Azure-Monitor-Agent-Windows/" style="font-size: 10.67px;">Azure Monitor Agent - Windows</a> <a href="../../tags/Azure-Monitor-All/" style="font-size: 12px;">Azure Monitor All</a> <a href="../../tags/Azure-Monitor-Essential/" style="font-size: 18.67px;">Azure Monitor Essential</a> <a href="../../tags/Azure-Monitor-Private-Link-Scope/" style="font-size: 11.33px;">Azure Monitor Private Link Scope</a> <a href="../../tags/Azure-Update-Manager/" style="font-size: 10.67px;">Azure Update Manager</a> <a href="../../tags/Container-Insights/" style="font-size: 10.67px;">Container Insights</a> <a href="../../tags/Cost/" style="font-size: 12px;">Cost</a> <a href="../../tags/Create-a-Support-Request/" style="font-size: 10.67px;">Create a Support Request</a> <a href="../../tags/Data-Collection-Rule-Data-Collection-Endpoint/" style="font-size: 12.67px;">Data Collection Rule, Data Collection Endpoint</a> <a href="../../tags/Diagnostics-Settings/" style="font-size: 13.33px;">Diagnostics Settings</a> <a href="../../tags/FAQ/" style="font-size: 14.67px;">FAQ</a> <a href="../../tags/General/" style="font-size: 13.33px;">General</a> <a href="../../tags/HowTo/" style="font-size: 20px;">HowTo</a> <a href="../../tags/Hybrid-Runbook-Worker/" style="font-size: 10px;">Hybrid Runbook Worker</a> <a href="../../tags/Information/" style="font-size: 11.33px;">Information</a> <a href="../../tags/Log-Analytics/" style="font-size: 19.33px;">Log Analytics</a> <a href="../../tags/Log-Analytics-Agent/" style="font-size: 10.67px;">Log Analytics Agent</a> <a href="../../tags/Log-Analytics-workspace-data-export/" style="font-size: 10px;">Log Analytics workspace data export</a> <a href="../../tags/Log-search-alert/" style="font-size: 16.67px;">Log search alert</a> <a href="../../tags/Managed-Identity/" style="font-size: 10.67px;">Managed Identity</a> <a href="../../tags/Metric-alert/" style="font-size: 12px;">Metric alert</a> <a href="../../tags/Metrics/" style="font-size: 11.33px;">Metrics</a> <a href="../../tags/Others/" style="font-size: 13.33px;">Others</a> <a href="../../tags/Outage/" style="font-size: 10px;">Outage</a> <a href="../../tags/Query/" style="font-size: 12px;">Query</a> <a href="../../tags/Resource-Health-alert/" style="font-size: 10.67px;">Resource Health alert</a> <a href="../../tags/Retirement/" style="font-size: 14.67px;">Retirement</a> <a href="../../tags/Runbook/" style="font-size: 14px;">Runbook</a> <a href="../../tags/Service-Health/" style="font-size: 10px;">Service Health</a> <a href="../../tags/Service-Health-alert/" style="font-size: 10px;">Service Health alert</a> <a href="../../tags/Troubleshooting/" style="font-size: 15.33px;">Troubleshooting</a> <a href="../../tags/VM-Insights/" style="font-size: 10.67px;">VM Insights</a> <a href="../../tags/Workbooks/" style="font-size: 10px;">Workbooks</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
