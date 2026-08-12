@@ -10,12 +10,12 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="[更新履歴]  2026&#x2F;08&#x2F;07 ブログ公開  こんにちは！Azure Monitoring チームの佐藤です。 本記事は、2026 年 9 月 30 日にサポートを終了いたします ContainerLog テーブルについて、後継の ContainerLogV2 テーブルへ移行いただく方法について案内しております。">
+      <meta name="description" content="[更新履歴]  2026&#x2F;08&#x2F;07 ブログ公開 2026&#x2F;08&#x2F;12 一部リンクを修正しました  こんにちは！Azure Monitoring チームの佐藤です。 本記事は、2026 年 9 月 30 日にサポートを終了いたします ContainerLog テーブルについて、後継の ContainerLogV2 テーブルへ移行いただく方法について案内してお">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ContainerLog テーブルのサポート終了に伴う ContainerLogV2 テーブルへの移行について">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MigrationToContainerLogV2/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="[更新履歴]  2026&#x2F;08&#x2F;07 ブログ公開  こんにちは！Azure Monitoring チームの佐藤です。 本記事は、2026 年 9 月 30 日にサポートを終了いたします ContainerLog テーブルについて、後継の ContainerLogV2 テーブルへ移行いただく方法について案内しております。">
+<meta property="og:description" content="[更新履歴]  2026&#x2F;08&#x2F;07 ブログ公開 2026&#x2F;08&#x2F;12 一部リンクを修正しました  こんにちは！Azure Monitoring チームの佐藤です。 本記事は、2026 年 9 月 30 日にサポートを終了いたします ContainerLog テーブルについて、後継の ContainerLogV2 テーブルへ移行いただく方法について案内してお">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MigrationToContainerLogV2/announce01.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MigrationToContainerLogV2/announce02.png">
@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MigrationToContainerLogV2/logprofile04.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/LogAnalytics/MigrationToContainerLogV2/logprofile05.png">
 <meta property="article:published_time" content="2026-08-06T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-07T04:46:59.517Z">
+<meta property="article:modified_time" content="2026-08-12T05:24:33.438Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Container Insights">
 <meta property="article:tag" content="Log Analytics">
@@ -185,7 +185,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+e7589125-9067-560b-b36a-778aa47ab50e%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BContainerLog+%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E7%B5%82%E4%BA%86%E3%81%AB%E4%BC%B4%E3%81%86+ContainerLogV2+%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FLogAnalytics%2FMigrationToContainerLogV2%2F%29%0A*+Content+Source%3A+%5Barticles%2FLogAnalytics%2FMigrationToContainerLogV2.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FLogAnalytics%2FMigrationToContainerLogV2.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/MigrationToContainerLogV2/" data-id="cuidc2UzjtFVU3A7ZfcLLXkZa" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/LogAnalytics/MigrationToContainerLogV2/" data-id="cuidZMOB11CpEW96ROkgMwk4e" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -193,26 +193,27 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         <p>[更新履歴]</p>
 <ul>
 <li>2026&#x2F;08&#x2F;07 ブログ公開</li>
+<li>2026&#x2F;08&#x2F;12 一部リンクを修正しました</li>
 </ul>
 <p>こんにちは！Azure Monitoring チームの佐藤です。</p>
 <p>本記事は、2026 年 9 月 30 日にサポートを終了いたします ContainerLog テーブルについて、後継の ContainerLogV2 テーブルへ移行いただく方法について案内しております。</p>
 <span id="more"></span>
 <h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
-<li><a href="https://github.com/risaakita/blog-1/blob/main/articles/LogAnalytics/MigrationToContainerLogV2.md#1-%E6%9C%AC%E8%A8%98%E4%BA%8B%E3%81%AE%E6%A6%82%E8%A6%81">1. 本記事の概要</a></li>
-<li><a href="https://github.com/risaakita/blog-1/blob/main/articles/LogAnalytics/MigrationToContainerLogV2.md#2-%E7%A7%BB%E8%A1%8C%E3%81%AE%E5%89%8D%E3%81%AB%E3%81%94%E7%A2%BA%E8%AA%8D%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84">2. 移行の前に認証方法をご確認ください</a><ul>
-<li><a href="https://github.com/risaakita/blog-1/blob/main/articles/LogAnalytics/MigrationToContainerLogV2.md#2-1-%E3%83%AC%E3%82%AC%E3%82%B7%E8%AA%8D%E8%A8%BC%E3%81%AE%E4%BD%BF%E7%94%A8%E6%9C%89%E7%84%A1">2-1. レガシ認証の使用有無</a></li>
-<li><a href="https://github.com/risaakita/blog-1/blob/main/articles/LogAnalytics/MigrationToContainerLogV2.md#2-2-%E8%A9%B2%E5%BD%93%E3%81%99%E3%82%8B%E7%A7%BB%E8%A1%8C%E3%82%B7%E3%83%8A%E3%83%AA%E3%82%AA%E3%81%AF%E3%81%A9%E3%82%8C%E3%81%8B">2-2. 該当する移行シナリオはどれか</a></li>
-<li><a href="https://github.com/risaakita/blog-1/blob/main/articles/LogAnalytics/MigrationToContainerLogV2.md#2-3-%E7%A7%BB%E8%A1%8C%E3%81%AB%E4%BC%B4%E3%81%86%E6%B3%A8%E6%84%8F%E7%82%B9">2-3. 移行に伴う注意点</a></li>
+<li><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MigrationToContainerLogV2/#1-%E6%9C%AC%E8%A8%98%E4%BA%8B%E3%81%AE%E6%A6%82%E8%A6%81">1. 本記事の概要</a></li>
+<li><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MigrationToContainerLogV2/#2-%E7%A7%BB%E8%A1%8C%E3%81%AE%E5%89%8D%E3%81%AB%E3%81%94%E7%A2%BA%E8%AA%8D%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84">2. 移行の前に認証方法をご確認ください</a><ul>
+<li><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MigrationToContainerLogV2/#2-1-%E3%83%AC%E3%82%AC%E3%82%B7%E8%AA%8D%E8%A8%BC%E3%81%AE%E4%BD%BF%E7%94%A8%E6%9C%89%E7%84%A1">2-1. レガシ認証の使用有無</a></li>
+<li><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MigrationToContainerLogV2/#2-2-%E8%A9%B2%E5%BD%93%E3%81%99%E3%82%8B%E7%A7%BB%E8%A1%8C%E3%82%B7%E3%83%8A%E3%83%AA%E3%82%AA%E3%81%AF%E3%81%A9%E3%82%8C%E3%81%8B">2-2. 該当する移行シナリオはどれか</a></li>
+<li><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MigrationToContainerLogV2/#2-3-%E7%A7%BB%E8%A1%8C%E3%81%AB%E4%BC%B4%E3%81%86%E6%B3%A8%E6%84%8F%E7%82%B9">2-3. 移行に伴う注意点</a></li>
 </ul>
 </li>
-<li><a href="https://github.com/risaakita/blog-1/blob/main/articles/LogAnalytics/MigrationToContainerLogV2.md#3-%E3%83%AC%E3%82%AC%E3%82%B7%E8%AA%8D%E8%A8%BC%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%9F-container-insights-%E3%81%AE%E5%A0%B4%E5%90%88%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%96%B9%E6%B3%95">3. レガシ認証を使用した Container Insights の場合の移行方法</a></li>
-<li><a href="https://github.com/risaakita/blog-1/blob/main/articles/LogAnalytics/MigrationToContainerLogV2.md#4-%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-id-%E8%AA%8D%E8%A8%BC%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%9F-container-insights-%E3%81%AE%E5%A0%B4%E5%90%88%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%96%B9%E6%B3%95">4. マネージド ID 認証を使用した Container Insights の場合の移行方法</a><ul>
-<li><a href="https://github.com/risaakita/blog-1/blob/main/articles/LogAnalytics/MigrationToContainerLogV2.md#4-1-configmap-%E3%81%AE-yaml-%E3%82%92%E7%B7%A8%E9%9B%86%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AB%E3%82%88%E3%82%8A%E7%A7%BB%E8%A1%8C%E3%81%99%E3%82%8B">4-1. ConfigMap の yaml を編集することにより移行する</a></li>
-<li><a href="https://github.com/risaakita/blog-1/blob/main/articles/LogAnalytics/MigrationToContainerLogV2.md#4-2-configmap-%E3%82%92%E6%9C%89%E5%8A%B9%E5%8C%96%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AB%E3%82%88%E3%82%8A%E7%A7%BB%E8%A1%8C%E3%81%99%E3%82%8B">4-2. ConfigMap を有効化することにより移行する</a></li>
-<li><a href="https://github.com/risaakita/blog-1/blob/main/articles/LogAnalytics/MigrationToContainerLogV2.md#4-3-%E3%83%AD%E3%82%B0-%E3%83%97%E3%83%AD%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AB%E3%82%88%E3%82%8A%E7%A7%BB%E8%A1%8C%E3%81%99%E3%82%8B">4-3. ログ プロファイルを設定することにより移行する</a></li>
+<li><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MigrationToContainerLogV2/#3-%E3%83%AC%E3%82%AC%E3%82%B7%E8%AA%8D%E8%A8%BC%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%9F-Container-Insights-%E3%81%AE%E5%A0%B4%E5%90%88%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%96%B9%E6%B3%95">3. レガシ認証を使用した Container Insights の場合の移行方法</a></li>
+<li><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MigrationToContainerLogV2/#4-%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89-ID-%E8%AA%8D%E8%A8%BC%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%9F-Container-Insights-%E3%81%AE%E5%A0%B4%E5%90%88%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%96%B9%E6%B3%95">4. マネージド ID 認証を使用した Container Insights の場合の移行方法</a><ul>
+<li><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MigrationToContainerLogV2/#4-1-ConfigMap-%E3%81%AE-yaml-%E3%82%92%E7%B7%A8%E9%9B%86%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AB%E3%82%88%E3%82%8A%E7%A7%BB%E8%A1%8C%E3%81%99%E3%82%8B">4-1. ConfigMap の yaml を編集することにより移行する</a></li>
+<li><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MigrationToContainerLogV2/#4-2-ConfigMap-%E3%82%92%E6%9C%89%E5%8A%B9%E5%8C%96%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AB%E3%82%88%E3%82%8A%E7%A7%BB%E8%A1%8C%E3%81%99%E3%82%8B">4-2. ConfigMap を有効化することにより移行する</a></li>
+<li><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MigrationToContainerLogV2/#4-3-%E3%83%AD%E3%82%B0-%E3%83%97%E3%83%AD%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AB%E3%82%88%E3%82%8A%E7%A7%BB%E8%A1%8C%E3%81%99%E3%82%8B">4-3. ログ プロファイルを設定することにより移行する</a></li>
 </ul>
 </li>
-<li><a href="https://github.com/risaakita/blog-1/blob/main/articles/LogAnalytics/MigrationToContainerLogV2.md#5-%E3%81%BE%E3%81%A8%E3%82%81">5. まとめ</a></li>
+<li><a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MigrationToContainerLogV2/#5-%E3%81%BE%E3%81%A8%E3%82%81">5. まとめ</a></li>
 </ul>
 <br>
 
@@ -244,7 +245,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <h3 id="2-2-該当する移行シナリオはどれか"><a href="#2-2-該当する移行シナリオはどれか" class="headerlink" title="2-2. 該当する移行シナリオはどれか"></a>2-2. 該当する移行シナリオはどれか</h3><p>ここから、具体的な移行方法を説明します。<br>どのシナリオが該当するかについては、以下のフロー チャートが参考になれば幸いです。<br><img src="/blog/LogAnalytics/MigrationToContainerLogV2/chart.png"></p>
 <h3 id="2-3-移行に伴う注意点"><a href="#2-3-移行に伴う注意点" class="headerlink" title="2-3. 移行に伴う注意点"></a>2-3. 移行に伴う注意点</h3><p>ログの格納先が ContainerLog テーブルから ContainerLogV2 テーブルに変更されても、ログ アラート ルールやダッシュボードなど ContainerLog テーブルのデータを活用するサービスで用いるクエリは自動で変更されません。<br>ContainerLog テーブルを検索しているクエリがある場合には、お客様ご自身で ContainerLogV2 テーブルをクエリするよう変更いただく必要がございます。  </p>
 <p>例えば、ContainerLog テーブルに対してクエリを行っているアラート ルールが存在するかどうかは、<br>以下の Azure Resource Graph クエリでご確認いただけます。</p>
-<p>Azure Resource Graph クエリの使用方法は、前述の <a href="https://github.com/risaakita/blog-1/blob/main/articles/LogAnalytics/MigrationToContainerLogV2.md#2-1-%E3%83%AC%E3%82%AC%E3%82%B7%E8%AA%8D%E8%A8%BC%E3%81%AE%E4%BD%BF%E7%94%A8%E6%9C%89%E7%84%A1">“2-1. レガシ認証の使用有無 “ 内、”レガシ認証を使用しているクラスターの検索手順”</a> に記載しております。  </p>
+<p>Azure Resource Graph クエリの使用方法は、前述の <a href="https://jpazmon-integ.github.io/blog/LogAnalytics/MigrationToContainerLogV2/#2-1-%E3%83%AC%E3%82%AC%E3%82%B7%E8%AA%8D%E8%A8%BC%E3%81%AE%E4%BD%BF%E7%94%A8%E6%9C%89%E7%84%A1">“2-1. レガシ認証の使用有無 “ 内、”レガシ認証を使用しているクラスターの検索手順”</a> に記載しております。  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">resources</span><br><span class="line">| where type in~ (&#x27;microsoft.insights/scheduledqueryrules&#x27;) and [&#x27;kind&#x27;] !in~ (&#x27;LogToMetric&#x27;)</span><br><span class="line">| extend severity = strcat(&quot;Sev&quot;, properties[&quot;severity&quot;])</span><br><span class="line">| extend enabled = tobool(properties[&quot;enabled&quot;])</span><br><span class="line">| where enabled in~ (&#x27;true&#x27;)</span><br><span class="line">| where tolower(properties[&quot;targetResourceTypes&quot;]) matches regex &#x27;microsoft.operationalinsights/workspaces($|/.*)?&#x27; or tolower(properties[&quot;targetResourceType&quot;]) matches regex &#x27;microsoft.operationalinsights/workspaces($|/.*)?&#x27; or tolower(properties[&quot;scopes&quot;]) matches regex &#x27;providers/microsoft.operationalinsights/workspaces($|/.*)?&#x27;</span><br><span class="line">| where properties contains &quot;ContainerLog&quot;</span><br><span class="line">| project id,name,type,properties,enabled,severity,subscriptionId</span><br><span class="line">| order by tolower(name) asc</span><br></pre></td></tr></table></figure>
 
 <ul>
