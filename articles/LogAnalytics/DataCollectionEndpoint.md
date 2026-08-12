@@ -3,6 +3,7 @@ title: データ収集ルール作成時のデータ収集エンドポイント�
 date: 2024-07-24 00:00:00
 tags:
  - How-To
+ - Data Collection Rule, Data Collection Endpoint
  - Log Analytics
 ---
 [更新履歴]  
