@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+    
+      <title>
+        
+          ログのメトリック アラートについて | 
+              Japan Azure Monitoring Support Blog
+      </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <meta name="description" content="[更新履歴]  2026&#x2F;09&#x2F;06 ブログ公開  こんにちは、Azure Monitoring サポート チームの北村です。Azure Monitor のアラート ルールの一つに「ログのメトリック アラート」というアラートが存在することをご存知でしょうか。名前だけを見るとメトリック アラートの一種に見えますが、Azure Monitor エージェント (AMA) によって収集">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ログのメトリック アラートについて">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogToMetricAlert/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="[更新履歴]  2026&#x2F;09&#x2F;06 ブログ公開  こんにちは、Azure Monitoring サポート チームの北村です。Azure Monitor のアラート ルールの一つに「ログのメトリック アラート」というアラートが存在することをご存知でしょうか。名前だけを見るとメトリック アラートの一種に見えますが、Azure Monitor エージェント (AMA) によって収集">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogToMetricAlert/image01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogToMetricAlert/image12.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogToMetricAlert/image04.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogToMetricAlert/image05.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogToMetricAlert/image06.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogToMetricAlert/image07.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogToMetricAlert/image08.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogToMetricAlert/image09.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogToMetricAlert/image10.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogToMetricAlert/image11.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogToMetricAlert/image02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogToMetricAlert/image03.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogToMetricAlert/image13.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogToMetricAlert/image14.png">
+<meta property="article:published_time" content="2026-09-05T15:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-06T00:15:21.630Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="Alerts, Action Groups">
+<meta property="article:tag" content="Azure Monitor Essential">
+<meta property="article:tag" content="HowTo">
+<meta property="article:tag" content="Metric alert">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogToMetricAlert/image01.png">
+        
+          <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog"
+            type="application/atom+xml">
+          
+
+            <link rel="icon" href="../../%20favicon.ico">
+            <link rel="apple-touch-icon" sizes="180x180" href="../../%20apple-touch-icon.png">
+            <link rel="icon" type="image/png" sizes="32x32" href="../../%20favicon-32x32.png">
+            <link rel="icon" type="image/png" sizes="16x16" href="../../%20favicon-16x16.png">
+            <link rel="manifest" href="../../%20site.webmanifest">
+            <link rel="mask-icon" href="../../%20safari-pinned-tab.svg" color="#5bbad5">
+            <meta name="msapplication-TileColor" content="#ffffff">
+            <meta name="theme-color" content="#ffffff">
+            
+              <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+              
+                
+<link rel="stylesheet" href="../../css/style.css">
+
+                  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+                  <script type="text/javascript">
+                    !(function (cfg) { function e() { cfg.onInit && cfg.onInit(n) } var x, w, D, t, E, n, C = window, O = document, b = C.location, q = "script", I = "ingestionendpoint", L = "disableExceptionTracking", j = "ai.device."; "instrumentationKey"[x = "toLowerCase"](), w = "crossOrigin", D = "POST", t = "appInsightsSDK", E = cfg.name || "appInsights", (cfg.name || C[t]) && (C[t] = E), n = C[E] || function (g) { var f = !1, m = !1, h = { initialize: !0, queue: [], sv: "8", version: 2, config: g }; function v(e, t) { var n = {}, i = "Browser"; function a(e) { e = "" + e; return 1 === e.length ? "0" + e : e } return n[j + "id"] = i[x](), n[j + "type"] = i, n["ai.operation.name"] = b && b.pathname || "_unknown_", n["ai.internal.sdkVersion"] = "javascript:snippet_" + (h.sv || h.version), { time: (i = new Date).getUTCFullYear() + "-" + a(1 + i.getUTCMonth()) + "-" + a(i.getUTCDate()) + "T" + a(i.getUTCHours()) + ":" + a(i.getUTCMinutes()) + ":" + a(i.getUTCSeconds()) + "." + (i.getUTCMilliseconds() / 1e3).toFixed(3).slice(2, 5) + "Z", iKey: e, name: "Microsoft.ApplicationInsights." + e.replace(/-/g, "") + "." + t, sampleRate: 100, tags: n, data: { baseData: { ver: 2 } }, ver: undefined, seq: "1", aiDataContract: undefined } } var n, i, t, a, y = -1, T = 0, S = ["js.monitor.azure.com", "js.cdn.applicationinsights.io", "js.cdn.monitor.azure.com", "js0.cdn.applicationinsights.io", "js0.cdn.monitor.azure.com", "js2.cdn.applicationinsights.io", "js2.cdn.monitor.azure.com", "az416426.vo.msecnd.net"], o = g.url || cfg.src, r = function () { return s(o, null) }; function s(d, t) { if ((n = navigator) && (~(n = (n.userAgent || "").toLowerCase()).indexOf("msie") || ~n.indexOf("trident/")) && ~d.indexOf("ai.3") && (d = d.replace(/(\/)(ai\.3\.)([^\d]*)$/, function (e, t, n) { return t + "ai.2" + n })), !1 !== cfg.cr) for (var e = 0; e < S.length; e++)if (0 < d.indexOf(S[e])) { y = e; break } var n, i = function (e) { var a, t, n, i, o, r, s, c, u, l; h.queue = [], m || (0 <= y && T + 1 < S.length ? (a = (y + T + 1) % S.length, p(d.replace(/^(.*\/\/)([\w\.]*)(\/.*)$/, function (e, t, n, i) { return t + S[a] + i })), T += 1) : (f = m = !0, s = d, !0 !== cfg.dle && (c = (t = function () { var e, t = {}, n = g.connectionString; if (n) for (var i = n.split(";"), a = 0; a < i.length; a++) { var o = i[a].split("="); 2 === o.length && (t[o[0][x]()] = o[1]) } return t[I] || (e = (n = t.endpointsuffix) ? t.location : null, t[I] = "https://" + (e ? e + "." : "") + "dc." + (n || "services.visualstudio.com")), t }()).instrumentationkey || g.instrumentationKey || "", t = (t = (t = t[I]) && "/" === t.slice(-1) ? t.slice(0, -1) : t) ? t + "/v2/track" : g.endpointUrl, t = g.userOverrideEndpointUrl || t, (n = []).push((i = "SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details)", o = s, u = t, (l = (r = v(c, "Exception")).data).baseType = "ExceptionData", l.baseData.exceptions = [{ typeName: "SDKLoadFailed", message: i.replace(/\./g, "-"), hasFullStack: !1, stack: i + "\nSnippet failed to load [" + o + "] -- Telemetry is disabled\nHelp Link: https://go.microsoft.com/fwlink/?linkid=2128109\nHost: " + (b && b.pathname || "_unknown_") + "\nEndpoint: " + u, parsedStack: [] }], r)), n.push((l = s, i = t, (u = (o = v(c, "Message")).data).baseType = "MessageData", (r = u.baseData).message = 'AI (Internal): 99 message:"' + ("SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details) (" + l + ")").replace(/\"/g, "") + '"', r.properties = { endpoint: i }, o)), s = n, c = t, JSON && ((u = C.fetch) && !cfg.useXhr ? u(c, { method: D, body: JSON.stringify(s), mode: "cors" }) : XMLHttpRequest && ((l = new XMLHttpRequest).open(D, c), l.setRequestHeader("Content-type", "application/json"), l.send(JSON.stringify(s))))))) }, a = function (e, t) { m || setTimeout(function () { !t && h.core || i() }, 500), f = !1 }, p = function (e) { var n = O.createElement(q), e = (n.src = e, t && (n.integrity = t), n.setAttribute("data-ai-name", E), cfg[w]); return !e && "" !== e || "undefined" == n[w] || (n[w] = e), n.onload = a, n.onerror = i, n.onreadystatechange = function (e, t) { "loaded" !== n.readyState && "complete" !== n.readyState || a(0, t) }, cfg.ld && cfg.ld < 0 ? O.getElementsByTagName("head")[0].appendChild(n) : setTimeout(function () { O.getElementsByTagName(q)[0].parentNode.appendChild(n) }, cfg.ld || 0), n }; p(d) } cfg.sri && (n = o.match(/^((http[s]?:\/\/.*\/)\w+(\.\d+){1,5})\.(([\w]+\.){0,2}js)$/)) && 6 === n.length ? (d = "".concat(n[1], ".integrity.json"), i = "@".concat(n[4]), l = window.fetch, t = function (e) { if (!e.ext || !e.ext[i] || !e.ext[i].file) throw Error("Error Loading JSON response"); var t = e.ext[i].integrity || null; s(o = n[2] + e.ext[i].file, t) }, l && !cfg.useXhr ? l(d, { method: "GET", mode: "cors" }).then(function (e) { return e.json()["catch"](function () { return {} }) }).then(t)["catch"](r) : XMLHttpRequest && ((a = new XMLHttpRequest).open("GET", d), a.onreadystatechange = function () { if (a.readyState === XMLHttpRequest.DONE) if (200 === a.status) try { t(JSON.parse(a.responseText)) } catch (e) { r() } else r() }, a.send())) : o && r(); try { h.cookie = O.cookie } catch (k) { } function e(e) { for (; e.length;)!function (t) { h[t] = function () { var e = arguments; f || h.queue.push(function () { h[t].apply(h, e) }) } }(e.pop()) } var c, u, l = "track", d = "TrackPage", p = "TrackEvent", l = (e([l + "Event", l + "PageView", l + "Exception", l + "Trace", l + "DependencyData", l + "Metric", l + "PageViewPerformance", "start" + d, "stop" + d, "start" + p, "stop" + p, "addTelemetryInitializer", "setAuthenticatedUserContext", "clearAuthenticatedUserContext", "flush"]), h.SeverityLevel = { Verbose: 0, Information: 1, Warning: 2, Error: 3, Critical: 4 }, (g.extensionConfig || {}).ApplicationInsightsAnalytics || {}); return !0 !== g[L] && !0 !== l[L] && (e(["_" + (c = "onerror")]), u = C[c], C[c] = function (e, t, n, i, a) { var o = u && u(e, t, n, i, a); return !0 !== o && h["_" + c]({ message: e, url: t, lineNumber: n, columnNumber: i, error: a, evt: C.event }), o }, g.autoExceptionInstrumented = !0), h }(cfg.cfg), (C[E] = n).queue && 0 === n.queue.length ? (n.queue.push(e), n.trackPageView({})) : e(); })({
+                      src: "https://js.monitor.azure.com/scripts/b/ai.3.gbl.min.js",
+                      // name: "appInsights", // Global SDK Instance name defaults to "appInsights" when not supplied
+                      // ld: 0, // Defines the load delay (in ms) before attempting to load the sdk. -1 = block page load and add to head. (default) = 0ms load after timeout,
+                      // useXhr: 1, // Use XHR instead of fetch to report failures (if available),
+                      // dle: true, // Prevent the SDK from reporting load failure log
+                      crossOrigin: "anonymous", // When supplied this will add the provided value as the cross origin attribute on the script tag
+                      // onInit: null, // Once the application insights instance has loaded and initialized this callback function will be called with 1 argument -- the sdk instance (DON'T ADD anything to the sdk.queue -- As they won't get called)
+                      // sri: false, // Custom optional value to specify whether fetching the snippet from integrity file and do integrity check
+                      cfg: { // Application Insights Configuration
+                        connectionString: "InstrumentationKey=3bdbf1fd-6df1-4401-9bc6-1756db37fa5f;IngestionEndpoint=https://japaneast-1.in.applicationinsights.azure.com/;LiveEndpoint=https://japaneast.livediagnostics.monitor.azure.com/;ApplicationId=b3c3cc51-434a-4437-bc36-e5fe3f744127"
+                      }
+                    });
+                  </script>
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-AzureMonitorEssential/LogToMetricAlert" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ログのメトリック アラートについて
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Published: 
+        <a href="" class="article-date-single">
+  <time datetime="2026-09-05T15:00:00.000Z" itemprop="datePublished">2026-09-06</time>
+</a>
+        
+            
+                <!-- Published / Last update -->
+/ Last update: <a id="update-time" class="article-date-single"></a><br>
+Contributors: <ul style="display: inline-block; list-style:none" id="contributors" class="github-contributors"> </ul>
+
+<script type="text/javascript">
+  const sourceUrl = "https://github.com/jpazmon-integ/blog/blob/master/articles/AzureMonitorEssential/LogToMetricAlert.md";
+  const urlParts = sourceUrl.split("/");
+  const user = urlParts[3];
+  const repo = urlParts[4];
+  const filePath = urlParts.slice(7).join("/");
+  const apiUrl = `https://api.github.com/repos/${user}/${repo}/commits?path=${filePath}`;
+
+  function formatDate(date) {
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    if (month < 10) month = '0' + month;
+    if (day < 10) day = '0' + day;
+    return `${year}-${month}-${day}`;
+  }
+
+  $.getJSON(apiUrl, function (data) {
+    if (!data || data.length === 0) return;
+    const commit = data[0];
+    const updateDate = new Date(commit.commit.author.date);
+    const localDate = formatDate(updateDate);
+    const contributors = new Map();
+
+    data.reverse().forEach(function (commit) {
+      if (commit.author) {
+        const name = commit.author.login;
+        const url = commit.author.html_url;
+        contributors.set(name, { name, url });
+      }
+    });
+
+    $("#update-time").text(localDate);
+
+    const contributorLinks = Array.from(contributors.values())
+      .reverse()
+      .map(c => `<a href="${c.url}" target="_blank" style="color: inherit; text-decoration: none;">${c.name}</a>`)
+      .join(", ");
+
+    $("#contributors").html(contributorLinks);
+  });
+</script>
+            
+        
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+6f6edf20-707f-5972-b573-e76d25508660%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%83%AD%E3%82%B0%E3%81%AE%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF+%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FLogToMetricAlert%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FLogToMetricAlert.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FLogToMetricAlert.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/LogToMetricAlert/" data-id="cuid_RcUfb7XbRIGwnvKh26ai" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[更新履歴]</p>
+<ul>
+<li>2026&#x2F;09&#x2F;06 ブログ公開</li>
+</ul>
+<p>こんにちは、Azure Monitoring サポート チームの北村です。<br>Azure Monitor のアラート ルールの一つに「ログのメトリック アラート」というアラートが存在することをご存知でしょうか。<br>名前だけを見るとメトリック アラートの一種に見えますが、Azure Monitor エージェント (AMA) によって収集されたログをメトリックに変換したうえで監視する、少し特殊な仕組みを持っています。</p>
+<p>今回は「ログのメトリック アラート」の概要と仕組み、そしてログ アラートとの違いについてご紹介いたします。</p>
+<br>
+
+<span id="more"></span>
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li><a href="#1-%E3%83%AD%E3%82%B0%E3%81%AE%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%A8%E3%81%AF">1. ログのメトリック アラートとは</a></li>
+<li><a href="#2-%E3%83%AD%E3%82%B0%E3%81%AE%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%AE%E4%BB%95%E7%B5%84%E3%81%BF">2. ログのメトリック アラートの仕組み</a></li>
+<li><a href="#3-%E3%83%AD%E3%82%B0%E3%81%AE%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%AE%E5%88%A9%E7%82%B9">3. ログのメトリック アラートの利点</a></li>
+<li><a href="#4-%E3%83%AD%E3%82%B0%E3%81%AE%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95">4. ログのメトリック アラートの作成方法</a></li>
+<li><a href="#5-%E3%83%AD%E3%82%B0%E3%81%AE%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E3%81%94%E8%B3%AA%E5%95%8F">5. ログのメトリック アラートに関するよくあるご質問</a><ul>
+<li><a href="#Q-Heartbeat-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%82%92%E7%9B%A3%E8%A6%96%E3%81%99%E3%82%8B%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%82%92%E4%BD%9C%E6%88%90%E3%81%97%E3%81%9F%E3%81%A8%E3%81%93%E3%82%8D%E3%80%81%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%A8%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%8C%E5%90%8C%E6%99%82%E3%81%AB%E4%BD%9C%E6%88%90%E3%81%95%E3%82%8C%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82%E3%83%AD%E3%82%B0-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AF%E5%89%8A%E9%99%A4%E3%81%97%E3%81%A6%E3%82%82%E3%81%84%E3%81%84%E3%81%A7%E3%81%99%E3%81%8B%E3%80%82">Q. Heartbeat メトリックを監視するアラートを作成したところ、メトリック アラートとログ アラート ルールが同時に作成されました。ログ アラート ルールは削除してもいいですか。</a></li>
+<li><a href="#Q-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%81%AB%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B-scheduledQueryRules-%E3%81%8C%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E4%B8%80%E8%A6%A7%E3%81%AB%E8%A1%A8%E7%A4%BA%E3%81%95%E3%82%8C%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82">Q. メトリックに変換する scheduledQueryRules がアラート ルールの一覧に表示されません。</a></li>
+<li><a href="#Q-Azure-%E3%83%9D%E3%83%BC%E3%82%BF%E3%83%AB%E4%B8%8A%E3%81%A7%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%81%AB%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B-scheduledQueryRules-%E3%82%92%E8%A1%A8%E7%A4%BA%E3%81%97%E3%81%9F%E3%81%A8%E3%81%93%E3%82%8D%E3%80%81Cannot-read-properties-of-undefined-reading-%E2%80%98toLowerCase%E2%80%99-%E3%81%A8%E8%A1%A8%E7%A4%BA%E3%81%95%E3%82%8C%E3%81%BE%E3%81%99%E3%80%82">Q. Azure ポータル上でメトリックに変換する scheduledQueryRules を表示したところ、Cannot read properties of undefined (reading ‘toLowerCase’) と表示されます。</a></li>
+<li><a href="#Q-Heartbeat-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%81%8C%E7%94%9F%E6%88%90%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%81%93%E3%81%A8%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%E3%81%AF%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q. Heartbeat メトリックが生成されていることを確認する方法はありますか。</a></li>
+</ul>
+</li>
+</ul>
+<br>
+
+
+<h2 id="1-ログのメトリック-アラートとは"><a href="#1-ログのメトリック-アラートとは" class="headerlink" title="1. ログのメトリック アラートとは"></a>1. ログのメトリック アラートとは</h2><p><strong><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-metric-logs">ログのメトリック アラート</a></strong> は、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/agents/azure-monitor-agent-overview">Azure Monitor エージェント (AMA)</a> によって Log Analytics のエンドポイントに送信された Heartbeat や Perf などのログをメトリックに変換し、変換後の<strong>メトリック</strong>を監視するアラート ルールです。</p>
+<p>これに対して、<strong><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-log-alert-rule">ログ アラート ルール</a></strong> は、Log Analytics ワークスペースに収集された<strong>ログ</strong>そのものを KQL クエリで監視するアラート ルールです。</p>
+<p>両者は、元となるデータが Log Analytics のエンドポイントに送信されたログである点は共通していますが、実際の監視対象（ログ アラート ルールはログそのもの、ログのメトリック アラートは変換後のメトリック）が異なります。</p>
+<p>ログのメトリック アラートは、対応するログをメトリックに変換して監視するため、準リアルタイム性やディメンションによる絞り込みを重視する場合に適しています（<a href="#3-%E3%83%AD%E3%82%B0%E3%81%AE%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E3%81%AE%E5%88%A9%E7%82%B9">3. ログのメトリック アラートの利点</a> 参照）。一方、任意の KQL クエリでログを柔軟に評価したい場合は、ログ アラート ルールが適しています。</p>
+<p>例えば、AMA によって収集された Heartbeat を対象にログのメトリック アラートを作成すると、Heartbeat ログがメトリックに変換され、Log Analytics ワークスペースの<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/metrics/analyze-metrics">メトリック エクスプローラー</a>上で以下のように表示されます。ログのメトリック アラートでは、この変換後のメトリックが監視対象となります。<br><img src="/blog/AzureMonitorEssential/LogToMetricAlert/image01.png"></p>
+<p>なお、ログのメトリック アラートで監視可能なデータは、<a href="https://learn.microsoft.com/en-us/azure/azure-monitor/reference/supported-metrics/microsoft-operationalinsights-workspaces-metrics#category-legacy-log-based-metrics">公開情報</a> の「Category: Legacy Log-based metrics」に記載されているメトリックのみです。アラートを作成する前に、監視したいログに対応するメトリック名とディメンションが一覧に含まれていることをご確認ください。</p>
+<div class="alert is-info"><p class="alert-title">Note</p><p><strong>Azure Monitor エージェント (AMA) では、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/data-collection-performance#add-destination">パフォーマンス カウンターを直接メトリックとして収集することが可能です</a></strong>。そのため、ログのメトリック アラートではなく、通常のメトリック アラート ルールでも監視することができます。なお、この方法で収集できるのはパフォーマンス カウンターのみとなり、Heartbeat は対象外となりますのでご注意ください。</p></div>
+<br>
+
+
+<h2 id="2-ログのメトリック-アラートの仕組み"><a href="#2-ログのメトリック-アラートの仕組み" class="headerlink" title="2. ログのメトリック アラートの仕組み"></a>2. ログのメトリック アラートの仕組み</h2><p>ログのメトリック アラートは、以下の <strong>2 つのリソース</strong>によって構成されます。</p>
+<table>
+<thead>
+<tr>
+<th>リソースの種類</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Microsoft.Insights/metricAlerts</code></td>
+<td>変換されたメトリックのしきい値を監視し、アラートを発報するルール</td>
+</tr>
+<tr>
+<td><code>Microsoft.Insights/scheduledQueryRules</code></td>
+<td>ログをメトリックに変換する特殊なルール</td>
+</tr>
+</tbody></table>
+<p>Azure ポータルからログのメトリック アラート (<code>metricAlerts</code>) を作成すると、<code>metricAlerts</code> と同じ名前で <code>scheduledQueryRules</code> がバックグラウンドで自動的に作成されます。Azure ポータル以外（ARM テンプレートや REST API など）でログのメトリック アラートを作成する場合は、手動で <code>scheduledQueryRules</code> を作成する必要がありますのでご注意ください。<code>scheduledQueryRules</code> を作成するサンプルの ARM テンプレートは、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-metric-logs#resource-manager-templates">こちら</a>の公開情報をご覧ください。</p>
+<p><strong>なお、<code>scheduledQueryRules</code> を削除すると、メトリックが生成されず、メトリック アラートで監視することができなくなりますので、<code>scheduledQueryRules</code> は削除しないようにご注意ください。</strong></p>
+<br>
+
+
+<h2 id="3-ログのメトリック-アラートの利点"><a href="#3-ログのメトリック-アラートの利点" class="headerlink" title="3. ログのメトリック アラートの利点"></a>3. ログのメトリック アラートの利点</h2><p>ログ アラート ルールと比較したときの、ログのメトリック アラートの主な利点は以下のとおりです。</p>
+<h4 id="準リアルタイムの監視"><a href="#準リアルタイムの監視" class="headerlink" title="準リアルタイムの監視"></a>準リアルタイムの監視</h4><p>ログのメトリック アラートでは、ログ用のパイプラインとは別に用意されたメトリック用のパイプラインでデータが処理されます。<br>それぞれのデータの流れは、以下のとおりです。</p>
+<p><strong>A. ログが Log Analytics ワークスペースに取り込まれるまでの流れ</strong></p>
+<ol>
+<li>ゲスト OS 内の AMA にて、ログが生成される</li>
+<li>ゲスト OS 内の AMA が、Log Analytics のエンドポイントに対してログを送信する</li>
+<li>Log Analytics のエンドポイントが、AMA からログを受け取る</li>
+<li>ログがパイプラインに転送され、処理される</li>
+<li>KQL クエリでログが検索できるようになる</li>
+</ol>
+<p><strong>B. ログがメトリックに変換されるまでの流れ</strong></p>
+<ol>
+<li>ゲスト OS 内の AMA にて、ログが生成される</li>
+<li>ゲスト OS 内の AMA が、Log Analytics のエンドポイントに対してログを送信する</li>
+<li>Log Analytics のエンドポイントが、AMA からログを受け取る</li>
+<li>ログのパイプラインとは別の、メトリック用のパイプラインにデータが転送され、処理される</li>
+<li>メトリックとして検索できるようになる</li>
+</ol>
+<p>1.～ 3. までは共通ですが、4. 以降で使用する処理パイプラインが分かれます。<br>ログが KQL で検索可能になるまでの経路（A）よりも、メトリックとして参照可能になるまでの経路（B）の方が所要時間が短いため、ログのメトリック アラートでは、ログ アラート ルールよりもリアルタイムに近い監視が可能です。</p>
+<br>
+
+<h4 id="ディメンションによるフィルタリング"><a href="#ディメンションによるフィルタリング" class="headerlink" title="ディメンションによるフィルタリング"></a>ディメンションによるフィルタリング</h4><p>ログのメトリック アラートでは、ディメンションでコンピューター名や OS の種類などをフィルタリングでき、複雑な KQL クエリを定義せずに特定のマシンや条件に絞った監視を構成できます。</p>
+<p>※ 以下は Heartbeat メトリックを指定したときのディメンションです。<br><img width="700" src="../LogToMetricAlert/image12.png"></p>
+<br>
+
+
+<h2 id="4-ログのメトリック-アラートの作成方法"><a href="#4-ログのメトリック-アラートの作成方法" class="headerlink" title="4. ログのメトリック アラートの作成方法"></a>4. ログのメトリック アラートの作成方法</h2><p>それでは、Heartbeat メトリックを監視するログのメトリック アラートを作成してみましょう。<br>本項では、5 分おきに評価を行い、直近 5 分間に記録された Heartbeat メトリックの合計値が 1 を下回った場合に発報する構成を例に、ログのメトリック アラートの設定手順を紹介します。</p>
+<p><strong>1. Log Analytics ワークスペースに Heartbeat ログが収集されていることを確認する</strong><br>前提として、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/vm/data-collection?tabs=default">AMA で Log Analytics ワークスペースに Heartbeat や Perf を収集</a>していなければ、ログのメトリック アラートで監視することはできません。今回は、Heartbeat メトリックを監視するアラートを作成したいので、Log Analytics ワークスペース上で Heartbeat が収集されているかどうかを確認します。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// サンプル クエリ</span><br><span class="line">Heartbeat</span><br><span class="line">| where TimeGenerated &gt; ago(1d)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/blog/AzureMonitorEssential/LogToMetricAlert/image04.png"></p>
+<br>
+
+<p><strong>2. スコープで Log Analytics ワークスペースを指定し、アラートの条件を指定する</strong><br>Azure ポータル &gt; [モニター (監視)] &gt; [アラート] を開き、画面上部の [+ 作成] &gt; [アラート ルール] を選択します。<br>スコープを選択する画面が表示されますので、「監視対象のマシンの Heartbeat ログが収集されている Log Analytics ワークスペース」を選択します。<br><img width="650" src="../LogToMetricAlert/image05.png"></p>
+<p>次の画面では、アラートの発報条件を指定します。<br>シグナル名では [Heartbeat] を選択し、メトリック アラートの評価に関わる項目を設定します。</p>
+<ul>
+<li>確認する間隔 : 評価を行う頻度</li>
+<li>ルックバック期間 : 1 回の評価を行う際に評価の対象となる期間</li>
+<li>集計の種類 : [ルックバック期間] で指定した期間のメトリックを集計する方法</li>
+</ul>
+<img width="700" src="../LogToMetricAlert/image06.png">
+
+
+<p>今回は、以下のとおり設定します。<br>マシンごとに監視するため、ディメンションでは [Computer] を指定します。</p>
+<ul>
+<li>シグナル名 : Heartbeat</li>
+<li>しきい値の種類 : Static</li>
+<li>集計の種類 : 合計</li>
+<li>値は : 次の値より小さい</li>
+<li>単位 : カウント</li>
+<li>しきい値 : 1</li>
+<li>ディメンション名 : Computer</li>
+<li>確認する間隔 : 5 分</li>
+<li>ルックバック期間 : 5 分</li>
+</ul>
+<div class="alert is-info"><p class="alert-title">Note</p><p>メトリック アラートの設定項目につきましては、サポート ブログの <a href="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/MonitorAlertFAQ/#Q-%E3%83%A1%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF-%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88-%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E9%A0%85%E7%9B%AE%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82">Azure Monitor のアラートに関するよくあるご質問</a> や<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-create-metric-alert-rule">公開情報</a>をご覧ください。</p></div>
+<br>
+
+<p><strong>3. アラートで通知する方法を指定する</strong><br>Azure Monitor のアラート機能では、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">アクション グループ</a> というリソースでアラートを通知する方法を定義します。[アクション グループの選択] をクリックすると、既存のアクション グループの一覧が表示されます。新規で作成する場合は、画面右側に表示される [+ アクション グループの作成] を選択します。<br><img src="/blog/AzureMonitorEssential/LogToMetricAlert/image07.png"></p>
+<p>例えば、アラートをメールで通知する場合には、[通知のタイプ] で “電子メール&#x2F;SMS メッセージ&#x2F;プッシュ&#x2F;音声” を選択し、通知するメール アドレスを指定します。<br><img width="750" src="../LogToMetricAlert/image08.png"></p>
+<p>また、[アクション] では、アクション グループがトリガーされた際に実行するアクションを選択できます (今回は設定しません)。<br><img width="600" src="../LogToMetricAlert/image09.png"></p>
+<div class="alert is-info"><p class="alert-title">Note</p><p>アクション グループの概要や設定手順につきましては、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups#create-an-action-group-in-the-azure-portal">公開情報</a>をご覧ください。</p></div>
+<br>
+
+<p><strong>4. アラート ルールの名前、アラートの重大度等を設定する</strong><br>[アラート ルールの詳細] では、重大度、アラート ルール名、アラート ルールの説明を設定します。<br>[詳細設定オプション] では、アラート ルールの有効化や自動解決を設定します。</p>
+<p>[アラートを自動的に解決する] にチェックを入れると、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateful-alerts">ステートフルなアラート</a> として動作します。条件を満たすと発報し、条件が解消されるまでは同じ時系列に対して新たなアラートは発報されません。メトリック アラートでは、条件を満たさない評価が 3 回連続すると解決済みに移行し、解決通知が行われます。</p>
+<p>[アラートを自動的に解決する] でチェックしない場合は、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/alerts-overview#stateless-alerts">ステートレスなアラート</a>となり、しきい値を満たす度に発報します。この場合、アラートが解決したとみなされることはないため、解決した旨の通知も行われません。</p>
+<p>お客様のご要件に合わせてご設定ください。<br><img width="600" src="../LogToMetricAlert/image10.png"></p>
+<br>
+
+<p>手順は以上です。</p>
+<p>アラートの履歴は、Azure ポータル &gt; [モニター (監視)] &gt; [アラート] からご確認いただけます。<br>以下の例では、アラートの評価時点から過去 5 分間の Heartbeat メトリックの合計値が 1 を下回ったため、アラートが発報していることが分かります。<br><img src="/blog/AzureMonitorEssential/LogToMetricAlert/image11.png"></p>
+<br>
+
+
+<h2 id="5-ログのメトリック-アラートに関するよくあるご質問"><a href="#5-ログのメトリック-アラートに関するよくあるご質問" class="headerlink" title="5. ログのメトリック アラートに関するよくあるご質問"></a>5. ログのメトリック アラートに関するよくあるご質問</h2><p>最後に、ログのメトリック アラートでよくお問い合わせいただく質問をご紹介いたします。</p>
+<br>
+
+
+<h4 id="Q-Heartbeat-メトリックを監視するアラートを作成したところ、メトリック-アラートとログ-アラート-ルールが同時に作成されました。ログ-アラート-ルールは削除してもいいですか。"><a href="#Q-Heartbeat-メトリックを監視するアラートを作成したところ、メトリック-アラートとログ-アラート-ルールが同時に作成されました。ログ-アラート-ルールは削除してもいいですか。" class="headerlink" title="Q. Heartbeat メトリックを監視するアラートを作成したところ、メトリック アラートとログ アラート ルールが同時に作成されました。ログ アラート ルールは削除してもいいですか。"></a>Q. Heartbeat メトリックを監視するアラートを作成したところ、メトリック アラートとログ アラート ルールが同時に作成されました。ログ アラート ルールは削除してもいいですか。</h4><p>いいえ、ログをメトリックに変換する <code>scheduledQueryRules</code> は削除しないでください。<br>作成されたメトリック アラートは、AMA によって収集されたログをメトリックに変換し、メトリックを評価する「ログのメトリック アラート」です。Azure ポータルからログのメトリック アラートを作成した場合、ログをメトリックに変換するための <code>scheduledQueryRules</code> が自動で作成されますが、削除するとメトリックが生成されなくなるため、監視できません。<br><br></p>
+<h4 id="Q-メトリックに変換する-scheduledQueryRules-がアラート-ルールの一覧に表示されません。"><a href="#Q-メトリックに変換する-scheduledQueryRules-がアラート-ルールの一覧に表示されません。" class="headerlink" title="Q. メトリックに変換する scheduledQueryRules がアラート ルールの一覧に表示されません。"></a>Q. メトリックに変換する scheduledQueryRules がアラート ルールの一覧に表示されません。</h4><p>Azure Monitor の通常のアラート ルールは、Azure ポータル &gt; [モニター (監視)] &gt; [アラート] &gt; [アラート ルール] に表示されますが、ログをメトリックに変換する <code>scheduledQueryRules</code> は表示されません。</p>
+<p>※ シグナルの種類が「メトリクス」の <code>metricAlerts</code> のみが表示されます。<br><img src="/blog/AzureMonitorEssential/LogToMetricAlert/image02.png"></p>
+<p>メトリックに変換する <code>scheduledQueryRules</code> は、対象のリソース グループの [概要] ペインで確認できます。<br>Azure ポータルからログのメトリック アラートを作成した場合は、<code>metricAlerts</code> と同じ名前の <code>scheduledQueryRules</code> が作成されますので、リソース名で絞り込むと、次の 2 種類のリソースが表示されます。</p>
+<ul>
+<li>[種類] が「メトリック アラート ルール」: <code>metricAlerts</code></li>
+<li>[種類] が「ログ検索警告ルール」: <code>scheduledQueryRules</code></li>
+</ul>
+<p><img src="/blog/AzureMonitorEssential/LogToMetricAlert/image03.png"></p>
+<br>
+
+<h4 id="Q-Azure-ポータル上でメトリックに変換する-scheduledQueryRules-を表示したところ、Cannot-read-properties-of-undefined-reading-‘toLowerCase’-と表示されます。"><a href="#Q-Azure-ポータル上でメトリックに変換する-scheduledQueryRules-を表示したところ、Cannot-read-properties-of-undefined-reading-‘toLowerCase’-と表示されます。" class="headerlink" title="Q. Azure ポータル上でメトリックに変換する scheduledQueryRules を表示したところ、Cannot read properties of undefined (reading ‘toLowerCase’) と表示されます。"></a>Q. Azure ポータル上でメトリックに変換する scheduledQueryRules を表示したところ、Cannot read properties of undefined (reading ‘toLowerCase’) と表示されます。</h4><p><code>scheduledQueryRules</code> は、ログをメトリックに変換する専用のルールです。<br>通常のログ アラート ルールの定義を持たないため、Azure ポータル上で開くと以下のエラーが表示されますが、アラートの動作不良を示すものではございません。<br><img width="700" src="../LogToMetricAlert/image13.png"></p>
+<br>
+
+<h4 id="Q-Heartbeat-メトリックが生成されていることを確認する方法はありますか。"><a href="#Q-Heartbeat-メトリックが生成されていることを確認する方法はありますか。" class="headerlink" title="Q. Heartbeat メトリックが生成されていることを確認する方法はありますか。"></a>Q. Heartbeat メトリックが生成されていることを確認する方法はありますか。</h4><p>Heartbeat ログを収集している Log Analytics ワークスペース &gt; [監視] &gt; [メトリック] から確認可能です。<br>Heartbeat ログが収集され、メトリックに変換されている場合は、0 より大きい値が記録されます。<br><img src="/blog/AzureMonitorEssential/LogToMetricAlert/image14.png"></p>
+<br>
+
+<p>本記事では、ログのメトリック アラートの仕組み、ログ アラート ルールとの違い、作成方法、よくあるご質問をご紹介しました。<br>上記内容以外でご不明な点や疑問点などございましたら、弊社サポートまでお問い合わせください。<br>最後までお読みいただきありがとうございました！</p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Alerts-Action-Groups/" rel="tag">Alerts, Action Groups</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Essential/" rel="tag">Azure Monitor Essential</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/HowTo/" rel="tag">HowTo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Metric-alert/" rel="tag">Metric alert</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/AzureMonitorEssential/LogToMetricAlert.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../LogAnalytics/MigrationToContainerLogV2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">ContainerLog テーブルのサポート終了に伴う ContainerLogV2 テーブルへの移行について</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">ログのメトリック アラートについて</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/MigrationToContainerLogV2/">ContainerLog テーブルのサポート終了に伴う ContainerLogV2 テーブルへの移行について</a>
+          </li>
+        
+          <li>
+            <a href="../StartUpGuide/">Azure Monitor スタートアップ ガイド</a>
+          </li>
+        
+          <li>
+            <a href="../../applicationInsights/api-key-deprecate-and-migration/">Application Insights API キーの廃止と移行について</a>
+          </li>
+        
+          <li>
+            <a href="../../AMPLS/ampls-ip-ranges/">AMPLS で必要な IP アドレスの個数について</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/AMA-migration/" rel="tag">AMA migration</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Action-group/" rel="tag">Action group</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Activity-Logs/" rel="tag">Activity Logs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Agents-and-Extensions-Windows/" rel="tag">Agents and Extensions - Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Alert-processing-rule/" rel="tag">Alert processing rule</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Alerts-Action-Groups/" rel="tag">Alerts, Action Groups</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Arc-enabled-servers/" rel="tag">Arc-enabled servers</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Availability-Tests/" rel="tag">Availability Tests</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Arc/" rel="tag">Azure Arc</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Diagnostics-Extension/" rel="tag">Azure Diagnostics Extension</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent/" rel="tag">Azure Monitor Agent</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent-Linux/" rel="tag">Azure Monitor Agent - Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent-Windows/" rel="tag">Azure Monitor Agent - Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-All/" rel="tag">Azure Monitor All</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essential/" rel="tag">Azure Monitor Essential</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Private-Link-Scope/" rel="tag">Azure Monitor Private Link Scope</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Update-Manager/" rel="tag">Azure Update Manager</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Container-Insights/" rel="tag">Container Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Cost/" rel="tag">Cost</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Create-a-Support-Request/" rel="tag">Create a Support Request</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Data-Collection-Rule-Data-Collection-Endpoint/" rel="tag">Data Collection Rule, Data Collection Endpoint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostics-Settings/" rel="tag">Diagnostics Settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HowTo/" rel="tag">HowTo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hybrid-Runbook-Worker/" rel="tag">Hybrid Runbook Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Information/" rel="tag">Information</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics-Agent/" rel="tag">Log Analytics Agent</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics-workspace-data-export/" rel="tag">Log Analytics workspace data export</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-search-alert/" rel="tag">Log search alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-Identity/" rel="tag">Managed Identity</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Metric-alert/" rel="tag">Metric alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Metrics/" rel="tag">Metrics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Others/" rel="tag">Others</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Outage/" rel="tag">Outage</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Query/" rel="tag">Query</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Resource-Health-alert/" rel="tag">Resource Health alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Retirement/" rel="tag">Retirement</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Service-Health/" rel="tag">Service Health</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Service-Health-alert/" rel="tag">Service Health alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM-Insights/" rel="tag">VM Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Workbooks/" rel="tag">Workbooks</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">12</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/">Log Analytics</a><span class="tag-list-count">42</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/">Troubleshooting</a><span class="tag-list-count">11</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/">FAQ</a><span class="tag-list-count">9</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/">Automation</a><span class="tag-list-count">13</span><ul></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2026/09/">2026 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2026/08/">2026 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2026/07/">2026 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2026/04/">2026 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/12/">2025 / 12</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/09/">2025 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/08/">2025 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/07/">2025 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/06/">2025 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/05/">2025 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/03/">2025 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/02/">2025 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/01/">2025 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/11/">2024 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/10/">2024 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/09/">2024 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/08/">2024 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/07/">2024 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/05/">2024 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/04/">2024 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/03/">2024 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/01/">2024 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/12/">2023 / 12</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/11/">2023 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/10/">2023 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/09/">2023 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/07/">2023 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/06/">2023 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/03/">2023 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/01/">2023 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/11/">2022 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/10/">2022 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/09/">2022 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/08/">2022 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/AMA-migration/" style="font-size: 11.88px;">AMA migration</a> <a href="../../tags/Action-group/" style="font-size: 10.63px;">Action group</a> <a href="../../tags/Activity-Logs/" style="font-size: 10.63px;">Activity Logs</a> <a href="../../tags/Agents-and-Extensions-Windows/" style="font-size: 10px;">Agents and Extensions - Windows</a> <a href="../../tags/Alert-processing-rule/" style="font-size: 10px;">Alert processing rule</a> <a href="../../tags/Alerts-Action-Groups/" style="font-size: 18.13px;">Alerts, Action Groups</a> <a href="../../tags/Application-Insights/" style="font-size: 16.25px;">Application Insights</a> <a href="../../tags/Arc-enabled-servers/" style="font-size: 12.5px;">Arc-enabled servers</a> <a href="../../tags/Automation/" style="font-size: 16.88px;">Automation</a> <a href="../../tags/Availability-Tests/" style="font-size: 11.25px;">Availability Tests</a> <a href="../../tags/Azure-Arc/" style="font-size: 12.5px;">Azure Arc</a> <a href="../../tags/Azure-Diagnostics-Extension/" style="font-size: 10.63px;">Azure Diagnostics Extension</a> <a href="../../tags/Azure-Monitor-Agent/" style="font-size: 17.5px;">Azure Monitor Agent</a> <a href="../../tags/Azure-Monitor-Agent-Linux/" style="font-size: 10.63px;">Azure Monitor Agent - Linux</a> <a href="../../tags/Azure-Monitor-Agent-Windows/" style="font-size: 10.63px;">Azure Monitor Agent - Windows</a> <a href="../../tags/Azure-Monitor-All/" style="font-size: 11.88px;">Azure Monitor All</a> <a href="../../tags/Azure-Monitor-Essential/" style="font-size: 18.75px;">Azure Monitor Essential</a> <a href="../../tags/Azure-Monitor-Private-Link-Scope/" style="font-size: 11.25px;">Azure Monitor Private Link Scope</a> <a href="../../tags/Azure-Update-Manager/" style="font-size: 10.63px;">Azure Update Manager</a> <a href="../../tags/Container-Insights/" style="font-size: 11.25px;">Container Insights</a> <a href="../../tags/Cost/" style="font-size: 11.88px;">Cost</a> <a href="../../tags/Create-a-Support-Request/" style="font-size: 10.63px;">Create a Support Request</a> <a href="../../tags/Data-Collection-Rule-Data-Collection-Endpoint/" style="font-size: 12.5px;">Data Collection Rule, Data Collection Endpoint</a> <a href="../../tags/Diagnostics-Settings/" style="font-size: 13.13px;">Diagnostics Settings</a> <a href="../../tags/FAQ/" style="font-size: 14.38px;">FAQ</a> <a href="../../tags/General/" style="font-size: 13.13px;">General</a> <a href="../../tags/HowTo/" style="font-size: 20px;">HowTo</a> <a href="../../tags/Hybrid-Runbook-Worker/" style="font-size: 10px;">Hybrid Runbook Worker</a> <a href="../../tags/Information/" style="font-size: 11.25px;">Information</a> <a href="../../tags/Log-Analytics/" style="font-size: 19.38px;">Log Analytics</a> <a href="../../tags/Log-Analytics-Agent/" style="font-size: 10.63px;">Log Analytics Agent</a> <a href="../../tags/Log-Analytics-workspace-data-export/" style="font-size: 10px;">Log Analytics workspace data export</a> <a href="../../tags/Log-search-alert/" style="font-size: 16.88px;">Log search alert</a> <a href="../../tags/Managed-Identity/" style="font-size: 10.63px;">Managed Identity</a> <a href="../../tags/Metric-alert/" style="font-size: 12.5px;">Metric alert</a> <a href="../../tags/Metrics/" style="font-size: 11.25px;">Metrics</a> <a href="../../tags/Others/" style="font-size: 13.13px;">Others</a> <a href="../../tags/Outage/" style="font-size: 10px;">Outage</a> <a href="../../tags/Query/" style="font-size: 11.88px;">Query</a> <a href="../../tags/Resource-Health-alert/" style="font-size: 10.63px;">Resource Health alert</a> <a href="../../tags/Retirement/" style="font-size: 15px;">Retirement</a> <a href="../../tags/Runbook/" style="font-size: 13.75px;">Runbook</a> <a href="../../tags/Service-Health/" style="font-size: 10px;">Service Health</a> <a href="../../tags/Service-Health-alert/" style="font-size: 10px;">Service Health alert</a> <a href="../../tags/Troubleshooting/" style="font-size: 15.63px;">Troubleshooting</a> <a href="../../tags/VM-Insights/" style="font-size: 10.63px;">VM Insights</a> <a href="../../tags/Workbooks/" style="font-size: 10px;">Workbooks</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
