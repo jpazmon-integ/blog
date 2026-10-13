@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+    
+      <title>
+        
+          アクション グループの OTP (ワンタイム パスコード) 認証について | 
+              Japan Azure Monitoring Support Blog
+      </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <meta name="description" content="[更新履歴]  2026&#x2F;10&#x2F;13 : ブログ公開  こんにちは、Azure Monitoring サポート チームの北村です。今回の記事では、サービス正常性にて通知された「Action recommended: Review new email verification requirement for Azure Monitor action groups」についてご紹介し">
+<meta property="og:type" content="article">
+<meta property="og:title" content="アクション グループの OTP (ワンタイム パスコード) 認証について">
+<meta property="og:url" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/index.html">
+<meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
+<meta property="og:description" content="[更新履歴]  2026&#x2F;10&#x2F;13 : ブログ公開  こんにちは、Azure Monitoring サポート チームの北村です。今回の記事では、サービス正常性にて通知された「Action recommended: Review new email verification requirement for Azure Monitor action groups」についてご紹介し">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image01.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image02.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image03.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image04.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image05.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image06.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image07.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image08.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image09.png">
+<meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image10.png">
+<meta property="article:published_time" content="2026-10-12T15:00:00.000Z">
+<meta property="article:modified_time" content="2026-10-13T05:29:50.466Z">
+<meta property="article:author" content="Japan Azure Monitoring Support Team">
+<meta property="article:tag" content="Alerts, Action Groups">
+<meta property="article:tag" content="Azure Monitor Essential">
+<meta property="article:tag" content="HowTo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image01.png">
+        
+          <link rel="alternate" href="../../atom.xml" title="Japan Azure Monitoring Support Blog"
+            type="application/atom+xml">
+          
+
+            <link rel="icon" href="../../%20favicon.ico">
+            <link rel="apple-touch-icon" sizes="180x180" href="../../%20apple-touch-icon.png">
+            <link rel="icon" type="image/png" sizes="32x32" href="../../%20favicon-32x32.png">
+            <link rel="icon" type="image/png" sizes="16x16" href="../../%20favicon-16x16.png">
+            <link rel="manifest" href="../../%20site.webmanifest">
+            <link rel="mask-icon" href="../../%20safari-pinned-tab.svg" color="#5bbad5">
+            <meta name="msapplication-TileColor" content="#ffffff">
+            <meta name="theme-color" content="#ffffff">
+            
+              <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+              
+                
+<link rel="stylesheet" href="../../css/style.css">
+
+                  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+                  <script type="text/javascript">
+                    !(function (cfg) { function e() { cfg.onInit && cfg.onInit(n) } var x, w, D, t, E, n, C = window, O = document, b = C.location, q = "script", I = "ingestionendpoint", L = "disableExceptionTracking", j = "ai.device."; "instrumentationKey"[x = "toLowerCase"](), w = "crossOrigin", D = "POST", t = "appInsightsSDK", E = cfg.name || "appInsights", (cfg.name || C[t]) && (C[t] = E), n = C[E] || function (g) { var f = !1, m = !1, h = { initialize: !0, queue: [], sv: "8", version: 2, config: g }; function v(e, t) { var n = {}, i = "Browser"; function a(e) { e = "" + e; return 1 === e.length ? "0" + e : e } return n[j + "id"] = i[x](), n[j + "type"] = i, n["ai.operation.name"] = b && b.pathname || "_unknown_", n["ai.internal.sdkVersion"] = "javascript:snippet_" + (h.sv || h.version), { time: (i = new Date).getUTCFullYear() + "-" + a(1 + i.getUTCMonth()) + "-" + a(i.getUTCDate()) + "T" + a(i.getUTCHours()) + ":" + a(i.getUTCMinutes()) + ":" + a(i.getUTCSeconds()) + "." + (i.getUTCMilliseconds() / 1e3).toFixed(3).slice(2, 5) + "Z", iKey: e, name: "Microsoft.ApplicationInsights." + e.replace(/-/g, "") + "." + t, sampleRate: 100, tags: n, data: { baseData: { ver: 2 } }, ver: undefined, seq: "1", aiDataContract: undefined } } var n, i, t, a, y = -1, T = 0, S = ["js.monitor.azure.com", "js.cdn.applicationinsights.io", "js.cdn.monitor.azure.com", "js0.cdn.applicationinsights.io", "js0.cdn.monitor.azure.com", "js2.cdn.applicationinsights.io", "js2.cdn.monitor.azure.com", "az416426.vo.msecnd.net"], o = g.url || cfg.src, r = function () { return s(o, null) }; function s(d, t) { if ((n = navigator) && (~(n = (n.userAgent || "").toLowerCase()).indexOf("msie") || ~n.indexOf("trident/")) && ~d.indexOf("ai.3") && (d = d.replace(/(\/)(ai\.3\.)([^\d]*)$/, function (e, t, n) { return t + "ai.2" + n })), !1 !== cfg.cr) for (var e = 0; e < S.length; e++)if (0 < d.indexOf(S[e])) { y = e; break } var n, i = function (e) { var a, t, n, i, o, r, s, c, u, l; h.queue = [], m || (0 <= y && T + 1 < S.length ? (a = (y + T + 1) % S.length, p(d.replace(/^(.*\/\/)([\w\.]*)(\/.*)$/, function (e, t, n, i) { return t + S[a] + i })), T += 1) : (f = m = !0, s = d, !0 !== cfg.dle && (c = (t = function () { var e, t = {}, n = g.connectionString; if (n) for (var i = n.split(";"), a = 0; a < i.length; a++) { var o = i[a].split("="); 2 === o.length && (t[o[0][x]()] = o[1]) } return t[I] || (e = (n = t.endpointsuffix) ? t.location : null, t[I] = "https://" + (e ? e + "." : "") + "dc." + (n || "services.visualstudio.com")), t }()).instrumentationkey || g.instrumentationKey || "", t = (t = (t = t[I]) && "/" === t.slice(-1) ? t.slice(0, -1) : t) ? t + "/v2/track" : g.endpointUrl, t = g.userOverrideEndpointUrl || t, (n = []).push((i = "SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details)", o = s, u = t, (l = (r = v(c, "Exception")).data).baseType = "ExceptionData", l.baseData.exceptions = [{ typeName: "SDKLoadFailed", message: i.replace(/\./g, "-"), hasFullStack: !1, stack: i + "\nSnippet failed to load [" + o + "] -- Telemetry is disabled\nHelp Link: https://go.microsoft.com/fwlink/?linkid=2128109\nHost: " + (b && b.pathname || "_unknown_") + "\nEndpoint: " + u, parsedStack: [] }], r)), n.push((l = s, i = t, (u = (o = v(c, "Message")).data).baseType = "MessageData", (r = u.baseData).message = 'AI (Internal): 99 message:"' + ("SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details) (" + l + ")").replace(/\"/g, "") + '"', r.properties = { endpoint: i }, o)), s = n, c = t, JSON && ((u = C.fetch) && !cfg.useXhr ? u(c, { method: D, body: JSON.stringify(s), mode: "cors" }) : XMLHttpRequest && ((l = new XMLHttpRequest).open(D, c), l.setRequestHeader("Content-type", "application/json"), l.send(JSON.stringify(s))))))) }, a = function (e, t) { m || setTimeout(function () { !t && h.core || i() }, 500), f = !1 }, p = function (e) { var n = O.createElement(q), e = (n.src = e, t && (n.integrity = t), n.setAttribute("data-ai-name", E), cfg[w]); return !e && "" !== e || "undefined" == n[w] || (n[w] = e), n.onload = a, n.onerror = i, n.onreadystatechange = function (e, t) { "loaded" !== n.readyState && "complete" !== n.readyState || a(0, t) }, cfg.ld && cfg.ld < 0 ? O.getElementsByTagName("head")[0].appendChild(n) : setTimeout(function () { O.getElementsByTagName(q)[0].parentNode.appendChild(n) }, cfg.ld || 0), n }; p(d) } cfg.sri && (n = o.match(/^((http[s]?:\/\/.*\/)\w+(\.\d+){1,5})\.(([\w]+\.){0,2}js)$/)) && 6 === n.length ? (d = "".concat(n[1], ".integrity.json"), i = "@".concat(n[4]), l = window.fetch, t = function (e) { if (!e.ext || !e.ext[i] || !e.ext[i].file) throw Error("Error Loading JSON response"); var t = e.ext[i].integrity || null; s(o = n[2] + e.ext[i].file, t) }, l && !cfg.useXhr ? l(d, { method: "GET", mode: "cors" }).then(function (e) { return e.json()["catch"](function () { return {} }) }).then(t)["catch"](r) : XMLHttpRequest && ((a = new XMLHttpRequest).open("GET", d), a.onreadystatechange = function () { if (a.readyState === XMLHttpRequest.DONE) if (200 === a.status) try { t(JSON.parse(a.responseText)) } catch (e) { r() } else r() }, a.send())) : o && r(); try { h.cookie = O.cookie } catch (k) { } function e(e) { for (; e.length;)!function (t) { h[t] = function () { var e = arguments; f || h.queue.push(function () { h[t].apply(h, e) }) } }(e.pop()) } var c, u, l = "track", d = "TrackPage", p = "TrackEvent", l = (e([l + "Event", l + "PageView", l + "Exception", l + "Trace", l + "DependencyData", l + "Metric", l + "PageViewPerformance", "start" + d, "stop" + d, "start" + p, "stop" + p, "addTelemetryInitializer", "setAuthenticatedUserContext", "clearAuthenticatedUserContext", "flush"]), h.SeverityLevel = { Verbose: 0, Information: 1, Warning: 2, Error: 3, Critical: 4 }, (g.extensionConfig || {}).ApplicationInsightsAnalytics || {}); return !0 !== g[L] && !0 !== l[L] && (e(["_" + (c = "onerror")]), u = C[c], C[c] = function (e, t, n, i, a) { var o = u && u(e, t, n, i, a); return !0 !== o && h["_" + c]({ message: e, url: t, lineNumber: n, columnNumber: i, error: a, evt: C.event }), o }, g.autoExceptionInstrumented = !0), h }(cfg.cfg), (C[E] = n).queue && 0 === n.queue.length ? (n.queue.push(e), n.trackPageView({})) : e(); })({
+                      src: "https://js.monitor.azure.com/scripts/b/ai.3.gbl.min.js",
+                      // name: "appInsights", // Global SDK Instance name defaults to "appInsights" when not supplied
+                      // ld: 0, // Defines the load delay (in ms) before attempting to load the sdk. -1 = block page load and add to head. (default) = 0ms load after timeout,
+                      // useXhr: 1, // Use XHR instead of fetch to report failures (if available),
+                      // dle: true, // Prevent the SDK from reporting load failure log
+                      crossOrigin: "anonymous", // When supplied this will add the provided value as the cross origin attribute on the script tag
+                      // onInit: null, // Once the application insights instance has loaded and initialized this callback function will be called with 1 argument -- the sdk instance (DON'T ADD anything to the sdk.queue -- As they won't get called)
+                      // sri: false, // Custom optional value to specify whether fetching the snippet from integrity file and do integrity check
+                      cfg: { // Application Insights Configuration
+                        connectionString: "InstrumentationKey=3bdbf1fd-6df1-4401-9bc6-1756db37fa5f;IngestionEndpoint=https://japaneast-1.in.applicationinsights.azure.com/;LiveEndpoint=https://japaneast.livediagnostics.monitor.azure.com/;ApplicationId=b3c3cc51-434a-4437-bc36-e5fe3f744127"
+                      }
+                    });
+                  </script>
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a class="main-nav-link" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpazmon-integ.github.io/blog"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Azure Monitoring Support Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Monitoring に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-AzureMonitorEssential/ActionGroupEmailOTPVerification" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      アクション グループの OTP (ワンタイム パスコード) 認証について
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Published: 
+        <a href="" class="article-date-single">
+  <time datetime="2026-10-12T15:00:00.000Z" itemprop="datePublished">2026-10-13</time>
+</a>
+        
+            
+                <!-- Published / Last update -->
+/ Last update: <a id="update-time" class="article-date-single"></a><br>
+Contributors: <ul style="display: inline-block; list-style:none" id="contributors" class="github-contributors"> </ul>
+
+<script type="text/javascript">
+  const sourceUrl = "https://github.com/jpazmon-integ/blog/blob/master/articles/AzureMonitorEssential/ActionGroupEmailOTPVerification.md";
+  const urlParts = sourceUrl.split("/");
+  const user = urlParts[3];
+  const repo = urlParts[4];
+  const filePath = urlParts.slice(7).join("/");
+  const apiUrl = `https://api.github.com/repos/${user}/${repo}/commits?path=${filePath}`;
+
+  function formatDate(date) {
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    if (month < 10) month = '0' + month;
+    if (day < 10) day = '0' + day;
+    return `${year}-${month}-${day}`;
+  }
+
+  $.getJSON(apiUrl, function (data) {
+    if (!data || data.length === 0) return;
+    const commit = data[0];
+    const updateDate = new Date(commit.commit.author.date);
+    const localDate = formatDate(updateDate);
+    const contributors = new Map();
+
+    data.reverse().forEach(function (commit) {
+      if (commit.author) {
+        const name = commit.author.login;
+        const url = commit.author.html_url;
+        contributors.set(name, { name, url });
+      }
+    });
+
+    $("#update-time").text(localDate);
+
+    const contributorLinks = Array.from(contributors.values())
+      .reverse()
+      .map(c => `<a href="${c.url}" target="_blank" style="color: inherit; text-decoration: none;">${c.name}</a>`)
+      .join(", ");
+
+    $("#contributors").html(contributorLinks);
+  });
+</script>
+            
+        
+        
+        
+        <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+9b9d5420-e57e-5247-b13b-57f85a857cdd%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3+%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E3%81%AE+OTP+%28%E3%83%AF%E3%83%B3%E3%82%BF%E3%82%A4%E3%83%A0+%E3%83%91%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89%29+%E8%AA%8D%E8%A8%BC%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FActionGroupEmailOTPVerification%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FActionGroupEmailOTPVerification.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FActionGroupEmailOTPVerification.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/" data-id="cuidioheJujSnBodBEm_Ghbb_" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[更新履歴]</p>
+<ul>
+<li>2026&#x2F;10&#x2F;13 : ブログ公開</li>
+</ul>
+<p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回の記事では、サービス正常性にて通知された「Action recommended: Review new email verification requirement for Azure Monitor action groups」についてご紹介し、新しく追加するメール アドレスで必要となる OTP 認証の手順や認証状況の確認方法、よくあるご質問についてご説明します。</p>
+<br>
+
+<span id="more"></span>
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li><a href="#1-%E5%A0%B1%E5%91%8A%E3%81%95%E3%82%8C%E3%81%9F%E6%AD%A3%E5%B8%B8%E6%80%A7%E3%81%AE%E5%8B%A7%E5%91%8A%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">1. 報告された正常性の勧告について</a><ul>
+<li><a href="#1-1-%E6%A6%82%E8%A6%81">1-1. 概要</a></li>
+<li><a href="#1-2-%E5%86%85%E5%AE%B9">1-2. 内容</a></li>
+<li><a href="#1-3-%E4%BB%8A%E5%BE%8C%E5%BF%85%E8%A6%81%E3%81%A8%E3%81%AA%E3%82%8B%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3">1-3. 今後必要となるアクション</a></li>
+</ul>
+</li>
+<li><a href="#2-%E3%83%AF%E3%83%B3%E3%82%BF%E3%82%A4%E3%83%A0-%E3%83%91%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89-OTP-%E3%81%A7%E8%AA%8D%E8%A8%BC%E3%81%99%E3%82%8B%E6%89%8B%E9%A0%86">2. ワンタイム パスコード (OTP) で認証する手順</a><ul>
+<li><a href="#2-1-OTP-%E8%AA%8D%E8%A8%BC%E3%81%AE%E3%83%A1%E3%83%BC%E3%83%AB%E3%82%92%E5%8F%97%E3%81%91%E5%8F%96%E3%82%8B">2-1. OTP 認証のメールを受け取る</a></li>
+<li><a href="#2-2-OTP-%E8%AA%8D%E8%A8%BC%E3%82%92%E5%AE%8C%E4%BA%86%E3%81%99%E3%82%8B">2-2. OTP 認証を完了する</a></li>
+<li><a href="#2-3-%E3%83%A1%E3%83%BC%E3%83%AB-%E3%82%A2%E3%83%89%E3%83%AC%E3%82%B9%E3%81%AE%E8%AA%8D%E8%A8%BC%E7%8A%B6%E6%B3%81%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">2-3. メール アドレスの認証状況を確認する</a></li>
+<li><a href="#2-4-OTP-%E8%AA%8D%E8%A8%BC%E3%81%AE%E3%83%A1%E3%83%BC%E3%83%AB%E3%82%92%E5%86%8D%E9%80%81%E3%81%99%E3%82%8B">2-4. OTP 認証のメールを再送する</a></li>
+</ul>
+</li>
+<li><a href="#3-%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E3%81%94%E8%B3%AA%E5%95%8F">3. よくあるご質問</a><ul>
+<li><a href="#Q1-OTP-%E8%AA%8D%E8%A8%BC%E3%82%92%E5%9B%9E%E9%81%BF%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%E3%81%AF%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q1. OTP 認証を回避する方法はありますか。</a></li>
+<li><a href="#Q2-Microsoft-Entra-%E3%83%86%E3%83%8A%E3%83%B3%E3%83%88%E3%81%A7%E6%A4%9C%E8%A8%BC%E6%B8%88%E3%81%BF%E3%81%AE%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E3%81%AB%E5%B1%9E%E3%81%99%E3%82%8B%E3%83%A1%E3%83%BC%E3%83%AB-%E3%82%A2%E3%83%89%E3%83%AC%E3%82%B9%E3%81%A7%E3%81%82%E3%81%A3%E3%81%A6%E3%82%82-OTP-%E8%AA%8D%E8%A8%BC%E3%81%AF%E5%BF%85%E8%A6%81%E3%81%A7%E3%81%99%E3%81%8B%E3%80%82">Q2. Microsoft Entra テナントで検証済みのドメインに属するメール アドレスであっても OTP 認証は必要ですか。</a></li>
+<li><a href="#Q3-OTP-%E8%AA%8D%E8%A8%BC%E3%81%AE%E5%B1%95%E9%96%8B%E5%89%8D%E3%81%8B%E3%82%89%E7%99%BB%E9%8C%B2%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%81%9F%E6%97%A2%E5%AD%98%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3-%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E3%81%AE%E3%83%A1%E3%83%BC%E3%83%AB-%E3%82%A2%E3%83%89%E3%83%AC%E3%82%B9%E3%82%82%E8%AA%8D%E8%A8%BC%E3%81%AE%E5%AF%BE%E8%B1%A1%E3%81%AB%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q3. OTP 認証の展開前から登録されていた既存のアクション グループのメール アドレスも認証の対象になりますか。</a></li>
+<li><a href="#Q4-%E3%83%AC%E3%82%AC%E3%82%B7%E8%A8%B1%E5%8F%AF%E6%B8%88%E3%81%BF%EF%BC%88LegacyAllowed%EF%BC%89%E3%81%A8%E7%A2%BA%E8%AA%8D%E6%B8%88%E3%81%BF%EF%BC%88Verified%EF%BC%89%E3%81%AE%E9%81%95%E3%81%84%E3%81%AF%E4%BD%95%E3%81%A7%E3%81%99%E3%81%8B%E3%80%82">Q4. レガシ許可済み（LegacyAllowed）と確認済み（Verified）の違いは何ですか。</a></li>
+<li><a href="#Q5-%E3%81%82%E3%82%8B%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3-%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E3%81%A7%E3%81%AF%E3%83%AC%E3%82%AC%E3%82%B7%E8%A8%B1%E5%8F%AF%E6%B8%88%E3%81%BF%EF%BC%88LegacyAllowed%EF%BC%89%E3%81%A8%E3%81%97%E3%81%A6%E8%A1%A8%E7%A4%BA%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%83%A1%E3%83%BC%E3%83%AB-%E3%82%A2%E3%83%89%E3%83%AC%E3%82%B9%E3%82%92%E3%80%81%E5%88%A5%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3-%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E3%81%AB%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B%E3%81%A8%E4%BF%9D%E7%95%99%E4%B8%AD%EF%BC%88VerificationPending%EF%BC%89%E3%81%A8%E8%A1%A8%E7%A4%BA%E3%81%95%E3%82%8C%E3%82%8B%E3%81%AE%E3%81%AF%E3%81%AA%E3%81%9C%E3%81%A7%E3%81%99%E3%81%8B%E3%80%82">Q5. あるアクション グループではレガシ許可済み（LegacyAllowed）として表示されているメール アドレスを、別のアクション グループに追加すると保留中（VerificationPending）と表示されるのはなぜですか。</a></li>
+<li><a href="#Q6-%E3%83%A1%E3%83%BC%E3%83%AB-%E3%82%A2%E3%83%89%E3%83%AC%E3%82%B9%E3%81%AE%E8%AA%8D%E8%A8%BC%E7%8A%B6%E6%B3%81%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%E3%81%AF%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q6. メール アドレスの認証状況を確認する方法はありますか。</a></li>
+<li><a href="#Q7-OTP-%E8%AA%8D%E8%A8%BC%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%93%E3%83%86%E3%82%A3-%E3%83%AD%E3%82%B0%E3%82%84%E8%A8%BA%E6%96%AD%E3%83%AD%E3%82%B0%E3%80%81%E7%9B%A3%E6%9F%BB%E8%A8%98%E9%8C%B2%E3%81%AF%E5%8F%96%E5%BE%97%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q7. OTP 認証に関するアクティビティ ログや診断ログ、監査記録は取得できますか。</a></li>
+<li><a href="#Q8-%E3%83%AF%E3%83%B3%E3%82%BF%E3%82%A4%E3%83%A0-%E3%83%91%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E5%85%A5%E5%8A%9B%E3%81%97%E3%81%9F%E3%82%89%E3%80%81%E6%9C%89%E5%8A%B9%E6%9C%9F%E9%99%90%E3%81%8C%E5%88%87%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%81%A8%E8%A1%A8%E7%A4%BA%E3%81%95%E3%82%8C%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82%E3%81%93%E3%81%AE%E5%A0%B4%E5%90%88%E3%80%81%E3%81%A9%E3%81%AE%E3%82%88%E3%81%86%E3%81%AB%E8%AA%8D%E8%A8%BC%E3%81%99%E3%82%8C%E3%81%B0%E3%82%88%E3%81%84%E3%81%A7%E3%81%99%E3%81%8B%E3%80%82">Q8. ワンタイム パスコードを入力したら、有効期限が切れていると表示されました。この場合、どのように認証すればよいですか。</a></li>
+<li><a href="#Q9-%E4%B8%80%E5%BA%A6%E3%83%A1%E3%83%BC%E3%83%AB-%E3%82%A2%E3%83%89%E3%83%AC%E3%82%B9%E3%81%AE%E8%AA%8D%E8%A8%BC%E3%82%92%E5%AE%8C%E4%BA%86%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82%E5%90%8C%E3%81%98%E3%83%86%E3%83%8A%E3%83%B3%E3%83%88%E5%86%85%E3%81%AE%E4%BB%96%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3-%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E3%81%A7%E3%82%82%E5%86%8D%E5%BA%A6%E8%AA%8D%E8%A8%BC%E3%81%8C%E5%BF%85%E8%A6%81%E3%81%AB%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q9. 一度メール アドレスの認証を完了しました。同じテナント内の他のアクション グループでも再度認証が必要になりますか。</a></li>
+<li><a href="#Q10-OTP-%E8%AA%8D%E8%A8%BC%E3%81%AE%E3%83%A1%E3%83%BC%E3%83%AB%E3%82%92%E5%8F%97%E4%BF%A1%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88%E3%80%81%E3%81%A9%E3%81%AE%E3%82%88%E3%81%86%E3%81%AB%E5%AF%BE%E5%BF%9C%E3%81%99%E3%82%8C%E3%81%B0%E3%82%88%E3%81%84%E3%81%A7%E3%81%99%E3%81%8B%E3%80%82">Q10. OTP 認証のメールを受信できない場合、どのように対応すればよいですか。</a></li>
+<li><a href="#Q11-%E3%83%86%E3%82%B9%E3%83%88%E9%80%9A%E7%9F%A5%E3%82%92%E9%80%81%E4%BF%A1%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88%E3%82%82-OTP-%E8%AA%8D%E8%A8%BC%E3%81%8C%E5%BF%85%E8%A6%81%E3%81%A7%E3%81%99%E3%81%8B%E3%80%82">Q11. テスト通知を送信する場合も OTP 認証が必要ですか。</a></li>
+<li><a href="#Q12-%E3%83%A1%E3%83%BC%E3%83%AB-%E3%82%A2%E3%83%89%E3%83%AC%E3%82%B9%E3%81%AE%E5%8F%97%E4%BF%A1%E8%80%85%E3%81%AF%E3%80%81%E5%90%8C%E3%81%98%E3%83%86%E3%83%8A%E3%83%B3%E3%83%88%E3%81%AE%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%81%A7%E3%81%82%E3%82%8B%E5%BF%85%E8%A6%81%E3%81%8C%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q12. メール アドレスの受信者は、同じテナントのユーザーである必要がありますか。</a></li>
+<li><a href="#Q13-%E3%83%A1%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0-%E3%83%AA%E3%82%B9%E3%83%88%E3%82%92%E7%99%BB%E9%8C%B2%E3%81%97%E3%81%9F%E5%A0%B4%E5%90%88%E3%80%81%E3%81%99%E3%81%B9%E3%81%A6%E3%81%AE%E5%8F%97%E4%BF%A1%E8%80%85%E3%81%A7%E8%AA%8D%E8%A8%BC%E3%81%99%E3%82%8B%E5%BF%85%E8%A6%81%E3%81%8C%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99%E3%81%8B%E3%80%82">Q13. メーリング リストを登録した場合、すべての受信者で認証する必要がありますか。</a></li>
+</ul>
+</li>
+</ul>
+<br>
+
+
+<h2 id="1-報告された正常性の勧告について"><a href="#1-報告された正常性の勧告について" class="headerlink" title="1. 報告された正常性の勧告について"></a>1. 報告された正常性の勧告について</h2><h3 id="1-1-概要"><a href="#1-1-概要" class="headerlink" title="1-1. 概要"></a>1-1. 概要</h3><table>
+<thead>
+<tr>
+<th>項目名</th>
+<th>項目値</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>題名</td>
+<td>Action recommended: Review new email verification requirement for Azure Monitor action groups</td>
+</tr>
+<tr>
+<td>追跡 ID</td>
+<td>CR_7-00Z</td>
+</tr>
+<tr>
+<td>影響を受けるサービス</td>
+<td>Azure Monitor</td>
+</tr>
+<tr>
+<td>影響を受けるリージョン</td>
+<td>Central India, Central US EUAP, East US, East US 2, East US 2 EUAP, Germany West Central, Global, North Central US, South Central US, South India, Sweden Central, West US, West US 2</td>
+</tr>
+<tr>
+<td>正常性イベントの種類</td>
+<td>正常性の勧告</td>
+</tr>
+</tbody></table>
+<br>
+
+<h3 id="1-2-内容"><a href="#1-2-内容" class="headerlink" title="1-2. 内容"></a>1-2. 内容</h3><p>2026 年 10 月現在、すべてのリージョンで OTP 認証の適用が開始されています。以下は通知の原文と翻訳です。</p>
+<p>You’re receiving this notification because you’re associated with one or more Azure subscriptions that currently use Azure Monitor action groups.</p>
+<p>Starting as early as 17 July 2026, Azure Monitor action groups will begin a progressive regional rollout that requires one-time passcode (OTP) verification for new email addresses added to new or existing action groups before those email recipients can receive notifications.</p>
+<p>No action is needed for email addresses that are already configured in existing action groups. These email addresses will continue to receive notifications as usual.</p>
+<p>When you add a new email address to a new or existing action group, the email recipient must complete a one-time verification in the same tenant. An OTP email will be sent when the action group is saved, and the passcode will expire after 30 minutes. If the passcode expires, you can request another verification email from the action group page in the Azure portal.</p>
+<p>Until verification is completed, the new email address won’t receive notifications from the action group.<br>As part of this change, you’ll also need to save and verify an email address before you can send test email notifications.</p>
+<p><strong>翻訳</strong><br>このお知らせは、お客様が Azure Monitor のアクション グループを使用している 1 つ以上の Azure サブスクリプションに関連付けられているために送信されています。</p>
+<p>2026 年 7 月 17 日以降、リージョンごとに順次展開される形で、新規または既存のアクション グループに追加された新しいメール アドレスについて、通知を受信できるようになる前にワンタイム パスコード (OTP) による認証が必要になります。</p>
+<p>既存のアクション グループに既に設定されているメール アドレスについては、対応は不要です。これらのメール アドレスは、これまでどおり通知を受信できます。</p>
+<p>新規または既存のアクション グループに新しいメール アドレスを追加すると、そのメール受信者は同一テナント内で 1 回限りの OTP 認証を完了する必要があります。アクション グループを保存すると OTP メールが送信され、このパスコードは 30 分で有効期限が切れます。パスコードの有効期限が切れた場合は、Azure ポータルのアクション グループ ページから確認メールを再送できます。</p>
+<p>認証が完了するまで、新しく追加されたメール アドレスにはアクション グループからの通知は送信されません。<br>この変更に伴い、テスト メール通知を送信する前にも、メール アドレスを保存して認証を完了しておく必要があります。</p>
+<br>
+
+<h3 id="1-3-今後必要となるアクション"><a href="#1-3-今後必要となるアクション" class="headerlink" title="1-3. 今後必要となるアクション"></a>1-3. 今後必要となるアクション</h3><p>Review any processes that add email recipients to Azure Monitor action groups, and make sure new email recipients complete OTP verification when prompted. For more information, see <a href="https://learn.microsoft.com/azure/azure-monitor/alerts/action-groups">Create and manage action groups in Azure Monitor</a>.</p>
+<p><strong>翻訳</strong><br>Azure Monitor のアクション グループにメール アドレスを追加するプロセスを確認し、新しくメール アドレスを追加した際に OTP 認証を確実に完了できるようにしてください。詳細については、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">Azure Monitor でのアクション グループの作成と管理</a>を参照してください。</p>
+<br>
+
+<h2 id="2-ワンタイム-パスコード-OTP-で認証する手順"><a href="#2-ワンタイム-パスコード-OTP-で認証する手順" class="headerlink" title="2. ワンタイム パスコード (OTP) で認証する手順"></a>2. ワンタイム パスコード (OTP) で認証する手順</h2><p>本節では、新しいメール アドレスを追加した際のワンタイム パスコード (OTP) 認証の流れと、認証状況の確認方法をご説明します。なお、OTP 認証の展開前に既存のアクション グループへ設定済みのメール アドレスについては、再認証は不要です。</p>
+<br>
+
+<h3 id="2-1-OTP-認証のメールを受け取る"><a href="#2-1-OTP-認証のメールを受け取る" class="headerlink" title="2-1. OTP 認証のメールを受け取る"></a>2-1. OTP 認証のメールを受け取る</h3><p>新規または既存のアクション グループにメール アドレスを追加して保存すると、OTP 認証メールが自動的に送信されます。</p>
+<ul>
+<li><strong>送信元&#x2F;件名</strong> : メールは Microsoft Azure の <code>azure-noreply@microsoft.com</code> から送信され、件名は「Action required: Verify your email for Azure Monitor action group」と記載されています。</li>
+<li><strong>本文</strong> : メールには、認証ページを開くリンク（またはボタン）と、数字のワンタイム パスコードが含まれています。</li>
+<li><strong>有効期限</strong> : リンクとパスコードはメール送信から 30 分間有効です。有効期限が切れた場合、改めて認証メールを再送してください（<a href="#2-4-OTP-%E8%AA%8D%E8%A8%BC%E3%81%AE%E3%83%A1%E3%83%BC%E3%83%AB%E3%82%92%E5%86%8D%E9%80%81%E3%81%99%E3%82%8B">2-4. OTP 認証のメールを再送する</a> 参照）。</li>
+</ul>
+<img width="600" src=".././ActionGroupEmailOTPVerification/image01.png">
+
+<br>
+
+<h3 id="2-2-OTP-認証を完了する"><a href="#2-2-OTP-認証を完了する" class="headerlink" title="2-2. OTP 認証を完了する"></a>2-2. OTP 認証を完了する</h3><p>OTP 認証は、OTP 認証のメールを受け取った受信者が実施します。Azure や Microsoft Entra にサインインする必要はありません。<br>OTP 認証を行う前は、[メール アドレスの確認] 欄に「保留中」と表示されます。<br><img width="600" src=".././ActionGroupEmailOTPVerification/image02.png"></p>
+<p>OTP 認証のメールが届いたら、記載された手順に従って認証を完了します。</p>
+<ol>
+<li><p>メールの本文に OTP 認証用のリンク（またはボタン）と、ワンタイム パスコードが記載されています。リンク（またはボタン）を選択し、OTP 認証のページを開きます。<br><img src="/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image03.png"></p>
+</li>
+<li><p>メールに記載されたワンタイム パスコードを入力し、認証を完了します。<br><img src="/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image04.png"></p>
+</li>
+<li><p>認証が完了すると、そのメール アドレスは同じテナント内のアクション グループで確認済みとして扱われます。同じテナント内の別のアクション グループにそのメール アドレスを追加した場合も、再度 OTP 認証を行う必要はありません。<br><img src="/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image05.png"><br>Azure ポータル上でも [メール アドレスの確認] で「確認済み」と表示されます。<br><img src="/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image06.png"></p>
+</li>
+</ol>
+<br>
+
+<h3 id="2-3-メール-アドレスの認証状況を確認する"><a href="#2-3-メール-アドレスの認証状況を確認する" class="headerlink" title="2-3. メール アドレスの認証状況を確認する"></a>2-3. メール アドレスの認証状況を確認する</h3><p>メール アドレスの認証状況は、以下の 3 種類があります。</p>
+<table>
+<thead>
+<tr>
+<th>認証状況</th>
+<th>意味</th>
+<th>通知の配信</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>LegacyAllowed</code>（レガシ許可済み）</td>
+<td>OTP 認証の展開前に設定されていたメール アドレスです。</td>
+<td>アラートの通知メールは送信されます。</td>
+</tr>
+<tr>
+<td><code>VerificationPending</code>（保留中）</td>
+<td>OTP 認証が完了していません。</td>
+<td>アラートの通知メールは送信されません（テスト通知も同様です）。</td>
+</tr>
+<tr>
+<td><code>Verified</code>（確認済み）</td>
+<td>そのテナント内で OTP 認証を完了済みです。</td>
+<td>アラートの通知メールが送信されます（そのテナント内で有効です）。</td>
+</tr>
+</tbody></table>
+<div class="alert is-info"><p class="alert-title">Note</p><p><code>LegacyAllowed</code>（レガシ許可済み）は、OTP 認証の展開前からアクション グループに登録されていたメール アドレスに付与される状態であり、そのアクション グループ内でのみ有効です。同じメール アドレスを別のアクション グループに追加した場合や、同一のアクション グループから一度削除して再度追加した場合は <code>LegacyAllowed</code> は引き継がれず、<code>VerificationPending</code> となり、認証が必要となります。</p></div>
+<br>
+
+
+<p>認証状況を確認する方法は、3 つあります。</p>
+<h4 id="方法-1-Azure-ポータルのアクション-グループ画面から確認する"><a href="#方法-1-Azure-ポータルのアクション-グループ画面から確認する" class="headerlink" title="方法 1. Azure ポータルのアクション グループ画面から確認する"></a>方法 1. Azure ポータルのアクション グループ画面から確認する</h4><p>OTP の認証状況は、Azure ポータルから確認できます。<br>アクション グループの [概要] &gt; [通知] 欄で、各メール アドレスの横に認証状況が表示されます。<br><img src="/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image07.png"></p>
+<br>
+
+<h4 id="方法-2-Azure-ポータルの-JSON-ビューから確認する"><a href="#方法-2-Azure-ポータルの-JSON-ビューから確認する" class="headerlink" title="方法 2. Azure ポータルの JSON ビューから確認する"></a>方法 2. Azure ポータルの JSON ビューから確認する</h4><p>OTP の認証状況の表示は、JSON ビューからもご確認いただけます。</p>
+<ol>
+<li>Azure ポータルでアクション グループを開き、左メニューの [概要] を選択します。</li>
+<li>画面右上の [JSON ビュー] を選択し、API バージョンのドロップダウンを <code>2026-03-01-preview</code> に変更します。</li>
+<li><code>properties.emailReceivers[]</code> 配下の <code>verificationStatus</code> の値を確認します。<br><img src="/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image08.png"></li>
+</ol>
+<br>
+
+<h4 id="方法-3-REST-API-から確認する"><a href="#方法-3-REST-API-から確認する" class="headerlink" title="方法 3. REST API から確認する"></a>方法 3. REST API から確認する</h4><p>REST API を直接呼び出す場合は、以下のように API バージョン <code>2026-03-01-preview</code> を指定してアクション グループに対して <code>GET</code> を実行します。</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET https://management.azure.com/subscriptions/&#123;subscriptionId&#125;/resourceGroups/&#123;resourceGroupName&#125;/providers/microsoft.insights/actionGroups/&#123;actionGroupName&#125;?api-version=2026-03-01-preview</span><br></pre></td></tr></table></figure>
+
+<p>以下はレスポンスの例です。認証状況は <code>properties.emailReceivers[]</code> 配下の <code>verificationStatus</code> の値を確認します。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-rg/providers/microsoft.insights/actionGroups/example-ag&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Microsoft.Insights/ActionGroups&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;example-ag&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;location&quot;</span><span class="punctuation">:</span> <span class="string">&quot;global&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;tags&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;properties&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;groupShortName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;exag&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;emailReceivers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;email 1_-EmailAction-&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;verificationStatus&quot;</span><span class="punctuation">:</span> <span class="string">&quot;VerificationPending&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;emailAddress&quot;</span><span class="punctuation">:</span> <span class="string">&quot;user@contoso.com&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;useCommonAlertSchema&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Enabled&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;smsReceivers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;webhookReceivers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;eventHubReceivers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;itsmReceivers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;azureAppPushReceivers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;automationRunbookReceivers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;voiceReceivers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;logicAppReceivers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;azureFunctionReceivers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;armRoleReceivers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="2-4-OTP-認証のメールを再送する"><a href="#2-4-OTP-認証のメールを再送する" class="headerlink" title="2-4. OTP 認証のメールを再送する"></a>2-4. OTP 認証のメールを再送する</h3><p>有効期限内に認証できなかった場合や認証のメールを紛失してしまった場合は、Azure ポータルからメールを再送します。</p>
+<ol>
+<li><p>Azure ポータルでアクション グループを開き、左メニューの [概要] を選択します。</p>
+</li>
+<li><p>[通知] 欄で表示される「再送信」を選択します。<br><img src="/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image09.png"></p>
+</li>
+<li><p>認証待ちのメール アドレスに対して新しい OTP 認証のメールが送信されます。メールを受信したら 30 分以内に認証を完了してください。</p>
+</li>
+</ol>
+<br>
+
+
+<h2 id="3-よくあるご質問"><a href="#3-よくあるご質問" class="headerlink" title="3. よくあるご質問"></a>3. よくあるご質問</h2><h3 id="Q1-OTP-認証を回避する方法はありますか。"><a href="#Q1-OTP-認証を回避する方法はありますか。" class="headerlink" title="Q1. OTP 認証を回避する方法はありますか。"></a>Q1. OTP 認証を回避する方法はありますか。</h3><p>いいえ。<br>以下のメール アドレスを除き、今後追加される新しいメール アドレスは OTP 認証が必要です。</p>
+<ul>
+<li><code>LegacyAllowed</code>（レガシ許可済み）と表示されるメール アドレス（OTP 認証の展開前から登録されていたメール アドレス）</li>
+<li>同一テナントで認証済みのメール アドレス</li>
+</ul>
+<br>
+
+<h3 id="Q2-Microsoft-Entra-テナントで検証済みのドメインに属するメール-アドレスであっても-OTP-認証は必要ですか。"><a href="#Q2-Microsoft-Entra-テナントで検証済みのドメインに属するメール-アドレスであっても-OTP-認証は必要ですか。" class="headerlink" title="Q2. Microsoft Entra テナントで検証済みのドメインに属するメール アドレスであっても OTP 認証は必要ですか。"></a>Q2. Microsoft Entra テナントで検証済みのドメインに属するメール アドレスであっても OTP 認証は必要ですか。</h3><p>はい。<br>通知の種類として [電子メール] を選択して新しくメール アドレスを追加する場合、ドメインが Microsoft Entra で検証済みかどうかにかかわらず、アクション グループに追加するすべてのメール アドレスが認証の対象となります。</p>
+<br>
+
+<h3 id="Q3-OTP-認証の展開前から登録されていた既存のアクション-グループのメール-アドレスも認証の対象になりますか。"><a href="#Q3-OTP-認証の展開前から登録されていた既存のアクション-グループのメール-アドレスも認証の対象になりますか。" class="headerlink" title="Q3. OTP 認証の展開前から登録されていた既存のアクション グループのメール アドレスも認証の対象になりますか。"></a>Q3. OTP 認証の展開前から登録されていた既存のアクション グループのメール アドレスも認証の対象になりますか。</h3><p>いいえ。<br>OTP 認証の展開前に構成されたメール アドレスは <code>LegacyAllowed</code>（レガシ許可済み）として扱われ、そのアクション グループでは OTP 認証なしで引き続き通知を受信できます。<br>ただし、次の場合は OTP 認証の対象となります。</p>
+<ul>
+<li>OTP 認証の展開後に新しく追加されたメール アドレス</li>
+<li><code>LegacyAllowed</code>（レガシ許可済み）のメール アドレスを別のアクション グループに追加した場合、または同じアクション グループから削除して再追加した場合</li>
+</ul>
+<br>
+
+<h3 id="Q4-レガシ許可済み（LegacyAllowed）と確認済み（Verified）の違いは何ですか。"><a href="#Q4-レガシ許可済み（LegacyAllowed）と確認済み（Verified）の違いは何ですか。" class="headerlink" title="Q4. レガシ許可済み（LegacyAllowed）と確認済み（Verified）の違いは何ですか。"></a>Q4. レガシ許可済み（<code>LegacyAllowed</code>）と確認済み（<code>Verified</code>）の違いは何ですか。</h3><p><strong>レガシ許可済みは、そのアクション グループに限り有効です</strong>。別のアクション グループに追加した場合や、同じアクション グループから削除して再追加した場合は、OTP 認証が必要となります。一方で、<strong>確認済みは、同一テナント内のすべてのアクション グループで有効です</strong>。別のアクション グループに追加しても、OTP 認証は不要です。</p>
+<br>
+
+<h3 id="Q5-あるアクション-グループではレガシ許可済み（LegacyAllowed）として表示されているメール-アドレスを、別のアクション-グループに追加すると保留中（VerificationPending）と表示されるのはなぜですか。"><a href="#Q5-あるアクション-グループではレガシ許可済み（LegacyAllowed）として表示されているメール-アドレスを、別のアクション-グループに追加すると保留中（VerificationPending）と表示されるのはなぜですか。" class="headerlink" title="Q5. あるアクション グループではレガシ許可済み（LegacyAllowed）として表示されているメール アドレスを、別のアクション グループに追加すると保留中（VerificationPending）と表示されるのはなぜですか。"></a>Q5. あるアクション グループではレガシ許可済み（<code>LegacyAllowed</code>）として表示されているメール アドレスを、別のアクション グループに追加すると保留中（<code>VerificationPending</code>）と表示されるのはなぜですか。</h3><p>こちらは想定された動作です。<br><code>LegacyAllowed</code>（レガシ許可済み）とは、そのアクション グループに限って有効であることを意味します。<br>このステータスはメール アドレス自体に付随するプロパティではないため、他のアクション グループには引き継がれません。<br>そのため、別のアクション グループに追加した場合や、同じアクション グループから削除して再登録した場合は、OTP 認証が必要となります。</p>
+<br>
+
+<h3 id="Q6-メール-アドレスの認証状況を確認する方法はありますか。"><a href="#Q6-メール-アドレスの認証状況を確認する方法はありますか。" class="headerlink" title="Q6. メール アドレスの認証状況を確認する方法はありますか。"></a>Q6. メール アドレスの認証状況を確認する方法はありますか。</h3><p>はい。<br>Azure ポータルのアクション グループ画面、Azure ポータルの JSON ビュー、または REST API から確認できます。詳細な手順は <a href="#2-3-%E3%83%A1%E3%83%BC%E3%83%AB-%E3%82%A2%E3%83%89%E3%83%AC%E3%82%B9%E3%81%AE%E8%AA%8D%E8%A8%BC%E7%8A%B6%E6%B3%81%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">2-3. メール アドレスの認証状況を確認する</a> をご参照ください。</p>
+<br>
+
+<h3 id="Q7-OTP-認証に関するアクティビティ-ログや診断ログ、監査記録は取得できますか。"><a href="#Q7-OTP-認証に関するアクティビティ-ログや診断ログ、監査記録は取得できますか。" class="headerlink" title="Q7. OTP 認証に関するアクティビティ ログや診断ログ、監査記録は取得できますか。"></a>Q7. OTP 認証に関するアクティビティ ログや診断ログ、監査記録は取得できますか。</h3><p>いいえ。<br>現時点では、OTP 認証のメール送信、認証の完了、有効期限切れを直接確認するためのアクティビティ ログ、診断ログ、監査ログは提供されていません。</p>
+<br>
+
+<h3 id="Q8-ワンタイム-パスコードを入力したら、有効期限が切れていると表示されました。この場合、どのように認証すればよいですか。"><a href="#Q8-ワンタイム-パスコードを入力したら、有効期限が切れていると表示されました。この場合、どのように認証すればよいですか。" class="headerlink" title="Q8. ワンタイム パスコードを入力したら、有効期限が切れていると表示されました。この場合、どのように認証すればよいですか。"></a>Q8. ワンタイム パスコードを入力したら、有効期限が切れていると表示されました。この場合、どのように認証すればよいですか。</h3><p>OTP 認証は、認証メールが送信されてから <strong>30 分</strong>以内に実施する必要があります。<br>有効期限を延長することはできませんので、OTP 認証のメールを再送し、制限時間内に OTP 認証を完了してください（<a href="#2-4-OTP-%E8%AA%8D%E8%A8%BC%E3%81%AE%E3%83%A1%E3%83%BC%E3%83%AB%E3%82%92%E5%86%8D%E9%80%81%E3%81%99%E3%82%8B">2-4. OTP 認証のメールを再送する</a> 参照）。</p>
+<p>▼ ワンタイム パスコードを入力した際に表示される画面の例<br><img src="/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image10.png"></p>
+<br>
+
+<h3 id="Q9-一度メール-アドレスの認証を完了しました。同じテナント内の他のアクション-グループでも再度認証が必要になりますか。"><a href="#Q9-一度メール-アドレスの認証を完了しました。同じテナント内の他のアクション-グループでも再度認証が必要になりますか。" class="headerlink" title="Q9. 一度メール アドレスの認証を完了しました。同じテナント内の他のアクション グループでも再度認証が必要になりますか。"></a>Q9. 一度メール アドレスの認証を完了しました。同じテナント内の他のアクション グループでも再度認証が必要になりますか。</h3><p>いいえ。<br>同じテナント内で一度認証に成功したメール アドレスは、そのテナント内の既存および新規のアクション グループで確認済みとして扱われます。認証状態はテナントごとに管理されるため、別のテナントのアクション グループに追加する場合は、改めて OTP 認証が必要です。</p>
+<br>
+
+<h3 id="Q10-OTP-認証のメールを受信できない場合、どのように対応すればよいですか。"><a href="#Q10-OTP-認証のメールを受信できない場合、どのように対応すればよいですか。" class="headerlink" title="Q10. OTP 認証のメールを受信できない場合、どのように対応すればよいですか。"></a>Q10. OTP 認証のメールを受信できない場合、どのように対応すればよいですか。</h3><p>OTP 認証のメールは <code>azure-noreply@microsoft.com</code> から送信されますので、次の点をご確認ください。</p>
+<ul>
+<li>迷惑メール フォルダーに振り分けられていないか</li>
+<li>受信側のメール フィルターで上記アドレスが拒否されていないか</li>
+</ul>
+<br>
+
+<h3 id="Q11-テスト通知を送信する場合も-OTP-認証が必要ですか。"><a href="#Q11-テスト通知を送信する場合も-OTP-認証が必要ですか。" class="headerlink" title="Q11. テスト通知を送信する場合も OTP 認証が必要ですか。"></a>Q11. テスト通知を送信する場合も OTP 認証が必要ですか。</h3><p>はい。<br><a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups#test-an-action-group-in-the-azure-portal">テスト メール</a>を送信する前に、OTP 認証を完了しておく必要があります。OTP 認証が完了していないメール アドレスには、アラート通知だけでなく、テスト通知も送信されません。</p>
+<br>
+
+<h3 id="Q12-メール-アドレスの受信者は、同じテナントのユーザーである必要がありますか。"><a href="#Q12-メール-アドレスの受信者は、同じテナントのユーザーである必要がありますか。" class="headerlink" title="Q12. メール アドレスの受信者は、同じテナントのユーザーである必要がありますか。"></a>Q12. メール アドレスの受信者は、同じテナントのユーザーである必要がありますか。</h3><p>いいえ。<br>受信者が、アクション グループと同じテナントのユーザーである必要はありません。OTP 認証は、OTP 認証のメール内のリンクとワンタイム パスコードを使用して完了します。そのため、Azure または Microsoft Entra へのサインインは不要です。</p>
+<br>
+
+<h3 id="Q13-メーリング-リストを登録した場合、すべての受信者で認証する必要がありますか。"><a href="#Q13-メーリング-リストを登録した場合、すべての受信者で認証する必要がありますか。" class="headerlink" title="Q13. メーリング リストを登録した場合、すべての受信者で認証する必要がありますか。"></a>Q13. メーリング リストを登録した場合、すべての受信者で認証する必要がありますか。</h3><p>いいえ。<br>OTP 認証の対象は、アクション グループに登録したメール アドレスです。OTP 認証のメールはグループのメンバーに届くため、メンバーのうち 1 人が、メール内のリンクからワンタイム パスコードを入力すれば、認証は完了します。メンバー全員が認証する必要はありません。</p>
+<br>
+
+<hr>
+<p>上記の内容以外でご不明な点や疑問点などございましたら、弊社サポート サービスまでお問い合わせください。<br>最後までお読みいただきありがとうございました！</p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>※本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Alerts-Action-Groups/" rel="tag">Alerts, Action Groups</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Monitor-Essential/" rel="tag">Azure Monitor Essential</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/HowTo/" rel="tag">HowTo</a></li></ul>
+
+        
+        <a href="https://github.com/jpazmon-integ/blog/edit/master/articles/AzureMonitorEssential/ActionGroupEmailOTPVerification.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../LogToMetricAlert/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">ログのメトリック アラートについて</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">アクション グループの OTP (ワンタイム パスコード) 認証について</a>
+          </li>
+        
+          <li>
+            <a href="../LogToMetricAlert/">ログのメトリック アラートについて</a>
+          </li>
+        
+          <li>
+            <a href="../../LogAnalytics/MigrationToContainerLogV2/">ContainerLog テーブルのサポート終了に伴う ContainerLogV2 テーブルへの移行について</a>
+          </li>
+        
+          <li>
+            <a href="../StartUpGuide/">Azure Monitor スタートアップ ガイド</a>
+          </li>
+        
+          <li>
+            <a href="../../applicationInsights/api-key-deprecate-and-migration/">Application Insights API キーの廃止と移行について</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/AMA-migration/" rel="tag">AMA migration</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Action-group/" rel="tag">Action group</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Activity-Logs/" rel="tag">Activity Logs</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Agents-and-Extensions-Windows/" rel="tag">Agents and Extensions - Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Alert-processing-rule/" rel="tag">Alert processing rule</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Alerts-Action-Groups/" rel="tag">Alerts, Action Groups</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/" rel="tag">Application Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Arc-enabled-servers/" rel="tag">Arc-enabled servers</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Availability-Tests/" rel="tag">Availability Tests</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Arc/" rel="tag">Azure Arc</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Diagnostics-Extension/" rel="tag">Azure Diagnostics Extension</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent/" rel="tag">Azure Monitor Agent</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent-Linux/" rel="tag">Azure Monitor Agent - Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Agent-Windows/" rel="tag">Azure Monitor Agent - Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-All/" rel="tag">Azure Monitor All</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Essential/" rel="tag">Azure Monitor Essential</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Monitor-Private-Link-Scope/" rel="tag">Azure Monitor Private Link Scope</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Update-Manager/" rel="tag">Azure Update Manager</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Container-Insights/" rel="tag">Container Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Cost/" rel="tag">Cost</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Create-a-Support-Request/" rel="tag">Create a Support Request</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Data-Collection-Rule-Data-Collection-Endpoint/" rel="tag">Data Collection Rule, Data Collection Endpoint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Diagnostics-Settings/" rel="tag">Diagnostics Settings</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/General/" rel="tag">General</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HowTo/" rel="tag">HowTo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hybrid-Runbook-Worker/" rel="tag">Hybrid Runbook Worker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Information/" rel="tag">Information</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/" rel="tag">Log Analytics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics-Agent/" rel="tag">Log Analytics Agent</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics-workspace-data-export/" rel="tag">Log Analytics workspace data export</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-search-alert/" rel="tag">Log search alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Managed-Identity/" rel="tag">Managed Identity</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Metric-alert/" rel="tag">Metric alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Metrics/" rel="tag">Metrics</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Others/" rel="tag">Others</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Outage/" rel="tag">Outage</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Query/" rel="tag">Query</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Resource-Health-alert/" rel="tag">Resource Health alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Retirement/" rel="tag">Retirement</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Runbook/" rel="tag">Runbook</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Service-Health/" rel="tag">Service Health</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Service-Health-alert/" rel="tag">Service Health alert</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VM-Insights/" rel="tag">VM Insights</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Workbooks/" rel="tag">Workbooks</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Application-Insights/">Application Insights</a><span class="tag-list-count">12</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Log-Analytics/">Log Analytics</a><span class="tag-list-count">42</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Troubleshooting/">Troubleshooting</a><span class="tag-list-count">11</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/">FAQ</a><span class="tag-list-count">9</span><ul></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Automation/">Automation</a><span class="tag-list-count">13</span><ul></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2026/10/">2026 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2026/09/">2026 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2026/08/">2026 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2026/07/">2026 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2026/04/">2026 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/12/">2025 / 12</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/09/">2025 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/08/">2025 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/07/">2025 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/06/">2025 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/05/">2025 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/03/">2025 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/02/">2025 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/01/">2025 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/11/">2024 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/10/">2024 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/09/">2024 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/08/">2024 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/07/">2024 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/05/">2024 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/04/">2024 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/03/">2024 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/01/">2024 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/12/">2023 / 12</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/11/">2023 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/10/">2023 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/09/">2023 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/07/">2023 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/06/">2023 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/03/">2023 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/01/">2023 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/11/">2022 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/10/">2022 / 10</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/09/">2022 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/08/">2022 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/07/">2022 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/06/">2022 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/04/">2022 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/03/">2022 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/02/">2022 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/09/">2021 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/07/">2021 / 07</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">2019 / 04</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/AMA-migration/" style="font-size: 11.88px;">AMA migration</a> <a href="../../tags/Action-group/" style="font-size: 10.63px;">Action group</a> <a href="../../tags/Activity-Logs/" style="font-size: 10.63px;">Activity Logs</a> <a href="../../tags/Agents-and-Extensions-Windows/" style="font-size: 10px;">Agents and Extensions - Windows</a> <a href="../../tags/Alert-processing-rule/" style="font-size: 10px;">Alert processing rule</a> <a href="../../tags/Alerts-Action-Groups/" style="font-size: 18.13px;">Alerts, Action Groups</a> <a href="../../tags/Application-Insights/" style="font-size: 16.25px;">Application Insights</a> <a href="../../tags/Arc-enabled-servers/" style="font-size: 12.5px;">Arc-enabled servers</a> <a href="../../tags/Automation/" style="font-size: 16.88px;">Automation</a> <a href="../../tags/Availability-Tests/" style="font-size: 11.25px;">Availability Tests</a> <a href="../../tags/Azure-Arc/" style="font-size: 12.5px;">Azure Arc</a> <a href="../../tags/Azure-Diagnostics-Extension/" style="font-size: 10.63px;">Azure Diagnostics Extension</a> <a href="../../tags/Azure-Monitor-Agent/" style="font-size: 17.5px;">Azure Monitor Agent</a> <a href="../../tags/Azure-Monitor-Agent-Linux/" style="font-size: 10.63px;">Azure Monitor Agent - Linux</a> <a href="../../tags/Azure-Monitor-Agent-Windows/" style="font-size: 10.63px;">Azure Monitor Agent - Windows</a> <a href="../../tags/Azure-Monitor-All/" style="font-size: 11.88px;">Azure Monitor All</a> <a href="../../tags/Azure-Monitor-Essential/" style="font-size: 18.75px;">Azure Monitor Essential</a> <a href="../../tags/Azure-Monitor-Private-Link-Scope/" style="font-size: 11.25px;">Azure Monitor Private Link Scope</a> <a href="../../tags/Azure-Update-Manager/" style="font-size: 10.63px;">Azure Update Manager</a> <a href="../../tags/Container-Insights/" style="font-size: 11.25px;">Container Insights</a> <a href="../../tags/Cost/" style="font-size: 11.88px;">Cost</a> <a href="../../tags/Create-a-Support-Request/" style="font-size: 10.63px;">Create a Support Request</a> <a href="../../tags/Data-Collection-Rule-Data-Collection-Endpoint/" style="font-size: 12.5px;">Data Collection Rule, Data Collection Endpoint</a> <a href="../../tags/Diagnostics-Settings/" style="font-size: 13.13px;">Diagnostics Settings</a> <a href="../../tags/FAQ/" style="font-size: 14.38px;">FAQ</a> <a href="../../tags/General/" style="font-size: 13.13px;">General</a> <a href="../../tags/HowTo/" style="font-size: 20px;">HowTo</a> <a href="../../tags/Hybrid-Runbook-Worker/" style="font-size: 10px;">Hybrid Runbook Worker</a> <a href="../../tags/Information/" style="font-size: 11.25px;">Information</a> <a href="../../tags/Log-Analytics/" style="font-size: 19.38px;">Log Analytics</a> <a href="../../tags/Log-Analytics-Agent/" style="font-size: 10.63px;">Log Analytics Agent</a> <a href="../../tags/Log-Analytics-workspace-data-export/" style="font-size: 10px;">Log Analytics workspace data export</a> <a href="../../tags/Log-search-alert/" style="font-size: 16.88px;">Log search alert</a> <a href="../../tags/Managed-Identity/" style="font-size: 10.63px;">Managed Identity</a> <a href="../../tags/Metric-alert/" style="font-size: 12.5px;">Metric alert</a> <a href="../../tags/Metrics/" style="font-size: 11.25px;">Metrics</a> <a href="../../tags/Others/" style="font-size: 13.13px;">Others</a> <a href="../../tags/Outage/" style="font-size: 10px;">Outage</a> <a href="../../tags/Query/" style="font-size: 11.88px;">Query</a> <a href="../../tags/Resource-Health-alert/" style="font-size: 10.63px;">Resource Health alert</a> <a href="../../tags/Retirement/" style="font-size: 15px;">Retirement</a> <a href="../../tags/Runbook/" style="font-size: 13.75px;">Runbook</a> <a href="../../tags/Service-Health/" style="font-size: 10px;">Service Health</a> <a href="../../tags/Service-Health-alert/" style="font-size: 10px;">Service Health alert</a> <a href="../../tags/Troubleshooting/" style="font-size: 15.63px;">Troubleshooting</a> <a href="../../tags/VM-Insights/" style="font-size: 10.63px;">VM Insights</a> <a href="../../tags/Workbooks/" style="font-size: 10px;">Workbooks</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 Japan Azure Monitoring Support Team<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
