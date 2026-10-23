@@ -21,7 +21,7 @@ Azure Arc 対応サーバーでは、Azure Connected Machine エージェント�
 
 この証明書の有効期間は 90 日です。
 エージェントは証明書の残りの有効期間が 45 日以下になると更新を試みますが、サーバーが Azure と通信できない場合は更新できません。
-証明書を更新できないまま有効期限を迎えると、Azure portal 上の状態が [期限切れ (Expired)] になります。
+証明書を更新できないまま有効期限を迎えると、Azure ポータル上の状態が [期限切れ (Expired)] になります。
 
 ![](./Arc_expired/expired_arc.png)
 
@@ -46,6 +46,8 @@ Linux では、root ユーザーで実行するか、コマンドの先頭に `s
 ```CMD
 azcmagent disconnect
 ```
+
+切断後は、Azure ポータル上で対象のリソース情報が消えていることをご確認ください。
 
 > [!CAUTION]
 > **Azure Local 上で動作する Azure Arc 対応 VM の場合は、必ず `--force-local-only` オプションを指定してください。**
