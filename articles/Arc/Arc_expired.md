@@ -3,7 +3,7 @@ title: Azure Arc 対応サーバーが「期限切れ」になった場合の再
 date: 2026-10-21 17:00:00
 tags:
   - Azure Arc
-  - Azure Arc-enabled servers
+  - Arc-enabled servers
   - Troubleshooting
 disableDisclaimer: false
 ---
