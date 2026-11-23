@@ -10,12 +10,12 @@
               Japan Azure Monitoring Support Blog
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="[更新履歴]  2026&#x2F;10&#x2F;13 : ブログ公開  こんにちは、Azure Monitoring サポート チームの北村です。今回の記事では、サービス正常性にて通知された「Action recommended: Review new email verification requirement for Azure Monitor action groups」についてご紹介し">
+      <meta name="description" content="[更新履歴]  2026&#x2F;10&#x2F;13 : ブログ公開 2026&#x2F;11&#x2F;23 : REST API で OTP 認証のメールを再送する方法を追記  こんにちは、Azure Monitoring サポート チームの北村です。今回の記事では、サービス正常性にて通知された「Action recommended: Review new email verificati">
 <meta property="og:type" content="article">
 <meta property="og:title" content="アクション グループの OTP (ワンタイム パスコード) 認証について">
 <meta property="og:url" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/index.html">
 <meta property="og:site_name" content="Japan Azure Monitoring Support Blog">
-<meta property="og:description" content="[更新履歴]  2026&#x2F;10&#x2F;13 : ブログ公開  こんにちは、Azure Monitoring サポート チームの北村です。今回の記事では、サービス正常性にて通知された「Action recommended: Review new email verification requirement for Azure Monitor action groups」についてご紹介し">
+<meta property="og:description" content="[更新履歴]  2026&#x2F;10&#x2F;13 : ブログ公開 2026&#x2F;11&#x2F;23 : REST API で OTP 認証のメールを再送する方法を追記  こんにちは、Azure Monitoring サポート チームの北村です。今回の記事では、サービス正常性にて通知された「Action recommended: Review new email verificati">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image01.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image02.png">
@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image09.png">
 <meta property="og:image" content="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image10.png">
 <meta property="article:published_time" content="2026-10-12T15:00:00.000Z">
-<meta property="article:modified_time" content="2026-11-02T02:01:06.178Z">
+<meta property="article:modified_time" content="2026-11-23T07:44:40.484Z">
 <meta property="article:author" content="Japan Azure Monitoring Support Team">
 <meta property="article:tag" content="Action group">
 <meta property="article:tag" content="Alerts, Action Groups">
@@ -186,7 +186,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         
         <a href="https://github.com/jpazmon-integ/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+9b9d5420-e57e-5247-b13b-57f85a857cdd%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3+%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E3%81%AE+OTP+%28%E3%83%AF%E3%83%B3%E3%82%BF%E3%82%A4%E3%83%A0+%E3%83%91%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89%29+%E8%AA%8D%E8%A8%BC%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpazmon-integ.github.io%2Fblog%2FAzureMonitorEssential%2FActionGroupEmailOTPVerification%2F%29%0A*+Content+Source%3A+%5Barticles%2FAzureMonitorEssential%2FActionGroupEmailOTPVerification.md%5D%28https%3A%2F%2Fgithub.com%2Fjpazmon-integ%2Fblog%2Fblob%2Fmaster%2Farticles%2FAzureMonitorEssential%2FActionGroupEmailOTPVerification.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/" data-id="cuidQjvDev-6yJ0B6_I7wlxxx" class="article-share-link">共有</a>
+        <a data-url="https://jpazmon-integ.github.io/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/" data-id="cuidlAayuezq7wxsMLRstD82p" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -194,6 +194,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
         <p>[更新履歴]</p>
 <ul>
 <li>2026&#x2F;10&#x2F;13 : ブログ公開</li>
+<li>2026&#x2F;11&#x2F;23 : REST API で OTP 認証のメールを再送する方法を追記</li>
 </ul>
 <p>こんにちは、Azure Monitoring サポート チームの北村です。<br>今回の記事では、サービス正常性にて通知された「Action recommended: Review new email verification requirement for Azure Monitor action groups」についてご紹介し、新しく追加するメール アドレスで必要となる OTP 認証の手順や認証状況の確認方法、よくあるご質問についてご説明します。</p>
 <br>
@@ -280,6 +281,7 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 <p><strong>翻訳</strong><br>Azure Monitor のアクション グループにメール アドレスを追加するプロセスを確認し、新しくメール アドレスを追加した際に OTP 認証を確実に完了できるようにしてください。詳細については、<a href="https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups">Azure Monitor でのアクション グループの作成と管理</a>を参照してください。</p>
 <br>
 
+
 <h2 id="2-ワンタイム-パスコード-OTP-で認証する手順"><a href="#2-ワンタイム-パスコード-OTP-で認証する手順" class="headerlink" title="2. ワンタイム パスコード (OTP) で認証する手順"></a>2. ワンタイム パスコード (OTP) で認証する手順</h2><p>本節では、新しいメール アドレスを追加した際のワンタイム パスコード (OTP) 認証の流れと、認証状況の確認方法をご説明します。なお、OTP 認証の展開前に既存のアクション グループへ設定済みのメール アドレスについては、再認証は不要です。</p>
 <br>
 
@@ -354,15 +356,23 @@ Contributors: <ul style="display: inline-block; list-style:none" id="contributor
 
 <br>
 
-<h3 id="2-4-OTP-認証のメールを再送する"><a href="#2-4-OTP-認証のメールを再送する" class="headerlink" title="2-4. OTP 認証のメールを再送する"></a>2-4. OTP 認証のメールを再送する</h3><p>有効期限内に認証できなかった場合や認証のメールを紛失してしまった場合は、Azure ポータルからメールを再送します。</p>
-<ol>
+<h3 id="2-4-OTP-認証のメールを再送する"><a href="#2-4-OTP-認証のメールを再送する" class="headerlink" title="2-4. OTP 認証のメールを再送する"></a>2-4. OTP 認証のメールを再送する</h3><p>有効期限内に認証できなかった場合や認証のメールを紛失してしまった場合は、OTP 認証のメールを再送します。<br>OTP 認証のメールを再送する方法は、2 つあります。</p>
+<h4 id="方法-1-Azure-ポータルのアクション-グループ画面から再送する"><a href="#方法-1-Azure-ポータルのアクション-グループ画面から再送する" class="headerlink" title="方法 1. Azure ポータルのアクション グループ画面から再送する"></a>方法 1. Azure ポータルのアクション グループ画面から再送する</h4><ol>
 <li><p>Azure ポータルでアクション グループを開き、左メニューの [概要] を選択します。</p>
 </li>
 <li><p>[通知] 欄で表示される「再送信」を選択します。<br><img src="/blog/AzureMonitorEssential/ActionGroupEmailOTPVerification/image09.png"></p>
 </li>
-<li><p>認証待ちのメール アドレスに対して新しい OTP 認証のメールが送信されます。メールを受信したら 30 分以内に認証を完了してください。</p>
+<li><p>認証待ちのメール アドレスに対して新しい OTP 認証のメールが送信されます。</p>
 </li>
 </ol>
+<br>
+
+<h4 id="方法-2-REST-API-から再送する"><a href="#方法-2-REST-API-から再送する" class="headerlink" title="方法 2. REST API から再送する"></a>方法 2. REST API から再送する</h4><p>Azure ポータルに加え、アクション グループに対して <code>PATCH</code> リクエストを実行することで、OTP 認証のメールを再送することもできます。</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PATCH https://management.azure.com/subscriptions/&#123;subscriptionId&#125;/resourceGroups/&#123;resourceGroupName&#125;/providers/microsoft.insights/actionGroups/&#123;actionGroupName&#125;?api-version=2026-03-01-preview</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/json</span><br></pre></td></tr></table></figure>
+
+<p>以下は、Body の例です。<br><code>properties.emailReceivers[]</code> 配下の <code>verificationStatus</code> で <code>VerificationPending</code> を指定し、REST API を実行します。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;properties&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;emailReceivers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;email 1_-EmailAction-&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;verificationStatus&quot;</span><span class="punctuation">:</span> <span class="string">&quot;VerificationPending&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;emailAddress&quot;</span><span class="punctuation">:</span> <span class="string">&quot;user@contoso.com&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;useCommonAlertSchema&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Enabled&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
 <br>
 
 
