@@ -225,11 +225,11 @@ OTP 認証のメールを再送する方法は、2 つあります。
 2. [通知] 欄で表示される「再送信」を選択します。
 ![](./ActionGroupEmailOTPVerification/image09.png)
 
-3. 認証待ちのメール アドレスに対して新しい OTP 認証のメールが送信されます。メールを受信したら 30 分以内に認証を完了してください。
+3. 認証待ちのメール アドレスに対して新しい OTP 認証のメールが送信されます。
 
 <br>
 
-#### 方法 2.REST API から再送する
+#### 方法 2. REST API から再送する
 Azure ポータルに加え、アクション グループに対して `PATCH` リクエストを実行することで、OTP 認証のメールを再送することもできます。
 
 ```http
@@ -238,7 +238,7 @@ Content-Type: application/json
 ```
 
 以下は、Body の例です。
-properties.emailReceivers の verificationStatus を VerificationPending に設定すると、OTP メールが再送されます。メールを受信したら 30 分以内に認証を完了してください。
+`properties.emailReceivers[]` 配下の `verificationStatus` で `VerificationPending` を指定し、REST API を実行します。
 
 ```json
 {
