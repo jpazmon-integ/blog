@@ -10,6 +10,7 @@ tags:
 
 [更新履歴]
 - 2026/10/13 : ブログ公開
+- 2026/11/23 : REST API で OTP 認証のメールを再送する方法を追記
 
 こんにちは、Azure Monitoring サポート チームの北村です。
 今回の記事では、サービス正常性にて通知された「Action recommended: Review new email verification requirement for Azure Monitor action groups」についてご紹介し、新しく追加するメール アドレスで必要となる OTP 認証の手順や認証状況の確認方法、よくあるご質問についてご説明します。
@@ -95,6 +96,7 @@ Review any processes that add email recipients to Azure Monitor action groups, a
 Azure Monitor のアクション グループにメール アドレスを追加するプロセスを確認し、新しくメール アドレスを追加した際に OTP 認証を確実に完了できるようにしてください。詳細については、[Azure Monitor でのアクション グループの作成と管理](https://learn.microsoft.com/ja-jp/azure/azure-monitor/alerts/action-groups)を参照してください。
 
 <br>
+
 
 ## 2. ワンタイム パスコード (OTP) で認証する手順
 本節では、新しいメール アドレスを追加した際のワンタイム パスコード (OTP) 認証の流れと、認証状況の確認方法をご説明します。なお、OTP 認証の展開前に既存のアクション グループへ設定済みのメール アドレスについては、再認証は不要です。
@@ -214,13 +216,45 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 <br>
 
 ### 2-4. OTP 認証のメールを再送する
-有効期限内に認証できなかった場合や認証のメールを紛失してしまった場合は、Azure ポータルからメールを再送します。
+有効期限内に認証できなかった場合や認証のメールを紛失してしまった場合は、OTP 認証のメールを再送します。
+OTP 認証のメールを再送する方法は、2 つあります。
+
+#### 方法 1. Azure ポータルのアクション グループ画面から再送する
 
 1. Azure ポータルでアクション グループを開き、左メニューの [概要] を選択します。
 2. [通知] 欄で表示される「再送信」を選択します。
 ![](./ActionGroupEmailOTPVerification/image09.png)
 
 3. 認証待ちのメール アドレスに対して新しい OTP 認証のメールが送信されます。メールを受信したら 30 分以内に認証を完了してください。
+
+<br>
+
+#### 方法 2.REST API から再送する
+Azure ポータルに加え、アクション グループに対して `PATCH` リクエストを実行することで、OTP 認証のメールを再送することもできます。
+
+```http
+PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.insights/actionGroups/{actionGroupName}?api-version=2026-03-01-preview
+Content-Type: application/json
+```
+
+以下は、Body の例です。
+properties.emailReceivers の verificationStatus を VerificationPending に設定すると、OTP メールが再送されます。メールを受信したら 30 分以内に認証を完了してください。
+
+```json
+{
+  "properties": {
+    "emailReceivers": [
+      {
+        "name": "email 1_-EmailAction-",
+        "verificationStatus": "VerificationPending",
+        "emailAddress": "user@contoso.com",
+        "useCommonAlertSchema": false,
+        "status": "Enabled"
+      }
+    ]
+  }
+}
+```
 
 <br>
 
