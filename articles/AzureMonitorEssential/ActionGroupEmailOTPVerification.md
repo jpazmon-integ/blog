@@ -6,6 +6,7 @@ tags:
   - Alerts, Action Groups
   - Action group
   - HowTo
+  - Information
 ---
 
 [更新履歴]
